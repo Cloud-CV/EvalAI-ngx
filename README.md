@@ -2,10 +2,12 @@
 Revamped codebase of EvalAI Frontend
 
 ## Quick Setup 
-`npm install -g @angular/cli`
-`git clone git@github.com:Cloud-CV/EvalAI-ngx.git`
-'cd EvalAI-ngx/'
-'npm install'
+```shell
+npm install -g @angular/cli
+git clone git@github.com:Cloud-CV/EvalAI-ngx.git
+cd EvalAI-ngx/
+npm install
+```
 
 ## Development server
 
