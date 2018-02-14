@@ -7,16 +7,17 @@ export class AuthService {
 
   // Get Login functionality
 	get isLoggedIn() {
-	// check for token present
+		// check for token present
 
-	// TODO => change this token later to dynamic
-	let token = true;
-	
-	if(token){
-		return true
-	}
-	else{
-		return false;
+		// TODO => change this token later to dynamic
+		let token = true;
+
+		if(token){
+			return true
+		}
+		else{
+			return false;
+		}
 	}
 
 }
