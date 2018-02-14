@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Import serivces
-
 import { AuthService } from './services/auth.service'
 
 // Import Components
