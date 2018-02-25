@@ -5,8 +5,6 @@ import {Router} from "@angular/router";
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
-
-
 describe('AppComponent', () => {
 
   let location: Location;
@@ -32,6 +30,7 @@ describe('AppComponent', () => {
 
   }));
 
+  // Mocking promis
   it('fakeAsync works', fakeAsync(() => {
     let promise = new Promise((resolve) => {
       setTimeout(resolve, 10)
@@ -42,17 +41,17 @@ describe('AppComponent', () => {
     expect(done).toBeTruthy();
   }));
 
+  // mocking routes location
   it('navigate to "" set location to root', fakeAsync(() => {
     router.navigate(['']);
     tick(50);
     expect(location.path()).toBe('/');
   }));
 
+  // creation of app done
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 });
-
-
