@@ -1,7 +1,7 @@
-import {Location} from "@angular/common";
+import {Location} from '@angular/common';
 import {TestBed, fakeAsync, tick, async} from '@angular/core/testing';
-import {RouterTestingModule} from "@angular/router/testing";
-import {Router} from "@angular/router";
+import {RouterTestingModule} from '@angular/router/testing';
+import {Router} from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -32,8 +32,8 @@ describe('AppComponent', () => {
 
   // Mocking promis
   it('fakeAsync works', fakeAsync(() => {
-    let promise = new Promise((resolve) => {
-      setTimeout(resolve, 10)
+    const promise = new Promise((resolve) => {
+      setTimeout(resolve, 10);
     });
     let done = false;
     promise.then(() => done = true);
@@ -50,8 +50,8 @@ describe('AppComponent', () => {
 
   // creation of app done
   it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const compFixture = TestBed.createComponent(AppComponent);
+    const app = compFixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 });
