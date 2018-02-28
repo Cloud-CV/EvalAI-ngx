@@ -1,0 +1,29 @@
+.heading {
+    float: left;
+}
+
+.clearfix {
+    background: #8456E5;
+}
+
+.btn {
+    background: none;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 200px;
+    float: right;
+    position: relative;
+    top: 10px;
+    right: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &:hover, &:focus, &:active {
+        color: #8456E5;
+        border-color: #fff;
+        background-color: #fff;
+        box-shadow: none;
+    }
+}
