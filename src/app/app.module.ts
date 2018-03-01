@@ -1,6 +1,6 @@
 // Import Modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -25,6 +25,7 @@ import { HeaderComponent } from './components/header/header.component';
   providers: [
     AuthService
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
