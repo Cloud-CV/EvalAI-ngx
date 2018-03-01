@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  private logo = require('./assets/evalai-logo-single.png');
+  public logo = require('./assets/evalai-logo-single.png');
   constructor() { }
 
   ngOnInit() {
