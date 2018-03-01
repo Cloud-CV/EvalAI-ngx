@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 
-//Import Modules
+// Import Modules
 import {HeaderModule} from './components/header/header.module';
 
 @NgModule({
