@@ -4,13 +4,11 @@ import { Title } from '@angular/platform-browser';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import {ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'] ,
-  encapsulation: ViewEncapsulation.None,
 })
 
 export class AppComponent implements OnInit {
