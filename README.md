@@ -24,7 +24,7 @@ A question we’re often asked is: Doesn’t Kaggle already do this? The central
 
 - **Easy Hosting**: Hosting a challenge is streamlined. One can create the challenge on EvalAI using the intuitive UI (work-in-progress) or using zip configuration file.
 
-- **Centralized Leaderboard**: Challenge Organizers whether host their challenge on EvalAI or forked version of EvalAI, they can send the results to main EvalAI server. This helps to build a centralized platform to keep track of different challenges. 
+- **Centralized Leaderboard**: Challenge Organizers whether host their challenge on EvalAI or forked version of EvalAI, they can send the results to main EvalAI server. This helps to build a centralized platform to keep track of different challenges.
 
 ## Goal
 
@@ -41,7 +41,10 @@ Follow this guide to setup your development machine.
 
 ```shell
 npm install -g @angular/cli
+         #If SSH Key is integrated to GitHub
 git clone git@github.com:Cloud-CV/EvalAI-ngx.git
+                       #OR
+git clone https://github.com/Cloud-CV/EvalAI-ngx
 cd EvalAI-ngx/
 npm install
 ```
