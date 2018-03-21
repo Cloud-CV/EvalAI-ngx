@@ -32,8 +32,23 @@
 	.header_container{
 		background-size: 1400px 1100px; 
 	}
+	.partner_container {
+		background-size: 1400px 700px !important; 
+	}
+	.rule_laptop {
+		height:200px !important;
+		margin-top: 20%;
+	}
 
 }
+@media(min-width:768px) and (max-width:1130px){
+	.rule_laptop {
+		height:200px !important;
+		margin-top: 20%;
+	}
+
+}
+
 
 .btn_nofill{
     padding:5px 10px 5px 10px;
@@ -124,6 +139,31 @@
 	text-align:center;
 }
 
+
+.rule_laptop {
+	height:300px;
+	margin-top: 20%;
+}
+.rule_img {
+	height:90px;
+	margin-left:5px;
+
+}
+.rule_title {
+	line-height:90px;
+	vertical-align:top;
+	font-size:25px;
+	font-weight:bold;
+	color:#273e54;
+	white-space: nowrap;
+}
+.rule_text {
+	padding:5px;
+	margin-left:2%;
+	font-size:22px;
+	font-weight:regular;
+	color:#273e54;
+}
 
 
 
