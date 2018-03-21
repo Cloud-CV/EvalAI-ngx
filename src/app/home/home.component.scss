@@ -5,6 +5,9 @@
 	background-size: 1500px 720px; 
 	background-repeat: no-repeat;
 }
+
+
+
 @media (max-width: 768px) {
 	.btn_nofill{
 		margin-left:10% !important; 
@@ -24,6 +27,7 @@
 	.combinedvideo {
 		margin-left:10% !important; 
 		width:80%;
+		cursor:pointer;
 	}
 	.header_container{
 		background-size: 1400px 1100px; 
@@ -101,3 +105,25 @@
 	cursor:pointer;
 	margin-top:10px;
 }
+.partner_container {
+	background-size: 1500px 500px; 
+	background-repeat: no-repeat;
+}
+
+.partner_img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+	width:160px;
+	height:75px;
+}
+.partner_img:hover {
+    -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(0%);
+}
+.partner_item {
+	text-align:center;
+}
+
+
+
+
