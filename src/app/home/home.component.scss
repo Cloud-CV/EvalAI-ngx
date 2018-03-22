@@ -1,10 +1,20 @@
 *{
 	font-family: 'Open Sans', sans-serif;
 }
+.section_title {
+	font-size:60px;
+	color:#273e54;
+	font-weight:semibold;
+	padding:10px;
+	margin-top:10px;
+}
+
+
 .header_container {
 	background-size: 1500px 720px; 
 	background-repeat: no-repeat;
 }
+
 
 
 
@@ -39,12 +49,30 @@
 		height:200px !important;
 		margin-top: 20%;
 	}
+	.challenge_split {
+		display:block !important;
+		width:80% !important;
+		left: 50%;
+    	transform: translate(-50%,0);
+	}
+	.challenge_img {
+		height:250px !important;
+	}
 
 }
 @media(min-width:768px) and (max-width:1130px){
 	.rule_laptop {
 		height:200px !important;
 		margin-top: 20%;
+	}
+	.challenge_split {
+		display:block !important;
+		width:80% !important;
+		left: 50%;
+    	transform: translate(-50%,0);
+	}
+	.challenge_img {
+		height:300px !important;
 	}
 
 }
@@ -88,26 +116,26 @@
 
 }
 .btn_fill:hover {
-  background-color: #efefef;
+  background: #efefef;
   box-shadow: 0px 15px 20px rgba(40, 40, 40, 0.4);
   color: #444;
   transform: translateY(-7px);
-  transition:transform 0.5s ease;
+  transition:transform 0.5s ease, box-shadow 0.5s ease;
 
 }
 .btn_fire:hover {
 	background: linear-gradient(-90deg, #f7b74c, #e25e70);
 	box-shadow: 0px 15px 20px rgba(40, 40, 40, 0.4);
  	transform: translateY(-7px);
- 	transition:transform 0.5s ease, background 0.5s ease;
+ 	transition:transform 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
 }
 
 .btn_nofill:hover {
-  background-color: #efefef;
+  background: #efefef;
   box-shadow: 0px 15px 20px rgba(40, 40, 40, 0.4);
   color: #444;
   transform: translateY(-7px);
-  transition:transform 0.5s ease, color 0.5s ease;
+  transition:transform 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
 .logo_header {
     margin-top: 10%;
@@ -155,7 +183,6 @@
 	font-size:25px;
 	font-weight:bold;
 	color:#273e54;
-	white-space: nowrap;
 }
 .rule_text {
 	padding:5px;
@@ -165,5 +192,31 @@
 	color:#273e54;
 }
 
+.challenge_split {
+	text-align:center;
+	position: relative;
+	margin-left: 3%;
+	width:30%;
+	display: inline-block;
+}
+.challenge_img {
+	height:350px;
+	width:350px;
+	z-index:10;
+}
+.challenge_title{
+	text-align:center;
+	font-weight:bold;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,0);
+	z-index:100;
+	width:200px;
+}
+.challenge_link{
+	font-style: italic;
+	cursor:pointer;
+}
 
 
