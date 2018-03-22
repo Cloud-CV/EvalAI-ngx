@@ -14,31 +14,28 @@
 	background-size: 1500px 720px; 
 	background-repeat: no-repeat;
 }
-
+.combinedvideo { 
+	cursor:pointer !important;
+}
+td {
+	cursor:pointer;
+	color:#ffffff;
+	font-size:20px;
+	font-weight:semibold;
+	text-align:left;
+	padding-left:10%;
+}
 
 
 
 @media (max-width: 768px) {
-	.btn_nofill{
-		margin-left:10% !important; 
-		width:80%;
-	}
-	.btn_fire{
-		margin-left:10% !important; 
-		width:80%;
-	}
-	.btn_fill{
+	.btn_fill, .input_fill, .btn_fire, .btn_nofill, .combinedvideo{
 		margin-left:10% !important; 
 		width:80%;
 	}
 	.logo_header {
 	    margin-left: -20px;
 	}	
-	.combinedvideo {
-		margin-left:10% !important; 
-		width:80%;
-		cursor:pointer;
-	}
 	.header_container{
 		background-size: 1400px 1100px; 
 	}
@@ -58,6 +55,15 @@
 	.challenge_img {
 		height:250px !important;
 	}
+	.testimonial_quotes {
+		top:20% !important;
+	}
+	.testimonial_container{
+		background-size: 1400px 900px !important;
+	}
+	.footer_container{
+		background-size: 1400px 1400px !important;
+	}
 
 }
 @media(min-width:768px) and (max-width:1130px){
@@ -73,6 +79,12 @@
 	}
 	.challenge_img {
 		height:300px !important;
+	}
+	.testimonial_quotes {
+		top:20% !important;
+	}
+	.testimonial_container{
+		background-size: 1700px 720px !important;
 	}
 
 }
@@ -217,6 +229,59 @@
 .challenge_link{
 	font-style: italic;
 	cursor:pointer;
+}
+
+.testimonial_arrow_left {
+	position: absolute;
+    top: 50%;
+    left: 0;
+    height: 100px;
+    cursor: pointer;
+}
+.testimonial_arrow_right {
+	position: absolute;
+    top: 50%;
+    right: 0;
+    height: 100px;
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+.testimonial_quotes {
+	position: absolute;
+    top: 30%;
+    left: 10%;
+    height: 50px;
+}
+.testimonial_container{
+	text-align: center; 
+	background-size: 1460px 800px;
+	background-repeat: no-repeat; 
+	position: relative;
+}
+.footer_container{
+	text-align: center; 
+	background-size: 1460px 900px;
+	background-repeat: no-repeat; 
+	position: relative;
+}
+.input_fill{
+    padding:5px 10px 5px 10px;
+    border:1.5px solid #ffffff;
+    border-radius:20px;
+    margin-left:5px;
+    margin-bottom:5px;
+    background:#fff;
+    color:#365575;
+    text-align: center;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    font-size:15px;
+}
+
+.footer_text {
+	font-size:20px;
+	color:#fff;
+	text-align:left;
+	margin-left:10%;
 }
 
 
