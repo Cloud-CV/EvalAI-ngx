@@ -136,6 +136,7 @@
 	.rule_laptop {
 		height:200px !important;
 		margin-top: 20%;
+		margin_bottom:33%;
 	}
 	.challenge_split {
 		display:block !important;
@@ -155,6 +156,19 @@
 	.footer_container{
 		background-size: 1400px 1400px !important;
 	}
+	.rules_image{
+		width:100% !important;
+		display:block !important;
+	}
+	.rules_content{
+		width:100% !important;
+		display:block !important;
+		padding-left:5% !important;
+	}
+	.rules_container .row .btn_fire{
+		width:50% !important;
+		min-width:50% !important;
+	}
 
 }
 @media(min-width:810px) and (max-width:1130px){
@@ -170,6 +184,7 @@
 	.rule_laptop {
 		height:200px !important;
 		margin-top: 20%;
+
 	}
 	.challenge_split {
 		display:block !important;
@@ -207,7 +222,7 @@
     border: none;
     color: #fff;
     font-size:20px;
-    padding:0.7% 5% 0.7% 5%;
+    padding:0.8% 7% 0.8% 7%;
     border-radius:20px;
     margin-left:5px;
     margin-bottom:5px;
@@ -306,10 +321,38 @@
 	margin-top:10px;
 }
 
+.rules_container{
+	margin-top:10%;
+	margin-bottom:10%;
+}
+.rules_container .row .btn_fire{
+	padding-left: 10%;
+	padding-right: 10%;
+	width:30%;
+	display:block;
+	margin:0 auto;
+	
+}
+.rules_container .centerall{
+	margin-top:10%;
+}
+.rules_image {
+	width:45%;
+	display:inline-block;
+	vertical-align:top;
+	background-size: 100% 100%;
+	text-align: center;
+}
+.rules_content{
+	width:50%;
+	display:inline-block;
+
+}
 
 .rule_laptop {
 	height:300px;
 	margin-top: 20%;
+	margin-bottom:33% !important;
 }
 .rule_img {
 	height:90px;
