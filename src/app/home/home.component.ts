@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   title = 'EvalAI|Home';
   tagline = 'Evaluating state of the art in AI';
+  description = 'EvalAI is an open-source web platform for organizing and participating in AI challenges';
   ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
   ngOnInit() {}
