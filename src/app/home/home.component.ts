@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
   	}
   }
   rightClick(direction='left') {
-  	var a = document.getElementsByClassName('testimonial_body')[0];
-  	var b = document.getElementsByClassName('testimonial_author')[0];
-  	var c = document.getElementsByClassName('testimonial_quotes')[0];
+  	let a = document.getElementsByClassName('testimonial_body')[0];
+  	let b = document.getElementsByClassName('testimonial_author')[0];
+  	let c = document.getElementsByClassName('testimonial_quotes')[0];
   	if(direction=='left')
   	{
   		this.testimonialLeft();
@@ -42,9 +42,9 @@ export class HomeComponent implements OnInit {
   	{
   		this.testimonialRight();
   	}
-  	flyOut(a,direction,this);
-  	disappearAppear(b,this);
-  	disappearAppear(c,this);
+  	this.flyOut(a,direction,this);
+  	this.disappearAppear(b,this);
+  	this.disappearAppear(c,this);
   }
   
   //Sample testimonial list
@@ -60,28 +60,38 @@ export class HomeComponent implements OnInit {
 
   //Testimonial animation BEGIN ----------------------------------
 
-  function flyLeftRecursive(element,temp){
-  	var x = temp-1;
+  flyLeftRecursive = (element,temp) => {
+  	let x = temp-1;
   	if(x>-100){
-  		setTimeout(function(){element.style.marginLeft = x+"%";flyLeftRecursive(element,x);},5);
+      (function(scope){
+    		setTimeout(function(){
+          element.style.marginLeft = x+"%";
+          scope.flyLeftRecursive(element,x);
+        },5);
+      })(this);
   	}
   }
-  function flyRightRecursive(element,temp){
-  	var x = temp+1;
+  flyRightRecursive = (element,temp) => {
+  	let x = temp+1;
   	if(x<100){
-  		setTimeout(function(){element.style.marginLeft = x+"%";flyRightRecursive(element,x);},5);
+      (function(scope){
+    		setTimeout(function(){
+          element.style.marginLeft = x+"%";
+          scope.flyRightRecursive(element,x);
+        },5);
+      })(this);
   	}
   }
 
-  function flyOut(element,direction,scope) {
-  	var temp = 15;
+  flyOut = (element,direction,scope) => {
+  	let temp = 15;
   	if(direction=='right')
   	{
-  		flyLeftRecursive(element,temp);
+  		this.flyLeftRecursive(element,temp);
   	}
   	else
   	{
-  		flyRightRecursive(element,temp);
+  		this.flyRightRecursive(element,temp);
   	}
   	
   	setTimeout(function(){
@@ -90,21 +100,24 @@ export class HomeComponent implements OnInit {
   		element.style.marginLeft = "15%";
   	},1000);
   }
-  function disappearAppearRecursive(element,temp)
-  {
-  	var x = temp-0.01;
+  disappearAppearRecursive = (element,temp) => {
+  	let x = temp-0.01;
   	if(x>=0){
-  		setTimeout(function(){element.style.opacity = x+"";disappearAppearRecursive(element,x);},5);
+      (function(scope){
+    		setTimeout(function(){
+          element.style.opacity = x+"";
+          scope.disappearAppearRecursive(element,x);
+        },5);
+      })(this);
   	}
 
   }
-  function disappearAppear(element,scope){
-  	var temp = 1.0;
-  	disappearAppearRecursive(element,temp);
+  disappearAppear = (element,scope) => {
+  	let temp = 1.0;
+  	this.disappearAppearRecursive(element,temp);
   	setTimeout(function(){
   		element.style.opacity = "1";
   	},1000);
-  	
   }
 
   //Testimonial animation END ----------------------------------
