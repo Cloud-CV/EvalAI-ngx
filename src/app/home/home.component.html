@@ -131,7 +131,7 @@
  	{{ipsum}}
  	</div>
  </div>
- <div class = "row centerall">
+ <div class = "row centerall participate">
  	<span class = "btn_fire" >Participate</span>
  </div>
 </div>
@@ -167,63 +167,49 @@
 			</div>
 		</div>
 </div>
-<br><br><br>
 </div>
 <!--CHALLENGES SECTION END-->
 
 
 <!--TESTIMONIAL SECTION START-->
 <div class = "testimonial_container" style="background-image:url('assets/images/Testimonial/Testimonial.png');">
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<div style="width:70%;margin-left:15%;">
-<span style="font-size:30px;color:#fff;font-weight:regular;font-style: italic; padding:15px;">{{ipsum}}</span></div>
-<br><br><br><br><br><br>
-<span style="font-size:20px;color:#fff;font-weight:bold; padding:15px;">- Lorem</span>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-<img src="assets/images/Testimonial/arrow.png" class="testimonial_arrow_left" />
-<img src="assets/images/Testimonial/arrow.png" class="testimonial_arrow_right"/>
+<div class="testimonial_body">
+<span>{{testimonialbody}}</span></div>
+<div class="testimonial_author">- {{testimonialauthor}}</div>
+<img src="assets/images/Testimonial/arrow.png" (click)="rightClick()" class="testimonial_arrow_left" />
+<img src="assets/images/Testimonial/arrow.png" (click)="rightClick('right')" class="testimonial_arrow_right"/>
 <img src="assets/images/Testimonial/quotes.png" class="testimonial_quotes"/>
 </div>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
 <!--TESTIMONIAL SECTION END-->
 
 <!--FOOTER SECTION START-->
 <div class = "footer_container" style="background-image:url('assets/images/Footer/Footer.png');">
-
-
-<br><br><br><br><br><br><br><br><br><br>
-<div class="row">
-	<span class="section_title" style="color:#efefef;">Stay Notified</span>
+<div class="row first">
+	<span class="section_title">Stay Notified</span>
 </div>
-<br><br>
 <div class="row">
-	<div style="width:70%;margin-left: 15%">
-		<span style="font-size:20px;color:#fff;font-weight:regular;padding:10px;margin-top:10px;">{{ipsum}}</span>
+	<div class="footer_description">
+		<span >{{ipsum}}</span>
 	</div>
 </div>
-<br><br><br>
-<div class="row" style = "text-align:center">
-		<span class="col-lg-4 col-md-3 col-sm-2 col-xs-12">&nbsp;</span>
-		<input class = "col-lg-2 col-md-3 col-sm-4 col-xs-12 input_fill" style="padding:10px 10px 10px 10px;" placeholder="Name@company.com"/>
-		<div class = "col-lg-2 col-md-3 col-sm-4 col-xs-12 btn_fire">Get Notifications</div>
+<div class="row centerall footer_buttons" >
+		
+		<div>
+		<input class = "input_fill" placeholder="Name@company.com"/>
+		<span class = "btn_fire">Get Notifications</span>
+		</div>
 </div>
-<br><br><br><br><br><br>
-<div class="row">
-<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-left">
-	<div class="row" style="text-align:left;margin-left:10%;"><img src="assets/images/evalai_logo_light.png" style="height:50px;"/></div>
-	<div class="row" class="footer_text">{{tagline}}</div>
-	<br>
-	<div class="row" class="footer_text">📍College of computing, Second Floor, 801 Atlantic Drive, Atlanta, GA 30332-0280</div>
-	<br><br>
-	<div class="row" class="footer_text">
+<div class="row top_margin">
+<div class="footer_location">
+	<div class="row footer_logo top_margin" ><img src="assets/images/evalai_logo_light.png"/></div>
+	<div class="row footer_text top_margin">{{tagline}}</div>
+	<div class="row footer_text top_margin">📍College of computing, Second Floor, 801 Atlantic Drive, Atlanta, GA 30332-0280</div>
+	<div class="row footer_text top_margin">
 	© CloudCV 2018
 	</div>
-	<br>
+	<hr>
 </div>
-<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right">
+<div class="footer_links">
 	<table class="footer_table" width="100%">
 		<tr> 
 			<td>About Us</td>
@@ -238,11 +224,10 @@
 			<td>CloudCV Website</td>
 		</tr>
 	</table>
-	<br><br>
-	<div style="text-align:left;margin-left:10%;">
-	<img src="assets/images/github.png" style="height:50px; filter: invert(100%);cursor:pointer;"/>
+	<div class="footer_jump_links top_margin">
+	<img src="assets/images/github.png" class="invert_color"/>
 	&nbsp;&nbsp;&nbsp;
-	<img src="assets/images/twitter.png" style="height:50px;cursor:pointer;"/></div>
+	<img src="assets/images/twitter.png" /></div>
 </div>
 </div>
 </div>
