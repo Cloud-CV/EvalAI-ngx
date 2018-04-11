@@ -442,8 +442,10 @@
 	height:50px;
 }
 .footer_jump_links{
-	text-align:left;
+	text-align:right;
 	margin-left:10%;
+	margin-right:20%;
+	margin-top:10%;
 }
 .footer_jump_links img{
 	height:50px;
@@ -544,6 +546,9 @@
 	.footer_links{
 		width:100% !important;
 		float:left;
+	}
+	.footer_jump_links{
+		margin-right:10% !important;
 	}
 
 }
