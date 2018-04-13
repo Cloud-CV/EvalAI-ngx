@@ -56,7 +56,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Surge will automatically generate deployment link whenever a pull request passes Travis CI. 
 
-Suppose pull request number is 150 and it passes Travis CI. The deployment link can be found here: `https://pr-150-cloudcv-evalai-ngx.surge.sh`
+Suppose pull request number is 123 and it passes Travis CI. The deployment link can be found here: `https://pr-123-evalai.surge.sh`
 
 ## Code scaffolding
 
