@@ -47,6 +47,7 @@
   this.testimonialRight();
   }
   this.flyOut(a, direction, this);
+  this.disappearAppear(a, this);
   this.disappearAppear(b, this);
   this.disappearAppear(c, this);
   }
@@ -78,12 +79,13 @@
 
   flyOut = (element, direction, scope) => {
   const temp = 15;
+  /*
   if (direction === 'right') {
   this.flyLeftRecursive(element, temp);
   } else {
   this.flyRightRecursive(element, temp);
   }
-
+  */
   setTimeout(function() {
   scope.testimonialbody = scope.testimonials[scope.selected]['text'];
   scope.testimonialauthor = scope.testimonials[scope.selected]['author'];

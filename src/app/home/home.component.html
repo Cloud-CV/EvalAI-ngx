@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700" rel="stylesheet">
 <!--HEADER SECTION START-->
 <div class="home_container"> 
 <div class="header_container" style="background-image: url('assets/images/Header/Header_bg.png');">
@@ -8,14 +8,14 @@
 		</div>
 		<div class="navlinks_container" >
 		<div class="main-wrapper clearfix">
-				<span class = "navlinks navlinktext fs-12"> Challenges </span>
-				<span class = "navlinks navlinktext fs-12"> News </span>
-				<span class = "navlinks navlinktext fs-12"> Forum </span>
-				<span class = "navlinks navlinktext fs-12"> Join Us </span>
-				<span class="navlinks navlinktext fs-12"><img src="assets/images/Header/dots.png"/></span>
+				<span class = "navlinks navlinktext"> Challenges </span>
+				<span class = "navlinks navlinktext"> News </span>
+				<span class = "navlinks navlinktext"> Forum </span>
+				<span class = "navlinks navlinktext"> Join Us </span>
+				<span class="navlinks navlinktext"><img src="assets/images/Header/dots.png"/></span>
 
-				<span class = "navlinks center btn_nofill fs-12" >Sign Up</span>
-				<span class = "navlinks center btn_fill fs-12" > Log In</span>
+				<span class = "navlinks center btn_nofill" >Sign Up</span>
+				<span class = "navlinks center btn_fill" > Log In</span>
 		</div>
 		</div>
 	</div>
@@ -86,13 +86,15 @@
 <!--RULES SECTION START-->
 <div class = "rules_container">
 <div class="row">
-<div class="rules_image" style = "background-image: url('assets/images/Rules/Rules_BG Ellipse.png');">
-	<img src="assets/images/Rules/Laptop.png" class="rule_laptop"/>
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 centerall" >
+	<div class="rules_image" style = "background-image: url('assets/images/Rules/Rules_BG Ellipse.png');">
+		<img src="assets/images/Rules/Laptop.png" class="rule_laptop"/>
+	</div>
 </div>
-<div class = "rules_content">
+<div class = "col-lg-6 col-md-6 col-sm-12 col-xs-12 rules_content">
  <div class="row">
  	<span><img class="rule_img" src= "assets/images/Rules/Host_icon.png"/></span>
- 	<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ 	<span>&nbsp;&nbsp;</span>
  	<span class="rule_title">HOST</span>
  </div>
  <div class = "row">
@@ -103,7 +105,7 @@
 
  <div class="row">
  	<span><img class="rule_img" src= "assets/images/Rules/Participate.png"/></span>
- 	<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ 	<span>&nbsp;&nbsp;</span>
  	<span class="rule_title">PARTICIPATE</span>
  </div>
  <div class = "row">
@@ -114,7 +116,7 @@
 
  <div class="row">
  	<span><img class="rule_img" src= "assets/images/Rules/submissions.png"/></span>
- 	<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ 	<span>&nbsp;&nbsp;</span>
  	<span class="rule_title">MAKE SUBMISSIONS</span>
  </div>
  <div class = "row">
@@ -125,7 +127,7 @@
 
  <div class="row">
  	<span><img class="rule_img" src= "assets/images/Rules/achieve icon.png"/></span>
- 	<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ 	<span>&nbsp;&nbsp;</span>
  	<span class="rule_title">ACHIEVE STATE-OF-THE-ART RESULTS</span>
  </div>
  <div class = "row">
@@ -134,7 +136,7 @@
  	</div>
  </div>
  <div class = "row centerall participate">
- 	<span class = "btn_fire" >Participate</span>
+ 	<span class = "btn_fire fs-12" >Participate</span>
  </div>
 </div>
 </div>
@@ -176,8 +178,8 @@
 <!--TESTIMONIAL SECTION START-->
 <div class = "testimonial_container" style="background-image:url('assets/images/Testimonial/Testimonial.png');">
 <div class="testimonial_body">
-<span>{{testimonialbody}}</span></div>
-<div class="testimonial_author">- {{testimonialauthor}}</div>
+<span class="fs-24">{{testimonialbody}}</span></div>
+<div class="testimonial_author fs-18">- {{testimonialauthor}}</div>
 <img src="assets/images/Testimonial/arrow.png" (click)="rightClick()" class="testimonial_arrow_left" />
 <img src="assets/images/Testimonial/arrow.png" (click)="rightClick('right')" class="testimonial_arrow_right"/>
 <img src="assets/images/Testimonial/quotes.png" class="testimonial_quotes"/>
@@ -189,10 +191,8 @@
 <div class="row first">
 	<span class="section_title">Stay Notified</span>
 </div>
-<div class="row">
-	<div class="footer_description">
-		<span >{{ipsum}}</span>
-	</div>
+<div class="row footer_description">	
+		<span>{{ipsum}}</span>
 </div>
 <div class="row centerall footer_buttons" >
 		
@@ -201,17 +201,17 @@
 		<span class = "btn_fire">Get Notifications</span>
 		</div>
 </div>
-<div class="row top_margin">
+<div class="row top_margin_extra">
 <div class="footer_location">
-	<div class="row footer_logo top_margin" ><img src="assets/images/evalai_logo_light.png"/></div>
-	<div class="row footer_text top_margin">{{tagline}}</div>
-	<div class="row footer_text top_margin">📍College of computing, Second Floor, 801 Atlantic Drive, Atlanta, GA 30332-0280</div>
-	<div class="row footer_text top_margin">
+	<div class="row footer_logo top_margin_extra" ><img src="assets/images/evalai_logo_light.png"/></div>
+	<div class="row footer_text top_margin_extra">{{tagline}}</div>
+	<div class="row footer_text top_margin_extra">📍College of computing, Second Floor, 801 Atlantic Drive, Atlanta, GA 30332-0280</div>
+	<div class="row footer_text top_margin_extra">
 	© CloudCV 2018
 	</div>
 	<hr>
 </div>
-<div class="footer_links">
+<div class="footer_links top_margin_extra">
 	<table class="footer_table" width="100%">
 		<tr> 
 			<td>About Us</td>
@@ -226,7 +226,7 @@
 			<td>CloudCV Website</td>
 		</tr>
 	</table>
-	<div class="footer_jump_links top_margin">
+	<div class="footer_jump_links top_margin_extra">
 	<img src="assets/images/github.png" class="invert_color"/>
 	&nbsp;&nbsp;&nbsp;
 	<img src="assets/images/twitter.png" /></div>
