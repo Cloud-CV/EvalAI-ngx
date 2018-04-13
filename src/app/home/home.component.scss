@@ -1,9 +1,16 @@
-.home_container{
+/*Add global styles here*/
+@import '../../styles/variables.scss';
+@import '../../styles/grid.scss';
+@import '../../styles/base.scss';
+
+.home_container *{
 	font-family: 'Open Sans', sans-serif;
-	overflow-x:hidden;
 	-webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+}
+.home_container{
+	overflow-x:hidden;
 }
 ::-webkit-scrollbar { 
     display: none; 
@@ -19,21 +26,25 @@
 }
 
 .header_tagline{
-	font-size:30px;
 	color:#fff;
 	font-weight:semibold;
 	padding:10px;
 }
 .header_description{
-	font-size:20px;
 	color:#efefef;
 	font-weight:semibold;
 	font-style: italic; 
-	padding:15px;
+	padding:30px;
 }
 .header_body_buttons {
 	width:50%;
-	margin:2% auto 0;
+	margin:1% auto 0;
+}
+.header_body_buttons .btn_fire {
+	padding:1.8% 6% 1.8% 6%;
+}
+.header_body_buttons .btn_nofill {
+	padding:1.5% 5% 1.5% 5%;
 }
 .top_margin {
 	margin-top:2%;
@@ -43,7 +54,6 @@
 }
 
 .section_title {
-	font-size:60px;
 	color:#fff;
 	font-weight:semibold;
 	padding:10px;
@@ -52,7 +62,7 @@
 
 .section_title_div{
 	text-align:center;
-	margin-top: 10%;
+	margin-top: 5%;
 }
 .header_container {
 	background-repeat: no-repeat;
@@ -65,8 +75,17 @@
 	padding-right:2%;
 	text-align:center;
 }
+.header_iframe_div {
+	width:40%;
+	background-size:100% 100%;
+	margin:0 auto;
+	margin-top:3%;
+}
+
 .combinedvideo { 
-	margin-top:10%;
+	width:80%;
+	height:250px;
+	margin-top:5%;
 	cursor:pointer !important;
 }
 .logo_container {
@@ -74,10 +93,10 @@
 	display:inline-block;
 	float: left;
 	width:10%;
-	margin-top:50px;
+	margin-top:2%;
 }
 .navlinks_container {
-	margin-top:3%;
+	margin-top:1%;
 	display:inline-block;
 	float: right;
 	width:70%;
@@ -103,10 +122,9 @@
 }
 
 .btn_nofill{
-    padding:0.5% 4% 0.5% 4%;
+    padding:1% 4% 1% 4%;
     border:1.5px solid #ffffff;
     border-radius:20px;
-    font-size:20px;
     margin-left:5px;
     margin-bottom:5px;
     color:#fff;
@@ -119,7 +137,6 @@
 	background: linear-gradient(-90deg, #e25e70, #f7b74c);
     border: none;
     color: #fff;
-    font-size:20px;
     padding:0.8% 5% 0.8% 5%;
     border-radius:20px;
     margin-left:5px;
@@ -129,11 +146,10 @@
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 .btn_fill{
-    padding:0.5% 4% 0.5% 4%;
+    padding:1% 4% 1% 4%;
     border:1.5px solid #ffffff;
     border-radius:20px;
     margin-left:5px;
-    font-size:20px;
     margin-bottom:5px;
     background:#fff;
     color:#365575;
@@ -146,23 +162,20 @@
   background: #efefef;
   box-shadow: 0px 15px 20px rgba(40, 40, 40, 0.4);
   color: #444;
-  transform: translateY(-7px);
-  transition:transform 0.5s ease, box-shadow 0.5s ease;
+  transition:color 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
 
 }
 .btn_fire:hover {
 	background: linear-gradient(-90deg, #f7b74c, #e25e70);
 	box-shadow: 0px 15px 20px rgba(40, 40, 40, 0.4);
- 	transform: translateY(-7px);
- 	transition:transform 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
+ 	transition:background 0.5s ease, box-shadow 0.5s ease;
 }
 
 .btn_nofill:hover {
   background: #efefef;
   box-shadow: 0px 15px 20px rgba(40, 40, 40, 0.4);
   color: #444;
-  transform: translateY(-7px);
-  transition:transform 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+  transition:color 0.5s ease, box-shadow 0.5s ease;
 }
 .logo_header {
     margin-top: 10%;
@@ -171,7 +184,6 @@
 .navlinks {
 	font-weight:semibold;
 	text-align:right;
-	font-size:20px;
 	cursor:pointer;
 	margin-top:10px;
 	
@@ -181,20 +193,25 @@
 	color:#fff;
 }
 .partner_container {
-	margin-top:10%;
+	margin-top:5%;
 	background-repeat: no-repeat;
     background-size: 100% 100%;
     width:100%;
 }
 .partner_container .row{
-	padding-top:7%;
+	padding-top:5%;
+	padding-left:5%;
+	padding-right:5%;
+}
+.partner_container .first{
+	padding-top:10% !important;
 }
 
 .partner_img {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
 	width:160px;
-	height:75px;
+	height:auto;
 }
 .partner_img:hover {
     -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
@@ -206,13 +223,12 @@
 .partner_slider{
 	overflow-x: scroll;
 	overflow-y: hidden;
-	padding-bottom:10%;
+	padding-bottom:15%;
 }
 .partner_slider table {
 	width:100%;
 }
 .partner_text{
-	font-size:30px;
 	color:#273e54;
 	font-weight:regular;
 	padding:5%;
@@ -224,7 +240,7 @@
 	margin-bottom:10%;
 }
 .rules_container .row .btn_fire{
-	padding: 7px 25px 7px 25px;
+	padding: 1% 5% 1% 5%;
 	padding-left: 10%;
 	padding-right: 10%;
 	width:30%;
@@ -411,7 +427,7 @@
 	width:30%;
 }
 .footer_buttons div .btn_fire{
-    padding: 7px 25px 7px 25px;
+    padding: 1.5% 5% 1.5% 5%;
 }
 
 .footer_description {
@@ -474,21 +490,44 @@
 		display:block;
 		text-align:center !important;
 	}
-	.btn_fill, .input_fill, .btn_fire, .btn_nofill{
-		margin:10px auto 0 !important; 
-		max-width:70%;
-		min-width:70%;
+	.header_iframe_div {
+		width:70%;
+		margin-top:10%;
 	}
+	.header_body_buttons .btn_fire {
+		padding:1.8% 5.5% 1.8% 5.5%;
+	}
+	.btn_fill, .input_fill,.btn_fire, .btn_nofill{
+		margin:10px auto 0 !important; 
+		max-width:55%;
+		min-width:55%;
+		padding:1.5% 5% 1.5% 5%;
+	}
+	
 	.combinedvideo{
-		margin:10% auto 0 !important; 
+		margin:5% auto 0 !important; 
 		max-width:90%;
 		min-width:90%;
+		height:200px;
 	}
 	.logo_header {
+		margin-top: 2%;
 	    margin-left: -20px;
-	}	
+	}
+	.partner_img {
+		width:120px;
+	}		
 	.partner_container, .header_container {
 	    background-size: cover !important;
+	}
+	.partner_container .row{
+		padding-top:5%;
+	}
+	.partner_container .row table{
+		padding-right:5%;
+	}
+	.partner_text{
+		padding:10%;
 	}
 	.rule_laptop {
 		height:200px !important;
@@ -538,7 +577,9 @@
 	.footer_buttons div{
 		width:100% !important;
 	}
-
+	.footer_buttons div .btn_fire{
+    	padding: 2.5% 6% 2.5% 6%;
+	}
 	.footer_location{
 		width:100% !important;
 		float:left;
@@ -562,6 +603,22 @@
 		text-align:center;
 		margin-top:20px;
 	}
+	.logo_header {
+		margin-top: 2%;
+	}
+	.header_iframe_div {
+		width:50%;
+		margin-top:6%;
+	}
+	.header_body_buttons .btn_fire {
+		padding:2% 6% 2% 6%;
+	}
+	.partner_img {
+		width:140px;
+	}
+	.partner_container .row table{
+		padding-right:5%;
+	}	
 	.rule_laptop {
 		height:200px !important;
 		margin-top: 20%;
