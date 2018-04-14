@@ -473,8 +473,10 @@
 .footer_location hr{
 	border-color: rgba(255,255,255,0.2);
 }
-
-
+.footer_map_icon{
+	height:$fs-24;
+	margin-left:-10px;
+}
 
 @media (max-width: 810px) {
 	.header_body_buttons{
