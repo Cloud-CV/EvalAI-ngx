@@ -13,6 +13,8 @@ services:
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
+  - export SURGE_LOGIN=$SURGE_LOGIN
+  - export SURGE_TOKEN=$SURGE_TOKEN
   - sh -e /etc/init.d/xvfb start
 
 before_script:
