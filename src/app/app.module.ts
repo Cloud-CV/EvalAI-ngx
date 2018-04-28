@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
-import { WINDOW_PROVIDERS } from './services/window.service';
 
 // Import Components
 import { AppComponent } from './app.component';
@@ -24,8 +23,7 @@ import { HeaderStaticComponent } from './partials/nav/header-static/header-stati
     AppRoutingModule
   ],
   providers: [
-    AuthService,
-    WINDOW_PROVIDERS
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

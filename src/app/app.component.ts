@@ -2,7 +2,6 @@ import { Component, OnInit, HostListener, Inject } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
-import { WINDOW, WINDOW_PROVIDERS} from './services/window.service';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -18,7 +17,6 @@ import 'rxjs/add/operator/mergeMap';
 export class AppComponent implements OnInit {
   constructor(
   @Inject(DOCUMENT) private document: Document,
-  @Inject(WINDOW) private window: Window,
   public router: Router,
   public activatedRoute: ActivatedRoute,
   public titleService: Title
