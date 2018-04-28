@@ -46,9 +46,17 @@ cd EvalAI-ngx/
 npm install
 ```
 
-## Development server
+## Development
+
+### For Running on localhost:
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### For deploying with [Surge](https://surge.sh/):
+
+Surge will automatically generate deployment link whenever a pull request passes Travis CI. 
+
+Suppose pull request number is 123 and it passes Travis CI. The deployment link can be found here: `https://pr-123-evalai.surge.sh`
 
 ## Code scaffolding
 
@@ -84,4 +92,4 @@ You can also use Docker Compose to run all the components of EvalAI-ngx together
 
 ## The Team
 
-EvalAI-ngx is currently maintained by [Akash Jain](http://www.jainakash.in/), [Shiv Baran Singh](http://www.shivbaran.in/), [Rishabh Jain](https://rishabhjain2018.github.io/) and [Deshraj Yadav](https://deshraj.github.io).
+EvalAI-ngx is currently maintained by [Akash Jain](http://www.jainakash.in/), [Shiv Baran Singh](http://www.shivbaran.in/), [Shivani Prakash Gupta](https://www.behance.net/shivaniprakash19) [Rishabh Jain](https://rishabhjain2018.github.io/) and [Deshraj Yadav](https://deshraj.github.io).

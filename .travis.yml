@@ -1,6 +1,8 @@
-sudo: false
+sudo: required
 dist: trusty
 language: node_js
+addons:
+  chrome: stable
 
 node_js:
   - "9.5"
@@ -18,9 +20,13 @@ before_script:
 
 script:
   - ng lint
-  - ng test --watch=false
+  - ng test --watch=false --code-coverage
   - ng e2e
   - ng build --prod
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - bash ./pr_deploy.sh
 
 notifications:
   email:
