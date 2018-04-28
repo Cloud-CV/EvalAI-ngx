@@ -1,3 +1,246 @@
-<h1>
-  Welcome to <span class="fs-16">{{title}}</span>
-</h1>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700" rel="stylesheet">
+<!--HEADER SECTION START-->
+<div class="home_container"> 
+<div class="header_container" style="background-image: url('assets/images/Header/Header_bg.png');">
+	<div class="row">
+		<div class="logo_container">
+			<img src="assets/images/Header/EvalAI_favicon.png" class = "logo_header"/>
+		</div>
+		<div class="navlinks_container" >
+		<div class="main-wrapper clearfix">
+				<span class = "navlinks navlinktext"> Challenges </span>
+				<span class = "navlinks navlinktext"> News </span>
+				<span class = "navlinks navlinktext"> Forum </span>
+				<span class = "navlinks navlinktext"> Join Us </span>
+				<span class="navlinks navlinktext"><img src="assets/images/Header/dots.png"/></span>
+
+				<span class = "navlinks center btn_nofill" >Sign Up</span>
+				<span class = "navlinks center btn_fill" > Log In</span>
+		</div>
+		</div>
+	</div>
+	<div class="row section_title_div">
+		<span id="evalaihome" class="section_title fs-36">EvalAI</span>
+	</div>
+	<div class="row centerall top_margin">
+		<span class="header_tagline fs-18">{{tagline}}</span>
+	</div>
+	
+	<div class="row centerall top_margin">
+		<span class="header_description fs-12">{{description}}</span>
+	</div>
+	<div class="row centerall top_margin">
+		<div class = "header_body_buttons">
+		<span class = "btn_nofill block_inline fs-12" >Host A Challenge</span>
+		<div class = "btn_fire block_inline fs-12">Participate</div>
+		</div>
+	</div>
+	
+	<div class="row centerall" >
+		<div class="header_iframe_div" style="background-image: url('assets/images/Header/Video\ Background.png');">
+			<!-- <iframe class="combinedvideo" src="https://evalai.cloudcv.org/"></iframe> -->
+			<iframe class="combinedvideo" src="https://www.youtube.com/embed/rWiycwJIXh4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</div>
+	</div>
+</div>
+<!--HEADER SECTION END-->
+
+<!--PARTNERS SECTION START-->
+
+<div class = "partner_container" style="background-image: url('assets/images/Partner\ orgs/Partner_org_BG.png');">
+	<div class="row centerall first">
+		<span class="section_title dark_text fs-36">Who uses EvalAI?</span>
+	</div>
+	<div class="row centerall" >
+		<span class="dark_text partner_text fs-18" >Several partner organizations already host their challenges on EvalAI</span>
+	</div>
+	<div class="row centerall partner_slider">
+	<table>
+		<tr>
+			<td> 
+				<img class ="partner_img" src = "assets/images/Partner Organisations/facebook.png"/>
+			</td>
+			<td>
+				<img class ="partner_img" src = "assets/images/Partner Organisations/cmu.png"/>
+			</td>
+			<td>
+				<img class ="partner_img" src = "assets/images/Partner Organisations/google.png"/>
+			</td>
+			<td>
+				<img class ="partner_img" src = "assets/images/Partner Organisations/stanford.png"/>
+			</td>
+			<td>
+				<img class ="partner_img" src = "assets/images/Partner Organisations/georgiatech.png"/>
+			</td>
+			<td>
+				<img class ="partner_img" src = "assets/images/Partner Organisations/mapillary.png"/>
+			</td>
+			<td>
+				<img class ="partner_img" src = "assets/images/Partner Organisations/virginiatech.png"/>
+			</td>
+		</tr>
+	</table></div>
+</div>
+<!--PARTNERS SECTION END-->
+
+<!--RULES SECTION START-->
+<div class = "rules_container">
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 centerall" >
+	<div class="rules_image" style = "background-image: url('assets/images/Rules/Rules_BG Ellipse.png');">
+		<img src="assets/images/Rules/Laptop.png" class="rule_laptop"/>
+	</div>
+</div>
+<div class = "col-lg-6 col-md-6 col-sm-12 col-xs-12 rules_content">
+ <div class="row">
+ 	<span><img class="rule_img" src= "assets/images/Rules/Host_icon.png"/></span>
+ 	<span>&nbsp;&nbsp;</span>
+ 	<span class="rule_title">HOST</span>
+ </div>
+ <div class = "row">
+ 	<div class="rule_text">
+ 	{{ipsum}}
+ 	</div>
+ </div>
+
+ <div class="row">
+ 	<span><img class="rule_img" src= "assets/images/Rules/Participate.png"/></span>
+ 	<span>&nbsp;&nbsp;</span>
+ 	<span class="rule_title">PARTICIPATE</span>
+ </div>
+ <div class = "row">
+ 	<div class="rule_text">
+ 	{{ipsum}}
+ 	</div>
+ </div>
+
+ <div class="row">
+ 	<span><img class="rule_img" src= "assets/images/Rules/submissions.png"/></span>
+ 	<span>&nbsp;&nbsp;</span>
+ 	<span class="rule_title">MAKE SUBMISSIONS</span>
+ </div>
+ <div class = "row">
+ 	<div class="rule_text">
+ 	{{ipsum}}
+ 	</div>
+ </div>
+
+ <div class="row">
+ 	<span><img class="rule_img" src= "assets/images/Rules/achieve icon.png"/></span>
+ 	<span>&nbsp;&nbsp;</span>
+ 	<span class="rule_title">ACHIEVE STATE-OF-THE-ART RESULTS</span>
+ </div>
+ <div class = "row">
+ 	<div class="rule_text">
+ 	{{ipsum}}
+ 	</div>
+ </div>
+ <div class = "row centerall participate">
+ 	<span class = "btn_fire fs-12" >Participate</span>
+ </div>
+</div>
+</div>
+</div>
+<!--RULES SECTION END-->
+
+<!--CHALLENGES SECTION START-->
+<div class = "challenges_container">
+<div class="row centerall">
+	<span class="section_title dark_text">Featured Challenges</span>
+</div>
+<div class="row centerall">
+		<div class="challenge_split">
+			<img class="challenge_img" src="assets/images/Featured challenges/challenge1.png"/>
+			<div class="challenge_title">
+				<span>Lorem ipsum dolor sit amet</span><br><br>
+				<span class="challenge_link">View more ></span>
+			</div>
+		</div>
+		<div class="challenge_split">
+			<img class="challenge_img" src="assets/images/Featured challenges/challenge2.png"/>
+			<div class="challenge_title">
+				<span>VQA Real Image Challenge (Open-Ended) 2017</span><br><br>
+				<span class="challenge_link">View more ></span>
+			</div>
+		</div>
+		<div class="challenge_split">
+			<img class="challenge_img" src="assets/images/Featured challenges/challenge3.png"/>
+			<div class="challenge_title">
+				<span>Lorem ipsum dolor sit amet</span><br><br>
+				<span class="challenge_link">View more ></span>
+			</div>
+		</div>
+</div>
+</div>
+<!--CHALLENGES SECTION END-->
+
+
+<!--TESTIMONIAL SECTION START-->
+<div class = "testimonial_container" style="background-image:url('assets/images/Testimonial/Testimonial.png');">
+<div class="testimonial_body">
+<span class="fs-24">{{testimonialbody}}</span></div>
+<div class="testimonial_author fs-18">- {{testimonialauthor}}</div>
+<img src="assets/images/Testimonial/arrow.png" (click)="rightClick()" class="testimonial_arrow_left" />
+<img src="assets/images/Testimonial/arrow.png" (click)="rightClick('right')" class="testimonial_arrow_right"/>
+<img src="assets/images/Testimonial/quotes.png" class="testimonial_quotes"/>
+</div>
+<!--TESTIMONIAL SECTION END-->
+
+<!--FOOTER SECTION START-->
+<div class = "footer_container" style="background-image:url('assets/images/Footer/Footer.png');">
+<div class="row first">
+	<span class="section_title">Stay Notified</span>
+</div>
+<div class="row footer_description">	
+		<span>{{ipsum}}</span>
+</div>
+<div class="row centerall footer_buttons" >
+		
+		<div>
+		<input class = "input_fill" placeholder="Name@company.com"/>
+		<span class = "btn_fire">Get Notifications</span>
+		</div>
+</div>
+<div class="row top_margin_extra">
+<div class="footer_location">
+	<div class="row footer_logo top_margin_extra" ><img src="assets/images/evalai_logo_light.png"/></div>
+	<div class="row footer_text top_margin_extra">{{tagline}}</div>
+	<div class="row footer_text top_margin_extra">
+	<table><tr>
+		<td>
+			<img src="assets/images/mapmarker.png" class="invert_color footer_map_icon"/>
+		</td>
+		<td>
+			College of computing, Second Floor, 801 Atlantic Drive, Atlanta, GA 30332-0280
+		</td>
+	</tr></table>
+	</div>
+	<div class="row footer_text top_margin_extra">
+	© CloudCV 2018
+	</div>
+	<hr>
+</div>
+<div class="footer_links top_margin_extra">
+	<table class="footer_table" width="100%">
+		<tr> 
+			<td>About Us</td>
+			<td>Contact Us</td>
+		</tr>
+		<tr> 
+			<td>Our Team</td>
+			<td>Get Involved</td>
+		</tr>
+		<tr> 
+			<td>Privacy Policy</td>
+			<td>CloudCV Website</td>
+		</tr>
+	</table>
+	<div class="footer_jump_links top_margin_extra">
+	<img src="assets/images/git.png" />
+	&nbsp;&nbsp;&nbsp;
+	<img src="assets/images/twitter.png" /></div>
+</div>
+</div>
+</div>
+<!--FOOTER SECTION END-->
+</div>

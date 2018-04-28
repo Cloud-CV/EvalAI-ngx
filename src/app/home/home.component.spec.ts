@@ -29,10 +29,10 @@ describe('HomeComponent', () => {
     expect(home.title).toEqual('EvalAI|Home');
   }));
 
-  it('should render title in a h1 tag', async(() => {
+  it('should render EvalAI in section_title class', async(() => {
     fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to EvalAI|Home');
+    expect(compiled.querySelector('.section_title').textContent).toContain('EvalAI');
   }));
 });

@@ -9,6 +9,17 @@ describe('evalai App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getHeadingH1Text()).toEqual('Welcome to EvalAI|Home');
+    expect(page.getHeadingH1Text()).toEqual('EvalAI');
   });
+
+  it('should display partners title', () => {
+    page.navigateTo();
+    expect(page.getHeadingPartners()).toEqual('Who uses EvalAI?');
+  });
+
+  it('should display challenges title', () => {
+    page.navigateTo();
+    expect(page.getHeadingChallenges()).toEqual('Featured Challenges');
+  });
+
 });
