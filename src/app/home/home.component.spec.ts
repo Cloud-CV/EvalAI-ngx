@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {GlobalService} from '../global.service';
 import { HomeComponent } from './home.component';
 import { HeaderStaticComponent } from '../partials/nav/header-static/header-static.component';
 
@@ -12,6 +12,9 @@ describe('HomeComponent', () => {
       declarations: [
         HomeComponent,
         HeaderStaticComponent
+      ],
+      providers: [
+        GlobalService
       ]
     })
     .compileComponents();

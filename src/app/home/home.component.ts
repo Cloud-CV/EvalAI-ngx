@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Globals} from '../globals';
+import {GlobalService} from '../global.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import {Globals} from '../globals';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private globals: Globals) {}
+  constructor(private globalService: GlobalService) {}
   title = 'EvalAI|Home';
   tagline = 'Evaluating state of the art in AI';
   description = 'EvalAI is an open-source web platform for organizing and participating in AI challenges';

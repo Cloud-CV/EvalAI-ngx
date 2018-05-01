@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {GlobalService} from '../../../global.service';
 import { HeaderStaticComponent } from './header-static.component';
 
 describe('HeaderStaticComponent', () => {
@@ -8,7 +8,8 @@ describe('HeaderStaticComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderStaticComponent ]
+      declarations: [ HeaderStaticComponent ],
+      providers: [ GlobalService ]
     })
     .compileComponents();
   }));

@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener, Inject } from '@angular/core';
-import { Globals } from './globals';
+import { GlobalService } from './global.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
@@ -22,9 +22,8 @@ export class AppComponent implements OnInit {
   public router: Router,
   public activatedRoute: ActivatedRoute,
   public titleService: Title,
-  private globals: Globals
+  private globalService: GlobalService
   ) {
-    this.scrolledState = globals.scrolledState;
   }
 
   // Added listener for header scroll event
@@ -34,15 +33,22 @@ export class AppComponent implements OnInit {
     if (this.document.documentElement.scrollTop > 50) {
       HEADER_ELE.style.background = 'rgba(255, 255, 255, 0.99)';
       HEADER_ELE.style.boxShadow = '0 8px 16px 0 rgba(0,0,0,0.2)';
-      this.globals.scrolledState = true;
+      if (this.scrolledState === false) {
+        this.globalService.scrolledStateChange(true);
+      }
     } else {
       HEADER_ELE.style.background = 'rgba(255, 255, 255, 0)';
       HEADER_ELE.style.boxShadow = 'none';
-      this.globals.scrolledState = false;
+      if (this.scrolledState === true) {
+        this.globalService.scrolledStateChange(false);
+      }
     }
     }
 
   ngOnInit() {
+    this.globalService.change.subscribe(scrolledState => {
+      this.scrolledState = scrolledState;
+    });
     // set page title form routes data
     this.router.events
         // filter for navigation end

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Globals} from '../../../globals';
+import {GlobalService} from '../../../global.service';
 
 @Component({
   selector: 'app-header-static',
@@ -7,10 +7,13 @@ import {Globals} from '../../../globals';
   styleUrls: ['./header-static.component.scss']
 })
 export class HeaderStaticComponent implements OnInit {
+  scrolledState = false;
+  constructor(private globalService: GlobalService) { }
 
-  constructor(private globals: Globals) { }
-  
   ngOnInit() {
+    this.globalService.change.subscribe(scrolledState => {
+      this.scrolledState = scrolledState;
+    });
   }
 
 }
