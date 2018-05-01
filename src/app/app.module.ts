@@ -21,8 +21,7 @@ import { HeaderStaticComponent } from './partials/nav/header-static/header-stati
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    Globals
+    AppRoutingModule
   ],
   providers: [
     AuthService,

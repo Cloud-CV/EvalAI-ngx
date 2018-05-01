@@ -4,13 +4,12 @@ import {Globals} from '../../../globals';
 @Component({
   selector: 'app-header-static',
   templateUrl: './header-static.component.html',
-  styleUrls: ['./header-static.component.scss'],
-  providers: [Globals]
+  styleUrls: ['./header-static.component.scss']
 })
 export class HeaderStaticComponent implements OnInit {
 
   constructor(private globals: Globals) { }
-
+  
   ngOnInit() {
   }
 

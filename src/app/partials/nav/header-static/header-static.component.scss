@@ -144,6 +144,9 @@ header{
 	}
 }
 @media (max-width: 810px) {
+	header{
+		position: absolute;
+	}
 	.header_body_buttons{
 		width:100%;
 	}
