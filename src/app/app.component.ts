@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, Inject } from '@angular/core';
+import { Globals } from './globals';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
@@ -10,27 +11,35 @@ import 'rxjs/add/operator/mergeMap';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [Globals]
 })
 
 
 
 export class AppComponent implements OnInit {
+  private scrolledState = false;
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
   public activatedRoute: ActivatedRoute,
-  public titleService: Title
-
-  ) {}
+  public titleService: Title,
+  private globals: Globals
+  ) {
+    this.scrolledState = globals.scrolledState;
+  }
 
   // Added listener for header scroll event
   @HostListener('window:scroll', [])
     onWindowScroll(): void {
     const HEADER_ELE = document.getElementById('header-static');
     if (this.document.documentElement.scrollTop > 50) {
-      HEADER_ELE.style.background = 'rgba(255, 255, 255, 1)';
+      HEADER_ELE.style.background = 'rgba(255, 255, 255, 0.99)';
+      HEADER_ELE.style.boxShadow = '0 8px 16px 0 rgba(0,0,0,0.2)';
+      this.globals.scrolledState = true;
     } else {
       HEADER_ELE.style.background = 'rgba(255, 255, 255, 0)';
+      HEADER_ELE.style.boxShadow = 'none';
+      this.globals.scrolledState = false;
     }
     }
 

@@ -1,11 +1,27 @@
-<app-header-static></app-header-static>
-<div class="container-top container align-center white">
-  
-  
-  <h1>
-	  EvalAI
-	</h1>
-  <div class="main-bg">
-    <img src="/assets/images/Header_bg.png" alt="">
-  </div>
+<div class="home_container"> 
+<div class="header_container" style="background-image: url('assets/images/header/Header_bg.png');">
+	<app-header-static></app-header-static>
+	<div class="row section_title_div">
+		<span id="evalaihome" class="section_title fs-36">EvalAI</span>
+	</div>
+	<div class="row centerall top_margin">
+		<span class="header_tagline fs-18">{{tagline}}</span>
+	</div>
+	
+	<div class="row centerall top_margin">
+		<span class="header_description fs-12">{{description}}</span>
+	</div>
+	<div class="row centerall top_margin">
+		<div class = "header_body_buttons">
+		<span class = "btn_nofill block_inline fs-12" >Host A Challenge</span>
+		<div class = "btn_fire block_inline fs-12">Participate</div>
+		</div>
+	</div>
+	
+	<div class="row centerall" >
+		<div class="header_iframe_div" style="background-image: url('assets/images/header/video_bg.png');">
+			<!-- <iframe class="combinedvideo" src="https://evalai.cloudcv.org/"></iframe> -->
+			<iframe class="combinedvideo" src="https://www.youtube.com/embed/rWiycwJIXh4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</div>
+	</div>
 </div>

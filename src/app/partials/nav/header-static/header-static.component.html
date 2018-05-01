@@ -1,25 +1,17 @@
 <header id="header-static">
-  <ul class="inline-list left-list left">
-    <li class="logo">
-      <img src="/assets/images/EvalAI_favicon.png" alt="">
-    </li>
-  </ul>
-  <ul class="inline-list right-list right right-nav">
-    <li>
-      <a class="light-link" href="/"> Challenges</a>
-    </li>
-    <li>
-      <a class="light-link" href="/"> News</a>
-    </li>
-    <li>
-      <a class="light-link" href="/"> Forum</a>
-    </li>
-    <li>
-      <a class="light-link" href="/"> Join Us</a>
-    </li>
-    <li class="pointer">
-      ...
-    </li>
-  </ul>
-  <div class="clear-fix"></div>
+    <div class="logo_container">
+      <img src="assets/images/EvalAI_favicon.png" class = "logo_header" [class.invert_color]="globals.scrolledState"/>
+    </div>
+    <div class="navlinks_container" >
+    <div class="main-wrapper clearfix">
+        <span class = "navlinks navlinktext" [class.dark_text]="globals.scrolledState"> Challenges </span>
+        <span class = "navlinks navlinktext" [class.dark_text]="globals.scrolledState"> News </span>
+        <span class = "navlinks navlinktext" [class.dark_text]="globals.scrolledState"> Forum </span>
+        <span class = "navlinks navlinktext" [class.dark_text]="globals.scrolledState"> Join Us </span>
+        <span class="navlinks navlinktext"><img src="assets/images/header/dots.png"/></span>
+
+        <span class = "navlinks center btn_nofill" [class.btn_white_bg]="globals.scrolledState"  [class.dark_text]="globals.scrolledState">Sign Up</span>
+        <span class = "navlinks center btn_fill" [class.btn_white_bg]="globals.scrolledState"> Log In</span>
+    </div>
+    </div>
 </header>

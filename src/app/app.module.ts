@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
+import { Globals } from './globals';
 
 // Import Components
 import { AppComponent } from './app.component';
@@ -20,10 +21,12 @@ import { HeaderStaticComponent } from './partials/nav/header-static/header-stati
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Globals
   ],
   providers: [
-    AuthService
+    AuthService,
+    Globals
   ],
   bootstrap: [AppComponent]
 })

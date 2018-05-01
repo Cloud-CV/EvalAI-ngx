@@ -37,6 +37,6 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('EvalAI');
+    expect(compiled.querySelector('.section_title').textContent).toContain('EvalAI');
   }));
 });
