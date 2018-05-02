@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, Inject } from '@angular/core';
 import { GlobalService } from './global.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
@@ -15,8 +15,9 @@ import 'rxjs/add/operator/mergeMap';
 
 
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
+  globalServiceSubscription: any;
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.globalService.change.subscribe(scrolledState => {
+    this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
       this.scrolledState = scrolledState;
     });
     // set page title form routes data
@@ -67,5 +68,8 @@ export class AppComponent implements OnInit {
         .mergeMap((route) => route.data)
         // set platform based title service
       .subscribe((event) => this.titleService.setTitle(event['title']));
+  }
+  ngOnDestroy() {
+    this.globalServiceSubscription.unsubscribe();
   }
 }
