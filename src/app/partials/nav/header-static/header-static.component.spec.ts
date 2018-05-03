@@ -11,16 +11,13 @@ describe('HeaderStaticComponent', () => {
   const fakeActivatedRoute = {
     snapshot: { data: { } }
   } as ActivatedRoute;
-  const fakeRouter = {
-    snapshot: { data: { } }
-  } as Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderStaticComponent ],
       providers: [ GlobalService,
       {provide: ActivatedRoute, useValue: fakeActivatedRoute},
-      {provide: Router, useValue: fakeRouter},
+      {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
       AuthService]
     })
     .compileComponents();

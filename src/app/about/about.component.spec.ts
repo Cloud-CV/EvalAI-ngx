@@ -10,18 +10,14 @@ describe('AboutComponent', () => {
   let component: AboutComponent;
   let fixture: ComponentFixture<AboutComponent>;
   const fakeActivatedRoute = {
-    snapshot: { data: { } }
+    snapshot: { data: {} }
   } as ActivatedRoute;
-  const fakeRouter = {
-    snapshot: { data: { } }
-  } as Router;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AboutComponent, HeaderStaticComponent ],
       providers: [GlobalService,
       {provide: ActivatedRoute, useValue: fakeActivatedRoute},
-      {provide: Router, useValue: fakeRouter},
+      {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
       AuthService
       ]
     })
