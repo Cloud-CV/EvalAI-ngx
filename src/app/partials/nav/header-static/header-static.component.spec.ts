@@ -9,10 +9,10 @@ describe('HeaderStaticComponent', () => {
   let component: HeaderStaticComponent;
   let fixture: ComponentFixture<HeaderStaticComponent>;
   const fakeActivatedRoute = {
-    snapshot: { data: { ... } }
+    snapshot: { data: { } }
   } as ActivatedRoute;
   const fakeRouter = {
-    snapshot: { data: { ... } }
+    snapshot: { data: { } }
   } as Router;
 
   beforeEach(async(() => {

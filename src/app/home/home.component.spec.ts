@@ -10,10 +10,10 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   const fakeActivatedRoute = {
-    snapshot: { data: { ... } }
+    snapshot: { data: { } }
   } as ActivatedRoute;
   const fakeRouter = {
-    snapshot: { data: { ... } }
+    snapshot: { data: { } }
   } as Router;
 
   beforeEach(async(() => {

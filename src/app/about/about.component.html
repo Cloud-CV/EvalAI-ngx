@@ -1,13 +1,17 @@
-<div class="about-container">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet"><div class="about-container">
 	<app-header-static></app-header-static>
-	
+
 	<div class="about-content below-header">
-		<h1>ABOUT</h1>
-		<h1>About Us Content Here!</h1>
-		<h1>-</h1>
-		<h1>-</h1>
-		<h1>-</h1>
-		<h1>-</h1>
-		
+		<img src="../assets/images/about_image.png" />
+		<div class="about-title">About Us</div>
+		<div class="about-content-column col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="about-content-title">Who we are?</div>
+			<div class="about-content-body">{{aboutWho}}</div>
+		</div>
+		<div class="about-content-column col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="about-content-title">What we do?</div>
+			<div class="about-content-body">{{aboutWhat}}</div>
+		</div>
 	</div>
+	<div class="about-footer">&nbsp;</div>
 </div>

@@ -91,7 +91,7 @@ header *{
 	background: linear-gradient(-90deg, $yellow, $orange);
     border: none;
     color: #fff;
-    padding:1.3% 4.2% 1.3% 4.2%;
+    padding:1.3% 4% 1.3% 4%;
  	border-radius:20px;
     margin-left:5px;
     margin-bottom:5px;
@@ -146,7 +146,7 @@ header *{
 	margin-top:10px;
 }
 .navlinktext {
-	margin:4%;
+	margin:2%;
 	color:#fff;
 }
 
@@ -195,6 +195,9 @@ header *{
 	.navlinks {
 		display:block;
 		text-align:center !important;
+	}
+	.navlinktext {
+		margin: 4%;
 	}
 }
 
