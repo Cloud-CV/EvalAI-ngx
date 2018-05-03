@@ -11,21 +11,21 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 export class HeaderStaticComponent implements OnInit, OnDestroy {
   headerWhite = false;
   atHome = true;
+  scrolledState = false;
   globalServiceSubscription: any;
   authServiceSubscription: any;
   authState: any;
-  constructor(private globalService: GlobalService, 
-              private route: ActivatedRoute, 
+  constructor(private globalService: GlobalService,
+              private route: ActivatedRoute,
               private router: Router,
-              private ref:ChangeDetectorRef,
-              private authService: AuthService) { 
+              private ref: ChangeDetectorRef,
+              private authService: AuthService) {
                  this.authState = authService.authState;
               }
   updateElements() {
     this.headerWhite = false;
     this.atHome = true;
-    if(this.router.url != '' && this.router.url != '/')
-    {
+    if (this.router.url !== '' && this.router.url !== '/') {
       console.log(this.router.url);
       this.atHome = false;
       this.headerWhite = true;
@@ -33,13 +33,13 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
 
     this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
       this.headerWhite = scrolledState || !this.atHome;
+      this.scrolledState = scrolledState;
     });
-  }  
-
+  }
   ngOnInit() {
     this.updateElements();
 
-    this.authServiceSubscription = this.authService.change.subscribe((authState) =>{
+    this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
     });
   }

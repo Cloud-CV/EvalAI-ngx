@@ -1,11 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {GlobalService} from '../global.service';
+import {AuthService} from '../services/auth.service';
+
 import { HomeComponent } from './home.component';
 import { HeaderStaticComponent } from '../partials/nav/header-static/header-static.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  const fakeActivatedRoute = {
+    snapshot: { data: { ... } }
+  } as ActivatedRoute;
+  const fakeRouter = {
+    snapshot: { data: { ... } }
+  } as Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,7 +23,10 @@ describe('HomeComponent', () => {
         HeaderStaticComponent
       ],
       providers: [
-        GlobalService
+        GlobalService,
+        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
+        {provide: Router, useValue: fakeRouter},
+        AuthService
       ]
     })
     .compileComponents();

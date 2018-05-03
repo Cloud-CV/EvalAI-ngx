@@ -1,4 +1,4 @@
-<header id="header-static" [class.header-shadow]="headerWhite">
+<header id="header-static" [class.header-shadow]="headerWhite" [class.header-shadow-large]="scrolledState">
     <div class="logo-container">
       <img src="assets/images/EvalAI_favicon.png" class = "logo-header" [class.invert-color]="headerWhite" *ngIf="atHome" (click)="sendMeHome()"/>
       <img src="assets/images/evalai_logo_light.png" *ngIf="!atHome" class = "logo-header" [class.invert-color]="headerWhite" (click)="sendMeHome()"/>

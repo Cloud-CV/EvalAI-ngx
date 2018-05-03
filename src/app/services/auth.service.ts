@@ -13,13 +13,13 @@ export class AuthService {
     }
 
     tryLogIn(params) {
-        setTimeout(()=>{
-            let temp = {isLoggedIn:true, username: 'LoremIpsum'};
+        setTimeout(() => {
+            const temp = {isLoggedIn: true, username: 'LoremIpsum'};
             this.authStateChange(temp);
-        },1000);
+        }, 1000);
     }
     logOut() {
-        let temp = {isLoggedIn:false, username: 'LoremIpsum'};
+        const temp = {isLoggedIn: false, username: 'LoremIpsum'};
         this.authStateChange(temp);
     }
 

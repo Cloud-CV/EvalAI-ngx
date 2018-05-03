@@ -33,13 +33,11 @@ export class AppComponent implements OnInit, OnDestroy {
     const HEADER_ELE = document.getElementById('header-static');
     if (this.document.documentElement.scrollTop > 50) {
       HEADER_ELE.style.background = 'rgba(255, 255, 255, 1)';
-      HEADER_ELE.style.boxShadow = '0 8px 16px 0 rgba(0,0,0,0.2)';
       if (this.scrolledState === false) {
         this.globalService.scrolledStateChange(true);
       }
     } else {
       HEADER_ELE.style.background = 'rgba(255, 255, 255, 0)';
-      HEADER_ELE.style.boxShadow = 'none';
       if (this.scrolledState === true) {
         this.globalService.scrolledStateChange(false);
       }
