@@ -18,7 +18,7 @@ describe('HeaderStaticComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderStaticComponent ],
-      providers: [ GlobalService, 
+      providers: [ GlobalService,
       {provide: ActivatedRoute, useValue: fakeActivatedRoute},
       {provide: Router, useValue: fakeRouter},
       AuthService]
@@ -31,7 +31,6 @@ describe('HeaderStaticComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
