@@ -1,28 +1,37 @@
-<header id="header-static" [class.header-shadow]="headerWhite" [class.header-shadow-large]="scrolledState">
+<header id="header-static" [class.header-shadow]="headerWhite" [class.header-shadow-large]="scrolledState" [class.white-bg]="headerWhite" [class.dark-bg]="isMenuExpanded && atHome && innerWidth <= 810">
     <div class="logo-container">
-      <img src="assets/images/EvalAI_favicon.png" class = "logo-header" [class.invert-color]="headerWhite" *ngIf="atHome" (click)="router.navigate(['']);"/>
-      <img src="assets/images/evalai_logo_light.png" *ngIf="!atHome" class = "logo-header" [class.invert-color]="headerWhite" (click)="router.navigate(['']);"/>
+      <img src="assets/images/EvalAI_favicon.png" class = "logo-header" [class.invert-color]="headerWhite" *ngIf="atHome" (click)="isMenuExpanded = false; navigateTo(['']);"/>
+      <img src="assets/images/evalai_logo_light.png" *ngIf="!atHome" class = "logo-header" [class.invert-color]="headerWhite" (click)="isMenuExpanded = false; navigateTo(['']);"/>
     </div>
-    <div class="navlinks-container" >
+    
+    <div id="menu-expander" [class.menu-change]="isMenuExpanded" (click)="menuExpander()">
+        <div class="menu-bar1" [class.dark-bg]="headerWhite" [class.white-bg]="!headerWhite" ></div>
+        <div class="menu-bar2" [class.dark-bg]="headerWhite" [class.white-bg]="!headerWhite"></div>
+        <div class="menu-bar3" [class.dark-bg]="headerWhite" [class.white-bg]="!headerWhite"></div>
+    </div>
+
+    <div class="navlinks-container" [class.height-zero]="!isMenuExpanded" [class.white-bg]="headerWhite">
     <div class="main-wrapper clearfix">
-        <span class = "navlinks navlinktext" [class.dark-text]="headerWhite"> Challenges </span>
-        <span class = "navlinks navlinktext" [class.dark-text]="headerWhite"> News </span>
-        <span class = "navlinks navlinktext" [class.dark-text]="headerWhite"> Forum </span>
-        <span class = "navlinks navlinktext" [class.dark-text]="headerWhite"> Join Us </span>
+        <span class = "navlinks navlinktext" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Challenges </span>
+        <span class = "navlinks navlinktext" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> News </span>
+        <span class = "navlinks navlinktext" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Forum </span>
+        <span class = "navlinks navlinktext" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Join Us </span>
         <span class="navlinks navlinktext"><img src="assets/images/header/dots.png"/></span>
 
-        <span class = "navlinks center btn-nofill" [class.btn-white-bg]="headerWhite"  [class.dark-text]="headerWhite" (click)="router.navigate(['/auth/signup']);" *ngIf="!authState.isLoggedIn">
+        <span class = "navlinks center btn-nofill" [class.btn-white-bg]="headerWhite"  [class.dark-text]="headerWhite" (click)="isMenuExpanded = false;navigateTo(['/auth/signup']);" *ngIf="!authState.isLoggedIn">
             Sign Up
         </span>
-        <span class = "navlinks center btn-fill" [class.btn-white-bg]="headerWhite" (click)="router.navigate(['/auth/login']);" *ngIf="!authState.isLoggedIn" (click)="logInPlease()"> 
+        <span class = "navlinks center btn-fill" (click)="isMenuExpanded = false;" [class.btn-white-bg]="headerWhite" (click)="isMenuExpanded = false;logInPlease();navigateTo(['/auth/login']);" *ngIf="!authState.isLoggedIn"> 
             Log In
         </span>
         <span class = "navlinks navlinktext" *ngIf="authState.isLoggedIn" [class.dark-text]="headerWhite"> 
             Hi {{authState.username}}! 
         </span>
-        <span class = "navlinks center btn-fire" *ngIf="authState.isLoggedIn" (click)="logOut()">
+        <span class = "navlinks center btn-fire" (click)="isMenuExpanded = false;" *ngIf="authState.isLoggedIn" (click)="logOut()">
             Log Out
         </span>
     </div>
     </div>
+
 </header>
+<div class="overlay-container" (click)="isMenuExpanded = false;" [class.dark-overlay]="isMenuExpanded && innerWidth<=810"></div>

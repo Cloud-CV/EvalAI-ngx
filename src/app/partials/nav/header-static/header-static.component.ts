@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Inject, HostListener } from '@angular/core';
 import {GlobalService} from '../../../global.service';
 import {AuthService} from '../../../services/auth.service';
 import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-header-static',
@@ -12,14 +13,17 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   headerWhite = false;
   atHome = true;
   scrolledState = false;
+  isMenuExpanded = true;
   globalServiceSubscription: any;
   authServiceSubscription: any;
   authState: any;
+  public innerWidth: any;
   constructor(private globalService: GlobalService,
               private route: ActivatedRoute,
               private router: Router,
               private ref: ChangeDetectorRef,
-              private authService: AuthService) {
+              private authService: AuthService,
+              @Inject(DOCUMENT) private document: Document) {
                  this.authState = authService.authState;
               }
   updateElements() {
@@ -38,16 +42,29 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.updateElements();
-
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth <= 810) {
+      this.isMenuExpanded = false;
+    }
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
     });
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth <= 810) {
+      this.isMenuExpanded = false;
+    }
   }
   sendMeHome() {
     this.atHome = true;
     this.headerWhite = false;
     this.ref.detectChanges();
     this.router.navigate(['']);
+  }
+  navigateTo(path) {
+    this.router.navigate(path);
   }
   ngOnDestroy() {
     this.globalServiceSubscription.unsubscribe();
@@ -58,6 +75,11 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   }
   logOut() {
     this.authService.logOut();
+  }
+  menuExpander() {
+    // const x = document.getElementById('menu-expander');
+    // x.classList.toggle("menu-change");
+    this.isMenuExpanded = !this.isMenuExpanded;
   }
 
 }

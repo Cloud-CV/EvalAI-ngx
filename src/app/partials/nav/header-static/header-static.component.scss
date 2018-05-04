@@ -7,7 +7,6 @@ header{
 	color: white;
 	background-color: rgba(255,255,255,0);
 	width: 100%;
-	padding-bottom: 10px;
 	box-sizing: border-box;
 	z-index: 1000;
 	transition: all 0.2s ease-in-out;
@@ -17,6 +16,50 @@ header{
 		}
 	}
 }
+.dark-overlay{
+	width:100%;
+	height:100%;
+	position:fixed;
+	z-index:100;
+	background:rgba(0,0,0,0.7);
+	overflow:hidden;
+}
+#menu-expander{
+	display:none;
+	color: black;
+	cursor:pointer;
+	position:absolute;
+    top:25px;
+    right:10px;
+    z-index:100;
+
+}
+.menu-bar1, .menu-bar2, .menu-bar3 {
+    width: 30px;
+    height: 5px;
+    
+    margin: 6px 0;
+    transition: 0.4s;
+}
+.dark-bg {
+	background: #000;
+}
+.white-bg {
+	background: white;
+}
+
+.menu-change .menu-bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.menu-change .menu-bar2 {opacity: 0;}
+
+.menu-change .menu-bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
 header *{
 	-webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -56,7 +99,10 @@ header *{
 	width:70%;
 	position:relative;
 	text-align:right;
+	transition:height 0.5s ease;
+	padding-bottom:10px;
 }
+
 .navlinks-container div{
 	display:block;
 	position:relative;
@@ -166,8 +212,9 @@ header *{
 	}
 }
 @media (max-width: 810px) {
-	header{
-		position: absolute;
+	
+	#menu-expander{
+		display:inline-block;
 	}
 	.header-body-buttons{
 		width:100%;
@@ -182,7 +229,7 @@ header *{
 	.logo-container {
 		width:100%;
 		text-align:center;
-		margin-top:20px;
+		margin-top:25px;
 		margin-left:0;
 	}
 	.navlinks-container{
@@ -198,6 +245,11 @@ header *{
 	}
 	.navlinktext {
 		margin: 4%;
+	}
+	.height-zero {
+		height:0;
+		overflow:hidden;
+		transition: height 0.5s ease;
 	}
 }
 
