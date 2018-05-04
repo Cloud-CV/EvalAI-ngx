@@ -133,3 +133,18 @@ ul {
 .container-top{
   padding-top: 80px;
 }
+
+.below-header{
+  margin-top:10%;
+}
+
+@media(min-width:810px) and (max-width:1130px){
+  .below-header{
+    margin-top:20%;
+  }
+}
+@media (max-width: 810px) {
+  .below-header{
+    margin-top:30%;
+  }
+}

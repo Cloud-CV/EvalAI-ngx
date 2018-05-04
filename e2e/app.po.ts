@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getHeadingH1Text() {
-    return element(by.css('app-root app-home h1')).getText();
+    return element(by.css('app-root app-home .home-container .header-container .section-title-div span')).getText();
   }
 }
