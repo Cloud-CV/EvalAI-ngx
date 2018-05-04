@@ -1,0 +1,13 @@
+<div class="auth-container">
+	<app-header-static></app-header-static>
+	<div class="below-header">
+		<h1>Auth</h1>
+		<p>
+		  <a (click)="navigateTo('/login')">Log In</a> |
+		  <a (click)="navigateTo('/signup')">Sign Up</a>
+		</p>
+
+		<router-outlet></router-outlet>
+	</div>
+
+</div>

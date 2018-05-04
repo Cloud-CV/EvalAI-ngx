@@ -1,7 +1,7 @@
 <header id="header-static" [class.header-shadow]="headerWhite" [class.header-shadow-large]="scrolledState">
     <div class="logo-container">
-      <img src="assets/images/EvalAI_favicon.png" class = "logo-header" [class.invert-color]="headerWhite" *ngIf="atHome" (click)="sendMeHome()"/>
-      <img src="assets/images/evalai_logo_light.png" *ngIf="!atHome" class = "logo-header" [class.invert-color]="headerWhite" (click)="sendMeHome()"/>
+      <img src="assets/images/EvalAI_favicon.png" class = "logo-header" [class.invert-color]="headerWhite" *ngIf="atHome" (click)="router.navigate(['']);"/>
+      <img src="assets/images/evalai_logo_light.png" *ngIf="!atHome" class = "logo-header" [class.invert-color]="headerWhite" (click)="router.navigate(['']);"/>
     </div>
     <div class="navlinks-container" >
     <div class="main-wrapper clearfix">
@@ -11,10 +11,18 @@
         <span class = "navlinks navlinktext" [class.dark-text]="headerWhite"> Join Us </span>
         <span class="navlinks navlinktext"><img src="assets/images/header/dots.png"/></span>
 
-        <span class = "navlinks center btn-nofill" [class.btn-white-bg]="headerWhite"  [class.dark-text]="headerWhite" *ngIf="!authState.isLoggedIn">Sign Up</span>
-        <span class = "navlinks center btn-fill" [class.btn-white-bg]="headerWhite" (click) = "logInPlease()" *ngIf="!authState.isLoggedIn"> Log In</span>
-        <span class = "navlinks navlinktext" *ngIf="authState.isLoggedIn" [class.dark-text]="headerWhite"> Hi {{authState.username}}! </span>
-        <span class = "navlinks center btn-fire" *ngIf="authState.isLoggedIn" (click)="logOut()">Log Out</span>
+        <span class = "navlinks center btn-nofill" [class.btn-white-bg]="headerWhite"  [class.dark-text]="headerWhite" (click)="router.navigate(['/auth/signup']);" *ngIf="!authState.isLoggedIn">
+            Sign Up
+        </span>
+        <span class = "navlinks center btn-fill" [class.btn-white-bg]="headerWhite" (click)="router.navigate(['/auth/login']);" *ngIf="!authState.isLoggedIn" (click)="logInPlease()"> 
+            Log In
+        </span>
+        <span class = "navlinks navlinktext" *ngIf="authState.isLoggedIn" [class.dark-text]="headerWhite"> 
+            Hi {{authState.username}}! 
+        </span>
+        <span class = "navlinks center btn-fire" *ngIf="authState.isLoggedIn" (click)="logOut()">
+            Log Out
+        </span>
     </div>
     </div>
 </header>

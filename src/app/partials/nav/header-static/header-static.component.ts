@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import {GlobalService} from '../../../global.service';
 import {AuthService} from '../../../services/auth.service';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header-static',
