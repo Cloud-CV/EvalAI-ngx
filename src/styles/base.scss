@@ -4,10 +4,26 @@
 @import './mixins.scss';
 @import './grid.scss';
 @import './font.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 body{
-  font-family: 'Open Sans';
+  font-family: 'Roboto', sans-serif;
 }
+
+/*Font weights*/
+.fw-light {
+  font-weight: $fw-light;
+}
+.fw-regular {
+  font-weight: $fw-regular;
+}
+.fw-semibold {
+  font-weight: $fw-semibold;
+}
+.fw-bold {
+  font-weight: $fw-bold;
+}
+
 
 /*Font sizes*/
 
