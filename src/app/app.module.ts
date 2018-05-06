@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
+import { GetInvolvedComponent } from './get-involved/get-involved.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderStaticComponent
+    HeaderStaticComponent,
+    GetInvolvedComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,59 @@
+@import '../../styles/base.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/grid.scss';
+
+.get-involved-container *{
+	font-family: 'Roboto', sans-serif;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          color: $font-dark;
+          overflow-x:hidden;
+}
+
+.get-involved-title {
+	font-size: $fs-24;
+}
+
+.get-involved-description {
+	font-size: $fs-16;
+	margin-top:2%;
+	padding-left:5%;
+	padding-right:5%;
+}
+.get-involved-container hr {
+		width:80%;
+}
+.empty-space {
+	padding-bottom:10%;
+}
+
+.get-involved-section {
+	margin-top:5%;
+	padding-left:10%;
+	padding-right:10%;
+	overflow:auto;
+	div .get-involved-section-title {
+		font-size: $fs-18;
+		font-weight:bold;
+		margin-bottom:5%;
+		margin-top:15%;
+	}
+	div .get-involved-section-body {
+		font-size: $fs-16;
+		text-align:left;
+		a {
+  			color: $red-light;
+		
+			transition: all 0.2s ease-in-out;
+			&:hover {
+			    color: $red-dark;
+			}
+		}
+	}
+
+	img {
+		width:100%;
+		padding:5%;
+	}
+}
