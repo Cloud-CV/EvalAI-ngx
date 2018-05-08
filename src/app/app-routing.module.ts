@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   { path: '',
@@ -10,6 +11,9 @@ const routes: Routes = [
       'title': 'EvalAI - Welcome'
     }
   },
+  { path: 'privacy-policy',
+    component: PrivacyPolicyComponent
+  }
 ];
 
 @NgModule({
