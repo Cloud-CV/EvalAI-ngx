@@ -8,6 +8,11 @@
 
 body{
   font-family: 'Roboto', sans-serif;
+  *{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
 }
 
 /*Font weights*/
@@ -147,16 +152,16 @@ ul {
 }
 
 .container-top{
-  padding-top: 10%;
+  padding-top: 100px;
 }
 
 @media(min-width:810px) and (max-width:1130px){
   .container-top{
-    padding-top:20%;
+    padding-top:200px;
   }
 }
 @media (max-width: 810px) {
   .container-top{
-    padding-top:30%;
+    padding-top:100px;
   }
 }

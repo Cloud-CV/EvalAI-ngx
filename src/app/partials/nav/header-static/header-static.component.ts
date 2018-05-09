@@ -11,6 +11,8 @@ import { DOCUMENT } from '@angular/common';
 })
 export class HeaderStaticComponent implements OnInit, OnDestroy {
   headerWhite = false;
+  // atHome indicates that the page is supposed to have a transparent header like on home.
+  transparentHeaderUrls = ['', '/'];
   atHome = true;
   scrolledState = false;
   isMenuExpanded = true;
@@ -29,8 +31,8 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   updateElements() {
     this.headerWhite = false;
     this.atHome = true;
-    if (this.router.url !== '' && this.router.url !== '/') {
-      console.log(this.router.url);
+
+    if (!this.transparentHeaderUrls.includes(this.router.url)) {
       this.atHome = false;
       this.headerWhite = true;
     }
@@ -70,7 +72,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
     this.globalServiceSubscription.unsubscribe();
     this.authServiceSubscription.unsubscribe();
   }
-  logInPlease() {
+  logIn() {
     this.authService.tryLogIn(null);
   }
   logOut() {
