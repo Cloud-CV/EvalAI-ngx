@@ -1,18 +1,14 @@
-@import '../../styles/base.scss';
 @import '../../styles/variables.scss';
-@import '../../styles/grid.scss';
 
-.privacy-container *{
-	font-family: 'Roboto', sans-serif;
-	-webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-          color: $font-dark;
+.privacy-container {
+	*{
+    	color: $font-dark;
+    }
 }
 
 .privacy-content {
-	margin-top:1%;
-	padding-right:5%;
+	margin-top:30px;
+	padding-right:50px;
 	a {
 		color:$red-light;
 	}
@@ -38,12 +34,17 @@
 	ul {
 		list-style-type: circle;
 	}
-	
+}
+
+.privacy-section-title {
+	font-size: $fs-18;
+	font-weight: bold;
+	margin-top:20px;
 }
 
 .privacy-nav-container {
-	margin-top:1%;
-	top:20%;
+	margin-top:20px;
+	top:10%;
 	bottom:0;
 	overflow-y:scroll;
 	position:fixed;
@@ -53,8 +54,8 @@
 		li {
 			padding-left:20px;
 			border-left: 5px solid rgba(0,0,0,0);
-			padding:1%;
-			margin:1%;
+			padding:5px;
+			margin:5px;
 			cursor:pointer;
 			color:$font-dark;
 			font-size: $fs-16;
@@ -70,15 +71,14 @@
 
 	}
 }
-@media screen and (max-width: 992px) {
+
+@media screen and (max-width: $screen-sm-md) {
 	.privacy-nav-container, .privacy-empty-container { 
 		display:none;
 	}
 }
-
-
-.privacy-section-title {
-	font-size: $fs-18;
-	font-weight: bold;
-	margin-top:20px;
+@media screen and (min-width:$screen-sm) and (max-width: $screen-md) {
+	.privacy-nav-container {
+		top:20%;
+	}
 }
