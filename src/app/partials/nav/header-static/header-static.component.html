@@ -11,26 +11,28 @@
     </div>
 
     <div class="navlinks-container" [class.height-zero]="!isMenuExpanded" [class.white-bg]="headerWhite">
-    <div class="main-wrapper clearfix">
-        <span class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Challenges </span>
-        <span class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> News </span>
-        <span class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Forum </span>
-        <span class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Join Us </span>
-        <span class="navlinks navlinktext"><img src="assets/images/dots.png"/></span>
+    <ul class="main-wrapper clearfix">
+        <li class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Challenges </li>
+        <li class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> News </li>
+        <li class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Forum </li>
+        <li class = "navlinks navlinktext fw-light" (click)="isMenuExpanded = false;" [class.dark-text]="headerWhite"> Join Us </li>
+        <li class="navlinks navlinktext">
+            <img src="assets/images/dots.png"/>
+        </li>
 
-        <span class = "navlinks center btn-nofill fw-regular" [class.btn-white-bg]="headerWhite"  [class.dark-text]="headerWhite" (click)="isMenuExpanded = false;navigateTo(['/auth/signup']);" *ngIf="!authState.isLoggedIn">
+        <li class = "navlinks center btn-nofill fw-regular" [class.btn-white-bg]="headerWhite"  [class.dark-text]="headerWhite" (click)="isMenuExpanded = false;navigateTo(['/auth/signup']);" *ngIf="!authState.isLoggedIn">
             Sign Up
-        </span>
-        <span class = "navlinks center btn-fill fw-regular" (click)="isMenuExpanded = false;" [class.btn-white-bg]="headerWhite" (click)="isMenuExpanded = false;logInPlease();navigateTo(['/auth/login']);" *ngIf="!authState.isLoggedIn"> 
+        </li>
+        <li class = "navlinks center btn-fill fw-regular" (click)="isMenuExpanded = false;" [class.btn-white-bg]="headerWhite" (click)="isMenuExpanded = false;logIn();navigateTo(['/auth/login']);" *ngIf="!authState.isLoggedIn"> 
             Log In
-        </span>
-        <span class = "navlinks navlinktext fw-regular" *ngIf="authState.isLoggedIn" [class.dark-text]="headerWhite"> 
+        </li>
+        <li class = "navlinks navlinktext fw-regular" *ngIf="authState.isLoggedIn" [class.dark-text]="headerWhite"> 
             Hi {{authState.username}}! 
-        </span>
-        <span class = "navlinks center btn-fire fw-regular" (click)="isMenuExpanded = false;" *ngIf="authState.isLoggedIn" (click)="logOut()">
+        </li>
+        <li class = "navlinks center btn-fire fw-regular" (click)="isMenuExpanded = false;" *ngIf="authState.isLoggedIn" (click)="logOut()">
             Log Out
-        </span>
-    </div>
+        </li>
+    </ul>
     </div>
 
 </header>
