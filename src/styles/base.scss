@@ -155,12 +155,12 @@ ul {
   padding-top: 100px;
 }
 
-@media(min-width:810px) and (max-width:1130px){
+@include screen-medium {
   .container-top{
     padding-top:200px;
   }
 }
-@media (max-width: 810px) {
+@include screen-small {
   .container-top{
     padding-top:100px;
   }
