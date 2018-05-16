@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
+import { FooterComponent } from './footer/footer.component';
 
 describe('AppComponent', () => {
 
@@ -17,7 +18,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         HomeComponent,
-        HeaderStaticComponent
+        HeaderStaticComponent,
+        FooterComponent
       ],
       imports: [
         RouterTestingModule
