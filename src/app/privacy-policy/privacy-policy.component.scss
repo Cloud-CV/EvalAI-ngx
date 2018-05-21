@@ -1,84 +1,89 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .privacy-container {
-	*{
-    	color: $font-dark;
-    }
+  * {
+    color: $gray-darker;
+    transition: all 0.2s ease;
+  }
 }
 
 .privacy-content {
-	margin-top:30px;
-	padding-right:50px;
-	a {
-		color:$red-light;
-	}
-	img {
-		position:fixed;
-		top:50%;
-		right:4%;
-		height:50px;
-		transform:rotate(180deg);
-		cursor:pointer;
-	}
+  margin-top: 30px;
+  padding-right: 50px;
+  a {
+    color: $red-light;
+  }
+  img {
+    position: fixed;
+    top: 50%;
+    right: 4%;
+    height: 50px;
+    transform: rotate(180deg);
+    cursor: pointer;
+    &:hover {
+      height: 55px;
+    }
+  }
 }
 
 .privacy-title {
-	font-size: $fs-24;
-	color: $font-dark;
-	font-weight: bold;
+  font-size: $fs-24;
+  color: $gray-darker;
+  font-weight: bold;
 }
 
 .privacy-section-content {
-	font-size: $fs-16;
-	margin-top:20px;
-	ul {
-		list-style-type: circle;
-	}
+  font-size: $fs-16;
+  margin-top: 20px;
+  ul {
+    list-style-type: circle;
+  }
 }
 
 .privacy-section-title {
-	font-size: $fs-18;
-	font-weight: bold;
-	margin-top:20px;
+  font-size: $fs-18;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 .privacy-nav-container {
-	margin-top:20px;
-	top:10%;
-	bottom:0;
-	overflow-y:scroll;
-	position:fixed;
-	ul {
-		list-style-type: none;
-		padding-left:0;
-		li {
-			padding-left:20px;
-			border-left: 5px solid rgba(0,0,0,0);
-			padding:5px;
-			margin:5px;
-			cursor:pointer;
-			color:$font-dark;
-			font-size: $fs-16;
-			&:hover {
-				border-left: 5px solid $font-dark;;
-			}
-		}
+  margin-top: 20px;
+  top: 10%;
+  bottom: 0;
+  overflow-y: scroll;
+  position: fixed;
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    li {
+      padding-left: 20px;
+      border-left: 5px solid rgba(0, 0, 0, 0);
+      padding: 5px;
+      margin: 5px;
+      cursor: pointer;
+      color: $gray-darker;
+      font-size: $fs-16;
+      &:hover {
+        border-left: 5px solid $gray-darker;
+      }
+    }
 
-		li.scroll-selected {
-			color:$red-light;
-			border-left: 5px solid $red-light;
-		}
-
-	}
+    li.scroll-selected {
+      color: $red-light;
+      border-left: 5px solid $red-light;
+    }
+  }
 }
 
-@media screen and (max-width: $screen-sm-md) {
-	.privacy-nav-container, .privacy-empty-container { 
-		display:none;
-	}
+@include screen-small-medium {
+  .privacy-nav-container, .privacy-empty-container {
+    display: none;
+  }
 }
-@media screen and (min-width:$screen-sm) and (max-width: $screen-md) {
-	.privacy-nav-container {
-		top:20%;
-	}
+
+@include screen-medium {
+  .privacy-nav-container {
+    top: 20%;
+  }
 }
