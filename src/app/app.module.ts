@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
+import { InputComponent } from './input/input.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderStaticComponent
+    HeaderStaticComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
