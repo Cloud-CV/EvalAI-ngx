@@ -1,0 +1,6 @@
+<div class="input-group">     
+  <input class="input-field" (input)="validateInput($event.target.value)" [class.isValid]="isValid == true" type="{{type}}">
+  <span class="input-bar"></span>
+  <label [class.is-not-empty]="!isEmpty">{{label}}</label>
+  <div class="input-message" #textValue [class.hidden]="!(((isRequired && isEmpty)||(!isValid && !isEmpty))  && isDirty)">{{message}}</div>
+</div>

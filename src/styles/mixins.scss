@@ -10,3 +10,17 @@
 @mixin linear-gradient-bg($dir, $from, $to) {
   background-image: linear-gradient($dir, $from, $to);
 }
+
+/*Screen size mixins*/
+
+@mixin screen-small() {
+  @media (max-width: $screen-sm) {
+    @content;
+  }
+}
+
+@mixin screen-medium() {
+  @media(min-width: $screen-sm) and (max-width: $screen-md) {
+    @content;
+  }
+}
