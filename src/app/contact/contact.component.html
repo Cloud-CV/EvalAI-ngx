@@ -1,0 +1,28 @@
+<app-header-static></app-header-static>
+<div class="container-top container contact-container white">
+  <div class="contact-form">
+    <div class="contact-form-inner">
+      <span class="contact-title">Get in touch</span>
+      <br>
+      <div class="contact-form-elements">
+        <app-input [label]="'Name'" [required]="true" #formgroup></app-input>
+        <app-input [label]="'Email'" [required]="true" [type]="'email'" #formgroup></app-input>
+        <app-input [label]="'Message'" [required]="true" #formgroup></app-input>
+        <span class="btn btn-fire" (click)="formSubmit()">SEND</span>
+        <div class="contact-links">
+          <table>
+            <tr>
+              <td><img src="assets/images/fb.png" /></td>
+              <td><img src="assets/images/git.png" /></td>
+              <td><img src="assets/images/twitter.png" /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="contact-map">
+  </div>
+  <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlXSVBOW9fl96oY4oyTo055jUVd9Y-6dA&callback=initMap"></script> -->
+</div>

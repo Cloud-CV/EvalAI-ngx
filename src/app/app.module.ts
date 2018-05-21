@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
+import { ContactComponent } from './contact/contact.component';
 import { InputComponent } from './input/input.component';
 
 
@@ -18,6 +19,7 @@ import { InputComponent } from './input/input.component';
     AppComponent,
     HomeComponent,
     HeaderStaticComponent,
+    ContactComponent,
     InputComponent
   ],
   imports: [
