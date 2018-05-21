@@ -66,6 +66,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
     this.router.navigate(['']);
   }
   navigateTo(path) {
+    this.isMenuExpanded = false;
     this.router.navigate(path);
   }
   ngOnDestroy() {
