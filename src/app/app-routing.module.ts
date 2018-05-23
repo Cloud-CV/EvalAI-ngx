@@ -12,8 +12,8 @@ const routes: Routes = [
     }
   },
   {
-  	path: 'contact',
-  	component: ContactComponent
+    path: 'contact',
+    component: ContactComponent
   }
 ];
 

@@ -8,7 +8,7 @@
         <app-input [label]="'Name'" [required]="true" #formgroup></app-input>
         <app-input [label]="'Email'" [required]="true" [type]="'email'" #formgroup></app-input>
         <app-input [label]="'Message'" [required]="true" #formgroup></app-input>
-        <span class="btn btn-fire" (click)="formSubmit()">SEND</span>
+        <span class="btn btn-fire" (click)="formValidate()">SEND</span>
         <div class="contact-links">
           <table>
             <tr>
@@ -23,6 +23,4 @@
   </div>
   <div id="contact-map">
   </div>
-  <!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlXSVBOW9fl96oY4oyTo055jUVd9Y-6dA&callback=initMap"></script> -->
 </div>

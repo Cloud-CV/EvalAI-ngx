@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { InputComponent } from '../input/input.component';
+import { WindowService } from '../services/window.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,32 +11,24 @@ import { InputComponent } from '../input/input.component';
 })
 export class ContactComponent implements OnInit, AfterViewInit {
 
-  @ViewChildren('formgroup') 
-  components:QueryList<InputComponent>;
-  componentlist:any;
+  @ViewChildren('formgroup')
+  components: QueryList<InputComponent>;
+  componentlist: any;
+  google: any;
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private windowService: WindowService) { }
 
   ngOnInit() {
-  	this.loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyDlXSVBOW9fl96oY4oyTo055jUVd9Y-6dA', this.callBack, this.document.body,this);
+    this.loadMapContactPage();
   }
-  ngAfterViewInit(){
+
+  ngAfterViewInit() {
     // print array of CustomComponent objects
     // this.componentlist = this.components.toArray();
   }
 
-  loadJS(url, implementationCode, location, env){
-    let scriptTag = this.document.createElement('script');
-    scriptTag.src = url;
-
-    scriptTag.onload = () => {
-    	implementationCode(env);
-    };
-    // scriptTag.onreadystatechange = implementationCode;
-
-    location.appendChild(scriptTag);
-  }
-  formSubmit() {
+  formValidate() {
     let requiredFieldMissing = false;
     this.components.map((item) => {
       if (item.isRequired && !item.isDirty) {
@@ -46,26 +39,37 @@ export class ContactComponent implements OnInit, AfterViewInit {
       }
     });
     if (!requiredFieldMissing) {
-       alert("HOLA");
+       this.formSubmit();
     }
-    
-    
+  }
+
+  formSubmit() {
+    // Submit Form to Back-end
+  }
+
+  loadMapContactPage() {
+    // TODO: Replace this with CloudCV's Google Maps API Key
+    const MAP_API_KEY = 'AIzaSyDlXSVBOW9fl96oY4oyTo055jUVd9Y-6dA';
+    this.windowService.loadJS('https://maps.googleapis.com/maps/api/js?key=' + MAP_API_KEY,
+      this.callBack, this.document.body, this);
   }
 
   initMap() {
-  	let uluru = {lat: 33.779478, lng: -84.434887};
-    let ulurumarker = {lat: 33.780398, lng: -84.395513};
-    let map = new google.maps.Map(document.getElementById('contact-map'), {
+    const MAP_CENTER = {lat: 33.779478, lng: -84.434887};
+    const MAP_GATECH = {lat: 33.780398, lng: -84.395513};
+    const MAP_OBJ = new this.google.maps.Map(document.getElementById('contact-map'), {
           zoom: 13,
-          center: uluru
+          center: MAP_CENTER
     });
-    let marker = new google.maps.Marker({
-      position: ulurumarker,
-      map: map
+    const MAP_MARKER = new this.google.maps.Marker({
+      position: MAP_GATECH,
+      map: MAP_OBJ
     });
   }
+
   callBack(self) {
-		self.initMap();
+    self.google = self.windowService.nativeWindow.google;
+    self.initMap();
   }
 
 }
