@@ -12,6 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { InputComponent } from './input/input.component';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { InputComponent } from './input/input.component';
     AppComponent,
     HomeComponent,
     HeaderStaticComponent,
-    InputComponent
+    InputComponent,
+    AuthComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
