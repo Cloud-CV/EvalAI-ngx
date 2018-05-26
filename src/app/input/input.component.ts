@@ -8,14 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputComponent implements OnInit {
   @Input('label') label: string;
   @Input('type') type: string;
-  @Input('required') required: boolean;
+  @Input('isRequired') isRequired: boolean;
+  @Input('theme') theme: string;
+  @Input('icon') icon: string;
   isEmail = false;
   isDirty = false;
-  isRequired = false;
   isValid = false;
   isEmpty = true;
-  message = '* Required field';
-  requiredMessage = '* Required field';
+  isIconPresent = false;
+  message = 'Required field';
+  requiredMessage = 'Required field';
   constructor() {  }
 
   ngOnInit() {
@@ -25,10 +27,14 @@ export class InputComponent implements OnInit {
       }
       this.type = 'text';
     }
-    if (this.required === undefined) {
+    if (this.isRequired === undefined) {
       this.isRequired = false;
-    } else {
-      this.isRequired = this.required;
+    } 
+    if (this.theme === undefined) {
+      this.theme = 'light';
+    }
+    if (this.icon !== undefined) {
+      this.isIconPresent = true;
     }
   }
 
@@ -41,7 +47,7 @@ export class InputComponent implements OnInit {
         this.isRequired ? this.message = this.requiredMessage : this.message = '!';
       } else {
         this.isValid = this.validateEmail(e);
-        this.isValid ? this.message = '!' : this.message = '* Enter a valid email';
+        this.isValid ? this.message = '!' : this.message = 'Enter a valid email';
       }
     } else if (this.type === 'text') {
       if (e === '') {
@@ -49,7 +55,15 @@ export class InputComponent implements OnInit {
         this.isRequired ? this.message = this.requiredMessage : this.message = '!';
       } else {
         this.isValid = this.validateText(e);
-        this.isValid ? this.message = '!' : this.message = '* Enter a valid text';
+        this.isValid ? this.message = '!' : this.message = 'Enter a valid text';
+      }
+    } else if (this.type === 'password') {
+      if (e === '') {
+        this.isValid = false;
+        this.isRequired ? this.message = this.requiredMessage : this.message = '!';
+      } else {
+        this.isValid = this.validatePassword(e);
+        this.isValid ? this.message = '!' : this.message = 'Password minimum 8 characters';
       }
     }
   }
@@ -63,6 +77,12 @@ export class InputComponent implements OnInit {
   }
   validateText(text) {
     if (text.length >= 3) {
+      return true;
+    }
+    return false;
+  }
+  validatePassword(password) {
+    if (password.length >= 8) {
       return true;
     }
     return false;
