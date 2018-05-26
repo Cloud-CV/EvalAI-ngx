@@ -10,8 +10,8 @@
         <img src="assets/images/evalai_logo_light.png" />
       </div>
       <div class="auth-nav">
-        <a [class.auth-selected]="router.url=='/auth/login'"  (click)="navigateTo('/login')">LOGIN</a>
-        <a [class.auth-selected]="router.url=='/auth/signup'" (click)="navigateTo('/signup')">SIGNUP</a>
+        <a [class.auth-selected]="router.url=='/auth/login'"  (click)="navigateTo('/auth/login')">LOGIN</a>
+        <a [class.auth-selected]="router.url=='/auth/signup'" (click)="navigateTo('/auth/signup')">SIGNUP</a>
       </div>
       <router-outlet></router-outlet>
       <div class="auth-form-footer">
@@ -22,7 +22,7 @@
             <a><img src="assets/images/twitter_dark.png"/></a>
             </td>
             <td class="align-center">
-            <a href="www.cloudcv.org">www.cloudcv.org</a>
+            <a href="https://www.cloudcv.org">www.cloudcv.org</a>
             </td>
             <td class="align-right">
             <a (click)="navigateTo('')">Back to home</a>

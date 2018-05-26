@@ -1,3 +1,13 @@
-<p>
-  signup works!
-</p>
+<div class="signup-container">
+  <app-input [isRequired]="true" [label]="'Username'" [type]="'text'" [theme]="'dark'" [icon]="'assets/images/username_dark.png'"></app-input>
+  <app-input [isRequired]="true" [label]="'Email'" [type]="'email'" [theme]="'dark'" [icon]="'assets/images/envelope_dark.png'"></app-input>
+  <app-input [isRequired]="true" [label]="'Password'" [type]="'password'" [theme]="'dark'" [icon]="'assets/images/password_dark.png'"></app-input>
+  <app-input [isRequired]="true" [label]="'Confirm Password'" [type]="'password'" [theme]="'dark'" [icon]="'assets/images/confirm_dark.png'"></app-input>
+  <div class="auth-btn-div">
+    <span class="btn btn-fire">SIGN UP</span>
+  </div>
+  <div class="auth-login-row">
+    <span>Already have an account </span>
+    <a (click)="navigateTo('/auth/login')">Log In</a>
+  </div>
+</div>

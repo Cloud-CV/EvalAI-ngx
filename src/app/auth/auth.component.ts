@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit {
   	console.log(this.route, this.router.url);
   }
   navigateTo(url) {
-    this.router.navigate([ '/auth' + url ]);
+    this.router.navigate([ url ]);
   }
 
 }

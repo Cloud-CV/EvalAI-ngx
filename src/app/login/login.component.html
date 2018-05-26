@@ -1,3 +1,12 @@
-<p>
-  login works!
-</p>
+<div class="login-container">
+  <app-input [isRequired]="true" [label]="'Username'" [type]="'text'" [theme]="'dark'" [icon]="'assets/images/username_dark.png'"></app-input>
+  <app-input [isRequired]="true" [label]="'Password'" [type]="'password'" [theme]="'dark'" [icon]="'assets/images/password_dark.png'"></app-input>
+  <div class="auth-forgot-div">
+    <span class="btn btn-fire">LOGIN</span>
+    <span class="auth-forgot">Forgot password or username?</span>
+  </div>
+  <div class="auth-signup-row">
+    <span>Start with a new account </span>
+    <a (click)="navigateTo('/auth/signup')">Sign Up</a>
+  </div>
+</div>
