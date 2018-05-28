@@ -7,11 +7,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  
+  localRouter: any;
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  	console.log(this.route, this.router.url);
+    this.localRouter = this.router;
   }
   navigateTo(url) {
     this.router.navigate([ url ]);
