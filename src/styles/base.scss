@@ -34,6 +34,10 @@ body {
   font-weight: $fw-bold;
 }
 
+
+
+
+
 /*Font sizes*/
 
 .fs-12 {
@@ -68,6 +72,7 @@ body {
   font-size: $fs-36;
 }
 
+
 /*anchors*/
 
 a {
@@ -94,6 +99,7 @@ a.light-link {
 .pointer {
   cursor: pointer;
 }
+
 
 /*list styles*/
 
@@ -137,6 +143,7 @@ ul {
   clear: both;
 }
 
+
 .align-left {
   text-align: left;
 }
@@ -154,6 +161,9 @@ ul {
 .white {
   color: white;
 }
+
+
+
 
 /*container*/
 
@@ -228,5 +238,6 @@ ul {
     border: 1.5px solid $gray-light;
     background: $gray-light;
     color: black;
-    }
+  }
 }
+
