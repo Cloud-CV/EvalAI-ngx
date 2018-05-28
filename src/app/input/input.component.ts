@@ -29,7 +29,7 @@ export class InputComponent implements OnInit {
     }
     if (this.isRequired === undefined) {
       this.isRequired = false;
-    } 
+    }
     if (this.theme === undefined) {
       this.theme = 'light';
     }
