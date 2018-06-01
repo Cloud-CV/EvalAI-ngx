@@ -6,11 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-  @Input('label') label: string;
-  @Input('type') type: string;
-  @Input('isRequired') isRequired: boolean;
-  @Input('theme') theme: string;
-  @Input('icon') icon: string;
+  @Input() label: string;
+  @Input() type: string;
+  @Input() isRequired: boolean;
+  @Input() theme: string;
+  @Input() icon: string;
   isEmail = false;
   isDirty = false;
   isValid = false;
