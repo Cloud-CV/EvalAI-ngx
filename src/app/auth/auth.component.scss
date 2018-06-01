@@ -36,7 +36,7 @@
     background: $gray-lighter;
     border-radius: 15px;
     padding: 30px;
-    margin-bottom:20px;
+    margin-bottom: 20px;
     width: 500px;
     @include box-shadow(0px, 10px, 15px, 10px, $overlay-light);
     .auth-nav {
@@ -62,19 +62,21 @@
     }
     .auth-form-footer {
       margin-top: 30px;
-      table {
+      ul {
+        padding-left:10px;
+        list-style-type: none;
         width: 100%;
-        tr {
-          td {
-            a {
-              cursor: pointer;
-              font-size: $fs-16;
-              color: $gray-darker;
-              font-weight: $fw-regular;
-              img {
-                height: $fs-16;
-                margin-right: 10px;
-              }
+        li {
+          display: inline-block;
+          a {
+            padding-left:5px;
+            cursor: pointer;
+            font-size: $fs-16;
+            color: $gray-darker;
+            font-weight: $fw-regular;
+            img {
+              height: $fs-16;
+              margin-right: 10px;
             }
           }
         }

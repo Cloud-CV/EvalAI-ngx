@@ -15,20 +15,18 @@
       </div>
       <router-outlet></router-outlet>
       <div class="auth-form-footer">
-        <table>
-          <tr>
-            <td class="align-left">
-            <a><img src="assets/images/git_dark.png"/></a> 
-            <a><img src="assets/images/twitter_dark.png"/></a>
-            </td>
-            <td class="align-center">
-            <a href="https://www.cloudcv.org">www.cloudcv.org</a>
-            </td>
-            <td class="align-right">
-            <a [routerLink]="['']">Back to home</a>
-            </td>
-          </tr>
-        </table>
+        <ul class="row">
+            <li class="align-left col-lg-4 col-md-4 col-sm-4 col-xs-3">
+              <a><img src="assets/images/git_dark.png"/></a> 
+              <a><img src="assets/images/twitter_dark.png"/></a>
+            </li>
+            <li class="align-center col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <a href="https://www.cloudcv.org">www.cloudcv.org</a>
+            </li>
+            <li class="align-right col-lg-4 col-md-4 col-sm-4 col-xs-5">
+              <a [routerLink]="['']">Back to home</a>
+            </li>
+        </ul>
       </div>
     </div>
   </div>
