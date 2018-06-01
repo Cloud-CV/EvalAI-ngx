@@ -10,8 +10,8 @@
         <img src="assets/images/evalai_logo_light.png" />
       </div>
       <div class="auth-nav">
-        <a [class.auth-selected]="localRouter.url=='/auth/login'"  (click)="navigateTo('/auth/login')">LOGIN</a>
-        <a [class.auth-selected]="localRouter.url=='/auth/signup'" (click)="navigateTo('/auth/signup')">SIGNUP</a>
+        <a [class.auth-selected]="localRouter.url=='/auth/login'" [routerLink]="['/auth/login']" >LOGIN</a>
+        <a [class.auth-selected]="localRouter.url=='/auth/signup'" [routerLink]="['/auth/signup']">SIGNUP</a>
       </div>
       <router-outlet></router-outlet>
       <div class="auth-form-footer">
@@ -25,7 +25,7 @@
             <a href="https://www.cloudcv.org">www.cloudcv.org</a>
             </td>
             <td class="align-right">
-            <a (click)="navigateTo('')">Back to home</a>
+            <a [routerLink]="['']">Back to home</a>
             </td>
           </tr>
         </table>
