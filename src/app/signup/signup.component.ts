@@ -12,8 +12,4 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
   }
-  navigateTo(url) {
-    this.router.navigate([ url ]);
-  }
-
 }
