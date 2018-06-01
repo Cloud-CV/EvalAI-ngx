@@ -25,9 +25,17 @@
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
-  }
-  label.theme-dark {
-    color: $gray-dark;
+    &.theme-dark {
+      color: $gray-dark;
+    }
+    &.is-not-empty {
+      top: -20px;
+      font-size: $fs-14;
+      color: white;
+      &.theme-dark {
+        color: $gray-darker !important;
+      }
+    }
   }
   .input-field {
     font-size: $fs-18;
@@ -43,22 +51,16 @@
     &:focus {
       outline: none;
     }
-  }
-  .input-field.theme-dark{
-    color: $gray-darker;
-    border-bottom: 1px solid $gray-dark;
+    &.theme-dark {
+      color: $gray-darker;
+      border-bottom: 1px solid $gray-dark;
+    }
   }
   input:focus~label {
     top: -20px;
     font-size: $fs-14;
     color: white;
   }
-  label.is-not-empty {
-    top: -20px;
-    font-size: $fs-14;
-    color: white;
-  }
-  label.is-not-empty.theme-dark,
   input:focus~label.theme-dark
   {
     color: $gray-darker !important;
@@ -72,9 +74,9 @@
     font-style: italic;
     font-weight: $fw-light;
     color: $red-light;
-  }
-  .input-message.hidden {
-    opacity: 0;
+    &.hidden {
+      opacity: 0;
+    }
   }
   .input-bar {
     position: relative;
