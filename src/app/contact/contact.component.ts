@@ -3,6 +3,7 @@ import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { InputComponent } from '../input/input.component';
 import { WindowService } from '../services/window.service';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-contact',
@@ -11,13 +12,15 @@ import { WindowService } from '../services/window.service';
 })
 export class ContactComponent implements OnInit, AfterViewInit {
 
+  ALL_FORMS: any = {};
   @ViewChildren('formgroup')
   components: QueryList<InputComponent>;
   componentlist: any;
   google: any;
 
   constructor(@Inject(DOCUMENT) private document: Document,
-              private windowService: WindowService) { }
+              private windowService: WindowService,
+              private globalService: GlobalService) { }
 
   ngOnInit() {
     this.loadMapContactPage();
@@ -26,21 +29,12 @@ export class ContactComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // print array of CustomComponent objects
     // this.componentlist = this.components.toArray();
+
+    this.ALL_FORMS['formgroup'] = this.components;
   }
 
-  formValidate() {
-    let requiredFieldMissing = false;
-    this.components.map((item) => {
-      if (item.isRequired && !item.isDirty) {
-        item.isDirty = true;
-      }
-      if (!item.isValid) {
-        requiredFieldMissing = true;
-      }
-    });
-    if (!requiredFieldMissing) {
-       this.formSubmit();
-    }
+  formValidate(formname) {
+    this.globalService.formValidate(this.ALL_FORMS[formname], this.formSubmit());
   }
 
   formSubmit() {
@@ -50,6 +44,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
   loadMapContactPage() {
     // TODO: Replace this with CloudCV's Google Maps API Key
     const MAP_API_KEY = 'AIzaSyDlXSVBOW9fl96oY4oyTo055jUVd9Y-6dA';
+
     this.windowService.loadJS('https://maps.googleapis.com/maps/api/js?key=' + MAP_API_KEY,
       this.callBack, this.document.body, this);
   }

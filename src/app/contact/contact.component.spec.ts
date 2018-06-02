@@ -4,10 +4,16 @@ import { HeaderStaticComponent } from '../partials/nav/header-static/header-stat
 import { InputComponent } from '../input/input.component';
 import { MockWindowService } from '../services/mock.window.service';
 import { WindowService } from '../services/window.service';
+import { GlobalService } from '../global.service';
+import { AuthService } from '../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
+  const fakeActivatedRoute = {
+    snapshot: { data: { } }
+  } as ActivatedRoute;
 
   beforeEach(async(() => {
     // Google Maps API errors out when Karma tries to load it.
@@ -16,7 +22,13 @@ describe('ContactComponent', () => {
     const MOCK_SERVICE = new MockWindowService(null);
     TestBed.configureTestingModule({
       declarations: [ ContactComponent, HeaderStaticComponent, InputComponent ],
-      providers: [ {'provide': WindowService, 'useValue': MOCK_SERVICE } ]
+      providers: [
+        GlobalService,
+        AuthService,
+        {'provide': WindowService, 'useValue': MOCK_SERVICE },
+        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
+        {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }}
+      ]
     })
     .compileComponents();
   }));
