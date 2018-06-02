@@ -2,14 +2,18 @@
 @import '../../styles/mixins.scss';
 
 .input-group {
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 300px;
-  margin-top: 50px;
+  width: 100%;
+  margin-top: 30px;
   position: relative;
   height: auto;
   padding-bottom: 30px;
   margin-bottom: 20px;
+  .input-icon {
+    height:$fs-18;
+    position:absolute;
+    right:0;
+    top:10px;
+  }
   label {
     color: $gray-medium;
     font-size: $fs-18;
@@ -17,22 +21,39 @@
     position: absolute;
     pointer-events: none;
     left: 0px;
-    top: 0px;
+    top: 10px;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
+    &.theme-dark {
+      color: $gray-dark;
+    }
+    &.is-not-empty {
+      top: -20px;
+      font-size: $fs-14;
+      color: white;
+      &.theme-dark {
+        color: $gray-darker !important;
+      }
+    }
   }
   .input-field {
     font-size: $fs-18;
     padding: 10px 10px 10px 5px;
     display: block;
-    width: 300px;
+    width: 100%;
     border: none;
     color: white;
     border-bottom: 1px solid $gray-medium;
     background: transparent;
+    padding-bottom:20px;
+    font-weight:$fw-light;
     &:focus {
       outline: none;
+    }
+    &.theme-dark {
+      color: $gray-darker;
+      border-bottom: 1px solid $gray-dark;
     }
   }
   input:focus~label {
@@ -40,10 +61,9 @@
     font-size: $fs-14;
     color: white;
   }
-  label.is-not-empty {
-    top: -20px;
-    font-size: $fs-14;
-    color: white;
+  input:focus~label.theme-dark
+  {
+    color: $gray-darker !important;
   }
   .input-message {
     position: absolute;
@@ -52,10 +72,11 @@
     text-align: left;
     margin-top: 10px;
     font-style: italic;
-    color: $red-medium;
-  }
-  .input-message.hidden {
-    opacity: 0;
+    font-weight: $fw-light;
+    color: $red-light;
+    &.hidden {
+      opacity: 0;
+    }
   }
   .input-bar {
     position: relative;
@@ -90,12 +111,12 @@
 
 @include screen-small {
   .input-group {
-    width: 200px;
+    width: 250px;
     .input-field {
-      width: 200px;
+      width: 250px;
     }
   }
   .input-bar {
-    width: 200px;
+    width: 250px;
   }
 }
