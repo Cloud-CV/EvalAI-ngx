@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-// import {GlobalService} from '../global.service';
+import {GlobalService} from '../global.service';
 import {AuthService} from '../services/auth.service';
 
 import { AboutComponent } from './about.component';
@@ -16,7 +16,7 @@ describe('AboutComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AboutComponent, HeaderStaticComponent ],
       providers: [
-      // GlobalService,
+      GlobalService,
       {provide: ActivatedRoute, useValue: fakeActivatedRoute},
       {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
       AuthService
