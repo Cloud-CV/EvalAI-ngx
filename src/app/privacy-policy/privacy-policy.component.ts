@@ -10,6 +10,11 @@ export class PrivacyPolicyComponent implements OnInit {
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
+  /**
+   * Checks if element is visible (called after scroll event)
+   * @param {el} Checks the visibility of this element
+   * @returns {IS_VISIBLE} returns a boolean
+   */
   isScrolledIntoView(el) {
     const RECT = el.getBoundingClientRect();
     const ELEM_TOP = RECT.top;
@@ -22,6 +27,10 @@ export class PrivacyPolicyComponent implements OnInit {
     return IS_VISIBLE;
   }
 
+  /**
+   * Highlights the nav for the corresponding element
+   * @param {el} Highlights nav corresponding to this element
+   */
   highlightNav(el) {
     const ALL_NAVS = this.document.getElementsByClassName('privacy-nav');
     [].forEach.call(ALL_NAVS, function (item) {
@@ -31,6 +40,7 @@ export class PrivacyPolicyComponent implements OnInit {
       }
     });
   }
+
   ngOnInit() {
     this.document['manuallyScrolling'] = false;
     const ID_TEXT = 'privacy-';
@@ -47,7 +57,10 @@ export class PrivacyPolicyComponent implements OnInit {
       i = i + 1;
     });
   }
-  // Added listener for header scroll event
+
+  /**
+   * Listener for page scroll event
+   */
   @HostListener('window:scroll', [])
     onWindowScroll(): void {
     if (!this.document['manuallyScrolling']) {
@@ -67,6 +80,10 @@ export class PrivacyPolicyComponent implements OnInit {
     }
     }
 
+  /**
+   * Scrolls the item into view based on the nav item that is clicked
+   * @param {event} Gets the click event from the nav element
+   */
   scroll(event) {
     this.document['manuallyScrolling'] = true;
     setTimeout(() => {
@@ -86,6 +103,10 @@ export class PrivacyPolicyComponent implements OnInit {
       window.scroll(0, SCROLLED_Y - HEADER_HEIGHT);
     }
   }
+
+  /**
+   * Scrolls to the top of the page
+   */
   scrollToTop() {
     this.document.body.scrollTop = this.document.documentElement.scrollTop = 0;
   }
