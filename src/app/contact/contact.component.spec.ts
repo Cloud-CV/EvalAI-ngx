@@ -6,7 +6,9 @@ import { MockWindowService } from '../services/mock.window.service';
 import { WindowService } from '../services/window.service';
 import { GlobalService } from '../global.service';
 import { AuthService } from '../services/auth.service';
+import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -21,10 +23,12 @@ describe('ContactComponent', () => {
     // Mocking the loadJS function in window service to prevent that.
     const MOCK_SERVICE = new MockWindowService(null);
     TestBed.configureTestingModule({
+      imports: [ HttpClientModule ],
       declarations: [ ContactComponent, HeaderStaticComponent, InputComponent ],
       providers: [
         GlobalService,
         AuthService,
+        ApiService,
         {'provide': WindowService, 'useValue': MOCK_SERVICE },
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }}

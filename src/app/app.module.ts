@@ -1,10 +1,12 @@
 // Import Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
 import { WindowService } from './services/window.service';
+import { ApiService } from './services/api.service';
 import { GlobalService } from './global.service';
 
 
@@ -27,11 +29,13 @@ import { InputComponent } from './input/input.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,
     WindowService,
+    ApiService,
     GlobalService
   ],
   bootstrap: [AppComponent]

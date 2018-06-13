@@ -3,7 +3,9 @@ import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { InputComponent } from '../input/input.component';
 import { WindowService } from '../services/window.service';
+import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
+import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -11,8 +13,9 @@ import { GlobalService } from '../global.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit, AfterViewInit {
-
+  API_PATH = 'web/contact/';
   ALL_FORMS: any = {};
+  contactForm = 'formgroup';
   @ViewChildren('formgroup')
   components: QueryList<InputComponent>;
   componentlist: any;
@@ -20,7 +23,10 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private windowService: WindowService,
-              private globalService: GlobalService) { }
+              private globalService: GlobalService,
+              private apiService: ApiService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.loadMapContactPage();
@@ -30,15 +36,28 @@ export class ContactComponent implements OnInit, AfterViewInit {
     // print array of CustomComponent objects
     // this.componentlist = this.components.toArray();
 
-    this.ALL_FORMS['formgroup'] = this.components;
+    this.ALL_FORMS[this.contactForm] = this.components;
   }
 
   formValidate(formname) {
-    this.globalService.formValidate(this.ALL_FORMS[formname], this.formSubmit());
+    this.globalService.formValidate(this.ALL_FORMS[this.contactForm], this.formSubmit, this);
   }
 
-  formSubmit() {
-    // Submit Form to Back-end
+  formSubmit(self) {
+    const CONTACT_BODY = JSON.stringify({
+      name: self.globalService.formValueForLabel(self.ALL_FORMS[self.contactForm], 'name'),
+      email: self.globalService.formValueForLabel(self.ALL_FORMS[self.contactForm], 'email'),
+      message: self.globalService.formValueForLabel(self.ALL_FORMS[self.contactForm], 'message')
+    });
+    self.apiService.postUrl(self.API_PATH, CONTACT_BODY).subscribe(
+      data => {
+        // Success Message in data.message
+        // TODO: Display success in a custom alert box
+        self.router.navigate(['']);
+      },
+      err => console.error(err),
+      () => console.log('CONTACT-FORM-SUBMITTED')
+    );
   }
 
   loadMapContactPage() {
