@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
+import { ApiService } from './services/api.service';
 import { GlobalService } from './global.service';
 
 // Import Components
@@ -27,6 +28,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
   ],
   providers: [
     AuthService,
+    ApiService,
     GlobalService
   ],
   bootstrap: [AppComponent]
