@@ -64,7 +64,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Code Documentation
 
-This project uses [compodoc](https://compodoc.github.io/website/guides/jsdoc-tags.html) for its documentation. The goal of this tool is to generate a documentation for all the common APIs of the application like modules, components, injectables, routes, directives, pipes and classical classes. 
+We are using [compodoc](https://compodoc.github.io/website/guides/jsdoc-tags.html) for documentation. The goal of this tool is to generate a documentation for all the common APIs of the application like modules, components, injectables, routes, directives, pipes and classical classes.
 
 Compodoc supports [these](https://compodoc.github.io/website/guides/jsdoc-tags.html) JSDoc tags.
 
