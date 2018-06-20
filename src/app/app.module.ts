@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { ContactComponent } from './contact/contact.component';
 import { InputComponent } from './input/input.component';
+import { ToastComponent } from './toast/toast.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InputComponent } from './input/input.component';
     HomeComponent,
     HeaderStaticComponent,
     ContactComponent,
-    InputComponent
+    InputComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

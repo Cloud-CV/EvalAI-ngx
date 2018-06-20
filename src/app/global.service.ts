@@ -4,13 +4,20 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 export class GlobalService {
   scrolledState = false;
   @Output() change: EventEmitter<boolean> = new EventEmitter();
-
+  @Output() toast: EventEmitter<Object> = new EventEmitter();
   constructor() { }
   scrolledStateChange(s) {
     this.scrolledState = s;
     this.change.emit(this.scrolledState);
   }
-
+  showToast(type, message, duration = 5) {
+    const TEMP = {
+      type: type,
+      message: message,
+      duration: duration
+    };
+    this.toast.emit(TEMP);
+  }
   /**
    * Form Validation before submitting.
    * @param {components} Expects a QueryList of form components.
@@ -30,6 +37,7 @@ export class GlobalService {
        callback(self);
     }
   }
+
 
   formValueForLabel(components, label) {
     let value = '';
