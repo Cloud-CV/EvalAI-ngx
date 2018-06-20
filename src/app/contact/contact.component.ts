@@ -52,7 +52,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
     self.apiService.postUrl(self.API_PATH, CONTACT_BODY).subscribe(
       data => {
         // Success Message in data.message
-        self.globalService.showToast('success', data.message, 5);
+        setTimeout(() => self.globalService.showToast('success', data.message, 5), 1000);
         self.router.navigate(['']);
       },
       err => {
