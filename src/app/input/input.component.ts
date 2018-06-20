@@ -11,11 +11,14 @@ export class InputComponent implements OnInit {
   @Input() isRequired: boolean;
   @Input() theme: string;
   @Input() icon: string;
+  @Input() validate: Function;
   isEmail = false;
   isDirty = false;
   isValid = false;
   isEmpty = true;
   isIconPresent = false;
+  isValidateCustom = false;
+  value = '';
   message = 'Required field';
   requiredMessage = 'Required field';
   constructor() {  }
@@ -36,35 +39,31 @@ export class InputComponent implements OnInit {
     if (this.icon !== undefined) {
       this.isIconPresent = true;
     }
+    if (this.validate !== undefined) {
+      this.isValidateCustom = true;
+    }
   }
 
   validateInput(e) {
     this.isDirty = true;
+    this.value = e;
     e === '' ? this.isEmpty = true : this.isEmpty = false;
-    if (this.isEmail) {
-      if (e === '') {
-        this.isValid = false;
-        this.isRequired ? this.message = this.requiredMessage : this.message = '!';
-      } else {
-        this.isValid = this.validateEmail(e);
-        this.isValid ? this.message = '!' : this.message = 'Enter a valid email';
-      }
+    if (e === '' && this.isRequired) {
+      this.isValid = false;
+      this.isRequired ? this.message = this.requiredMessage : this.message = '';
+    }
+    if (this.isValidateCustom) {
+       this.isValid = this.validate(e).is_valid;
+       this.isValid ? this.message = '' : this.message = this.validate(e).message;
+    } else if (this.isEmail) {
+       this.isValid = this.validateEmail(e);
+       this.isValid ? this.message = '' : this.message = 'Enter a valid email';
     } else if (this.type === 'text') {
-      if (e === '') {
-        this.isValid = false;
-        this.isRequired ? this.message = this.requiredMessage : this.message = '!';
-      } else {
-        this.isValid = this.validateText(e);
-        this.isValid ? this.message = '!' : this.message = 'Enter a valid text';
-      }
+       this.isValid = this.validateText(e);
+       this.isValid ? this.message = '' : this.message = 'Enter a valid text';
     } else if (this.type === 'password') {
-      if (e === '') {
-        this.isValid = false;
-        this.isRequired ? this.message = this.requiredMessage : this.message = '!';
-      } else {
-        this.isValid = this.validatePassword(e);
-        this.isValid ? this.message = '!' : this.message = 'Password minimum 8 characters';
-      }
+       this.isValid = this.validatePassword(e);
+       this.isValid ? this.message = '' : this.message = 'Password minimum 8 characters';
     }
   }
 
@@ -76,7 +75,7 @@ export class InputComponent implements OnInit {
     return RE.test(email);
   }
   validateText(text) {
-    if (text.length >= 3) {
+    if (text.length >= 2) {
       return true;
     }
     return false;
