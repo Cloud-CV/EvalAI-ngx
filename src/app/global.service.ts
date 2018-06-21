@@ -10,6 +10,27 @@ export class GlobalService {
     this.scrolledState = s;
     this.change.emit(this.scrolledState);
   }
+  storeData(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+  getData(key) {
+    if (localStorage.getItem(key) === null) {
+      return false;
+    } else {
+      return JSON.parse(localStorage.getItem(key));
+    }
+  }
+  deleteData(key) {
+    localStorage.removeItem(key);
+  }
+
+  resetStorage() {
+    localStorage.clear();
+  }
+
+  getAuthToken() {
+    return this.getData('authtoken');
+  }
 
   /**
    * Form Validation before submitting.
