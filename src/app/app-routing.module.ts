@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'contact',
     component: ContactComponent
   },
-  { 
+  {
     path: 'get-involved',
     component: GetInvolvedComponent
   },
