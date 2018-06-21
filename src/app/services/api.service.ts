@@ -20,7 +20,7 @@ export class ApiService {
   		HEADERS['Authorization'] = 'Token ' + token;
   	}
   	const HTTP_OPTIONS = {
-      headers: new HttpHeaders(HEADERS);
+      headers: new HttpHeaders(HEADERS)
     };
     return this.http.post(this.API + path, body, HTTP_OPTIONS);
   }

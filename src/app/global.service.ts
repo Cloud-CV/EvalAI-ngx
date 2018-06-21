@@ -62,7 +62,25 @@ export class GlobalService {
       }
     });
     if (!valueFound) {
-      throw new Error('Form value not found for ' + label);
+      console.error('Form value not found for ' + label);
+      return null;
+    } else {
+      return value;
+    }
+  }
+
+  formItemForLabel(components, label) {
+    let value: any;
+    let valueFound = false;
+    components.map((item) => {
+      if (item.label.toLowerCase() === label.toLowerCase()) {
+        value = item;
+        valueFound = true;
+      }
+    });
+    if (!valueFound) {
+      console.error('Form value not found for ' + label);
+      return null;
     } else {
       return value;
     }
