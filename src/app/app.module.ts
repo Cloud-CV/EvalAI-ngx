@@ -12,6 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { InputComponent } from './input/input.component';
+import { GetInvolvedComponent } from './get-involved/get-involved.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { InputComponent } from './input/input.component';
     AppComponent,
     HomeComponent,
     HeaderStaticComponent,
-    InputComponent
+    InputComponent,
+    GetInvolvedComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
