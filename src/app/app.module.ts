@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { GetInvolvedComponent } from './get-involved/get-involved.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { GetInvolvedComponent } from './get-involved/get-involved.component';
     AppComponent,
     HomeComponent,
     HeaderStaticComponent,
-    GetInvolvedComponent
+    GetInvolvedComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
