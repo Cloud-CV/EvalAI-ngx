@@ -18,6 +18,8 @@ import { HeaderStaticComponent } from './partials/nav/header-static/header-stati
 import { ContactComponent } from './contact/contact.component';
 import { InputComponent } from './input/input.component';
 import { ToastComponent } from './toast/toast.component';
+import { GetInvolvedComponent } from './get-involved/get-involved.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ToastComponent } from './toast/toast.component';
     HeaderStaticComponent,
     ContactComponent,
     InputComponent,
-    ToastComponent
+    ToastComponent,
+    GetInvolvedComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

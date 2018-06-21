@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { GetInvolvedComponent } from './get-involved/get-involved.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: '',
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  { 
+    path: 'get-involved',
+    component: GetInvolvedComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
