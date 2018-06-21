@@ -7,7 +7,8 @@ import { GetInvolvedComponent } from './get-involved/get-involved.component';
 import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
-  { path: '',
+  { 
+    path: '',
     component: HomeComponent,
     data: {
       'title': 'EvalAI - Welcome'
@@ -17,7 +18,7 @@ const routes: Routes = [
     path: 'contact',
     component: ContactComponent
   },
-  { 
+  {
     path: 'get-involved',
     component: GetInvolvedComponent
   },

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {GlobalService} from '../../../global.service';
-import {AuthService} from '../../../services/auth.service';
+import { GlobalService } from '../../../global.service';
+import { AuthService } from '../../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderStaticComponent } from './header-static.component';
 import { ActivatedRoute, Router } from '@angular/router';
