@@ -6,7 +6,7 @@
     "ng": "ng",
     "doc:build": "compodoc -p src/tsconfig.app.json",
     "doc:serve": "compodoc -s",
-    "doc:buildandserve": "compodoc -p src/tsconfig.app.json -s",
+    "doc:buildandserve": "compodoc -p src/tsconfig.app.json;mkdir -p documentation/src/assets;cp -R src/assets/images documentation/src/assets/;compodoc -s",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
