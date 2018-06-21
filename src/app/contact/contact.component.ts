@@ -52,10 +52,13 @@ export class ContactComponent implements OnInit, AfterViewInit {
     self.apiService.postUrl(self.API_PATH, CONTACT_BODY).subscribe(
       data => {
         // Success Message in data.message
-        // TODO: Display success in a custom alert box
+        setTimeout(() => self.globalService.showToast('success', data.message, 5), 1000);
         self.router.navigate(['']);
       },
-      err => console.error(err),
+      err => {
+        self.globalService.showToast('error', err.message, 5);
+        console.error(err);
+      },
       () => console.log('CONTACT-FORM-SUBMITTED')
     );
   }

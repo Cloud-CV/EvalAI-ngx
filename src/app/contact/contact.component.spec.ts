@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactComponent } from './contact.component';
 import { HeaderStaticComponent } from '../partials/nav/header-static/header-static.component';
+import { ToastComponent } from '../toast/toast.component';
 import { InputComponent } from '../input/input.component';
 import { MockWindowService } from '../services/mock.window.service';
 import { WindowService } from '../services/window.service';
@@ -24,7 +25,7 @@ describe('ContactComponent', () => {
     const MOCK_SERVICE = new MockWindowService(null);
     TestBed.configureTestingModule({
       imports: [ HttpClientModule ],
-      declarations: [ ContactComponent, HeaderStaticComponent, InputComponent ],
+      declarations: [ ContactComponent, HeaderStaticComponent, InputComponent, ToastComponent ],
       providers: [
         GlobalService,
         AuthService,

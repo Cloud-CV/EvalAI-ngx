@@ -20,6 +20,9 @@ import { InputComponent } from './input/input.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { ToastComponent } from './toast/toast.component';
+import { GetInvolvedComponent } from './get-involved/get-involved.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { SignupComponent } from './signup/signup.component';
     AuthComponent,
     LoginComponent,
     SignupComponent,
-    ContactComponent
+    ContactComponent,
+    ToastComponent,
+    GetInvolvedComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

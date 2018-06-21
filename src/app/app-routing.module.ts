@@ -6,9 +6,12 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ContactComponent } from './contact/contact.component';
+import { GetInvolvedComponent } from './get-involved/get-involved.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
-  { path: '',
+  {
+    path: '',
     component: HomeComponent,
     data: {
       'title': 'EvalAI - Welcome'
@@ -26,6 +29,14 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'get-involved',
+    component: GetInvolvedComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
