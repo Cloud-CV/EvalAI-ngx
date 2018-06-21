@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { GetInvolvedComponent } from './get-involved/get-involved.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     AppComponent,
     HomeComponent,
     HeaderStaticComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    GetInvolvedComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
