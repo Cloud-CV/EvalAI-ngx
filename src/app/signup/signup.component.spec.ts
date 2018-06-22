@@ -5,6 +5,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { AuthService } from '../services/auth.service';
+import { WindowService } from '../services/window.service';
+import { ApiService } from '../services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -14,9 +17,11 @@ describe('SignupComponent', () => {
       declarations: [ SignupComponent, InputComponent ],
       providers: [
         GlobalService,
-        AuthService
+        AuthService,
+        WindowService,
+        ApiService
       ],
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();

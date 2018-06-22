@@ -22,40 +22,40 @@ export class AuthService {
       const temp = {isLoggedIn: false, username: 'LoremIpsum'};
       this.authStateChange(temp);
     }
-    passwordStrength(password){
-      //Regular Expressions.  
-      let regex = new Array();
-      regex.push("[A-Z]","[a-z]","[0-9]","[$$!%*#?&]");
+    passwordStrength(password) {
+      // Regular Expressions.
+      const REGEX = new Array();
+      REGEX.push('[A-Z]', '[a-z]', '[0-9]', '[$$!%*#?&]');
 
       let passed = 0;
-      //Validate for each Regular Expression.  
-      for (var i = 0; i < regex.length; i++) {
-        if (new RegExp(regex[i]).test(password)) {
+      // Validate for each Regular Expression.
+      for (let i = 0; i < REGEX.length; i++) {
+        if (new RegExp(REGEX[i]).test(password)) {
           passed++;
         }
       }
-      //Validate for length of Password.  
+      // Validate for length of Password.
       if (passed > 2 && password.length > 8) {
         passed++;
       }
 
-      let color = "";
-      let strength = "";
-      if (passed == 1) {
-        strength = "Weak";
-        color = "red";
-      } else if (passed == 2) {
-        strength = "Average";
-        color = "darkorange";
-      } else if (passed == 3) {
-        strength = "Good";
-        color = "green";
-      } else if (passed == 4) {
-        strength = "Strong";
-        color = "darkgreen";
-      } else if (passed == 5) {
-        strength = "Very Strong";
-        color = "darkgreen";
+      let color = '';
+      let strength = '';
+      if (passed === 1) {
+        strength = 'Weak';
+        color = 'red';
+      } else if (passed === 2) {
+        strength = 'Average';
+        color = 'darkorange';
+      } else if (passed === 3) {
+        strength = 'Good';
+        color = 'green';
+      } else if (passed === 4) {
+        strength = 'Strong';
+        color = 'darkgreen';
+      } else if (passed === 5) {
+        strength = 'Very Strong';
+        color = 'darkgreen';
       }
       return [strength, color];
     }

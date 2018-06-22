@@ -1,14 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { InputComponent } from '../input/input.component';
+import { WindowService } from '../services/window.service';
+import { ApiService } from '../services/api.service';
+import { GlobalService } from '../global.service';
+import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
+  API_PATH = 'auth/login/';
+  ALL_FORMS: any = {};
+  loginForm = 'formlogin';
+  @ViewChildren('formlogin')
+  components: QueryList<InputComponent>;
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private windowService: WindowService,
+              private globalService: GlobalService,
+              private apiService: ApiService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
-  constructor(private router: Router) { }
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    // print array of CustomComponent objects
+    // this.componentlist = this.components.toArray();
+
+    this.ALL_FORMS[this.loginForm] = this.components;
+  }
+
+  formValidate(formname) {
+    this.globalService.formValidate(this.ALL_FORMS[this.loginForm], this.formSubmit, this);
+  }
+
+  formSubmit(self) {
+    const LOGIN_BODY = JSON.stringify({
+      username: self.globalService.formValueForLabel(self.ALL_FORMS[self.loginForm], 'username'),
+      password: self.globalService.formValueForLabel(self.ALL_FORMS[self.loginForm], 'password')
+    });
+    self.apiService.postUrl(self.API_PATH, LOGIN_BODY).subscribe(
+      data => {
+        // Success Message in data.message
+        // TODO: redirect to dashboard page
+        self.globalService.storeData('authtoken', data);
+      },
+      err => {
+        console.error(err);
+        const ERR = err.error;
+        if (ERR !== null && typeof ERR === 'object' && err.status !== 0) {
+          for (const KEY in ERR) {
+            if (KEY === 'non_field_errors') {
+              self.globalService.showToast('error', ERR[KEY][0], 5);
+            } else {
+              const FORM_ITEM = self.globalService.formItemForLabel(self.ALL_FORMS[self.loginForm], KEY);
+              if (FORM_ITEM) {
+                FORM_ITEM.isValid = false;
+                FORM_ITEM.message = ERR[KEY][0];
+              }
+            }
+          }
+        } else {
+          self.globalService.showToast('error', 'Something went wrong', 5);
+        }
+      },
+      () => console.log('LOGIN-FORM-SUBMITTED')
+    );
   }
 }

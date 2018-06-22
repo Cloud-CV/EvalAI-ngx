@@ -38,6 +38,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   formValidate(formname) {
     this.globalService.formValidate(this.ALL_FORMS[this.signupForm], this.formSubmit, this);
   }
+
   formSubmit(self) {
     const SIGNUP_BODY = JSON.stringify({
       username: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'username'),
@@ -48,22 +49,29 @@ export class SignupComponent implements OnInit, AfterViewInit {
     self.apiService.postUrl(self.API_PATH, SIGNUP_BODY).subscribe(
       data => {
         // Success Message in data.message
-        // TODO: Display success in a custom alert box
+        setTimeout(() => {
+          self.globalService.showToast('success', 'Registered successfully. Please verify your email address!', 5);
+        }, 1000);
         self.router.navigate(['auth/login']);
       },
       err => {
-      	console.error(err);
-      	const ERR = err.error;
-      	for(let key in ERR) {
-      	  let formItem = self.globalService.formItemForLabel(self.ALL_FORMS[self.signupForm], key);
-      	  if (formItem) {
-            formItem.isValid = false;
-      	    formItem.message = ERR[key][0];
-      	  }
-      	  if (key === 'non_field_errors') {
-      	  	// TODO: Display ERROR MESSAGE in a toast
-      	  }
-      	}
+        console.error(err);
+        const ERR = err.error;
+        if (ERR !== null && typeof ERR === 'object'  && err.status !== 0) {
+          for (const KEY in ERR) {
+            if (KEY === 'non_field_errors') {
+              self.globalService.showToast('error', ERR[KEY][0], 5);
+            } else {
+              const FORM_ITEM = self.globalService.formItemForLabel(self.ALL_FORMS[self.signupForm], KEY);
+              if (FORM_ITEM) {
+                FORM_ITEM.isValid = false;
+                FORM_ITEM.message = ERR[KEY][0];
+              }
+            }
+          }
+        } else {
+          self.globalService.showToast('error', 'Internal Error. Please try again later.', 5);
+        }
       },
       () => console.log('SIGNUP-FORM-SUBMITTED')
     );
