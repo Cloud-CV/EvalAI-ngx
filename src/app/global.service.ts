@@ -3,6 +3,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 @Injectable()
 export class GlobalService {
   scrolledState = false;
+  toastErrorCodes = [400, 500];
   @Output() change: EventEmitter<boolean> = new EventEmitter();
   @Output() toast: EventEmitter<Object> = new EventEmitter();
   constructor() { }
@@ -93,6 +94,26 @@ export class GlobalService {
       return null;
     } else {
       return value;
+    }
+  }
+
+  handleFormError(form, err) {
+    console.error(err);
+    const ERR = err.error;
+    if (this.toastErrorCodes.indexOf(err.status) > -1 && ERR !== null && typeof ERR === 'object') {
+      for (const KEY in ERR) {
+        if (KEY === 'non_field_errors') {
+          this.showToast('error', ERR[KEY][0], 5);
+        } else {
+          const FORM_ITEM = this.formItemForLabel(form, KEY);
+          if (FORM_ITEM) {
+            FORM_ITEM.isValid = false;
+            FORM_ITEM.message = ERR[KEY][0];
+          }
+        }
+      }
+    } else {
+      this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
     }
   }
 }

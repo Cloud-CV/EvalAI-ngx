@@ -51,23 +51,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         self.globalService.storeData('authtoken', data);
       },
       err => {
-        console.error(err);
-        const ERR = err.error;
-        if (ERR !== null && typeof ERR === 'object' && err.status !== 0) {
-          for (const KEY in ERR) {
-            if (KEY === 'non_field_errors') {
-              self.globalService.showToast('error', ERR[KEY][0], 5);
-            } else {
-              const FORM_ITEM = self.globalService.formItemForLabel(self.ALL_FORMS[self.loginForm], KEY);
-              if (FORM_ITEM) {
-                FORM_ITEM.isValid = false;
-                FORM_ITEM.message = ERR[KEY][0];
-              }
-            }
-          }
-        } else {
-          self.globalService.showToast('error', 'Something went wrong', 5);
-        }
+        self.globalService.handleFormError(self.ALL_FORMS[self.loginForm], err);
       },
       () => console.log('LOGIN-FORM-SUBMITTED')
     );
