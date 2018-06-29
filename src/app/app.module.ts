@@ -23,6 +23,12 @@ import { SignupComponent } from './signup/signup.component';
 import { ToastComponent } from './toast/toast.component';
 import { GetInvolvedComponent } from './get-involved/get-involved.component';
 import { AboutComponent } from './about/about.component';
+import { CardlistComponent } from './cardlist/cardlist.component';
+import { ChallengecardComponent } from './challengecard/challengecard.component';
+import { ChallengelistComponent } from './challengelist/challengelist.component';
+import { TeamcardComponent } from './teamcard/teamcard.component';
+import { TeamlistComponent } from './teamlist/teamlist.component';
+import { PubliclistsComponent } from './publiclists/publiclists.component';
 
 
 @NgModule({
@@ -37,7 +43,13 @@ import { AboutComponent } from './about/about.component';
     ContactComponent,
     ToastComponent,
     GetInvolvedComponent,
-    AboutComponent
+    AboutComponent,
+    CardlistComponent,
+    ChallengecardComponent,
+    ChallengelistComponent,
+    TeamcardComponent,
+    TeamlistComponent,
+    PubliclistsComponent
   ],
   imports: [
     BrowserModule,

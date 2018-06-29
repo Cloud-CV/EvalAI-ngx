@@ -116,4 +116,9 @@ export class GlobalService {
       this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
     }
   }
+
+  handleApiError(err) {
+    console.error(err);
+    this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+  }
 }

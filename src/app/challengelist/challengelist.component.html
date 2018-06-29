@@ -1,0 +1,7 @@
+<div class="challengelist-container">
+ <div class="challengelist-filters">
+ 	<a [class.selected]="isUpcomingChecked" class="btn btn-filter" (click)="toggleFilter('isUpcomingChecked')">Upcoming Challenges</a>
+ 	<a [class.selected]="isOngoingChecked" class="btn btn-filter" (click)="toggleFilter('isOngoingChecked')">Ongoing Challenges</a>
+ 	<a [class.selected]="isPastChecked" class="btn btn-filter" (click)="toggleFilter('isPastChecked')">Past Challenges</a>
+ </div>
+</div>

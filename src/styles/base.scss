@@ -244,3 +244,40 @@ ul {
   }
 }
 
+.btn-filter {
+  padding: 10px 30px 10px 30px;
+  border: 1.5px solid $red-light;
+  color: $gray-darker;
+  &.selected {
+    color: white;
+    background:$red-light;
+    &:hover {
+      color: white;
+    }
+  }
+  &:hover {
+    @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
+    color: $red-light;
+  }
+}
+
+/*Navigation*/
+.horizontal-nav {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin: 10px;
+  padding-top:10px;
+  a {
+    display:inline-block;
+    padding:20px 0px 20px 0px;
+    margin-left:30px;
+    font-size:$fs-16;
+    color:$gray-darker;
+    font-weight:$fw-light;
+    &.selected {
+      color:$red-light;
+      font-weight:$fw-regular;
+        border-bottom: 2px solid $red-light;
+    }
+  }
+}
+

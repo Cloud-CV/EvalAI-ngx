@@ -1,0 +1,13 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.challengelist-container { 
+  .challengelist-filters {
+  	padding:30px;
+  	a {
+  		display:inline-block;
+  		font-size:$fs-16;
+  		font-weight:$fw-light;
+  	}
+  }
+}

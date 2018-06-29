@@ -1,0 +1,13 @@
+<app-header-static>
+</app-header-static>
+<div class="container-top">
+  <div class="publiclist-container">
+    <div class="horizontal-nav">
+      <a [class.selected]="localRouter.url=='/challenges/all'" [routerLink]="['/challenges/all']">All Challenges</a>
+      <a [class.selected]="localRouter.url=='/challenges/me'" [routerLink]="['/challenges/me']">My Challenges</a>
+      <a [class.selected]="localRouter.url=='/teams/participants'" [routerLink]="['/teams/participants']">Participant Teams</a>
+      <a [class.selected]="localRouter.url=='/teams/hosts'" [routerLink]="['/teams/hosts']">Host Teams</a>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
