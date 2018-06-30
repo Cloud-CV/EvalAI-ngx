@@ -117,8 +117,41 @@ export class GlobalService {
     }
   }
 
-  handleApiError(err) {
+  handleApiError(err, toast = true) {
     console.error(err);
-    this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+    if (toast) {
+      this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+    }
+  }
+
+  formatDate12Hour(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const AM_PM = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    const STR_TIME = date.toDateString() + ' ' + hours + ':' + minutes + ' ' + AM_PM;
+    return STR_TIME;
+  }
+
+  getDateDifference(d1, d2) {
+    const T2 = d2.getTime();
+    const T1 = d1.getTime();
+    if (T2 >= T1) {
+      return (T2 - T1) / (24 * 3600 * 1000);
+    } else {
+      return (T1 - T2) / (24 * 3600 * 1000);
+    }
+  }
+
+  getDateDifferenceString(d1, d2) {
+    const DIFF_DAYS = this.getDateDifference(d1, d2);
+    if (DIFF_DAYS < 1) {
+      const HOURS = Math.floor(DIFF_DAYS * 24);
+      return HOURS + ' hours';
+    } else {
+      return Math.floor(DIFF_DAYS) + ' days';
+    }
   }
 }

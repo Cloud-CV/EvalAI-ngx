@@ -1,3 +1,52 @@
-<p>
-  challengecard works!
-</p>
+<div class="challenge-card-container">
+  <div class="challenge-img-div">
+  <img class="challenge-img" [src]="challenge.img" />
+  </div>
+  <div class="challenge-details">
+    <div class="challenge-title">
+      {{challenge.title}}
+    </div>
+    <div class="challenge-host">
+    	Organized by: <span>{{challenge.creator.team_name}}</span>
+    </div>
+
+    <span class="challenge-type upcoming" *ngIf="isUpcoming">
+    	Upcoming
+    </span>
+    <span class="challenge-type ongoing" *ngIf="isOngoing">
+    	Ongoing
+    </span>
+    <span class="challenge-type past" *ngIf="isPast">
+    	Past
+    </span>
+
+    <div>
+    <div class="challenge-description">
+    	{{challenge.short_description}}
+    </div>
+    </div>
+
+    <div>
+    	<div class="challenge-time-remaining">
+    		{{timeRemaining}}
+    	</div>
+    	<div class="challenge-time-range">
+    		<img src="assets/images/clock.png" /> {{startDate}}  -  {{endDate}}
+    	</div>
+    </div>
+    <div class="challenge-participate-div">
+    	<a class="btn btn-filter challenge-participate">Participate</a>
+    </div>
+    <div class="challenge-labels">
+    	<div class="stars">
+    		<i class="fas fa-star"></i>
+    		{{stars}}
+    	</div>
+    	<div class="challenge-tags">
+    	<i class="fas fa-tag"></i>
+        <span *ngFor="let tag of tags"> {{tag}} </span>
+    	</div>
+    </div>
+
+  </div>
+</div>

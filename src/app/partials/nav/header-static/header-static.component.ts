@@ -70,8 +70,12 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
     this.router.navigate(path);
   }
   ngOnDestroy() {
-    this.globalServiceSubscription.unsubscribe();
-    this.authServiceSubscription.unsubscribe();
+    if (this.globalServiceSubscription) {
+      this.globalServiceSubscription.unsubscribe();
+    }
+    if (this.authServiceSubscription) {
+      this.authServiceSubscription.unsubscribe();
+    }
   }
   logIn() {
     this.authService.tryLogIn(null);

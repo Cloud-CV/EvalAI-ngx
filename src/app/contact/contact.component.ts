@@ -56,8 +56,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
         self.router.navigate(['']);
       },
       err => {
-        self.globalService.showToast('error', err.message, 5);
-        console.error(err);
+        self.globalService.handleApiError(err);
       },
       () => console.log('CONTACT-FORM-SUBMITTED')
     );

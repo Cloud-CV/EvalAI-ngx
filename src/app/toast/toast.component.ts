@@ -34,6 +34,8 @@ export class ToastComponent implements OnInit, OnDestroy {
     }, duration * 1000);
   }
   ngOnDestroy() {
-    this.globalServiceSubscription.unsubscribe();
+    if (this.globalServiceSubscription) {
+      this.globalServiceSubscription.unsubscribe();
+    }
   }
 }

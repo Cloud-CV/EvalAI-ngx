@@ -1,3 +1,13 @@
-<p>
-  cardlist works!
-</p>
+<div class="cardlist-container">
+  <div *ngIf="data.length == 0" class="cardlist-empty">
+    <img src="assets/images/sadcloud.png" />
+  </div>
+  <ng-container *ngIf="type=='challenges'">
+    <app-challengecard *ngFor="let item of data" [challenge]="item">
+    </app-challengecard>
+  </ng-container>
+  <ng-container *ngIf="type=='teams'">
+    <app-teamcard *ngFor="let item of data" [team]="item">
+    </app-teamcard>
+  </ng-container>
+</div>

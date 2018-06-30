@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardlistComponent } from './cardlist.component';
+import { ChallengecardComponent } from '../challengecard/challengecard.component';
+import { TeamcardComponent } from '../teamcard/teamcard.component';
 
 describe('CardlistComponent', () => {
   let component: CardlistComponent;
@@ -8,7 +10,7 @@ describe('CardlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardlistComponent ]
+      declarations: [ CardlistComponent, ChallengecardComponent, TeamcardComponent ]
     })
     .compileComponents();
   }));
@@ -16,6 +18,8 @@ describe('CardlistComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CardlistComponent);
     component = fixture.componentInstance;
+    component.type = 'challenges';
+    component.data = [];
     fixture.detectChanges();
   });
 
