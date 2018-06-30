@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-challengelist',
@@ -27,7 +28,9 @@ export class ChallengelistComponent implements OnInit {
   windowSize = 10;
 
   constructor(private apiService: ApiService,
-              private globalService: GlobalService) { }
+              private globalService: GlobalService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.fetchChallenges();
