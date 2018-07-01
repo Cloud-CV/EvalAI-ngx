@@ -1,11 +1,13 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
+import { GlobalService } from '../global.service';
+import { ApiService } from './api.service';
 
 @Injectable()
 export class AuthService {
   authState = {isLoggedIn: false};
   @Output() change: EventEmitter<Object> = new EventEmitter();
 
-  constructor() { }
+  constructor(private globalService: GlobalService, private apiService: ApiService) { }
 
     authStateChange(state) {
       this.authState = state;
@@ -18,10 +20,32 @@ export class AuthService {
         this.authStateChange(temp);
       }, 1000);
     }
+    loggedIn(params) {
+      const temp = {isLoggedIn: true, username: params['username']};
+      this.authStateChange(temp);
+      this.fetchUserDetails();
+    }
     logOut() {
-      const temp = {isLoggedIn: false, username: 'LoremIpsum'};
+      const temp = {isLoggedIn: false};
+      this.globalService.deleteData(this.globalService.authStorageKey);
       this.authStateChange(temp);
     }
+
+    fetchUserDetails() {
+      const API_PATH = "auth/user/";
+      const SELF = this;
+      this.apiService.getUrl(API_PATH).subscribe(
+      data => {
+        const TEMP = Object.assign({}, SELF.authState, data);
+        SELF.authStateChange(TEMP);
+      },
+      err => {
+        SELF.globalService.handleApiError(err, false);
+      },
+      () => console.log('User details fetched')
+    );
+    }
+
     passwordStrength(password) {
       // Regular Expressions.
       const REGEX = new Array();
@@ -61,14 +85,14 @@ export class AuthService {
     }
 
     // Get Login functionality
-    get isLoggedIn() {
-      // check for token present
-      // TODO => change this token later to dynamic
-      const token = true;
-
+    isLoggedIn() {
+      const token = this.globalService.getAuthToken();
       if (token) {
           return true;
       } else {
+          if (this.authState['isLoggedIn']) {
+            this.logOut();
+          }
           return false;
       }
     }

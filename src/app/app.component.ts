@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, HostListener, Inject } from '@angular/core';
 import { GlobalService } from './global.service';
+import { AuthService } from './services/auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
@@ -18,12 +19,14 @@ import 'rxjs/add/operator/mergeMap';
 export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
   globalServiceSubscription: any;
+  globalLogoutTrigger: any;
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
   public activatedRoute: ActivatedRoute,
   public titleService: Title,
-  private globalService: GlobalService
+  private globalService: GlobalService,
+  private authService: AuthService
   ) {
   }
 
@@ -45,6 +48,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
       this.scrolledState = scrolledState;
+    });
+    this.globalLogoutTrigger = this.globalService.logout.subscribe(() => {
+      this.authService.logOut();
     });
     // set page title form routes data
     this.router.events
@@ -68,6 +74,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.globalServiceSubscription) {
       this.globalServiceSubscription.unsubscribe();
+    }
+    if (this.globalLogoutTrigger) {
+      this.globalLogoutTrigger.unsubscribe();
     }
   }
 }

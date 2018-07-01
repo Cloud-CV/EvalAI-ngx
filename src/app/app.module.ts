@@ -29,6 +29,7 @@ import { ChallengelistComponent } from './challengelist/challengelist.component'
 import { TeamcardComponent } from './teamcard/teamcard.component';
 import { TeamlistComponent } from './teamlist/teamlist.component';
 import { PubliclistsComponent } from './publiclists/publiclists.component';
+import { ForceloginComponent } from './forcelogin/forcelogin.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PubliclistsComponent } from './publiclists/publiclists.component';
     ChallengelistComponent,
     TeamcardComponent,
     TeamlistComponent,
-    PubliclistsComponent
+    PubliclistsComponent,
+    ForceloginComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {TestBed, fakeAsync, tick, async} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Router} from '@angular/router';
 import {GlobalService} from './global.service';
+import { AuthService } from './services/auth.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ToastComponent } from './toast/toast.component';
@@ -26,7 +27,8 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       providers: [
-        GlobalService
+        GlobalService,
+        AuthService
       ]
     }).compileComponents();
 

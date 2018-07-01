@@ -79,11 +79,12 @@ body {
 /*anchors*/
 
 a {
-  color: $blue-dark;
+  color: $red-light;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
+  cursor:pointer;
   &:hover {
-    color: $blue-light;
+    color: $red-dark;
   }
   &:focus,
   &:active {
@@ -92,7 +93,7 @@ a {
 }
 
 a.light-link {
-  color: $blue-light;
+  color: $red-light;
   transition: all 0.2s ease-in-out;
   &:hover {
     color: white;

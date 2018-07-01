@@ -4,8 +4,11 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 export class GlobalService {
   scrolledState = false;
   toastErrorCodes = [400, 500];
+  authStorageKey = 'authtoken';
+  redirectStorageKey = 'redirect';
   @Output() change: EventEmitter<boolean> = new EventEmitter();
   @Output() toast: EventEmitter<Object> = new EventEmitter();
+  @Output() logout: EventEmitter<boolean> = new EventEmitter();
   constructor() { }
   scrolledStateChange(s) {
     this.scrolledState = s;
@@ -30,7 +33,7 @@ export class GlobalService {
   }
 
   getAuthToken() {
-    return this.getData('authtoken');
+    return this.getData(this.authStorageKey);
   }
 
   showToast(type, message, duration = 5) {
@@ -40,6 +43,13 @@ export class GlobalService {
       duration: duration
     };
     this.toast.emit(TEMP);
+  }
+  
+  /**
+   * This triggers the logout function in auth service (to avoid a cyclic dependency).
+   */
+  triggerLogout() {
+    this.logout.emit();
   }
 
   /**
@@ -97,10 +107,23 @@ export class GlobalService {
     }
   }
 
-  handleFormError(form, err) {
-    console.error(err);
+  checkTokenValidity(err, toast = true) {
+    if (err.error !== null && typeof err.error === 'object' && err.error['detail']) {
+      if (err.error['detail'] === 'Invalid token') {
+        this.triggerLogout();
+        this.showToast('error', 'Token Invalid! Please Login again.', 5);
+      } else {
+        this.showToast('error', err.error['detail'] + ' <401>', 5);
+      }
+    } else if (toast) {
+      this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+    }
+  }
+
+  handleFormError(form, err, toast = true) {
     const ERR = err.error;
     if (this.toastErrorCodes.indexOf(err.status) > -1 && ERR !== null && typeof ERR === 'object') {
+      console.error(err);
       for (const KEY in ERR) {
         if (KEY === 'non_field_errors') {
           this.showToast('error', ERR[KEY][0], 5);
@@ -113,14 +136,16 @@ export class GlobalService {
         }
       }
     } else {
-      this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+      this.handleApiError(err, toast);
     }
   }
 
   handleApiError(err, toast = true) {
     console.error(err);
-    if (toast) {
-      this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+    if (err.status === 401) {
+        this.checkTokenValidity(err, toast);
+    } else if (toast) {
+        this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
     }
   }
 
