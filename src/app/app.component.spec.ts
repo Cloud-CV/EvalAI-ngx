@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {GlobalService} from './global.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { ToastComponent } from './toast/toast.component';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { FooterComponent } from './footer/footer.component';
 
@@ -20,7 +21,8 @@ describe('AppComponent', () => {
         AppComponent,
         HomeComponent,
         HeaderStaticComponent,
-        FooterComponent
+        FooterComponent,
+        ToastComponent
       ],
       imports: [
         RouterTestingModule

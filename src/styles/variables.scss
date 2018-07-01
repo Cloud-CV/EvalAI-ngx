@@ -7,12 +7,14 @@ $blue-dark: #33526e;
 $blue-darker: #273e54;
 $blue-light: #adc8e0;
 $blue-medium: #32485d;
+$blue-medium-dark: #056cf0;
 
 
 /*Red Shades*/
 
 $red-dark: #cb8474;
 $red-light: #eb8474;
+
 
 
 /*Orange Shades*/
@@ -25,6 +27,11 @@ $yellow: #d7387f;
 
 $red-medium: #d9534f;
 $red-light: #eb8474;
+
+
+/*Green Shades*/
+
+$green-medium: #28a745;
 
 
 /*Gray Shades*/
@@ -56,42 +63,6 @@ $fs-20: 20px;
 $fs-22: 22px;
 $fs-24: 24px;
 $fs-36: 36px;
-
-
-/*Shadow mixins*/
-@mixin shadowtransparent {
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-@mixin shadow-btn {
-	box-shadow: 0px 0px 5px $overlay-light;	
-}
-
-@mixin shadow-btn-large {
-	box-shadow: 0px 15px 20px $overlay-light;
-}
-
-@mixin fire($inverse: false) {
-    @if $inverse {
-        background: linear-gradient(-90deg, $orange, $yellow);
-    } @else {
-        background: linear-gradient(-90deg, $yellow, $orange);
-    }
-}
-
-/*Screen size mixins*/
-
-@mixin screen-small() {
-    @media (max-width: $screen-sm) { 
-    	@content;
-    }
-}
-
-@mixin screen-medium() {
-    @media(min-width: $screen-sm) and (max-width: $screen-md){ 
-    	@content;
-    }
-}
 
 
 /*Font weights*/

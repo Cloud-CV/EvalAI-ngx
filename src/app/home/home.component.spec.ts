@@ -6,6 +6,7 @@ import { HomeComponent } from './home.component';
 import { HeaderStaticComponent } from '../partials/nav/header-static/header-static.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -26,7 +27,8 @@ describe('HomeComponent', () => {
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
         AuthService
-      ]
+      ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   }));
