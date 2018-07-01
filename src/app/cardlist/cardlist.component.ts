@@ -8,9 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardlistComponent implements OnInit {
   @Input() type: string;
   @Input() data: object;
-  filteredData = [];
-  seeMore = 1;
-  windowSize = 10;
 
   constructor() { }
 

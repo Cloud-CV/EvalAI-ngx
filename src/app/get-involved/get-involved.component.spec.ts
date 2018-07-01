@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { GetInvolvedComponent } from './get-involved.component';
 import { HeaderStaticComponent } from '../partials/nav/header-static/header-static.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('GetInvolvedComponent', () => {
   let component: GetInvolvedComponent;
@@ -18,9 +20,11 @@ describe('GetInvolvedComponent', () => {
       providers: [
         GlobalService,
         AuthService,
+        ApiService,
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
-      ]
+      ],
+      imports: [ HttpClientModule ]
     })
     .compileComponents();
   }));

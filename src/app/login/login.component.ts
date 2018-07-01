@@ -57,21 +57,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
       username: self.globalService.formValueForLabel(self.ALL_FORMS[self.loginForm], 'username'),
       password: self.globalService.formValueForLabel(self.ALL_FORMS[self.loginForm], 'password')
     });
-    // self.apiService.postUrl(self.API_PATH, LOGIN_BODY).subscribe(
-    //   data => {
-    //     // Success Message in data.message
-    //     self.globalService.storeData(self.globalService.authStorageKey, data['token']);
-    //     self.authService.loggedIn(LOGIN_BODY);
-    //     self.redirectCheck();
-    //   },
-    //   err => {
-    //     self.globalService.handleFormError(self.ALL_FORMS[self.loginForm], err);
-    //   },
-    //   () => console.log('LOGIN-FORM-SUBMITTED')
-    // );
-    let data = {token: 'hoogabooga'};
-    self.globalService.storeData(self.globalService.authStorageKey, data['token']);
-    self.authService.loggedIn(JSON.parse(LOGIN_BODY));
-    self.redirectCheck();
+    self.apiService.postUrl(self.API_PATH, LOGIN_BODY).subscribe(
+      data => {
+        // Success Message in data.message
+        self.globalService.storeData(self.globalService.authStorageKey, data['token']);
+        self.authService.loggedIn(LOGIN_BODY);
+        self.redirectCheck();
+      },
+      err => {
+        self.globalService.handleFormError(self.ALL_FORMS[self.loginForm], err);
+      },
+      () => console.log('LOGIN-FORM-SUBMITTED')
+    );
+    // let data = {token: 'hoogabooga'};
+    // self.globalService.storeData(self.globalService.authStorageKey, data['token']);
+    // self.authService.loggedIn(JSON.parse(LOGIN_BODY));
+    // self.redirectCheck();
   }
 }

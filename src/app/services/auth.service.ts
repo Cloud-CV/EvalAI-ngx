@@ -32,7 +32,7 @@ export class AuthService {
     }
 
     fetchUserDetails() {
-      const API_PATH = "auth/user/";
+      const API_PATH = 'auth/user/';
       const SELF = this;
       this.apiService.getUrl(API_PATH).subscribe(
       data => {

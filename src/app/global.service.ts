@@ -44,7 +44,7 @@ export class GlobalService {
     };
     this.toast.emit(TEMP);
   }
-  
+
   /**
    * This triggers the logout function in auth service (to avoid a cyclic dependency).
    */

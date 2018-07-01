@@ -5,6 +5,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { GlobalService } from '../global.service';
 import { AuthService } from '../services/auth.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -14,9 +16,10 @@ describe('AuthComponent', () => {
       declarations: [ AuthComponent, HeaderStaticComponent ],
       providers: [
         GlobalService,
-        AuthService
+        AuthService,
+        ApiService
       ],
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();

@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalService } from '../global.service';
 
- 
+
 
 @Injectable()
 export class ApiService {
@@ -35,6 +35,6 @@ export class ApiService {
   }
 
   appendHeaders(headers) {
-    //TODO: Add Headers to this.HEADERS and update this.HTTP_OPTIONS
+    // TODO: Add Headers to this.HEADERS and update this.HTTP_OPTIONS
   }
 }

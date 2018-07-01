@@ -4,6 +4,8 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderStaticComponent } from './header-static.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('HeaderStaticComponent', () => {
   let component: HeaderStaticComponent;
@@ -18,8 +20,9 @@ describe('HeaderStaticComponent', () => {
       providers: [ GlobalService,
       {provide: ActivatedRoute, useValue: fakeActivatedRoute},
       {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
-      AuthService],
-      imports: [ RouterTestingModule ]
+      AuthService,
+      ApiService ],
+      imports: [ RouterTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));

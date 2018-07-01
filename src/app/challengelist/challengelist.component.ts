@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
+import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,17 +24,27 @@ export class ChallengelistComponent implements OnInit {
   };
   filteredChallenges = [];
   filteredChallengesView = [];
-
+  allTeams = [];
   seeMore = 1;
   windowSize = 10;
 
   constructor(private apiService: ApiService,
+              private authService: AuthService,
               private globalService: GlobalService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.fetchChallenges();
+    if (this.router.url === '/challenges/all') {
+      this.fetchChallenges();
+    } else if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
+      this.fetchMyTeams();
+      this.fetchChallenges();
+    }
+  }
+  fetchMyTeams() {
+    // this.fetchTeams('participants/participant_team');
+    this.fetchTeams('hosts/challenge_host_team');
   }
 
   toggleFilter(filter) {
@@ -58,21 +69,52 @@ export class ChallengelistComponent implements OnInit {
     if (reset) {
       this.seeMore = 1;
     }
+    this.filterChallengesByTeams();
     this.filteredChallengesView = this.filteredChallenges.slice(0, (this.seeMore * this.windowSize));
   }
 
-  fetchChallenges(filter = null) {
-    if (!filter) {
-      const ALL_PATHS = Object.values(this.apiPathMapping);
-      for (let i = 0; i < ALL_PATHS.length; i++) {
-        this.fetchChallengesFromApi(ALL_PATHS[i]);
-      }
-    } else {
-      this.fetchChallengesFromApi(this.apiPathMapping[filter]);
+  filterChallengesByTeams() {
+    if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
+      this.filteredChallenges = this.filteredChallenges.filter((v, i, a) => this.allTeams.indexOf(v['creator']['id']) > -1);
     }
   }
 
-  fetchChallengesFromApi(path) {
+
+  fetchTeams(path) {
+    const SELF = this;
+    this.apiService.getUrl(path).subscribe(
+      data => {
+        if (data['results']) {
+          const TEAMS = data['results'].map((item) => item['id']);
+          SELF.allTeams = SELF.allTeams.concat(TEAMS);
+          SELF.allTeams = SELF.allTeams.filter((v, i, a) => a.indexOf(v) === i);
+          SELF.updateChallengesView(true);
+        }
+      },
+      err => {
+        SELF.globalService.handleApiError(err, false);
+      },
+      () => {
+        console.log('Teams fetched', path);
+      }
+    );
+  }
+
+  fetchChallenges(filter = null, callback = null) {
+    if (!filter) {
+      const ALL_PATHS = Object.values(this.apiPathMapping);
+      const ALL_KEYS = Object.keys(this.apiPathMapping);
+      for (let i = 0; i < ALL_PATHS.length; i++) {
+        if (this[ALL_KEYS[i]]) {
+          this.fetchChallengesFromApi(ALL_PATHS[i], callback);
+        }
+      }
+    } else {
+      this.fetchChallengesFromApi(this.apiPathMapping[filter], callback);
+    }
+  }
+
+  fetchChallengesFromApi(path, callback = null) {
     const SELF = this;
     SELF.apiService.getUrl(path).subscribe(
       data => {
