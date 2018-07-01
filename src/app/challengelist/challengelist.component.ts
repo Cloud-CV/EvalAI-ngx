@@ -27,6 +27,8 @@ export class ChallengelistComponent implements OnInit {
   allTeams = [];
   seeMore = 1;
   windowSize = 10;
+  authServicePublic: AuthService;
+  routerPublic: Router;
 
   constructor(private apiService: ApiService,
               private authService: AuthService,
@@ -41,7 +43,10 @@ export class ChallengelistComponent implements OnInit {
       this.fetchMyTeams();
       this.fetchChallenges();
     }
+    this.authServicePublic = this.authService;
+    this.routerPublic = this.router;
   }
+
   fetchMyTeams() {
     // this.fetchTeams('participants/participant_team');
     this.fetchTeams('hosts/challenge_host_team');

@@ -1,15 +1,15 @@
 <div class="challenge-card-container">
   <div class="challenge-img-div">
     <object class="challenge-img" data="assets/images/404.png" type="image/png">
-      <img class="challenge-img" [src]="challenge.img" />
+      <img class="challenge-img" [src]="challenge['img']" />
     </object>
   </div>
   <div class="challenge-details">
     <div class="challenge-title">
-      {{challenge.title}}
+      {{challenge['title']}}
     </div>
     <div class="challenge-host">
-    	Organized by: <span>{{challenge.creator.team_name}}</span>
+    	Organized by: <span>{{challenge['creator']['team_name']}}</span>
     </div>
 
     <span class="challenge-type upcoming" *ngIf="isUpcoming">
@@ -24,7 +24,7 @@
 
     <div>
     <div class="challenge-description">
-    	{{challenge.short_description}}
+    	{{challenge['short_description']}}
     </div>
     </div>
 
