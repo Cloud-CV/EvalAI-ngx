@@ -9,6 +9,7 @@ import { PubliclistsComponent } from './publiclists/publiclists.component';
 import { ChallengelistComponent } from './challengelist/challengelist.component';
 import { TeamlistComponent } from './teamlist/teamlist.component';
 import { ContactComponent } from './contact/contact.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { GetInvolvedComponent } from './get-involved/get-involved.component';
 import { AboutComponent } from './about/about.component';
 
@@ -51,8 +52,10 @@ const routes: Routes = [
     path: 'contact',
     component: ContactComponent
   },
-  {
-    path: 'get-involved',
+  { path: 'privacy-policy',
+    component: PrivacyPolicyComponent
+  },
+  { path: 'get-involved',
     component: GetInvolvedComponent
   },
   {

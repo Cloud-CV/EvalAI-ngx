@@ -3,8 +3,6 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalService } from '../global.service';
 
-
-
 @Injectable()
 export class ApiService {
   API = environment.api_endpoint;
