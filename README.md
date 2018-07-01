@@ -6,7 +6,8 @@ Revamped codebase of EvalAI Frontend
 ------------------------------------------------------------------------------------------
 
 [![Join the chat at https://gitter.im/Cloud-CV/EvalAI](https://badges.gitter.im/Cloud-CV/EvalAI.svg)](https://gitter.im/Cloud-CV/EvalAI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+[![codecov](https://codecov.io/gh/Cloud-CV/EvalAI-ngx/branch/master/graph/badge.svg)](https://codecov.io/gh/Cloud-CV/EvalAI-ngx)
+[![Build Status](https://travis-ci.org/Cloud-CV/EvalAI-ngx.svg?branch=master)](https://travis-ci.org/Cloud-CV/EvalAI-ngx)
 
 EvalAI is an open source web application that helps researchers, students and data-scientists to create, collaborate and participate in various AI challenges organized round the globe.
 
@@ -39,9 +40,17 @@ Some background: Last year, the [Visual Question Answering Challenge (VQA) 2016]
 Setting up EvalAI-ngx on your local machine is really easy.
 Follow this guide to setup your development machine.
 
-```shell
-npm install -g @angular/cli
+Get the source code on your machine via git
+```
 git clone git@github.com:Cloud-CV/EvalAI-ngx.git
+```
+If you have not added [ssh key](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/) to your GitHub account then get the source code by running the following command
+```
+git clone https://github.com/Cloud-CV/EvalAI-ngx
+```
+
+```
+npm install -g @angular/cli
 cd EvalAI-ngx/
 npm install
 ```
@@ -61,6 +70,20 @@ Suppose pull request number is 123 and it passes Travis CI. The deployment link 
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Code Documentation
+
+We are using [compodoc](https://compodoc.github.io/website/guides/jsdoc-tags.html) for documentation. The goal of this tool is to generate a documentation for all the common APIs of the application like modules, components, injectables, routes, directives, pipes and classical classes.
+
+Compodoc supports [these](https://compodoc.github.io/website/guides/jsdoc-tags.html) JSDoc tags.
+
+### Building and Serving the documentation
+
+Run the following command to build and serve the docs:
+```
+npm run doc:buildandserve
+```
+Open http://localhost:8080 in the browser to have a look at the generated docs.
 
 ## Build
 
@@ -92,4 +115,4 @@ You can also use Docker Compose to run all the components of EvalAI-ngx together
 
 ## The Team
 
-EvalAI-ngx is currently maintained by [Akash Jain](http://www.jainakash.in/), [Shiv Baran Singh](http://www.shivbaran.in/), [Shivani Prakash Gupta](https://www.behance.net/shivaniprakash19) [Rishabh Jain](https://rishabhjain2018.github.io/) and [Deshraj Yadav](https://deshraj.github.io).
+EvalAI-ngx is currently maintained by [Akash Jain](http://www.jainakash.in/), [Shiv Baran Singh](http://www.shivbaran.in/), [Shivani Prakash Gupta](https://www.behance.net/shivaniprakash19), [Rishabh Jain](https://rishabhjain2018.github.io/) and [Deshraj Yadav](https://deshraj.github.io).
