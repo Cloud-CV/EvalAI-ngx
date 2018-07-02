@@ -28,19 +28,19 @@ export class FooterComponent implements OnInit {
 
   formSubmit(email: string) {
     // TODO get notified API path
-    const API_PATH = 'verify-email';
+    const API_PATH = '';
     const BODY = { 'email': email };
     const SELF = this;
-    // this.apiService.postUrl(API_PATH, JSON.stringify(BODY)).subscribe(
-    //   data => {
-    //     SELF.globalService.showToast('success', 'Subscription successful!');
-    //   },
-    //   err => {
-    //     console.error(err);
-    //     SELF.globalService.showToast('error', 'Subscription failed!');
-    //   },
-    //   () => { }
-    // );
+    this.apiService.postUrl(API_PATH, JSON.stringify(BODY)).subscribe(
+      data => {
+        SELF.globalService.showToast('success', 'Subscription successful!');
+      },
+      err => {
+        console.error(err);
+        SELF.globalService.showToast('error', 'Subscription failed!');
+      },
+      () => { }
+    );
   }
 
   navigateTo(url) {
