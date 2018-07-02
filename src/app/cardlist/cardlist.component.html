@@ -1,5 +1,5 @@
 <div class="cardlist-container">
-  <div *ngIf="Array.isArray(data) && data.length == 0" class="cardlist-empty">
+  <div *ngIf="arrayJavascript.isArray(data) && data['length'] == 0" class="cardlist-empty">
     <img src="assets/images/sadcloud.png" />
   </div>
   <ng-container *ngIf="type=='challenges'">
