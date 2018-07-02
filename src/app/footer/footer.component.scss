@@ -3,6 +3,7 @@
 
 .footer-container {
   font-size: $fs-16;
+  font-weight:$fw-light;
   color: white;
   text-align: center;
   position: relative;
@@ -28,7 +29,7 @@
     width: 100%;
   }
   .section-title {
-    font-size: $fs-24;
+    font-size: $fs-30;
   }
   .footer-content-top {
     padding-top: 200px;
@@ -44,12 +45,13 @@
   .footer-table {
     margin-left: 100px;
     td {
-      cursor: pointer;
-      color: #ffffff;
-      font-weight: semibold;
       text-align: left;
       padding-right: 50px;
       padding-bottom: 10px;
+      a {
+        color: white;
+        font-weight: $fw-light;
+      }
     }
   }
 
@@ -60,14 +62,11 @@
       margin: 0 auto;
     }
     .input-fill {
-      @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
-      padding: 10px 30px 10px 30px;
-      border-radius: 20px;
-      margin-bottom: 5px;
-      background: white;
+      cursor: text;
       color: $blue-dark;
-      text-align: center;
-      border: 0px;
+      &:focus {
+        outline-width: 0;
+      }
     }
   }
   .footer-description {
@@ -83,9 +82,6 @@
 
   .footer-location {
     float: left;
-    hr {
-      border-color: $overlay-light;
-    }
   }
 
   .footer-links {
@@ -103,12 +99,14 @@
   .footer-jump-links {
     text-align: right;
     margin-left: 50px;
-    margin-right: 200px;
+    margin-right: 150px;
     margin-bottom: 20px;
-    img {
+    a {
       margin-right: 20px;
-      height: 40px;
       cursor: pointer;
+      img {
+        height: 40px;
+      }
     }
   }
 
@@ -119,55 +117,47 @@
   }
 }
 
-
-
-
-
-
-
 @include screen-small {
-  .footer-buttons {
-    .footer-buttons-div {
-      .input-fill,
-      .btn-fire {
-        width: 50%;
-        margin: 0 auto;
-        margin-top: 10px;
-      }
-      .input-fill {
-        display: block;
-      }
-    }
-  }
-  .footer-text,
-  .footer-table,
-  .footer-logo {
-    margin-left: 50px;
-  }
-
   .footer-container {
     background-size: cover !important;
-    .first {
+    .footer-content-top {
       padding-top: 250px;
     }
-  }
+    .footer-buttons {
+      .footer-buttons-div {
+        .input-fill,
+        .btn-fire {
+          width: 50%;
+          margin: 0 auto;
+          margin-top: 10px;
+        }
+        .input-fill {
+          display: block;
+        }
+      }
+    }
+    .footer-text,
+    .footer-table,
+    .footer-logo {
+      margin-left: 50px;
+    }
+    .footer-bg {
+      display: none;
+    }
 
-  .footer-bg {
-    display: none;
-  }
+    .footer-location {
+      width: 100% !important;
+      float: left;
+    }
 
-  .footer-location {
-    width: 100% !important;
-    float: left;
-  }
+    .footer-links {
+      width: 100% !important;
+      float: left;
+    }
 
-  .footer-links {
-    width: 100% !important;
-    float: left;
-  }
-
-  .footer-jump-links {
-    margin-right: 100px;
+    .footer-jump-links {
+      margin-right: 100px;
+    }
   }
 }
 
@@ -175,7 +165,7 @@
   .footer-container {
     background-size: cover;
     background-position-x: 50%;
-    .first {
+    .footer-content-top {
       padding-top: 200px;
     }
   }

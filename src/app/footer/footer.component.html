@@ -8,8 +8,8 @@
 	</div>
 	<div class="centerall footer-buttons" >
 			<div class="footer-buttons-div">
-				<input class = "input-fill" placeholder="Name@company.com"/>	
-				<span class = "btn-fire">Get Notifications</span>
+				<input id = "notification-email" class = "btn btn-fill input-fill" placeholder="Name@company.com"/>	
+				<span class = "btn btn-fire" (click)="getNotifications()">Get Notifications</span>
 			</div>
 	</div>
 	<div class="row top-margin-extra">
@@ -29,26 +29,25 @@
 		<div class="footer-text top-margin-extra">
 		© CloudCV 2018
 		</div>
-		<hr>
 	</div>
 	<div class="footer-links top-margin-extra col-lg-6 col-md-6 col-sm-12 col-xs-12">
 		<table class="footer-table" width="100%">
 			<tr> 
-				<td>About Us</td>
-				<td>Contact Us</td>
+				<td><a (click)="navigateTo('/about')">About Us</a></td>
+				<td><a (click)="navigateTo('/contact')">Contact Us</a></td>
 			</tr>
 			<tr> 
-				<td>Our Team</td>
-				<td>Get Involved</td>
+				<td><a (click)="navigateTo('/our-team')">Our Team</a></td>
+				<td><a (click)="navigateTo('/get-involved')">Get Involved</a></td>
 			</tr>
 			<tr> 
-				<td>Privacy Policy</td>
-				<td>CloudCV Website</td>
+				<td ><a (click)="navigateTo('/privacy-policy')">Privacy Policy</a></td>
+				<td><a href="https://cloudcv.org/">CloudCV Website</a></td>
 			</tr>
 		</table>
 		<div class="footer-jump-links top-margin-extra">
-		<img src="assets/images/git.png" />
-		<img src="assets/images/twitter.png" /></div>
+		<a target="_blank" href="https://github.com/Cloud-CV"><img src="assets/images/git.png" /></a>
+		<a target="_blank" href="https://twitter.com/project_cloudcv"><img src="assets/images/twitter.png" /></a></div>
 	</div>
 	</div>
 	</div>
