@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { ContactComponent } from './contact/contact.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { InputComponent } from './input/input.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +31,7 @@ import { AboutComponent } from './about/about.component';
     AppComponent,
     HomeComponent,
     HeaderStaticComponent,
+    PrivacyPolicyComponent,
     InputComponent,
     AuthComponent,
     LoginComponent,

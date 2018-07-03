@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ContactComponent } from './contact/contact.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { GetInvolvedComponent } from './get-involved/get-involved.component';
 import { AboutComponent } from './about/about.component';
 
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'get-involved',
     component: GetInvolvedComponent
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent
   },
   {
     path: 'about',
