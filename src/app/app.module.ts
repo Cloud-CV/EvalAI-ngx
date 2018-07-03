@@ -31,6 +31,12 @@ import { TeamcardComponent } from './teamcard/teamcard.component';
 import { TeamlistComponent } from './teamlist/teamlist.component';
 import { PubliclistsComponent } from './publiclists/publiclists.component';
 import { ForceloginComponent } from './forcelogin/forcelogin.component';
+import { ChallengeComponent } from './challenge/challenge.component';
+import { ChallengeoverviewComponent } from './challengeoverview/challengeoverview.component';
+import { ChallengeevaluationComponent } from './challengeevaluation/challengeevaluation.component';
+import { ChallengephasesComponent } from './challengephases/challengephases.component';
+import { ChallengeparticipateComponent } from './challengeparticipate/challengeparticipate.component';
+import { ChallengeleaderboardComponent } from './challengeleaderboard/challengeleaderboard.component';
 
 
 @NgModule({
@@ -53,7 +59,13 @@ import { ForceloginComponent } from './forcelogin/forcelogin.component';
     TeamcardComponent,
     TeamlistComponent,
     PubliclistsComponent,
-    ForceloginComponent
+    ForceloginComponent,
+    ChallengeComponent,
+    ChallengeoverviewComponent,
+    ChallengeevaluationComponent,
+    ChallengephasesComponent,
+    ChallengeparticipateComponent,
+    ChallengeleaderboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<app-header-static>
+</app-header-static>
+<div class="container-top">
+  <div class="challenge-container">
+    <div class="horizontal-nav">
+      <a [class.selected]="localRouter.url.endsWith('overview')" [routerLink]="['./overview']">Overview</a>
+      <a [class.selected]="localRouter.url.endsWith('evaluation')" [routerLink]="['./evaluation']">Evaluation</a>
+      <a [class.selected]="localRouter.url.endsWith('phases')" [routerLink]="['./phases']">Phases</a>
+      <a [class.selected]="localRouter.url.endsWith('participate')" [routerLink]="['./participate']">Participate</a>
+      <a [class.selected]="localRouter.url.endsWith('leaderboard')" [routerLink]="['./leaderboard']">Leaderboard</a>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

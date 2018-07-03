@@ -12,6 +12,9 @@ import { ContactComponent } from './contact/contact.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { GetInvolvedComponent } from './get-involved/get-involved.component';
 import { AboutComponent } from './about/about.component';
+import { ChallengeComponent } from './challenge/challenge.component';
+import { ChallengeoverviewComponent} from './challengeoverview/challengeoverview.component';
+import { ChallengeevaluationComponent } from './challengeevaluation/challengeevaluation.component';
 
 const routes: Routes = [
   {
@@ -52,15 +55,30 @@ const routes: Routes = [
     path: 'contact',
     component: ContactComponent
   },
-  { path: 'privacy-policy',
+  { 
+    path: 'privacy-policy',
     component: PrivacyPolicyComponent
   },
-  { path: 'get-involved',
+  { 
+    path: 'get-involved',
     component: GetInvolvedComponent
   },
   {
     path: 'about',
     component: AboutComponent
+  },
+  { 
+    path: 'challenge/:id',
+    component: ChallengeComponent,
+    children: [
+      {path: '', redirectTo: 'overview', pathMatch: 'full'},
+      {path: 'overview', component: ChallengeoverviewComponent},
+      {path: 'evaluation', component: ChallengeevaluationComponent}
+    ]
+  },
+  {
+    path: 'challenge',
+    redirectTo: 'challenges'
   }
 ];
 
