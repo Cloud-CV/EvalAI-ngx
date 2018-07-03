@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { ApiService } from '../services/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-challengecard',
@@ -18,7 +19,9 @@ export class ChallengecardComponent implements OnInit {
   tags = ['Aritificial Intelligence', 'Machine Learning'];
   stars = 0;
   constructor(private globalService: GlobalService,
-              private apiService: ApiService) { }
+              private apiService: ApiService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.preProcess();
@@ -61,5 +64,12 @@ export class ChallengecardComponent implements OnInit {
       },
       () => {}
     );
+  }
+
+  challengeClicked() {
+    this.router.navigate(['/challenge', this.challenge['id']]);
+  }
+  participateInChallenge() {
+    this.router.navigate(['/challenge', this.challenge['id'], 'participate']);
   }
 }

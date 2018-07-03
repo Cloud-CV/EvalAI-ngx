@@ -8,6 +8,7 @@ import { AuthService } from './services/auth.service';
 import { WindowService } from './services/window.service';
 import { ApiService } from './services/api.service';
 import { GlobalService } from './global.service';
+import { ChallengeService } from './services/challenge.service';
 
 
 // Import Components
@@ -37,6 +38,8 @@ import { ChallengeevaluationComponent } from './challengeevaluation/challengeeva
 import { ChallengephasesComponent } from './challengephases/challengephases.component';
 import { ChallengeparticipateComponent } from './challengeparticipate/challengeparticipate.component';
 import { ChallengeleaderboardComponent } from './challengeleaderboard/challengeleaderboard.component';
+import { ChallengesubmitComponent } from './challengesubmit/challengesubmit.component';
+import { ChallengesubmissionsComponent } from './challengesubmissions/challengesubmissions.component';
 
 
 @NgModule({
@@ -65,7 +68,9 @@ import { ChallengeleaderboardComponent } from './challengeleaderboard/challengel
     ChallengeevaluationComponent,
     ChallengephasesComponent,
     ChallengeparticipateComponent,
-    ChallengeleaderboardComponent
+    ChallengeleaderboardComponent,
+    ChallengesubmitComponent,
+    ChallengesubmissionsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,8 @@ import { ChallengeleaderboardComponent } from './challengeleaderboard/challengel
     AuthService,
     WindowService,
     ApiService,
-    GlobalService
+    GlobalService,
+    ChallengeService
   ],
   bootstrap: [AppComponent]
 })

@@ -264,6 +264,8 @@ ul {
 
 /*Navigation*/
 .horizontal-nav {
+  white-space: nowrap;
+  overflow-x:scroll;
   border-bottom: 1px solid rgba(0,0,0,0.2);
   margin: 10px;
   padding-top:10px;

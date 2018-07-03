@@ -4,6 +4,7 @@ import { ChallengecardComponent } from './challengecard.component';
 import { GlobalService } from '../global.service';
 import { ApiService } from '../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChallengecardComponent', () => {
   let component: ChallengecardComponent;
@@ -11,7 +12,7 @@ describe('ChallengecardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule ],
+      imports: [ HttpClientModule, RouterTestingModule ],
       declarations: [ ChallengecardComponent ],
       providers: [ GlobalService, ApiService ]
     })

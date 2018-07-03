@@ -16,6 +16,7 @@
     vertical-align: top;
     overflow: hidden;
     .challenge-title {
+      cursor:pointer;
       font-size: $fs-18;
       font-weight: $fw-regular;
       display: inline-block;
@@ -99,6 +100,7 @@
     }
   }
   .challenge-img-div {
+    cursor: pointer;
     display: inline-block;
     .challenge-img {
       width: 200px;

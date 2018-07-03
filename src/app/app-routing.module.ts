@@ -15,6 +15,11 @@ import { AboutComponent } from './about/about.component';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { ChallengeoverviewComponent} from './challengeoverview/challengeoverview.component';
 import { ChallengeevaluationComponent } from './challengeevaluation/challengeevaluation.component';
+import { ChallengephasesComponent} from './challengephases/challengephases.component';
+import { ChallengeparticipateComponent } from './challengeparticipate/challengeparticipate.component';
+import { ChallengeleaderboardComponent } from './challengeleaderboard/challengeleaderboard.component';
+import { ChallengesubmitComponent } from './challengesubmit/challengesubmit.component';
+import { ChallengesubmissionsComponent } from './challengesubmissions/challengesubmissions.component';
 
 const routes: Routes = [
   {
@@ -73,7 +78,12 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: ChallengeoverviewComponent},
-      {path: 'evaluation', component: ChallengeevaluationComponent}
+      {path: 'evaluation', component: ChallengeevaluationComponent},
+      {path: 'phases', component: ChallengephasesComponent},
+      {path: 'participate', component: ChallengeparticipateComponent},
+      {path: 'submit', component: ChallengesubmitComponent},
+      {path: 'submissions', component: ChallengesubmissionsComponent},
+      {path: 'leaderboard', component: ChallengeleaderboardComponent}
     ]
   },
   {

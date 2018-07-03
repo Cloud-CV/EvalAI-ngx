@@ -1,11 +1,11 @@
 <div class="challenge-card-container">
-  <div class="challenge-img-div">
+  <div class="challenge-img-div" (click)="challengeClicked()">
     <object class="challenge-img" data="assets/images/404.png" type="image/png">
       <img class="challenge-img" [src]="challenge['img']" />
     </object>
   </div>
   <div class="challenge-details">
-    <div class="challenge-title">
+    <div class="challenge-title" (click)="challengeClicked()">
       {{challenge['title']}}
     </div>
     <div class="challenge-host">
@@ -37,7 +37,7 @@
     	</div>
     </div>
     <div class="challenge-participate-div">
-    	<a class="btn btn-filter challenge-participate">Participate</a>
+    	<a class="btn btn-filter challenge-participate" (click)="participateInChallenge()">Participate</a>
     </div>
     <div class="challenge-labels">
     	<div class="stars">
