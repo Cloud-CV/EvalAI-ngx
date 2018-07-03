@@ -40,6 +40,7 @@ import { ChallengeparticipateComponent } from './challengeparticipate/challengep
 import { ChallengeleaderboardComponent } from './challengeleaderboard/challengeleaderboard.component';
 import { ChallengesubmitComponent } from './challengesubmit/challengesubmit.component';
 import { ChallengesubmissionsComponent } from './challengesubmissions/challengesubmissions.component';
+import { PhasecardComponent } from './phasecard/phasecard.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ChallengesubmissionsComponent } from './challengesubmissions/challenges
     ChallengeparticipateComponent,
     ChallengeleaderboardComponent,
     ChallengesubmitComponent,
-    ChallengesubmissionsComponent
+    ChallengesubmissionsComponent,
+    PhasecardComponent
   ],
   imports: [
     BrowserModule,

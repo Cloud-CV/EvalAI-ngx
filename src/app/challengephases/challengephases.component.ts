@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChallengeService } from '../services/challenge.service';
 
 @Component({
   selector: 'app-challengephases',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./challengephases.component.scss']
 })
 export class ChallengephasesComponent implements OnInit {
-
-  constructor() { }
+  challenge: any;
+  phases: any;
+  constructor(private challengeService: ChallengeService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
+  	this.challengeService.currentChallenge.subscribe(
+    challenge => {
+      this.challenge = challenge;
+  	});
+  	this.challengeService.currentPhases.subscribe(
+  	phases => {
+      this.phases = phases;
+  	});
   }
-
 }

@@ -1,0 +1,32 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.challenge-evaluation-container {
+	padding:20px;
+	.card {
+		padding:30px;
+		margin:20px;
+		border-radius:10px;
+		@include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
+		font-weight:$fw-light;
+		font-size:$fs-16;
+		color:$gray-darker;
+		background:white;
+		.card-title {
+			font-size:$fs-24;
+			padding:20px 0px 20px 0px;
+			font-weight:$fw-regular;
+			color:$gray-darker;
+		}
+		.card-content {
+			padding: 20px 0px 20px 0px;
+			h5 {
+				font-size:$fs-18;
+			}
+			
+			a {
+				color:$red-light;
+			}
+		}
+	}
+}
