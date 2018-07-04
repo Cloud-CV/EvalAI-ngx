@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
+
 import { ChallengeService } from '../services/challenge.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class ChallengeComponent implements OnInit {
   participantTeams: any;
 
   constructor(private router: Router, private route: ActivatedRoute,
-              private apiService: ApiService, private globalService: GlobalService, 
+              private apiService: ApiService, private globalService: GlobalService,
               private challengeService: ChallengeService) { }
 
   ngOnInit() {

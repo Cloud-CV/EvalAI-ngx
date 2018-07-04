@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChallengephasesComponent } from './challengephases.component';
+import { ChallengeService } from '../services/challenge.service';
+import { ApiService } from '../services/api.service';
+import { GlobalService } from '../global.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PhasecardComponent } from '../phasecard/phasecard.component';
 
 describe('ChallengephasesComponent', () => {
   let component: ChallengephasesComponent;
@@ -8,7 +13,9 @@ describe('ChallengephasesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChallengephasesComponent ]
+      declarations: [ ChallengephasesComponent, PhasecardComponent ],
+      providers: [ ChallengeService, ApiService, GlobalService ],
+      imports: [ HttpClientModule ]
     })
     .compileComponents();
   }));

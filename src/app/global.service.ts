@@ -109,7 +109,7 @@ export class GlobalService {
 
   checkTokenValidity(err, toast = true) {
     if (err.error !== null && typeof err.error === 'object' && err.error['detail']) {
-      if (err.error['detail'] === 'Invalid token') {
+      if (err.error['detail'].indexOf('Invalid token') !== -1) {
         this.triggerLogout();
         this.showToast('error', 'Token Invalid! Please Login again.', 5);
       } else {

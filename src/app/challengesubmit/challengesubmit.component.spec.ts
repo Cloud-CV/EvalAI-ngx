@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChallengesubmitComponent } from './challengesubmit.component';
+import { ChallengeService } from '../services/challenge.service';
 
 describe('ChallengesubmitComponent', () => {
   let component: ChallengesubmitComponent;
@@ -8,7 +9,8 @@ describe('ChallengesubmitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChallengesubmitComponent ]
+      declarations: [ ChallengesubmitComponent ],
+      providers: [ ChallengeService ]
     })
     .compileComponents();
   }));

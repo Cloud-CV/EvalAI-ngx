@@ -60,7 +60,7 @@ const routes: Routes = [
     path: 'contact',
     component: ContactComponent
   },
-  { 
+  {
     path: 'privacy-policy',
     component: PrivacyPolicyComponent
   },
@@ -76,7 +76,7 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent
   },
-  { 
+  {
     path: 'challenge/:id',
     component: ChallengeComponent,
     children: [
