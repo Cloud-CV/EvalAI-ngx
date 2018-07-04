@@ -64,9 +64,13 @@ const routes: Routes = [
     path: 'privacy-policy',
     component: PrivacyPolicyComponent
   },
-  { 
+  {
     path: 'get-involved',
     component: GetInvolvedComponent
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent
   },
   {
     path: 'about',

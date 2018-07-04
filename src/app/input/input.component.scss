@@ -3,11 +3,11 @@
 
 .input-group {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 0px;
   position: relative;
   height: auto;
-  padding-bottom: 30px;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
   .input-icon {
     height:$fs-18;
     position:absolute;
@@ -29,11 +29,11 @@
       color: $gray-dark;
     }
     &.is-not-empty {
-      top: -20px;
+      top: -10px;
       font-size: $fs-14;
       color: white;
       &.theme-dark {
-        color: $gray-darker !important;
+        color: $gray-dark !important;
       }
     }
   }
@@ -46,7 +46,7 @@
     color: white;
     border-bottom: 1px solid $gray-medium;
     background: transparent;
-    padding-bottom:20px;
+    padding-bottom:10px;
     font-weight:$fw-light;
     &:focus {
       outline: none;
@@ -57,13 +57,13 @@
     }
   }
   input:focus~label {
-    top: -20px;
+    top: -10px;
     font-size: $fs-14;
     color: white;
   }
   input:focus~label.theme-dark
   {
-    color: $gray-darker !important;
+    color: $gray-dark !important;
   }
   .input-message {
     position: absolute;
