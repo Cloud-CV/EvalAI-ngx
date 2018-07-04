@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { GlobalService } from '../global.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ChallengeService {
@@ -26,10 +26,10 @@ export class ChallengeService {
     this.starSource.next(stars);
   }
   changeCurrentParticipantTeams(teams: any) {
-  	this.teamsSource.next(teams);
+    this.teamsSource.next(teams);
   }
   changeCurrentPhases(phases: any) {
-  	this.phasesSource.next(phases);
+    this.phasesSource.next(phases);
   }
 
   fetchChallenge(id) {
@@ -38,9 +38,9 @@ export class ChallengeService {
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         if (data['id'] === parseInt(id, 10)) {
-        	SELF.changeCurrentChallenge(data);
-        	SELF.fetchStars(id);
-        	SELF.fetchPhases(id);
+          SELF.changeCurrentChallenge(data);
+          SELF.fetchStars(id);
+          SELF.fetchPhases(id);
         }
       },
       err => {
@@ -56,11 +56,11 @@ export class ChallengeService {
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-      	if (callback) {
+        if (callback) {
           callback(data);
-      	} else {
+        } else {
           SELF.changeCurrentStars(data);
-      	}
+        }
       },
       err => {
         SELF.globalService.handleApiError(err, false);
@@ -70,15 +70,15 @@ export class ChallengeService {
   }
 
   fetchParticipantTeams(id) {
-  	const API_PATH = 'participants/participant_teams/challenges/' + id + '/user';
-  	const SELF = this;
+    const API_PATH = 'participants/participant_teams/challenges/' + id + '/user';
+    const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-      	let teams = [];
-      	if (data['challenge_participant_team_list']) {
-      		teams = data['challenge_participant_team_list'];
-      		this.changeCurrentParticipantTeams(teams);
-      	}
+        let teams = [];
+        if (data['challenge_participant_team_list']) {
+          teams = data['challenge_participant_team_list'];
+          this.changeCurrentParticipantTeams(teams);
+        }
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -89,15 +89,15 @@ export class ChallengeService {
   }
 
   fetchPhases(id) {
-  	const API_PATH = 'challenges/challenge/' + id + '/challenge_phase';
-  	const SELF = this;
-  	this.apiService.getUrl(API_PATH).subscribe(
+    const API_PATH = 'challenges/challenge/' + id + '/challenge_phase';
+    const SELF = this;
+    this.apiService.getUrl(API_PATH).subscribe(
       data => {
-      	let phases = [];
-      	if (data['results']) {
-      		phases = data['results'];
-      		this.changeCurrentPhases(phases);
-      	}
+        let phases = [];
+        if (data['results']) {
+          phases = data['results'];
+          this.changeCurrentPhases(phases);
+        }
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -106,6 +106,4 @@ export class ChallengeService {
         console.log('Phases fetched');
     });
   }
-
-
 }

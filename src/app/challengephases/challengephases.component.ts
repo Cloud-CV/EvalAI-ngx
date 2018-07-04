@@ -13,13 +13,13 @@ export class ChallengephasesComponent implements OnInit {
   constructor(private challengeService: ChallengeService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
-  	this.challengeService.currentChallenge.subscribe(
+    this.challengeService.currentChallenge.subscribe(
     challenge => {
       this.challenge = challenge;
-  	});
-  	this.challengeService.currentPhases.subscribe(
-  	phases => {
+    });
+    this.challengeService.currentPhases.subscribe(
+    phases => {
       this.phases = phases;
-  	});
+    });
   }
 }

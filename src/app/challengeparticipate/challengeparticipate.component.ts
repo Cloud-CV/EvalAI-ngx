@@ -11,9 +11,9 @@ export class ChallengeparticipateComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  	if (this.authService.isLoggedIn()) {
-  		this.isLoggedIn = true;
-  	}
+    if (this.authService.isLoggedIn()) {
+      this.isLoggedIn = true;
+    }
   }
 
 }

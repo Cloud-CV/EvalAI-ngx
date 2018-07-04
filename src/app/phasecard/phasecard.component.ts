@@ -13,11 +13,11 @@ export class PhasecardComponent implements OnInit {
   constructor(private globalService: GlobalService) { }
 
   ngOnInit() {
-  	this.updateViewElements();
+    this.updateViewElements();
   }
 
   updateViewElements() {
-  	const START_DATE = new Date(Date.parse(this.phase['start_date']));
+    const START_DATE = new Date(Date.parse(this.phase['start_date']));
     const END_DATE = new Date(Date.parse(this.phase['end_date']));
     this.startDate = this.globalService.formatDate12Hour(START_DATE);
     this.endDate = this.globalService.formatDate12Hour(END_DATE);

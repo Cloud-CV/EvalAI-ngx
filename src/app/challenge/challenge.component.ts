@@ -26,8 +26,8 @@ export class ChallengeComponent implements OnInit {
               private challengeService: ChallengeService) { }
 
   ngOnInit() {
-  	this.localRouter = this.router;
-  	this.route.params.subscribe(params => {
+    this.localRouter = this.router;
+    this.route.params.subscribe(params => {
       if (params['id']) {
         // this.fetchChallenge(params['id']);
         this.id = params['id'];
@@ -37,9 +37,9 @@ export class ChallengeComponent implements OnInit {
     this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
     this.challengeService.currentStars.subscribe(stars => this.stars = stars);
     this.challengeService.currentParticipantTeams.subscribe(participantTeams => {
-    	this.participantTeams = participantTeams;
-    	for (let i = 0; i < participantTeams['length']; i++) {
-          if (participantTeams[i]['challenge'] !== null && participantTeams[i]['challenge']['id'] == this.id) {
+      this.participantTeams = participantTeams;
+      for (let i = 0; i < participantTeams['length']; i++) {
+        if (participantTeams[i]['challenge'] !== null && participantTeams[i]['challenge']['id'] === this.id) {
             this.isParticipated = true;
             break;
           }
