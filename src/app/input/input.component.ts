@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
+  @Input() placeholder: string;
   @Input() label: string;
   @Input() type: string;
   @Input() isRequired: boolean;
@@ -30,6 +31,9 @@ export class InputComponent implements OnInit {
       }
       this.type = 'text';
     }
+    if (this.label === undefined) {
+      this.label = 'Default Label';
+    }
     if (this.isRequired === undefined) {
       this.isRequired = false;
     }
@@ -41,6 +45,9 @@ export class InputComponent implements OnInit {
     }
     if (this.validate !== undefined) {
       this.isValidateCustom = true;
+    }
+    if (this.placeholder === undefined) {
+      this.placeholder = this.label;
     }
   }
 
@@ -75,7 +82,7 @@ export class InputComponent implements OnInit {
     return RE.test(email);
   }
   validateText(text) {
-    if (text.length >= 2) {
+    if (text.length >= 1) {
       return true;
     }
     return false;

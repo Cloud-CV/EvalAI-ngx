@@ -63,7 +63,7 @@ export class GlobalService {
       if (item.isRequired && !item.isDirty) {
         item.isDirty = true;
       }
-      if (!item.isValid) {
+      if (item.isRequired && !item.isValid) {
         requiredFieldMissing = true;
       }
     });

@@ -1,3 +1,28 @@
-<p>
-  teamlist works!
-</p>
+<div class="teamlist-container">
+  <div *ngIf="authServicePublic.isLoggedIn()">
+    <div class="card team-select">
+      <div class="card-title">
+        {{teamSelectTitle}}
+      </div>
+      <div class="card-content">
+        <app-cardlist [type]="'teams'" [data]="filteredTeams"></app-cardlist>
+        <div class="see-more" *ngIf="filteredTeams.length < allTeams.length">
+          <a class="btn btn-filter" (click)="seeMoreClicked()">See More</a>
+        </div>
+      </div>
+    </div>
+    <div class="card team-create">
+      <div class="card-title">
+        {{teamCreateTitle}}
+      </div>
+      <div class="card-content">
+        <div class="team-create-form">
+	        <app-input [label]="'team_name'" [placeholder]="'Team Name*'" [isRequired]="true" [theme]="'dark'" [icon]="'assets/images/username_dark.png'" #formteam></app-input>
+	        <app-input [label]="'team_url'" [placeholder]="'Team URL (Optional)'" [isRequired]="false" [theme]="'dark'" [icon]="'assets/images/link_dark.png'" #formteam></app-input>
+	        <span class="btn btn-filter selected" (click)="createTeam('formteam')">{{teamCreateButton}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-forcelogin [path]="routerPublic.url" *ngIf="!authServicePublic.isLoggedIn()"></app-forcelogin>
+</div>

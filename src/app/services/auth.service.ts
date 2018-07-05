@@ -20,8 +20,8 @@ export class AuthService {
         this.authStateChange(temp);
       }, 1000);
     }
-    loggedIn(params) {
-      const temp = {isLoggedIn: true, username: params['username']};
+    loggedIn(params = null) {
+      const temp = {isLoggedIn: true};
       this.authStateChange(temp);
       this.fetchUserDetails();
     }
@@ -88,6 +88,9 @@ export class AuthService {
     isLoggedIn() {
       const token = this.globalService.getAuthToken();
       if (token) {
+          if (!this.authState['isLoggedIn']) {
+            this.loggedIn();
+          }
           return true;
       } else {
           if (this.authState['isLoggedIn']) {
