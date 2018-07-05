@@ -1,4 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class GlobalService {
@@ -6,8 +7,13 @@ export class GlobalService {
   toastErrorCodes = [400, 500];
   authStorageKey = 'authtoken';
   redirectStorageKey = 'redirect';
+  isLoading = false;
+  private isLoadingSource = new BehaviorSubject(false);
+  currentisLoading = this.isLoadingSource.asObservable();
+
   @Output() change: EventEmitter<boolean> = new EventEmitter();
   @Output() toast: EventEmitter<Object> = new EventEmitter();
+  @Output() loading: EventEmitter<boolean> = new EventEmitter();
   @Output() logout: EventEmitter<boolean> = new EventEmitter();
   constructor() { }
   scrolledStateChange(s) {
@@ -18,7 +24,8 @@ export class GlobalService {
     localStorage.setItem(key, JSON.stringify(value));
   }
   getData(key) {
-    if (localStorage.getItem(key) === null) {
+    if (localStorage.getItem(key) === null || localStorage.getItem(key) === 'undefined') {
+      localStorage.removeItem(key);
       return false;
     } else {
       return JSON.parse(localStorage.getItem(key));
@@ -43,6 +50,15 @@ export class GlobalService {
       duration: duration
     };
     this.toast.emit(TEMP);
+  }
+  toggleLoading(loading) {
+    if (loading != this.isLoading) {
+      this.isLoading = loading;
+      this.isLoadingSource.next(loading);
+    }
+  }
+  getIsLoading() {
+    return this.isLoading; 
   }
 
   /**

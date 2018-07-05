@@ -41,6 +41,8 @@ import { ChallengeleaderboardComponent } from './challengeleaderboard/challengel
 import { ChallengesubmitComponent } from './challengesubmit/challengesubmit.component';
 import { ChallengesubmissionsComponent } from './challengesubmissions/challengesubmissions.component';
 import { PhasecardComponent } from './phasecard/phasecard.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { PhasecardComponent } from './phasecard/phasecard.component';
     ChallengeleaderboardComponent,
     ChallengesubmitComponent,
     ChallengesubmissionsComponent,
-    PhasecardComponent
+    PhasecardComponent,
+    ConfirmComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

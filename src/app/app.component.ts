@@ -18,8 +18,10 @@ import 'rxjs/add/operator/mergeMap';
 
 export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
+  isLoading = false;
   globalServiceSubscription: any;
   globalLogoutTrigger: any;
+  globalLoadingSubscription: any;
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
@@ -52,6 +54,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.globalLogoutTrigger = this.globalService.logout.subscribe(() => {
       this.authService.logOut();
     });
+    this.globalLoadingSubscription = this.globalService.currentisLoading.subscribe(isLoading => {
+      setTimeout(() => {
+        this.isLoading = isLoading;
+      }, 0);
+    });
+
     // set page title form routes data
     this.router.events
         // filter for navigation end
@@ -77,6 +85,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     if (this.globalLogoutTrigger) {
       this.globalLogoutTrigger.unsubscribe();
+    }
+    if (this.globalLoadingSubscription) {
+      this.globalLoadingSubscription.unsubscribe();
     }
   }
 }

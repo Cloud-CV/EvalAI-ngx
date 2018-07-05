@@ -8,7 +8,7 @@ header {
   color: white;
   width: 100%;
   box-sizing: border-box;
-  z-index: 1000;
+  z-index: 90;
   transition: all 0.2s ease-in-out;
   .logo {
     img {
@@ -21,7 +21,7 @@ header {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 100;
+  z-index: 80;
   background: $overlay-light;
   overflow: hidden;
 }
@@ -33,7 +33,7 @@ header {
   position: absolute;
   top: 25px;
   right: 10px;
-  z-index: 100;
+  z-index: 95;
 }
 
 .menu-bar1,

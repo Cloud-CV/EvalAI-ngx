@@ -24,17 +24,31 @@ export class ApiService {
 
   getUrl(path: string) {
     this.prepareHttpOptions();
-    return this.http.get(this.API + path, this.HTTP_OPTIONS);
+    return this.loadingWrapper(this.http.get(this.API + path, this.HTTP_OPTIONS));
   }
 
   postUrl(path: string, body: string) {
     this.prepareHttpOptions();
-    return this.http.post(this.API + path, body, this.HTTP_OPTIONS);
+    return this.loadingWrapper(this.http.post(this.API + path, body, this.HTTP_OPTIONS));
   }
 
   deleteUrl(path: string) {
     this.prepareHttpOptions();
-    return this.http.delete(this.API + path, this.HTTP_OPTIONS);
+    return this.loadingWrapper(this.http.delete(this.API + path, this.HTTP_OPTIONS));
+  }
+
+  loadingWrapper(httpCall) {
+    const SELF = this;
+    setTimeout(this.globalService.toggleLoading(true), 100);
+    httpCall.subscribe(data => {
+    },
+    err => {
+      setTimeout(SELF.globalService.toggleLoading(false), 100);
+    },
+    () => {
+      setTimeout(SELF.globalService.toggleLoading(false), 100);
+    });
+    return httpCall;
   }
 
   appendHeaders(headers) {
