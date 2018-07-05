@@ -6,7 +6,7 @@
 	    Team:
       </span>
       <span *ngIf="teamView['team_url']">
-      	<a href="{{teamView['team_url']}}">{{teamView['team_name']}}</a>
+      	<a target="_blank" href="{{teamView['team_url']}}">{{teamView['team_name']}}</a>
       </span>
       <span *ngIf="!teamView['team_url']">
 	    {{teamView['team_name']}}
@@ -20,9 +20,9 @@
       </span>
     </div>
     <div class='team-icons'>
-      <i class="fas fa-user-plus" aria-hidden="true"></i>
-      <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-      <i class="fas fa-trash-alt" aria-hidden="true"></i>
+      <a><i class="fas fa-user-plus" aria-hidden="true"></i></a>
+      <a><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+      <a (click)="deleteTeam()"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
     </div>
    </div>
     <div class='team-members'>

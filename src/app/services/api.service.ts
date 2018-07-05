@@ -32,6 +32,11 @@ export class ApiService {
     return this.http.post(this.API + path, body, this.HTTP_OPTIONS);
   }
 
+  deleteUrl(path: string) {
+    this.prepareHttpOptions();
+    return this.http.delete(this.API + path, this.HTTP_OPTIONS);
+  }
+
   appendHeaders(headers) {
     // TODO: Add Headers to this.HEADERS and update this.HTTP_OPTIONS
   }

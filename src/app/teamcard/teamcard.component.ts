@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { ApiService } from '../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,6 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TeamcardComponent implements OnInit {
   @Input() team: object;
+  @Output() deleteTeamCard = new EventEmitter<any>();
+
   teamText = '';
   teamView = {};
   isSelected = false;
@@ -23,6 +25,9 @@ export class TeamcardComponent implements OnInit {
   }
   selectToggle() {
     this.isSelected = !this.isSelected;
+  }
+  deleteTeam() {
+  	this.deleteTeamCard.emit(this.team['id']);
   }
 
   updateView() {

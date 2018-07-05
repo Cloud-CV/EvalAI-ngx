@@ -85,6 +85,25 @@ export class TeamlistComponent implements OnInit {
       }
     );
   }
+
+  deleteTeamWrapper() {
+  	const SELF = this;
+  	let deleteTeam = (e) => {
+      SELF.apiService.deleteUrl('participants/remove_self_from_participant_team/' + e).subscribe(
+        data => {
+          // Success Message in data.message
+          SELF.globalService.showToast('success', 'You were removed from the team!', 5);
+          SELF.fetchMyTeams(SELF.fetchTeamsPath);
+        },
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => console.log('DELETE-TEAM-FINISHED')
+      );
+      return false;
+  	};
+  	return deleteTeam;
+  }
   
   createTeam(formname) {
   	this.globalService.formValidate(this.components, this.createTeamSubmit, this);

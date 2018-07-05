@@ -33,6 +33,7 @@
     .team-details {
       display:inline-block;
       margin: 0px 10px 0px 10px;
+      max-width:300px;
     }
     .team-icons {
       display:inline-block;
@@ -60,7 +61,7 @@
       margin-bottom:10px;
       font-weight: $fw-bold;
     }
-    background:$gray-light;
+    background:$gray-lighter;
   }
   &.selected {
     .team-members {
@@ -77,6 +78,10 @@
 @include screen-small {
 	.team-card-container {
 		.team-content {
+			width:95%;
+			.team-details {
+				max-width:150px;
+			}
 			.team-icons {
 				text-align:center;
       			display:block;
@@ -84,7 +89,7 @@
 			}
 		}
 		.team-members {
-			width:98%;
+			width:95%;
 		}
 	}
 }

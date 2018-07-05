@@ -8,7 +8,7 @@
     </app-challengecard>
   </ng-container>
   <ng-container *ngIf="type=='teams'">
-    <app-teamcard *ngFor="let item of data" [team]="item">
+    <app-teamcard *ngFor="let item of data" [team]="item" (deleteTeamCard)="deleteTeam($event)">
     </app-teamcard>
   </ng-container>
 </div>

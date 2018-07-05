@@ -8,10 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardlistComponent implements OnInit {
   @Input() type: string;
   @Input() data: object;
+  @Input() deleteTeam: any;
+  
   arrayJavascript: any;
   constructor() { }
 
   ngOnInit() {
     this.arrayJavascript = Array;
   }
+
 }
