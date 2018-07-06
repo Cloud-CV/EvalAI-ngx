@@ -1,10 +1,8 @@
 <div class="challenge-participate">
 <app-forcelogin *ngIf="!isLoggedIn">
-	
 </app-forcelogin>
 
 <div *ngIf="isLoggedIn">
-	Team stuff here
+	<app-teamlist></app-teamlist>
 </div>
-	
 </div>

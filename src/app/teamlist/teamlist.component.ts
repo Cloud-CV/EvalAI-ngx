@@ -4,7 +4,7 @@ import { GlobalService } from '../global.service';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { ChallengeService } from '../services/challenge.service';
 @Component({
   selector: 'app-teamlist',
   templateUrl: './teamlist.component.html',
@@ -17,17 +17,19 @@ export class TeamlistComponent implements OnInit {
   filteredTeams = [];
   private filteredTeamSource = new BehaviorSubject(this.filteredTeams);
   filteredTeamsObservable = this.filteredTeamSource.asObservable();
-
+  
   seeMore = 1;
   windowSize = 2;
   teamSelectTitle = "";
   teamCreateTitle = "";
   teamCreateButton = "";
+  isHost = false;
+  isOnChallengePage = false;
   fetchTeamsPath: any;
   createTeamsPath: any;
   deleteTeamsPath: any;
-
   selectedTeam: any = null;
+  challenge: any;
   teamForm = 'formteam';
   @ViewChildren('formteam')
   components: QueryList<TeamlistComponent>;
@@ -35,10 +37,12 @@ export class TeamlistComponent implements OnInit {
               private authService: AuthService,
               private globalService: GlobalService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private challengeService: ChallengeService) { }
 
   ngOnInit() {
     if (this.router.url === '/teams/hosts') {
+      this.isHost = true;
       this.fetchTeamsPath = 'hosts/challenge_host_team';
       this.createTeamsPath = 'hosts/create_challenge_host_team';
       this.deleteTeamsPath = 'hosts/remove_self_from_challenge_host';
@@ -47,6 +51,10 @@ export class TeamlistComponent implements OnInit {
       this.teamSelectTitle = "Select a Challenge Host Team";
       this.teamCreateButton = "Create Host Team";
     } else {
+      if (this.router.url !== '/teams/participants') {
+        this.isOnChallengePage = true;
+        this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
+      }
       this.fetchTeamsPath = 'participants/participant_team';
       this.createTeamsPath = this.fetchTeamsPath;
       this.deleteTeamsPath = 'participants/remove_self_from_participant_team/';
@@ -114,7 +122,7 @@ export class TeamlistComponent implements OnInit {
       data => {
         if (data['results']) {
           SELF.allTeams = data['results'];
-          if (path.endsWith('host_team')) {
+          if (SELF.isHost || SELF.isOnChallengePage) {
             SELF.allTeams = SELF.appendIsSelected(SELF.allTeams);
           }
           SELF.updateTeamsView(true);
@@ -185,5 +193,12 @@ export class TeamlistComponent implements OnInit {
     );
   }
 
+  createChallenge() {
+
+  }
+
+  participateInChallenge() {
+    this.challengeService.participateInChallenge(this.challenge['id'], this.selectedTeam['id']);
+  }
 
 }

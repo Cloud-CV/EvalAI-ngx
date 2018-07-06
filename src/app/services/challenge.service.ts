@@ -106,4 +106,20 @@ export class ChallengeService {
         console.log('Phases fetched');
     });
   }
+
+  participateInChallenge(id, team) {
+    const API_PATH = 'challenges/challenge/' + id + '/participant_team/' + team;
+    const SELF = this;
+    const BODY = JSON.stringify({});
+    this.apiService.postUrl(API_PATH, BODY).subscribe(
+      data => {
+        SELF.fetchParticipantTeams(id);
+      },
+      err => {
+        SELF.globalService.handleApiError(err);
+      },
+      () => {
+        console.log('Challenge participated');
+    });
+  }
 }
