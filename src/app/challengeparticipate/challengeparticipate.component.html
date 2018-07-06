@@ -1,5 +1,5 @@
 <div class="challenge-participate">
-<app-forcelogin *ngIf="!isLoggedIn">
+<app-forcelogin *ngIf="!isLoggedIn" [path]="routerPublic.url">
 </app-forcelogin>
 
 <div *ngIf="isLoggedIn">

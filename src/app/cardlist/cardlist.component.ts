@@ -17,9 +17,11 @@ export class CardlistComponent implements OnInit {
 
   ngOnInit() {
     this.arrayJavascript = Array;
-    this.dataObservable.subscribe((data) => {
-      this.dataList = data;
-    });
+    if (this.dataObservable) {
+      this.dataObservable.subscribe((data) => {
+        this.dataList = data;
+      });
+    }
   }
 
 }

@@ -57,7 +57,7 @@ export class TeamlistComponent implements OnInit {
       }
       this.fetchTeamsPath = 'participants/participant_team';
       this.createTeamsPath = this.fetchTeamsPath;
-      this.deleteTeamsPath = 'participants/remove_self_from_participant_team/';
+      this.deleteTeamsPath = 'participants/remove_self_from_participant_team';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = "Create a New Participant Team";
       this.teamSelectTitle = "My Existing Participant Teams";
