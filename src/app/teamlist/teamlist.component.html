@@ -5,10 +5,13 @@
         {{teamSelectTitle}}
       </div>
       <div class="card-content">
-        <app-cardlist [type]="'teams'" [data]="filteredTeams" [deleteTeam]="deleteTeamWrapper()"></app-cardlist>
+        <app-cardlist [type]="'teams'" [data]="filteredTeams" [deleteTeam]="deleteTeamWrapper()" [selectTeam]="selectTeamWrapper()" [dataObservable]="filteredTeamsObservable"></app-cardlist>
         <div class="see-more" *ngIf="filteredTeams.length < allTeams.length">
           <a class="btn btn-filter" (click)="seeMoreClicked()">See More</a>
         </div>
+      </div>
+      <div class="create-challenge" *ngIf="selectedTeam && routerPublic.url=='/teams/hosts'">
+          <a class="btn btn-fire" (click)="createChallenge()">Create Challenge</a>
       </div>
     </div>
     <div class="card team-create">

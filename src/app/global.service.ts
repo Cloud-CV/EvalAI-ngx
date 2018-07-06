@@ -7,9 +7,21 @@ export class GlobalService {
   toastErrorCodes = [400, 500];
   authStorageKey = 'authtoken';
   redirectStorageKey = 'redirect';
+
   isLoading = false;
   private isLoadingSource = new BehaviorSubject(false);
   currentisLoading = this.isLoadingSource.asObservable();
+  isConfirming = false;
+  confirmDefault = {
+    isConfirming: false,
+    confirm: 'Yes',
+    deny: 'Cancel',
+    title: 'Are you sure?',
+    confirmCallback: null,
+    denyCallback: null
+  };
+  private confirmSource = new BehaviorSubject(this.confirmDefault);
+  currentConfirmParams = this.confirmSource.asObservable();
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();
   @Output() toast: EventEmitter<Object> = new EventEmitter();
@@ -57,10 +69,20 @@ export class GlobalService {
       this.isLoadingSource.next(loading);
     }
   }
-  getIsLoading() {
-    return this.isLoading; 
+  showConfirm(params) {
+    if (!this.isConfirming) {
+      this.isConfirming = true;
+      const TEMP = { isConfirming: true};
+      this.confirmSource.next(Object.assign({}, params, TEMP));
+    }
   }
-
+  hideConfirm() {
+    if (this.isConfirming) {
+      this.isConfirming = false;
+      const TEMP = { isConfirming: false};
+      this.confirmSource.next(Object.assign({}, this.confirmDefault, TEMP));
+    }
+  }
   /**
    * This triggers the logout function in auth service (to avoid a cyclic dependency).
    */

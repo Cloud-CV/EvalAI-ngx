@@ -44,7 +44,6 @@ import { PhasecardComponent } from './phasecard/phasecard.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { LoadingComponent } from './loading/loading.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

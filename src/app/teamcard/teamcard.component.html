@@ -1,4 +1,4 @@
-<div class="team-card-container" [class.selected]='isSelected'>
+<div class="team-card-container" [class.selected]='isSelected' [class.noexpand] = 'isHost' [class.expand] = '!isHost'>
   <div class="team-content" (click)='selectToggle()'>
     <i class="fa fa-users" aria-hidden="true"></i>
     <div class="team-details">
@@ -21,8 +21,8 @@
     </div>
     <div class='team-icons'>
       <a><i class="fas fa-user-plus" aria-hidden="true"></i></a>
-      <a><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-      <a (click)="deleteTeam()"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+      <a [class.host]="isHost"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+      <a (click)="deleteTeam($event)"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
     </div>
    </div>
     <div class='team-members'>

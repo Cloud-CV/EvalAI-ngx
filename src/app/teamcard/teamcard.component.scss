@@ -7,89 +7,102 @@
   font-weight: $fw-light;
   overflow: auto;
   position: relative;
-  text-align:center;
-  padding-bottom:20px;
+  text-align: center;
+  padding-bottom: 20px;
   .team-content {
-  	cursor: pointer;
-  	@include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
-  	width:90%;
-  	display:inline-block;
+    cursor: pointer;
+    @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
+    width: 90%;
+    display: inline-block;
     position: relative;
     background: white;
     padding: 15px;
-    border-radius:5px;
-    margin-top:10px;
-    margin-bottom:10px;
-    z-index:5;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    z-index: 5;
     overflow: auto;
-    text-align:left;
+    text-align: left;
     i {
-    	font-size: $fs-24;
+      font-size: $fs-24;
     }
     .title {
-      margin-bottom:10px;
+      margin-bottom: 10px;
       font-weight: $fw-bold;
     }
     .team-details {
-      display:inline-block;
+      display: inline-block;
       margin: 0px 10px 0px 10px;
-      max-width:300px;
+      max-width: 300px;
     }
     .team-icons {
-      display:inline-block;
+      display: inline-block;
       position: relative;
       float: right;
-      margin-top:10px;
+      margin-top: 10px;
+      a {
+      	&.host {
+      		display:none;
+      	}
+      }
       i {
-      	font-size: $fs-16;
+        font-size: $fs-16;
         margin: 0px 10px 0px 10px;
       }
     }
   }
   .team-members {
-  	text-align:left;
-  	margin:0 auto;
-  	margin-top:-25px;
-  	margin-bottom:10px;
-  	width:90%;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: -25px;
+    margin-bottom: 10px;
+    width: 90%;
     position: relative;
-    overflow:hidden;
-    border-radius:0px 0px 5px 5px;
+    overflow: hidden;
+    border-radius: 0px 0px 5px 5px;
     max-height: 0;
     transition: all 0.5s ease;
     .title {
-      margin-bottom:10px;
+      margin-bottom: 10px;
       font-weight: $fw-bold;
     }
     background:$gray-lighter;
   }
   &.selected {
-    .team-members {
-      @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
-      max-height: 300px;
-      transition: all 0.5s ease;
-      padding:15px;
-      padding-top:20px;
-      padding-left:20px;
+    &.expand {
+      .team-members {
+        @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
+        max-height: 300px;
+        transition: all 0.5s ease;
+        padding: 15px;
+        padding-top: 20px;
+        padding-left: 20px;
+      }
+    }
+    &.noexpand {
+      .team-content {
+        @include box-shadow(0px, 5px, 15px, 5px, $overlay-light);
+        background: $gray-lighter;
+      }
     }
   }
 }
 
 @include screen-small {
-	.team-card-container {
-		.team-content {
-			width:95%;
-			.team-details {
-				max-width:150px;
-			}
-			.team-icons {
-				text-align:center;
-      			display:block;
-      			float:unset;
-			}
-		}
-		.team-members {
-			width:95%;
-		}
-	}
+  .team-card-container {
+    .team-content {
+      width: 95%;
+      .team-details {
+        max-width: 150px;
+      }
+      .team-icons {
+        text-align: center;
+        display: block;
+        float: unset;
+      }
+    }
+    .team-members {
+      width: 95%;
+    }
+  }
 }

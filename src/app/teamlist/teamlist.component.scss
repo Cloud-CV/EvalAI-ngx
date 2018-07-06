@@ -25,6 +25,7 @@
     }
     .card-content {
       padding:30px;
+      position:relative;
       .see-more {
         text-align:center;
         margin-left:0;
@@ -35,11 +36,22 @@
         }
       }
     }
+    .create-challenge {
+        text-align:center;
+        margin-left:0;
+        border-top:1px solid $gray-light;
+        margin-bottom:5px;
+        .btn {
+          &:hover {
+            color:white;
+          }
+        }
+    }
     &.team-select {
       width:50%;
       float:left;
       .card-content {
-        max-height:300px;
+        max-height:250px;
         overflow-y:scroll;
       }
     }

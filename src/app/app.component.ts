@@ -19,9 +19,11 @@ import 'rxjs/add/operator/mergeMap';
 export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
   isLoading = false;
+  confirmParams = { isConfirming: false};
   globalServiceSubscription: any;
   globalLogoutTrigger: any;
   globalLoadingSubscription: any;
+  globalConfirmSubscription: any;
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
@@ -57,6 +59,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.globalLoadingSubscription = this.globalService.currentisLoading.subscribe(isLoading => {
       setTimeout(() => {
         this.isLoading = isLoading;
+      }, 0);
+    });
+    this.globalConfirmSubscription = this.globalService.currentConfirmParams.subscribe(params => {
+      setTimeout(() => {
+        this.confirmParams = params;
       }, 0);
     });
 

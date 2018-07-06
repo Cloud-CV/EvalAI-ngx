@@ -3,6 +3,7 @@ import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-teamlist',
@@ -14,6 +15,9 @@ export class TeamlistComponent implements OnInit {
   routerPublic: any;
   allTeams = [];
   filteredTeams = [];
+  private filteredTeamSource = new BehaviorSubject(this.filteredTeams);
+  filteredTeamsObservable = this.filteredTeamSource.asObservable();
+
   seeMore = 1;
   windowSize = 2;
   teamSelectTitle = "";
@@ -21,6 +25,9 @@ export class TeamlistComponent implements OnInit {
   teamCreateButton = "";
   fetchTeamsPath: any;
   createTeamsPath: any;
+  deleteTeamsPath: any;
+
+  selectedTeam: any = null;
   teamForm = 'formteam';
   @ViewChildren('formteam')
   components: QueryList<TeamlistComponent>;
@@ -33,7 +40,8 @@ export class TeamlistComponent implements OnInit {
   ngOnInit() {
     if (this.router.url === '/teams/hosts') {
       this.fetchTeamsPath = 'hosts/challenge_host_team';
-      this.createTeamsPath = '';
+      this.createTeamsPath = 'hosts/create_challenge_host_team';
+      this.deleteTeamsPath = 'hosts/remove_self_from_challenge_host';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = "Create a New Team";
       this.teamSelectTitle = "Select a Challenge Host Team";
@@ -41,6 +49,7 @@ export class TeamlistComponent implements OnInit {
     } else {
       this.fetchTeamsPath = 'participants/participant_team';
       this.createTeamsPath = this.fetchTeamsPath;
+      this.deleteTeamsPath = 'participants/remove_self_from_participant_team/';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = "Create a New Participant Team";
       this.teamSelectTitle = "My Existing Participant Teams";
@@ -60,6 +69,7 @@ export class TeamlistComponent implements OnInit {
       this.seeMore = 1;
     }
     this.filteredTeams = this.allTeams.slice(0, (this.seeMore * this.windowSize));
+    this.filteredTeamSource.next(this.filteredTeams);
   }
 
   fetchMyTeams(path) {
@@ -68,12 +78,45 @@ export class TeamlistComponent implements OnInit {
   	}
   }
 
+  selectTeamWrapper() {
+    const SELF = this;
+  	let selectTeam = (team) => {
+      SELF.selectedTeam = team;
+      SELF.unselectOtherTeams(SELF);
+  	};
+  	return selectTeam;
+  }
+
+  unselectOtherTeams(self) {
+    let temp = self.allTeams.slice();
+    for (let i = 0; i < temp.length; i++) {
+      temp[i]['isSelected'] = false;
+      if (self.selectedTeam['id'] === temp[i]['id']) {
+      	temp[i]['isSelected'] = true;
+      }
+    }
+    self.allTems = temp;
+  	self.updateTeamsView(false);
+  }
+
+  appendIsSelected(teams) {
+  	for (let i = 0; i < teams.length; i++) {
+  		teams[i]['isSelected'] = false;
+  		teams[i]['isHost'] = true;
+  	}
+  	return teams;
+  }
+
+
   fetchTeams(path) {
     const SELF = this;
     this.apiService.getUrl(path).subscribe(
       data => {
         if (data['results']) {
           SELF.allTeams = data['results'];
+          if (path.endsWith('host_team')) {
+            SELF.allTeams = SELF.appendIsSelected(SELF.allTeams);
+          }
           SELF.updateTeamsView(true);
         }
       },
@@ -88,18 +131,29 @@ export class TeamlistComponent implements OnInit {
 
   deleteTeamWrapper() {
   	const SELF = this;
-  	let deleteTeam = (e) => {
-      SELF.apiService.deleteUrl('participants/remove_self_from_participant_team/' + e).subscribe(
+    let deleteTeam = (e) => {
+      let apiCall = ()=> {
+        SELF.apiService.deleteUrl(SELF.deleteTeamsPath + '/' + e).subscribe(
         data => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'You were removed from the team!', 5);
           SELF.fetchMyTeams(SELF.fetchTeamsPath);
+          SELF.selectedTeam = null;
         },
         err => {
           SELF.globalService.handleApiError(err);
         },
         () => console.log('DELETE-TEAM-FINISHED')
-      );
+        );
+      };
+      const PARAMS = {
+        title: 'Would you like to remove yourself ?',
+        content: 'Note: This action will remove you from the team.',
+        confirm: 'Yes',
+        deny: 'Cancel',
+        confirmCallback: apiCall
+      };
+      SELF.globalService.showConfirm(PARAMS);
       return false;
   	};
   	return deleteTeam;
