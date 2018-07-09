@@ -67,7 +67,10 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   }
   navigateTo(path) {
     this.isMenuExpanded = false;
-    this.router.navigate(path);
+    if (path === '/auth/login') {
+      this.globalService.storeData('redirect', path);
+    }
+    this.router.navigate([path]);
   }
   ngOnDestroy() {
     if (this.globalServiceSubscription) {

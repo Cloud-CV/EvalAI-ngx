@@ -43,6 +43,7 @@ import { ChallengesubmissionsComponent } from './challengesubmissions/challenges
 import { PhasecardComponent } from './phasecard/phasecard.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { LoadingComponent } from './loading/loading.component';
+import { SelectphaseComponent } from './selectphase/selectphase.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { LoadingComponent } from './loading/loading.component';
     ChallengesubmissionsComponent,
     PhasecardComponent,
     ConfirmComponent,
-    LoadingComponent
+    LoadingComponent,
+    SelectphaseComponent
   ],
   imports: [
     BrowserModule,

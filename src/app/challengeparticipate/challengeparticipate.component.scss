@@ -1,0 +1,12 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.challenge-participate-container {
+	padding:20px;
+	padding-left:40px;
+	.inactive {
+      font-size:$fs-18;
+      color:$gray-darker;
+      font-weight:$fw-regular;
+	}
+}

@@ -11,15 +11,30 @@ export class ChallengeparticipateComponent implements OnInit {
   isLoggedIn = false;
   challenge: any;
   routerPublic: any;
+  isParticipated: any;
+  isActive: any;
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService) { }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
+    } else {
+      if (this.challenge['id']) {
+        this.challengeService.fetchParticipantTeams(this.challenge['id']);
+      }
     }
     this.routerPublic = this.router;
-    this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
+    this.challengeService.currentChallenge.subscribe(challenge => {
+      this.challenge = challenge;
+      this.isActive = this.challenge['is_active'];
+    });
+    this.challengeService.currentParticipationStatus.subscribe(status => {
+      this.isParticipated = status;
+      if (status) {
+        this.router.navigate(['../submit'], {relativeTo: this.route});
+      }
+    });
   }
 
 }

@@ -10,26 +10,41 @@ export class ApiService {
   HTTP_OPTIONS: any;
   constructor(private http: HttpClient, private globalService: GlobalService) { }
 
-  prepareHttpOptions() {
+  prepareHttpOptions(fileHeaders = false) {
     const TOKEN = this.globalService.getAuthToken();
     if (TOKEN) {
       this.HEADERS['Authorization'] = 'Token ' + TOKEN;
     } else {
       delete this.HEADERS['Authorization'];
     }
+    const TEMP = Object.assign({}, this.HEADERS);
+    if (fileHeaders) {
+      delete TEMP['Content-Type'];
+    } 
     this.HTTP_OPTIONS = {
-      headers: new HttpHeaders(this.HEADERS)
+      headers: new HttpHeaders(TEMP)
     };
   }
 
-  getUrl(path: string) {
+  getUrl(path: string, isJson = true) {
     this.prepareHttpOptions();
-    return this.loadingWrapper(this.http.get(this.API + path, this.HTTP_OPTIONS));
+    if (isJson) {
+      return this.loadingWrapper(this.http.get(this.API + path, this.HTTP_OPTIONS));
+    } else {
+      const TEMP = Object.assign({}, this.HTTP_OPTIONS, { observe: 'response' })
+      return this.loadingWrapper(this.http.get(this.API + path, TEMP));
+    }
   }
 
-  postUrl(path: string, body: string) {
+
+  postUrl(path: string, body: any) {
     this.prepareHttpOptions();
     return this.loadingWrapper(this.http.post(this.API + path, body, this.HTTP_OPTIONS));
+  }
+
+  postFileUrl(path: string, formData: any) {
+    this.prepareHttpOptions(true);
+    return this.loadingWrapper(this.http.post(this.API + path, formData, this.HTTP_OPTIONS));
   }
 
   deleteUrl(path: string) {

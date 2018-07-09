@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-input',
@@ -19,10 +20,11 @@ export class InputComponent implements OnInit {
   isEmpty = true;
   isIconPresent = false;
   isValidateCustom = false;
+  fileSelected = null;
   value = '';
   message = 'Required field';
   requiredMessage = 'Required field';
-  constructor() {  }
+  constructor(@Inject(DOCUMENT) private document: Document) {  }
 
   ngOnInit() {
     if (!this.type || this.type === 'email') {
@@ -92,5 +94,18 @@ export class InputComponent implements OnInit {
       return true;
     }
     return false;
+  }
+  handleFileInput(f) {
+    if (f && f.length >= 1) {
+      this.fileSelected = f.item(0);
+      this.placeholder = this.fileSelected['name'];
+      // this.placeholder = f[0]['name'];
+      // this.fileSelected = f[0];
+      this.isValid = true;
+      this.isValid ? this.message = '' : this.message = this.requiredMessage;
+    }
+  }
+  transferClick(id) {
+    this.document.getElementById(id).click();
   }
 }

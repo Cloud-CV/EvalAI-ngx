@@ -41,6 +41,8 @@ export class TeamlistComponent implements OnInit {
               private challengeService: ChallengeService) { }
 
   ngOnInit() {
+    this.authServicePublic = this.authService;
+    this.routerPublic = this.router;
     if (this.router.url === '/teams/hosts') {
       this.isHost = true;
       this.fetchTeamsPath = 'hosts/challenge_host_team';
@@ -63,8 +65,6 @@ export class TeamlistComponent implements OnInit {
       this.teamSelectTitle = "My Existing Participant Teams";
       this.teamCreateButton = "Create Participant Team";
     }
-    this.authServicePublic = this.authService;
-    this.routerPublic = this.router;
   }
 
   seeMoreClicked() {

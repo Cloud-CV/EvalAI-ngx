@@ -9,10 +9,10 @@
   padding-bottom: 20px;
   margin-bottom: 10px;
   .input-icon {
-    height:$fs-18;
-    position:absolute;
-    right:0;
-    top:10px;
+    height: $fs-18;
+    position: absolute;
+    right: 0;
+    top: 10px;
   }
   label {
     color: $gray-medium;
@@ -46,8 +46,8 @@
     color: white;
     border-bottom: 1px solid $gray-medium;
     background: transparent;
-    padding-bottom:10px;
-    font-weight:$fw-light;
+    padding-bottom: 10px;
+    font-weight: $fw-light;
     &:focus {
       outline: none;
     }
@@ -61,8 +61,7 @@
     font-size: $fs-14;
     color: white;
   }
-  input:focus~label.theme-dark
-  {
+  input:focus~label.theme-dark {
     color: $gray-dark !important;
   }
   .input-message {
@@ -83,7 +82,8 @@
     display: block;
     width: 300px;
   }
-  &:before, &:after {
+  &:before,
+  &:after {
     content: '';
     height: 2px;
     width: 0;
@@ -100,7 +100,30 @@
   &:after {
     right: 50%;
   }
+  .file-upload {
+    position:relative;
+    overflow:auto;
+    .transparent {
+      position:relative;
+      opacity: 0;
+    }
+    .btn {
+      position:relative;
+      cursor:pointer;
+      margin-left:0;
+      &.theme-dark {
+        color: $gray-dark;
+        &.selected {
+          color:white;
+        }
+      }
+    }
+    .input-message {
+      position:relative;
+    }
+  }
 }
+
 
 /* active state */
 

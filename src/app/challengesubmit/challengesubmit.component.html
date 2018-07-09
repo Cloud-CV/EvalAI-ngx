@@ -1,3 +1,43 @@
-<p>
-  challengesubmit works!
-</p>
+<div class="challenge-submit-container">
+  <div class="inactive" *ngIf="!isActive">
+    Sorry, The Challenge is not active!
+  </div>
+  <div *ngIf="isActive">
+    <app-forcelogin *ngIf="!isLoggedIn" [path]="routerPublic.url">
+    </app-forcelogin>
+    <div *ngIf="isLoggedIn">
+      <div class="card card-light submission-guidelines">
+        <div class="card-title">
+          Sumission Guidelines
+        </div>
+        <div class="card-content" [innerHTML]="submissionGuidelines">
+        </div>
+      </div>
+      <div class="card card-light challenge-submit">
+        <div class="card-title">Please fill the following fields to submit</div>
+        <hr>
+        <div class="card-content">
+            <app-selectphase [phases]="phases" [phaseSelected]="phaseSelected()"></app-selectphase>
+        	<div class="phase-submissions">
+        		<div><span class="heading">Today's Remaining Submissions: </span>{{selectedPhaseSubmissions['remaining_submissions_today_count']}}</div>
+                <div><span class="heading">Total Remaining Submissions: </span>{{selectedPhaseSubmissions['remaining_submissions']}}</div>
+        	</div>
+        </div>
+        <div class="card-content">
+          <div class="form-challenge-submit">
+          <app-input [isRequired]="true" [label]="'input_file'" [placeholder]="'Upload File *'" [type]="'file'" [theme]="'dark'"  #formsubmit></app-input>
+          <app-input [isRequired]="false" [label]="'method_name'" [type]="'text'" [theme]="'dark'" [placeholder]="'Method Name (Optional)'" #formsubmit></app-input>
+          <app-input [isRequired]="false" [label]="'method_description'" [type]="'text'" [theme]="'dark'" [placeholder]="'Method Description (Optional)'" #formsubmit></app-input>
+          <app-input [isRequired]="false" [label]="'project_url'" [type]="'text'" [theme]="'dark'" [placeholder]="'Project URL (Optional)'" #formsubmit></app-input>
+          <app-input [isRequired]="false" [label]="'publication_url'" [type]="'text'" [theme]="'dark'" [placeholder]="'Publication URL (Optional)'" #formsubmit></app-input>
+          <div class="submit-btn-div">
+            <span class="btn btn-fire" (click)="formValidate('formsubmit')">Submit</span>
+          </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

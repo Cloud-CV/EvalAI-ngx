@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class ChallengeService {
   private defaultChallenge: any = { 'creator': {}};
   private defaultStars: any = { 'count': 0, 'is_starred': false};
-
+  
   private challengeSource = new BehaviorSubject(this.defaultChallenge);
   currentChallenge = this.challengeSource.asObservable();
   private starSource = new BehaviorSubject(this.defaultStars);
@@ -16,6 +16,8 @@ export class ChallengeService {
   currentParticipantTeams = this.teamsSource.asObservable();
   private phasesSource = new BehaviorSubject([]);
   currentPhases = this.phasesSource.asObservable();
+  private challengeParticipationSource = new BehaviorSubject(false);
+  currentParticipationStatus = this.challengeParticipationSource.asObservable();
 
   constructor(private apiService: ApiService, private globalService: GlobalService) { }
 
@@ -31,6 +33,9 @@ export class ChallengeService {
   changeCurrentPhases(phases: any) {
     this.phasesSource.next(phases);
   }
+  changeParticipationStatus(participationStatus: any) {
+    this.challengeParticipationSource.next(participationStatus);
+  }
 
   fetchChallenge(id) {
     const API_PATH = 'challenges/challenge/' + id + '/';
@@ -41,6 +46,7 @@ export class ChallengeService {
           SELF.changeCurrentChallenge(data);
           SELF.fetchStars(id);
           SELF.fetchPhases(id);
+          SELF.fetchParticipantTeams(id);
         }
       },
       err => {
@@ -78,6 +84,12 @@ export class ChallengeService {
         if (data['challenge_participant_team_list']) {
           teams = data['challenge_participant_team_list'];
           this.changeCurrentParticipantTeams(teams);
+          for (let i = 0; i < teams['length']; i++) {
+            if (teams[i]['challenge'] !== null && teams[i]['challenge']['id'] === parseInt(id)) {
+              SELF.changeParticipationStatus(true);
+              break;
+            }
+          }
         }
       },
       err => {
@@ -120,6 +132,22 @@ export class ChallengeService {
       },
       () => {
         console.log('Challenge participated');
+    });
+  }
+
+  challengeSubmission(challenge, phase, formData) {
+    const API_PATH = 'jobs/challenge/' + challenge + '/challenge_phase/' + phase + '/submission/';
+    const SELF = this;
+    this.apiService.postFileUrl(API_PATH, formData).subscribe(
+      data => {
+        console.log(data);
+        SELF.globalService.showToast('success', 'Submission successful!');
+      },
+      err => {
+        SELF.globalService.handleApiError(err);
+      },
+      () => {
+        console.log('Submission Uploaded');
     });
   }
 }

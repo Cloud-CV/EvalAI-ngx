@@ -1,0 +1,22 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.challenge-submissions-container {
+	padding:20px;
+	overflow:auto;
+	color:$gray-darker;
+	font-size:$fs-16;
+	font-weight:$fw-light;
+	position:relative;
+    .download-btn-div {
+    	position:relative;
+    	display:inline-block;
+    	float:right;
+        vertical-align:bottom;
+        top:100px;
+	.btn {
+      margin-left: 0;
+	}
+    }
+
+}

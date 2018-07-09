@@ -262,6 +262,47 @@ ul {
   }
 }
 
+/*Card*/
+.card {
+    margin:20px;
+    border-radius:10px;
+    font-weight:$fw-light;
+    font-size:$fs-16;
+    overflow:auto;
+    @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
+    hr {
+      border-top:1px solid $overlay-light;
+      border-bottom:0px;
+    }
+    &.card-light {
+      color:$gray-darker;
+      background:white;
+      &.selected {
+        @include box-shadow(0px, 5px, 10px, 5px, $overlay-light);
+        background:$gray-lighter;
+      }
+    }
+    .card-title {
+      padding:30px;
+      font-size:$fs-24;
+      font-weight:$fw-regular;
+      color:$gray-darker;
+      overflow:auto;
+    }
+    .card-content {
+      overflow:auto;
+      padding:30px;
+      h5 {
+        font-size:$fs-18;
+      }
+      
+      a {
+        color:$red-light;
+      }
+    }
+}
+
+
 /*Navigation*/
 .horizontal-nav {
   white-space: nowrap;

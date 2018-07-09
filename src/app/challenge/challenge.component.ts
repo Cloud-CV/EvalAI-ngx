@@ -19,13 +19,13 @@ export class ChallengeComponent implements OnInit {
   isParticipated = false;
   challenge: any;
   stars: any;
-  participantTeams: any;
 
   constructor(private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
               private challengeService: ChallengeService) { }
 
   ngOnInit() {
+    const SELF = this;
     this.localRouter = this.router;
     this.route.params.subscribe(params => {
       if (params['id']) {
@@ -36,14 +36,8 @@ export class ChallengeComponent implements OnInit {
     });
     this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
     this.challengeService.currentStars.subscribe(stars => this.stars = stars);
-    this.challengeService.currentParticipantTeams.subscribe(participantTeams => {
-      this.participantTeams = participantTeams;
-      for (let i = 0; i < participantTeams['length']; i++) {
-        if (participantTeams[i]['challenge'] !== null && participantTeams[i]['challenge']['id'] === this.id) {
-            this.isParticipated = true;
-            break;
-          }
-        }
+    this.challengeService.currentParticipationStatus.subscribe(status => {
+      this.isParticipated = status;
     });
   }
 

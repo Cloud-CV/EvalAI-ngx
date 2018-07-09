@@ -1,0 +1,9 @@
+<div class="select-phase">
+  <span class="select-title heading">Select a phase:</span>
+  <div *ngFor="let item of phases">
+    <div class="card card-light" (click)="selectPhase(item)" [class.selected]="item['is_selected']">
+      <div><span class="heading">Phase: </span><span>{{item['name']}}</span></div>
+      <div *ngIf="publicRouter.url.endsWith('submit')"><span class="heading">End Date: </span><span>{{getFormattedDate(item['end_date'])}}</span></div>
+    </div>
+  </div>
+</div>

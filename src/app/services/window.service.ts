@@ -21,4 +21,9 @@ export class WindowService {
     };
     location.appendChild(SCRIPT_TAG);
   }
+  downloadFile(data: any, params = { type: 'text/csv' }) {
+    const BLOB = new Blob([data], params);
+    var url= _window().URL.createObjectURL(BLOB);
+    _window().open(url);
+  }
 }
