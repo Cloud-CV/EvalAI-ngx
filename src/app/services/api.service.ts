@@ -27,11 +27,12 @@ export class ApiService {
   }
 
   getUrl(path: string, isJson = true) {
-    this.prepareHttpOptions();
     if (isJson) {
+      this.prepareHttpOptions();
       return this.loadingWrapper(this.http.get(this.API + path, this.HTTP_OPTIONS));
     } else {
-      const TEMP = Object.assign({}, this.HTTP_OPTIONS, { observe: 'response' })
+      this.prepareHttpOptions(true);
+      const TEMP = Object.assign({}, this.HTTP_OPTIONS, { observe: 'response', responseType: 'text' });
       return this.loadingWrapper(this.http.get(this.API + path, TEMP));
     }
   }

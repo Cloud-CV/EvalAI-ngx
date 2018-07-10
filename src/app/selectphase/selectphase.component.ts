@@ -31,9 +31,9 @@ export class SelectphaseComponent implements OnInit, OnChanges {
   	}
   }
   ngOnChanges(change) {
-  	if (this.phases.length > 0 && !this.selectedPhase) {
-  		this.selectPhase(this.phases[0]);
-  	}
+  	// if (this.phases.length > 0 && !this.selectedPhase) {
+  	// 	this.selectPhase(this.phases[0]);
+  	// }
   }
   selectPhase(phase) {
   	this.selectedPhase = phase;

@@ -75,8 +75,7 @@ export class ChallengesubmissionsComponent implements OnInit {
   	  const SELF = this;
   	  this.apiService.getUrl(API_PATH, false).subscribe(
         data => {
-          console.log(data);
-          SELF.windowService.downloadFile(data);
+          SELF.windowService.downloadFile(data, 'all_submissions.csv');
         },
         err => {
           SELF.globalService.handleApiError(err);
@@ -87,10 +86,18 @@ export class ChallengesubmissionsComponent implements OnInit {
   	  );
   	}
   }
+
+  changeSubmissionVisibility(id) {
+    // parameters.url = "jobs/challenge/" + vm.challengeId + "/challenge_phase/" + vm.phaseId + "/submission/" + submission_id;
+    //         parameters.method = 'PATCH';
+    //         parameters.data = {
+    //             "is_public": vm.submissionVisibility[submission_id]
+    //         };
+  }
   
 
   fetchSubmissionCounts(challenge, phase) {
-  	const API_PATH = 'jobs/' + challenge + '/phases/' + phase + '/remaining_submissions';
+  	const API_PATH = 'analytics/challenge/' + challenge + '/challenge_phase/' + phase + '/count';
   	const SELF = this;
   	this.apiService.getUrl(API_PATH).subscribe(
       data => {

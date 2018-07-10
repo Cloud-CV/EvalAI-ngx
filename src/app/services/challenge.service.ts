@@ -40,13 +40,13 @@ export class ChallengeService {
   fetchChallenge(id) {
     const API_PATH = 'challenges/challenge/' + id + '/';
     const SELF = this;
+    SELF.fetchStars(id);
+    SELF.fetchPhases(id);
+    SELF.fetchParticipantTeams(id);
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         if (data['id'] === parseInt(id, 10)) {
           SELF.changeCurrentChallenge(data);
-          SELF.fetchStars(id);
-          SELF.fetchPhases(id);
-          SELF.fetchParticipantTeams(id);
         }
       },
       err => {

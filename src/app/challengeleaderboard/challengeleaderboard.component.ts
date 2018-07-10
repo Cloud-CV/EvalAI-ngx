@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ChallengeleaderboardComponent implements OnInit {
 
   constructor() { }
-
+  phasesplit = [{phase:10, split:12}, {phase:'p', split: 'q'}];
   ngOnInit() {
   }
 

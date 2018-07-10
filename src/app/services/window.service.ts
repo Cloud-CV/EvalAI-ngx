@@ -21,9 +21,14 @@ export class WindowService {
     };
     location.appendChild(SCRIPT_TAG);
   }
-  downloadFile(data: any, params = { type: 'text/csv' }) {
-    const BLOB = new Blob([data], params);
-    var url= _window().URL.createObjectURL(BLOB);
-    _window().open(url);
+  downloadFile(data: any, filename = 'data.csv', params = { type: 'text/csv' }) {
+    const BLOB = new Blob([data.body], params);
+    const URL= window.URL.createObjectURL(BLOB);
+    const ATAG = document.createElement("a");
+    ATAG.href = URL;
+    ATAG.download = filename;
+    this.document.body.appendChild(ATAG);
+    ATAG.click();
+    this.document.body.removeChild(ATAG);
   }
 }

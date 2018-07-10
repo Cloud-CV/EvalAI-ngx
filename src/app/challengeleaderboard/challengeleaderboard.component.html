@@ -1,3 +1,4 @@
-<p>
-  challengeleaderboard works!
-</p>
+<select [(ngModel)]="selectedPhaseSplit" id="selectedPhaseSplit">
+   <option value="" disabled selected>Please select from following phases</option>
+   <option *ngFor="let item of phasesplit" [value]="item"><span>Phase: </span>{{item.phase}}, <span>Split: </span>{{item.split}}</option>
+ </select>
