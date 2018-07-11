@@ -29,38 +29,17 @@
     	width:100%;
     	position:relative;
     	display:block;
-    	padding:20px;
+    	padding:30px;
     	padding-top:40px;
     	overflow-x:scroll;
     	max-height:500px;
     .submission-table {
-    	font-size:$fs-16;
-    	fonr-weight:$fw-light;
-    	border:1px solid $overlay-light;
-    	border-spacing:0px;
-    	border-collapse: collapse;
-    	border-radius:10px;
     	tr {
-    		border-bottom:1px solid $overlay-light;
     		th {
     			background:$gray-lighter;
-    			font-weight:$fw-regular;
-    			// border-right:1px solid $overlay-light;
-    			span {
-    				min-width: 100px;
-    				text-align:center;
-    				display:block;
-    				padding:5px 10px 5px 10px;
-    			}
-    		}
-    		td {
-    			vertical-align:middle;
-    			text-align:center;
-    			min-width: 50px;
-    			// border-right:1px solid $overlay-light;
+    			
     		}
     	}
     }
 }
-
 }

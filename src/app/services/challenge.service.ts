@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { GlobalService } from '../global.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ChallengeService {
   private defaultChallenge: any = { 'creator': {}};
   private defaultStars: any = { 'count': 0, 'is_starred': false};
-  
+  private isLoggedIn = false;
   private challengeSource = new BehaviorSubject(this.defaultChallenge);
   currentChallenge = this.challengeSource.asObservable();
   private starSource = new BehaviorSubject(this.defaultStars);
@@ -16,10 +17,12 @@ export class ChallengeService {
   currentParticipantTeams = this.teamsSource.asObservable();
   private phasesSource = new BehaviorSubject([]);
   currentPhases = this.phasesSource.asObservable();
+  private phaseSplitSource = new BehaviorSubject([]);
+  currentPhaseSplit = this.phaseSplitSource.asObservable();
   private challengeParticipationSource = new BehaviorSubject(false);
   currentParticipationStatus = this.challengeParticipationSource.asObservable();
 
-  constructor(private apiService: ApiService, private globalService: GlobalService) { }
+  constructor(private apiService: ApiService, private globalService: GlobalService, private authService: AuthService) { }
 
   changeCurrentChallenge(challenge: object) {
     this.challengeSource.next(challenge);
@@ -36,13 +39,24 @@ export class ChallengeService {
   changeParticipationStatus(participationStatus: any) {
     this.challengeParticipationSource.next(participationStatus);
   }
+  changeCurrentPhaseSplit(phaseSplits: any) {
+    this.phaseSplitSource.next(phaseSplits);
+  }
 
   fetchChallenge(id) {
     const API_PATH = 'challenges/challenge/' + id + '/';
     const SELF = this;
-    SELF.fetchStars(id);
+    this.authService.change.subscribe((authState) => {
+      if (authState['isLoggedIn'] && !SELF.isLoggedIn) {
+        SELF.isLoggedIn = true;
+        SELF.fetchStars(id);
+        SELF.fetchParticipantTeams(id);
+      } else {
+        SELF.isLoggedIn = false;
+      }
+    });
     SELF.fetchPhases(id);
-    SELF.fetchParticipantTeams(id);
+    SELF.fetchPhaseSplits(id);
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         if (data['id'] === parseInt(id, 10)) {
@@ -71,7 +85,9 @@ export class ChallengeService {
       err => {
         SELF.globalService.handleApiError(err, false);
       },
-      () => {}
+      () => {
+        console.log('Stars', id, 'fetched!');
+      }
     );
   }
 
@@ -116,6 +132,25 @@ export class ChallengeService {
       },
       () => {
         console.log('Phases fetched');
+    });
+  }
+
+  fetchPhaseSplits(id) {
+    const API_PATH = 'challenges/' + id + '/challenge_phase_split';
+    const SELF = this;
+    this.apiService.getUrl(API_PATH).subscribe(
+      data => {
+        let phaseSplits = [];
+        if (data && data.length > 0) {
+          phaseSplits = data;
+          this.changeCurrentPhaseSplit(phaseSplits);
+        }
+      },
+      err => {
+        SELF.globalService.handleApiError(err);
+      },
+      () => {
+        console.log('Phase Splits fetched');
     });
   }
 

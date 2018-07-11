@@ -4,6 +4,7 @@
 .challenge-participate-container {
 	padding:20px;
 	padding-left:40px;
+	overflow:auto;
 	.inactive {
       font-size:$fs-18;
       color:$gray-darker;

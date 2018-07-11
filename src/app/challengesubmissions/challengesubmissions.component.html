@@ -10,7 +10,7 @@
       <span class="total-submissions"> Total submissions done: {{submissionCount}}</span>
     </div>
     <div class="submission-table-div" *ngIf="submissions.length > 0">
-    <table class="submission-table">
+    <table class="submission-table table-light">
       <thead>
         <tr>
           <th><span>Team Name</span></th>
@@ -31,31 +31,31 @@
       </thead>
       <tbody>
         <tr *ngFor="let key of submissions" class="result-val">
-          <td>{{key.participant_team_name}}</td>
-          <td *ngIf="key.method_name != ''">{{key.method_name}}</td>
-          <td *ngIf="key.method_name == ''"> None </td>
-          <td *ngIf="key.method_description != ''">{{key.method_description}}</td>
-          <td *ngIf="key.method_description == ''"> None </td>
-          <td *ngIf="key.project_url != ''">{{key.project_url}}</td>
-          <td *ngIf="key.project_url == ''"> None </td>
-          <td *ngIf="key.publication_url != ''">{{key.publication_url}}</td>
-          <td *ngIf="key.publication_url == ''"> None </td>
-          <td class="val-style capitalize">{{key.status}}</td>
-          <td class="align-center">{{key.execution_time}}</td>
-          <td><a href="{{key.input_file}}" target="_blank" class="blue-text"><i class="fa fa-external-link"></i> Link</a></td>
-          <td *ngIf="key.submission_result_file"><a href="{{key.submission_result_file}}" target="_blank" class="blue-text"><i class="fa fa-external-link"></i> Link</a></td>
-          <td *ngIf="!key.submission_result_file">None</td>
-          <td *ngIf="key.stdout_file"><a href="{{key.stdout_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link"></i> Link</a></td>
-          <td *ngIf="!key.stdout_file">None</td>
-          <td *ngIf="key.stderr_file"><a href="{{key.stderr_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link"></i> Link</a></td>
-          <td *ngIf="!key.stderr_file">None</td>
-          <td>{{key.submitted_at | date:'medium'}}</td>
-          <td *ngIf="challenge.currentPhaseLeaderboardPublic" class="center">
+          <td><span>{{key.participant_team_name}}</span></td>
+          <td *ngIf="key.method_name != ''"><span>{{key.method_name}}</span></td>
+          <td *ngIf="key.method_name == ''"><span>None</span></td>
+          <td *ngIf="key.method_description != ''"><span>{{key.method_description}}</span></td>
+          <td *ngIf="key.method_description == ''"><span>None</span></td>
+          <td *ngIf="key.project_url != ''"><span>{{key.project_url}}</span></td>
+          <td *ngIf="key.project_url == ''"><span>None</span></td>
+          <td *ngIf="key.publication_url != ''"><span>{{key.publication_url}}</span></td>
+          <td *ngIf="key.publication_url == ''"><span>None</span></td>
+          <td class="val-style capitalize"><span>{{key.status}}</span></td>
+          <td class="align-center"><span>{{key.execution_time}}</span></td>
+          <td><span><a href="{{key.input_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link-square-alt"></i> Link</a></span></td>
+          <td *ngIf="key.submission_result_file"><span><a href="{{key.submission_result_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link-square-alt"></i> Link</a></span></td>
+          <td *ngIf="!key.submission_result_file"><span>None</span></td>
+          <td *ngIf="key.stdout_file"><span><a href="{{key.stdout_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link-square-alt"></i> Link</a></span></td>
+          <td *ngIf="!key.stdout_file"><span>None</span></td>
+          <td *ngIf="key.stderr_file"><span><a href="{{key.stderr_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link-square-alt"></i> Link</a></span></td>
+          <td *ngIf="!key.stderr_file"><span>None</span></td>
+          <td><span>{{key.submitted_at | date:'medium'}}</span></td>
+          <td *ngIf="selectedPhase['leaderboard_public']" class="center"><span>
             <input [checked]="key.is_public" *ngIf="key.status == 'finished'" type="checkbox" id="isPublic{{ key.id }}" (change)="changeSubmissionVisibility(key.id)" />
             <label for="isPublic{{ key.id }}"></label>
-            <span *ngIf="key.status !== 'finished'" class="center"> N/A </span>
+            <span *ngIf="key.status !== 'finished'" class="center"> N/A </span></span>
           </td>
-          <td><a class="pointer"><i class="fas fa-pencil" aria-hidden="true"></i></a></td>
+          <td><span><a><i class="fas fa-pencil-alt"></i></a></span></td>
         </tr>
       </tbody>
     </table>

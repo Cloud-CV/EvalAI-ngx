@@ -3,6 +3,7 @@
 
 .challenge-evaluation-container {
 	padding:20px;
+	overflow:auto;
 }
 
 @include screen-small {

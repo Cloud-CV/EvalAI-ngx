@@ -1,0 +1,23 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.challenge-leaderboard-container {
+	padding:20px;
+	overflow:auto;
+	.phase-select-div {
+		overflow:auto;
+		position:relative;
+		display:block;
+	}
+	.leaderboard-empty {
+		padding:30px;
+		display:block;
+		position:relative;
+		text-align:center;
+	}
+	.leaderboard-table-div {
+		.leaderboard-table {
+
+		}
+	}
+}

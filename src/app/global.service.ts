@@ -147,11 +147,10 @@ export class GlobalService {
 
   checkTokenValidity(err, toast = true) {
     if (err.error !== null && typeof err.error === 'object' && err.error['detail']) {
-      if (err.error['detail'].indexOf('Invalid token') !== -1) {
+      if (err.error['detail'].indexOf('Invalid token') !== -1 || 
+          err.error['detail'].indexOf('Token has expired') !== -1) {
         this.triggerLogout();
         this.showToast('error', 'Token Invalid! Please Login again.', 5);
-      } else {
-        this.showToast('error', err.error['detail'] + ' <401>', 5);
       }
     } else if (toast) {
       this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
@@ -211,8 +210,18 @@ export class GlobalService {
   getDateDifferenceString(d1, d2) {
     const DIFF_DAYS = this.getDateDifference(d1, d2);
     if (DIFF_DAYS < 1) {
-      const HOURS = Math.floor(DIFF_DAYS * 24);
-      return HOURS + ' hours';
+      const DIFF_HOURS = Math.floor(DIFF_DAYS * 24);
+      if (DIFF_HOURS < 1) {
+        const DIFF_MINUTES = Math.floor(DIFF_HOURS * 60);
+        if (DIFF_MINUTES < 1) {
+          const DIFF_SECONDS = Math.floor(DIFF_MINUTES * 60);
+          return DIFF_SECONDS + ' seconds';
+        } else {
+          return DIFF_MINUTES + ' minutes';
+        }
+      } else {
+        return DIFF_HOURS + ' hours';
+      }
     } else {
       return Math.floor(DIFF_DAYS) + ' days';
     }

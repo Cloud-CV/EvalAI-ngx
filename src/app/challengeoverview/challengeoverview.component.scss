@@ -3,6 +3,7 @@
 
 .challenge-overview-container {
 	padding:40px;
+	overflow:auto;
 	.content {
 		font-weight:$fw-light;
 		font-size:$fs-16;
