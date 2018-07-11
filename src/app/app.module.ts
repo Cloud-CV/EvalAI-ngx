@@ -20,7 +20,6 @@ import { HeaderStaticComponent } from './partials/nav/header-static/header-stati
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { ContactComponent } from './contact/contact.component';
 import { InputComponent } from './input/input.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';

@@ -56,15 +56,30 @@ export class ApiService {
   loadingWrapper(httpCall) {
     const SELF = this;
     setTimeout(this.globalService.toggleLoading(true), 100);
-    httpCall.subscribe(data => {
-    },
-    err => {
-      setTimeout(SELF.globalService.toggleLoading(false), 100);
-    },
-    () => {
-      setTimeout(SELF.globalService.toggleLoading(false), 100);
-    });
-    return httpCall;
+    let success = ()=>{};
+    let error = ()=>{};
+    let final = ()=>{};
+    const RETURN_WRAPPER = {
+      subscribe: (fa,fb,fc) => {
+        success = fa;
+        error = fb;
+        final = fc;
+      }
+    };
+    httpCall.subscribe(
+      (data) => {
+        success(data);
+      }, 
+      (err) => {
+        setTimeout(this.globalService.toggleLoading(false), 100);
+        error(err);
+      },
+      ()=> {
+        setTimeout(this.globalService.toggleLoading(false), 100);
+        final();
+      }
+    );
+    return RETURN_WRAPPER;
   }
 
   appendHeaders(headers) {

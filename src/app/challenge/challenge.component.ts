@@ -27,6 +27,7 @@ export class ChallengeComponent implements OnInit {
   ngOnInit() {
     const SELF = this;
     this.localRouter = this.router;
+    this.globalService.scrollToTop();
     this.route.params.subscribe(params => {
       if (params['id']) {
         // this.fetchChallenge(params['id']);

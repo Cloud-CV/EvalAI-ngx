@@ -10,10 +10,6 @@ import { ChallengelistComponent } from './challengelist/challengelist.component'
 import { TeamlistComponent } from './teamlist/teamlist.component';
 import { ContactComponent } from './contact/contact.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { AuthComponent } from './auth/auth.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ContactComponent } from './contact/contact.component';
 import { GetInvolvedComponent } from './get-involved/get-involved.component';
 import { AboutComponent } from './about/about.component';
 import { ChallengeComponent } from './challenge/challenge.component';
@@ -34,64 +30,21 @@ const routes: Routes = [
     }
   },
   {
-    path: 'auth',
-    component: AuthComponent,
-    children: [
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'login', component: LoginComponent},
-      {path: 'signup', component: SignupComponent}
-    ]
-  },
-  {
-    path: 'challenges',
-    component: PubliclistsComponent,
-    children: [
-      {path: '', redirectTo: 'all', pathMatch: 'full'},
-      {path: 'all', component: ChallengelistComponent},
-      {path: 'me', component: ChallengelistComponent}
-    ]
-  },
-  {
-    path: 'teams',
-    component: PubliclistsComponent,
-    children: [
-      {path: '', redirectTo: 'participants', pathMatch: 'full'},
-      {path: 'participants', component: TeamlistComponent},
-      {path: 'hosts', component: TeamlistComponent}
-    ]
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
-    path: 'privacy-policy',
-    component: PrivacyPolicyComponent
-  },
-  {
-    path: 'auth',
-    component: AuthComponent,
-    children: [
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'login', component: LoginComponent},
-      {path: 'signup', component: SignupComponent}
-    ]
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
-    path: 'get-involved',
-    component: GetInvolvedComponent
-  },
-  {
-    path: 'privacy-policy',
-    component: PrivacyPolicyComponent
-  },
-  {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: 'login', component: LoginComponent},
+      {path: 'signup', component: SignupComponent}
+    ]
+  },
+  {
+    path: 'challenge',
+    redirectTo: 'challenges'
   },
   {
     path: 'challenge/:id',
@@ -108,8 +61,34 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'challenge',
-    redirectTo: 'challenges'
+    path: 'challenges',
+    component: PubliclistsComponent,
+    children: [
+      {path: '', redirectTo: 'all', pathMatch: 'full'},
+      {path: 'all', component: ChallengelistComponent},
+      {path: 'me', component: ChallengelistComponent}
+    ]
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'get-involved',
+    component: GetInvolvedComponent
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent
+  },
+  {
+    path: 'teams',
+    component: PubliclistsComponent,
+    children: [
+      {path: '', redirectTo: 'participants', pathMatch: 'full'},
+      {path: 'participants', component: TeamlistComponent},
+      {path: 'hosts', component: TeamlistComponent}
+    ]
   }
 ];
 

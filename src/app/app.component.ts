@@ -52,7 +52,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const SELF = this;
-
     this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
       this.scrolledState = scrolledState;
     });
@@ -67,7 +66,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.globalConfirmSubscription = this.globalService.currentConfirmParams.subscribe(params => {
       setTimeout(() => {
         this.confirmParams = params;
-      }, 0);
+      }, 0); 
+    });
 
     this.globalServiceSubscriptionScrollTop = this.globalService.scrolltop.subscribe(() => {
       SELF.document.body.scrollTop = SELF.document.documentElement.scrollTop = 0;
@@ -92,6 +92,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // set platform based title service
       .subscribe((event) => this.titleService.setTitle(event['title']));
   }
+
   ngOnDestroy() {
     if (this.globalServiceSubscription) {
       this.globalServiceSubscription.unsubscribe();

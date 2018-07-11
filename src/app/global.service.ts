@@ -184,9 +184,11 @@ export class GlobalService {
   handleApiError(err, toast = true) {
     console.error(err);
     if (err.status === 401) {
-        this.checkTokenValidity(err, toast);
+      this.checkTokenValidity(err, toast);
+    } else if (err.status === 403 && toast) {
+      this.showToast('error', err.error['error'], 5);
     } else if (toast) {
-        this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+      this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
     }
   }
 

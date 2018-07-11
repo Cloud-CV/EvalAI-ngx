@@ -34,20 +34,23 @@
       overflow-x: hidden;
       .contact-title {
         margin-top: 30px;
+        margin-bottom:30px;
         font-size: $fs-24;
         color: white;
+        display:block;
       }
       .contact-form-elements {
         width: 90%;
         margin: 0 auto;
         .btn {
           margin-left: 0;
+          margin-top:30px;
         }
       }
       .contact-links {
         width: 100%;
         text-align: center;
-        margin-top: 30px;
+        margin-top: 50px;
         margin-bottom: 30px;
         table {
           margin: 0 auto;

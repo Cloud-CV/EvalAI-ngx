@@ -83,6 +83,7 @@ export class ChallengesubmitComponent implements OnInit {
   }
 
   formValidate(formname) {
+    debugger;
     this.globalService.formValidate(this.components, this.formSubmit, this);
   }
 

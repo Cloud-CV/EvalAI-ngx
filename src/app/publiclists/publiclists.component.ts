@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-publiclists',
@@ -9,11 +10,13 @@ import { DOCUMENT } from '@angular/common';
 })
 export class PubliclistsComponent implements OnInit {
   localRouter: any;
-  constructor(private router: Router, private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document) { }
+  constructor(private router: Router, private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document,
+              private globalService: GlobalService) { }
 
   ngOnInit() {
     this.localRouter = this.router;
     this.scrollNav();
+    this.globalService.scrollToTop();
   }
   scrollNav() {
     if (this.router.url === '/challenges/all') {
