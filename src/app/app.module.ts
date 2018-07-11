@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -12,13 +11,16 @@ import { GlobalService } from './global.service';
 import { ChallengeService } from './services/challenge.service';
 
 
+
 // Import Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { ContactComponent } from './contact/contact.component';
+import { FooterComponent } from './footer/footer.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ContactComponent } from './contact/contact.component';
 import { InputComponent } from './input/input.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
@@ -51,6 +53,7 @@ import { SelectphaseComponent } from './selectphase/selectphase.component';
     AppComponent,
     HomeComponent,
     HeaderStaticComponent,
+    FooterComponent,
     PrivacyPolicyComponent,
     InputComponent,
     AuthComponent,
@@ -83,8 +86,7 @@ import { SelectphaseComponent } from './selectphase/selectphase.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    HttpClientModule
   ],
   providers: [
     AuthService,

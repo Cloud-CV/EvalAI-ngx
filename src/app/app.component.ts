@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   globalLogoutTrigger: any;
   globalLoadingSubscription: any;
   globalConfirmSubscription: any;
+  globalServiceSubscriptionScrollTop: any;
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
@@ -50,6 +51,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    const SELF = this;
+
     this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
       this.scrolledState = scrolledState;
     });
@@ -65,6 +68,9 @@ export class AppComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.confirmParams = params;
       }, 0);
+
+    this.globalServiceSubscriptionScrollTop = this.globalService.scrolltop.subscribe(() => {
+      SELF.document.body.scrollTop = SELF.document.documentElement.scrollTop = 0;
     });
 
     // set page title form routes data
@@ -95,6 +101,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     if (this.globalLoadingSubscription) {
       this.globalLoadingSubscription.unsubscribe();
+    }
+    if (this.globalServiceSubscriptionScrollTop) {
+      this.globalServiceSubscriptionScrollTop.unsubscribe();
     }
   }
 }

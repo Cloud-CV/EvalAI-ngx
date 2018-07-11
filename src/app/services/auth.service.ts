@@ -20,6 +20,7 @@ export class AuthService {
         this.authStateChange(temp);
       }, 1000);
     }
+
     loggedIn(params = null) {
       const temp = {isLoggedIn: true};
       this.authStateChange(temp);
@@ -96,7 +97,6 @@ export class AuthService {
           if (this.authState['isLoggedIn']) {
             this.logOut();
           }
-          return false;
       }
     }
 }

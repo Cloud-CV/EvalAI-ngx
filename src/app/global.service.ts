@@ -7,7 +7,6 @@ export class GlobalService {
   toastErrorCodes = [400, 500];
   authStorageKey = 'authtoken';
   redirectStorageKey = 'redirect';
-
   isLoading = false;
   private isLoadingSource = new BehaviorSubject(false);
   currentisLoading = this.isLoadingSource.asObservable();
@@ -27,6 +26,7 @@ export class GlobalService {
   @Output() toast: EventEmitter<Object> = new EventEmitter();
   @Output() loading: EventEmitter<boolean> = new EventEmitter();
   @Output() logout: EventEmitter<boolean> = new EventEmitter();
+  @Output() scrolltop: EventEmitter<Object> = new EventEmitter();
   constructor() { }
   scrolledStateChange(s) {
     this.scrolledState = s;
@@ -88,6 +88,10 @@ export class GlobalService {
    */
   triggerLogout() {
     this.logout.emit();
+  }
+
+  scrollToTop() {
+    this.scrolltop.emit();
   }
 
   /**
@@ -225,5 +229,25 @@ export class GlobalService {
     } else {
       return Math.floor(DIFF_DAYS) + ' days';
     }
+  }
+
+  validateEmail(email) {
+    const RE = new RegExp (['^(([^<>()[\\]\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\.,;:\\s@\"]+)*)',
+                        '|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.',
+                        '[0-9]{1,3}\])|(([a-zA-Z\\-0-9]+\\.)+',
+                        '[a-zA-Z]{2,}))$'].join(''));
+    return RE.test(email);
+  }
+  validateText(text) {
+    if (text.length >= 2) {
+      return true;
+    }
+    return false;
+  }
+  validatePassword(password) {
+    if (password.length >= 8) {
+      return true;
+    }
+    return false;
   }
 }

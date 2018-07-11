@@ -18,10 +18,10 @@ describe('HeaderStaticComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HeaderStaticComponent ],
       providers: [ GlobalService,
-      {provide: ActivatedRoute, useValue: fakeActivatedRoute},
-      {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
-      AuthService,
-      ApiService ],
+        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
+        {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
+        AuthService,
+        ApiService ],
       imports: [ RouterTestingModule, HttpClientModule ]
     })
     .compileComponents();

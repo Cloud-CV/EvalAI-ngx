@@ -1,10 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {GlobalService} from '../global.service';
-import {AuthService} from '../services/auth.service';
+import { GlobalService } from '../global.service';
+import { AuthService } from '../services/auth.service';
+import { ApiService } from '../services/api.service';
 import { AboutComponent } from './about.component';
 import { HeaderStaticComponent } from '../partials/nav/header-static/header-static.component';
+import { FooterComponent } from '../footer/footer.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../services/api.service';
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('AboutComponent', () => {
@@ -15,7 +17,7 @@ describe('AboutComponent', () => {
   } as ActivatedRoute;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AboutComponent, HeaderStaticComponent ],
+      declarations: [ AboutComponent, HeaderStaticComponent, FooterComponent ],
       providers: [
       GlobalService,
       {provide: ActivatedRoute, useValue: fakeActivatedRoute},
@@ -23,7 +25,7 @@ describe('AboutComponent', () => {
       AuthService,
       ApiService
       ],
-      imports: [ HttpClientModule ]
+      imports: [ RouterTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));

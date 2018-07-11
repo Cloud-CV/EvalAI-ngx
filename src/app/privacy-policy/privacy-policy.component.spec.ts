@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GlobalService } from '../global.service';
 import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
@@ -7,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PrivacyPolicyComponent } from './privacy-policy.component';
 import { HeaderStaticComponent } from '../partials/nav/header-static/header-static.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
+import { RouterTestingModule } from '@angular/router/testing';
+
 
 describe('PrivacyPolicyComponent', () => {
   let component: PrivacyPolicyComponent;
@@ -17,7 +19,7 @@ describe('PrivacyPolicyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrivacyPolicyComponent, HeaderStaticComponent ],
+      declarations: [ PrivacyPolicyComponent, HeaderStaticComponent, FooterComponent ],
       providers: [
         GlobalService,
         AuthService,
@@ -25,7 +27,7 @@ describe('PrivacyPolicyComponent', () => {
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
       ],
-      imports: [ HttpClientModule ]
+      imports: [ HttpClientModule, RouterTestingModule ]
     })
     .compileComponents();
   }));

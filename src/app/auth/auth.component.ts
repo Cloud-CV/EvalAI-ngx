@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,10 +9,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
   localRouter: any;
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private globalService: GlobalService) { }
 
   ngOnInit() {
     this.localRouter = this.router;
+    this.globalService.scrollToTop();
   }
   navigateTo(url) {
     this.router.navigate([ url ]);

@@ -10,6 +10,7 @@ import { ToastComponent } from './toast/toast.component';
 import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
 
 describe('AppComponent', () => {
 
@@ -23,6 +24,7 @@ describe('AppComponent', () => {
         AppComponent,
         HomeComponent,
         HeaderStaticComponent,
+        FooterComponent,
         ToastComponent
       ],
       imports: [

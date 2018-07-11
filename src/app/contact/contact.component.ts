@@ -30,6 +30,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.loadMapContactPage();
+    this.globalService.scrollToTop();
   }
 
   ngAfterViewInit() {
