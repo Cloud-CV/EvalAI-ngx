@@ -34,7 +34,7 @@ export class ChallengesubmitComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
     } else {
-      if (this.challenge['id']) {
+      if (this.challenge && this.challenge['id']) {
         this.challengeService.fetchParticipantTeams(this.challenge['id']);
       }
     }
