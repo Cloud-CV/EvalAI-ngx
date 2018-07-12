@@ -51,7 +51,7 @@ export class ChallengeService {
         SELF.isLoggedIn = true;
         SELF.fetchStars(id);
         SELF.fetchParticipantTeams(id);
-      } else {
+      } else if (!authState['isLoggedIn']) {
         SELF.isLoggedIn = false;
       }
     });

@@ -41,14 +41,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.globalService.formValidate(this.ALL_FORMS[this.loginForm], this.formSubmit, this);
   }
 
-  redirectCheck() {
+  redirectCheck(self) {
     let redirectTo = '/';
-    const REDIRECT_URL = this.globalService.getData(this.globalService.redirectStorageKey);
-    if (REDIRECT_URL) {
-      redirectTo = REDIRECT_URL;
-      this.globalService.deleteData(this.globalService.redirectStorageKey);
+    const REDIRECT_URL = self.globalService.getData(self.globalService.redirectStorageKey);
+    if (REDIRECT_URL && REDIRECT_URL['path']) {
+      redirectTo = REDIRECT_URL['path'];
+      self.globalService.deleteData(self.globalService.redirectStorageKey);
     }
-    this.router.navigate([redirectTo]);
+    self.router.navigate([redirectTo]);
   }
 
   formSubmit(self) {
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       data => {
         self.globalService.storeData(self.globalService.authStorageKey, data['token']);
         self.authService.loggedIn(LOGIN_BODY);
-        self.redirectCheck();
+        self.redirectCheck(self);
       },
       err => {
         self.globalService.handleFormError(self.ALL_FORMS[self.loginForm], err);

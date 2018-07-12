@@ -23,7 +23,7 @@
       <li class="navlinks center btn btn-fill fw-regular" [class.btn-white-bg]="headerWhite" (click)="navigateTo('/auth/login');" *ngIf="!authState.isLoggedIn">
         Log In
       </li>
-      <li class="navlinks navlinktext fw-regular" *ngIf="authState.isLoggedIn" [class.dark-text]="headerWhite">
+      <li class="navlinks navlinktext fw-regular" *ngIf="authState.isLoggedIn && authState.username" [class.dark-text]="headerWhite">
         Hi {{authState.username}}!
       </li>
       <li class="navlinks center btn btn-fire fw-regular" *ngIf="authState.isLoggedIn" (click)="logOut();navigateTo('');">

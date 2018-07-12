@@ -12,7 +12,8 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
-  padding-top:50px;
+  padding-top:80px;
+  margin-top:100px;
 
   .top-margin-extra {
     margin-top: 50px;
@@ -50,8 +51,8 @@
     margin-right: 100px;
     table {
       td {
-        line-height: 25px;
-        letter-spacing: 1px;
+        line-height: 20px;
+        letter-spacing: 0.5px;
       }
     }
   }
@@ -62,8 +63,8 @@
       text-align: left;
       padding-right: 50px;
       padding-bottom: 10px;
-      line-height: 25px;
-      letter-spacing: 1px;
+      line-height: 20px;
+      letter-spacing: 0.5px;
       a {
         color: white;
         font-weight: $fw-light;
@@ -104,8 +105,8 @@
       margin:0 auto;
       margin-top: 10px;
       width:70%;
-      line-height: 25px;
-      letter-spacing: 1px;
+      line-height: 20px;
+      letter-spacing: 0.5px;
     }
   }
 
@@ -136,7 +137,7 @@
       img {
         height: 30px;
         filter:invert(100%);
-        opacity:0.8;
+        opacity:0.7;
         &:hover {
           opacity: 1;
         }
@@ -192,7 +193,7 @@
     }
 
     .footer-jump-links {
-      margin-right: 100px;
+      margin-right: 30px;
     }
   }
 }
@@ -201,12 +202,12 @@
   .footer-container {
     .footer-bg {
       img {
-        width:150%;
-        left:-25%;
+        width:200%;
+        left:-50%;
       }
     }
     .footer-content-top {
-      padding-top: 200px;
+      padding-top: 50px;
     }
   }
 }

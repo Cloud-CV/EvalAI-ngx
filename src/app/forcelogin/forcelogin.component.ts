@@ -15,7 +15,7 @@ export class ForceloginComponent implements OnInit {
   ngOnInit() {
   }
   redirectToLogin() {
-    this.globalService.storeData('redirect', this.path);
+    this.globalService.storeData('redirect', {path: this.path});
     this.router.navigate(['/auth/login']);
   }
 
