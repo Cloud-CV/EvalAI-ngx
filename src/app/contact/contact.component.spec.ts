@@ -10,11 +10,8 @@ import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-=======
 import { FooterComponent } from '../footer/footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
->>>>>>> d776be76d308ff6f189931a2ceb076f612c283a3
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -29,13 +26,8 @@ describe('ContactComponent', () => {
     // Mocking the loadJS function in window service to prevent that.
     const MOCK_SERVICE = new MockWindowService(null);
     TestBed.configureTestingModule({
-<<<<<<< HEAD
-      imports: [ HttpClientModule ],
-      declarations: [ ContactComponent, HeaderStaticComponent, InputComponent, ToastComponent ],
-=======
       imports: [ HttpClientModule, RouterTestingModule ],
       declarations: [ ContactComponent, HeaderStaticComponent, InputComponent, ToastComponent, FooterComponent ],
->>>>>>> d776be76d308ff6f189931a2ceb076f612c283a3
       providers: [
         GlobalService,
         AuthService,

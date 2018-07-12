@@ -24,8 +24,8 @@ export class WindowService {
 
   downloadFile(data: any, filename = 'data.csv', params = { type: 'text/csv' }) {
     const BLOB = new Blob([data.body], params);
-    const URL= window.URL.createObjectURL(BLOB);
-    const ATAG = document.createElement("a");
+    const URL = window.URL.createObjectURL(BLOB);
+    const ATAG = document.createElement('a');
     ATAG.href = URL;
     ATAG.download = filename;
     this.document.body.appendChild(ATAG);

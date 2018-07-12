@@ -20,13 +20,13 @@ export class PubliclistsComponent implements OnInit {
   }
   scrollNav() {
     if (this.router.url === '/challenges/all') {
-    	this.document.getElementById('all-challenges-nav').scrollIntoView();
+      this.document.getElementById('all-challenges-nav').scrollIntoView();
     } else if (this.router.url === '/challenges/me') {
-    	this.document.getElementById('all-challenges-nav').scrollIntoView();
+      this.document.getElementById('all-challenges-nav').scrollIntoView();
     } else if (this.router.url === '/teams/participants') {
-    	this.document.getElementById('host-teams-nav').scrollIntoView();
+      this.document.getElementById('host-teams-nav').scrollIntoView();
     } else if (this.router.url === '/teams/hosts') {
-    	this.document.getElementById('host-teams-nav').scrollIntoView();
+      this.document.getElementById('host-teams-nav').scrollIntoView();
     }
   }
 }

@@ -43,21 +43,21 @@ export class ChallengesubmissionsComponent implements OnInit {
         this.phases = phases;
     });
   }
-  phaseSelected(phase) {
-  	const SELF = this;
-  	return (phase) => {
-  	  SELF.selectedPhase = phase;
+  phaseSelected() {
+    const SELF = this;
+    return (phase) => {
+      SELF.selectedPhase = phase;
       if (SELF.challenge['id'] && phase['id']) {
         SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
         SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
       }
-  	};
+    };
   }
 
   fetchSubmissions(challenge, phase) {
-  	const API_PATH = 'jobs/challenge/' + challenge + '/challenge_phase/' + phase + '/submission/';
-  	const SELF = this;
-  	this.apiService.getUrl(API_PATH).subscribe(
+    const API_PATH = 'jobs/challenge/' + challenge + '/challenge_phase/' + phase + '/submission/';
+    const SELF = this;
+    this.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissions = data['results'];
       },
@@ -67,13 +67,13 @@ export class ChallengesubmissionsComponent implements OnInit {
       () => {
         console.log('Fetched submissions', challenge, phase);
       }
-  	);
+    );
   }
   downloadSubmission() {
-  	if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id']) {
+    if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id']) {
       const API_PATH = 'challenges/' + this.challenge['id'] + '/phase/' + this.selectedPhase['id'] + '/download_all_submissions/csv/';
-  	  const SELF = this;
-  	  this.apiService.getUrl(API_PATH, false).subscribe(
+      const SELF = this;
+      this.apiService.getUrl(API_PATH, false).subscribe(
         data => {
           SELF.windowService.downloadFile(data, 'all_submissions.csv');
         },
@@ -83,8 +83,8 @@ export class ChallengesubmissionsComponent implements OnInit {
         () => {
           console.log('Download complete.', this.challenge['id'], this.selectedPhase['id']);
         }
-  	  );
-  	}
+      );
+    }
   }
 
   changeSubmissionVisibility(id) {
@@ -94,12 +94,12 @@ export class ChallengesubmissionsComponent implements OnInit {
     //             "is_public": vm.submissionVisibility[submission_id]
     //         };
   }
-  
+
 
   fetchSubmissionCounts(challenge, phase) {
-  	const API_PATH = 'analytics/challenge/' + challenge + '/challenge_phase/' + phase + '/count';
-  	const SELF = this;
-  	this.apiService.getUrl(API_PATH).subscribe(
+    const API_PATH = 'analytics/challenge/' + challenge + '/challenge_phase/' + phase + '/count';
+    const SELF = this;
+    this.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissionCount = data['submission_count'];
       },
@@ -109,7 +109,7 @@ export class ChallengesubmissionsComponent implements OnInit {
       () => {
         console.log('Fetched submission counts', challenge, phase);
       }
-  	);
+    );
   }
 
 }

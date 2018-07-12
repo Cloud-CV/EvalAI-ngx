@@ -5,6 +5,7 @@ import { ChallengeService } from '../services/challenge.service';
 import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 describe('ChallengeevaluationComponent', () => {
   let component: ChallengeevaluationComponent;
@@ -13,7 +14,7 @@ describe('ChallengeevaluationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChallengeevaluationComponent ],
-      providers: [ ChallengeService, ApiService, GlobalService ],
+      providers: [ ChallengeService, ApiService, GlobalService, AuthService ],
       imports: [ HttpClientModule ]
     })
     .compileComponents();

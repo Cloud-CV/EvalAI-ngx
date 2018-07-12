@@ -16,6 +16,11 @@ import { PhasecardComponent } from '../phasecard/phasecard.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../services/auth.service';
 import { ForceloginComponent } from '../forcelogin/forcelogin.component';
+import { FooterComponent } from '../footer/footer.component';
+import { TeamlistComponent } from '../teamlist/teamlist.component';
+import { SelectphaseComponent } from '../selectphase/selectphase.component';
+import { InputComponent } from '../input/input.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ChallengeComponent', () => {
   let component: ChallengeComponent;
@@ -33,9 +38,13 @@ describe('ChallengeComponent', () => {
                       ChallengesubmitComponent,
                       ChallengesubmissionsComponent,
                       PhasecardComponent,
-                      ForceloginComponent ],
+                      ForceloginComponent,
+                      FooterComponent,
+                      TeamlistComponent,
+                      SelectphaseComponent ],
       providers: [ ApiService, GlobalService, ChallengeService, AuthService ],
-      imports: [ HttpClientModule, RouterTestingModule ]
+      imports: [ HttpClientModule, RouterTestingModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

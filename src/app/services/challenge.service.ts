@@ -101,7 +101,7 @@ export class ChallengeService {
           teams = data['challenge_participant_team_list'];
           this.changeCurrentParticipantTeams(teams);
           for (let i = 0; i < teams['length']; i++) {
-            if (teams[i]['challenge'] !== null && teams[i]['challenge']['id'] === parseInt(id)) {
+            if (teams[i]['challenge'] !== null && teams[i]['challenge']['id'] === parseInt(id, 10)) {
               SELF.changeParticipationStatus(true);
               break;
             }

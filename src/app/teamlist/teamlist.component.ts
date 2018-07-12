@@ -17,12 +17,12 @@ export class TeamlistComponent implements OnInit {
   filteredTeams = [];
   private filteredTeamSource = new BehaviorSubject(this.filteredTeams);
   filteredTeamsObservable = this.filteredTeamSource.asObservable();
-  
+
   seeMore = 1;
   windowSize = 2;
-  teamSelectTitle = "";
-  teamCreateTitle = "";
-  teamCreateButton = "";
+  teamSelectTitle = '';
+  teamCreateTitle = '';
+  teamCreateButton = '';
   isHost = false;
   isOnChallengePage = false;
   fetchTeamsPath: any;
@@ -49,9 +49,9 @@ export class TeamlistComponent implements OnInit {
       this.createTeamsPath = 'hosts/create_challenge_host_team';
       this.deleteTeamsPath = 'hosts/remove_self_from_challenge_host';
       this.fetchMyTeams(this.fetchTeamsPath);
-      this.teamCreateTitle = "Create a New Team";
-      this.teamSelectTitle = "Select a Challenge Host Team";
-      this.teamCreateButton = "Create Host Team";
+      this.teamCreateTitle = 'Create a New Team';
+      this.teamSelectTitle = 'Select a Challenge Host Team';
+      this.teamCreateButton = 'Create Host Team';
     } else {
       if (this.router.url !== '/teams/participants') {
         this.isOnChallengePage = true;
@@ -61,9 +61,9 @@ export class TeamlistComponent implements OnInit {
       this.createTeamsPath = this.fetchTeamsPath;
       this.deleteTeamsPath = 'participants/remove_self_from_participant_team';
       this.fetchMyTeams(this.fetchTeamsPath);
-      this.teamCreateTitle = "Create a New Participant Team";
-      this.teamSelectTitle = "My Existing Participant Teams";
-      this.teamCreateButton = "Create Participant Team";
+      this.teamCreateTitle = 'Create a New Participant Team';
+      this.teamSelectTitle = 'My Existing Participant Teams';
+      this.teamCreateButton = 'Create Participant Team';
     }
   }
 
@@ -81,38 +81,38 @@ export class TeamlistComponent implements OnInit {
   }
 
   fetchMyTeams(path) {
-  	if (this.authService.isLoggedIn()) {
+    if (this.authService.isLoggedIn()) {
       this.fetchTeams(path);
-  	}
+    }
   }
 
   selectTeamWrapper() {
     const SELF = this;
-  	let selectTeam = (team) => {
+    const selectTeam = (team) => {
       SELF.selectedTeam = team;
       SELF.unselectOtherTeams(SELF);
-  	};
-  	return selectTeam;
+    };
+    return selectTeam;
   }
 
   unselectOtherTeams(self) {
-    let temp = self.allTeams.slice();
+    const temp = self.allTeams.slice();
     for (let i = 0; i < temp.length; i++) {
       temp[i]['isSelected'] = false;
       if (self.selectedTeam['id'] === temp[i]['id']) {
-      	temp[i]['isSelected'] = true;
+        temp[i]['isSelected'] = true;
       }
     }
     self.allTems = temp;
-  	self.updateTeamsView(false);
+    self.updateTeamsView(false);
   }
 
   appendIsSelected(teams) {
-  	for (let i = 0; i < teams.length; i++) {
-  		teams[i]['isSelected'] = false;
-  		teams[i]['isHost'] = true;
-  	}
-  	return teams;
+    for (let i = 0; i < teams.length; i++) {
+      teams[i]['isSelected'] = false;
+      teams[i]['isHost'] = true;
+    }
+    return teams;
   }
 
 
@@ -138,9 +138,9 @@ export class TeamlistComponent implements OnInit {
   }
 
   deleteTeamWrapper() {
-  	const SELF = this;
-    let deleteTeam = (e) => {
-      let apiCall = ()=> {
+    const SELF = this;
+    const deleteTeam = (e) => {
+      const apiCall = () => {
         SELF.apiService.deleteUrl(SELF.deleteTeamsPath + '/' + e).subscribe(
         data => {
           // Success Message in data.message
@@ -163,22 +163,22 @@ export class TeamlistComponent implements OnInit {
       };
       SELF.globalService.showConfirm(PARAMS);
       return false;
-  	};
-  	return deleteTeam;
+    };
+    return deleteTeam;
   }
-  
+
   createTeam(formname) {
-  	this.globalService.formValidate(this.components, this.createTeamSubmit, this);
+    this.globalService.formValidate(this.components, this.createTeamSubmit, this);
   }
   createTeamSubmit(self) {
-  	const API_PATH = self.createTeamsPath;
-  	let url = self.globalService.formValueForLabel(self.components, 'team_url');
+    const API_PATH = self.createTeamsPath;
+    const url = self.globalService.formValueForLabel(self.components, 'team_url');
     let TEAM_BODY: any = {
-      team_name: self.globalService.formValueForLabel(self.components, 'team_name') 
+      team_name: self.globalService.formValueForLabel(self.components, 'team_name')
     };
     if (url) {
       TEAM_BODY['team_url'] = url;
-  	}
+    }
     TEAM_BODY = JSON.stringify(TEAM_BODY);
     self.apiService.postUrl(API_PATH, TEAM_BODY).subscribe(
       data => {

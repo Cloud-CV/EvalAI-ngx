@@ -20,7 +20,7 @@ export class ApiService {
     const TEMP = Object.assign({}, this.HEADERS);
     if (fileHeaders) {
       delete TEMP['Content-Type'];
-    } 
+    }
     this.HTTP_OPTIONS = {
       headers: new HttpHeaders(TEMP)
     };
@@ -56,11 +56,11 @@ export class ApiService {
   loadingWrapper(httpCall) {
     const SELF = this;
     setTimeout(this.globalService.toggleLoading(true), 100);
-    let success = ()=>{};
-    let error = ()=>{};
-    let final = ()=>{};
+    let success = (params) => {};
+    let error = (params) => {};
+    let final = () => {};
     const RETURN_WRAPPER = {
-      subscribe: (fa,fb,fc) => {
+      subscribe: (fa, fb, fc) => {
         success = fa;
         error = fb;
         final = fc;
@@ -69,12 +69,12 @@ export class ApiService {
     httpCall.subscribe(
       (data) => {
         success(data);
-      }, 
+      },
       (err) => {
         setTimeout(this.globalService.toggleLoading(false), 100);
         error(err);
       },
-      ()=> {
+      () => {
         setTimeout(this.globalService.toggleLoading(false), 100);
         final();
       }

@@ -64,7 +64,7 @@ export class GlobalService {
     this.toast.emit(TEMP);
   }
   toggleLoading(loading) {
-    if (loading != this.isLoading) {
+    if (loading !== this.isLoading) {
       this.isLoading = loading;
       this.isLoadingSource.next(loading);
     }
@@ -151,7 +151,7 @@ export class GlobalService {
 
   checkTokenValidity(err, toast = true) {
     if (err.error !== null && typeof err.error === 'object' && err.error['detail']) {
-      if (err.error['detail'].indexOf('Invalid token') !== -1 || 
+      if (err.error['detail'].indexOf('Invalid token') !== -1 ||
           err.error['detail'].indexOf('Token has expired') !== -1) {
         this.triggerLogout();
         this.showToast('error', 'Token Invalid! Please Login again.', 5);

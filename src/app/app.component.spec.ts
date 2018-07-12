@@ -11,7 +11,8 @@ import { HeaderStaticComponent } from './partials/nav/header-static/header-stati
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
-
+import { LoadingComponent } from './loading/loading.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 describe('AppComponent', () => {
 
   let location: Location;
@@ -25,7 +26,9 @@ describe('AppComponent', () => {
         HomeComponent,
         HeaderStaticComponent,
         FooterComponent,
-        ToastComponent
+        ToastComponent,
+        LoadingComponent,
+        ConfirmComponent
       ],
       imports: [
         RouterTestingModule,

@@ -28,44 +28,44 @@ export class TeamcardComponent implements OnInit, OnChanges {
     this.updateView();
   }
   ngOnChanges(changes: SimpleChanges) {
-  	this.updateView();
+    this.updateView();
   }
 
   selectToggle() {
     if ((this.isHost && !this.isSelected) || !this.isHost) {
-  	  this.isSelected = !this.isSelected;
+      this.isSelected = !this.isSelected;
       this.team['isSelected'] = this.isSelected;
       if (this.isSelected) {
-	    this.selectTeam();
+      this.selectTeam();
       }
     }
   }
   deleteTeam(e) {
-  	e.stopPropagation();
-  	this.deleteTeamCard.emit(this.team['id']);
+    e.stopPropagation();
+    this.deleteTeamCard.emit(this.team['id']);
   }
   selectTeam() {
-  	this.selectTeamCard.emit(this.team);
+    this.selectTeamCard.emit(this.team);
   }
 
   updateView() {
     this.teamView['team_name'] = this.team['team_name'];
     this.teamView['created_by'] = this.team['created_by'];
     this.teamView['team_url'] = this.team['team_url'];
-    if(this.team['isHost']) {
+    if (this.team['isHost']) {
       this.isHost = true;
     }
-    if(this.team['isSelected']) {
-    	this.isSelected = true;
+    if (this.team['isSelected']) {
+      this.isSelected = true;
     } else {
-    	this.isSelected = false;
+      this.isSelected = false;
     }
-    if(this.selected) {
-    	this.isSelected = true;
+    if (this.selected) {
+      this.isSelected = true;
     } else {
-    	this.isSelected = false;
+      this.isSelected = false;
     }
-    let temp = this.team['members'];
+    const temp = this.team['members'];
     let memberString = '';
     for (let i = 0; i < temp.length; i++) {
       memberString = memberString + ', ' + temp[i]['member_name'];

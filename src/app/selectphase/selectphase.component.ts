@@ -14,40 +14,40 @@ export class SelectphaseComponent implements OnInit, OnChanges {
   selectedPhase: any = null;
   publicRouter: any;
   constructor(private challengeService: ChallengeService,
-  	          private router: Router,
-  	          private route: ActivatedRoute,
-  	          private globalService: GlobalService) { }
+              private router: Router,
+              private route: ActivatedRoute,
+              private globalService: GlobalService) { }
 
   ngOnInit() {
-  	this.publicRouter = this.router;
-  	if (!this.phases) {
-  		this.phases = [];
-  	}
-  	if (!this.phaseSelected) {
-  		this.phaseSelected = () => {};
-  	}
-  	if (this.phases.length > 0) {
-  		this.selectPhase(this.phases[0]);
-  	}
+    this.publicRouter = this.router;
+    if (!this.phases) {
+      this.phases = [];
+    }
+    if (!this.phaseSelected) {
+      this.phaseSelected = () => {};
+    }
+    if (this.phases.length > 0) {
+      this.selectPhase(this.phases[0]);
+    }
   }
   ngOnChanges(change) {
 
   }
 
   selectPhase(phase) {
-  	this.selectedPhase = phase;
-    for(let i = 0; i< this.phases.length; i++) {
+    this.selectedPhase = phase;
+    for (let i = 0; i < this.phases.length; i++) {
       if (phase['id'] === this.phases[i]['id']) {
-      	this.phases[i]['is_selected'] = true;
+        this.phases[i]['is_selected'] = true;
       } else {
-      	this.phases[i]['is_selected'] = false;
+        this.phases[i]['is_selected'] = false;
       }
     }
     this.phaseSelected(phase);
   }
 
   getFormattedDate(date) {
-  	return this.globalService.formatDate12Hour(new Date(Date.parse(date)));
+    return this.globalService.formatDate12Hour(new Date(Date.parse(date)));
   }
 
 }

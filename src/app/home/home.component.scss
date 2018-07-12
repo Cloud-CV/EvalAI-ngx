@@ -2,6 +2,11 @@
 @import './mixins.scss';
 
 .home-container {
+  .home-section-title {
+    font-size: $fs-30;
+    font-weight:$fw-regular;
+    margin-top:50px;
+  }
   .construction {
     margin:0 auto;
     width:400px;

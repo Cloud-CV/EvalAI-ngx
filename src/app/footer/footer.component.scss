@@ -12,16 +12,24 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
+  padding-top:50px;
+
   .top-margin-extra {
     margin-top: 50px;
   }
   .footer-bg {
     width: 100%;
     height: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 12;
+    position:absolute;
+    left:0;
+    bottom:0;
+    z-index:12;
+    img {
+      width:100%;
+      position:absolute;
+      bottom:0;
+      left:0;
+    }
   }
   .footer-content {
     z-index: 15;
@@ -40,6 +48,12 @@
     margin-top: 10px;
     margin-left: 100px;
     margin-right: 100px;
+    table {
+      td {
+        line-height: 25px;
+        letter-spacing: 1px;
+      }
+    }
   }
 
   .footer-table {
@@ -48,6 +62,8 @@
       text-align: left;
       padding-right: 50px;
       padding-bottom: 10px;
+      line-height: 25px;
+      letter-spacing: 1px;
       a {
         color: white;
         font-weight: $fw-light;
@@ -63,21 +79,33 @@
       margin: 0 auto;
     }
     .input-fill {
+
       cursor: text;
       color: $blue-dark;
       &:focus {
         outline-width: 0;
       }
+      &::placeholder { 
+        opacity: 0.5;
+      }
+    }
+    .btn {
+      font-weight:$fw-regular;
     }
   }
   .footer-description {
     width: 70%;
     margin-top: 50px !important;
     margin: 0 auto;
-    span {
+    text-align:center;
+    .description {
       font-weight: regular;
       padding: 10px;
+      margin:0 auto;
       margin-top: 10px;
+      width:70%;
+      line-height: 25px;
+      letter-spacing: 1px;
     }
   }
 
@@ -106,8 +134,12 @@
       margin-right: 20px;
       cursor: pointer;
       img {
-        height: 40px;
+        height: 30px;
         filter:invert(100%);
+        opacity:0.8;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }
@@ -121,9 +153,11 @@
 
 @include screen-small {
   .footer-container {
-    background-size: cover !important;
+    @include box-shadow(5px, 5px, 10px, 10px, $overlay-light);
+    background:$blue-dark;
+    
     .footer-content-top {
-      padding-top: 250px;
+      padding-top: 50px;
     }
     .footer-buttons {
       .footer-buttons-div {
@@ -144,7 +178,7 @@
       margin-left: 50px;
     }
     .footer-bg {
-      display: none;
+      display:none;
     }
 
     .footer-location {
@@ -165,8 +199,12 @@
 
 @include screen-medium {
   .footer-container {
-    background-size: cover;
-    background-position-x: 50%;
+    .footer-bg {
+      img {
+        width:150%;
+        left:-25%;
+      }
+    }
     .footer-content-top {
       padding-top: 200px;
     }

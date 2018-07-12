@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.globalConfirmSubscription = this.globalService.currentConfirmParams.subscribe(params => {
       setTimeout(() => {
         this.confirmParams = params;
-      }, 0); 
+      }, 0);
     });
 
     this.globalServiceSubscriptionScrollTop = this.globalService.scrolltop.subscribe(() => {

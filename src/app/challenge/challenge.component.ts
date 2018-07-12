@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
-
 import { ChallengeService } from '../services/challenge.service';
 
 @Component({

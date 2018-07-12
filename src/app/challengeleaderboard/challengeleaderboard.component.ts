@@ -52,19 +52,16 @@ export class ChallengeleaderboardComponent implements OnInit {
     // so that the values can be parsed properly
     if (this.sortColumn === 'date') {
       return Date.parse(key.submission__submitted_at);
-    }
-    else if (this.sortColumn === 'rank') {
+    } else if (this.sortColumn === 'rank') {
       return this.initial_ranking[key.submission__participant_team__team_name];
-    }
-    else if (this.sortColumn === 'number') {
+    } else if (this.sortColumn === 'number') {
       return parseFloat(key.result[this.columnIndexSort]);
-    }
-    else if (this.sortColumn === 'string'){
+    } else if (this.sortColumn === 'string') {
       // sort teams alphabetically
       return key.submission__participant_team__team_name.value;
     }
     return 0;
-  }
+  };
 
   filterPhases() {
     if (this.phases.length > 0 && this.phaseSplits.length > 0) {
@@ -72,35 +69,35 @@ export class ChallengeleaderboardComponent implements OnInit {
       for (let i = 0; i < this.phases.length; i++) {
         if (this.phases[i]['leaderboard_public']) {
           const TEMP = {
-    	    name: this.phases[i]['name'],
-    	    id: this.phases[i]['id']
+            name: this.phases[i]['name'],
+            id: this.phases[i]['id']
           };
-    	  for (let j = 0; j < this.phaseSplits.length; j++) {
-            if (this.phaseSplits[j]['challenge_phase'] == TEMP['id']) {
-            	TEMP['phase_split_id'] = this.phaseSplits[j]['id']
-            	TEMP['phase_split_name'] = this.phaseSplits[j]['dataset_split_name']
-            }  
-    	  }
-    	  TEMPSPLITS.push(TEMP);
+          for (let j = 0; j < this.phaseSplits.length; j++) {
+            if (this.phaseSplits[j]['challenge_phase'] === TEMP['id']) {
+              TEMP['phase_split_id'] = this.phaseSplits[j]['id'];
+              TEMP['phase_split_name'] = this.phaseSplits[j]['dataset_split_name'];
+            }
+        }
+        TEMPSPLITS.push(TEMP);
         }
       }
       this.filteredPhaseSplits = TEMPSPLITS;
-  	}
+    }
   }
 
   phaseSplitSelected() {
-  	const SELF = this;
-  	return (phaseSplit) => {
-  	  SELF.selectedPhaseSplit = phaseSplit;
+    const SELF = this;
+    return (phaseSplit) => {
+      SELF.selectedPhaseSplit = phaseSplit;
       if (SELF.selectedPhaseSplit['phase_split_id']) {
         SELF.fetchLeaderboard(SELF.selectedPhaseSplit['phase_split_id']);
       }
-  	};
+    };
   }
   updateLeaderboardResults(leaderboardApi, self) {
-    let leaderboard = leaderboardApi.slice();
-  	for (let i = 0; i < leaderboard.length; i++) {
-      self.initial_ranking[leaderboard[i].submission__participant_team__team_name] = i+1;
+    const leaderboard = leaderboardApi.slice();
+    for (let i = 0; i < leaderboard.length; i++) {
+      self.initial_ranking[leaderboard[i].submission__participant_team__team_name] = i + 1;
       const DATE_NOW = new Date();
       const SUBMISSION_TIME = new Date(Date.parse(leaderboard[i].submission__submitted_at));
       const DURATION = self.globalService.getDateDifferenceString(DATE_NOW, SUBMISSION_TIME);
@@ -110,9 +107,9 @@ export class ChallengeleaderboardComponent implements OnInit {
   }
 
   fetchLeaderboard(phaseSplitId) {
-  	const API_PATH = 'jobs/challenge_phase_split/' + phaseSplitId + '/leaderboard/?page_size=1000';
-  	const SELF = this;
-  	this.apiService.getUrl(API_PATH).subscribe(
+    const API_PATH = 'jobs/challenge_phase_split/' + phaseSplitId + '/leaderboard/?page_size=1000';
+    const SELF = this;
+    this.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
       },
@@ -122,7 +119,7 @@ export class ChallengeleaderboardComponent implements OnInit {
       () => {
         console.log('Fetched leaderboard for split:', phaseSplitId);
       }
-  	);
+    );
   }
 
 }

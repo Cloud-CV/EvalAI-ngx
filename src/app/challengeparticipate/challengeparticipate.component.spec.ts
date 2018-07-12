@@ -4,11 +4,14 @@ import { ChallengeparticipateComponent } from './challengeparticipate.component'
 import { ChallengeService } from '../services/challenge.service';
 import { ForceloginComponent } from '../forcelogin/forcelogin.component';
 
-import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
-import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ForceloginComponent } from '../forcelogin/forcelogin.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TeamlistComponent } from '../teamlist/teamlist.component';
 
 describe('ChallengeparticipateComponent', () => {
   let component: ChallengeparticipateComponent;
@@ -16,9 +19,10 @@ describe('ChallengeparticipateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChallengeparticipateComponent, ForceloginComponent ],
+      declarations: [ ChallengeparticipateComponent, ForceloginComponent, TeamlistComponent ],
       providers: [ ChallengeService, ApiService, GlobalService, AuthService ],
-      imports: [ HttpClientModule, RouterTestingModule ]
+      imports: [ HttpClientModule, RouterTestingModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

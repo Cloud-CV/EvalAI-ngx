@@ -21,8 +21,8 @@ export class ChallengesubmitComponent implements OnInit {
   phases = [];
   selectedPhase = {};
   selectedPhaseSubmissions = {
-  	remaining_submissions_today_count: 0,
-  	remaining_submissions: 0
+    remaining_submissions_today_count: 0,
+    remaining_submissions: 0
   };
   @ViewChildren('formsubmit')
   components: QueryList<ChallengesubmitComponent>;
@@ -57,9 +57,9 @@ export class ChallengesubmitComponent implements OnInit {
   }
 
   fetchRemainingSubmissions(challenge, phase) {
-  	const API_PATH = 'jobs/' + challenge + '/phases/' + phase + '/remaining_submissions';
-  	const SELF = this;
-  	this.apiService.getUrl(API_PATH).subscribe(
+    const API_PATH = 'jobs/' + challenge + '/phases/' + phase + '/remaining_submissions';
+    const SELF = this;
+    this.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.selectedPhaseSubmissions = data;
       },
@@ -69,21 +69,20 @@ export class ChallengesubmitComponent implements OnInit {
       () => {
         console.log('Remaining submissions fetched for challenge-phase', challenge, phase);
       }
-  	);
+    );
   }
 
-  phaseSelected(phase) {
-  	const SELF = this;
-  	return (phase) => {
-  	  SELF.selectedPhase = phase;
+  phaseSelected() {
+    const SELF = this;
+    return (phase) => {
+      SELF.selectedPhase = phase;
       if (SELF.challenge['id'] && phase['id']) {
         SELF.fetchRemainingSubmissions(SELF.challenge['id'], phase['id']);
       }
-  	};
+    };
   }
 
   formValidate(formname) {
-    debugger;
     this.globalService.formValidate(this.components, this.formSubmit, this);
   }
 
@@ -96,9 +95,9 @@ export class ChallengesubmitComponent implements OnInit {
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
     self.challengeService.challengeSubmission(
-    	self.challenge['id'], 
-    	self.selectedPhase['id'], 
-    	FORM_DATA
+      self.challenge['id'],
+      self.selectedPhase['id'],
+      FORM_DATA
     );
   }
 }

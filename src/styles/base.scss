@@ -235,8 +235,8 @@ ul {
   border: none;
   color: white;
   @include linear-gradient-bg(-90deg,
-  $yellow,
-  $orange);
+  $fire-right,
+  $fire-left);
   @include box-shadow(0px,
   0px,
   5px,
@@ -244,8 +244,8 @@ ul {
   $overlay-light);
   &:hover {
     @include linear-gradient-bg(-90deg,
-    $orange,
-    $yellow);
+    $fire-left,
+    $fire-right);
     @include box-shadow(0px,
     15px,
     20px,

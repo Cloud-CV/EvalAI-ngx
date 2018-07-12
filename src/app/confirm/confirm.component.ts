@@ -17,24 +17,24 @@ export class ConfirmComponent implements OnInit {
   constructor(private globalService: GlobalService) { }
 
   ngOnInit() {
-  	if (this.params['title']) {
+    if (this.params['title']) {
       this.title = this.params['title'];
-  	}
-  	if (this.params['content']) {
-  	  this.content = this.params['content'];
-  	}
-  	if (this.params['confirm']) {
-  	  this.confirm = this.params['confirm'];
-  	}
-  	if (this.params['deny']) {
-  	  this.deny = this.params['deny'];
-  	}
-  	if (this.params['confirmCallback']) {
-      this.confirmCallback = this.params['confirmCallback']
-  	}
-  	if (this.params['denyCallback']) {
-      this.denyCallback = this.params['denyCallback']
-  	}
+    }
+    if (this.params['content']) {
+      this.content = this.params['content'];
+    }
+    if (this.params['confirm']) {
+      this.confirm = this.params['confirm'];
+    }
+    if (this.params['deny']) {
+      this.deny = this.params['deny'];
+    }
+    if (this.params['confirmCallback']) {
+      this.confirmCallback = this.params['confirmCallback'];
+    }
+    if (this.params['denyCallback']) {
+      this.denyCallback = this.params['denyCallback'];
+    }
   }
 
   confirmed() {
