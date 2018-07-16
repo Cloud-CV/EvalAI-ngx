@@ -80,9 +80,6 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
       this.authServiceSubscription.unsubscribe();
     }
   }
-  logIn() {
-    this.authService.tryLogIn(null);
-  }
   logOut() {
     this.authService.logOut();
   }

@@ -19,10 +19,6 @@ export class ChallengeparticipateComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
-    } else {
-      if (this.challenge && this.challenge['id']) {
-        this.challengeService.fetchParticipantTeams(this.challenge['id']);
-      }
     }
     this.routerPublic = this.router;
     this.challengeService.currentChallenge.subscribe(challenge => {
@@ -32,6 +28,7 @@ export class ChallengeparticipateComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
       if (status) {
+        console.log('navigating to /submit');
         this.router.navigate(['../submit'], {relativeTo: this.route});
       }
     });

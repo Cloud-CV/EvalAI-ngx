@@ -21,6 +21,8 @@ export class ChallengeService {
   currentPhaseSplit = this.phaseSplitSource.asObservable();
   private challengeParticipationSource = new BehaviorSubject(false);
   currentParticipationStatus = this.challengeParticipationSource.asObservable();
+  private hostTeamSource = new BehaviorSubject(null);
+  currentHostTeam = this.hostTeamSource.asObservable();
 
   constructor(private apiService: ApiService, private globalService: GlobalService, private authService: AuthService) { }
 
@@ -42,12 +44,20 @@ export class ChallengeService {
   changeCurrentPhaseSplit(phaseSplits: any) {
     this.phaseSplitSource.next(phaseSplits);
   }
+  changeCurrentHostTeam(hostTeam: any) {
+    this.hostTeamSource.next(hostTeam);
+  }
 
   fetchChallenge(id) {
     const API_PATH = 'challenges/challenge/' + id + '/';
     const SELF = this;
+    if (SELF.authService.isLoggedIn()) {
+      SELF.isLoggedIn = true;
+      SELF.fetchStars(id);
+      SELF.fetchParticipantTeams(id);
+    }
     this.authService.change.subscribe((authState) => {
-      if (authState['isLoggedIn'] && !SELF.isLoggedIn) {
+      if (authState['isLoggedIn']) {
         SELF.isLoggedIn = true;
         SELF.fetchStars(id);
         SELF.fetchParticipantTeams(id);
@@ -185,4 +195,22 @@ export class ChallengeService {
         console.log('Submission Uploaded');
     });
   }
+
+  challengeCreate(hostTeam, formData) {
+    const API_PATH = 'challenges/challenge/challenge_host_team/' + hostTeam + '/zip_upload/';
+    const SELF = this;
+    this.apiService.postFileUrl(API_PATH, formData).subscribe(
+      data => {
+        console.log(data);
+        SELF.globalService.showToast('success', 'Successfuly sent to EvalAI admin for approval.');
+      },
+      err => {
+        SELF.globalService.showToast('error', err.error);
+      },
+      () => {
+        console.log('Challenge Creation Zip Uploaded');
+    });
+  }
+
+
 }

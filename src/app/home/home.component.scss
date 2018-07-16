@@ -2,6 +2,8 @@
 @import './mixins.scss';
 
 .home-container {
+  overflow-x:hidden;
+  overflow-y:scroll;
   .home-section-title {
     font-size: $fs-30;
     font-weight:$fw-regular;
@@ -39,5 +41,27 @@
   .home-content-temporary {
     position: relative;
     height: 1000px;
+  }
+}
+
+@include screen-medium {
+  .home-container {
+    .main-bg {
+      img {
+        width:200%;
+        left:-50%;
+      }
+    }
+  }
+}
+
+@include screen-small {
+  .home-container {
+    .main-bg {
+      img {
+        width:300%;
+        left:-100%;
+      }
+    }
   }
 }

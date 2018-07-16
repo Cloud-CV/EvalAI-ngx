@@ -132,7 +132,7 @@ export class TeamlistComponent implements OnInit {
         SELF.globalService.handleApiError(err, false);
       },
       () => {
-        console.log('Teams fetched', path);
+        console.log('Teams fetched for teamlist', path, 'on', SELF.routerPublic.url);
       }
     );
   }
@@ -194,7 +194,8 @@ export class TeamlistComponent implements OnInit {
   }
 
   createChallenge() {
-
+    this.challengeService.changeCurrentHostTeam(this.selectedTeam);
+    this.router.navigate(['/challenge-create']);
   }
 
   participateInChallenge() {

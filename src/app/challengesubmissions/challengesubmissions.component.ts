@@ -19,6 +19,7 @@ export class ChallengesubmissionsComponent implements OnInit {
   submissions = [];
   submissionCount = 0;
   phases = [];
+  filteredPhases = [];
   selectedPhase: any = null;
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService,
@@ -41,6 +42,7 @@ export class ChallengesubmissionsComponent implements OnInit {
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
+        this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
     });
   }
   phaseSelected() {

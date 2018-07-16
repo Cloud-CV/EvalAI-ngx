@@ -14,30 +14,25 @@ export class AuthService {
       this.change.emit(this.authState);
     }
 
-    tryLogIn(params) {
-      setTimeout(() => {
-        const temp = {isLoggedIn: true, username: 'LoremIpsum'};
-        this.authStateChange(temp);
-      }, 1000);
+    loggedIn(autoFetchUserDetails = false) {
+      this.authState = {isLoggedIn: true};
+      if (autoFetchUserDetails) {
+        this.fetchUserDetails();
+      }
     }
 
-    loggedIn(params = null) {
-      const temp = {isLoggedIn: true};
-      this.authStateChange(temp);
-      this.fetchUserDetails();
-    }
     logOut() {
       const temp = {isLoggedIn: false};
       this.globalService.deleteData(this.globalService.authStorageKey);
       this.authStateChange(temp);
     }
 
-    fetchUserDetails() {
+    private fetchUserDetails() {
       const API_PATH = 'auth/user/';
       const SELF = this;
       this.apiService.getUrl(API_PATH).subscribe(
       data => {
-        const TEMP = Object.assign({}, SELF.authState, data);
+        const TEMP = Object.assign({isLoggedIn: true}, SELF.authState, data);
         SELF.authStateChange(TEMP);
       },
       err => {
@@ -90,7 +85,7 @@ export class AuthService {
       const token = this.globalService.getAuthToken();
       if (token) {
           if (!this.authState['isLoggedIn']) {
-            this.loggedIn();
+            this.loggedIn(true);
           }
           return true;
       } else {

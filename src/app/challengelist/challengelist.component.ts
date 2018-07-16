@@ -29,6 +29,7 @@ export class ChallengelistComponent implements OnInit {
   windowSize = 10;
   authServicePublic: AuthService;
   routerPublic: Router;
+  isLoggedIn: any = false;
 
   constructor(private apiService: ApiService,
               private authService: AuthService,
@@ -37,11 +38,13 @@ export class ChallengelistComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.isLoggedIn = true;
+    }
     if (this.router.url === '/challenges/all') {
       this.fetchChallenges();
     } else if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
       this.fetchMyTeams();
-      this.fetchChallenges();
     }
     this.authServicePublic = this.authService;
     this.routerPublic = this.router;
@@ -93,7 +96,7 @@ export class ChallengelistComponent implements OnInit {
           const TEAMS = data['results'].map((item) => item['id']);
           SELF.allTeams = SELF.allTeams.concat(TEAMS);
           SELF.allTeams = SELF.allTeams.filter((v, i, a) => a.indexOf(v) === i);
-          SELF.updateChallengesView(true);
+          this.fetchChallenges();
         }
       },
       err => {

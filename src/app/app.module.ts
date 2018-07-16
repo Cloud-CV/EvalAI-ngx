@@ -46,6 +46,8 @@ import { PhasecardComponent } from './phasecard/phasecard.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { LoadingComponent } from './loading/loading.component';
 import { SelectphaseComponent } from './selectphase/selectphase.component';
+import { HomemainComponent } from './home/homemain/homemain.component';
+import { ChallengecreateComponent } from './challengecreate/challengecreate.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { SelectphaseComponent } from './selectphase/selectphase.component';
     PhasecardComponent,
     ConfirmComponent,
     LoadingComponent,
-    SelectphaseComponent
+    SelectphaseComponent,
+    HomemainComponent,
+    ChallengecreateComponent
   ],
   imports: [
     BrowserModule,

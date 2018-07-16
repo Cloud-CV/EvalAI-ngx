@@ -37,10 +37,19 @@ export class SelectphaseComponent implements OnInit, OnChanges {
   selectPhase(phase) {
     this.selectedPhase = phase;
     for (let i = 0; i < this.phases.length; i++) {
-      if (phase['id'] === this.phases[i]['id']) {
-        this.phases[i]['is_selected'] = true;
+      if (phase['phase_split'] && this.phases[i]['phase_split']) {
+        if (phase['id'] === this.phases[i]['id'] && phase['phase_split']['id'] === this.phases[i]['phase_split']['id']) {
+          this.phases[i]['is_selected'] = true;
+        } else {
+          this.phases[i]['is_selected'] = false;
+        }
+
       } else {
-        this.phases[i]['is_selected'] = false;
+        if (phase['id'] === this.phases[i]['id']) {
+          this.phases[i]['is_selected'] = true;
+        } else {
+          this.phases[i]['is_selected'] = false;
+        }
       }
     }
     this.phaseSelected(phase);

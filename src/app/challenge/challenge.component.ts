@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { ApiService } from '../services/api.service';
 import { GlobalService } from '../global.service';
 import { ChallengeService } from '../services/challenge.service';
@@ -18,13 +19,17 @@ export class ChallengeComponent implements OnInit {
   isParticipated = false;
   challenge: any;
   stars: any;
+  isLoggedIn: any = false;
 
   constructor(private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
-              private challengeService: ChallengeService) { }
+              private challengeService: ChallengeService, private authService: AuthService) { }
 
   ngOnInit() {
     const SELF = this;
+    if (this.authService.isLoggedIn()) {
+      this.isLoggedIn = true;
+    }
     this.localRouter = this.router;
     this.globalService.scrollToTop();
     this.route.params.subscribe(params => {

@@ -19,6 +19,7 @@ export class ChallengesubmitComponent implements OnInit {
   submissionGuidelines = '';
   submitForm = 'formsubmit';
   phases = [];
+  filteredPhases = [];
   selectedPhase = {};
   selectedPhaseSubmissions = {
     remaining_submissions_today_count: 0,
@@ -33,10 +34,6 @@ export class ChallengesubmitComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
-    } else {
-      if (this.challenge && this.challenge['id']) {
-        this.challengeService.fetchParticipantTeams(this.challenge['id']);
-      }
     }
     this.routerPublic = this.router;
     this.challengeService.currentChallenge.subscribe(challenge => {
@@ -47,12 +44,14 @@ export class ChallengesubmitComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
       if (!status) {
+        console.log('navigating to /participate');
         this.router.navigate(['../participate'], {relativeTo: this.route});
       }
     });
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
+        this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
     });
   }
 

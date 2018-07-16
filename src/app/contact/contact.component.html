@@ -5,9 +5,9 @@
       <span class="contact-title">Get in touch</span>
       <br>
       <div class="contact-form-elements">
-        <app-input [label]="'Name'" [isRequired]="true" #formgroup></app-input>
-        <app-input [label]="'Email'" [isRequired]="true" [type]="'email'" #formgroup></app-input>
-        <app-input [label]="'Message'" [isRequired]="true" #formgroup></app-input>
+        <app-input [label]="'name'" [placeholder]="'Name'" [isRequired]="true" #formgroup></app-input>
+        <app-input [label]="'email'" [placeholder]="'Email'" [isRequired]="true" [type]="'email'" #formgroup></app-input>
+        <app-input [label]="'message'" [placeholder]="'Message'" [isRequired]="true" #formgroup></app-input>
         <span class="btn btn-fire" (click)="formValidate('formgroup')">SEND</span>
         <div class="contact-links">
           <table>

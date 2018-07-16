@@ -17,7 +17,7 @@
         <div class="card-title">Please fill the following fields to submit</div>
         <hr>
         <div class="card-content">
-            <app-selectphase [phases]="phases" [phaseSelected]="phaseSelected()"></app-selectphase>
+            <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()"></app-selectphase>
         	<div class="phase-submissions">
         		<div><span class="heading">Today's Remaining Submissions: </span>{{selectedPhaseSubmissions['remaining_submissions_today_count']}}</div>
                 <div><span class="heading">Total Remaining Submissions: </span>{{selectedPhaseSubmissions['remaining_submissions']}}</div>

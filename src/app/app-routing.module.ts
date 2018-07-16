@@ -20,6 +20,7 @@ import { ChallengeparticipateComponent } from './challengeparticipate/challengep
 import { ChallengeleaderboardComponent } from './challengeleaderboard/challengeleaderboard.component';
 import { ChallengesubmitComponent } from './challengesubmit/challengesubmit.component';
 import { ChallengesubmissionsComponent } from './challengesubmissions/challengesubmissions.component';
+import { ChallengecreateComponent } from './challengecreate/challengecreate.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
       {path: 'all', component: ChallengelistComponent},
       {path: 'me', component: ChallengelistComponent}
     ]
+  },
+  {
+    path: 'challenge-create',
+    component: ChallengecreateComponent
   },
   {
     path: 'contact',

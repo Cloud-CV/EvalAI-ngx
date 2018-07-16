@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     self.apiService.postUrl(self.API_PATH, LOGIN_BODY).subscribe(
       data => {
         self.globalService.storeData(self.globalService.authStorageKey, data['token']);
-        self.authService.loggedIn(LOGIN_BODY);
+        self.authService.loggedIn(true);
         self.redirectCheck(self);
       },
       err => {

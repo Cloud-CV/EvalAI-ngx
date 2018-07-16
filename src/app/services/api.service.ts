@@ -40,6 +40,7 @@ export class ApiService {
 
   postUrl(path: string, body: any) {
     this.prepareHttpOptions();
+    debugger;
     return this.loadingWrapper(this.http.post(this.API + path, body, this.HTTP_OPTIONS));
   }
 

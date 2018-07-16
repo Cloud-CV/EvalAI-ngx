@@ -68,17 +68,15 @@ export class ChallengeleaderboardComponent implements OnInit {
       const TEMPSPLITS = [];
       for (let i = 0; i < this.phases.length; i++) {
         if (this.phases[i]['leaderboard_public']) {
-          const TEMP = {
-            name: this.phases[i]['name'],
-            id: this.phases[i]['id']
-          };
+          const TEMP = this.phases[i];
+          TEMP['phase_split'] = null;
           for (let j = 0; j < this.phaseSplits.length; j++) {
-            if (this.phaseSplits[j]['challenge_phase'] === TEMP['id']) {
-              TEMP['phase_split_id'] = this.phaseSplits[j]['id'];
-              TEMP['phase_split_name'] = this.phaseSplits[j]['dataset_split_name'];
+            if (this.phaseSplits[j]['challenge_phase'] === TEMP['id'] && this.phaseSplits[j]['visibility'] === 3) {
+              const TEMP_COPY = Object.assign({}, TEMP);
+              TEMP_COPY['phase_split'] = this.phaseSplits[j];
+              TEMPSPLITS.push(TEMP_COPY);
             }
-        }
-        TEMPSPLITS.push(TEMP);
+          }
         }
       }
       this.filteredPhaseSplits = TEMPSPLITS;
@@ -89,8 +87,8 @@ export class ChallengeleaderboardComponent implements OnInit {
     const SELF = this;
     return (phaseSplit) => {
       SELF.selectedPhaseSplit = phaseSplit;
-      if (SELF.selectedPhaseSplit['phase_split_id']) {
-        SELF.fetchLeaderboard(SELF.selectedPhaseSplit['phase_split_id']);
+      if (SELF.selectedPhaseSplit['phase_split']) {
+        SELF.fetchLeaderboard(SELF.selectedPhaseSplit['phase_split']['id']);
       }
     };
   }

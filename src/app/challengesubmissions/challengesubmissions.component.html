@@ -1,5 +1,5 @@
 <div class="challenge-submissions-container">
-  <app-selectphase [phases]="phases" [phaseSelected]="phaseSelected()"></app-selectphase>
+  <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()"></app-selectphase>
 
   <div *ngIf="!selectedPhase">
     Please select a phase.
