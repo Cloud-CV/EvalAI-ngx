@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ApiService } from './api.service';
 import { ChallengeService } from './challenge.service';
 import { HttpClientModule } from '@angular/common/http';
-import { GlobalService } from '../global.service';
+import { GlobalService } from './global.service';
 
 describe('ChallengeService', () => {
   beforeEach(() => {

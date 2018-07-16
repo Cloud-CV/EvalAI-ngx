@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AuthComponent } from './auth/auth.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { PubliclistsComponent } from './publiclists/publiclists.component';
-import { ChallengelistComponent } from './challengelist/challengelist.component';
-import { TeamlistComponent } from './teamlist/teamlist.component';
-import { ContactComponent } from './contact/contact.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { GetInvolvedComponent } from './get-involved/get-involved.component';
-import { AboutComponent } from './about/about.component';
-import { ChallengeComponent } from './challenge/challenge.component';
-import { ChallengeoverviewComponent} from './challengeoverview/challengeoverview.component';
-import { ChallengeevaluationComponent } from './challengeevaluation/challengeevaluation.component';
-import { ChallengephasesComponent} from './challengephases/challengephases.component';
-import { ChallengeparticipateComponent } from './challengeparticipate/challengeparticipate.component';
-import { ChallengeleaderboardComponent } from './challengeleaderboard/challengeleaderboard.component';
-import { ChallengesubmitComponent } from './challengesubmit/challengesubmit.component';
-import { ChallengesubmissionsComponent } from './challengesubmissions/challengesubmissions.component';
-import { ChallengecreateComponent } from './challengecreate/challengecreate.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { PubliclistsComponent } from './components/publiclists/publiclists.component';
+import { ChallengelistComponent } from './components/publiclists/challengelist/challengelist.component';
+import { TeamlistComponent } from './components/publiclists/teamlist/teamlist.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
+import { AboutComponent } from './components/about/about.component';
+import { ChallengeComponent } from './components/challenge/challenge.component';
+import { ChallengeoverviewComponent} from './components/challenge/challengeoverview/challengeoverview.component';
+import { ChallengeevaluationComponent } from './components/challenge/challengeevaluation/challengeevaluation.component';
+import { ChallengephasesComponent} from './components/challenge/challengephases/challengephases.component';
+import { ChallengeparticipateComponent } from './components/challenge/challengeparticipate/challengeparticipate.component';
+import { ChallengeleaderboardComponent } from './components/challenge/challengeleaderboard/challengeleaderboard.component';
+import { ChallengesubmitComponent } from './components/challenge/challengesubmit/challengesubmit.component';
+import { ChallengesubmissionsComponent } from './components/challenge/challengesubmissions/challengesubmissions.component';
+import { ChallengecreateComponent } from './components/challengecreate/challengecreate.component';
 
 const routes: Routes = [
   {

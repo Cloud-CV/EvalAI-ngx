@@ -1,5 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { GlobalService } from '../global.service';
+import { GlobalService } from './global.service';
 import { ApiService } from './api.service';
 
 @Injectable()

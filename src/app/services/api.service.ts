@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GlobalService } from '../global.service';
+import { GlobalService } from './global.service';
 
 @Injectable()
 export class ApiService {

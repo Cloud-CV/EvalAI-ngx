@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener, Inject } from '@angular/core';
-import { GlobalService } from './global.service';
+import { GlobalService } from './services/global.service';
 import { AuthService } from './services/auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';

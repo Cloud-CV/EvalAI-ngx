@@ -1,18 +1,18 @@
-import {Location} from '@angular/common';
-import {TestBed, fakeAsync, tick, async} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
-import {Router} from '@angular/router';
-import {GlobalService} from './global.service';
+import { Location } from '@angular/common';
+import { TestBed, fakeAsync, tick, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { GlobalService } from './services/global.service';
 import { AuthService } from './services/auth.service';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { ToastComponent } from './toast/toast.component';
-import { HeaderStaticComponent } from './partials/nav/header-static/header-static.component';
+import { HomeComponent } from './components/home/home.component';
+import { ToastComponent } from './components/utility/toast/toast.component';
+import { HeaderStaticComponent } from './components/nav/header-static/header-static.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FooterComponent } from './footer/footer.component';
-import { LoadingComponent } from './loading/loading.component';
-import { ConfirmComponent } from './confirm/confirm.component';
+import { FooterComponent } from './components/nav/footer/footer.component';
+import { LoadingComponent } from './components/utility/loading/loading.component';
+import { ConfirmComponent } from './components/utility/confirm/confirm.component';
 describe('AppComponent', () => {
 
   let location: Location;
