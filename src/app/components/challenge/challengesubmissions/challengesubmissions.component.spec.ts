@@ -4,6 +4,7 @@ import { ChallengesubmissionsComponent } from './challengesubmissions.component'
 import { ChallengeService } from '../../../services/challenge.service';
 import { GlobalService } from '../../../services/global.service';
 import { ApiService } from '../../../services/api.service';
+import { WindowService } from '../../../services/window.service';
 import { AuthService } from '../../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
@@ -17,7 +18,7 @@ describe('ChallengesubmissionsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChallengesubmissionsComponent ],
-      providers: [ ChallengeService, GlobalService, AuthService, ApiService ],
+      providers: [ ChallengeService, GlobalService, AuthService, ApiService, WindowService ],
       imports: [ HttpClientModule, RouterTestingModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

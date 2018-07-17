@@ -6,6 +6,7 @@ import { GlobalService } from './services/global.service';
 import { AuthService } from './services/auth.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { HomemainComponent } from './components/home/homemain/homemain.component';
 import { ToastComponent } from './components/utility/toast/toast.component';
 import { HeaderStaticComponent } from './components/nav/header-static/header-static.component';
 import { ApiService } from './services/api.service';
@@ -13,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/nav/footer/footer.component';
 import { LoadingComponent } from './components/utility/loading/loading.component';
 import { ConfirmComponent } from './components/utility/confirm/confirm.component';
+
+
 describe('AppComponent', () => {
 
   let location: Location;
@@ -28,7 +31,8 @@ describe('AppComponent', () => {
         FooterComponent,
         ToastComponent,
         LoadingComponent,
-        ConfirmComponent
+        ConfirmComponent,
+        HomemainComponent
       ],
       imports: [
         RouterTestingModule,

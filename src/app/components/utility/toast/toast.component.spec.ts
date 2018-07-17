@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToastComponent } from './toast.component';
-import { GlobalService } from '../global.service';
+import { GlobalService } from '../../../services/global.service';
 
 describe('ToastComponent', () => {
   let component: ToastComponent;

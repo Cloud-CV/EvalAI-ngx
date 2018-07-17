@@ -51,11 +51,6 @@ export class ChallengeService {
   fetchChallenge(id) {
     const API_PATH = 'challenges/challenge/' + id + '/';
     const SELF = this;
-    if (SELF.authService.isLoggedIn()) {
-      SELF.isLoggedIn = true;
-      SELF.fetchStars(id);
-      SELF.fetchParticipantTeams(id);
-    }
     this.authService.change.subscribe((authState) => {
       if (authState['isLoggedIn']) {
         SELF.isLoggedIn = true;
@@ -63,6 +58,7 @@ export class ChallengeService {
         SELF.fetchParticipantTeams(id);
       } else if (!authState['isLoggedIn']) {
         SELF.isLoggedIn = false;
+        SELF.changeParticipationStatus(false);
       }
     });
     SELF.fetchPhases(id);
@@ -81,7 +77,7 @@ export class ChallengeService {
     });
   }
 
-  fetchStars(id, callback = null) {
+  private fetchStars(id, callback = null) {
     const API_PATH = 'challenges/' + id + '/';
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
@@ -101,7 +97,7 @@ export class ChallengeService {
     );
   }
 
-  fetchParticipantTeams(id) {
+  private fetchParticipantTeams(id) {
     const API_PATH = 'participants/participant_teams/challenges/' + id + '/user';
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
@@ -126,7 +122,7 @@ export class ChallengeService {
     });
   }
 
-  fetchPhases(id) {
+  private fetchPhases(id) {
     const API_PATH = 'challenges/challenge/' + id + '/challenge_phase';
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
@@ -145,7 +141,7 @@ export class ChallengeService {
     });
   }
 
-  fetchPhaseSplits(id) {
+  private fetchPhaseSplits(id) {
     const API_PATH = 'challenges/' + id + '/challenge_phase_split';
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(

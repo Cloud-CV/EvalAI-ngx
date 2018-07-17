@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { GlobalService } from '../global.service';
-import { ApiService } from '../services/api.service';
+import { GlobalService } from '../../../../services/global.service';
+import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -70,7 +70,9 @@ export class TeamcardComponent implements OnInit, OnChanges {
     for (let i = 0; i < temp.length; i++) {
       memberString = memberString + ', ' + temp[i]['member_name'];
     }
-    memberString = memberString.slice(2, memberString.length);
+    if (memberString !== '') {
+      memberString = memberString.slice(2, memberString.length);
+    }
     this.teamView['members'] = memberString;
   }
 

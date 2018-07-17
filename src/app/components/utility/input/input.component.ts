@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { GlobalService } from '../global.service';
+import { GlobalService } from '../../../services/global.service';
 
 @Component({
   selector: 'app-input',

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { GlobalService } from '../global.service';
-import { AuthService } from '../services/auth.service';
+import { ApiService } from '../../../services/api.service';
+import { GlobalService } from '../../../services/global.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ChallengeService } from '../services/challenge.service';
+import { ChallengeService } from '../../../services/challenge.service';
 @Component({
   selector: 'app-teamlist',
   templateUrl: './teamlist.component.html',

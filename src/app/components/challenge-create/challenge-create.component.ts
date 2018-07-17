@@ -6,11 +6,11 @@ import { ChallengeService } from '../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-challengecreate',
-  templateUrl: './challengecreate.component.html',
-  styleUrls: ['./challengecreate.component.scss']
+  selector: 'app-challenge-create',
+  templateUrl: './challenge-create.component.html',
+  styleUrls: ['./challenge-create.component.scss']
 })
-export class ChallengecreateComponent implements OnInit {
+export class ChallengeCreateComponent implements OnInit {
 
   authServicePublic = null;
   isLoggedIn = false;
@@ -18,7 +18,7 @@ export class ChallengecreateComponent implements OnInit {
   submitForm = 'formcreate';
   hostTeam: any = null;
   @ViewChildren('formcreate')
-  components: QueryList<ChallengecreateComponent>;
+  components: QueryList<ChallengeCreateComponent>;
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService) { }
 
@@ -31,10 +31,10 @@ export class ChallengecreateComponent implements OnInit {
     this.challengeService.currentHostTeam.subscribe((hostTeam) => {
       this.hostTeam = hostTeam;
       if (!hostTeam) {
-      	setTimeout(() => {
-      		this.globalService.showToast('info', 'Please select a host team');
-      	}, 1000);
-      	this.router.navigate(['/teams/hosts']);
+        setTimeout(() => {
+          this.globalService.showToast('info', 'Please select a host team');
+        }, 1000);
+        this.router.navigate(['/teams/hosts']);
       }
     });
   }
@@ -44,7 +44,7 @@ export class ChallengecreateComponent implements OnInit {
   }
 
   formSubmit(self) {
-  	const FORM_DATA: FormData = new FormData();
+    const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');
     FORM_DATA.append('zip_configuration', self.globalService.formItemForLabel(self.components, 'zip_configuration').fileSelected);
     self.challengeService.challengeCreate(

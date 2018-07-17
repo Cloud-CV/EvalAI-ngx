@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ChallengeService } from '../services/challenge.service';
+import { ChallengeService } from '../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { GlobalService } from '../global.service';
+import { GlobalService } from '../../../services/global.service';
 
 @Component({
   selector: 'app-selectphase',

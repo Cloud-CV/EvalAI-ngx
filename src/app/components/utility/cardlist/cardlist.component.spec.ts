@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardlistComponent } from './cardlist.component';
-import { ChallengecardComponent } from '../challengecard/challengecard.component';
-import { TeamcardComponent } from '../teamcard/teamcard.component';
+import { ChallengecardComponent } from '../../publiclists/challengelist/challengecard/challengecard.component';
+import { TeamcardComponent } from '../../publiclists/teamlist/teamcard/teamcard.component';
 
 describe('CardlistComponent', () => {
   let component: CardlistComponent;

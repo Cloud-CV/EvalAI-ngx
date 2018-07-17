@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GlobalService } from '../global.service';
+import { GlobalService } from '../../../services/global.service';
 import { Router} from '@angular/router';
 
 @Component({

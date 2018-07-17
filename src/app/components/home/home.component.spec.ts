@@ -8,6 +8,7 @@ import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { HomemainComponent } from './homemain/homemain.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -21,7 +22,8 @@ describe('HomeComponent', () => {
       declarations: [
         HomeComponent,
         HeaderStaticComponent,
-        FooterComponent
+        FooterComponent,
+        HomemainComponent
       ],
       providers: [
         GlobalService,

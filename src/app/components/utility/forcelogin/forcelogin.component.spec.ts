@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ForceloginComponent } from './forcelogin.component';
-import { GlobalService } from '../global.service';
-import { AuthService } from '../services/auth.service';
-import { ApiService } from '../services/api.service';
+import { GlobalService } from '../../../services/global.service';
+import { AuthService } from '../../../services/auth.service';
+import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 

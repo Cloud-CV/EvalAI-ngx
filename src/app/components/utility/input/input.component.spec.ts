@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InputComponent } from './input.component';
-import { GlobalService } from '../global.service';
+import { GlobalService } from '../../../services/global.service';
 
 describe('InputComponent', () => {
   let component: InputComponent;

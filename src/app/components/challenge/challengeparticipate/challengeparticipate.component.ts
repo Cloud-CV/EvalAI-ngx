@@ -28,7 +28,7 @@ export class ChallengeparticipateComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
       if (status) {
-        console.log('navigating to /submit');
+        console.log('navigating to /submit', status);
         this.router.navigate(['../submit'], {relativeTo: this.route});
       }
     });

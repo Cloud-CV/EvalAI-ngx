@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChallengecardComponent } from './challengecard.component';
-import { GlobalService } from '../global.service';
-import { ApiService } from '../services/api.service';
+import { GlobalService } from '../../../../services/global.service';
+import { ApiService } from '../../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 

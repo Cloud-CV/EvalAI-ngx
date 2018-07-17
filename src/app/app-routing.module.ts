@@ -20,7 +20,7 @@ import { ChallengeparticipateComponent } from './components/challenge/challengep
 import { ChallengeleaderboardComponent } from './components/challenge/challengeleaderboard/challengeleaderboard.component';
 import { ChallengesubmitComponent } from './components/challenge/challengesubmit/challengesubmit.component';
 import { ChallengesubmissionsComponent } from './components/challenge/challengesubmissions/challengesubmissions.component';
-import { ChallengecreateComponent } from './components/challengecreate/challengecreate.component';
+import { ChallengeCreateComponent } from './components/challenge-create/challenge-create.component';
 
 const routes: Routes = [
   {
@@ -72,7 +72,7 @@ const routes: Routes = [
   },
   {
     path: 'challenge-create',
-    component: ChallengecreateComponent
+    component: ChallengeCreateComponent
   },
   {
     path: 'contact',

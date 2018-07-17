@@ -8,6 +8,7 @@ import { AuthService } from '../../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ChallengelistComponent', () => {
   let component: ChallengelistComponent;
@@ -22,7 +23,8 @@ describe('ChallengelistComponent', () => {
                       ForceloginComponent ],
       providers: [ GlobalService,
                    ApiService,
-                   AuthService ]
+                   AuthService ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
