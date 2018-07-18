@@ -38,10 +38,10 @@
     	<a class="btn btn-filter challenge-participate" (click)="participateInChallenge()">Participate</a>
     </div>
     <div class="challenge-labels">
-    	<div class="stars">
-    		<i class="fas fa-star"></i>
-    		{{stars}}
-    	</div>
+    	<span [class.is-starred]="stars['is_starred']" [class.is-clickable]="isLoggedIn" (click)="starToggle(challenge['id'])" class="stars">
+        <i class="fas fa-star"></i>
+        {{stars['count']}}
+        </span>
     	<div class="challenge-tags">
     	<i class="fas fa-tag"></i>
         <span *ngFor="let tag of tags"> {{tag}} </span>

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GlobalService } from '../../../../services/global.service';
 import { ApiService } from '../../../../services/api.service';
+import { AuthService } from '../../../../services/auth.service';
+import { ChallengeService } from '../../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,15 +18,21 @@ export class ChallengecardComponent implements OnInit {
   isOngoing = false;
   isPast = false;
   timeRemaining = '';
+  isLoggedIn = false;
   tags = ['Aritificial Intelligence', 'Machine Learning'];
-  stars = 0;
+  stars = { 'count': 0, 'is_starred': false};
   constructor(private globalService: GlobalService,
               private apiService: ApiService,
+              private authService: AuthService,
+              private challengeService: ChallengeService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.preProcess();
+    if (this.authService.isLoggedIn()) {
+      this.isLoggedIn = true;
+    }
   }
 
   preProcess() {
@@ -53,17 +61,17 @@ export class ChallengecardComponent implements OnInit {
   }
 
   fetchStars() {
-    const API_PATH = 'challenges/' + this.challenge['id'] + '/';
-    const SELF = this;
-    this.apiService.getUrl(API_PATH).subscribe(
-      data => {
-        SELF.stars = parseInt(data['count'], 10) || 0;
-      },
-      err => {
-        SELF.globalService.handleApiError(err, false);
-      },
-      () => {}
-    );
+    this.challengeService.fetchStars(this.challenge['id'], (data) => {
+      this.stars = data;
+    });
+  }
+
+  starToggle() {
+    if (this.isLoggedIn) {
+      this.challengeService.starToggle(this.challenge['id'], (data, self) => {
+        self.stars = data;
+      }, this);
+    }
   }
 
   challengeClicked() {

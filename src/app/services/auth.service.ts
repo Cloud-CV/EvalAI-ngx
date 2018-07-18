@@ -1,17 +1,19 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { GlobalService } from './global.service';
 import { ApiService } from './api.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
   authState = {isLoggedIn: false};
-  @Output() change: EventEmitter<Object> = new EventEmitter();
+  private authStateSource = new BehaviorSubject(this.authState);
+  change = this.authStateSource.asObservable();
 
   constructor(private globalService: GlobalService, private apiService: ApiService) { }
 
     authStateChange(state) {
       this.authState = state;
-      this.change.emit(this.authState);
+      this.authStateSource.next(this.authState);
     }
 
     loggedIn(autoFetchUserDetails = false) {

@@ -46,4 +46,10 @@ export class ChallengeComponent implements OnInit {
     });
   }
 
+  starToggle(challengeId) {
+    if (this.isLoggedIn) {
+      this.challengeService.starToggle(challengeId);
+    }
+  }
+
 }

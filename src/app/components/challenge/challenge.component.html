@@ -14,8 +14,8 @@
       <span class="title">
         {{challenge['title']}}
       </span>
-      <span class="stars">
-        <i [class.is-starred]="stars['is_starred']" class="fas fa-star"></i> 
+      <span [class.is-starred]="stars['is_starred']" [class.is-clickable]="isLoggedIn" (click)="starToggle(challenge['id'])" class="stars">
+        <i class="fas fa-star"></i>
         {{stars['count']}}
       </span>
       

@@ -91,10 +91,25 @@
       bottom: 10px;
       right: 10px;
       font-size: $fs-14;
+      // .stars {
+      //   color: $red-light;
+      //   padding: 10px;
+      // }
       .stars {
-        color: $red-light;
-        padding: 10px;
-      }
+          color:$red-light;;
+          padding: 10px;
+          &.is-starred {
+              i {
+              color: yellow;
+            }
+          }
+          i {
+            margin-right: 10px;
+          }
+          &.is-clickable {
+            cursor:pointer;
+          }
+        }
       .challenge-tags {
         color: $gray-darker;
         padding: 10px;

@@ -52,15 +52,20 @@
           border-radius:5px;
           padding:5px;
           position: absolute;
-	      right: 50px;
-	      margin-top:5px;
-	      padding: 3px 10px 3px 10px;
-	      i {
-	      	margin-right: 10px;
-	      	&.is-starred {
-	      		color: $yellow;
-	      	}
-	      }
+	        right: 50px;
+	        margin-top:5px;
+	        padding: 3px 10px 3px 10px;
+          &.is-starred {
+              i {
+              color: yellow;
+            }
+          }
+          i {
+          	margin-right: 10px;
+          }
+          &.is-clickable {
+            cursor:pointer;
+          }
       	}
       	.title {
       		font-size: $fs-24;

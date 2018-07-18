@@ -47,9 +47,13 @@ export class ChallengeCreateComponent implements OnInit {
     const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');
     FORM_DATA.append('zip_configuration', self.globalService.formItemForLabel(self.components, 'zip_configuration').fileSelected);
+    const SUCCESS_CALLBACK = () => {
+      self.router.navigate(['/challenges/me']);
+    };
     self.challengeService.challengeCreate(
       self.hostTeam['id'],
-      FORM_DATA
+      FORM_DATA,
+      SUCCESS_CALLBACK
     );
   }
 

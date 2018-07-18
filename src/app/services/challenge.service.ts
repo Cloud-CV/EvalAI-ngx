@@ -52,7 +52,6 @@ export class ChallengeService {
     const API_PATH = 'challenges/challenge/' + id + '/';
     const SELF = this;
     this.authService.change.subscribe((authState) => {
-      console.log('checking authstate',authState);
       if (authState['isLoggedIn']) {
         SELF.isLoggedIn = true;
         SELF.fetchStars(id);
@@ -78,7 +77,7 @@ export class ChallengeService {
     });
   }
 
-  private fetchStars(id, callback = null) {
+  fetchStars(id, callback = null) {
     const API_PATH = 'challenges/' + id + '/';
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
@@ -98,21 +97,47 @@ export class ChallengeService {
     );
   }
 
+  starToggle(id, callback = null, self = null) {
+    const API_PATH = 'challenges/' + id + '/';
+    const SELF = this;
+    const BODY = JSON.stringify({});
+    this.apiService.postUrl(API_PATH, BODY).subscribe(
+      data => {
+        if (callback) {
+          callback(data, self);
+        } else {
+          SELF.changeCurrentStars(data);
+        }
+      },
+      err => {
+        SELF.globalService.handleApiError(err, false);
+      },
+      () => {
+        console.log('Stars', id, 'fetched!');
+      }
+    );
+  }
+
   private fetchParticipantTeams(id) {
     const API_PATH = 'participants/participant_teams/challenges/' + id + '/user';
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         let teams = [];
+        let participated = false;
         if (data['challenge_participant_team_list']) {
           teams = data['challenge_participant_team_list'];
           this.changeCurrentParticipantTeams(teams);
           for (let i = 0; i < teams['length']; i++) {
             if (teams[i]['challenge'] !== null && teams[i]['challenge']['id'] === parseInt(id, 10)) {
               SELF.changeParticipationStatus(true);
+              participated = true;
               break;
             }
           }
+        }
+        if (teams.length === 0 || !participated) {
+          SELF.changeParticipationStatus(false);
         }
       },
       err => {
@@ -182,7 +207,6 @@ export class ChallengeService {
     const SELF = this;
     this.apiService.postFileUrl(API_PATH, formData).subscribe(
       data => {
-        console.log(data);
         SELF.globalService.showToast('success', 'Submission successful!');
       },
       err => {
@@ -193,13 +217,13 @@ export class ChallengeService {
     });
   }
 
-  challengeCreate(hostTeam, formData) {
+  challengeCreate(hostTeam, formData, callback = () => {}) {
     const API_PATH = 'challenges/challenge/challenge_host_team/' + hostTeam + '/zip_upload/';
     const SELF = this;
     this.apiService.postFileUrl(API_PATH, formData).subscribe(
       data => {
-        console.log(data);
         SELF.globalService.showToast('success', 'Successfuly sent to EvalAI admin for approval.');
+        callback();
       },
       err => {
         SELF.globalService.showToast('error', err.error);
