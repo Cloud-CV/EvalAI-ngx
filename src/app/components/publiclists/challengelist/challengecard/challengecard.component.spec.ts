@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChallengecardComponent } from './challengecard.component';
 import { GlobalService } from '../../../../services/global.service';
 import { ApiService } from '../../../../services/api.service';
+import { AuthService } from '../../../../services/auth.service';
+import { ChallengeService } from '../../../../services/challenge.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -14,7 +16,7 @@ describe('ChallengecardComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientModule, RouterTestingModule ],
       declarations: [ ChallengecardComponent ],
-      providers: [ GlobalService, ApiService ]
+      providers: [ GlobalService, ApiService, AuthService, ChallengeService ]
     })
     .compileComponents();
   }));
