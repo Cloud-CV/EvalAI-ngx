@@ -52,6 +52,7 @@ export class ChallengeService {
     const API_PATH = 'challenges/challenge/' + id + '/';
     const SELF = this;
     this.authService.change.subscribe((authState) => {
+      console.log('checking authstate',authState);
       if (authState['isLoggedIn']) {
         SELF.isLoggedIn = true;
         SELF.fetchStars(id);

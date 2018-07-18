@@ -24,7 +24,7 @@
         	</div>
         </div>
         <div class="card-content">
-          <div class="form-challenge-submit">
+          <div class="form-challenge-submit" *ngIf="selectedPhaseSubmissions['remaining_submissions_today_count']>0">
           <app-input [isRequired]="true" [label]="'input_file'" [placeholder]="'Upload File *'" [type]="'file'" [theme]="'dark'"  #formsubmit></app-input>
           <app-input [isRequired]="false" [label]="'method_name'" [type]="'text'" [theme]="'dark'" [placeholder]="'Method Name (Optional)'" #formsubmit></app-input>
           <app-input [isRequired]="false" [label]="'method_description'" [type]="'text'" [theme]="'dark'" [placeholder]="'Method Description (Optional)'" #formsubmit></app-input>
@@ -33,6 +33,9 @@
           <div class="submit-btn-div">
             <span class="btn btn-fire" (click)="formValidate('formsubmit')">Submit</span>
           </div>
+          </div>
+          <div *ngIf="selectedPhaseSubmissions['remaining_submissions_today_count']==0">
+             You have exhausted today's submission limit.
           </div>
 
           

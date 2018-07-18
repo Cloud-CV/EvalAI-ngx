@@ -9,9 +9,7 @@
     </div>
     <div class="challenge-content-container">
     <div class="challenge-header">
-      <object class="challenge-img" data="assets/images/404.png" type="image/png">
-        <img class="challenge-img" [src]="challenge['image']" />
-      </object>
+      <img class="challenge-img" [src]="challenge['image']" (error)="challenge['image']='assets/images/404.png';" />
     <div class="challenge-title">
       <span class="title">
         {{challenge['title']}}

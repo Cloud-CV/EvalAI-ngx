@@ -60,7 +60,12 @@ export class ChallengesubmitComponent implements OnInit {
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-        SELF.selectedPhaseSubmissions = data;
+        if (data['remaining_submissions']) {
+          SELF.selectedPhaseSubmissions = data;
+        } else if (data['message']) {
+          SELF.selectedPhaseSubmissions['remaining_submissions_today_count'] = 0;
+          SELF.globalService.showToast('info', data['message']);
+        }
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -82,7 +87,11 @@ export class ChallengesubmitComponent implements OnInit {
   }
 
   formValidate(formname) {
-    this.globalService.formValidate(this.components, this.formSubmit, this);
+    if (this.selectedPhaseSubmissions['remaining_submissions_today_count']) {
+      this.globalService.formValidate(this.components, this.formSubmit, this);
+    } else {
+      this.globalService.showToast('info', 'You have exhausted today\'s submission limit');
+    }
   }
 
   formSubmit(self) {
