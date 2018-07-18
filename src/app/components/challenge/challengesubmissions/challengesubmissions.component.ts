@@ -89,12 +89,32 @@ export class ChallengesubmissionsComponent implements OnInit {
     }
   }
 
-  changeSubmissionVisibility(id) {
-    // parameters.url = "jobs/challenge/" + vm.challengeId + "/challenge_phase/" + vm.phaseId + "/submission/" + submission_id;
-    //         parameters.method = 'PATCH';
-    //         parameters.data = {
-    //             "is_public": vm.submissionVisibility[submission_id]
-    //         };
+  updateSubmissionVisibility(id) {
+    for (let i = 0; i < this.submissions.length; i++) {
+      if (this.submissions[i]['id'] === id) {
+        this.submissions[i]['is_public'] = !this.submissions[i]['is_public'];
+        break;
+      }
+    }
+  }
+
+  changeSubmissionVisibility(id, is_public) {
+    is_public = !is_public;
+    this.updateSubmissionVisibility(id);
+    if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id'] && id) {
+      const API_PATH = 'jobs/challenge/' + this.challenge['id'] + '/challenge_phase/' + this.selectedPhase['id'] + '/submission/' + id;
+      const SELF = this;
+      const BODY = JSON.stringify({is_public: is_public});
+      this.apiService.patchUrl(API_PATH, BODY).subscribe(
+        data => {},
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => {
+          console.log('Updated submission visibility', id);
+        }
+      );
+    }
   }
 
 

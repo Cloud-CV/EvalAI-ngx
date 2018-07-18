@@ -43,6 +43,11 @@ export class ApiService {
     return this.loadingWrapper(this.http.post(this.API + path, body, this.HTTP_OPTIONS));
   }
 
+  patchUrl(path: string, body: any) {
+    this.prepareHttpOptions();
+    return this.loadingWrapper(this.http.patch(this.API + path, body, this.HTTP_OPTIONS));
+  }
+
   postFileUrl(path: string, formData: any) {
     this.prepareHttpOptions(true);
     return this.loadingWrapper(this.http.post(this.API + path, formData, this.HTTP_OPTIONS));
