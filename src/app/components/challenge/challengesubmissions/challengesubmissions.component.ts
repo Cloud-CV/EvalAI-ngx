@@ -36,6 +36,7 @@ export class ChallengesubmissionsComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
       if (!status) {
+        this.globalService.storeData(this.globalService.redirectStorageKey, {path: this.routerPublic.url});
         this.router.navigate(['../participate'], {relativeTo: this.route});
       }
     });
@@ -123,7 +124,7 @@ export class ChallengesubmissionsComponent implements OnInit {
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-        SELF.submissionCount = data['submission_count'];
+        SELF.submissionCount = data['participant_team_submission_count'];
       },
       err => {
         SELF.globalService.handleApiError(err);

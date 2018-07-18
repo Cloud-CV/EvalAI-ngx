@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChallengeparticipateComponent } from './challengeparticipate.component';
 import { ChallengeService } from '../../../services/challenge.service';
 import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
-
 import { GlobalService } from '../../../services/global.service';
 import { ApiService } from '../../../services/api.service';
 import { AuthService } from '../../../services/auth.service';

@@ -40,7 +40,7 @@
           <td *ngIf="key.project_url == ''"><span>None</span></td>
           <td *ngIf="key.publication_url != ''"><span>{{key.publication_url}}</span></td>
           <td *ngIf="key.publication_url == ''"><span>None</span></td>
-          <td class="val-style uppercase"><span>{{key.status}}</span></td>
+          <td class="val-style capitalize red-dark"><span>{{key.status}}</span></td>
           <td class="align-center"><span>{{key.execution_time}}</span></td>
           <td><span><a href="{{key.input_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link-square-alt"></i> Link</a></span></td>
           <td *ngIf="key.submission_result_file"><span><a href="{{key.submission_result_file}}" target="_blank" class="blue-text"><i class="fas fa-external-link-square-alt"></i> Link</a></span></td>

@@ -182,6 +182,9 @@ ul {
   color: white;
 }
 
+.red-dark {
+  color: $red-dark;
+}
 
 
 
@@ -396,6 +399,9 @@ ul {
         display: block;
         padding: 15px 10px 15px 10px;
       }
+    }
+    &:hover {
+      background:$gray-lighter;
     }
   }
 }

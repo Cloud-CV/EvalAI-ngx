@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { ChallengeService } from '../../../services/challenge.service';
+import { GlobalService } from '../../../services/global.service';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-challengeparticipate',
@@ -14,7 +15,7 @@ export class ChallengeparticipateComponent implements OnInit {
   isParticipated: any;
   isActive: any;
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
-              private challengeService: ChallengeService) { }
+              private challengeService: ChallengeService, private globalService: GlobalService) { }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
@@ -28,8 +29,14 @@ export class ChallengeparticipateComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
       if (status) {
-        console.log('navigating to /submit', status);
-        this.router.navigate(['../submit'], {relativeTo: this.route});
+        const REDIRECT = this.globalService.getData(this.globalService.redirectStorageKey);
+        if (REDIRECT && REDIRECT['path']) {
+          this.globalService.deleteData(this.globalService.redirectStorageKey);
+          this.router.navigate([REDIRECT['path']]);
+        } else {
+          console.log('navigating to /submit', status);
+          this.router.navigate(['../submit'], {relativeTo: this.route});
+        }
       }
     });
   }
