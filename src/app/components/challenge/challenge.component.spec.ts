@@ -12,7 +12,7 @@ import { ChallengeparticipateComponent } from '../../components/challenge/challe
 import { ChallengeleaderboardComponent } from '../../components/challenge/challengeleaderboard/challengeleaderboard.component';
 import { ChallengesubmitComponent } from '../../components/challenge/challengesubmit/challengesubmit.component';
 import { ChallengesubmissionsComponent } from '../../components/challenge/challengesubmissions/challengesubmissions.component';
-import { PhasecardComponent } from '../../components/utility/selectphase/phasecard/phasecard.component';
+import { PhasecardComponent } from '../../components/challenge/challengephases/phasecard/phasecard.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../services/auth.service';
 import { ForceloginComponent } from '../../components/utility/forcelogin/forcelogin.component';

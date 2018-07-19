@@ -216,20 +216,20 @@ export class GlobalService {
   getDateDifferenceString(d1, d2) {
     const DIFF_DAYS = this.getDateDifference(d1, d2);
     if (DIFF_DAYS < 1) {
-      const DIFF_HOURS = Math.floor(DIFF_DAYS * 24);
+      const DIFF_HOURS = DIFF_DAYS * 24;
       if (DIFF_HOURS < 1) {
-        const DIFF_MINUTES = Math.floor(DIFF_HOURS * 60);
+        const DIFF_MINUTES = DIFF_HOURS * 60;
         if (DIFF_MINUTES < 1) {
-          const DIFF_SECONDS = Math.floor(DIFF_MINUTES * 60);
-          return DIFF_SECONDS + ' seconds';
+          const DIFF_SECONDS = DIFF_MINUTES * 60;
+          return Math.floor(DIFF_SECONDS) + ' seconds';
         } else {
-          return DIFF_MINUTES + ' minutes';
+          return Math.floor(DIFF_MINUTES) + ' minute(s)';
         }
       } else {
-        return DIFF_HOURS + ' hours';
+        return Math.floor(DIFF_HOURS) + ' hour(s)';
       }
     } else {
-      return Math.floor(DIFF_DAYS) + ' days';
+      return Math.floor(DIFF_DAYS) + ' day(s)';
     }
   }
 

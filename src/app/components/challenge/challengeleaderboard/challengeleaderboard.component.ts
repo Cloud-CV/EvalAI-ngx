@@ -23,7 +23,7 @@ export class ChallengeleaderboardComponent implements OnInit {
   sortColumn = 'rank';
   reverseSort = false;
   columnIndexSort = 0;
-  initialRanking = {};
+  initial_ranking = {};
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService) { }
 
@@ -47,9 +47,8 @@ export class ChallengeleaderboardComponent implements OnInit {
     });
   }
 
-  sortFunction = function(key) {
-    // check which column is selected
-    // so that the values can be parsed properly
+  sortFunction(key) {
+    console.log(this.sortColumn, this.columnIndexSort, this.reverseSort);
     if (this.sortColumn === 'date') {
       return Date.parse(key.submission__submitted_at);
     } else if (this.sortColumn === 'rank') {
@@ -57,11 +56,10 @@ export class ChallengeleaderboardComponent implements OnInit {
     } else if (this.sortColumn === 'number') {
       return parseFloat(key.result[this.columnIndexSort]);
     } else if (this.sortColumn === 'string') {
-      // sort teams alphabetically
-      return key.submission__participant_team__team_name.value;
+      return key.submission__participant_team__team_name;
     }
     return 0;
-  };
+  }
 
   filterPhases() {
     if (this.phases.length > 0 && this.phaseSplits.length > 0) {
@@ -99,9 +97,26 @@ export class ChallengeleaderboardComponent implements OnInit {
       const DATE_NOW = new Date();
       const SUBMISSION_TIME = new Date(Date.parse(leaderboard[i].submission__submitted_at));
       const DURATION = self.globalService.getDateDifferenceString(DATE_NOW, SUBMISSION_TIME);
-      leaderboard[i]['submission__submitted_at'] = DURATION + ' ago';
+      leaderboard[i]['submission__submitted_at_formatted'] = DURATION + ' ago';
     }
     self.leaderboard = leaderboard.slice();
+  }
+
+  sortLeaderboard() {
+    this.leaderboard = this.leaderboard.sort((obj1, obj2) => {
+      const RET1 = this.sortFunction(obj1);
+      const RET2 = this.sortFunction(obj2);
+      if (RET1 > RET2) {
+        return 1;
+      }
+      if (RET2 > RET1) {
+        return -1;
+      }
+      return 0;
+    });
+    if (this.reverseSort) {
+      this.leaderboard = this.leaderboard.reverse();
+    }
   }
 
   fetchLeaderboard(phaseSplitId) {

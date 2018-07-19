@@ -323,7 +323,8 @@ ul {
 
 .card {
   margin: 20px;
-  border-radius: 10px;
+  margin-bottom:40px;
+  border-radius: 5px;
   font-weight: $fw-light;
   font-size: $fs-16;
   overflow: auto;
@@ -382,18 +383,26 @@ ul {
     border-bottom: 1px solid $overlay-light;
     th {
       font-weight: $fw-regular;
-      span {
+      div {
         min-width: 120px;
         text-align: left;
         display: block;
-        padding: 15px 10px 15px 10px;
+        padding: 25px 10px 25px 10px;
+        span {
+          display:inline-block;
+          min-width:auto;
+          margin-right:10px;
+        }
+      }
+      .fa-stack-1x {
+        display:inline-block;
       }
     }
     td {
       vertical-align: middle;
       text-align: left;
       min-width: 50px;
-      span {
+      div {
         min-width: 120px;
         text-align: left;
         display: block;

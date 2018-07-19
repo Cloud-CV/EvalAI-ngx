@@ -6,7 +6,7 @@ import { ApiService } from '../../../services/api.service';
 import { AuthService } from '../../../services/auth.service';
 import { GlobalService } from '../../../services/global.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PhasecardComponent } from '../../../components/utility/selectphase/phasecard/phasecard.component';
+import { PhasecardComponent } from './phasecard/phasecard.component';
 
 describe('ChallengephasesComponent', () => {
   let component: ChallengephasesComponent;

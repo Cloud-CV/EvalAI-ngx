@@ -12,6 +12,8 @@
     margin-right: 100px;
     margin-top: 20px;
     margin-bottom: 20px;
+    border-bottom:0px;
+    border-top:1px solid $overlay-light;
   }
   .get-involved-title {
     font-size: $fs-24;
@@ -21,6 +23,7 @@
   .get-involved-description {
     font-size: $fs-16;
     margin-top: 30px;
+    margin-bottom:50px;
     padding-left: 100px;
     padding-right: 100px;
     line-height: 20px;

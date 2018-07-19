@@ -42,7 +42,7 @@ import { ChallengeparticipateComponent } from './components/challenge/challengep
 import { ChallengeleaderboardComponent } from './components/challenge/challengeleaderboard/challengeleaderboard.component';
 import { ChallengesubmitComponent } from './components/challenge/challengesubmit/challengesubmit.component';
 import { ChallengesubmissionsComponent } from './components/challenge/challengesubmissions/challengesubmissions.component';
-import { PhasecardComponent } from './components/utility/selectphase/phasecard/phasecard.component';
+import { PhasecardComponent } from './components/challenge/challengephases/phasecard/phasecard.component';
 import { ConfirmComponent } from './components/utility/confirm/confirm.component';
 import { LoadingComponent } from './components/utility/loading/loading.component';
 import { SelectphaseComponent } from './components/utility/selectphase/selectphase.component';
