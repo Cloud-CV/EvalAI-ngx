@@ -229,7 +229,17 @@ export class GlobalService {
         return Math.floor(DIFF_HOURS) + ' hour(s)';
       }
     } else {
-      return Math.floor(DIFF_DAYS) + ' day(s)';
+      if (DIFF_DAYS > 100) {
+        const DIFF_WEEKS = DIFF_DAYS / 7;
+        if (DIFF_WEEKS > 104) {
+          const DIFF_YEARS = DIFF_WEEKS / 52;
+          return Math.floor(DIFF_YEARS) + ' year(s)';
+        } else {
+          return Math.floor(DIFF_WEEKS) + ' week(s)';
+        }
+      } else {
+        return Math.floor(DIFF_DAYS) + ' day(s)';
+      }
     }
   }
 
