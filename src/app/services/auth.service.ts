@@ -33,15 +33,15 @@ export class AuthService {
       const API_PATH = 'auth/user/';
       const SELF = this;
       this.apiService.getUrl(API_PATH).subscribe(
-      data => {
-        const TEMP = Object.assign({isLoggedIn: true}, SELF.authState, data);
-        SELF.authStateChange(TEMP);
-      },
-      err => {
-        SELF.globalService.handleApiError(err, false);
-      },
-      () => console.log('User details fetched')
-    );
+        data => {
+          const TEMP = Object.assign({isLoggedIn: true}, SELF.authState, data);
+          SELF.authStateChange(TEMP);
+        },
+        err => {
+          SELF.globalService.handleApiError(err, false);
+        },
+        () => console.log('User details fetched')
+      );
     }
 
     passwordStrength(password) {
@@ -95,5 +95,22 @@ export class AuthService {
             this.logOut();
           }
       }
+    }
+
+    verifyEmail(token, callback = () => {}) {
+      const API_PATH = 'auth/registration/verify-email/';
+      const SELF = this;
+      const BODY = JSON.stringify({
+        key: token
+      });
+      this.apiService.postUrl(API_PATH, BODY).subscribe(
+        data => {
+          callback();
+        },
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => console.log('Email Verified')
+      );
     }
 }

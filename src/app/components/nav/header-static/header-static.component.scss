@@ -129,6 +129,7 @@ header {
   cursor: pointer;
   margin-top: 10px;
   img {
+    opacity:0;
     display: inline-block;
     vertical-align: middle;
     line-height: 50px;
@@ -142,6 +143,7 @@ header {
 .navlinktext {
   margin: 20px;
   color: white;
+  line-height:40px;
 }
 
 @include screen-medium {

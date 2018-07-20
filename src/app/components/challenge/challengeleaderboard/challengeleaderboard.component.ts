@@ -100,6 +100,7 @@ export class ChallengeleaderboardComponent implements OnInit {
       leaderboard[i]['submission__submitted_at_formatted'] = DURATION + ' ago';
     }
     self.leaderboard = leaderboard.slice();
+    self.sortLeaderboard();
   }
 
   sortLeaderboard() {

@@ -6,10 +6,10 @@
       <span class="auth-tagline">Evaluating state of the art in AI</span>
     </div>
     <div class="auth-form">
-      <div class="auth-form-logo">
+      <div class="auth-form-logo" [class.align-center]="!(localRouter.url=='/auth/login' || localRouter.url=='/auth/signup')">
         <img src="assets/images/evalai_logo_light.png" />
       </div>
-      <div class="auth-nav">
+      <div class="auth-nav" *ngIf = "localRouter.url=='/auth/login' || localRouter.url=='/auth/signup'">
         <a [class.auth-selected]="localRouter.url=='/auth/login'" [routerLink]="['/auth/login']" >LOGIN</a>
         <a [class.auth-selected]="localRouter.url=='/auth/signup'" [routerLink]="['/auth/signup']">SIGNUP</a>
       </div>

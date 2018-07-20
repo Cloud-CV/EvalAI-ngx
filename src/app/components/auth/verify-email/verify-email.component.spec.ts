@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomemainComponent } from './homemain.component';
+import { VerifyEmailComponent } from './verify-email.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
@@ -8,22 +8,22 @@ import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('HomemainComponent', () => {
-  let component: HomemainComponent;
-  let fixture: ComponentFixture<HomemainComponent>;
+describe('VerifyEmailComponent', () => {
+  let component: VerifyEmailComponent;
+  let fixture: ComponentFixture<VerifyEmailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomemainComponent ],
+      declarations: [ VerifyEmailComponent ],
+      imports: [ HttpClientModule, RouterTestingModule ],
       providers: [ GlobalService, AuthService, ApiService ],
-      imports: [ RouterTestingModule, HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomemainComponent);
+    fixture = TestBed.createComponent(VerifyEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

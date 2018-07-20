@@ -187,6 +187,8 @@ export class GlobalService {
       this.checkTokenValidity(err, toast);
     } else if (err.status === 403 && toast) {
       this.showToast('error', err.error['error'], 5);
+    } else if (err.status === 404 && toast) {
+      this.showToast('error', err.error['detail'], 5);
     } else if (toast) {
       this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
     }

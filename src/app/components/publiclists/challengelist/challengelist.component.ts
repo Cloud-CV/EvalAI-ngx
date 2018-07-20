@@ -90,13 +90,17 @@ export class ChallengelistComponent implements OnInit {
 
   fetchTeams(path) {
     const SELF = this;
+    SELF.filteredChallenges = [];
     this.apiService.getUrl(path).subscribe(
       data => {
         if (data['results']) {
           const TEAMS = data['results'].map((item) => item['id']);
           SELF.allTeams = SELF.allTeams.concat(TEAMS);
           SELF.allTeams = SELF.allTeams.filter((v, i, a) => a.indexOf(v) === i);
-          this.fetchChallenges();
+          SELF.fetchChallenges();
+          // for(let i = 0; i < SELF.allTeams.length; i++) {
+          //   SELF.fetchHostedChallenges(SELF.allTeams[i], SELF);
+          // }
         }
       },
       err => {
@@ -107,6 +111,23 @@ export class ChallengelistComponent implements OnInit {
       }
     );
   }
+
+  // fetchHostedChallenges(teamId, self) {
+  //   const API_PATH = 'challenges/challenge_host_team/' + teamId + '/challenge';
+  //   this.apiService.getUrl(API_PATH).subscribe(
+  //     data => {
+  //       if (data['results']) {
+  //         this.filteredChallenges = this.filteredChallenges.concat(this.ongoingChallenges, this.pastChallenges);
+  //       }
+  //     },
+  //     err => {
+  //       self.globalService.handleApiError(err, false);
+  //     },
+  //     () => {
+  //       console.log('Teams fetched', path);
+  //     }
+  //   );
+  // }
 
   fetchChallenges(filter = null, callback = null) {
     if (!filter) {

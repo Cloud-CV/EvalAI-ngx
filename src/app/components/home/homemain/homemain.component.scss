@@ -9,9 +9,9 @@
   }
   .header-description {
     color: #efefef;
-    font-weight: semibold;
-    font-style: italic;
+    font-weight: 300;
     padding: 30px;
+    font-size:$fs-16;
   }
   .header-body-buttons {
     width: 50%;
@@ -57,9 +57,20 @@
   }
   .header-iframe-div {
     width: 40%;
-    background-size: 100% 100%;
     margin: 0 auto;
     margin-top: 50px;
+    position:relative;
+    img {
+      height:110%;
+      position:absolute;
+      left:30px;
+      top:10px;
+      z-index:0;
+    }
+    iframe {
+      z-index:1;
+      position:relative;
+    }
   }
 
   .combinedvideo {
@@ -67,6 +78,9 @@
     height: 250px;
     margin-top: 50px;
     cursor: pointer !important;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,0.05);
   }
 }
 

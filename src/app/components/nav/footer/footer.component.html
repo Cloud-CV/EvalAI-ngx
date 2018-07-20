@@ -1,10 +1,12 @@
 <div class = "footer-container">
 <div class="footer-bg">
-	<img src = "/assets/images/Footer.png"/>
+	<img *ngIf="localRouter.url == '/'" src = "/assets/images/footer.png"/>
+	<img *ngIf="localRouter.url != '/'" src = "/assets/images/footer_partial.png"/>
 </div>
 <!-- <img class="footer-bg" src="assets/images/Footer.png"/> -->
 <div class="footer-content">
 	<div class="footer-content-top">
+	<div *ngIf="localRouter.url == '/'">
 	<span class="section-title">Stay Notified</span>
 	<div class="footer-description">	
 			<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
@@ -14,6 +16,7 @@
 				<input id = "notification-email" class = "btn btn-fill input-fill" placeholder="Name@company.com"/>	
 				<span class = "btn btn-fire" (click)="getNotifications()">Get Notifications</span>
 			</div>
+	</div>
 	</div>
 	<div class="row top-margin-extra">
 	<div class="footer-location col-lg-6 col-md-6 col-sm-12 col-xs-12">

@@ -48,6 +48,7 @@ import { LoadingComponent } from './components/utility/loading/loading.component
 import { SelectphaseComponent } from './components/utility/selectphase/selectphase.component';
 import { HomemainComponent } from './components/home/homemain/homemain.component';
 import { ChallengeCreateComponent } from './components/challenge-create/challenge-create.component';
+import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { ChallengeCreateComponent } from './components/challenge-create/challeng
     LoadingComponent,
     SelectphaseComponent,
     HomemainComponent,
-    ChallengeCreateComponent
+    ChallengeCreateComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,

@@ -14,9 +14,9 @@
       <li class="navlinks navlinktext fw-light" (click)="navigateTo('news')" [class.dark-text]="headerWhite"> News </li>
       <li class="navlinks navlinktext fw-light" (click)="navigateTo('forum')" [class.dark-text]="headerWhite"> Forum </li>
       <li class="navlinks navlinktext fw-light" (click)="navigateTo('join-us')" [class.dark-text]="headerWhite"> Join Us </li>
-      <li class="navlinks navlinktext">
+      <!-- <li class="navlinks navlinktext">
         <img src="assets/images/dots.png" />
-      </li>
+      </li> -->
       <li class="navlinks center btn btn-nofill fw-regular" [class.btn-white-bg]="headerWhite" [class.dark-text]="headerWhite" (click)="navigateTo('/auth/signup');" *ngIf="!authState.isLoggedIn">
         Sign Up
       </li>

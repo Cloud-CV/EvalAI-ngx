@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
 import { PubliclistsComponent } from './components/publiclists/publiclists.component';
 import { ChallengelistComponent } from './components/publiclists/challengelist/challengelist.component';
 import { TeamlistComponent } from './components/publiclists/teamlist/teamlist.component';
@@ -40,7 +41,9 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
-      {path: 'signup', component: SignupComponent}
+      {path: 'signup', component: SignupComponent},
+      {path: 'verify-email/:token', component: VerifyEmailComponent},
+      {path: '**', redirectTo: 'login'}
     ]
   },
   {

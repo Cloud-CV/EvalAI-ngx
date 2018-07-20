@@ -14,7 +14,10 @@ body {
     box-sizing: border-box;
   }
 }
-
+.content {
+  line-height:24px;
+  letter-spacing:0.1px;
+}
 .go {
   -webkit-animation-fill-mode: forwards;
 }
@@ -32,6 +35,8 @@ body {
 .lowercase {
   text-transform: lowercase
 }
+
+
 
 
 /*Font weights*/
