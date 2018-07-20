@@ -10,12 +10,15 @@ import { GlobalService } from '../../../services/global.service';
   styleUrls: ['./homemain.component.scss']
 })
 export class HomemainComponent implements OnInit {
+  isLoggedIn = false;
 
   constructor(private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
               private authService: AuthService) { }
 
   ngOnInit() {
+  	if (this.authService.isLoggedIn()) {
+  		this.isLoggedIn = true;
+  	}
   }
-
 }
