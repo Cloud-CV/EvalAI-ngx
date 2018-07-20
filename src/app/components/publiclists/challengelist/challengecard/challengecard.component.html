@@ -38,7 +38,7 @@
     	<a class="btn btn-filter challenge-participate" (click)="participateInChallenge()">Participate</a>
     </div>
     <div class="challenge-labels">
-    	<span [class.is-starred]="stars['is_starred']" [class.is-clickable]="isLoggedIn" (click)="starToggle(challenge['id'])" class="stars">
+    	<span [class.is-starred]="stars['is_starred']" [class.is-clickable]="isLoggedIn" (click)="starToggle()" class="stars">
         <i class="fas fa-star"></i>
         {{stars['count']}}
         </span>
