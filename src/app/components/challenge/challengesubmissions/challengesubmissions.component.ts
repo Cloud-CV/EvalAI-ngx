@@ -124,7 +124,9 @@ export class ChallengesubmissionsComponent implements OnInit {
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-        SELF.submissionCount = data['participant_team_submission_count'];
+        if (data['participant_team_submission_count']) {
+          SELF.submissionCount = data['participant_team_submission_count'];
+        }
       },
       err => {
         SELF.globalService.handleApiError(err);
