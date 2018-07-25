@@ -2,16 +2,19 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { WindowService } from './window.service';
 
-fdescribe('WindowService', () => {
+describe('WindowService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [WindowService],
     });
   });
 
+  /**
+   * Download File function test.
+   */
   it('should be created', inject([WindowService], (service: WindowService) => {
     expect(service).toBeTruthy();
-    let nw = service.nativeWindow();
+    const NW = service.nativeWindow();
   }));
 
   /**
@@ -21,9 +24,9 @@ fdescribe('WindowService', () => {
     expect(service).toBeTruthy();
     const SELF = this;
     SELF.test = () => {};
-    let spy = spyOn(SELF, 'test');
-    service.downloadFile('', 'data_test.csv', { type: 'text/csv' }, spy);
-    expect(spy).toHaveBeenCalled();
+    const SPY = spyOn(SELF, 'test');
+    service.downloadFile('', 'data_test.csv', { type: 'text/csv' }, SPY);
+    expect(SPY).toHaveBeenCalled();
   }));
 
   /**
@@ -33,8 +36,8 @@ fdescribe('WindowService', () => {
     expect(service).toBeTruthy();
     const SELF = this;
     SELF.appendChild = () => {};
-    let spy = spyOn(SELF, 'appendChild');
+    const SPY = spyOn(SELF, 'appendChild');
     service.loadJS('', (env) => {}, SELF, null);
-    expect(spy).toHaveBeenCalled();
+    expect(SPY).toHaveBeenCalled();
   }));
 });
