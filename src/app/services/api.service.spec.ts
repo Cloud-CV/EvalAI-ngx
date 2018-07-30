@@ -14,4 +14,14 @@ describe('ApiService', () => {
   it('should be created', inject([ ApiService ], (service: ApiService) => {
     expect(service).toBeTruthy();
   }));
+
+  /**
+   * Prepare HTTP Options test
+   */
+  it('Prepare Headers', inject([ApiService], (service: ApiService) => {
+    expect(service).toBeTruthy();
+    expect(service.prepareHttpOptions(true)['Content-Type']).toBeUndefined();
+    expect(service.prepareHttpOptions()['Content-Type']).toBeDefined();
+  }));
+
 });
