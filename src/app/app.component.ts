@@ -20,10 +20,12 @@ export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
   isLoading = false;
   confirmParams = { isConfirming: false};
+  modalParams = { isModalVisible: false};
   globalServiceSubscription: any;
   globalLogoutTrigger: any;
   globalLoadingSubscription: any;
   globalConfirmSubscription: any;
+  globalModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
   constructor(
   @Inject(DOCUMENT) private document: Document,
@@ -66,6 +68,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.globalConfirmSubscription = this.globalService.currentConfirmParams.subscribe(params => {
       setTimeout(() => {
         this.confirmParams = params;
+      }, 0);
+    });
+    this.globalModalSubscription = this.globalService.currentModalParams.subscribe(params => {
+      setTimeout(() => {
+        this.modalParams = params;
       }, 0);
     });
 

@@ -10,7 +10,10 @@ export class CardlistComponent implements OnInit {
   @Input() data: object;
   @Input() dataObservable: any;
   @Input() deleteTeam: any;
+  @Input() editTeam: any;
+  @Input() addMembersToTeam: any;
   @Input() selectTeam: any;
+
   dataList: any;
   arrayJavascript: any;
   constructor() { }

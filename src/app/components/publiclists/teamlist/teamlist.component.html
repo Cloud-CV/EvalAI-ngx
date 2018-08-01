@@ -5,7 +5,7 @@
         {{teamSelectTitle}}
       </div>
       <div class="card-content">
-        <app-cardlist [type]="'teams'" [data]="filteredTeams" [deleteTeam]="deleteTeamWrapper()" [selectTeam]="selectTeamWrapper()" [dataObservable]="filteredTeamsObservable"></app-cardlist>
+        <app-cardlist [type]="'teams'" [data]="filteredTeams" [deleteTeam]="deleteTeamWrapper()" [editTeam]="editTeamWrapper()" [addMembersToTeam]="addMembersToTeamWrapper()" [selectTeam]="selectTeamWrapper()" [dataObservable]="filteredTeamsObservable"></app-cardlist>
         <div class="see-more" *ngIf="filteredTeams.length < allTeams.length">
           <a class="btn btn-filter" (click)="seeMoreClicked()">See More</a>
         </div>

@@ -14,6 +14,8 @@ export class TeamcardComponent implements OnInit, OnChanges {
   @Input() update: any;
   @Output() deleteTeamCard = new EventEmitter<any>();
   @Output() selectTeamCard = new EventEmitter<any>();
+  @Output() editTeamCard = new EventEmitter<any>();
+  @Output() addMembersTeamCard = new EventEmitter<any>();
 
   teamText = '';
   teamView = {};
@@ -40,10 +42,22 @@ export class TeamcardComponent implements OnInit, OnChanges {
       }
     }
   }
+
+  editTeam(e) {
+    e.stopPropagation();
+    this.editTeamCard.emit(this.team['id']);
+  }
+
+  addMembersToTeam(e) {
+    e.stopPropagation();
+    this.addMembersTeamCard.emit(this.team['id']);
+  }
+
   deleteTeam(e) {
     e.stopPropagation();
     this.deleteTeamCard.emit(this.team['id']);
   }
+
   selectTeam() {
     this.selectTeamCard.emit(this.team);
   }

@@ -19,8 +19,21 @@ export class GlobalService {
     confirmCallback: null,
     denyCallback: null
   };
+
+  isModalVisible = false;
+  modalDefault = {
+    isModalVisible: false,
+    confirm: 'Confirm',
+    deny: 'Cancel',
+    title: 'Update Fields',
+    confirmCallback: null,
+    denyCallback: null,
+    form: []
+  };
   private confirmSource = new BehaviorSubject(this.confirmDefault);
   currentConfirmParams = this.confirmSource.asObservable();
+  private modalSource = new BehaviorSubject(this.modalDefault);
+  currentModalParams = this.modalSource.asObservable();
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();
   @Output() toast: EventEmitter<Object> = new EventEmitter();
@@ -80,7 +93,21 @@ export class GlobalService {
     if (this.isConfirming) {
       this.isConfirming = false;
       const TEMP = { isConfirming: false};
-      this.confirmSource.next(Object.assign({}, this.confirmDefault, TEMP));
+      this.confirmSource.next(Object.assign({}, this.modalDefault, TEMP));
+    }
+  }
+  showModal(params) {
+    if (!this.isModalVisible) {
+      this.isModalVisible = true;
+      const TEMP = { isModalVisible: true};
+      this.modalSource.next(Object.assign({}, params, TEMP));
+    }
+  }
+  hideModal() {
+    if (this.isModalVisible) {
+      this.isModalVisible = false;
+      const TEMP = { isModalVisible: false};
+      this.modalSource.next(Object.assign({}, this.modalDefault, TEMP));
     }
   }
   /**
@@ -114,6 +141,13 @@ export class GlobalService {
     }
   }
 
+  formFields(components) {
+    const TEMP = {};
+    components.map((item) => {
+      TEMP[item.label.toLowerCase()] = item.value;
+    });
+    return TEMP;
+  }
 
   formValueForLabel(components, label) {
     let value = '';
@@ -189,6 +223,8 @@ export class GlobalService {
       this.showToast('error', err.error['error'], 5);
     } else if (err.status === 404 && toast) {
       this.showToast('error', err.error['detail'], 5);
+    } else if (err.status === 406 && toast) {
+      this.showToast('error', err.error['error'], 5);
     } else if (toast) {
       this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
     }

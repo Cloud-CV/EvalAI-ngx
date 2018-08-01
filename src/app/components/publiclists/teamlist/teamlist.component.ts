@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ChallengeService } from '../../../services/challenge.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 @Component({
   selector: 'app-teamlist',
   templateUrl: './teamlist.component.html',
@@ -38,7 +39,8 @@ export class TeamlistComponent implements OnInit {
               private globalService: GlobalService,
               private router: Router,
               private route: ActivatedRoute,
-              private challengeService: ChallengeService) { }
+              private challengeService: ChallengeService,
+              private endpointsService: EndpointsService) { }
 
   ngOnInit() {
     this.authServicePublic = this.authService;
@@ -165,6 +167,84 @@ export class TeamlistComponent implements OnInit {
       return false;
     };
     return deleteTeam;
+  }
+
+  editTeamWrapper() {
+    const SELF = this;
+    const editTeam = (team) => {
+      const apiCall = (params) => {
+        const BODY = JSON.stringify(params);
+        SELF.apiService.patchUrl(SELF.endpointsService.participantTeamURL(team), BODY).subscribe(
+        data => {
+          // Success Message in data.message
+          SELF.globalService.showToast('success', 'Team Updated', 5);
+          SELF.fetchMyTeams(SELF.fetchTeamsPath);
+          SELF.selectedTeam = null;
+        },
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => console.log('TEAM-UPDATE-FINISHED')
+        );
+        console.log('api_call', params, team);
+      };
+      const PARAMS = {
+        title: 'Change Team Name',
+        content: 'Enter new team name',
+        confirm: 'Confirm',
+        deny: 'Cancel',
+        form: [
+          {
+            isRequired: true,
+            label: 'team_name',
+            placeholder: 'Team Name',
+            type: 'text'
+          }
+        ],
+        confirmCallback: apiCall
+      };
+      SELF.globalService.showModal(PARAMS);
+    };
+    return editTeam;
+  }
+
+  addMembersToTeamWrapper() {
+    const SELF = this;
+    const addMembersToTeam = (team) => {
+      const apiCall = (params) => {
+        const BODY = JSON.stringify(params);
+        SELF.apiService.postUrl(SELF.endpointsService.participantTeamInviteURL(team), BODY).subscribe(
+        data => {
+          // Success Message in data.message
+          SELF.globalService.showToast('success', 'User added to the team successfully', 5);
+          SELF.fetchMyTeams(SELF.fetchTeamsPath);
+          SELF.selectedTeam = null;
+        },
+        err => {
+          SELF.globalService.handleApiError(err, true);
+        },
+        () => console.log('USER-ADDED-TO-TEAM-FINISHED')
+        );
+        console.log('api_call', params, team);
+      };
+      const PARAMS = {
+        title: 'Add other members to this Team',
+        content: 'Enter the email address of the person',
+        confirm: 'ADD',
+        deny: 'Cancel',
+        form: [
+          {
+            isRequired: true,
+            label: 'email',
+            placeholder: 'Email',
+            type: 'email'
+          }
+        ],
+        confirmCallback: apiCall
+      };
+      SELF.globalService.showModal(PARAMS);
+    };
+    return addMembersToTeam;
   }
 
   createTeam(formname) {

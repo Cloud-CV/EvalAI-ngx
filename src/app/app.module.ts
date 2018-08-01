@@ -9,7 +9,7 @@ import { WindowService } from './services/window.service';
 import { ApiService } from './services/api.service';
 import { GlobalService } from './services/global.service';
 import { ChallengeService } from './services/challenge.service';
-
+import { EndpointsService } from './services/endpoints.service';
 
 
 // Import Components
@@ -49,6 +49,7 @@ import { SelectphaseComponent } from './components/utility/selectphase/selectpha
 import { HomemainComponent } from './components/home/homemain/homemain.component';
 import { ChallengeCreateComponent } from './components/challenge-create/challenge-create.component';
 import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
+import { ModalComponent } from './components/utility/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { VerifyEmailComponent } from './components/auth/verify-email/verify-emai
     SelectphaseComponent,
     HomemainComponent,
     ChallengeCreateComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ import { VerifyEmailComponent } from './components/auth/verify-email/verify-emai
     WindowService,
     ApiService,
     GlobalService,
-    ChallengeService
+    ChallengeService,
+    EndpointsService
   ],
   bootstrap: [AppComponent]
 })

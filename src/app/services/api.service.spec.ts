@@ -24,4 +24,36 @@ describe('ApiService', () => {
     expect(service.prepareHttpOptions()['Content-Type']).toBeDefined();
   }));
 
+  /**
+   *
+   * Loading Wrapper
+   */
+   it('Test Loading Wrapper', inject([ApiService], (service: ApiService) => {
+     expect(service).toBeTruthy();
+     const SPIES = {
+       success: () => {},
+       error: () => {},
+       final: () => {}
+     };
+     const SPY1 = spyOn(SPIES, 'success');
+     const SPY2 = spyOn(SPIES, 'error');
+     const SPY3 = spyOn(SPIES, 'final');
+
+     const HTTP_CALL_MOCK = {
+       subscribe: (one, two, three) => {
+         SPIES.success();
+         SPIES.error();
+         SPIES.final();
+         one();
+         two();
+         three();
+       }
+     };
+     const RET = service.loadingWrapper(HTTP_CALL_MOCK);
+     RET.subscribe(null, null, null);
+     expect(SPY1).toHaveBeenCalled();
+     expect(SPY2).toHaveBeenCalled();
+     expect(SPY3).toHaveBeenCalled();
+   }));
+
 });
