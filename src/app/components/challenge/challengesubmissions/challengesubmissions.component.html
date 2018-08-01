@@ -55,7 +55,7 @@
             <label for="isPublic{{ key.id }}" class="cbx-label"></label>
             <div *ngIf="key.status !== 'finished'" class="center"> N/A </div></div>
           </td>
-          <td><div><a><i class="fas fa-pencil-alt"></i></a></div></td>
+          <td><div><a (click)="editSubmission(key)"><i class="fas fa-pencil-alt"></i></a></div></td>
         </tr>
       </tbody>
     </table>

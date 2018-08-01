@@ -144,6 +144,7 @@ export class GlobalService {
   formFields(components) {
     const TEMP = {};
     components.map((item) => {
+      console.log(item);
       TEMP[item.label.toLowerCase()] = item.value;
     });
     return TEMP;

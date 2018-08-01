@@ -6,9 +6,9 @@
     <div class="content">
       {{content}}
     </div>
-    <div class="form" #formmodal>
+    <div class="form">
       <div *ngFor="let item of form">
-        <app-input [isRequired]="item['isRequired']" [label]="item['label']" [placeholder]="item['placeholder']" [type]="item['type']" [theme]="'dark'" [icon]="item['icon']" #formmodal></app-input>
+        <app-input [isRequired]="item['isRequired']" [label]="item['label']" [placeholder]="item['placeholder']" [type]="item['type']" [theme]="'dark'" [icon]="item['icon']" [value]="item['value']" #formmodal></app-input>
       </div>
     </div>
     <div class="buttons">

@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChallengesubmissionsComponent } from './challengesubmissions.component';
 import { ChallengeService } from '../../../services/challenge.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { GlobalService } from '../../../services/global.service';
 import { ApiService } from '../../../services/api.service';
 import { WindowService } from '../../../services/window.service';
@@ -18,7 +19,7 @@ describe('ChallengesubmissionsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChallengesubmissionsComponent ],
-      providers: [ ChallengeService, GlobalService, AuthService, ApiService, WindowService ],
+      providers: [ ChallengeService, GlobalService, AuthService, ApiService, WindowService, EndpointsService ],
       imports: [ HttpClientModule, RouterTestingModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

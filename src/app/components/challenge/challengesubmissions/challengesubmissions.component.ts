@@ -4,6 +4,7 @@ import { ApiService } from '../../../services/api.service';
 import { WindowService } from '../../../services/window.service';
 import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,7 +24,7 @@ export class ChallengesubmissionsComponent implements OnInit {
   selectedPhase: any = null;
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService,
-              private windowService: WindowService) { }
+              private windowService: WindowService, private endpointsService: EndpointsService) { }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
@@ -50,6 +51,7 @@ export class ChallengesubmissionsComponent implements OnInit {
     const SELF = this;
     return (phase) => {
       SELF.selectedPhase = phase;
+      SELF.submissionCount = 0;
       if (SELF.challenge['id'] && phase['id']) {
         SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
         SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
@@ -135,6 +137,65 @@ export class ChallengesubmissionsComponent implements OnInit {
         console.log('Fetched submission counts', challenge, phase);
       }
     );
+  }
+
+  editSubmission(submission) {
+    console.log(submission);
+    const SELF = this;
+    const apiCall = (params) => {
+      const BODY = JSON.stringify(params);
+      console.log(params);
+      SELF.apiService.patchUrl(SELF.endpointsService.submissionUpdateURL(SELF.challenge.id, submission.challenge_phase, submission.id),
+                               BODY).subscribe(
+        data => {
+          // Success Message in data.message
+          SELF.globalService.showToast('success', 'Data updated successfully', 5);
+          SELF.fetchSubmissions(SELF.challenge.id, SELF.selectedPhase.id);
+        },
+        err => {
+          SELF.globalService.handleApiError(err, true);
+        },
+        () => console.log('SUBMISSION-UPDATE-FINISHED')
+      );
+    };
+    const PARAMS = {
+      title: 'Update Submission Details',
+      content: '',
+      confirm: 'Submit',
+      deny: 'Cancel',
+      form: [
+        {
+          isRequired: false,
+          label: 'method_name',
+          placeholder: 'Method Name',
+          type: 'text',
+          value: submission['method_name']
+        },
+        {
+          isRequired: false,
+          label: 'method_description',
+          placeholder: 'Method Description',
+          type: 'text',
+          value: submission['method_description']
+        },
+        {
+          isRequired: false,
+          label: 'project_url',
+          placeholder: 'Project Url',
+          type: 'text',
+          value: submission['project_url']
+        },
+        {
+          isRequired: false,
+          label: 'publication_url',
+          placeholder: 'Publication Url',
+          type: 'text',
+          value: submission['publication_url']
+        }
+      ],
+      confirmCallback: apiCall
+    };
+    SELF.globalService.showModal(PARAMS);
   }
 
 }

@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 export class EndpointsService {
 
   participants = 'participants/';
+  jobs = 'jobs/';
+
   constructor() { }
 
   /**
@@ -20,6 +22,12 @@ export class EndpointsService {
     return `${this.participants}participant_team/${teamId}/invite`;
   }
 
+  /**
+   * Submission Details
+   */
+  submissionUpdateURL(challenge, challenge_phase, submission) {
+    return `${this.jobs}challenge/${challenge}/challenge_phase/${challenge_phase}/submission/${submission}`;
+  }
 
 
 

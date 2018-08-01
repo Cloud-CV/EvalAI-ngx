@@ -15,6 +15,7 @@ export class InputComponent implements OnInit {
   @Input() theme: string;
   @Input() icon: string;
   @Input() validate: Function;
+  @Input() value: string;
   isEmail = false;
   isDirty = false;
   isValid = false;
@@ -22,7 +23,6 @@ export class InputComponent implements OnInit {
   isIconPresent = false;
   isValidateCustom = false;
   fileSelected = null;
-  value = '';
   message = 'Required field';
   requiredMessage = 'Required field';
   constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) {  }
@@ -51,6 +51,11 @@ export class InputComponent implements OnInit {
     }
     if (this.placeholder === undefined) {
       this.placeholder = this.label;
+    }
+    if (!this.value) {
+      this.value = '';
+    } else {
+      this.isEmpty = false;
     }
   }
 
