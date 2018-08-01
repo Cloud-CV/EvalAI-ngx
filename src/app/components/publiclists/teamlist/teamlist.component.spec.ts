@@ -7,6 +7,7 @@ import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
 import { ChallengeService } from '../../../services/challenge.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -17,7 +18,7 @@ describe('TeamlistComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TeamlistComponent ],
-      providers: [ GlobalService, ApiService, AuthService, ChallengeService ],
+      providers: [ GlobalService, ApiService, AuthService, ChallengeService, EndpointsService ],
       imports: [ RouterTestingModule, HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

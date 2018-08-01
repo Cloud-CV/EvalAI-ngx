@@ -14,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/nav/footer/footer.component';
 import { LoadingComponent } from './components/utility/loading/loading.component';
 import { ConfirmComponent } from './components/utility/confirm/confirm.component';
-
+import { ModalComponent } from './components/utility/modal/modal.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
 
@@ -41,7 +42,11 @@ describe('AppComponent', () => {
       providers: [
         GlobalService,
         AuthService,
-        ApiService
+        ApiService,
+        ModalComponent
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
       ]
     }).compileComponents();
 
