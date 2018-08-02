@@ -12,8 +12,11 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   z-index: 10;
-  padding-top:80px;
-  margin-top:100px;
+  margin-top:30px;
+  &.at-home {
+    margin-top:100px;
+    padding-top:80px;
+  }
 
   .top-margin-extra {
     margin-top: 50px;

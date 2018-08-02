@@ -248,8 +248,8 @@ ul {
     border: 1.5px solid $gray-light;
     color: black;
     @include box-shadow(0px,
-    15px,
-    20px,
+    0px,
+    10px,
     0px,
     $overlay-light);
   }
@@ -272,8 +272,8 @@ ul {
     $fire-left,
     $fire-right);
     @include box-shadow(0px,
-    15px,
-    20px,
+    0px,
+    10px,
     0px,
     $overlay-light);
   }
@@ -291,8 +291,8 @@ ul {
   $overlay-light);
   &:hover {
     @include box-shadow(0px,
-    15px,
-    20px,
+    0px,
+    10px,
     0px,
     $overlay-light);
     border: 1.5px solid $gray-light;

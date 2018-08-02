@@ -213,7 +213,11 @@ export class TeamlistComponent implements OnInit {
     const addMembersToTeam = (team) => {
       const apiCall = (params) => {
         const BODY = JSON.stringify(params);
-        SELF.apiService.postUrl(SELF.endpointsService.participantTeamInviteURL(team), BODY).subscribe(
+        let apiPath = SELF.endpointsService.participantTeamInviteURL(team);
+        if (SELF.isHost) {
+          apiPath = SELF.endpointsService.hostTeamInviteURL(team);
+        }
+        SELF.apiService.postUrl(apiPath, BODY).subscribe(
         data => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'User added to the team successfully', 5);

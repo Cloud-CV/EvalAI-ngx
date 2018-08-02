@@ -1,4 +1,4 @@
-<div class = "footer-container">
+<div class = "footer-container" [class.at-home]="atHome">
 <div class="footer-bg">
 	<img *ngIf="localRouter.url == '/'" src = "/assets/images/footer_complete.png"/>
 	<img *ngIf="localRouter.url != '/'" src = "/assets/images/footer_partial.png"/>

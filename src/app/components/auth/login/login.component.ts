@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   redirectCheck(self) {
-    let redirectTo = '/';
+    let redirectTo = '/dashboard';
     const REDIRECT_URL = self.globalService.getData(self.globalService.redirectStorageKey);
     if (REDIRECT_URL && REDIRECT_URL['path']) {
       redirectTo = REDIRECT_URL['path'];

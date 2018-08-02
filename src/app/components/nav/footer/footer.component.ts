@@ -11,11 +11,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FooterComponent implements OnInit {
   localRouter: any;
+  transparentHeaderUrls = ['', '/'];
+  atHome = true;
   constructor(private apiService: ApiService, @Inject(DOCUMENT) private document: Document, private globalService: GlobalService,
               private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.localRouter = this.router;
+    this.atHome = true;
+    if (!this.transparentHeaderUrls.includes(this.router.url)) {
+      this.atHome = false;
+    }
   }
   getNotifications() {
     const EMAIL = this.document.getElementById('notification-email')['value'];

@@ -3,10 +3,22 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EndpointsService {
 
+  /**
+   * Categories of API paths
+   */
   participants = 'participants/';
+  hosts = 'hosts/';
   jobs = 'jobs/';
+  challenges = 'challenges/';
 
   constructor() { }
+
+  /**
+   * All Participant teams
+   */
+  allParticipantTeamsURL() {
+    return `${this.participants}participant_team`;
+  }
 
   /**
    * Edit Team Name
@@ -16,10 +28,33 @@ export class EndpointsService {
   }
 
   /**
-   * Invite members to team
+   * Invite members to participant team
    */
   participantTeamInviteURL(teamId) {
     return `${this.participants}participant_team/${teamId}/invite`;
+  }
+
+  /**
+   * Fetch all challenges for a time frame
+   * @param time  past, present or future
+   */
+  allChallengesURL(time) {
+    return `challenges/challenge/${time}`;
+  }
+
+
+  /**
+   * All host teams
+   */
+  allHostTeamsURL() {
+    return `${this.hosts}challenge_host_team`;
+  }
+
+  /**
+   * Invite members to host team
+   */
+  hostTeamInviteURL(teamId) {
+    return `${this.hosts}challenge_host_teams/${teamId}/invite`;
   }
 
   /**

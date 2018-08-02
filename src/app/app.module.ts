@@ -50,6 +50,9 @@ import { HomemainComponent } from './components/home/homemain/homemain.component
 import { ChallengeCreateComponent } from './components/challenge-create/challenge-create.component';
 import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
 import { ModalComponent } from './components/utility/modal/modal.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangePasswordComponent } from './components/auth/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +91,10 @@ import { ModalComponent } from './components/utility/modal/modal.component';
     HomemainComponent,
     ChallengeCreateComponent,
     VerifyEmailComponent,
-    ModalComponent
+    ModalComponent,
+    DashboardComponent,
+    ProfileComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
