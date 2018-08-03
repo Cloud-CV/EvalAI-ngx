@@ -10,8 +10,16 @@ export class EndpointsService {
   hosts = 'hosts/';
   jobs = 'jobs/';
   challenges = 'challenges/';
+  auth = 'auth/';
 
   constructor() { }
+
+  /**
+   * Get User Details
+   */
+  userDetailsURL() {
+    return `${this.auth}user/`;
+  }
 
   /**
    * All Participant teams

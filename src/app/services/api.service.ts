@@ -74,6 +74,16 @@ export class ApiService {
   }
 
   /**
+   * HTTP PUT wrapper.
+   * @param path  path of API call.
+   * @param body  stringified json body.
+   */
+  putUrl(path: string, body: any) {
+    this.prepareHttpOptions();
+    return this.loadingWrapper(this.http.put(this.API + path, body, this.HTTP_OPTIONS));
+  }
+
+  /**
    * HTTP POST (file upload) wrapper.
    * @param path  path of API call.
    * @param body  stringified json body.

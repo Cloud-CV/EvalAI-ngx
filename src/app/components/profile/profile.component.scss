@@ -1,0 +1,29 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.profile-container {
+	.card {
+		background: $gray-lighter;
+		padding-bottom:30px;
+	}
+	font-size:$fs-16;
+	font-weight: $fw-light;
+	color:$gray-medium;
+	margin:30px;
+
+	.dark {
+		color:$gray-darker;
+	}
+	.red {
+		color: $red-light;
+	}
+	.item {
+		margin:20px;
+		text-align:center;
+	}
+	.profile-photo {
+		height:100px;
+		border-radius:50%;
+		@include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
+	}
+}

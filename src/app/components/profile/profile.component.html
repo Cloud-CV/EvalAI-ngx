@@ -1,3 +1,55 @@
-<p>
-  profile works!
-</p>
+<app-header-static></app-header-static>
+
+<div class="container-top profile-container">
+    <div class="card">
+	<div class="item">
+		<img class="profile-photo" src="assets/images/profile.png" />
+	</div>
+	<div class="item">
+		<div class="dark">
+			{{user.username}}
+		</div>
+        <div>
+        	{{user.email}}
+        </div>
+	</div>
+	<div class="item">
+		<div>
+			First Name
+		</div>
+		<div class="dark">
+			{{user.first_name}}
+		</div>
+	</div>
+	<div class="item">
+		<div>
+			Last Name
+		</div>
+		<div class="dark">
+			{{user.last_name}}
+		</div>
+	</div>
+	<div class="item">
+		<div>
+			Affiliated to
+		</div>
+		<div class="dark">
+			{{user.affiliation}}
+		</div>
+	</div>
+	<div class="item">
+	  <div class="red">Profile Completed</div>
+	  <div class="dark">{{pcomp}}</div>
+	</div>
+	<div class="item">
+	  <span class="btn btn-filter selected">Get your Auth Token</span>
+	</div>
+	<hr>
+	<div class="item">
+	  <span [routerLink] = "['/auth/change-password']" class="btn btn-filter selected">Change Password</span>
+	  <span (click)="updateUserDetails()" class="btn btn-filter red">Update Profile</span>
+	</div>
+	</div>
+</div>
+
+<app-footer></app-footer>

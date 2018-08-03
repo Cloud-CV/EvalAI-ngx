@@ -29,7 +29,7 @@ export class AuthService {
       this.authStateChange(temp);
     }
 
-    private fetchUserDetails() {
+    fetchUserDetails() {
       const API_PATH = 'auth/user/';
       const SELF = this;
       this.apiService.getUrl(API_PATH).subscribe(
