@@ -16,12 +16,14 @@ export class InputComponent implements OnInit {
   @Input() icon: string;
   @Input() validate: Function;
   @Input() value: string;
+  @Input() readonly: boolean;
   isEmail = false;
   isDirty = false;
   isValid = false;
   isEmpty = true;
   isIconPresent = false;
   isValidateCustom = false;
+  isReadonly = false;
   fileSelected = null;
   message = 'Required field';
   requiredMessage = 'Required field';
@@ -56,6 +58,9 @@ export class InputComponent implements OnInit {
       this.value = '';
     } else {
       this.isEmpty = false;
+    }
+    if (this.readonly) {
+      this.isReadonly = true;
     }
   }
 

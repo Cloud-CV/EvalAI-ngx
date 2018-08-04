@@ -48,18 +48,31 @@ export class WindowService {
    * Download File function.
    * @param data  Contents for the file being generated.
    * @param filename  Name for the file being generated.
-   * @param type for  the file being generated.
+   * @param params for  the file being generated.
    * @param callback  callback function
    */
   downloadFile(data: any, filename = 'data.csv', params = { type: 'text/csv' }, callback = () => {}) {
     const BLOB = new Blob([data.body], params);
     const URL = window.URL.createObjectURL(BLOB);
-    const ATAG = document.createElement('a');
+    const ATAG = this.document.createElement('a');
     ATAG.href = URL;
     ATAG.download = filename;
     this.document.body.appendChild(ATAG);
     ATAG.click();
     this.document.body.removeChild(ATAG);
     callback();
+  }
+
+  /**
+   * Copy to clipboard function.
+   * @param str  String to be copied to clipboard.
+   */
+  copyToClipboard(str) {
+    const el = this.document.createElement('textarea');
+    el.value = str;
+    this.document.body.appendChild(el);
+    el.select();
+    this.document.execCommand('copy');
+    this.document.body.removeChild(el);
   }
 }

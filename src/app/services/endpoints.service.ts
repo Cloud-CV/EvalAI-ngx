@@ -22,6 +22,14 @@ export class EndpointsService {
   }
 
   /**
+   * Change Password
+   */
+  changePasswordURL() {
+    return `${this.auth}password/change/`;
+  }
+
+
+  /**
    * All Participant teams
    */
   allParticipantTeamsURL() {
