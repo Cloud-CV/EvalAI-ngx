@@ -25,6 +25,7 @@ import { ChallengeCreateComponent } from './components/challenge-create/challeng
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangePasswordComponent } from './components//auth/change-password/change-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,7 @@ const routes: Routes = [
       {path: 'participate', component: ChallengeparticipateComponent},
       {path: 'submit', component: ChallengesubmitComponent},
       {path: 'submissions', component: ChallengesubmissionsComponent},
+      {path: 'submissions/:phase', component: ChallengesubmissionsComponent}
       {path: 'leaderboard', component: ChallengeleaderboardComponent}
     ]
   },
@@ -109,6 +111,10 @@ const routes: Routes = [
       {path: 'participants', component: TeamlistComponent},
       {path: 'hosts', component: TeamlistComponent}
     ]
+  },
+  {
+    path: '404',
+    component: NotFoundComponent
   }
 ];
 

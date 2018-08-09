@@ -1,12 +1,12 @@
 <div class="challenge-submissions-container">
-  <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()"></app-selectphase>
-
-  <div *ngIf="!selectedPhase">
+  <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()" #phaseselect></app-selectphase>
+  
+  <div *ngIf="!selectedPhase" class="fw-bold">
     Please select a phase.
   </div>
   <div *ngIf="selectedPhase">
     <div class="download-btn-div">
-    	<span (click)='downloadSubmission()' class="btn btn-filter selected">DOWNLOAD</span><br>
+      <span (click)='downloadSubmission()' class="btn btn-filter selected">DOWNLOAD</span><br>
       <span class="total-submissions"> Total submissions done: {{submissionCount}}</span>
     </div>
     <div class="submission-table-div" *ngIf="submissions.length > 0">

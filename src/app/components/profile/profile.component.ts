@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   pcomp: any;
   token = '';
-  tokenModalButtonFlag = false;
+  tokenModalButtonFlag = true;
   tokenModalButton = 'Show Token';
   isTokenModalVisible = false;
   @ViewChildren('formtoken')

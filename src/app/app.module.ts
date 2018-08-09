@@ -53,6 +53,7 @@ import { ModalComponent } from './components/utility/modal/modal.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangePasswordComponent } from './components/auth/change-password/change-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { ChangePasswordComponent } from './components/auth/change-password/chang
     ModalComponent,
     DashboardComponent,
     ProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

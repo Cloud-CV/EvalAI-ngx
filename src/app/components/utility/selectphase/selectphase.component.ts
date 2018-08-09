@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
 import { ChallengeService } from '../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalService } from '../../../services/global.service';
@@ -26,14 +26,8 @@ export class SelectphaseComponent implements OnInit, OnChanges {
     if (!this.phaseSelected) {
       this.phaseSelected = () => {};
     }
-    if (this.phases.length > 0) {
-      this.selectPhase(this.phases[0]);
-    }
   }
   ngOnChanges(change) {
-    if (change.phases && change.phases.currentValue && change.phases.currentValue.length > 0) {
-      this.selectPhase(this.phases[0]);
-    }
   }
 
   selectPhase(phase) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, ViewChild, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { WindowService } from '../../../services/window.service';
@@ -6,14 +6,22 @@ import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 
 @Component({
   selector: 'app-challengesubmissions',
   templateUrl: './challengesubmissions.component.html',
   styleUrls: ['./challengesubmissions.component.scss']
 })
-export class ChallengesubmissionsComponent implements OnInit {
+export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
+  @ViewChildren('phaseselect')
+  components: QueryList<SelectphaseComponent>;
+
   isLoggedIn = false;
+  viewInit = false;
   challenge: any;
   routerPublic: any;
   isParticipated: any;
@@ -21,10 +29,15 @@ export class ChallengesubmissionsComponent implements OnInit {
   submissionCount = 0;
   phases = [];
   filteredPhases = [];
+  selectedPhaseId: any;
   selectedPhase: any = null;
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService,
               private windowService: WindowService, private endpointsService: EndpointsService) { }
+
+  ngAfterViewInit() {
+    this.viewInit = true;
+  }
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
@@ -38,23 +51,65 @@ export class ChallengesubmissionsComponent implements OnInit {
       this.isParticipated = status;
       if (!status) {
         this.globalService.storeData(this.globalService.redirectStorageKey, {path: this.routerPublic.url});
-        this.router.navigate(['../participate'], {relativeTo: this.route});
+        let redirectToPath = '';
+        if (this.router.url.endsWith('submissions')) {
+          redirectToPath = '../participate';
+        } else {
+          redirectToPath = '../../participate';
+        }
+        this.router.navigate([redirectToPath], {relativeTo: this.route});
       }
     });
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
         this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
+        this.route.params.subscribe(params => {
+          if (params['phase']) {
+            this.selectedPhaseId = params['phase'];
+            this.selectPhaseId(this.selectedPhaseId, this);
+          } else {
+            if (this.filteredPhases.length > 0) {
+              this.router.navigate([this.filteredPhases[0]['id']], {relativeTo: this.route});
+            }
+          }
+        });
     });
   }
+
+  selectPhaseId(id, self) {
+    for (let i = 0; i < self.filteredPhases.length; i++) {
+      if (parseInt(id, 10) === self.filteredPhases[i]['id']) {
+        self.selectedPhase = self.filteredPhases[i];
+        const checkViewInit = () => {
+          if (self.viewInit) {
+            self.components.map((item) => {
+              item.selectPhase(self.selectedPhase);
+            });
+          } else {
+            setTimeout(() => {
+              checkViewInit();
+            }, 200);
+          }
+        };
+        checkViewInit();
+        break;
+      }
+    }
+  }
+
   phaseSelected() {
     const SELF = this;
     return (phase) => {
-      SELF.selectedPhase = phase;
-      SELF.submissionCount = 0;
-      if (SELF.challenge['id'] && phase['id']) {
-        SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
-        SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
+      if (!SELF.router.url.endsWith(phase['id'])) {
+        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
+      } else {
+        SELF.selectedPhase = phase;
+        SELF.submissionCount = 0;
+        if (SELF.challenge['id'] && phase['id']) {
+          SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
+          SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
+        }
       }
     };
   }
