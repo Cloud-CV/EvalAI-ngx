@@ -30,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let key of submissions" class="result-val">
+        <tr *ngFor="let key of submissions" class="result-val" class="pointer" [routerLink]="routerPublic.url.split('/').length == 6 ? ['../' + key.submitted_at] : [key.submitted_at]" [class.highlight] = "key.is_highlighted">
           <td><div>{{key.participant_team_name}}</div></td>
           <td *ngIf="key.method_name != ''"><div>{{key.method_name}}</div></td>
           <td *ngIf="key.method_name == ''"><div>None</div></td>

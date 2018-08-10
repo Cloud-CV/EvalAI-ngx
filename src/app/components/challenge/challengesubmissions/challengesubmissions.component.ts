@@ -31,6 +31,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   filteredPhases = [];
   selectedPhaseId: any;
   selectedPhase: any = null;
+  submissionHighlighted: any = null;
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService,
               private windowService: WindowService, private endpointsService: EndpointsService) { }
@@ -52,10 +53,13 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
       if (!status) {
         this.globalService.storeData(this.globalService.redirectStorageKey, {path: this.routerPublic.url});
         let redirectToPath = '';
-        if (this.router.url.endsWith('submissions')) {
+        console.log(this.router.url.split('/'));
+        if (this.router.url.split('/').length === 4) {
           redirectToPath = '../participate';
-        } else {
+        } else if (this.router.url.split('/').length === 5) {
           redirectToPath = '../../participate';
+        } else if (this.router.url.split('/').length === 6) {
+          redirectToPath = '../../../participate';
         }
         this.router.navigate([redirectToPath], {relativeTo: this.route});
       }
@@ -101,8 +105,12 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   phaseSelected() {
     const SELF = this;
     return (phase) => {
-      if (!SELF.router.url.endsWith(phase['id'])) {
+      if (SELF.router.url.endsWith('submissions')) {
         SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
+      } else if (SELF.router.url.indexOf(phase['id']) < 0 && SELF.router.url.split('/').length === 5) {
+        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
+      } else if (SELF.router.url.indexOf(phase['id']) < 0 && SELF.router.url.split('/').length === 6) {
+        SELF.router.navigate(['../../' + phase['id']], {relativeTo: this.route});
       } else {
         SELF.selectedPhase = phase;
         SELF.submissionCount = 0;
@@ -120,6 +128,21 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissions = data['results'];
+        console.log(SELF.submissions);
+        SELF.route.params.subscribe(params => {
+          if (params['submission']) {
+            SELF.submissionHighlighted = params['submission'];
+            SELF.submissions.map((item) => {
+              item['is_highlighted'] = false;
+              if (SELF.submissionHighlighted && item['submitted_at'] === SELF.submissionHighlighted) {
+                item['is_highlighted'] = true;
+              }
+            });
+          } else {
+            // Don't highlight anything by default
+            SELF.submissionHighlighted = null;
+          }
+        });
       },
       err => {
         SELF.globalService.handleApiError(err);

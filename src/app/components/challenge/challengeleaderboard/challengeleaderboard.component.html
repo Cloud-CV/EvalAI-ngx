@@ -1,6 +1,6 @@
 <div class="challenge-leaderboard-container">
   <div class="phase-select-div">
-    <app-selectphase [phases]="filteredPhaseSplits" [phaseSelected]="phaseSplitSelected()"></app-selectphase>
+    <app-selectphase [phases]="filteredPhaseSplits" [phaseSelected]="phaseSplitSelected()" #phasesplitselect></app-selectphase>
   </div>
   <div *ngIf="leaderboard.length <= 0" class="leaderboard-empty">
       <!-- <img src="assets/images/sadcloud.png" /> -->
@@ -24,7 +24,7 @@
             </div>
           </th>
         </tr>
-        <tr *ngFor="let key of leaderboard">
+        <tr *ngFor="let key of leaderboard" [class.highlight]="key.is_highlighted" class="pointer" [routerLink]="routerPublic.url.split('/').length == 6 ? ['../' + key.submission__participant_team__team_name] : [key.submission__participant_team__team_name]">
           <td><div>{{initial_ranking[key.submission__participant_team__team_name]}}</div></td>
           <td><div class="fw-regular">{{key.submission__participant_team__team_name}}</div></td>
           <td *ngFor="let score of key.result"><div>{{score | number : '1.2-2'}}</div></td>

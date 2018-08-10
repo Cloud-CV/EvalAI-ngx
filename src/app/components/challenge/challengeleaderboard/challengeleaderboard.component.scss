@@ -33,6 +33,9 @@
       	&:hover {
       		background:white;
       	}
+        &.highlight {
+          background: $red-lighter;
+        }
         th {
           color: $gray-dark;
           .fa-stack-1x {

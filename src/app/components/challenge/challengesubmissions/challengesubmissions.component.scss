@@ -36,6 +36,9 @@
     	max-height:500px;
     .submission-table {
     	tr {
+            &.highlight {
+                background: $red-lighter;
+            }
     		th {
     			background:$gray-lighter;
                 color:$gray-dark;

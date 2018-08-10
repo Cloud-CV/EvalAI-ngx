@@ -4,7 +4,7 @@
     <div class="card card-light" (click)="selectPhase(item)" [class.selected]="item['is_selected']">
       <div>
         <span class="heading">Phase: </span><span>{{item['name']}}</span>
-        <span *ngIf="publicRouter.url.endsWith('leaderboard')">
+        <span *ngIf="publicRouter.url.indexOf('leaderboard') >= 0">
         <span class="heading">, Split: </span><span>{{item['phase_split']['dataset_split_name']}}</span>
         </span>
       </div>

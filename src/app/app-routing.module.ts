@@ -66,8 +66,11 @@ const routes: Routes = [
       {path: 'participate', component: ChallengeparticipateComponent},
       {path: 'submit', component: ChallengesubmitComponent},
       {path: 'submissions', component: ChallengesubmissionsComponent},
-      {path: 'submissions/:phase', component: ChallengesubmissionsComponent}
-      {path: 'leaderboard', component: ChallengeleaderboardComponent}
+      {path: 'submissions/:phase', component: ChallengesubmissionsComponent},
+      {path: 'submissions/:phase/:submission', component: ChallengesubmissionsComponent},
+      {path: 'leaderboard', component: ChallengeleaderboardComponent},
+      {path: 'leaderboard/:split', component: ChallengeleaderboardComponent},
+      {path: 'leaderboard/:split/:entry', component: ChallengeleaderboardComponent}
     ]
   },
   {
@@ -116,6 +119,11 @@ const routes: Routes = [
     path: '404',
     component: NotFoundComponent
   }
+  // {
+  //   path: '**',
+  //   redirectTo: '/404',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({
