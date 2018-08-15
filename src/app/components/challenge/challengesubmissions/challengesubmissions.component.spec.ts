@@ -19,7 +19,8 @@ describe('ChallengesubmissionsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChallengesubmissionsComponent ],
-      providers: [ ChallengeService, GlobalService, AuthService, ApiService, WindowService, EndpointsService ],
+      providers: [ ChallengeService, GlobalService, AuthService, ApiService,
+                   WindowService, EndpointsService ],
       imports: [ HttpClientModule, RouterTestingModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

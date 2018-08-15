@@ -9,7 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { EndpointsService } from '../../../services/endpoints.service';
 
 describe('ChallengeleaderboardComponent', () => {
   let component: ChallengeleaderboardComponent;
@@ -18,7 +18,7 @@ describe('ChallengeleaderboardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChallengeleaderboardComponent, SelectphaseComponent ],
-      providers: [ ChallengeService, AuthService, GlobalService, ApiService ],
+      providers: [ ChallengeService, AuthService, GlobalService, ApiService, EndpointsService ],
       imports: [ HttpClientModule, RouterTestingModule ]
     })
     .compileComponents();

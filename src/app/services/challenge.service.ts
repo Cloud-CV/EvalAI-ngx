@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { GlobalService } from './global.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AuthService } from './auth.service';
+import { EndpointsService } from './endpoints.service';
 
 @Injectable()
 export class ChallengeService {
@@ -24,32 +25,77 @@ export class ChallengeService {
   private hostTeamSource = new BehaviorSubject(null);
   currentHostTeam = this.hostTeamSource.asObservable();
 
-  constructor(private apiService: ApiService, private globalService: GlobalService, private authService: AuthService) { }
+  /**
+   * Constructor.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   * @param authService  AuthService Injection.
+   */
+  constructor(private apiService: ApiService, private globalService: GlobalService,
+              private authService: AuthService, private endpointsService: EndpointsService) { }
 
+  /**
+   * Update current Challenge.
+   * @param challenge  new Current-Challenge.
+   */
   changeCurrentChallenge(challenge: object) {
     this.challengeSource.next(challenge);
   }
+
+  /**
+   * Update stars for current challenge.
+   * @param stars  new stars.
+   */
   changeCurrentStars(stars: object) {
     this.starSource.next(stars);
   }
+
+  /**
+   * Update current Participant teams.
+   * @param teams  new teams.
+   */
   changeCurrentParticipantTeams(teams: any) {
     this.teamsSource.next(teams);
   }
+
+  /**
+   * Update current Phases for the current challenge.
+   * @param phases  new phases.
+   */
   changeCurrentPhases(phases: any) {
     this.phasesSource.next(phases);
   }
+
+  /**
+   * Update user's participation status for current Challenge.
+   * @param participationStatus  new participation status.
+   */
   changeParticipationStatus(participationStatus: any) {
     this.challengeParticipationSource.next(participationStatus);
   }
+
+  /**
+   * Update current phase splits.
+   * @param phaseSplits  new phase splits.
+   */
   changeCurrentPhaseSplit(phaseSplits: any) {
     this.phaseSplitSource.next(phaseSplits);
   }
+
+  /**
+   * Update current Host Team.
+   * @param hostTeam  new host team.
+   */
   changeCurrentHostTeam(hostTeam: any) {
     this.hostTeamSource.next(hostTeam);
   }
 
+  /**
+   * Fetch challenge details. (internally calls fetchStars, fetchParticipantTeams, fetchPhases, fetchPhaseSplits)
+   * @param id  id of new challenge.
+   */
   fetchChallenge(id) {
-    const API_PATH = 'challenges/challenge/' + id + '/';
+    const API_PATH = this.endpointsService.challengeDetailsURL(id);
     const SELF = this;
     this.authService.change.subscribe((authState) => {
       if (authState['isLoggedIn']) {
@@ -77,8 +123,12 @@ export class ChallengeService {
     });
   }
 
+  /**
+   * Fetch Stars
+   * @param hostTeam  new host team.
+   */
   fetchStars(id, callback = null) {
-    const API_PATH = 'challenges/' + id + '/';
+    const API_PATH = this.endpointsService.challengeStarsURL(id);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -97,8 +147,14 @@ export class ChallengeService {
     );
   }
 
+  /**
+   * Update Stars for a particular challenge
+   * @param id  ID of the challenge to be updated
+   * @param callback  callback function.
+   * @param self  context this
+   */
   starToggle(id, callback = null, self = null) {
-    const API_PATH = 'challenges/' + id + '/';
+    const API_PATH = this.endpointsService.challengeStarsURL(id);
     const SELF = this;
     const BODY = JSON.stringify({});
     this.apiService.postUrl(API_PATH, BODY).subscribe(
@@ -118,8 +174,15 @@ export class ChallengeService {
     );
   }
 
+  /**
+   * Load Javascript function.
+   * @param url  Name of script.
+   * @param implementationCode  callback function.
+   * @param location  where to append the file
+   * @param env  `This` variable of the environment
+   */
   private fetchParticipantTeams(id) {
-    const API_PATH = 'participants/participant_teams/challenges/' + id + '/user';
+    const API_PATH = this.endpointsService.challengeParticipantTeamsURL(id);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -148,8 +211,13 @@ export class ChallengeService {
     });
   }
 
+
+  /**
+   * Fetch Phases
+   * @param id  id of the challenge.
+   */
   private fetchPhases(id) {
-    const API_PATH = 'challenges/challenge/' + id + '/challenge_phase';
+    const API_PATH = this.endpointsService.challengePhaseURL(id);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -167,8 +235,12 @@ export class ChallengeService {
     });
   }
 
+  /**
+   * Fetch Phase Splits
+   * @param id  id of the challenge
+   */
   private fetchPhaseSplits(id) {
-    const API_PATH = 'challenges/' + id + '/challenge_phase_split';
+    const API_PATH = this.endpointsService.challengePhaseSplitURL(id);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -186,8 +258,13 @@ export class ChallengeService {
     });
   }
 
+  /**
+   * Participate in challenge with a team
+   * @param id  id of the challenge.
+   * @param team  team id of the participating team.
+   */
   participateInChallenge(id, team) {
-    const API_PATH = 'challenges/challenge/' + id + '/participant_team/' + team;
+    const API_PATH = this.endpointsService.challengeParticipateURL(id, team);
     const SELF = this;
     const BODY = JSON.stringify({});
     this.apiService.postUrl(API_PATH, BODY).subscribe(
@@ -202,8 +279,14 @@ export class ChallengeService {
     });
   }
 
+  /**
+   * Make a Challenge submission
+   * @param challenge  id of challenge.
+   * @param phase  challenge phase id.
+   * @param formData  Form Data for submission (file)
+   */
   challengeSubmission(challenge, phase, formData) {
-    const API_PATH = 'jobs/challenge/' + challenge + '/challenge_phase/' + phase + '/submission/';
+    const API_PATH = this.endpointsService.challengeSubmissionURL(challenge, phase);
     const SELF = this;
     this.apiService.postFileUrl(API_PATH, formData).subscribe(
       data => {
@@ -217,8 +300,14 @@ export class ChallengeService {
     });
   }
 
+  /**
+   * Create a new Challenge (Zip Upload)
+   * @param hostTeam  Id of hosting team.
+   * @param formData  challenge submission data (file)
+   * @param callback  callback function
+   */
   challengeCreate(hostTeam, formData, callback = () => {}) {
-    const API_PATH = 'challenges/challenge/challenge_host_team/' + hostTeam + '/zip_upload/';
+    const API_PATH = this.endpointsService.challengeCreateURL(hostTeam);
     const SELF = this;
     this.apiService.postFileUrl(API_PATH, formData).subscribe(
       data => {

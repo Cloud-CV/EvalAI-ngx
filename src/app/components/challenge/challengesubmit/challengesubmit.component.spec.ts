@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { EndpointsService } from '../../../services/endpoints.service';
 
 describe('ChallengesubmitComponent', () => {
   let component: ChallengesubmitComponent;
@@ -17,7 +18,7 @@ describe('ChallengesubmitComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChallengesubmitComponent ],
-      providers: [ ChallengeService, GlobalService, AuthService, ApiService ],
+      providers: [ ChallengeService, GlobalService, AuthService, ApiService, EndpointsService ],
       imports: [ HttpClientModule, RouterTestingModule],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

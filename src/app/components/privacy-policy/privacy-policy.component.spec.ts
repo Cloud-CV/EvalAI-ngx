@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { GlobalService } from '../../services/global.service';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
+import { EndpointsService } from '../../services/endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PrivacyPolicyComponent } from './privacy-policy.component';
 import { HeaderStaticComponent } from '../../components/nav/header-static/header-static.component';
@@ -26,6 +27,7 @@ describe('PrivacyPolicyComponent', () => {
         ApiService,
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
+        EndpointsService
       ],
       imports: [ HttpClientModule, RouterTestingModule ]
     })

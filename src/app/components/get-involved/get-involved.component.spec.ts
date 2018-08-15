@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { GlobalService } from '../../services/global.service';
 import { AuthService } from '../../services/auth.service';
+import { EndpointsService } from '../../services/endpoints.service';
 import { GetInvolvedComponent } from './get-involved.component';
 import { HeaderStaticComponent } from '../../components/nav/header-static/header-static.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,6 +26,7 @@ describe('GetInvolvedComponent', () => {
         ApiService,
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
+        EndpointsService
       ],
       imports: [ RouterTestingModule, HttpClientModule ]
     })

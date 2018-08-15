@@ -5,6 +5,7 @@ import { HeaderStaticComponent } from '../../components/nav/header-static/header
 import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { EndpointsService } from '../../services/endpoints.service';
 import { ApiService } from '../../services/api.service';
 import { GlobalService } from '../../services/global.service';
 import { ChallengeService } from '../../services/challenge.service';
@@ -20,7 +21,7 @@ describe('ChallengecreateComponent', () => {
       declarations: [ ChallengeCreateComponent, HeaderStaticComponent, FooterComponent ],
       schemas: [ NO_ERRORS_SCHEMA ],
       imports: [ RouterTestingModule, HttpClientModule ],
-      providers: [ GlobalService, AuthService, ApiService, ChallengeService ]
+      providers: [ GlobalService, AuthService, ApiService, ChallengeService, EndpointsService ]
     })
     .compileComponents();
   }));

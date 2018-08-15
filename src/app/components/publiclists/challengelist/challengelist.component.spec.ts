@@ -5,6 +5,7 @@ import { ChallengecardComponent } from './challengecard/challengecard.component'
 import { GlobalService } from '../../../services/global.service';
 import { ApiService } from '../../../services/api.service';
 import { AuthService } from '../../../services/auth.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -23,7 +24,8 @@ describe('ChallengelistComponent', () => {
                       ForceloginComponent ],
       providers: [ GlobalService,
                    ApiService,
-                   AuthService ],
+                   AuthService,
+                   EndpointsService ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();

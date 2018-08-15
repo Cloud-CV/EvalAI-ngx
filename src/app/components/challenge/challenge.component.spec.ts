@@ -15,6 +15,7 @@ import { ChallengesubmissionsComponent } from '../../components/challenge/challe
 import { PhasecardComponent } from '../../components/challenge/challengephases/phasecard/phasecard.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../services/auth.service';
+import { EndpointsService } from '../../services/endpoints.service';
 import { ForceloginComponent } from '../../components/utility/forcelogin/forcelogin.component';
 import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { TeamlistComponent } from '../../components/publiclists/teamlist/teamlist.component';
@@ -42,7 +43,7 @@ describe('ChallengeComponent', () => {
                       FooterComponent,
                       TeamlistComponent,
                       SelectphaseComponent ],
-      providers: [ ApiService, GlobalService, ChallengeService, AuthService ],
+      providers: [ ApiService, GlobalService, ChallengeService, AuthService, EndpointsService ],
       imports: [ HttpClientModule, RouterTestingModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

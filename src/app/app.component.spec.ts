@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { GlobalService } from './services/global.service';
 import { AuthService } from './services/auth.service';
+import { EndpointsService } from './services/endpoints.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomemainComponent } from './components/home/homemain/homemain.component';
@@ -43,7 +44,8 @@ describe('AppComponent', () => {
         GlobalService,
         AuthService,
         ApiService,
-        ModalComponent
+        ModalComponent,
+        EndpointsService
       ],
       schemas: [
         NO_ERRORS_SCHEMA

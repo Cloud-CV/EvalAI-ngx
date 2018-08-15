@@ -5,6 +5,7 @@ import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
 import { ApiService } from '../../../services/api.service';
 import { AuthService } from '../../../services/auth.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -15,7 +16,7 @@ describe('SelectphaseComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SelectphaseComponent ],
-      providers: [ GlobalService, ChallengeService, ApiService, AuthService ],
+      providers: [ GlobalService, ChallengeService, ApiService, AuthService, EndpointsService ],
       imports: [ RouterTestingModule, HttpClientModule ]
     })
     .compileComponents();

@@ -1,5 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { GlobalService } from './global.service';
+import { EndpointsService } from './endpoints.service';
 import { ApiService } from './api.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -9,13 +10,27 @@ export class AuthService {
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
 
-  constructor(private globalService: GlobalService, private apiService: ApiService) { }
+  /**
+   * Constructor.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   * @param endpointsService  EndpointsService Injection.
+   */
+  constructor(private globalService: GlobalService, private apiService: ApiService, private endpointsService: EndpointsService) { }
 
+    /**
+     * Call this to update authentication state.
+     * @param state  New Authentication state
+     */
     authStateChange(state) {
       this.authState = state;
       this.authStateSource.next(this.authState);
     }
 
+    /**
+     * To affirm that user is logged in
+     * @param autoFetchUserDetails  User details fetch flag
+     */
     loggedIn(autoFetchUserDetails = false) {
       this.authState = {isLoggedIn: true};
       if (autoFetchUserDetails) {
@@ -23,12 +38,18 @@ export class AuthService {
       }
     }
 
+    /**
+     * Log Out Trigger
+     */
     logOut() {
       const temp = {isLoggedIn: false};
       this.globalService.deleteData(this.globalService.authStorageKey);
       this.authStateChange(temp);
     }
 
+    /**
+     * User Details fetch Trigger
+     */
     fetchUserDetails() {
       const API_PATH = 'auth/user/';
       const SELF = this;
@@ -44,6 +65,10 @@ export class AuthService {
       );
     }
 
+    /**
+     * Calculating Password Strength (Not being called as of now)
+     * TODO: make use of it
+     */
     passwordStrength(password) {
       // Regular Expressions.
       const REGEX = new Array();
@@ -82,7 +107,9 @@ export class AuthService {
       return [strength, color];
     }
 
-    // Get Login functionality
+    /**
+     * Check if user is loggedIn and trigger logIn if token present but not loggedIn
+     */
     isLoggedIn() {
       const token = this.globalService.getAuthToken();
       if (token) {
@@ -97,8 +124,13 @@ export class AuthService {
       }
     }
 
+    /**
+     * User Details fetch Trigger
+     * @param  login token
+     * @param  callback function
+     */
     verifyEmail(token, callback = () => {}) {
-      const API_PATH = 'auth/registration/verify-email/';
+      const API_PATH = this.endpointsService.verifyEmailURL();
       const SELF = this;
       const BODY = JSON.stringify({
         key: token

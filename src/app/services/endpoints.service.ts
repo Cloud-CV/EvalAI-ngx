@@ -10,6 +10,7 @@ export class EndpointsService {
   hosts = 'hosts/';
   jobs = 'jobs/';
   challenges = 'challenges/';
+  challenge = 'challenge/';
   auth = 'auth/';
 
   constructor() { }
@@ -26,6 +27,13 @@ export class EndpointsService {
    */
   changePasswordURL() {
     return `${this.auth}password/change/`;
+  }
+
+  /**
+   * Verify Email
+   */
+  verifyEmailURL() {
+    return `${this.auth}registration/verify-email/`;
   }
 
 
@@ -55,7 +63,7 @@ export class EndpointsService {
    * @param time  past, present or future
    */
   allChallengesURL(time) {
-    return `challenges/challenge/${time}`;
+    return `${this.challenges}${this.challenge}${time}`;
   }
 
 
@@ -80,6 +88,70 @@ export class EndpointsService {
     return `${this.jobs}challenge/${challenge}/challenge_phase/${challenge_phase}/submission/${submission}`;
   }
 
+  /**
+   * Fetch challenge details for a given id
+   * @param id  challenge id
+   */
+  challengeDetailsURL(id) {
+    return `${this.challenges}${this.challenge}${id}/`;
+  }
 
+  /**
+   * Challenge stars for a given challenge id
+   * @param id  challenge id
+   */
+  challengeStarsURL(id) {
+    return `${this.challenges}${id}/`;
+  }
+
+  /**
+   * Challenge participant teams for a given challenge id
+   * @param id  challenge id
+   */
+  challengeParticipantTeamsURL(id) {
+    return `${this.participants}participant_teams/${this.challenges}${id}/user`;
+  }
+
+  /**
+   * Challenge participate url for a given challenge id
+   * @param id  challenge id
+   * @param team  team id
+   */
+  challengeParticipateURL(id, team) {
+    return `${this.challenges}${this.challenge}${id}participant_team/${team}`;
+  }
+
+  /**
+   * Challenge phase for a given challenge id
+   * @param id  challenge id
+   */
+  challengePhaseURL(id) {
+    return `${this.challenges}${this.challenge}${id}/challenge_phase`;
+  }
+
+  /**
+   * Challenge phase split for a given challenge id
+   * @param id  challenge id
+   */
+  challengePhaseSplitURL(id) {
+    return `${this.challenges}${id}/challenge_phase_split`;
+  }
+
+  /**
+   * Challenge Submission
+   * @param id  challenge id
+   * @param phase  challenge phase
+   */
+  challengeSubmissionURL(id, phase) {
+    return `${this.jobs}${this.challenge}${id}/challenge_phase/${phase}/submission/`;
+  }
+
+  /**
+   * Challenge Creation
+   * @param hostTeam  host team id
+   */
+  challengeCreateURL(hostTeam) {
+    return `${this.challenges}${this.challenge}challenge_host_team/${hostTeam}/zip_upload/`;
+  }
 
 }
