@@ -41,13 +41,29 @@ export class GlobalService {
   @Output() logout: EventEmitter<boolean> = new EventEmitter();
   @Output() scrolltop: EventEmitter<Object> = new EventEmitter();
   constructor() { }
+
+  /**
+   * Update Scrolled State.
+   * @param s  New scrolled state.
+   */
   scrolledStateChange(s) {
     this.scrolledState = s;
     this.change.emit(this.scrolledState);
   }
+
+  /**
+   * Store data in localStorage
+   * @param key  Key for storing
+   * @param value  Value for storing
+   */
   storeData(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
+
+  /**
+   * Get data from localStorage
+   * @param key  fetch this key from storage.
+   */
   getData(key) {
     if (localStorage.getItem(key) === null || localStorage.getItem(key) === 'undefined') {
       localStorage.removeItem(key);
@@ -56,18 +72,35 @@ export class GlobalService {
       return JSON.parse(localStorage.getItem(key));
     }
   }
+
+  /**
+   * Delete key from localStorage
+   * @param key  Delete this key from storage
+   */
   deleteData(key) {
     localStorage.removeItem(key);
   }
 
+  /**
+   * Clear entire storage
+   */
   resetStorage() {
     localStorage.clear();
   }
 
+  /**
+   * Fetch Auth Token
+   */
   getAuthToken() {
     return this.getData(this.authStorageKey);
   }
 
+  /**
+   * Display Toast component
+   * @param type  Type of toast- success/error/info
+   * @param message  Message to be displayed
+   * @param duration  Duration in seconds
+   */
   showToast(type, message, duration = 5) {
     const TEMP = {
       type: type,
@@ -76,12 +109,22 @@ export class GlobalService {
     };
     this.toast.emit(TEMP);
   }
+
+  /**
+   * Toggle Loading component
+   * @param loading  show or hide loading component
+   */
   toggleLoading(loading) {
     if (loading !== this.isLoading) {
       this.isLoading = loading;
       this.isLoadingSource.next(loading);
     }
   }
+
+  /**
+   * Display confirm component
+   * @param params  parameters for configuring confirm component (see markdown docs)
+   */
   showConfirm(params) {
     if (!this.isConfirming) {
       this.isConfirming = true;
@@ -89,6 +132,10 @@ export class GlobalService {
       this.confirmSource.next(Object.assign({}, params, TEMP));
     }
   }
+
+  /**
+   * Hide confirm component
+   */
   hideConfirm() {
     if (this.isConfirming) {
       this.isConfirming = false;
@@ -96,6 +143,11 @@ export class GlobalService {
       this.confirmSource.next(Object.assign({}, this.modalDefault, TEMP));
     }
   }
+
+  /**
+   * Display Modal Component
+   * @param params  parameters for configuring confirm component (see markdown docs)
+   */
   showModal(params) {
     if (!this.isModalVisible) {
       this.isModalVisible = true;
@@ -103,6 +155,10 @@ export class GlobalService {
       this.modalSource.next(Object.assign({}, params, TEMP));
     }
   }
+
+  /**
+   * Hide Modal Component
+   */
   hideModal() {
     if (this.isModalVisible) {
       this.isModalVisible = false;
@@ -110,6 +166,7 @@ export class GlobalService {
       this.modalSource.next(Object.assign({}, this.modalDefault, TEMP));
     }
   }
+
   /**
    * This triggers the logout function in auth service (to avoid a cyclic dependency).
    */
@@ -117,14 +174,17 @@ export class GlobalService {
     this.logout.emit();
   }
 
+  /**
+   * Scroll to top of the page
+   */
   scrollToTop() {
     this.scrolltop.emit();
   }
 
   /**
    * Form Validation before submitting.
-   * @param {components} Expects a QueryList of form components.
-   * @param {callback} Form submission callback if fields pass validation.
+   * @param components  Expects a QueryList of form components.
+   * @param callback  Form submission callback if fields pass validation.
    */
   formValidate(components, callback, self) {
     let requiredFieldMissing = false;
@@ -141,6 +201,11 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Get Form field values in the form of JSON
+   * @param components  form components
+   * @returns JSON of form item values
+   */
   formFields(components) {
     const TEMP = {};
     components.map((item) => {
@@ -150,6 +215,12 @@ export class GlobalService {
     return TEMP;
   }
 
+  /**
+   * Get Form field value for a label
+   * @param components  form components
+   * @param label  label to fetch
+   * @returns value of form item
+   */
   formValueForLabel(components, label) {
     let value = '';
     let valueFound = false;
@@ -167,6 +238,12 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Get Form item for a label
+   * @param components  form components
+   * @param label  label to fetch
+   * @returns form item
+   */
   formItemForLabel(components, label) {
     let value: any;
     let valueFound = false;
@@ -184,6 +261,11 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Check if token is still valid
+   * @param err  error object
+   * @param toast  show/hide toast flag
+   */
   checkTokenValidity(err, toast = true) {
     if (err.error !== null && typeof err.error === 'object' && err.error['detail']) {
       if (err.error['detail'].indexOf('Invalid token') !== -1 ||
@@ -196,6 +278,12 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Get Form field value for a label
+   * @param components  form components
+   * @param label  label to fetch
+   * @returns value of form item
+   */
   handleFormError(form, err, toast = true) {
     const ERR = err.error;
     if (this.toastErrorCodes.indexOf(err.status) > -1 && ERR !== null && typeof ERR === 'object') {
@@ -216,6 +304,11 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Handle error from an API response
+   * @param err  error object
+   * @param toast  toast show flag
+   */
   handleApiError(err, toast = true) {
     console.error(err);
     if (err.status === 401) {
@@ -231,6 +324,11 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Get date string in 12 hour format from date object
+   * @param date  date object
+   * @returns 12 hour date string
+   */
   formatDate12Hour(date) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -242,6 +340,12 @@ export class GlobalService {
     return STR_TIME;
   }
 
+  /**
+   * Get difference between two date objects
+   * @param d1  date object
+   * @param d2  date object
+   * @returns difference in days
+   */
   getDateDifference(d1, d2) {
     const T2 = d2.getTime();
     const T1 = d1.getTime();
@@ -252,6 +356,12 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Get Date difference string in seconds/minutes/hours/days/weeks/years
+   * @param d1  date object
+   * @param d2  date object
+   * @returns date difference string
+   */
   getDateDifferenceString(d1, d2) {
     const DIFF_DAYS = this.getDateDifference(d1, d2);
     if (DIFF_DAYS < 1) {
@@ -282,6 +392,11 @@ export class GlobalService {
     }
   }
 
+  /**
+   * Form input email validator
+   * @param email  email string
+   * @returns boolean indicating valid/invalid email
+   */
   validateEmail(email) {
     const RE = new RegExp (['^(([^<>()[\\]\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\.,;:\\s@\"]+)*)',
                         '|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.',
@@ -289,12 +404,24 @@ export class GlobalService {
                         '[a-zA-Z]{2,}))$'].join(''));
     return RE.test(email);
   }
+
+  /**
+   * Form input text validator
+   * @param text  text string
+   * @returns boolean indicating valid/invalid text
+   */
   validateText(text) {
     if (text.length >= 2) {
       return true;
     }
     return false;
   }
+
+  /**
+   * Form input password validator
+   * @param password  password string
+   * @returns boolean indicating valid/invalid password
+   */
   validatePassword(password) {
     if (password.length >= 8) {
       return true;
