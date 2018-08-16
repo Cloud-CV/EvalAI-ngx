@@ -40,6 +40,10 @@ export class GlobalService {
   @Output() loading: EventEmitter<boolean> = new EventEmitter();
   @Output() logout: EventEmitter<boolean> = new EventEmitter();
   @Output() scrolltop: EventEmitter<Object> = new EventEmitter();
+
+  /**
+   * constructor
+   */
   constructor() { }
 
   /**

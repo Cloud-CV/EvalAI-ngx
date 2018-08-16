@@ -24,7 +24,6 @@ import { ChallengesubmissionsComponent } from './components/challenge/challenges
 import { ChallengeCreateComponent } from './components/challenge-create/challenge-create.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ChangePasswordComponent } from './components//auth/change-password/change-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
@@ -44,7 +43,6 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'change-password', component: ChangePasswordComponent},
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent},
       {path: 'verify-email/:token', component: VerifyEmailComponent},
