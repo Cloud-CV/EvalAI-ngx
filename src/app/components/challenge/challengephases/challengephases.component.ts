@@ -10,8 +10,21 @@ import { ChallengeService } from '../../../services/challenge.service';
 export class ChallengephasesComponent implements OnInit {
   challenge: any;
   phases: any;
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  Router Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private challengeService: ChallengeService, @Inject(DOCUMENT) private document: Document) { }
 
+  /**
+   * Component on intialized
+   */
   ngOnInit() {
     this.challengeService.currentChallenge.subscribe(
     challenge => {

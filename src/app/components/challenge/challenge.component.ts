@@ -21,10 +21,22 @@ export class ChallengeComponent implements OnInit {
   stars: any;
   isLoggedIn: any = false;
 
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  Router Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
               private challengeService: ChallengeService, private authService: AuthService) { }
 
+  /**
+   * Component on initialized
+   */
   ngOnInit() {
     const SELF = this;
     if (this.authService.isLoggedIn()) {
@@ -46,10 +58,12 @@ export class ChallengeComponent implements OnInit {
     });
   }
 
+  /**
+   * Star click function.
+   */
   starToggle(challengeId) {
     if (this.isLoggedIn) {
       this.challengeService.starToggle(challengeId);
     }
   }
-
 }

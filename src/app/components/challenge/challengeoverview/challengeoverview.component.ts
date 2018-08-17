@@ -10,7 +10,17 @@ import { ChallengeService } from '../../../services/challenge.service';
 export class ChallengeoverviewComponent implements OnInit {
   challenge: any = null;
   overviewElement: any;
+
+  /**
+   * Constructor.
+   * @param document  Window document Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private challengeService: ChallengeService, @Inject(DOCUMENT) private document: Document) { }
+
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.challengeService.currentChallenge.subscribe(
     challenge => {

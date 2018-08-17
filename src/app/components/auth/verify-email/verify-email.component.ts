@@ -15,7 +15,7 @@ export class VerifyEmailComponent implements OnInit {
 
   /**
    * Constructor.
-   * @param document  Router Injection.
+   * @param document  Window document Injection.
    * @param authService  AuthService Injection.
    * @param globalService  GlobalService Injection.
    * @param apiService  Router Injection.

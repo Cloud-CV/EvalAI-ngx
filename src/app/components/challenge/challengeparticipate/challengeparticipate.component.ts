@@ -14,9 +14,21 @@ export class ChallengeparticipateComponent implements OnInit {
   routerPublic: any;
   isParticipated: any;
   isActive: any;
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService) { }
 
+  /**
+   * Component on initialized
+   */
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;

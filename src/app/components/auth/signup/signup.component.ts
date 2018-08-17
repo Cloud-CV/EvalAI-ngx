@@ -21,12 +21,12 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   /**
    * Constructor.
-   * @param document  Router Injection.
+   * @param document  window document Injection.
    * @param windowService  ActivatedRoute Injection.
    * @param globalService  GlobalService Injection.
-   * @param apiService  Router Injection.
+   * @param apiService  ApiService Injection.
+   * @param router  Router Injection.
    * @param route  ActivatedRoute Injection.
-   * @param router  GlobalService Injection.
    */
   constructor(@Inject(DOCUMENT) private document: Document,
               private windowService: WindowService,

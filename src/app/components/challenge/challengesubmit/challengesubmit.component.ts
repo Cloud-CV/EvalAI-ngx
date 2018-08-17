@@ -4,6 +4,7 @@ import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EndpointsService } from '../../../services/endpoints.service';
 
 @Component({
   selector: 'app-challengesubmit',
@@ -28,9 +29,22 @@ export class ChallengesubmitComponent implements OnInit {
   @ViewChildren('formsubmit')
   components: QueryList<ChallengesubmitComponent>;
 
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  Router Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
-              private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService) { }
+              private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService,
+              private endpointsService: EndpointsService) { }
 
+  /**
+   * Component on intialization.
+   */
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
@@ -55,8 +69,13 @@ export class ChallengesubmitComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetch remaining submissions for a challenge phase.
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
   fetchRemainingSubmissions(challenge, phase) {
-    const API_PATH = 'jobs/' + challenge + '/phases/' + phase + '/remaining_submissions';
+    const API_PATH = this.endpointsService.challengeSubmissionsRemainingURL(challenge, phase);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -76,6 +95,9 @@ export class ChallengesubmitComponent implements OnInit {
     );
   }
 
+  /**
+   * Called when a phase is selected (from child components)
+   */
   phaseSelected() {
     const SELF = this;
     return (phase) => {
@@ -86,6 +108,10 @@ export class ChallengesubmitComponent implements OnInit {
     };
   }
 
+  /**
+   * Form validate function
+   * @param formname  name of the form fields (#)
+   */
   formValidate(formname) {
     if (this.selectedPhaseSubmissions['remaining_submissions_today_count']) {
       this.globalService.formValidate(this.components, this.formSubmit, this);
@@ -94,6 +120,10 @@ export class ChallengesubmitComponent implements OnInit {
     }
   }
 
+  /**
+   * Form submit function
+   * @param self  context value of this
+   */
   formSubmit(self) {
     const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');

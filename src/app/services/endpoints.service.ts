@@ -12,6 +12,7 @@ export class EndpointsService {
   challenges = 'challenges/';
   challenge = 'challenge/';
   auth = 'auth/';
+  analytics = 'analytics/';
 
   constructor() { }
 
@@ -82,13 +83,6 @@ export class EndpointsService {
   }
 
   /**
-   * Submission Details
-   */
-  submissionUpdateURL(challenge, challenge_phase, submission) {
-    return `${this.jobs}challenge/${challenge}/challenge_phase/${challenge_phase}/submission/${submission}`;
-  }
-
-  /**
    * Fetch challenge details for a given id
    * @param id  challenge id
    */
@@ -138,15 +132,6 @@ export class EndpointsService {
   }
 
   /**
-   * Challenge Submission
-   * @param id  challenge id
-   * @param phase  challenge phase
-   */
-  challengeSubmissionURL(id, phase) {
-    return `${this.jobs}${this.challenge}${id}/challenge_phase/${phase}/submission/`;
-  }
-
-  /**
    * Challenge Creation
    * @param hostTeam  host team id
    */
@@ -154,4 +139,57 @@ export class EndpointsService {
     return `${this.challenges}${this.challenge}challenge_host_team/${hostTeam}/zip_upload/`;
   }
 
+  /**
+   * Challenge Leaderboard fetch
+   * @param phaseSplitId  phase split id
+   */
+  challengeLeaderboardURL(phaseSplitId) {
+    return `${this.jobs}challenge_phase_split/${phaseSplitId}/leaderboard/?page_size=1000`;
+  }
+
+  /**
+   * Challenge Submission
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
+  challengeSubmissionURL(challenge, phase) {
+    return `${this.jobs}${this.challenge}${challenge}/challenge_phase/${phase}/submission/`;
+  }
+
+  /**
+   * Challenge Submission Download
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
+  challengeSubmissionDownloadURL(challenge, phase) {
+    return `${this.challenges}${challenge}/phase/${phase}/download_all_submissions/csv/`;
+  }
+
+  /**
+   * Challenge Submission Counts
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
+  challengeSubmissionCountURL(challenge, phase) {
+    return `${this.analytics}${this.challenge}${challenge}/challenge_phase/${phase}/count`;
+  }
+
+  /**
+   * Challenge Submission Visibility
+   * @param challenge  challenge id
+   * @param phase  phase id
+   * @param submission  submission id
+   */
+  challengeSubmissionUpdateURL(challenge, phase, submission) {
+    return `${this.challengeSubmissionURL(challenge, phase)}${submission}`;
+  }
+
+  /**
+   * Challenge Submissions Remaining
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
+  challengeSubmissionsRemainingURL(challenge, phase) {
+    return `${this.jobs}${challenge}/phase/${phase}/remaining_submissions`;
+  }
 }

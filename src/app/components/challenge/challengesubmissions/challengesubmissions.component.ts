@@ -32,14 +32,31 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   selectedPhaseId: any;
   selectedPhase: any = null;
   submissionHighlighted: any = null;
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  Router Injection.
+   * @param endpointsService  EndpointsService Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService,
               private windowService: WindowService, private endpointsService: EndpointsService) { }
 
+  /**
+   * Component after view initialized.
+   */
   ngAfterViewInit() {
     this.viewInit = true;
   }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
@@ -81,6 +98,11 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Select a challenge phase function.
+   * @param id  challenge phase id
+   * @param self  context value of this
+   */
   selectPhaseId(id, self) {
     for (let i = 0; i < self.filteredPhases.length; i++) {
       if (parseInt(id, 10) === self.filteredPhases[i]['id']) {
@@ -102,6 +124,9 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Called when a phase is selected (from child component)
+   */
   phaseSelected() {
     const SELF = this;
     return (phase) => {
@@ -122,8 +147,13 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     };
   }
 
+  /**
+   * Fetch submissions from API.
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
   fetchSubmissions(challenge, phase) {
-    const API_PATH = 'jobs/challenge/' + challenge + '/challenge_phase/' + phase + '/submission/';
+    const API_PATH = this.endpointsService.challengeSubmissionURL(challenge, phase);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -152,9 +182,13 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
+  /**
+   * Download Submission csv.
+   */
   downloadSubmission() {
     if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id']) {
-      const API_PATH = 'challenges/' + this.challenge['id'] + '/phase/' + this.selectedPhase['id'] + '/download_all_submissions/csv/';
+      const API_PATH = this.endpointsService.challengeSubmissionDownloadURL(this.challenge['id'], this.selectedPhase['id']);
       const SELF = this;
       this.apiService.getUrl(API_PATH, false).subscribe(
         data => {
@@ -170,6 +204,10 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Update submission's leaderboard visibility.
+   * @param id  Submission id
+   */
   updateSubmissionVisibility(id) {
     for (let i = 0; i < this.submissions.length; i++) {
       if (this.submissions[i]['id'] === id) {
@@ -179,11 +217,16 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Change Submission's leaderboard visibility API.
+   * @param id  Submission id
+   * @param is_public  visibility boolean flag
+   */
   changeSubmissionVisibility(id, is_public) {
     is_public = !is_public;
     this.updateSubmissionVisibility(id);
     if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id'] && id) {
-      const API_PATH = 'jobs/challenge/' + this.challenge['id'] + '/challenge_phase/' + this.selectedPhase['id'] + '/submission/' + id;
+      const API_PATH = this.endpointsService.challengeSubmissionUpdateURL(this.challenge['id'], this.selectedPhase['id'], id);
       const SELF = this;
       const BODY = JSON.stringify({is_public: is_public});
       this.apiService.patchUrl(API_PATH, BODY).subscribe(
@@ -198,9 +241,13 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     }
   }
 
-
+  /**
+   * Fetch number of submissions for a challenge phase.
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
   fetchSubmissionCounts(challenge, phase) {
-    const API_PATH = 'analytics/challenge/' + challenge + '/challenge_phase/' + phase + '/count';
+    const API_PATH = this.endpointsService.challengeSubmissionCountURL(challenge, phase);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -217,14 +264,18 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     );
   }
 
+  /**
+   * Display Edit Submission Modal.
+   * @param submission  Submission being edited
+   */
   editSubmission(submission) {
-    console.log(submission);
     const SELF = this;
     const apiCall = (params) => {
       const BODY = JSON.stringify(params);
-      console.log(params);
-      SELF.apiService.patchUrl(SELF.endpointsService.submissionUpdateURL(SELF.challenge.id, submission.challenge_phase, submission.id),
-                               BODY).subscribe(
+      SELF.apiService.patchUrl(
+        SELF.endpointsService.challengeSubmissionUpdateURL(SELF.challenge.id, submission.challenge_phase, submission.id),
+        BODY
+        ).subscribe(
         data => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Data updated successfully', 5);

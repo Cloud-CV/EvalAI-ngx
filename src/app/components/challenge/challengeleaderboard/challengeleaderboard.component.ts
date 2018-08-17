@@ -3,6 +3,7 @@ import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 
@@ -30,13 +31,30 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   columnIndexSort = 0;
   initial_ranking = {};
   entryHighlighted: any = null;
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
-              private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService) { }
 
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  Router Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
+              private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService,
+              private endpointsService: EndpointsService) { }
+
+  /**
+   * Component after view initialized.
+   */
   ngAfterViewInit() {
     this.viewInit = true;
   }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
@@ -57,20 +75,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  sortFunction(key) {
-    console.log(this.sortColumn, this.columnIndexSort, this.reverseSort);
-    if (this.sortColumn === 'date') {
-      return Date.parse(key.submission__submitted_at);
-    } else if (this.sortColumn === 'rank') {
-      return this.initial_ranking[key.submission__participant_team__team_name];
-    } else if (this.sortColumn === 'number') {
-      return parseFloat(key.result[this.columnIndexSort]);
-    } else if (this.sortColumn === 'string') {
-      return key.submission__participant_team__team_name;
-    }
-    return 0;
-  }
-
+  /**
+   * Filter phases based on visibility and leaderboard public flag.
+   */
   filterPhases() {
     if (this.phases.length > 0 && this.phaseSplits.length > 0) {
       const TEMPSPLITS = [];
@@ -94,6 +101,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Called after filtering phases to check URL for phase-split-id and highlighted-leaderboard-entry
+   */
   checkUrlParams() {
     this.route.params.subscribe(params => {
       console.log(params);
@@ -108,6 +118,11 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Select a phase split from the list for a given id
+   * @param id  phase split id
+   * @param self  context value of this
+   */
   selectPhaseSplitId(id, self) {
     let i = 0;
     for (i = 0; i < self.filteredPhaseSplits.length; i++) {
@@ -133,6 +148,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * This is called when a phase split is selected (from child components)
+   */
   phaseSplitSelected() {
     const SELF = this;
     return (phaseSplit) => {
@@ -151,6 +169,11 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     };
   }
 
+  /**
+   * This updates the leaderboard results after fetching them from API
+   * @param leaderboardApi  API results for leaderboard
+   * @param self  context value of this
+   */
   updateLeaderboardResults(leaderboardApi, self) {
     const leaderboard = leaderboardApi.slice();
     for (let i = 0; i < leaderboard.length; i++) {
@@ -162,7 +185,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     }
     self.leaderboard = leaderboard.slice();
     self.sortLeaderboard();
-    console.log(self.leaderboard);
 
     self.route.params.subscribe(params => {
       if (params['entry']) {
@@ -185,6 +207,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Sort leaderboard entries wrapper
+   */
   sortLeaderboard() {
     this.leaderboard = this.leaderboard.sort((obj1, obj2) => {
       const RET1 = this.sortFunction(obj1);
@@ -202,8 +227,29 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Sort function for leaderboard.
+   * @param key  key for column clicked.
+   */
+  sortFunction(key) {
+    if (this.sortColumn === 'date') {
+      return Date.parse(key.submission__submitted_at);
+    } else if (this.sortColumn === 'rank') {
+      return this.initial_ranking[key.submission__participant_team__team_name];
+    } else if (this.sortColumn === 'number') {
+      return parseFloat(key.result[this.columnIndexSort]);
+    } else if (this.sortColumn === 'string') {
+      return key.submission__participant_team__team_name;
+    }
+    return 0;
+  }
+
+  /**
+   * Fetch leaderboard for a phase split
+   * @param phaseSplitId  id of the phase split
+   */
   fetchLeaderboard(phaseSplitId) {
-    const API_PATH = 'jobs/challenge_phase_split/' + phaseSplitId + '/leaderboard/?page_size=1000';
+    const API_PATH = this.endpointsService.challengeLeaderboardURL(phaseSplitId);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
@@ -217,5 +263,4 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       }
     );
   }
-
 }
