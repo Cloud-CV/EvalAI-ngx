@@ -18,6 +18,16 @@ export class SignupComponent implements OnInit, AfterViewInit {
   signupForm = 'formsignup';
   @ViewChildren('formsignup')
   components: QueryList<InputComponent>;
+
+  /**
+   * Constructor.
+   * @param document  Router Injection.
+   * @param windowService  ActivatedRoute Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  Router Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   */
   constructor(@Inject(DOCUMENT) private document: Document,
               private windowService: WindowService,
               private globalService: GlobalService,
@@ -25,9 +35,15 @@ export class SignupComponent implements OnInit, AfterViewInit {
               private route: ActivatedRoute,
               private router: Router) { }
 
+  /**
+   * Component init function.
+   */
   ngOnInit() {
   }
 
+  /**
+   * Component after view initialized.
+   */
   ngAfterViewInit() {
     // print array of CustomComponent objects
     // this.componentlist = this.components.toArray();
@@ -35,10 +51,18 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.ALL_FORMS[this.signupForm] = this.components;
   }
 
+  /**
+   * Validate form function.
+   * @param formname  Name of the form fields (#)
+   */
   formValidate(formname) {
     this.globalService.formValidate(this.ALL_FORMS[this.signupForm], this.formSubmit, this);
   }
 
+  /**
+   * Form Submit function (Called after validation).
+   * @param self  context value of this.
+   */
   formSubmit(self) {
     const SIGNUP_BODY = JSON.stringify({
       username: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'username'),

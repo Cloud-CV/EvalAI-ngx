@@ -8,8 +8,15 @@ import { GlobalService } from '../../services/global.service';
 })
 export class AboutComponent implements OnInit {
 
+  /**
+   * Constructor.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(private globalService: GlobalService) { }
 
+  /**
+   * Component on Initialization.
+   */
   ngOnInit() {
     this.globalService.scrollToTop();
   }

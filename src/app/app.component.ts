@@ -27,6 +27,16 @@ export class AppComponent implements OnInit, OnDestroy {
   globalConfirmSubscription: any;
   globalModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
+
+  /**
+   * Constructor.
+   * @param document  Window document injection
+   * @param router  Router Injection.
+   * @param activatedRoute  ActivatedRoute Injection.
+   * @param titleService  Title from angular's platform-browser Injection.
+   * @param globalService  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   */
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
@@ -37,7 +47,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  // Added listener for header scroll event
+  /**
+   * Scroll event listener.
+   */
   @HostListener('window:scroll', [])
     onWindowScroll(): void {
     const HEADER_ELE = document.getElementById('header-static');
@@ -52,6 +64,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     }
 
+  /**
+   * Component when initialized. Subscribes to observables
+   */
   ngOnInit() {
     const SELF = this;
     this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
@@ -100,6 +115,9 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((event) => this.titleService.setTitle(event['title']));
   }
 
+  /**
+   * Component On-Destroy. (Unsubscribes from subscriptions)
+   */
   ngOnDestroy() {
     if (this.globalServiceSubscription) {
       this.globalServiceSubscription.unsubscribe();

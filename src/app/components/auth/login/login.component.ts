@@ -19,6 +19,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
   loginForm = 'formlogin';
   @ViewChildren('formlogin')
   components: QueryList<InputComponent>;
+
+  /**
+   * Constructor.
+   * @param document  window document injection
+   * @param apiService  ApiService Injection
+   * @param authService  AuthService Injection
+   * @param router  Router Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(@Inject(DOCUMENT) private document: Document,
               private windowService: WindowService,
               private globalService: GlobalService,
@@ -27,9 +37,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
               private route: ActivatedRoute,
               private router: Router) { }
 
+  /**
+   * Constructor on initialization
+   */
   ngOnInit() {
   }
 
+  /**
+   * After view is initialized.
+   */
   ngAfterViewInit() {
     // print array of CustomComponent objects
     // this.componentlist = this.components.toArray();
@@ -37,10 +53,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.ALL_FORMS[this.loginForm] = this.components;
   }
 
+  /**
+   * Validate form function
+   * @param formname  name of the form elements (#)
+   */
   formValidate(formname) {
     this.globalService.formValidate(this.ALL_FORMS[this.loginForm], this.formSubmit, this);
   }
 
+  /**
+   * Constructor.
+   * @param self  Router Injection.
+   */
   redirectCheck(self) {
     let redirectTo = '/dashboard';
     const REDIRECT_URL = self.globalService.getData(self.globalService.redirectStorageKey);
@@ -51,6 +75,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     self.router.navigate([redirectTo]);
   }
 
+  /**
+   * Submit form function. Called after validation
+   * @param self  context value of this
+   */
   formSubmit(self) {
     const LOGIN_BODY = JSON.stringify({
       username: self.globalService.formValueForLabel(self.ALL_FORMS[self.loginForm], 'username'),

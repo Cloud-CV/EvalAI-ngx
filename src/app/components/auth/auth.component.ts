@@ -9,14 +9,28 @@ import { GlobalService } from '../../services/global.service';
 })
 export class AuthComponent implements OnInit {
   localRouter: any;
+
+  /**
+   * Constructor.
+   * @param router  Router Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(private router: Router, private route: ActivatedRoute, private globalService: GlobalService) { }
 
+  /**
+   * Component on initialization.
+   */
   ngOnInit() {
     this.localRouter = this.router;
     this.globalService.scrollToTop();
   }
+
+  /**
+   * Navigate to a certain URL.
+   * @param url  URL to navigate to (not in paranthesis)
+   */
   navigateTo(url) {
     this.router.navigate([ url ]);
   }
-
 }

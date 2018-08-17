@@ -13,10 +13,22 @@ export class VerifyEmailComponent implements OnInit {
   token = '';
   isVerified = false;
 
+  /**
+   * Constructor.
+   * @param document  Router Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  Router Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   */
   constructor(private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
               private authService: AuthService) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['token']) {
