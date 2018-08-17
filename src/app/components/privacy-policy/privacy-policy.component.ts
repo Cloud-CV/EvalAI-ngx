@@ -42,6 +42,9 @@ export class PrivacyPolicyComponent implements OnInit {
     });
   }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     this.globalService.scrollToTop();
     this.document['manuallyScrolling'] = false;

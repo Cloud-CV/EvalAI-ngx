@@ -19,9 +19,22 @@ export class ChallengeCreateComponent implements OnInit {
   hostTeam: any = null;
   @ViewChildren('formcreate')
   components: QueryList<ChallengeCreateComponent>;
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param authService  AuthService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
@@ -39,10 +52,16 @@ export class ChallengeCreateComponent implements OnInit {
     });
   }
 
+  /**
+   * Form Validate function.
+   */
   formValidate(formname) {
     this.globalService.formValidate(this.components, this.formSubmit, this);
   }
 
+  /**
+   * Form Submit function (Called after validation).
+   */
   formSubmit(self) {
     const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');

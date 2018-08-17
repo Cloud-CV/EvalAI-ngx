@@ -23,6 +23,16 @@ export class ProfileComponent implements OnInit {
   @ViewChildren('formtoken')
   formTokenComponents: QueryList<InputComponent>;
 
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param apiService  ApiService Injection.
+   * @param endpointsService  EndpointsService Injection.
+   * @param windowService  WindowService Injection.
+   */
   constructor(private apiService: ApiService,
               private authService: AuthService,
               private globalService: GlobalService,
@@ -31,6 +41,9 @@ export class ProfileComponent implements OnInit {
               private endpointsService: EndpointsService,
               private windowService: WindowService) { }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
       this.globalService.storeData(this.globalService.redirectStorageKey, this.router.url);
@@ -43,6 +56,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Process user details function.
+   */
   processUserDetails() {
     let countLeft = 0;
     let count = 0;
@@ -59,6 +75,9 @@ export class ProfileComponent implements OnInit {
     this.pcomp = (100 - parseInt(TEMP, 10)).toString() + '%';
   }
 
+  /**
+   * Token Modal toggle function.
+   */
   tokenModalButtonToggle() {
     this.tokenModalButtonFlag = !this.tokenModalButtonFlag;
     this.tokenModalButton = this.tokenModalButtonFlag ? 'Show Token' : 'Hide Token';
@@ -66,6 +85,9 @@ export class ProfileComponent implements OnInit {
     TOKEN_INPUT.type = this.tokenModalButtonFlag ? 'password' : 'text';
   }
 
+  /**
+   * Displays a Modal to update user details
+   */
   updateUserDetails() {
     const SELF = this;
     const apiCall = (params) => {
@@ -118,6 +140,9 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  /**
+   * Download Auth Token as a JSON file.
+   */
   downloadToken() {
     this.isTokenModalVisible = false;
     this.windowService.downloadFile({body: JSON.stringify({token: this.globalService.getAuthToken()})},
@@ -125,11 +150,17 @@ export class ProfileComponent implements OnInit {
                                   {type: 'text/json'});
   }
 
+  /**
+   * Copy auth token to clipboard.
+   */
   copyToken() {
     this.windowService.copyToClipboard(this.globalService.getAuthToken());
     this.globalService.showToast('success', 'Copied to clipboard', 5);
   }
 
+  /**
+   * Display modal to update password.
+   */
   updatePassword() {
     const SELF = this;
     const apiCall = (params) => {

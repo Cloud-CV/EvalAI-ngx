@@ -15,6 +15,15 @@ export class DashboardComponent implements OnInit {
   hostteams = [];
   participantteams = [];
 
+  /**
+   * Constructor.
+   * @param endpointsService  EndpointService Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   * @param authService  AuthService Injection.
+   */
   constructor(private apiService: ApiService,
               private authService: AuthService,
               private globalService: GlobalService,
@@ -22,6 +31,9 @@ export class DashboardComponent implements OnInit {
               private route: ActivatedRoute,
               private endpointsService: EndpointsService) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['auth/login']);
@@ -31,6 +43,10 @@ export class DashboardComponent implements OnInit {
     this.fetchTeams(this.endpointsService.allHostTeamsURL());
   }
 
+  /**
+   * Fetch challenges from backend.
+   * @param path  Challenges fetch URL.
+   */
   fetchChallengesFromApi(path) {
     const SELF = this;
     SELF.apiService.getUrl(path).subscribe(
@@ -44,6 +60,10 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  /**
+   * Fetch teams from backend.
+   * @param path  Teams fetch URL.
+   */
   fetchTeams(path) {
     const SELF = this;
     let isHost = false;

@@ -8,6 +8,10 @@ import { GlobalService } from '../../services/global.service';
 })
 export class GetInvolvedComponent implements OnInit {
 
+  /**
+   * Constructor.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(private globalService: GlobalService) { }
   description = 'Thanks for your interest in helping out with the EvalAI\
   project! We\'re a team of volunteers around the world who want to\
@@ -17,6 +21,9 @@ export class GetInvolvedComponent implements OnInit {
   platform, including identifying bugs and discussing enhancements.\
   Here are different ways in which how you can help:';
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.globalService.scrollToTop();
   }

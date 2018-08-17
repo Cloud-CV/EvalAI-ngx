@@ -20,8 +20,16 @@ export class ModalComponent implements OnInit {
 
   confirmCallback = (params) => {};
   denyCallback = () => {};
+
+  /**
+   * Constructor.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(private globalService: GlobalService) { }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     if (this.params) {
       if (this.params['title']) {
@@ -48,6 +56,9 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  /**
+   * Form Validate function.
+   */
   formValidate() {
     if (this.formComponents.length > 0) {
       this.globalService.formValidate(this.formComponents, this.confirmed, this);
@@ -56,12 +67,18 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  /**
+   * Modal Confirmed.
+   */
   confirmed(self) {
     self.globalService.hideModal();
     const PARAMS = self.globalService.formFields(self.formComponents);
     self.confirmCallback(PARAMS);
   }
 
+  /**
+   * Modal Denied.
+   */
   denied() {
     this.globalService.hideModal();
     this.denyCallback();

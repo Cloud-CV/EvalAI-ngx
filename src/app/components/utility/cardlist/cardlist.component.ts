@@ -16,8 +16,15 @@ export class CardlistComponent implements OnInit {
 
   dataList: any;
   arrayJavascript: any;
+
+  /**
+   * Constructor.
+   */
   constructor() { }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     this.arrayJavascript = Array;
     if (this.dataObservable) {

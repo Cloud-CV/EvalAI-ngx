@@ -13,9 +13,21 @@ export class FooterComponent implements OnInit {
   localRouter: any;
   transparentHeaderUrls = ['', '/'];
   atHome = true;
+
+  /**
+   * Constructor.
+   * @param document  Window document Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   */
   constructor(private apiService: ApiService, @Inject(DOCUMENT) private document: Document, private globalService: GlobalService,
               private router: Router, private route: ActivatedRoute) { }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     this.localRouter = this.router;
     this.atHome = true;
@@ -23,6 +35,10 @@ export class FooterComponent implements OnInit {
       this.atHome = false;
     }
   }
+
+  /**
+   * Subscribe for Notifications.
+   */
   getNotifications() {
     const EMAIL = this.document.getElementById('notification-email')['value'];
     if (EMAIL && this.globalService.validateEmail(EMAIL)) {
@@ -32,6 +48,10 @@ export class FooterComponent implements OnInit {
     }
   }
 
+  /**
+   * Form Submit function. (called after validation)
+   * @param email  email string
+   */
   formSubmit(email: string) {
     // TODO get notified API path
     const API_PATH = '';
@@ -49,6 +69,10 @@ export class FooterComponent implements OnInit {
     );
   }
 
+  /**
+   * Navigate to URL.
+   * @param url  destination URL path.
+   */
   navigateTo(url) {
     this.router.navigate([ url ]);
   }

@@ -21,6 +21,16 @@ export class ChallengecardComponent implements OnInit {
   isLoggedIn = false;
   tags = ['Aritificial Intelligence', 'Machine Learning'];
   stars = { 'count': 0, 'is_starred': false};
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param apiService  ApiService Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private globalService: GlobalService,
               private apiService: ApiService,
               private authService: AuthService,
@@ -28,6 +38,9 @@ export class ChallengecardComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.preProcess();
     if (this.authService.isLoggedIn()) {
@@ -35,6 +48,9 @@ export class ChallengecardComponent implements OnInit {
     }
   }
 
+  /**
+   * Called after onInit.
+   */
   preProcess() {
     const TEMP = {};
     const PRESENT = new Date();
@@ -47,6 +63,12 @@ export class ChallengecardComponent implements OnInit {
 
   }
 
+  /**
+   * Checks type of challenge (based on timing).
+   * @param start  Start date
+   * @param end  End date
+   * @param now  Current date
+   */
   checkType(start, end, now) {
     if (now > end) {
         this.isPast = true;
@@ -60,12 +82,18 @@ export class ChallengecardComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetch Stars for the current challenge card.
+   */
   fetchStars() {
     this.challengeService.fetchStars(this.challenge['id'], (data) => {
       this.stars = data;
     });
   }
 
+  /**
+   * Toggle stars for the current challenge card.
+   */
   starToggle() {
     if (this.isLoggedIn) {
       this.challengeService.starToggle(this.challenge['id'], (data, self) => {
@@ -74,9 +102,16 @@ export class ChallengecardComponent implements OnInit {
     }
   }
 
+  /**
+   * Challenge card is clicked (redirect).
+   */
   challengeClicked() {
     this.router.navigate(['/challenge', this.challenge['id']]);
   }
+
+  /**
+   * Participate in the current challenge card (redirect).
+   */
   participateInChallenge() {
     this.router.navigate(['/challenge', this.challenge['id'], 'participate']);
   }

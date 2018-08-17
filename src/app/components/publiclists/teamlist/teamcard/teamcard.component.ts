@@ -21,18 +21,37 @@ export class TeamcardComponent implements OnInit, OnChanges {
   teamView = {};
   isSelected = false;
   isHost = false;
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   */
   constructor(private globalService: GlobalService,
               private apiService: ApiService,
               private router: Router,
               private route: ActivatedRoute) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.updateView();
   }
+
+  /**
+   * Component on change detected.
+   * @param changes  changes detected in the inputs.
+   */
   ngOnChanges(changes: SimpleChanges) {
     this.updateView();
   }
 
+  /**
+   * Select a team toggle.
+   */
   selectToggle() {
     if ((this.isHost && !this.isSelected) || !this.isHost) {
       this.isSelected = !this.isSelected;
@@ -43,25 +62,40 @@ export class TeamcardComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Fires team edit event.
+   */
   editTeam(e) {
     e.stopPropagation();
     this.editTeamCard.emit(this.team['id']);
   }
 
+  /**
+   * Fires add members to team event.
+   */
   addMembersToTeam(e) {
     e.stopPropagation();
     this.addMembersTeamCard.emit(this.team['id']);
   }
 
+  /**
+   * Fires delete team event.
+   */
   deleteTeam(e) {
     e.stopPropagation();
     this.deleteTeamCard.emit(this.team['id']);
   }
 
+  /**
+   * Fires slect team event.
+   */
   selectTeam() {
     this.selectTeamCard.emit(this.team);
   }
 
+  /**
+   * UI view update, called after onInit.
+   */
   updateView() {
     this.teamView['team_name'] = this.team['team_name'];
     this.teamView['created_by'] = this.team['created_by'];

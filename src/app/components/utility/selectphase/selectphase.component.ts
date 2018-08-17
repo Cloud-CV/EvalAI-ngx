@@ -13,11 +13,22 @@ export class SelectphaseComponent implements OnInit, OnChanges {
   @Input() phaseSelected: any;
   selectedPhase: any = null;
   publicRouter: any;
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  GlobalService Injection.
+   * @param globalService  GlobalService Injection.
+   * @param challengeService  ChallengeService Injection.
+   */
   constructor(private challengeService: ChallengeService,
               private router: Router,
               private route: ActivatedRoute,
               private globalService: GlobalService) { }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     this.publicRouter = this.router;
     if (!this.phases) {
@@ -27,9 +38,18 @@ export class SelectphaseComponent implements OnInit, OnChanges {
       this.phaseSelected = () => {};
     }
   }
+
+  /**
+   * Component on changes detected in Input.
+   * @param change  changes detected
+   */
   ngOnChanges(change) {
   }
 
+  /**
+   * Select a particular phase.
+   * @param phase  phase to be selected.
+   */
   selectPhase(phase) {
     this.selectedPhase = phase;
     for (let i = 0; i < this.phases.length; i++) {
@@ -51,6 +71,9 @@ export class SelectphaseComponent implements OnInit, OnChanges {
     this.phaseSelected(phase);
   }
 
+  /**
+   * Get 12Hour formatted date function.
+   */
   getFormattedDate(date) {
     return this.globalService.formatDate12Hour(new Date(Date.parse(date)));
   }

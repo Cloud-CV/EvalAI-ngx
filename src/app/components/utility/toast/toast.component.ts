@@ -11,9 +11,18 @@ export class ToastComponent implements OnInit, OnDestroy {
   type: any = 'success';
   message: any = 'Success';
   globalServiceSubscription: any;
+
+  /**
+   * Constructor.
+   * @param document  Window document Injection.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(@Inject(DOCUMENT) private document: Document,
               private globalService: GlobalService) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.globalServiceSubscription = this.globalService.toast.subscribe(temp => {
       this.type = temp.type || 'success';
@@ -24,6 +33,11 @@ export class ToastComponent implements OnInit, OnDestroy {
       this.show(temp.duration);
     });
   }
+
+  /**
+   * Display Toast.
+   * @param duration  toast display duration in seconds.
+   */
   show(duration) {
     const TOAST = this.document.getElementById('toast');
     const TOAST_MESSAGE = this.document.getElementById('toastmessage');
@@ -33,6 +47,10 @@ export class ToastComponent implements OnInit, OnDestroy {
       TOAST.className = TOAST.className.replace('show', '');
     }, duration * 1000);
   }
+
+  /**
+   * Component on destroyed.
+   */
   ngOnDestroy() {
     if (this.globalServiceSubscription) {
       this.globalServiceSubscription.unsubscribe();

@@ -31,12 +31,23 @@ export class ChallengelistComponent implements OnInit {
   routerPublic: Router;
   isLoggedIn: any = false;
 
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param apiService  ApiService Injection.
+   */
   constructor(private apiService: ApiService,
               private authService: AuthService,
               private globalService: GlobalService,
               private router: Router,
               private route: ActivatedRoute) { }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
@@ -50,11 +61,18 @@ export class ChallengelistComponent implements OnInit {
     this.routerPublic = this.router;
   }
 
+  /**
+   * Fetch teams function.
+   */
   fetchMyTeams() {
     // this.fetchTeams('participants/participant_team');
     this.fetchTeams('hosts/challenge_host_team');
   }
 
+  /**
+   * Toggle upcoming/past/ongoing filters.
+   * @param filter  selected filter
+   */
   toggleFilter(filter) {
     this[filter] = !this[filter];
     if (this[filter]) {
@@ -68,11 +86,18 @@ export class ChallengelistComponent implements OnInit {
     }
   }
 
+  /**
+   * Show more results.
+   */
   seeMoreClicked() {
     this.seeMore = this.seeMore + 1;
     this.updateChallengesView(false);
   }
 
+  /**
+   * Update challenges view (called after fetching challenges from API).
+   * @param reset  reset flag for hiding/showing more results
+   */
   updateChallengesView(reset) {
     if (reset) {
       this.seeMore = 1;
@@ -81,13 +106,19 @@ export class ChallengelistComponent implements OnInit {
     this.filteredChallengesView = this.filteredChallenges.slice(0, (this.seeMore * this.windowSize));
   }
 
+  /**
+   * Filtering challenges by teams
+   */
   filterChallengesByTeams() {
     if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
       this.filteredChallenges = this.filteredChallenges.filter((v, i, a) => this.allTeams.indexOf(v['creator']['id']) > -1);
     }
   }
 
-
+  /**
+   * Fetch teams function.
+   * @param path  teams fetch URL
+   */
   fetchTeams(path) {
     const SELF = this;
     SELF.filteredChallenges = [];
@@ -98,9 +129,6 @@ export class ChallengelistComponent implements OnInit {
           SELF.allTeams = SELF.allTeams.concat(TEAMS);
           SELF.allTeams = SELF.allTeams.filter((v, i, a) => a.indexOf(v) === i);
           SELF.fetchChallenges();
-          // for(let i = 0; i < SELF.allTeams.length; i++) {
-          //   SELF.fetchHostedChallenges(SELF.allTeams[i], SELF);
-          // }
         }
       },
       err => {
@@ -112,23 +140,11 @@ export class ChallengelistComponent implements OnInit {
     );
   }
 
-  // fetchHostedChallenges(teamId, self) {
-  //   const API_PATH = 'challenges/challenge_host_team/' + teamId + '/challenge';
-  //   this.apiService.getUrl(API_PATH).subscribe(
-  //     data => {
-  //       if (data['results']) {
-  //         this.filteredChallenges = this.filteredChallenges.concat(this.ongoingChallenges, this.pastChallenges);
-  //       }
-  //     },
-  //     err => {
-  //       self.globalService.handleApiError(err, false);
-  //     },
-  //     () => {
-  //       console.log('Teams fetched', path);
-  //     }
-  //   );
-  // }
-
+  /**
+   * Fetch Challenges function.
+   * @param filter  selected filter
+   * @param callback  callback function
+   */
   fetchChallenges(filter = null, callback = null) {
     if (!filter) {
       const ALL_PATHS = Object.values(this.apiPathMapping);
@@ -143,6 +159,11 @@ export class ChallengelistComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetch challenges from backend.
+   * @param path  Challenge fetch URL
+   * @param callback  Callback Function.
+   */
   fetchChallengesFromApi(path, callback = null) {
     const SELF = this;
     SELF.apiService.getUrl(path).subscribe(

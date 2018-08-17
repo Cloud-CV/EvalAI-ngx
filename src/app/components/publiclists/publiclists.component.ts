@@ -10,14 +10,29 @@ import { GlobalService } from '../../services/global.service';
 })
 export class PubliclistsComponent implements OnInit {
   localRouter: any;
+
+  /**
+   * Constructor.
+   * @param document  Window document Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(private router: Router, private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document,
               private globalService: GlobalService) { }
 
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     this.localRouter = this.router;
     this.scrollNav();
     this.globalService.scrollToTop();
   }
+
+  /**
+   * Scroll Navigation headers on challenges and team pages.
+   */
   scrollNav() {
     if (this.router.url === '/challenges/all') {
       this.document.getElementById('all-challenges-nav').scrollIntoView();

@@ -34,6 +34,17 @@ export class TeamlistComponent implements OnInit {
   teamForm = 'formteam';
   @ViewChildren('formteam')
   components: QueryList<TeamlistComponent>;
+
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param apiService  ApiService Injection.
+   * @param challengeService  ChallengeService Injection.
+   * @param endpointsService  EndpointsService Injection.
+   */
   constructor(private apiService: ApiService,
               private authService: AuthService,
               private globalService: GlobalService,
@@ -42,6 +53,9 @@ export class TeamlistComponent implements OnInit {
               private challengeService: ChallengeService,
               private endpointsService: EndpointsService) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.authServicePublic = this.authService;
     this.routerPublic = this.router;
@@ -69,11 +83,18 @@ export class TeamlistComponent implements OnInit {
     }
   }
 
+  /**
+   * Show more results.
+   */
   seeMoreClicked() {
     this.seeMore = this.seeMore + 1;
     this.updateTeamsView(false);
   }
 
+  /**
+   * Update teams view (called after fetching teams from API).
+   * @param reset  reset flag
+   */
   updateTeamsView(reset) {
     if (reset) {
       this.seeMore = 1;
@@ -82,12 +103,19 @@ export class TeamlistComponent implements OnInit {
     this.filteredTeamSource.next(this.filteredTeams);
   }
 
+  /**
+   * Fetch my teams from a given URL.
+   * @param path  Fetch teams URL
+   */
   fetchMyTeams(path) {
     if (this.authService.isLoggedIn()) {
       this.fetchTeams(path);
     }
   }
 
+  /**
+   * Select a team and unselect others.
+   */
   selectTeamWrapper() {
     const SELF = this;
     const selectTeam = (team) => {
@@ -97,6 +125,9 @@ export class TeamlistComponent implements OnInit {
     return selectTeam;
   }
 
+  /**
+   * Unselecting other teams function.
+   */
   unselectOtherTeams(self) {
     const temp = self.allTeams.slice();
     for (let i = 0; i < temp.length; i++) {
@@ -109,6 +140,9 @@ export class TeamlistComponent implements OnInit {
     self.updateTeamsView(false);
   }
 
+  /**
+   * Append additional parameters to teams objects.
+   */
   appendIsSelected(teams) {
     for (let i = 0; i < teams.length; i++) {
       teams[i]['isSelected'] = false;
@@ -117,7 +151,10 @@ export class TeamlistComponent implements OnInit {
     return teams;
   }
 
-
+  /**
+   * Fetch teams from backend.
+   * @param path  Fetch teams URL.
+   */
   fetchTeams(path) {
     const SELF = this;
     this.apiService.getUrl(path).subscribe(
@@ -139,6 +176,9 @@ export class TeamlistComponent implements OnInit {
     );
   }
 
+  /**
+   * Display confirm dialog before deleting a team.
+   */
   deleteTeamWrapper() {
     const SELF = this;
     const deleteTeam = (e) => {
@@ -169,6 +209,9 @@ export class TeamlistComponent implements OnInit {
     return deleteTeam;
   }
 
+  /**
+   * Display Modal for editing team details.
+   */
   editTeamWrapper() {
     const SELF = this;
     const editTeam = (team) => {
@@ -208,6 +251,9 @@ export class TeamlistComponent implements OnInit {
     return editTeam;
   }
 
+  /**
+   * Display modal to add members to the team.
+   */
   addMembersToTeamWrapper() {
     const SELF = this;
     const addMembersToTeam = (team) => {
@@ -251,9 +297,18 @@ export class TeamlistComponent implements OnInit {
     return addMembersToTeam;
   }
 
+  /**
+   * Create Team function.
+   * @param formname  name of form fields (#).
+   */
   createTeam(formname) {
     this.globalService.formValidate(this.components, this.createTeamSubmit, this);
   }
+
+  /**
+   * Called after create team form is validated.
+   * @param self  context value of this.
+   */
   createTeamSubmit(self) {
     const API_PATH = self.createTeamsPath;
     const url = self.globalService.formValueForLabel(self.components, 'team_url');
@@ -277,13 +332,18 @@ export class TeamlistComponent implements OnInit {
     );
   }
 
+  /**
+   * Create challenge (redirect).
+   */
   createChallenge() {
     this.challengeService.changeCurrentHostTeam(this.selectedTeam);
     this.router.navigate(['/challenge-create']);
   }
 
+  /**
+   * Participate in the challenge using selected team.
+   */
   participateInChallenge() {
     this.challengeService.participateInChallenge(this.challenge['id'], this.selectedTeam['id']);
   }
-
 }

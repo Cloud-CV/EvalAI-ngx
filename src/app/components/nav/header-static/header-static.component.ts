@@ -20,6 +20,17 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   authServiceSubscription: any;
   authState: any;
   public innerWidth: any;
+
+  /**
+   * Constructor.
+   * @param document  Window document Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param authService  AuthService Injection.
+   * @param apiService  ApiService Injection.
+   * @param ref  Angular Change Detector Injection.
+   */
   constructor(private globalService: GlobalService,
               private route: ActivatedRoute,
               private router: Router,
@@ -28,6 +39,10 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
               @Inject(DOCUMENT) private document: Document) {
                  this.authState = authService.authState;
               }
+
+  /**
+   * Update View Elements (called after onInit).
+   */
   updateElements() {
     this.headerWhite = false;
     this.atHome = true;
@@ -42,6 +57,10 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
       this.scrolledState = scrolledState;
     });
   }
+
+  /**
+   * Component on intialized.
+   */
   ngOnInit() {
     this.updateElements();
     this.innerWidth = window.innerWidth;
@@ -59,12 +78,21 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
       this.isMenuExpanded = false;
     }
   }
+
+  /**
+   * Redirect to home if not at home (/).
+   */
   sendMeHome() {
     this.atHome = true;
     this.headerWhite = false;
     this.ref.detectChanges();
     this.router.navigate(['']);
   }
+
+  /**
+   * Navigate to URL.
+   * @param path  destination URL
+   */
   navigateTo(path) {
     this.isMenuExpanded = false;
     if (path === '/auth/login') {
@@ -72,6 +100,10 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
     }
     this.router.navigate([path]);
   }
+
+  /**
+   * Component on destroyed.
+   */
   ngOnDestroy() {
     if (this.globalServiceSubscription) {
       this.globalServiceSubscription.unsubscribe();
@@ -80,9 +112,17 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
       this.authServiceSubscription.unsubscribe();
     }
   }
+
+  /**
+   * Perform Log-out.
+   */
   logOut() {
     this.authService.logOut();
   }
+
+  /**
+   * Flag for expanding navigation menu on the header.
+   */
   menuExpander() {
     this.isMenuExpanded = !this.isMenuExpanded;
   }

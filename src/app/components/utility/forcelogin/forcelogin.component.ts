@@ -10,10 +10,22 @@ import { Router} from '@angular/router';
 export class ForceloginComponent implements OnInit {
   @Input() path: string;
 
+  /**
+   * Constructor.
+   * @param router  GlobalService Injection.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(private globalService: GlobalService, private router: Router) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
   }
+
+  /**
+   * Redirects to login page.
+   */
   redirectToLogin() {
     this.globalService.storeData('redirect', {path: this.path});
     this.router.navigate(['/auth/login']);

@@ -21,6 +21,14 @@ export class ContactComponent implements OnInit, AfterViewInit {
   componentlist: any;
   google: any;
 
+  /**
+   * Constructor.
+   * @param document  Window document Injection.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   */
   constructor(@Inject(DOCUMENT) private document: Document,
               private windowService: WindowService,
               private globalService: GlobalService,
@@ -28,11 +36,17 @@ export class ContactComponent implements OnInit, AfterViewInit {
               private route: ActivatedRoute,
               private router: Router) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     this.loadMapContactPage();
     this.globalService.scrollToTop();
   }
 
+  /**
+   * Component after view initialized.
+   */
   ngAfterViewInit() {
     // print array of CustomComponent objects
     // this.componentlist = this.components.toArray();
@@ -40,10 +54,18 @@ export class ContactComponent implements OnInit, AfterViewInit {
     this.ALL_FORMS[this.contactForm] = this.components;
   }
 
+  /**
+   * Form validate function.
+   * @param formname  Name of form fields (#).
+   */
   formValidate(formname) {
     this.globalService.formValidate(this.ALL_FORMS[this.contactForm], this.formSubmit, this);
   }
 
+  /**
+   * Form submit function (Called after validation).
+   * @param self  context value of this
+   */
   formSubmit(self) {
     const CONTACT_BODY = JSON.stringify({
       name: self.globalService.formValueForLabel(self.ALL_FORMS[self.contactForm], 'name'),
@@ -63,6 +85,9 @@ export class ContactComponent implements OnInit, AfterViewInit {
     );
   }
 
+  /**
+   * Loading Map on the contact page.
+   */
   loadMapContactPage() {
     // TODO: Replace this with CloudCV's Google Maps API Key
     const MAP_API_KEY = 'AIzaSyDlXSVBOW9fl96oY4oyTo055jUVd9Y-6dA';
@@ -71,6 +96,9 @@ export class ContactComponent implements OnInit, AfterViewInit {
       this.callBack, this.document.body, this);
   }
 
+  /**
+   * Initialize Map parameters.
+   */
   initMap() {
     const MAP_CENTER = {lat: 33.779478, lng: -84.434887};
     const MAP_GATECH = {lat: 33.780398, lng: -84.395513};
@@ -84,8 +112,12 @@ export class ContactComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Callback called when Google Map JS is loaded.
+   * @param self  context value of this
+   */
   callBack(self) {
-    self.google = self.windowService.nativeWindow.google;
+    self.google = self.windowService.nativeWindow().google;
     self.initMap();
   }
 

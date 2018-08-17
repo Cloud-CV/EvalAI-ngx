@@ -12,10 +12,21 @@ import { GlobalService } from '../../../services/global.service';
 export class HomemainComponent implements OnInit {
   isLoggedIn = false;
 
+  /**
+   * Constructor.
+   * @param route  ActivatedRoute Injection.
+   * @param router  Router Injection.
+   * @param globalService  GlobalService Injection.
+   * @param apiService  ApiService Injection.
+   * @param authService  AuthService Injection.
+   */
   constructor(private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
               private authService: AuthService) { }
 
+  /**
+   * Component on initialized
+   */
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;

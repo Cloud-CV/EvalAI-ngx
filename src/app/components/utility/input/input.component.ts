@@ -27,8 +27,17 @@ export class InputComponent implements OnInit {
   fileSelected = null;
   message = 'Required field';
   requiredMessage = 'Required field';
+
+  /**
+   * Constructor.
+   * @param document  Window document Injection.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) {  }
 
+  /**
+   * Component on intialized
+   */
   ngOnInit() {
     if (!this.type || this.type === 'email') {
       if (this.type === 'email') {
@@ -64,6 +73,9 @@ export class InputComponent implements OnInit {
     }
   }
 
+  /**
+   * Perform validations on the input
+   */
   validateInput(e) {
     this.isDirty = true;
     this.value = e;
@@ -86,16 +98,23 @@ export class InputComponent implements OnInit {
        this.isValid ? this.message = '' : this.message = 'Password minimum 8 characters';
     }
   }
+
+  /**
+   * Handle file input (like validateInput, but for files).
+   */
   handleFileInput(f) {
     if (f && f.length >= 1) {
       this.fileSelected = f.item(0);
       this.placeholder = this.fileSelected['name'];
-      // this.placeholder = f[0]['name'];
-      // this.fileSelected = f[0];
       this.isValid = true;
       this.isValid ? this.message = '' : this.message = this.requiredMessage;
     }
   }
+
+  /**
+   * Trigger click on a DOM element.
+   * @param id  id of DOM element to be clicked
+   */
   transferClick(id) {
     this.document.getElementById(id).click();
   }

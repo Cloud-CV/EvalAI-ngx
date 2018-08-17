@@ -14,8 +14,16 @@ export class ConfirmComponent implements OnInit {
   deny = 'Cancel';
   confirmCallback = () => {};
   denyCallback = () => {};
+
+  /**
+   * Constructor.
+   * @param globalService  GlobalService Injection.
+   */
   constructor(private globalService: GlobalService) { }
 
+  /**
+   * Component on initialized.
+   */
   ngOnInit() {
     if (this.params['title']) {
       this.title = this.params['title'];
@@ -37,11 +45,17 @@ export class ConfirmComponent implements OnInit {
     }
   }
 
+  /**
+   * Confirm callback.
+   */
   confirmed() {
     this.globalService.hideConfirm();
     this.confirmCallback();
   }
 
+  /**
+   * Deny callback.
+   */
   denied() {
     this.globalService.hideConfirm();
     this.denyCallback();
