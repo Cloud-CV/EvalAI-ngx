@@ -1,0 +1,19 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.challenge-overview-container {
+	padding:40px;
+	overflow:auto;
+	.content {
+		text-align:center;
+		font-weight:$fw-light;
+		font-size:$fs-16;
+		color:$gray-darker;
+		a {
+			color:$red-light;
+		}
+		i {
+			color: $gray-darker;
+		}
+	}
+}

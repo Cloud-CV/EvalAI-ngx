@@ -3,7 +3,12 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+// export const environment = {
+//   production: false,
+//   api_endpoint: 'http://localhost:8000/api/'
+// };
+
 export const environment = {
   production: false,
-  api_endpoint: 'http://localhost:8000/api/'
+  api_endpoint: 'http://api.evalai.cloudcv.org/api/'
 };

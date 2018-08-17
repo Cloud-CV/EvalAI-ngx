@@ -1,0 +1,25 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.select-phase {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  float: left;
+  padding:10px;
+  max-height:400px;
+  width:auto;
+  overflow:scroll;
+  .select-title {
+    margin-left: 20px;
+  }
+  .card {
+    padding: 10px 30px 10px 30px;
+    cursor: pointer;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .heading {
+      font-weight: $fw-regular;
+  }
+}

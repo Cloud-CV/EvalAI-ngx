@@ -1,0 +1,37 @@
+<div class="team-card-container" [class.selected]='isSelected' [class.noexpand] = 'isHost' [class.expand] = '!isHost'>
+  <div class="team-content" (click)='selectToggle()'>
+    <i class="fa fa-users" aria-hidden="true"></i>
+    <div class="team-details">
+      <span class="title">
+	    Team:
+      </span>
+      <span *ngIf="teamView['team_url']">
+      	<a target="_blank" href="{{teamView['team_url']}}">{{teamView['team_name']}}</a>
+      </span>
+      <span *ngIf="!teamView['team_url']">
+	    {{teamView['team_name']}}
+      </span>
+      <br>
+      <span class="title">
+	    Created by:
+      </span>
+      <span>
+	    {{teamView['created_by']}}
+      </span>
+    </div>
+    <div class='team-icons'>
+      <a (click)="addMembersToTeam($event)"><i class="fas fa-user-plus" aria-hidden="true"></i></a>
+      <a [class.host]="isHost" (click)="editTeam($event)"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+      <a (click)="deleteTeam($event)"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+    </div>
+   </div>
+    <div class='team-members'>
+    <div class="title">
+	    Team Members:
+    </div>
+    <div>
+	    {{teamView['members']}}
+    </div>
+      
+    </div>
+</div>

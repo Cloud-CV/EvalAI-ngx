@@ -1,0 +1,55 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.challenge-submit-container {
+  padding: 20px;
+  color: $gray-darker;
+  font-size: $fs-16;
+  font-weight: $fw-light;
+  .challenge-submit {
+    .btn-filter {
+      margin-left: 0;
+    }
+    .file-name {
+      margin-left: 20px;
+      font-weight: $fw-bold;
+    }
+    .hide {
+      opacity: 0;
+    }
+    .form-challenge-submit {
+      padding-left:10px;
+      width: 50%;
+      .submit-btn-div {
+        .btn {
+          margin-left: 0px;
+        }
+      }
+    }
+    .phase-submissions {
+      display: inline-block;
+      text-align: left;
+      vertical-align: top;
+    }
+    .phase-submissions {
+      float: right;
+      padding: 20px;
+    }
+    .heading {
+      font-weight: $fw-bold;
+    }
+  }
+}
+
+@include screen-small {
+  .challenge-submit-container {
+    .challenge-submit,
+    .submission-guidelines {
+      margin-left: 0;
+      margin-right: 0;
+      .form-challenge-submit {
+        width: 220px;
+      }
+    }
+  }
+}
