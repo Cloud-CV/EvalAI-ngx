@@ -4,31 +4,98 @@ import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengelist',
   templateUrl: './challengelist.component.html',
   styleUrls: ['./challengelist.component.scss']
 })
 export class ChallengelistComponent implements OnInit {
+
+  /**
+   * Filter toggle flag
+   */
   isUpcomingChecked = true;
+
+  /**
+   * Filter toggle flag
+   */
   isOngoingChecked = true;
+
+  /**
+   * Filter toggle flag
+   */
   isPastChecked = false;
+
+  /**
+   * Upcoming challenges list
+   */
   upcomingChallenges = [];
+
+  /**
+   * Ongoing challenges list
+   */
   ongoingChallenges = [];
+
+  /**
+   * Past challeges list
+   */
   pastChallenges = [];
+
+  /**
+   * API common path
+   */
   apiPathCommon = 'challenges/challenge/';
+
+  /**
+   * API path mapping
+   */
   apiPathMapping = {
     isUpcomingChecked: this.apiPathCommon + 'future',
     isOngoingChecked: this.apiPathCommon + 'present',
     isPastChecked: this.apiPathCommon + 'past'
   };
+
+  /**
+   * List of filtered challenges
+   */
   filteredChallenges = [];
+
+  /**
+   * List of filtered-further challenges
+   */
   filteredChallengesView = [];
+
+  /**
+   * Team list
+   */
   allTeams = [];
+
+  /**
+   * Display more frames of teams
+   */
   seeMore = 1;
+
+  /**
+   * Frame size
+   */
   windowSize = 10;
+
+  /**
+   * Auth service public instance
+   */
   authServicePublic: AuthService;
+
+  /**
+   * Router public instance
+   */
   routerPublic: Router;
+
+  /**
+   * Is user Logged in
+   */
   isLoggedIn: any = false;
 
   /**

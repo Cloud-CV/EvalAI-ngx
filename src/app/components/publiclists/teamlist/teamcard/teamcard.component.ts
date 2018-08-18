@@ -3,23 +3,69 @@ import { GlobalService } from '../../../../services/global.service';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-teamcard',
   templateUrl: './teamcard.component.html',
   styleUrls: ['./teamcard.component.scss']
 })
 export class TeamcardComponent implements OnInit, OnChanges {
+
+  /**
+   * Team object
+   */
   @Input() team: object;
+
+  /**
+   * Selected flag
+   */
   @Input() selected: any;
+
+  /**
+   * Update
+   */
   @Input() update: any;
+
+  /**
+   * Delete team event
+   */
   @Output() deleteTeamCard = new EventEmitter<any>();
+
+  /**
+   * Select team event
+   */
   @Output() selectTeamCard = new EventEmitter<any>();
+
+  /**
+   * Edit team event
+   */
   @Output() editTeamCard = new EventEmitter<any>();
+
+  /**
+   * Add members event
+   */
   @Output() addMembersTeamCard = new EventEmitter<any>();
 
+  /**
+   * Team relatd text
+   */
   teamText = '';
+
+  /**
+   * Team view object
+   */
   teamView = {};
+
+  /**
+   * Is currently selected
+   */
   isSelected = false;
+
+  /**
+   * Is a host team
+   */
   isHost = false;
 
   /**

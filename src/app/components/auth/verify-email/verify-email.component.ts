@@ -4,13 +4,24 @@ import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.scss']
 })
 export class VerifyEmailComponent implements OnInit {
+
+  /**
+   * Email verification token local
+   */
   token = '';
+
+  /**
+   * Is Email verified
+   */
   isVerified = false;
 
   /**

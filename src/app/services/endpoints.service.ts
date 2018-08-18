@@ -17,6 +17,27 @@ export class EndpointsService {
   constructor() { }
 
   /**
+   * Login URL
+   */
+  loginURL() {
+    return `auth/login/`;
+  }
+
+  /**
+   * Signup URL
+   */
+  signupURL() {
+    return `auth/registration/`;
+  }
+
+  /**
+   * Contact form URL
+   */
+  contactURL() {
+    return `web/contact/`;
+  }
+
+  /**
    * Get User Details
    */
   userDetailsURL() {

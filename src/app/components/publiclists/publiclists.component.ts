@@ -3,12 +3,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-publiclists',
   templateUrl: './publiclists.component.html',
   styleUrls: ['./publiclists.component.scss']
 })
 export class PubliclistsComponent implements OnInit {
+
+  /**
+   * Router local/public instance
+   */
   localRouter: any;
 
   /**

@@ -4,12 +4,19 @@ import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-homemain',
   templateUrl: './homemain.component.html',
   styleUrls: ['./homemain.component.scss']
 })
 export class HomemainComponent implements OnInit {
+
+  /**
+   * Is user logged in
+   */
   isLoggedIn = false;
 
   /**

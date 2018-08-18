@@ -6,26 +6,77 @@ import { ChallengeService } from '../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EndpointsService } from '../../../services/endpoints.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengesubmit',
   templateUrl: './challengesubmit.component.html',
   styleUrls: ['./challengesubmit.component.scss']
 })
 export class ChallengesubmitComponent implements OnInit {
+
+  /**
+   * Is user logged in
+   */
   isLoggedIn = false;
+
+  /**
+   * Challenge object
+   */
   challenge: any;
+
+  /**
+   * Router public instance
+   */
   routerPublic: any;
+
+  /**
+   * Is user a participant
+   */
   isParticipated: any;
+
+  /**
+   * Is challenge currently active
+   */
   isActive: any;
+
+  /**
+   * Guidelines text
+   */
   submissionGuidelines = '';
+
+  /**
+   * Form fields name
+   */
   submitForm = 'formsubmit';
+
+  /**
+   * Challenge phases list
+   */
   phases = [];
+
+  /**
+   * Filtered challenge phases
+   */
   filteredPhases = [];
+
+  /**
+   * Selected phase object
+   */
   selectedPhase = {};
+
+  /**
+   * Submissions remaining for the selected phase
+   */
   selectedPhaseSubmissions = {
     remaining_submissions_today_count: 0,
     remaining_submissions: 0
   };
+
+  /**
+   * Component Class
+   */
   @ViewChildren('formsubmit')
   components: QueryList<ChallengesubmitComponent>;
 

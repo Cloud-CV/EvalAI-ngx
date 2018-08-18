@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-get-involved',
   templateUrl: './get-involved.component.html',

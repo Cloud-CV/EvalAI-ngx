@@ -7,29 +7,95 @@ import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengeleaderboard',
   templateUrl: './challengeleaderboard.component.html',
   styleUrls: ['./challengeleaderboard.component.scss']
 })
 export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
+
+  /**
+   * Phase select card components
+   */
   @ViewChildren('phasesplitselect')
   components: QueryList<SelectphaseComponent>;
 
+  /**
+   * Is user logged in
+   */
   isLoggedIn = false;
+
+  /**
+   * Has view been initialized
+   */
   viewInit = false;
+
+  /**
+   * Challenge object
+   */
   challenge: any;
+
+  /**
+   * Router's public instance
+   */
   routerPublic: any;
+
+  /**
+   * Phases list
+   */
   phases = [];
+
+  /**
+   * Phase split list
+   */
   phaseSplits = [];
+
+  /**
+   * Phase splits filtered
+   */
   filteredPhaseSplits = [];
+
+  /**
+   * Leaderboard entries list
+   */
   leaderboard = [];
+
+  /**
+   * Currently selected phase split's id
+   */
   selectedPhaseSplitId: any = null;
+
+  /**
+   * Currently selected phase split
+   */
   selectedPhaseSplit: any = null;
+
+  /**
+   * Sort leaderboard based on this column
+   */
   sortColumn = 'rank';
+
+  /**
+   * Reverse sort flag
+   */
   reverseSort = false;
+
+  /**
+   * Used if leaderboard is sorted based on one of the schema labels
+   */
   columnIndexSort = 0;
+
+  /**
+   * Initial rankings object
+   */
   initial_ranking = {};
+
+  /**
+   * Component Class
+   */
   entryHighlighted: any = null;
 
   /**

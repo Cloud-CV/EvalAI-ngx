@@ -2,12 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 import { Router} from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-forcelogin',
   templateUrl: './forcelogin.component.html',
   styleUrls: ['./forcelogin.component.scss']
 })
 export class ForceloginComponent implements OnInit {
+
+  /**
+   * Path of redirect-to page
+   */
   @Input() path: string;
 
   /**

@@ -5,21 +5,64 @@ import { AuthService } from '../../../../services/auth.service';
 import { ChallengeService } from '../../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengecard',
   templateUrl: './challengecard.component.html',
   styleUrls: ['./challengecard.component.scss']
 })
 export class ChallengecardComponent implements OnInit {
+
+  /**
+   * Challenge object
+   */
   @Input() challenge: object;
+
+  /**
+   * Start date string
+   */
   startDate: any = '';
+
+  /**
+   * End date string
+   */
   endDate: any = '';
+
+  /**
+   * Is challenge upcoming
+   */
   isUpcoming = false;
+
+  /**
+   * Is Challenge ongoing
+   */
   isOngoing = false;
+
+  /**
+   * Is it a past challenge
+   */
   isPast = false;
+
+  /**
+   * Time remaining string
+   */
   timeRemaining = '';
+
+  /**
+   * Is user logged in
+   */
   isLoggedIn = false;
+
+  /**
+   * Tag list
+   */
   tags = ['Aritificial Intelligence', 'Machine Learning'];
+
+  /**
+   * Challenge stars
+   */
   stars = { 'count': 0, 'is_starred': false};
 
   /**

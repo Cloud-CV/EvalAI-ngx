@@ -5,14 +5,29 @@ import { EndpointsService } from '../../services/endpoints.service';
 import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  /**
+   * Challenges list
+   */
   challenges = [];
+
+  /**
+   * Host teams list
+   */
   hostteams = [];
+
+  /**
+   * Participant teams list
+   */
   participantteams = [];
 
   /**

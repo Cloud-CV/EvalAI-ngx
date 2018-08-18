@@ -4,18 +4,33 @@ import { DOCUMENT } from '@angular/common';
 import { InputComponent } from '../../../components/utility/input/input.component';
 import { WindowService } from '../../../services/window.service';
 import { ApiService } from '../../../services/api.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { GlobalService } from '../../../services/global.service';
 import { Router, ActivatedRoute} from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit, AfterViewInit {
-  API_PATH = 'auth/registration/';
+
+  /**
+   * All forms in signup component
+   */
   ALL_FORMS: any = {};
+
+  /**
+   * Form elements name in signup form
+   */
   signupForm = 'formsignup';
+
+  /**
+   * Signup form elements
+   */
   @ViewChildren('formsignup')
   components: QueryList<InputComponent>;
 
@@ -70,7 +85,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
       password1: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'password'),
       password2: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'confirm password')
     });
-    self.apiService.postUrl(self.API_PATH, SIGNUP_BODY).subscribe(
+    self.apiService.postUrl(self.endpointsService.signupURL(), SIGNUP_BODY).subscribe(
       data => {
         // Success Message in data.message
         setTimeout(() => {

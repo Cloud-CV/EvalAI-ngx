@@ -2,14 +2,29 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent implements OnInit, OnDestroy {
+
+  /**
+   * Type of toast
+   */
   type: any = 'success';
+
+  /**
+   * Toast message
+   */
   message: any = 'Success';
+
+  /**
+   * Global Service subscription public
+   */
   globalServiceSubscription: any;
 
   /**

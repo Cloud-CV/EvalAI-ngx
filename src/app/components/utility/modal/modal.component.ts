@@ -3,22 +3,60 @@ import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 import { InputComponent } from '../input/input.component';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+
+  /**
+   * Input parameters object
+   */
   @Input() params: any;
+
+  /**
+   * Modal title
+   */
   title = 'Are you sure ?';
+
+  /**
+   * Modal body
+   */
   content = '';
+
+  /**
+   * Modal accept button
+   */
   confirm = 'Yes';
+
+  /**
+   * Modal deny button
+   */
   deny = 'Cancel';
+
+  /**
+   * Modal form items list
+   */
   form = [];
+
+  /**
+   * Modal form items
+   */
   @ViewChildren('formmodal')
   formComponents: QueryList<InputComponent>;
 
+  /**
+   * Modal confirmed callback
+   */
   confirmCallback = (params) => {};
+
+  /**
+   * Modal denied callback
+   */
   denyCallback = () => {};
 
   /**

@@ -6,17 +6,32 @@ import { WindowService } from '../../../services/window.service';
 import { ApiService } from '../../../services/api.service';
 import { AuthService } from '../../../services/auth.service';
 import { GlobalService } from '../../../services/global.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute} from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
-  API_PATH = 'auth/login/';
+
+  /**
+   * Holds form elements for all forms in the component
+   */
   ALL_FORMS: any = {};
+
+  /**
+   * Name of login form elements
+   */
   loginForm = 'formlogin';
+
+  /**
+   * Component Class
+   */
   @ViewChildren('formlogin')
   components: QueryList<InputComponent>;
 
@@ -35,7 +50,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
               private apiService: ApiService,
               private authService: AuthService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private endpointsService: EndpointsService) { }
 
   /**
    * Constructor on initialization
@@ -84,7 +100,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       username: self.globalService.formValueForLabel(self.ALL_FORMS[self.loginForm], 'username'),
       password: self.globalService.formValueForLabel(self.ALL_FORMS[self.loginForm], 'password')
     });
-    self.apiService.postUrl(self.API_PATH, LOGIN_BODY).subscribe(
+    self.apiService.postUrl(self.endpointsService.loginURL(), LOGIN_BODY).subscribe(
       data => {
         self.globalService.storeData(self.globalService.authStorageKey, data['token']);
         self.authService.loggedIn(true);

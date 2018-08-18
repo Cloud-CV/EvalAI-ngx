@@ -3,15 +3,34 @@ import { ChallengeService } from '../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalService } from '../../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-selectphase',
   templateUrl: './selectphase.component.html',
   styleUrls: ['./selectphase.component.scss']
 })
 export class SelectphaseComponent implements OnInit, OnChanges {
+
+  /**
+   * Phase list
+   */
   @Input() phases: any;
+
+  /**
+   * Selected phase callback
+   */
   @Input() phaseSelected: any;
+
+  /**
+   * Currently selected phase
+   */
   selectedPhase: any = null;
+
+  /**
+   * Router public instance
+   */
   publicRouter: any;
 
   /**

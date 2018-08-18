@@ -8,18 +8,49 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { InputComponent } from '../utility/input/input.component';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+  /**
+   * User object
+   */
   user: any;
+
+  /**
+   * Profile completion score
+   */
   pcomp: any;
+
+  /**
+   * Auth token string
+   */
   token = '';
+
+  /**
+   * Is modal visible
+   */
   tokenModalButtonFlag = true;
+
+  /**
+   * Auth token Modal Button text
+   */
   tokenModalButton = 'Show Token';
+
+  /**
+   * Modal display flag
+   */
   isTokenModalVisible = false;
+
+  /**
+   * Form components from 'formtoken'
+   */
   @ViewChildren('formtoken')
   formTokenComponents: QueryList<InputComponent>;
 

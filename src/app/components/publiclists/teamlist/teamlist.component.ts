@@ -6,32 +6,115 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ChallengeService } from '../../../services/challenge.service';
 import { EndpointsService } from '../../../services/endpoints.service';
+
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-teamlist',
   templateUrl: './teamlist.component.html',
   styleUrls: ['./teamlist.component.scss']
 })
 export class TeamlistComponent implements OnInit {
+
+  /**
+   * Auth Service public instance
+   */
   authServicePublic: any;
+
+  /**
+   * Router public instance
+   */
   routerPublic: any;
+
+  /**
+   * Team list
+   */
   allTeams = [];
+
+  /**
+   * Filtered team list
+   */
   filteredTeams = [];
+
+  /**
+   * Filtered team observable-source
+   */
   private filteredTeamSource = new BehaviorSubject(this.filteredTeams);
+
+  /**
+   * Filtered team observable
+   */
   filteredTeamsObservable = this.filteredTeamSource.asObservable();
 
+  /**
+   * See more content in frame
+   */
   seeMore = 1;
+
+  /**
+   * Frame size
+   */
   windowSize = 2;
+
+  /**
+   * Select team title
+   */
   teamSelectTitle = '';
+
+  /**
+   * Create team title
+   */
   teamCreateTitle = '';
+
+  /**
+   * Create team button
+   */
   teamCreateButton = '';
+
+  /**
+   * Is a host
+   */
   isHost = false;
+
+  /**
+   * Is router currently on challenges page
+   */
   isOnChallengePage = false;
+
+  /**
+   * Fetch teams URL
+   */
   fetchTeamsPath: any;
+
+  /**
+   * Create teams URL
+   */
   createTeamsPath: any;
+
+  /**
+   * Delete teams URL
+   */
   deleteTeamsPath: any;
+
+  /**
+   * Currently selected team
+   */
   selectedTeam: any = null;
+
+  /**
+   * challenge object
+   */
   challenge: any;
+
+  /**
+   * Form components
+   */
   teamForm = 'formteam';
+
+  /**
+   * Form fields in the team form (team cards)
+   */
   @ViewChildren('formteam')
   components: QueryList<TeamlistComponent>;
 

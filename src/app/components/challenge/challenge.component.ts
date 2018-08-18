@@ -5,20 +5,49 @@ import { ApiService } from '../../services/api.service';
 import { GlobalService } from '../../services/global.service';
 import { ChallengeService } from '../../services/challenge.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challenge',
   templateUrl: './challenge.component.html',
   styleUrls: ['./challenge.component.scss']
 })
 export class ChallengeComponent implements OnInit {
+
+  /**
+   * Router local instance
+   */
   localRouter: any;
-  // challenge: object = { 'creator': {}};
-  // stars = 0;
+
+  /**
+   * Challenge id
+   */
   id: any;
+
+  /**
+   * Is challenge starred
+   */
   isStarred = false;
+
+  /**
+   * Is participated in Challenge
+   */
   isParticipated = false;
+
+  /**
+   * Challenge object
+   */
   challenge: any;
+
+  /**
+   * Challenge stars
+   */
   stars: any;
+
+  /**
+   * Is logged in the Challenge
+   */
   isLoggedIn: any = false;
 
   /**

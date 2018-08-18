@@ -2,30 +2,109 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
+
+  /**
+   * Placeholder string
+   */
   @Input() placeholder: string;
+
+  /**
+   * Label string
+   */
   @Input() label: string;
+
+  /**
+   * Type of input (text, password, email and file)
+   */
   @Input() type: string;
+
+  /**
+   * Is it a required field
+   */
   @Input() isRequired: boolean;
+
+  /**
+   * Dark / light
+   */
   @Input() theme: string;
+
+  /**
+   * icon at the end of input field
+   */
   @Input() icon: string;
+
+  /**
+   * Custom validate function
+   */
   @Input() validate: Function;
+
+  /**
+   * Value of input field
+   */
   @Input() value: string;
+
+  /**
+   * Is field read-only
+   */
   @Input() readonly: boolean;
+
+  /**
+   * Is email flag
+   */
   isEmail = false;
+
+  /**
+   * Is input field touched
+   */
   isDirty = false;
+
+  /**
+   * Is field valid
+   */
   isValid = false;
+
+  /**
+   * Is field empty
+   */
   isEmpty = true;
+
+  /**
+   * Icon present flag
+   */
   isIconPresent = false;
+
+  /**
+   * Is custom validate function provided
+   */
   isValidateCustom = false;
+
+  /**
+   * read only flag
+   */
   isReadonly = false;
+
+  /**
+   * file selected flag
+   */
   fileSelected = null;
+
+  /**
+   * Input field message
+   */
   message = 'Required field';
+
+  /**
+   * Input field message for required fields
+   */
   requiredMessage = 'Required field';
 
   /**

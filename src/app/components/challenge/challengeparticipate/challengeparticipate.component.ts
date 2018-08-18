@@ -3,16 +3,40 @@ import { AuthService } from '../../../services/auth.service';
 import { ChallengeService } from '../../../services/challenge.service';
 import { GlobalService } from '../../../services/global.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengeparticipate',
   templateUrl: './challengeparticipate.component.html',
   styleUrls: ['./challengeparticipate.component.scss']
 })
 export class ChallengeparticipateComponent implements OnInit {
+
+  /**
+   * Is user logged in
+   */
   isLoggedIn = false;
+
+  /**
+   * Challenge object
+   */
   challenge: any;
+
+  /**
+   * Router's public instance
+   */
   routerPublic: any;
+
+  /**
+   * Is user a participant
+   */
   isParticipated: any;
+
+  /**
+   * Is challenge active
+   */
   isActive: any;
 
   /**

@@ -11,26 +11,80 @@ import { SelectphaseComponent } from '../../utility/selectphase/selectphase.comp
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengesubmissions',
   templateUrl: './challengesubmissions.component.html',
   styleUrls: ['./challengesubmissions.component.scss']
 })
 export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
+
+  /**
+   * Phase select card components
+   */
   @ViewChildren('phaseselect')
   components: QueryList<SelectphaseComponent>;
 
+  /**
+   * Is user logged in
+   */
   isLoggedIn = false;
+
+  /**
+   * Has view been initialized
+   */
   viewInit = false;
+
+  /**
+   * Challenge object
+   */
   challenge: any;
+
+  /**
+   * Router's public instance
+   */
   routerPublic: any;
+
+  /**
+   * User participated
+   */
   isParticipated: any;
+
+  /**
+   * Submissions list
+   */
   submissions = [];
+
+  /**
+   * Total submissions
+   */
   submissionCount = 0;
+
+  /**
+   * Challenge phase list
+   */
   phases = [];
+
+  /**
+   * Challenge phases filtered
+   */
   filteredPhases = [];
+
+  /**
+   * Currently selected phase's id
+   */
   selectedPhaseId: any;
+
+  /**
+   * Currently selected phase
+   */
   selectedPhase: any = null;
+
+  /**
+   * Highlighted submission
+   */
   submissionHighlighted: any = null;
 
   /**

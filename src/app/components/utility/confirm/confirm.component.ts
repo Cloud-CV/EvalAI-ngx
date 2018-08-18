@@ -1,18 +1,49 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent implements OnInit {
+
+  /**
+   * Input parameters object
+   */
   @Input() params: any;
+
+  /**
+   * Confirm Title
+   */
   title = 'Are you sure ?';
+
+  /**
+   * Confirm content
+   */
   content = '';
+
+  /**
+   * confirm accept button
+   */
   confirm = 'Yes';
+
+  /**
+   * Confirm deny button
+   */
   deny = 'Cancel';
+
+  /**
+   * Confirm callback
+   */
   confirmCallback = () => {};
+
+  /**
+   * Deny callback
+   */
   denyCallback = () => {};
 
   /**

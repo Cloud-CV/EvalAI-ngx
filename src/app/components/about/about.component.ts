@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',

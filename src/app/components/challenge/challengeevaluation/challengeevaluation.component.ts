@@ -2,14 +2,29 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ChallengeService } from '../../../services/challenge.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengeevaluation',
   templateUrl: './challengeevaluation.component.html',
   styleUrls: ['./challengeevaluation.component.scss']
 })
 export class ChallengeevaluationComponent implements OnInit {
+
+  /**
+   * Challenge object
+   */
   challenge: any;
+
+  /**
+   * Challenge evaluation DOM element
+   */
   evaluationElement: any;
+
+  /**
+   * Challenge tnc DOM element
+   */
   tncElement: any;
 
   /**

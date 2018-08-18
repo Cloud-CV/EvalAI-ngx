@@ -2,14 +2,20 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ChallengeService } from '../../../services/challenge.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challengeoverview',
   templateUrl: './challengeoverview.component.html',
   styleUrls: ['./challengeoverview.component.scss']
 })
 export class ChallengeoverviewComponent implements OnInit {
+
+  /**
+   * Challenge object
+   */
   challenge: any = null;
-  overviewElement: any;
 
   /**
    * Constructor.

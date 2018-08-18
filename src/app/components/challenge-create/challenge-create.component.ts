@@ -5,6 +5,9 @@ import { GlobalService } from '../../services/global.service';
 import { ChallengeService } from '../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-challenge-create',
   templateUrl: './challenge-create.component.html',
@@ -12,11 +15,34 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ChallengeCreateComponent implements OnInit {
 
+  /**
+   * Auth Service public instance
+   */
   authServicePublic = null;
+
+  /**
+   * Is user logged in
+   */
   isLoggedIn = false;
+
+  /**
+   * Router public instance
+   */
   routerPublic = null;
+
+  /**
+   * Form fields name
+   */
   submitForm = 'formcreate';
+
+  /**
+   * Selected Host team object
+   */
   hostTeam: any = null;
+
+  /**
+   * Component Class
+   */
   @ViewChildren('formcreate')
   components: QueryList<ChallengeCreateComponent>;
 

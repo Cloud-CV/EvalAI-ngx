@@ -1,14 +1,29 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { GlobalService } from '../../../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-phasecard',
   templateUrl: './phasecard.component.html',
   styleUrls: ['./phasecard.component.scss']
 })
 export class PhasecardComponent implements OnInit {
+
+  /**
+   * Phase object input
+   */
   @Input() phase: object;
+
+  /**
+   * start date of phase
+   */
   startDate: any;
+
+  /**
+   * End date of phase
+   */
   endDate: any;
 
   /**

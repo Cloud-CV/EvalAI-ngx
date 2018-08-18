@@ -2,12 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalService } from '../../services/global.service';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+
+  /**
+   * router local instance
+   */
   localRouter: any;
 
   /**

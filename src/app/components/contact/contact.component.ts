@@ -4,21 +4,44 @@ import { DOCUMENT } from '@angular/common';
 import { InputComponent } from '../../components/utility/input/input.component';
 import { WindowService } from '../../services/window.service';
 import { ApiService } from '../../services/api.service';
+import { EndpointsService } from '../../services/endpoints.service';
 import { GlobalService } from '../../services/global.service';
 import { Router, ActivatedRoute} from '@angular/router';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit, AfterViewInit {
-  API_PATH = 'web/contact/';
+
+  /**
+   * All forms in contact component
+   */
   ALL_FORMS: any = {};
+
+  /**
+   * Form fields name
+   */
   contactForm = 'formgroup';
+
+  /**
+   * Signup form components
+   */
   @ViewChildren('formgroup')
   components: QueryList<InputComponent>;
+
+  /**
+   * List of components
+   */
   componentlist: any;
+
+  /**
+   * Google object (initialized after Google maps JS is loaded)
+   */
   google: any;
 
   /**
@@ -28,13 +51,15 @@ export class ContactComponent implements OnInit, AfterViewInit {
    * @param router  Router Injection.
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
+   * @param endpointsService  EndpointsService Injection.
    */
   constructor(@Inject(DOCUMENT) private document: Document,
               private windowService: WindowService,
               private globalService: GlobalService,
               private apiService: ApiService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private endpointsService: EndpointsService) { }
 
   /**
    * Component on initialized.
@@ -72,7 +97,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
       email: self.globalService.formValueForLabel(self.ALL_FORMS[self.contactForm], 'email'),
       message: self.globalService.formValueForLabel(self.ALL_FORMS[self.contactForm], 'message')
     });
-    self.apiService.postUrl(self.API_PATH, CONTACT_BODY).subscribe(
+    self.apiService.postUrl(self.endpointsService.contactURL(), CONTACT_BODY).subscribe(
       data => {
         // Success Message in data.message
         setTimeout(() => self.globalService.showToast('success', data.message, 5), 1000);

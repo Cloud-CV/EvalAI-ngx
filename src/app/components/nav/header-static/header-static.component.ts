@@ -4,21 +4,59 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-header-static',
   templateUrl: './header-static.component.html',
   styleUrls: ['./header-static.component.scss']
 })
 export class HeaderStaticComponent implements OnInit, OnDestroy {
+
+  /**
+   * Header white flag
+   */
   headerWhite = false;
-  // atHome indicates that the page is supposed to have a transparent header like on home.
+
+  /**
+   * Header is transparent on these URLs
+   */
   transparentHeaderUrls = ['', '/'];
+
+  /**
+   * Is router at '/'
+   */
   atHome = true;
+
+  /**
+   * Scroll position
+   */
   scrolledState = false;
+
+  /**
+   * Is header menu expanded
+   */
   isMenuExpanded = true;
+
+  /**
+   * Global Service subscription
+   */
   globalServiceSubscription: any;
+
+  /**
+   * Authentication Service subscription
+   */
   authServiceSubscription: any;
+
+  /**
+   * Current Authentication state
+   */
   authState: any;
+
+  /**
+   * Inner width
+   */
   public innerWidth: any;
 
   /**
