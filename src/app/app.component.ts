@@ -13,9 +13,6 @@ import 'rxjs/add/operator/mergeMap';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-
-
-
 export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
   isLoading = false;

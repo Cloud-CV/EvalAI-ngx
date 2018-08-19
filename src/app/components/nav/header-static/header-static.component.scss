@@ -31,7 +31,7 @@ header {
   color: black;
   cursor: pointer;
   position: absolute;
-  top: 25px;
+  top: 15px;
   right: 10px;
   z-index: 95;
 }
@@ -95,7 +95,7 @@ header {
   display: inline-block;
   float: left;
   width: 10%;
-  margin-top: 30px;
+  margin-top: 15px;
   margin-left: 30px;
   img:hover {
     cursor: pointer;
@@ -112,11 +112,9 @@ header {
   position: relative;
   text-align: right;
   transition: all 0.2s ease;
-  padding-bottom: 10px;
   padding-right: 10px;
   ul {
     list-style: none;
-    margin-top: 30px;
     li {
       display: inline;
     }
@@ -156,7 +154,7 @@ header {
   .logo-container {
     width: 100%;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-left: 0;
   }
 }
@@ -184,7 +182,7 @@ header {
   .logo-container {
     width: 100%;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-left: 0;
   }
 
