@@ -13,6 +13,7 @@
   background-size: 100% 100%;
   z-index: 10;
   margin-top:30px;
+
   &.at-home {
     margin-top:100px;
     padding-top:80px;
@@ -169,9 +170,13 @@
   .footer-container {
     @include box-shadow(5px, 5px, 10px, 10px, $overlay-light);
     background:$blue-dark;
-    
+    &.at-home {
+      .footer-content-top {
+        padding-top: 0px;
+      }
+    }
     .footer-content-top {
-      padding-top: 50px;
+      padding-top: 0px;
     }
 
     .footer-buttons {
@@ -216,6 +221,10 @@
   .footer-container {
     &.at-home {
       padding-top:150px;
+      .footer-content-top {
+        padding-top: 0px;
+      }
+
     }
     .top-margin-extra {
       margin-top: 40px;

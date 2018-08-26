@@ -117,18 +117,20 @@
   }
   .challenge-img-div {
     cursor: pointer;
+    text-align:center;
     display: inline-block;
     position:relative;
     height:140px;
+    width:200px;
     .challenge-img {
-      width: 200px;
+      max-width: 200px;
       max-height: 140px;
       display: inline-block;
       position: relative;
       vertical-align:middle;
     }
     .helper {
-    display: inline-block;
+    display: none;
     height: 100%;
     vertical-align: middle;
 }

@@ -24,6 +24,7 @@ import { ChallengesubmissionsComponent } from './components/challenge/challenges
 import { ChallengeCreateComponent } from './components/challenge-create/challenge-create.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { OurTeamComponent } from './components/our-team/our-team.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
@@ -95,6 +96,10 @@ const routes: Routes = [
   {
     path: 'get-involved',
     component: GetInvolvedComponent
+  },
+  {
+    path: 'our-team',
+    component: OurTeamComponent
   },
   {
     path: 'privacy-policy',

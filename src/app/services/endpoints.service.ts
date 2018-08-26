@@ -74,6 +74,13 @@ export class EndpointsService {
   }
 
   /**
+   * Our Team members
+   */
+  ourTeamURL() {
+    return `web/team/`;
+  }
+
+  /**
    * Invite members to participant team
    */
   participantTeamInviteURL(teamId) {
