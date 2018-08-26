@@ -46,6 +46,20 @@ export class PrivacyPolicyComponent implements OnInit {
   }
 
   /**
+   * Highlights the section-title for the corresponding element
+   * @param {el} Highlights section-title corresponding to this element
+   */
+  highlightSectionTitle(el) {
+    const ALL_TARGETS = this.document.getElementsByClassName('privacy-section-title');
+    [].forEach.call(ALL_TARGETS, function (item) {
+      item.classList.remove('scroll-selected');
+      if (item.id === el) {
+        item.className += ' scroll-selected';
+      }
+    });
+  }
+
+  /**
    * Component on intialized.
    */
   ngOnInit() {
@@ -78,9 +92,10 @@ export class PrivacyPolicyComponent implements OnInit {
           const elem = SELF.document.getElementById(item.id);
           if (SELF.isScrolledIntoView(elem)) {
             SELF.highlightNav(item.id + '-nav');
+            SELF.highlightSectionTitle(item.id);
             const ELEM_NAV = SELF.document.getElementById(item.id + '-nav');
             if (!SELF.isScrolledIntoView(ELEM_NAV)) {
-              ELEM_NAV.scrollIntoView();
+              // ELEM_NAV.scrollIntoView();
             }
             return true;
           }
@@ -105,6 +120,7 @@ export class PrivacyPolicyComponent implements OnInit {
     // Removing -nav from the id of the clicked element
     const ELEMENT_ID = ID.slice(0, -4);
     this.document.getElementById(ELEMENT_ID).scrollIntoView();
+    this.highlightSectionTitle(ELEMENT_ID);
     const SCROLLED_Y = window.scrollY;
     if (SCROLLED_Y) {
       const HEADER_HEIGHT = this.document.getElementById('header-static').clientHeight;

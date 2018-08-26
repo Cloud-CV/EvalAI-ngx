@@ -356,7 +356,7 @@ ul {
     }
   }
   .card-title {
-    padding: 30px;
+    padding: 30px 30px 15px 30px;
     font-size: $fs-24;
     font-weight: $fw-regular;
     color: $gray-darker;
@@ -364,7 +364,7 @@ ul {
   }
   .card-content {
     overflow: auto;
-    padding: 30px;
+    padding: 15px 30px 30px 30px;
     h5 {
       font-size: $fs-18;
     }

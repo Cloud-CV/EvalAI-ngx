@@ -1,5 +1,5 @@
 <header id="header-static" [class.header-shadow]="headerWhite" [class.header-shadow-large]="scrolledState" [class.white-bg]="headerWhite" [class.dark-bg]="isMenuExpanded && atHome && innerWidth <= 810">
-  <div class="logo-container">
+  <div class="logo-container" [class.at-home]="atHome">
     <img src="assets/images/EvalAI_favicon.png" class="logo-header" [class.invert-color]="headerWhite" *ngIf="atHome" (click)="navigateTo('')" />
     <img src="assets/images/evalai_logo_light.png" *ngIf="!atHome" class="logo-header" [class.invert-color]="headerWhite" (click)="navigateTo('')" />
   </div>

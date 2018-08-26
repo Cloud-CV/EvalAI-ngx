@@ -2,7 +2,7 @@
   <div class="team-content" (click)='selectToggle()'>
     <i class="fa fa-users" aria-hidden="true"></i>
     <div class="team-details">
-      <span class="title">
+      <span class="title toptitle">
 	    Team:
       </span>
       <span *ngIf="teamView['team_url']">
@@ -21,8 +21,8 @@
     </div>
     <div class='team-icons'>
       <a (click)="addMembersToTeam($event)"><i class="fas fa-user-plus" aria-hidden="true"></i></a>
-      <a [class.host]="isHost" (click)="editTeam($event)"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-      <a (click)="deleteTeam($event)"><i class="fas fa-trash-alt" aria-hidden="true"></i></a>
+      <a [class.host]="isHost" (click)="editTeam($event)"><i class="fas fa-pencil-alt no-highlight" aria-hidden="true"></i></a>
+      <a (click)="deleteTeam($event)"><i class="fas fa-trash-alt no-highlight" aria-hidden="true"></i></a>
     </div>
    </div>
     <div class='team-members'>

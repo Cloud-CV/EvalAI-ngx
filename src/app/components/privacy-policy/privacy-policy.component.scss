@@ -13,7 +13,10 @@
     top: 10%;
     bottom: 0;
     overflow-y: scroll;
-    position: fixed;
+    
+  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
     ul {
       list-style-type: none;
       padding-left: 0;
@@ -45,12 +48,11 @@
       color: $red-light;
       font-weight: $fw-regular;
     }
-    img {
+    .scroll-to-top {
       position: fixed;
       top: 50%;
       right: 4%;
       height: 50px;
-      transform: rotate(180deg);
       cursor: pointer;
       &:hover {
         height: 55px;
@@ -74,6 +76,9 @@
       font-size: $fs-18;
       font-weight: $fw-regular;
       margin-top: 20px;
+      &.scroll-selected {
+        color: $red-light;
+      }
     }
   }
 }

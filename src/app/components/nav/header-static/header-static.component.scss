@@ -96,7 +96,10 @@ header {
   float: left;
   width: 10%;
   margin-top: 15px;
-  margin-left: 40px;
+  margin-left: 70px;
+  &.at-home {
+    margin-left:100px;
+  }
   img:hover {
     cursor: pointer;
   }
@@ -112,7 +115,7 @@ header {
   position: relative;
   text-align: right;
   transition: all 0.2s ease;
-  margin-right: 30px;
+  margin-right: 70px;
   ul {
     list-style: none;
     li {
@@ -148,7 +151,6 @@ header {
 }
 
 @include screen-medium {
-
   .navlinks-container {
     width: 100%;
     text-align: center;
@@ -160,6 +162,9 @@ header {
     text-align: center;
     margin-top: 15px;
     margin-left: 0;
+    &.at-home {
+    margin-left:0px;
+  }
   }
 }
 
@@ -188,6 +193,9 @@ header {
     text-align: center;
     margin-top: 15px;
     margin-left: 0;
+    &.at-home {
+      margin-left:0px;
+    }
   }
 
   .navlinks-container {

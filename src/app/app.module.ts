@@ -53,6 +53,7 @@ import { ModalComponent } from './components/utility/modal/modal.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { OurTeamComponent } from './components/our-team/our-team.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ModalComponent,
     DashboardComponent,
     ProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    OurTeamComponent
   ],
   imports: [
     BrowserModule,

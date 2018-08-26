@@ -9,7 +9,7 @@
     <div class="card card-light" *ngIf="authServicePublic.isLoggedIn()">
     	
     <div class="create-form">
-        Please upload zip file to create a challenge!
+        <div class="title">Please upload zip file to create a challenge!</div>
     	<app-input [isRequired]="true" [label]="'zip_configuration'" [placeholder]="'Upload File *'" [type]="'file'" [theme]="'dark'"  #formcreate></app-input>
     	<div class="submit-btn-div">
           <span class="btn btn-filter selected" (click)="formValidate('formcreate')">Submit</span>

@@ -1,8 +1,9 @@
 <div class="challenge-submissions-container">
-  <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()" #phaseselect></app-selectphase>
-  
-  <div *ngIf="!selectedPhase" class="fw-bold">
-    Please select a phase.
+  <div>
+    <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()" #phaseselect></app-selectphase>
+    <div *ngIf="!selectedPhase" class="fw-bold">
+      Please select a phase.
+    </div>
   </div>
   <div *ngIf="selectedPhase">
     <div class="download-btn-div">

@@ -29,13 +29,16 @@
       margin-top:10px;
     }
     .title {
-      margin-bottom: 10px;
+      &.toptitle {
+        margin-bottom: 10px;
+      }
+      display:inline-block;
       font-weight: $fw-bold;
     }
     .team-details {
       display: inline-block;
       margin: 0px 10px 0px 10px;
-      max-width: 140px;
+      max-width: 185px;
       overflow:hidden;
     }
     .team-icons {
@@ -49,6 +52,9 @@
       	}
       }
       i {
+        &.no-highlight {
+          color: $gray-dark;
+        }
         font-size: $fs-16;
         margin: 0px 10px 0px 10px;
       }
@@ -96,7 +102,7 @@
     .team-content {
       width: 95%;
       .team-details {
-        max-width: 150px;
+        max-width: 185px;
       }
       .team-icons {
         text-align: center;

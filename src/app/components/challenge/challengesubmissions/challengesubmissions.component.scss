@@ -10,10 +10,11 @@
 	position:relative;
     .download-btn-div {
     	position:relative;
-    	display:inline-block;
-    	float:right;
-        vertical-align:bottom;
-        top:100px;
+    	display:block;
+        top:40px;
+        padding-bottom:20px;
+        width:100%;
+        left:50px;
 	.btn {
       margin-left: 0;
       position:relative;
@@ -21,7 +22,7 @@
 	.total-submissions {
 		font-weight:$fw-regular;
 		position:relative;
-		margin-top:10px;
+		margin-top:15px;
 		display:block;
 	}
     }

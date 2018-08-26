@@ -380,5 +380,4 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     };
     SELF.globalService.showModal(PARAMS);
   }
-
 }
