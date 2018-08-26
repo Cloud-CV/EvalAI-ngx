@@ -11,10 +11,10 @@
         </div>
       </div>
       <div class="create-challenge" *ngIf="selectedTeam && routerPublic.url=='/teams/hosts'">
-          <a class="btn btn-fire" (click)="createChallenge()">Create Challenge</a>
+          <a class="btn btn-filter selected" (click)="createChallenge()">Create Challenge</a>
       </div>
       <div class="create-challenge" *ngIf="selectedTeam && isOnChallengePage">
-          <a class="btn btn-fire" (click)="participateInChallenge()">Participate</a>
+          <a class="btn btn-filter selected" (click)="participateInChallenge()">Participate</a>
       </div>
     </div>
     <div class="card team-create">
