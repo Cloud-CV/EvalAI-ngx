@@ -19,7 +19,7 @@
   }
 
   .top-margin-extra {
-    margin-top: 50px;
+    margin-top: 70px;
   }
   .footer-bg {
     width: 100%;
@@ -39,6 +39,9 @@
     z-index: 15;
     position: relative;
     width: 100%;
+    .notifications {
+      margin-top:-10px;
+    }
   }
   .section-title {
     font-size: $fs-30;
@@ -207,6 +210,12 @@
 
 @include screen-medium {
   .footer-container {
+    &.at-home {
+      padding-top:150px;
+    }
+    .top-margin-extra {
+      margin-top: 40px;
+    }
     .footer-bg {
       img {
         width:200%;
