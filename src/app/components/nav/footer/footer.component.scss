@@ -16,6 +16,9 @@
   &.at-home {
     margin-top:100px;
     padding-top:80px;
+    .footer-content-top {
+      padding-top: 200px;
+    }
   }
 
   .top-margin-extra {
@@ -47,7 +50,7 @@
     font-size: $fs-30;
   }
   .footer-content-top {
-    padding-top: 200px;
+    padding-top: 100px;
   }
   .footer-text {
     color: #fff;
@@ -170,6 +173,7 @@
     .footer-content-top {
       padding-top: 50px;
     }
+
     .footer-buttons {
       .footer-buttons-div {
         .input-fill,
