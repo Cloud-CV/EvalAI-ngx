@@ -10,7 +10,7 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./testimonials.component.scss']
 })
 export class TestimonialsComponent implements OnInit {
-  
+
   /**
    * Selected testimonial index
    */
@@ -155,10 +155,10 @@ export class TestimonialsComponent implements OnInit {
       })(this);
     }
   }
-   
+
   /**
    * Disappear animation wrapper
-   */ 
+   */
   disappearAppear = (element, scope) => {
     const temp = 1.0;
     this.disappearAppearRecursive(element, temp);

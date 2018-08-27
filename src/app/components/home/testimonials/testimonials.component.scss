@@ -15,7 +15,7 @@
     padding-bottom: 10%;
     span {
         color: #fff;
-        font-weight: regular;
+        font-weight: $fw-light;
         font-style: italic;
         padding: 15px;
     }
@@ -23,8 +23,8 @@
 
   .testimonial-author {
     color: #fff;
-    font-weight: bold;
-    padding-bottom: 20%;
+    font-weight: $fw-regular;
+    padding-bottom: 200px;
   }
 
   .testimonial-arrow-left {

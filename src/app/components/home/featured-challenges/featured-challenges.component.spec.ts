@@ -15,7 +15,7 @@ describe('FeaturedChallengesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FeaturedChallengesComponent, FooterComponent, HeaderStaticComponent ],
+      declarations: [ FeaturedChallengesComponent ],
       imports: [ HttpClientModule, RouterTestingModule ],
       providers: [ GlobalService, AuthService, EndpointsService, ApiService],
       schemas: [ NO_ERRORS_SCHEMA ]

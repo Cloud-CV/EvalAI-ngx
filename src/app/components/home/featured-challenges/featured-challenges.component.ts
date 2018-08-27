@@ -20,7 +20,7 @@ export class FeaturedChallengesComponent implements OnInit {
    * Show section flag
    */
   show_featured_challenges = false;
-  
+
 
   /**
    * Featured Challenges
@@ -48,22 +48,22 @@ export class FeaturedChallengesComponent implements OnInit {
    * Component on initialized
    */
   ngOnInit() {
-  	this.fetchCurrentChallenges();
+    this.fetchCurrentChallenges();
   }
 
   /**
    * Fetching present challenges
    */
   fetchCurrentChallenges() {
-  	const API_PATH = this.endpointsService.allChallengesURL('present');
-  	const SELF = this;
+    const API_PATH = this.endpointsService.allChallengesURL('present');
+    const SELF = this;
     SELF.apiService.getUrl(API_PATH).subscribe(
       data => {
-        let challengeCount = data.count;
-        if (challengeCount === 0) {
+        const CHALLENGE_COUNT = data.count;
+        if (CHALLENGE_COUNT === 0) {
             SELF.show_featured_challenges = false;
         } else {
-        	SELF.show_featured_challenges = true;
+          SELF.show_featured_challenges = true;
             SELF.featured_callenges = data.results.slice(0, 3);
             console.log(SELF.featured_callenges);
         }
@@ -74,5 +74,14 @@ export class FeaturedChallengesComponent implements OnInit {
       () => console.log('Present-Featured challenges fetched!')
     );
   }
+
+  /**
+   * Navigate to a challenge page
+   * @param id  challenge id
+   */
+   navigateToChallenge(id) {
+      this.router.navigate(['/challenge/' + id]);
+   }
+
 
 }

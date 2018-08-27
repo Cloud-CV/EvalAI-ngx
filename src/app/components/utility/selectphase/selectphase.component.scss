@@ -10,6 +10,14 @@
   max-height:700px;
   width:auto;
   overflow:scroll;
+  .phase-div {
+    &.inline {
+      display:inline-block;
+      margin-right:20px;
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+  }
   .select-title {
     margin-left: 10px;
   }

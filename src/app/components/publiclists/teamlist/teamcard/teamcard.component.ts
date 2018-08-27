@@ -143,6 +143,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
    * UI view update, called after onInit.
    */
   updateView() {
+    console.log(this.team);
     this.teamView['team_name'] = this.team['team_name'];
     this.teamView['created_by'] = this.team['created_by'];
     this.teamView['team_url'] = this.team['team_url'];
@@ -162,7 +163,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
     const temp = this.team['members'];
     let memberString = '';
     for (let i = 0; i < temp.length; i++) {
-      memberString = memberString + ', ' + temp[i]['member_name'];
+      if (temp[i]['member_name']) {
+        memberString = memberString + ', ' + temp[i]['member_name'];
+      } else {
+        memberString = memberString + ', ' + temp[i]['user'];
+      }
     }
     if (memberString !== '') {
       memberString = memberString.slice(2, memberString.length);

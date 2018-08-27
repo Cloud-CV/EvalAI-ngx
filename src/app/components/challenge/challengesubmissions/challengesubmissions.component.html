@@ -6,7 +6,7 @@
     </div>
   </div>
     <div class="download-btn-div" *ngIf="selectedPhase">
-      <span (click)='downloadSubmission()' class="btn btn-filter selected">DOWNLOAD</span><br>
+      <span (click)='downloadSubmission()' class="btn btn-filter selected">DOWNLOAD</span>
       <span class="total-submissions"> Total submissions done: {{submissionCount}}</span>
     </div>
     <div *ngIf="submissions.length <= 0" class="submissions-empty">

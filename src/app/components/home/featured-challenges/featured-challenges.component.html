@@ -12,9 +12,16 @@
 			<div class="challenge-content">
 		    	<div class="challenge-title">
 					<span>{{challenge['title']}}</span><br><br>
-					<span class="challenge-link">View more ></span>
+					<span class="challenge-link" (click)="navigateToChallenge(challenge['id'])">View more ></span>
 				</div>
 		    </div>
+			
+		</div>
+
+		<div class="view-all-btn-div">
+			<span class="btn btn-fire fs-16">
+				View All
+			</span>
 			
 		</div>
 </div>

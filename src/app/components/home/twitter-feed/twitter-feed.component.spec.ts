@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TwitterFeedComponent } from './twitter-feed.component';
+import { WindowService } from '../../../services/window.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('TwitterFeedComponent', () => {
   let component: TwitterFeedComponent;
@@ -8,7 +10,9 @@ describe('TwitterFeedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TwitterFeedComponent ]
+      declarations: [ TwitterFeedComponent ],
+      providers: [ WindowService ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

@@ -10,6 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { HomemainComponent } from './homemain/homemain.component';
+import { PartnersComponent } from './partners/partners.component';
+import { RulesComponent } from './rules/rules.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { FeaturedChallengesComponent } from './featured-challenges/featured-challenges.component';
+import { TwitterFeedComponent } from './twitter-feed/twitter-feed.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { WindowService } from '../../services/window.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -24,7 +31,12 @@ describe('HomeComponent', () => {
         HomeComponent,
         HeaderStaticComponent,
         FooterComponent,
-        HomemainComponent
+        HomemainComponent,
+        PartnersComponent,
+        RulesComponent,
+        TestimonialsComponent,
+        FeaturedChallengesComponent,
+        TwitterFeedComponent
       ],
       providers: [
         GlobalService,
@@ -32,9 +44,11 @@ describe('HomeComponent', () => {
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
         AuthService,
         ApiService,
-        EndpointsService
+        EndpointsService,
+        WindowService
       ],
-      imports: [ RouterTestingModule, HttpClientModule ]
+      imports: [ RouterTestingModule, HttpClientModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

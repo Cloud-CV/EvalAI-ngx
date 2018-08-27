@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     const SELF = this;
-    this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
+    this.globalServiceSubscription = this.globalService.currentScrolledState.subscribe(scrolledState => {
       this.scrolledState = scrolledState;
     });
     this.globalLogoutTrigger = this.globalService.logout.subscribe(() => {

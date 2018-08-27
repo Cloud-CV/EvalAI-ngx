@@ -34,7 +34,7 @@ export class WindowService {
    * @param location  where to append the file
    * @param env  `This` variable of the environment
    */
-  loadJS(url, implementationCode, location, env) {
+  loadJS(url, implementationCode = (param) => {}, location = this.document.body, env = null) {
     const SCRIPT_TAG = this.document.createElement('script');
     SCRIPT_TAG.src = url;
 

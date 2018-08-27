@@ -90,7 +90,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
       this.headerWhite = true;
     }
 
-    this.globalServiceSubscription = this.globalService.change.subscribe(scrolledState => {
+    this.globalServiceSubscription = this.globalService.currentScrolledState.subscribe(scrolledState => {
       this.headerWhite = scrolledState || !this.atHome;
       this.scrolledState = scrolledState;
     });

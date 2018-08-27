@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class GlobalService {
-  scrolledState = false;
+  scrolledStateDefault = false;
   toastErrorCodes = [400, 500];
   authStorageKey = 'authtoken';
   redirectStorageKey = 'redirect';
@@ -30,12 +30,13 @@ export class GlobalService {
     denyCallback: null,
     form: []
   };
+  private scrolledStateSource = new BehaviorSubject(this.scrolledStateDefault);
+  currentScrolledState = this.scrolledStateSource.asObservable();
   private confirmSource = new BehaviorSubject(this.confirmDefault);
   currentConfirmParams = this.confirmSource.asObservable();
   private modalSource = new BehaviorSubject(this.modalDefault);
   currentModalParams = this.modalSource.asObservable();
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
   @Output() toast: EventEmitter<Object> = new EventEmitter();
   @Output() loading: EventEmitter<boolean> = new EventEmitter();
   @Output() logout: EventEmitter<boolean> = new EventEmitter();
@@ -51,8 +52,7 @@ export class GlobalService {
    * @param s  New scrolled state.
    */
   scrolledStateChange(s) {
-    this.scrolledState = s;
-    this.change.emit(this.scrolledState);
+    this.scrolledStateSource.next(s);
   }
 
   /**
