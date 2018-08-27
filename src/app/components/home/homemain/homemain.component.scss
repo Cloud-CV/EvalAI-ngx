@@ -2,6 +2,7 @@
 @import './mixins.scss';
 
 .home-main-container {
+  display:block;
   .header-tagline {
     color: #fff;
     font-weight: semibold;

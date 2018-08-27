@@ -56,6 +56,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
 import { TwitterFeedComponent } from './components/home/twitter-feed/twitter-feed.component';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+import { PartnersComponent } from './components/home/partners/partners.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     ProfileComponent,
     NotFoundComponent,
     OurTeamComponent,
-    TwitterFeedComponent
+    TwitterFeedComponent,
+    PartnersComponent
   ],
   imports: [
     BrowserModule,
