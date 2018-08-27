@@ -100,7 +100,7 @@
           color:$red-light;;
           padding: 10px;
           &.is-starred {
-            color: $teal;
+            color: $yellow;
           }
           i {
             margin-right: 10px;
@@ -118,10 +118,14 @@
   .challenge-img-div {
     cursor: pointer;
     text-align:center;
-    display: inline-block;
+    display: inline-table;
     position:relative;
     height:140px;
     width:200px;
+    .challenge-img-parent {
+      display:table-cell;
+      vertical-align:middle;
+    }
     .challenge-img {
       max-width: 200px;
       max-height: 140px;
@@ -158,7 +162,8 @@
 @include screen-small {
   .challenge-card-container {
     .challenge-img-div {
-      display: block;
+      display: table;
+      margin:0 auto;
       text-align: center;
     }
     .challenge-details {

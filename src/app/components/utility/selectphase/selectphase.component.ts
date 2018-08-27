@@ -23,6 +23,7 @@ export class SelectphaseComponent implements OnInit, OnChanges {
    */
   @Input() phaseSelected: any;
 
+
   /**
    * Currently selected phase
    */
@@ -55,6 +56,9 @@ export class SelectphaseComponent implements OnInit, OnChanges {
     }
     if (!this.phaseSelected) {
       this.phaseSelected = () => {};
+    }
+    if (!this.selectedPhase && this.phases.length > 0 && this.publicRouter.url.endsWith('submit')) {
+      this.selectPhase(this.phases[0]);
     }
   }
 

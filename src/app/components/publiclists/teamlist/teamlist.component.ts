@@ -325,6 +325,12 @@ export class TeamlistComponent implements OnInit {
             label: 'team_name',
             placeholder: 'Team Name',
             type: 'text'
+          },
+          {
+            isRequired: false,
+            label: 'team_url',
+            placeholder: 'Team URL',
+            type: 'text'
           }
         ],
         confirmCallback: apiCall

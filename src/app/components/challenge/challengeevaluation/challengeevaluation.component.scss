@@ -8,6 +8,10 @@
 		&:hover {
 			@include box-shadow(0px, 0px, 10px, 1px, $overlay-light);
 		}
+		.card-content {
+			line-height: 20px;
+        	letter-spacing: 0.5px;
+		}
 	}
 	* {
 		transition: all 0.3s ease;

@@ -8,12 +8,20 @@
 	font-size:$fs-16;
 	font-weight:$fw-light;
 	position:relative;
+    .select-phase-container {
+        display:inline-block;
+        overflow:auto;
+    }
+    .submissions-empty {
+        margin:20px;
+        text-align:center;
+    }
     .download-btn-div {
     	position:relative;
-    	display:block;
+    	display:inline-block;
         top:40px;
+        vertical-align:top;
         padding-bottom:20px;
-        width:100%;
         left:50px;
 	.btn {
       margin-left: 0;
@@ -27,7 +35,7 @@
 	}
     }
     .submission-table-div {
-        top:60px;
+        top:20px;
     	width:100%;
     	position:relative;
     	display:block;
@@ -35,7 +43,9 @@
     	padding-top:40px;
     	overflow-x:scroll;
     	max-height:500px;
+        text-align:center;
     .submission-table {
+        width:100%;
     	tr {
             &.highlight {
                 background: $red-lighter;

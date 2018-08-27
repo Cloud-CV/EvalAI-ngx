@@ -6,12 +6,12 @@
 /**
  * Environment URL for local development
  */
-export const environment = {
-  production: false,
-  api_endpoint: 'http://localhost:8000/api/'
-};
-
 // export const environment = {
 //   production: false,
-//   api_endpoint: 'http://api.evalai.cloudcv.org/api/'
+//   api_endpoint: 'http://localhost:8000/api/'
 // };
+
+export const environment = {
+  production: false,
+  api_endpoint: 'http://api.evalai.cloudcv.org/api/'
+};

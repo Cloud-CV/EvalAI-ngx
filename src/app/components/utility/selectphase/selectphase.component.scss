@@ -7,11 +7,11 @@
   vertical-align: top;
   float: left;
   padding:10px;
-  max-height:400px;
+  max-height:700px;
   width:auto;
   overflow:scroll;
   .select-title {
-    margin-left: 20px;
+    margin-left: 10px;
   }
   .card {
     padding: 10px 30px 10px 30px;
@@ -21,5 +21,20 @@
   }
   .heading {
       font-weight: $fw-regular;
+  }
+  .content {
+    display: inline-table;
+    &.selectstate {
+      display:table-cell;
+      margin-right: 20px;
+      margin-top:10px;
+      color:$gray-dark;
+      &.single-line {
+        margin-top: 2px;
+      }
+    }
+    &.rightside {
+      display:table-cell
+    }
   }
 }

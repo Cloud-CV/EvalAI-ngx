@@ -87,14 +87,14 @@
       max-width: 235px;
       height: 270px;
       border-radius: 6px;
-      box-shadow: 0px 4px 24px #797979;
+      @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
       overflow: hidden;
       margin-bottom: 30px;
       margin-left: auto;
       margin-right: auto;
       transition: all 0.2s ease-in-out;
       &:hover {
-          box-shadow: 0px 0px 10px #797979;
+      	@include box-shadow(0px, 0px, 10px, 5px, $overlay-light);
       }
   }
 
@@ -102,7 +102,7 @@
       position: absolute;
       top: -40px;
       left: -50px;
-      background: $overlay-dark;
+      background: $blue-overlay-dark;
       height:100%;
       img {
           width: 130%;

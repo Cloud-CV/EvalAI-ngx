@@ -1,7 +1,7 @@
-/*Color variables*/
+/* Color variables */
 
 
-/*Blue Shades*/
+/* Blue Shades */
 
 $blue-dark: #33526e;
 $blue-darker: #273e54;
@@ -11,23 +11,27 @@ $blue-medium-dark: #056cf0;
 
 $teal: #008081;
 
-/*Purple Shades*/
+/* Purple Shades */
 $purple-medium: #a178b7;
 
-/*Red Shades*/
+/* Red Shades */
 
 $red-dark: #cb8474;
 $red-light: #eb8474;
 
 
 
-/*Orange Shades*/
+/* Orange Shades */
 
-$orange: #ffc149;
-$yellow: #d7387f;
+$yellow: #ffc149;
+$yellow-light: #ffecc8;
+$orange-light: #ffd99a;
+
+/* Pink Shades */
+$pink-dark: #d7387f;
 
 
-/*Red Shades*/
+/* Red Shades */
 
 $red-medium: #d9534f;
 $red-light: #eb8474;
@@ -35,12 +39,12 @@ $red-dark: #bc2727;
 $red-lighter: #ffefec;
 
 
-/*Green Shades*/
+/* Green Shades */
 
 $green-medium: #28a745;
 
 
-/*Gray Shades*/
+/* Gray Shades */
 
 $gray-light: #ebebeb;
 $gray-medium: #d4d4d4;
@@ -48,13 +52,13 @@ $gray-dark: #9d9d9d;
 $gray-darker: #273e54;
 $gray-lighter: #fafafa;
 
-/*fire shades*/
+/* fire shades */
 
 $fire-left: #e0a642;
 $fire-right: #de795c;
 
 
-/*Overlay Shades*/
+/* Overlay Shades */
 
 $overlay-dark: rgba(0, 0, 0, 0.7);
 $overlay-light: rgba(0, 0, 0, 0.2);
@@ -62,9 +66,10 @@ $overlay-medium: rgba(0, 0, 0, 0.5);
 $white-overlay-light: rgba(255, 255, 255, 0.2);
 $white-overlay-medium: rgba(255, 255, 255, 0.5);
 $white-overlay-dark: rgba(255, 255, 255, 0.7);
+$blue-overlay-dark: rgba(39, 62, 84, 0.8);
 
 
-/*Font sizes*/
+/* Font sizes */
 
 $fs-12: 12px;
 $fs-14: 14px;
@@ -77,7 +82,7 @@ $fs-30: 30px;
 $fs-36: 36px;
 
 
-/*Font weights*/
+/* Font weights */
 
 $fw-light: 300;
 $fw-regular: 400;
@@ -85,7 +90,7 @@ $fw-semibold: 500;
 $fw-bold: 700;
 
 
-/*Screen Sizes*/
+/* Screen Sizes */
 
 $screen-sm: 810px;
 $screen-md: 1130px;

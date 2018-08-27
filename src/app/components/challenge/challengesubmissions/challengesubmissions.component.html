@@ -1,14 +1,17 @@
 <div class="challenge-submissions-container">
-  <div>
+  <div class="select-phase-container">
     <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()" #phaseselect></app-selectphase>
     <div *ngIf="!selectedPhase" class="fw-bold">
       Please select a phase.
     </div>
   </div>
-  <div *ngIf="selectedPhase">
-    <div class="download-btn-div">
+    <div class="download-btn-div" *ngIf="selectedPhase">
       <span (click)='downloadSubmission()' class="btn btn-filter selected">DOWNLOAD</span><br>
       <span class="total-submissions"> Total submissions done: {{submissionCount}}</span>
+    </div>
+    <div *ngIf="submissions.length <= 0" class="submissions-empty">
+      <!-- <img src="assets/images/sadcloud.png" /> -->
+      <i class="fas fa-clipboard" aria-hidden="true"></i> No Results..
     </div>
     <div class="submission-table-div" *ngIf="submissions.length > 0">
     <table class="submission-table table-light">
@@ -60,6 +63,5 @@
         </tr>
       </tbody>
     </table>
-    </div>
   </div>
 </div>

@@ -97,6 +97,8 @@ export class ChallengeService {
   fetchChallenge(id) {
     const API_PATH = this.endpointsService.challengeDetailsURL(id);
     const SELF = this;
+    this.changeCurrentPhases([]);
+    this.changeCurrentPhaseSplit([]);
     this.authService.change.subscribe((authState) => {
       if (authState['isLoggedIn']) {
         SELF.isLoggedIn = true;

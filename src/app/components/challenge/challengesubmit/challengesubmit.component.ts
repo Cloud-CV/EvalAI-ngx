@@ -64,7 +64,7 @@ export class ChallengesubmitComponent implements OnInit {
   /**
    * Selected phase object
    */
-  selectedPhase = {};
+  selectedPhase = null;
 
   /**
    * Submissions remaining for the selected phase

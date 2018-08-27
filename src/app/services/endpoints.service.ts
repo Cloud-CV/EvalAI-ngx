@@ -140,7 +140,7 @@ export class EndpointsService {
    * @param team  team id
    */
   challengeParticipateURL(id, team) {
-    return `${this.challenges}${this.challenge}${id}participant_team/${team}`;
+    return `${this.challenges}${this.challenge}${id}/participant_team/${team}`;
   }
 
   /**
@@ -218,6 +218,6 @@ export class EndpointsService {
    * @param phase  phase id
    */
   challengeSubmissionsRemainingURL(challenge, phase) {
-    return `${this.jobs}${challenge}/phase/${phase}/remaining_submissions`;
+    return `${this.jobs}${challenge}/phases/${phase}/remaining_submissions`;
   }
 }

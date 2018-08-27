@@ -18,9 +18,15 @@
         <hr>
         <div class="card-content">
             <app-selectphase [phases]="filteredPhases" [phaseSelected]="phaseSelected()"></app-selectphase>
-        	<div class="phase-submissions">
-        		<div><span class="heading">Today's Remaining Submissions: </span>{{selectedPhaseSubmissions['remaining_submissions_today_count']}}</div>
-                <div><span class="heading">Total Remaining Submissions: </span>{{selectedPhaseSubmissions['remaining_submissions']}}</div>
+        	<div class="phase-submissions" *ngIf="selectedPhase" >
+        		<div>
+              <span class="heading">Today's Remaining Submissions: </span>
+              <span class="content">{{selectedPhaseSubmissions['remaining_submissions_today_count']}}</span>
+            </div>
+            <div>
+              <span class="heading">Total Remaining Submissions: </span>
+              <span class="content">{{selectedPhaseSubmissions['remaining_submissions']}}</span>
+            </div>
         	</div>
         </div>
         <div class="card-content">
@@ -31,10 +37,10 @@
           <app-input [isRequired]="false" [label]="'project_url'" [type]="'text'" [theme]="'dark'" [placeholder]="'Project URL (Optional)'" #formsubmit></app-input>
           <app-input [isRequired]="false" [label]="'publication_url'" [type]="'text'" [theme]="'dark'" [placeholder]="'Publication URL (Optional)'" #formsubmit></app-input>
           <div class="submit-btn-div">
-            <span class="btn btn-fire" (click)="formValidate('formsubmit')">Submit</span>
+            <span class="btn btn-filter selected" (click)="formValidate('formsubmit')">Submit</span>
           </div>
           </div>
-          <div *ngIf="selectedPhaseSubmissions['remaining_submissions_today_count']==0">
+          <div *ngIf="selectedPhaseSubmissions['remaining_submissions_today_count']==0 && selectedPhase">
              You have exhausted today's submission limit.
           </div>
 

@@ -3,13 +3,15 @@
 <div class="container-top">
   <div class="challenge-container">
     <div class="challenge-image-container">
-      <object class="challenge-cover-image" data="assets/images/wide.jpg" type="image/png">
-        <img class="challenge-cover-image" [src]="challenge['cover_image']" />
-      </object>
+     <img class="challenge-cover-image" [src]="challenge['cover_image']" (error)="challenge['cover_image']='assets/images/wide.jpg';" />
     </div>
     <div class="challenge-content-container">
     <div class="challenge-header">
-      <img class="challenge-img" [src]="challenge['image']" (error)="challenge['image']='assets/images/404.png';" />
+      <div class="challenge-img-parent">
+        <div class="challenge-img-wrap">
+          <img class="challenge-img" [src]="challenge['image']" (error)="challenge['image']='assets/images/404.png';" />
+        </div>
+      </div>
     <div class="challenge-title">
       <span class="title">
         {{challenge['title']}}
