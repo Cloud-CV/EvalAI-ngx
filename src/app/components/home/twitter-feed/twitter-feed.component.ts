@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-twitter-feed',
   templateUrl: './twitter-feed.component.html',
@@ -7,8 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TwitterFeedComponent implements OnInit {
 
+  /**
+   * Component Constructor
+   */
   constructor() { }
 
+  /**
+   * Component on initialized
+   */
   ngOnInit() {
   }
 

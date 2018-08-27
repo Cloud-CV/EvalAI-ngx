@@ -1,0 +1,73 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.testimonial-container {
+  text-align: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top:100px;
+  margin-bottom:100px;
+  .testimonial-body {
+    width: 70%;
+    margin-left: 15%;
+    padding-top: 20%;
+    padding-bottom: 10%;
+    span {
+        color: #fff;
+        font-weight: regular;
+        font-style: italic;
+        padding: 15px;
+    }
+  }
+
+  .testimonial-author {
+    color: #fff;
+    font-weight: bold;
+    padding-bottom: 20%;
+  }
+
+  .testimonial-arrow-left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 100px;
+    cursor: pointer;
+  }
+
+  .testimonial-arrow-right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: 100px;
+    cursor: pointer;
+    transform: rotate(180deg);
+  }
+
+  .testimonial-quotes {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    height: 50px;
+  }
+}
+
+
+@include screen-medium {
+  .testimonial-container {
+    .testimonial-quotes {
+      top: 20% !important;
+      height: 40px !important;
+    }
+  }
+}
+
+@include screen-small {
+  .testimonial-container {
+    background-size: cover !important;
+    .testimonial-quotes {
+      top: 10% !important;
+      height: 30px !important;
+    }
+  }
+}

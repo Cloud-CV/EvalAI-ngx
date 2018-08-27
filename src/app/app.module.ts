@@ -58,6 +58,8 @@ import { TwitterFeedComponent } from './components/home/twitter-feed/twitter-fee
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { PartnersComponent } from './components/home/partners/partners.component';
 import { RulesComponent } from './components/home/rules/rules.component';
+import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
+import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,9 @@ import { RulesComponent } from './components/home/rules/rules.component';
     OurTeamComponent,
     TwitterFeedComponent,
     PartnersComponent,
-    RulesComponent
+    RulesComponent,
+    TestimonialsComponent,
+    FeaturedChallengesComponent
   ],
   imports: [
     BrowserModule,

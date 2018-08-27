@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Component Class
+ */
 @Component({
   selector: 'app-partners',
   templateUrl: './partners.component.html',
@@ -7,8 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PartnersComponent implements OnInit {
 
+  /**
+   * Component constructor
+   */
   constructor() { }
 
+  /**
+   * Component on initialized
+   */
   ngOnInit() {
   }
 
