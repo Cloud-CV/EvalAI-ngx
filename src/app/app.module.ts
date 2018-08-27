@@ -54,6 +54,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
+import { TwitterFeedComponent } from './components/home/twitter-feed/twitter-feed.component';
+import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 
 @NgModule({
   declarations: [
@@ -96,12 +98,14 @@ import { OurTeamComponent } from './components/our-team/our-team.component';
     DashboardComponent,
     ProfileComponent,
     NotFoundComponent,
-    OurTeamComponent
+    OurTeamComponent,
+    TwitterFeedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxTwitterTimelineModule.forRoot()
   ],
   providers: [
     AuthService,

@@ -1,0 +1,15 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.twitter-feed-container {
+	width:100%;
+	padding:50px 30px 50px 30px;
+	background:$gray-lighter;
+	a {
+		color: $blue-light;
+		font-size:$fs-24;
+	}
+	.hidden {
+		display:none;
+	}
+}
