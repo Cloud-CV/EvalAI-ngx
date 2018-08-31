@@ -11,8 +11,8 @@
   .testimonial-body {
     width: 70%;
     margin-left: 15%;
-    padding-top: 20%;
-    padding-bottom: 10%;
+    padding-top: 400px;
+    padding-bottom: 200px;
     span {
         color: #fff;
         font-weight: $fw-light;
@@ -66,7 +66,6 @@
   .testimonial-container {
     background-size: cover !important;
     .testimonial-quotes {
-      top: 10% !important;
       height: 30px !important;
     }
   }
