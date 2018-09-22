@@ -10,8 +10,8 @@
         <img src="assets/images/evalai_logo_light.png" />
       </div>
       <div class="auth-nav" *ngIf = "localRouter.url=='/auth/login' || localRouter.url=='/auth/signup'">
-        <a [class.auth-selected]="localRouter.url=='/auth/login'" [routerLink]="['/auth/login']" >LOGIN</a>
-        <a [class.auth-selected]="localRouter.url=='/auth/signup'" [routerLink]="['/auth/signup']">SIGNUP</a>
+        <a [class.auth-selected]="localRouter.url=='/auth/login'" [routerLink]="['/auth/login']" >Login</a>
+        <a [class.auth-selected]="localRouter.url=='/auth/signup'" [routerLink]="['/auth/signup']">Signup</a>
       </div>
       <router-outlet></router-outlet>
       <div class="auth-form-footer">

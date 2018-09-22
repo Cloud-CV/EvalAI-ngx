@@ -29,7 +29,7 @@
   }
   .partner_img {
   	filter: gray; 
-    -webkit-filter: saturate(0%) grayscale(100%) brightness(60%) contrast(10000000%);
+    -webkit-filter: grayscale(100%);
     opacity: .3;
 
     // -webkit-filter: grayscale(100%);

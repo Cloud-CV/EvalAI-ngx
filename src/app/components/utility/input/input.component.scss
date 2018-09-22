@@ -9,14 +9,14 @@
   padding-bottom: 20px;
   margin-bottom: 10px;
   .input-icon {
-    height: $fs-18;
+    height: $fs-14;
     position: absolute;
     right: 0;
     top: 10px;
   }
   label {
     color: $gray-medium;
-    font-size: $fs-16;
+    font-size: $fs-14;
     font-weight: $fw-light;
     position: absolute;
     pointer-events: none;
@@ -30,7 +30,7 @@
     }
     &.is-not-empty {
       top: -10px;
-      font-size: $fs-14;
+      font-size: $fs-12;
       color: white;
       &.theme-dark {
         color: $gray-dark !important;
@@ -38,7 +38,7 @@
     }
   }
   .input-field {
-    font-size: $fs-18;
+    font-size: $fs-16;
     padding: 10px 10px 10px 5px;
     display: block;
     width: 100%;

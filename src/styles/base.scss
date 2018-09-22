@@ -20,12 +20,14 @@ body {
 }
 
 .content {
-  line-height:24px;
-  letter-spacing:0.1px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
 }
+
 .go {
   -webkit-animation-fill-mode: forwards;
 }
+
 
 /* Text Utilities */
 
@@ -40,6 +42,7 @@ body {
 .lowercase {
   text-transform: lowercase
 }
+
 
 
 
@@ -61,6 +64,7 @@ body {
 .fw-bold {
   font-weight: $fw-bold;
 }
+
 
 
 /*Font sizes*/
@@ -99,6 +103,7 @@ body {
 
 
 
+
 /*anchors*/
 
 a {
@@ -127,6 +132,7 @@ a.light-link {
   cursor: pointer;
   outline: none;
 }
+
 
 
 
@@ -159,6 +165,7 @@ ul {
 
 
 
+
 /*alignment*/
 
 .left {
@@ -187,6 +194,7 @@ ul {
 }
 
 
+
 /*color*/
 
 .white {
@@ -196,6 +204,7 @@ ul {
 .red-dark {
   color: $red-dark;
 }
+
 
 
 
@@ -227,6 +236,7 @@ ul {
 
 
 
+
 /*Buttons*/
 
 .btn {
@@ -238,11 +248,12 @@ ul {
   cursor: pointer;
   display: inline-block;
   transition: all 0.3s ease;
+  font-size: $fs-14;
 }
 
 .btn-nofill {
   padding: 10px 30px 10px 30px;
-  border: 1.5px solid white;
+  border: 1px solid white;
   color: white;
   @include box-shadow(0px,
   0px,
@@ -251,7 +262,7 @@ ul {
   $overlay-light);
   &:hover {
     background: $gray-light;
-    border: 1.5px solid $gray-light;
+    border: 1px solid $gray-light;
     color: black;
     @include box-shadow(0px,
     0px,
@@ -309,7 +320,7 @@ ul {
 
 .btn-filter {
   padding: 10px 30px 10px 30px;
-  border: 1.5px solid $red-light;
+  border: 1px solid $red-light;
   color: $gray-darker;
   &.selected {
     color: white;
@@ -330,11 +341,12 @@ ul {
 
 
 
+
 /*Card*/
 
 .card {
   margin: 20px;
-  margin-bottom:40px;
+  margin-bottom: 40px;
   border-radius: 5px;
   font-weight: $fw-light;
   font-size: $fs-16;
@@ -352,7 +364,11 @@ ul {
     color: $gray-darker;
     background: white;
     &.selected {
-      @include box-shadow(0px, 0px, 10px, 1px, $overlay-light);
+      @include box-shadow(0px,
+      0px,
+      10px,
+      1px,
+      $overlay-light);
     }
   }
   .card-title {
@@ -377,7 +393,9 @@ ul {
   }
 }
 
+
 /* Modal */
+
 .modal-container {
   width: 100%;
   height: 100%;
@@ -387,21 +405,25 @@ ul {
   background: $overlay-medium;
   z-index: 100;
   .modal-card {
-    @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
-    border-radius:10px;
-    background:white;
+    @include box-shadow(0px,
+    0px,
+    5px,
+    0px,
+    $overlay-light);
+    border-radius: 10px;
+    background: white;
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index:101;
+    z-index: 101;
     transform: translate(-50%, -50%);
-    font-size:$fs-16;
-    color:$gray-darker;
-    padding:30px;
+    font-size: $fs-16;
+    color: $gray-darker;
+    padding: 30px;
     .title {
-      padding:10px;
-      font-size:$fs-18;
-      font-weight:$fw-bold;
+      padding: 10px;
+      font-size: $fs-18;
+      font-weight: $fw-bold;
     }
     .content {
       padding: 10px;
@@ -409,7 +431,7 @@ ul {
     .form {
       padding: 10px;
     }
-    .buttons{
+    .buttons {
       padding: 10px;
       text-align: right;
     }
@@ -419,10 +441,11 @@ ul {
 @include screen-small {
   .modal-container {
     .modal-card {
-      width:300px;
+      width: 300px;
     }
   }
 }
+
 
 
 
@@ -431,7 +454,7 @@ ul {
 
 .table-light {
   font-size: $fs-16;
-  fonr-weight: $fw-light;
+  font-weight: $fw-light;
   border-top: 1px solid $overlay-light;
   border-spacing: 0px;
   border-collapse: collapse;
@@ -445,13 +468,13 @@ ul {
         display: block;
         padding: 25px 10px 25px 10px;
         span {
-          display:inline-block;
-          min-width:auto;
-          margin-right:10px;
+          display: inline-block;
+          min-width: auto;
+          margin-right: 10px;
         }
       }
       .fa-stack-1x {
-        display:inline-block;
+        display: inline-block;
       }
     }
     td {
@@ -466,10 +489,11 @@ ul {
       }
     }
     &:hover {
-      background:$gray-lighter;
+      background: $gray-lighter;
     }
   }
 }
+
 
 
 
@@ -496,6 +520,7 @@ ul {
     }
   }
 }
+
 
 
 /* Checkbox */
