@@ -25,6 +25,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ToastComponent } from './toast/toast.component';
 import { GetInvolvedComponent } from './get-involved/get-involved.component';
 import { AboutComponent } from './about/about.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AboutComponent } from './about/about.component';
     ContactComponent,
     ToastComponent,
     GetInvolvedComponent,
-    AboutComponent
+    AboutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
