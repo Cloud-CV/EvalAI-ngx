@@ -20,6 +20,9 @@
         <i class="fas fa-star"></i>
         {{stars['count']}}
       </span>
+      <span *ngIf="isHost" [class.is-clickable]="isLoggedIn" (click)="deleteChallenge(challenge['id'])" class="trash">
+        <i class="fas fa-trash"></i>
+      </span>
       
     </div>
     <div class="challenge-host">
