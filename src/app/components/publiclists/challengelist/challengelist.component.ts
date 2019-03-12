@@ -3,6 +3,8 @@ import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ChallengeService } from '../../../services/challenge.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 
 /**
  * Component Class
@@ -98,6 +100,11 @@ export class ChallengelistComponent implements OnInit {
    */
   isLoggedIn: any = false;
 
+  /*
+  * What request, the user is making? 'All' challenges or 'His' challenges
+  * */
+  public challengeRequest: String = '';
+
   /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
@@ -105,12 +112,17 @@ export class ChallengelistComponent implements OnInit {
    * @param globalService  GlobalService Injection.
    * @param authService  AuthService Injection.
    * @param apiService  ApiService Injection.
+   * @param challengeService ChallengeService Injection
+   * @param endpointsService EndpointsService Injection
    */
   constructor(private apiService: ApiService,
               private authService: AuthService,
               private globalService: GlobalService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private challengeService: ChallengeService,
+              private endpointsService: EndpointsService) {
+  }
 
   /**
    * Component on intialized.
@@ -121,12 +133,56 @@ export class ChallengelistComponent implements OnInit {
     }
     if (this.router.url === '/challenges/all') {
       this.fetchChallenges();
+      this.challengeRequest = 'all';
     } else if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
+      this.fetchHostChallengesAll();
       this.fetchMyTeams();
+      this.challengeRequest = 'me';
     }
     this.authServicePublic = this.authService;
     this.routerPublic = this.router;
   }
+
+  /**
+   * Fetch challenges's host teams and corresponding challenges hosted by them
+   * @param callback  Callback Function.
+   */
+
+  fetchHostChallengesAll(callback = null) {
+    const hostChallengeList = [];
+    let API_PATH = this.endpointsService.allHostTeamsURL();
+    const SELF = this;
+    this.apiService.getUrl(API_PATH).subscribe(
+      data => {
+        const hostTeams = data['results'];
+        for (let i = 0; i < hostTeams.length; i++) {
+          API_PATH = this.endpointsService.challengeByHostURL(hostTeams[i]['id']);
+          this.apiService.getUrl(API_PATH).subscribe(
+            result => {
+              for (let j = 0; j < result['results'].length; j++) {
+                hostChallengeList.push(result['results'][j]);
+              }
+              this.filteredChallenges = hostChallengeList;
+              this.updateChallengesView(true);
+            },
+            err => {
+              SELF.globalService.handleApiError(err);
+            },
+            () => {
+              console.log('Challenges of all Hosts fetched!');
+            }
+          );
+        }
+      },
+      err => {
+        SELF.globalService.handleApiError(err);
+      },
+      () => {
+        console.log('Challenge\'s Host teams fetched!');
+      }
+    );
+  }
+
 
   /**
    * Fetch teams function.
@@ -195,7 +251,7 @@ export class ChallengelistComponent implements OnInit {
           const TEAMS = data['results'].map((item) => item['id']);
           SELF.allTeams = SELF.allTeams.concat(TEAMS);
           SELF.allTeams = SELF.allTeams.filter((v, i, a) => a.indexOf(v) === i);
-          SELF.fetchChallenges();
+          // SELF.fetchChallenges(); For all hosts' challenges, we are now calling fetchHostChallengesAll().
         }
       },
       err => {

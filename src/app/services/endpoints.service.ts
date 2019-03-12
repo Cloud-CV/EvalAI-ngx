@@ -168,6 +168,14 @@ export class EndpointsService {
   }
 
   /**
+   * Challenges made by a Host team
+   * @param hostID  host team id
+   */
+  challengeByHostURL(hostID) {
+    return `${this.challenges}challenge_host_team/${hostID}/challenge`;
+  }
+
+  /**
    * Challenge Leaderboard fetch
    * @param phaseSplitId  phase split id
    */

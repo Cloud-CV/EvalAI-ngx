@@ -103,7 +103,8 @@ export class ChallengecardComponent implements OnInit {
     this.startDate = this.globalService.formatDate12Hour(START_DATE);
     this.endDate = this.globalService.formatDate12Hour(END_DATE);
     this.fetchStars();
-
+    this.tags.push(this.challenge['published'] ? 'Published' : 'Not Published');
+    this.tags.push(this.challenge['approved_by_admin'] ? 'Approved by Admin' : 'Not Approved by Admin');
   }
 
   /**
