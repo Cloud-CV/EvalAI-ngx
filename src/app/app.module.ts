@@ -1,7 +1,8 @@
+import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 // Import Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -10,7 +11,7 @@ import { ApiService } from './services/api.service';
 import { GlobalService } from './services/global.service';
 import { ChallengeService } from './services/challenge.service';
 import { EndpointsService } from './services/endpoints.service';
-
+import { ErrorHandlerService } from './services/error-handler.service';
 
 // Import Components
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +109,8 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     PartnersComponent,
     RulesComponent,
     TestimonialsComponent,
-    FeaturedChallengesComponent
+    FeaturedChallengesComponent,
+    InternalServerComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,13 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     ApiService,
     GlobalService,
     ChallengeService,
-    EndpointsService
+    EndpointsService,
+    ErrorHandlerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

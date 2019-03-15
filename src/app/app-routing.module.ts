@@ -26,6 +26,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
 
 const routes: Routes = [
   {
@@ -123,10 +124,15 @@ const routes: Routes = [
     component: NotFoundComponent
   },
   {
+    path: '500',
+    component: InternalServerComponent
+  },
+  {
     path: '**',
     redirectTo: '/404',
     pathMatch: 'full'
-  }
+  },
+
 ];
 
 @NgModule({
