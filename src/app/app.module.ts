@@ -1,4 +1,3 @@
-import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 // Import Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -62,6 +61,9 @@ import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
 import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
+
+// Interceptors
+import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 
 @NgModule({
   declarations: [
