@@ -6,10 +6,36 @@
   position:relative;
   background-repeat: no-repeat;
   width: 100%;
+  overflow-x: hidden;
   color: $gray-darker;
   * {
   	transition: all 0.3s ease;
   }
+#carousel_cont{
+    width: 100%;
+    margin: 5em auto;
+    padding: 0;
+    background:#fff;
+}
+.logos{
+  height: 120px;
+  margin-top: 10px;
+  margin: 30px;
+  max-width: 150px;
+}
+
+.items {
+    max-width:300px;
+    height:200px;
+    background:#ECECEC;
+}
+
+#left, #right { 
+    margin: 20px;
+    width: 40px;
+    height: 40px;
+}
+
   .partner-bg {
   	position: absolute;
     right: 0;
@@ -77,10 +103,22 @@
 }
 
 @include screen-small {
+    #left, #right {
+      margin-top: 40px; 
+      margin: 10px;
+      width: 30px;
+      height: 30px;
+    }
+    .logos{
+      height: 70px;
+      margin-top: 10px;
+      margin: 30px;
+      max-width: 70px;
+    }
 	.partner_container {
 		.partner_img {
 			width:120px;
-		}		
+    }		
 		.partner_container{
 		    background-size: cover !important;
 		}

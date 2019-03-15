@@ -9,29 +9,33 @@
 		<span class="dark_text fs-18" >Several partner organizations already host their challenges on EvalAI</span>
 	</div>
 	<div class="row centerall partner_slider">
-	<table>
-		<tr>
-			<td> 
-				<img class ="partner_img" src = "assets/images/partners/facebook.png"/>
-			</td>
-			<td>
-				<img class ="partner_img" src = "assets/images/partners/cmu.png"/>
-			</td>
-			<td>
-				<img class ="partner_img" src = "assets/images/partners/google.png"/>
-			</td>
-			<td>
-				<img class ="partner_img" src = "assets/images/partners/stanford.png"/>
-			</td>
-			<td>
-				<img class ="partner_img" src = "assets/images/partners/georgiatech.png"/>
-			</td>
-			<td>
-				<img class ="partner_img" src = "assets/images/partners/mapillary.png"/>
-			</td>
-			<td>
-				<img class ="partner_img" src = "assets/images/partners/virginiatech.png"/>
-			</td>
-		</tr>
-	</table></div>
+		<div id="carousel_cont">
+			<div
+				ng2-carouselamos
+				class="slides-wrapper"
+				[items]="items"
+				[width]="900"
+				[$prev]="prev"
+				[$next]="next"
+				[$item]="item"
+			>
+			</div>
+			
+		
+			<ng-template #prev>
+			<img src="assets/images/left_arrow.png" id="left" />
+			</ng-template>
+			<ng-template #next>
+			<img src="assets/images/right_arrow.png" id="right" />
+			</ng-template>
+			<ng-template #item let-item let-i="index">
+		
+				<div class="items">
+				<img class ="logos" src="{{ item.name }}">
+				</div>
+		
+			</ng-template>
+
+		</div>
+</div>
 </div>

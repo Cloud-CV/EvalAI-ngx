@@ -60,6 +60,7 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxTwitterTimelineModule.forRoot()
+    NgxTwitterTimelineModule,
+    Ng2CarouselamosModule
   ],
   providers: [
     AuthService,
