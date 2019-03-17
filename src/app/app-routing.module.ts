@@ -26,7 +26,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-
+import { FaqComponent } from './components/faq/faq.component';
 const routes: Routes = [
   {
     path: '',
@@ -104,6 +104,10 @@ const routes: Routes = [
   {
     path: 'privacy-policy',
     component: PrivacyPolicyComponent
+  },
+  {
+    path: 'faq',
+    component: FaqComponent
   },
   {
     path: 'profile',

@@ -60,6 +60,7 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { FaqComponent } from './components/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     PartnersComponent,
     RulesComponent,
     TestimonialsComponent,
-    FeaturedChallengesComponent
+    FeaturedChallengesComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,

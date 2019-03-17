@@ -1,14 +1,14 @@
 @import './styles/variables.scss';
 @import './styles/mixins.scss';
 
-.privacy-container {
+.faq-container {
   * {
     color: $gray-darker;
     transition: all 0.2s ease;
     font-weight:$fw-light;
     font-size:$fs-16;
   }
-  .privacy-nav-container {
+  .faq-nav-container {
     margin-top: 30px;
     top: 10%;
     bottom: 0;
@@ -41,7 +41,7 @@
       }
     }
   }
-  .privacy-content {
+  .faq-content {
     margin-top: 30px;
     padding-right: 50px;
     a {
@@ -59,12 +59,12 @@
         height: 55px;
       }
     }
-    .privacy-title {
+    .faq-title {
       font-size: $fs-24;
       color: $gray-darker;
       font-weight: $fw-semibold;
     }
-    .privacy-section-content {
+    .faq-section-content {
       font-size: $fs-16;
       margin-top: 20px;
       line-height: 20px;
@@ -73,7 +73,7 @@
         list-style-type: circle;
       }
     }
-    .privacy-section-title {
+    .faq-section-title {
       font-size: $fs-18;
       font-weight: $fw-regular;
       margin-top: 20px;
@@ -86,14 +86,14 @@
 
 
 @include screen-small-medium {
-  .privacy-nav-container,
-  .privacy-empty-container {
+  .faq-nav-container,
+  .faq-empty-container {
     display: none;
   }
 }
 
 @include screen-medium {
-  .privacy-nav-container {
+  .faq-nav-container {
     top: 20%;
   }
 }
