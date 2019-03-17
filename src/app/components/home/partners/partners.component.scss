@@ -47,7 +47,7 @@
     text-align: center;
   }
   .partner_slider {
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 100px;
     margin-top:30px;
@@ -65,7 +65,7 @@
   }
 }
 
-@include screen-medium {
+@media screen and (max-width: 768px) {
 	.partner_container {
 		.partner_img {
 				width:140px;
@@ -73,10 +73,17 @@
 		.row table{
 				padding-right:20px;
 		}	
-	}
+  }
+  
+  .partner_slider {
+    overflow-x: visible !important;
+  }
 }
 
-@include screen-small {
+@media screen and (max-width: 425px) {
+  .partner_slider {
+    overflow-x: visible !important;
+  }
 	.partner_container {
 		.partner_img {
 			width:120px;
