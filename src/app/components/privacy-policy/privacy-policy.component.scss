@@ -54,6 +54,7 @@
       right: 4%;
       height: 50px;
       cursor: pointer;
+      z-index: 4 !important;
       &:hover {
         height: 55px;
       }
