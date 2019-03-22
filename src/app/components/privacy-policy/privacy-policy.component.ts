@@ -132,15 +132,6 @@ export class PrivacyPolicyComponent implements OnInit {
    * Scrolls to the top of the page
    */
   scrollToTop() {
-    const bodyScrollRate = this.document.body.scrollTop / 100;
-    const eleScrollRate = this.document.documentElement.scrollTop / 100;
-
-    const scrollInt = setInterval(() => {
-      this.document.body.scrollTop -= bodyScrollRate;
-      this.document.documentElement.scrollTop -= eleScrollRate;
-      if ( this.document.body.scrollTop === 0 && this.document.documentElement.scrollTop === 0 ) {
-        clearInterval(scrollInt);
-      }
-    }, .2);
+    this.document.getElementById('privacy-policy-title').scrollIntoView({behavior: 'smooth'});
   }
 }
