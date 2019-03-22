@@ -119,13 +119,8 @@ export class PrivacyPolicyComponent implements OnInit {
 
     // Removing -nav from the id of the clicked element
     const ELEMENT_ID = ID.slice(0, -4);
-    this.document.getElementById(ELEMENT_ID).scrollIntoView();
+    this.document.getElementById(ELEMENT_ID).scrollIntoView({behavior: 'smooth'});
     this.highlightSectionTitle(ELEMENT_ID);
-    const SCROLLED_Y = window.scrollY;
-    if (SCROLLED_Y) {
-      const HEADER_HEIGHT = this.document.getElementById('header-static').clientHeight;
-      window.scroll(0, SCROLLED_Y - HEADER_HEIGHT);
-    }
   }
 
   /**
