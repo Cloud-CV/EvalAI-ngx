@@ -1,10 +1,10 @@
 ## Contributing guidelines
 
-Thank you for your interest in contributing to EvalAI! Here are a few pointers about how you can help.
+Thank you for your interest in contributing to EvalAI! Here are a few pointers about how you can contribute.
 
 ### Setting things up
 
-To set up the development environment, follow the instructions in README.
+To set up the development environment, follow the instructions in [README](https://github.com/Cloud-CV/EvalAI-ngx/blob/master/README.md).
 
 ### Finding something to work on
 
@@ -12,15 +12,15 @@ The issue tracker of EvalAI a good place to start. If you find something that in
 
 Alternatively, if you come across a new bug, please file a new issue and comment if you would like to be assigned. The existing issues are tagged with one or more labels, based on the part of the website it touches, its importance etc., that can help you in selecting one.
 
-If neither of these seem appealing, please post on our channel and we will help find you something else to work on.
+If neither of these seem appealing, please post on our gitter channel and we will help find you something else to work on.
 
 ### Instructions to submit code
 
-Before you submit code, please talk to us via the issue tracker so we know you are working on it.
+Before you submit code, please talk to us via the issue tracker so we know you are working on it and also let us know your approach, to be sure that you are thinking on right direction.
 
 Our central development branch is development. Coding is done on feature branches based off of development and merged into it once stable and reviewed. To submit code, follow these steps:
 
-1. Create a new branch off of development. Select a descriptive branch name.
+1. Create a new branch off of development. Select a descriptive branch name. The commands below will help you to get the latest version of the code from the upstream(master branch).
 
         git fetch upstream
         git checkout master
@@ -32,11 +32,8 @@ Our central development branch is development. Coding is done on feature branche
     - Commits should be self-contained and contain a descriptive commit message.
     - Please make sure your code is well-formatted and adheres to PEP8 conventions (for Python) and the airbnb style guide (for JavaScript). For others (Lua, prototxt etc.) please ensure that the code is well-formatted and the style consistent.
     - Please ensure that your code is well tested.
-    - We highly encourage to use `autopep8` to follow the PEP8 styling. Run the following command before creating the pull request:
-
-            autopep8 --in-place --exclude env,docs --recursive .     
-            git commit -a -m “{{commit_message}}”
-            git push origin {{branch_name}}
+    - If you have to check for any linting issues, run the following command before creating the pull request:
+        ```ng lint```
     - Also, For Pretifying the Frontend Code Use ```HTML/JS/CSS Pretifier```.
     - For installing the Sublime Package Control Manager in Sublime-Text Editor use [this](https://packagecontrol.io/installation#st2) link. Also, If Sublime Package Control Manager is installed then install ```HTML/JS/CSS Pretifier```.
 
