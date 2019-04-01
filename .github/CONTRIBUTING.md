@@ -12,7 +12,7 @@ The issue tracker of EvalAI a good place to start. If you find something that in
 
 Alternatively, if you come across a new bug, please file a new issue and comment if you would like to be assigned. The existing issues are tagged with one or more labels, based on the part of the website it touches, its importance etc., that can help you in selecting one.
 
-If neither of these seem appealing, please post on our gitter channel and we will help find you something else to work on.
+If neither of these seem appealing, please post on our [gitter channel](https://gitter.im/Cloud-CV/EvalAI) and we will help find you something else to work on.
 
 ### Instructions to submit code
 
