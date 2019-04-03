@@ -13,7 +13,7 @@ export class PartnersComponent implements OnInit {
   /**
    * Component constructor
    */
-  items: Array<any> = []
+  items: Array<any> = [];
 
   constructor() {
     this.items = [
@@ -25,7 +25,7 @@ export class PartnersComponent implements OnInit {
       { name: 'assets/images/partners/stanford.png' },
       { name: 'assets/images/partners/virginiatech.png' },
       { name: 'assets/images/partners/mapillary.png' },
-    ]
+    ];
   }
 
   /**

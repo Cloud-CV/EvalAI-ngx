@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PartnersComponent } from './partners.component';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 describe('PartnersComponent', () => {
   let component: PartnersComponent;
@@ -8,7 +9,8 @@ describe('PartnersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PartnersComponent ]
+      declarations: [ PartnersComponent],
+      imports : [Ng2CarouselamosModule]
     })
     .compileComponents();
   }));
