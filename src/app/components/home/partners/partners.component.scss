@@ -6,6 +6,7 @@
   position:relative;
   background-repeat: no-repeat;
   width: 100%;
+  overflow-x: hidden;
   color: $gray-darker;
   * {
   	transition: all 0.3s ease;
@@ -63,6 +64,31 @@
     padding: 20px;
     margin-top: 30px;
   }
+}
+
+#carousel_cont{
+  width: 100%;
+  margin: 5em auto;
+  padding: 0;
+  background:#fff;
+}
+.logos{
+height: 120px;
+margin-top: 10px;
+margin: 30px;
+max-width: 150px;
+}
+
+.items {
+  max-width:300px;
+  height:200px;
+  background:#ECECEC;
+}
+
+#left, #right { 
+  margin: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 @include screen-medium {
