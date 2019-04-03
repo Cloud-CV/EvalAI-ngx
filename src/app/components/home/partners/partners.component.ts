@@ -13,10 +13,10 @@ export class PartnersComponent implements OnInit {
   /**
    * Component constructor
    */
-  items: Array<any> = [];
+  images: Array<any> = [];
 
   constructor() {
-    this.items = [
+    this.images = [
       { name: 'assets/images/partners/cmu.png' },
       { name: 'assets/images/partners/facebook.png' },
       { name: 'assets/images/partners/georgiatech.png' },
@@ -24,6 +24,10 @@ export class PartnersComponent implements OnInit {
       { name: 'assets/images/partners/mapillary.png' },
       { name: 'assets/images/partners/stanford.png' },
       { name: 'assets/images/partners/virginiatech.png' },
+      { name: 'assets/images/partners/cmu.png' },
+      { name: 'assets/images/partners/facebook.png' },
+      { name: 'assets/images/partners/georgiatech.png' },
+      { name: 'assets/images/partners/google.png' },
       { name: 'assets/images/partners/mapillary.png' },
     ];
   }

@@ -3,10 +3,11 @@
 
 .partner_container {
   margin-top: 200px;
+  overflow-x: hidden;
+  overflow-y: hidden;
   position:relative;
   background-repeat: no-repeat;
   width: 100%;
-  overflow-x: hidden;
   color: $gray-darker;
   * {
   	transition: all 0.3s ease;
@@ -69,19 +70,23 @@
 #carousel_cont{
   width: 100%;
   margin: 5em auto;
-  padding: 0;
-  background:#fff;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-right: 20px;
+  padding-left: 20px;
+  background:gray;
 }
+
 .logos{
-height: 120px;
+height: 100px;
 margin-top: 10px;
 margin: 30px;
-max-width: 150px;
+max-width: 190px;
 }
 
 .items {
   max-width:300px;
-  height:200px;
+  height:180px;
   background:#ECECEC;
 }
 
@@ -90,6 +95,13 @@ max-width: 150px;
   width: 40px;
   height: 40px;
 }
+
+.specify-width{
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 @include screen-medium {
 	.partner_container {
