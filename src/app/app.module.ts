@@ -62,7 +62,10 @@ import { TestimonialsComponent } from './components/home/testimonials/testimonia
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import 'hammerjs';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -114,10 +117,13 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     NgxTwitterTimelineModule.forRoot(),
-    Ng2CarouselamosModule
+    Ng2CarouselamosModule,
+    MatButtonModule,
+    FlexLayoutModule,
   ],
   providers: [
     AuthService,

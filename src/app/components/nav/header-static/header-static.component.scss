@@ -5,7 +5,7 @@ header {
   position: fixed;
   left: 0;
   top: 0;
-  color: white;
+  color:gold;
   width: 100%;
   box-sizing: border-box;
   z-index: 90;
@@ -16,6 +16,8 @@ header {
     }
   }
 }
+
+
 
 .dark-overlay {
   width: 100%;
@@ -88,6 +90,18 @@ header {
 
 .invert-color {
   filter: invert(100%);
+}
+
+.dashboard{
+  position: absolute;
+  top: 25px;
+  left: 8.5%;
+  font-weight: 600;
+}
+
+.dashboard:hover{
+  color:goldenrod;
+  border-bottom: 2px solid goldenrod;
 }
 
 .logo-container {

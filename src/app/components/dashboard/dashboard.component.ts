@@ -15,6 +15,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+
+  public all_ch: number = 0;
+  public hosted: number = 0;
+  public create: number = 0;
+  public participant: number = 0;
+  public host_t: number = 0;
+
   /**
    * Challenges list
    */
@@ -50,9 +57,9 @@ export class DashboardComponent implements OnInit {
    * Component on initialized.
    */
   ngOnInit() {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['auth/login']);
-    }
+    // if (!this.authService.isLoggedIn()) {
+    //   this.router.navigate(['auth/login']);
+    // }
     this.fetchChallengesFromApi(this.endpointsService.allChallengesURL('present'));
     this.fetchTeams(this.endpointsService.allParticipantTeamsURL());
     this.fetchTeams(this.endpointsService.allHostTeamsURL());
@@ -102,6 +109,33 @@ export class DashboardComponent implements OnInit {
         console.log('Teams fetched for teamlist', path);
       }
     );
+  }
+
+  navigateTo(path) {
+    if (path === '/auth/login') {
+      this.globalService.storeData('redirect', path);
+    }
+    this.router.navigate([path]);
+  }
+
+  move_challenge(){
+    this.all_ch = 1;
+  }
+
+  move_hosted(){
+    this.hosted = 1;
+  }
+
+  move_create(){
+    this.create = 1;
+  }
+
+  move_participant(){
+    this.participant = 1;
+  }
+
+  move_host(){
+    this.host_t = 1;
   }
 
 }

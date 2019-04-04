@@ -2,6 +2,7 @@
   <div class="logo-container" [class.at-home]="atHome">
     <img src="assets/images/EvalAI_favicon.png" class="logo-header" [class.invert-color]="headerWhite" *ngIf="atHome" (click)="navigateTo('')" />
     <img src="assets/images/evalai_logo_light.png" *ngIf="!atHome" class="logo-header" [class.invert-color]="headerWhite" (click)="navigateTo('')" />
+    <span class="dashboard" *ngIf="atHome" (click)="navigateTo('/dashboard')">Dashboard</span>
   </div>
   <div class="menu-expander" [class.menu-change]="isMenuExpanded" (click)="menuExpander()">
     <div class="menu-bar1" [class.dark-bg]="headerWhite" [class.white-bg]="!headerWhite"></div>

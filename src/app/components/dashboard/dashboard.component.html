@@ -1,45 +1,75 @@
 <app-header-static></app-header-static>
 
-<div class="container-top dashboard-container">
+<div class="move-div-to-bottom"></div>
+<div class="head-div" fxLayout="row">
+	<div class="side-bar" fxFlex="1 1 25%">
+		<div class="component-container">
+			<p>Ongoing Challenges</p>
+			<p style="color:#333;
+					font-size:2em;
+					margin-bottom: 6%;
+					margin-top: 6%;"
+			>{{challenges.length}}</p>
+			<button mat-raised-button color="primary" style="font-weight:bold;">View All</button>
+		</div>
 
-<div class="row card">
-<div class="section col-lg-4 col-md-4 com-sm-12 col-xs-12">
-	<div class="section-title">
-		Ongoing Challenges
+		<div class="component-container">
+			<p>My Host Teams</p>
+			<p style="color:#333;
+					font-size:2em;
+					margin-bottom: 6%;
+					margin-top: 6%;"
+			>{{hostteams.length}}</p>
+			<button mat-raised-button color="primary" style="font-weight:bold;">View All</button>
+		</div>
+
+		<div class="component-container">
+			<p>My participant Teams</p>
+			<p style="color:#333;
+					font-size:2em;
+					margin-bottom: 6%;
+					margin-top: 6%;"
+			>{{participantteams.length}}</p>
+			<button mat-raised-button color="primary" style="font-weight:bold;">View All</button>
+		</div>
+
 	</div>
-	<div class="section-number">
-		{{challenges.length}}
+
+	<div class="main-div" fxFlex="1 1 75%">
+		<div class="header-div">
+			<button mat-raised-button color="primary" class="element" (click)="navigateTo('/dashboard')"><img src="assets/baseline-dashboardwhite.svg" /> &nbsp;Dashboard</button>
+
+			<button mat-raised-button color="primary" class="element" (click)="move_challenge()"><img src="assets/baseline-thumb.svg" /> &nbsp;All Challenges</button>
+
+			<button mat-raised-button color="primary" class="element" (click)="move_hosted()"><img src="assets/baseline-host.svg" /> &nbsp;Hosted Challenges</button>
+
+			<button mat-raised-button color="primary" class="element" (click)="move_create()"><img src="assets/baseline-create.svg" /> &nbsp;Create Challenge</button>
+
+			<button mat-raised-button color="primary" class="element" (click)="move_participant()"><img src="assets/baseline-group.svg" /> &nbsp;Participant Teams</button>
+
+			<button mat-raised-button color="primary" class="element" (click)="move_host()"><img src="assets/baseline-group.svg" /> &nbsp;Host Teams</button>
+		</div>
+
+		<div class="component-div">
+			<h3 style= "color:orange;
+						text-align: center;
+						padding: 1% 1%;
+						margin-bottom: 2%;"
+			>Challenge Analytics Dashboard</h3>
+
+			<p style="font-weight:600;">Select challenge to view Analysis</p>
+
+			<p style="color:orange;
+					font-weight:600;
+					margin-bottom: 4%;"
+			>Total Challenges hosted : <span style="color:black;">0</span></p> <!--The value is to be pulled out from backend later-->
+
+			<span class="bton">Show Analysis</span>
+			<p style="margin-top:4%;">Challenge Analysis</p>
+			<p style="color:orange;font-weight:600;">There are no challenges to analyze. Click here to create a new challenge.</p>
+		</div>
 	</div>
-	<div class="section-link">
-	    <span [routerLink]="['/challenges/all']" class="btn btn-filter">View All</span>
-	</div>
-</div>
-<div class="section col-lg-4 col-md-4 com-sm-12 col-xs-12">
-	<div class="section-title">
-		My Host Teams
-	</div>
-	<div class="section-number">
-		{{hostteams.length}}
-	</div>
-	<div class="section-link">
-	    <span [routerLink]="['/teams/hosts']" class="btn btn-filter">View or Create</span>
-	</div>
-</div>
-<div class="section col-lg-4 col-md-4 com-sm-12 col-xs-12">
-	<div class="section-title">
-		My Participant Teams
-	</div>
-	<div class="section-number">
-		{{participantteams.length}}
-	</div>
-	<div class="section-link">
-	    <span [routerLink]="['/teams/participants']" class="btn btn-filter">View or Create</span>
-	</div>
-</div>
-<div class="analytics">
-	<span class="btn btn-filter selected">Go to Analytics Dashboard</span>
-</div>
-</div>
+	
 </div>
 
 <app-footer></app-footer>
