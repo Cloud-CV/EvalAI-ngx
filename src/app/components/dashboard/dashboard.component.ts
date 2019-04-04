@@ -16,11 +16,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
 
-  public all_ch: number = 0;
-  public hosted: number = 0;
-  public create: number = 0;
-  public participant: number = 0;
-  public host_t: number = 0;
+  public all_ch = 0;
+  public hosted = 0;
+  public create = 0;
+  public participant = 0;
+  public host_t = 0;
 
   /**
    * Challenges list
@@ -118,23 +118,23 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([path]);
   }
 
-  move_challenge(){
+  move_challenge() {
     this.all_ch = 1;
   }
 
-  move_hosted(){
+  move_hosted() {
     this.hosted = 1;
   }
 
-  move_create(){
+  move_create() {
     this.create = 1;
   }
 
-  move_participant(){
+  move_participant() {
     this.participant = 1;
   }
 
-  move_host(){
+  move_host() {
     this.host_t = 1;
   }
 
