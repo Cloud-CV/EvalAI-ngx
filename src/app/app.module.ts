@@ -63,7 +63,6 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -123,7 +122,6 @@ import {MatButtonModule} from '@angular/material/button';
     NgxTwitterTimelineModule.forRoot(),
     Ng2CarouselamosModule,
     MatButtonModule,
-    FlexLayoutModule,
   ],
   providers: [
     AuthService,
