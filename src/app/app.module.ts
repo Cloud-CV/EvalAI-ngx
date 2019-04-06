@@ -52,7 +52,7 @@ import { VerifyEmailComponent } from './components/auth/verify-email/verify-emai
 import { ModalComponent } from './components/utility/modal/modal.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './components/html-errors/not-found/not-found.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
 import { TwitterFeedComponent } from './components/home/twitter-feed/twitter-feed.component';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
@@ -60,6 +60,8 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { HtmlErrorsComponent } from './components/html-errors/html-errors.component';
+import { ServerErrorComponent } from './components/html-errors/server-error/server-error.component';
 import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
 
 // Interceptors
@@ -111,8 +113,9 @@ import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
     PartnersComponent,
     RulesComponent,
     TestimonialsComponent,
-    FeaturedChallengesComponent,
     InternalServerComponent
+    HtmlErrorsComponent,
+    ServerErrorComponent,
   ],
   imports: [
     BrowserModule,
