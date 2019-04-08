@@ -82,7 +82,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     const SIGNUP_BODY = JSON.stringify({
       username: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'username'),
       email: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'email'),
-      password1: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'password'),
+      password1: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'password1'),
       password2: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'confirm password')
     });
     self.apiService.postUrl(self.endpointsService.signupURL(), SIGNUP_BODY).subscribe(
