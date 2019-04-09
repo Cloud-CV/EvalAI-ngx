@@ -60,6 +60,8 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -113,7 +115,8 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxTwitterTimelineModule.forRoot()
+    NgxTwitterTimelineModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AuthService,
