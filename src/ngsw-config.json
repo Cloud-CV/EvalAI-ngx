@@ -23,5 +23,17 @@
         ]
       }
     }
-  ]
+  ],
+  "dataGroups":[{
+    "name": "Api",
+    "urls" : [
+      "http://staging.evalai.cloudcv.org:8000/api/**"
+    ],
+    "cacheConfig" : {
+      "maxSize" : 5,
+      "maxAge" : "6h",
+      "timeout" : "20s",
+      "strategy" : "freshness"
+    }
+  }]
 }
