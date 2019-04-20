@@ -97,6 +97,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src",
+                "src/styles"
+              ]
+            },
             "styles": [
               "node_modules/normalize.css/normalize.css",
               "src/styles/base.scss"
