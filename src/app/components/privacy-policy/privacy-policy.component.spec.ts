@@ -9,11 +9,15 @@ import { HeaderStaticComponent } from '../../components/nav/header-static/header
 import { ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 
 describe('PrivacyPolicyComponent', () => {
   let component: PrivacyPolicyComponent;
   let fixture: ComponentFixture<PrivacyPolicyComponent>;
+  let de: DebugElement;
+
   const fakeActivatedRoute = {
     snapshot: { data: { } }
   } as ActivatedRoute;
@@ -37,10 +41,23 @@ describe('PrivacyPolicyComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PrivacyPolicyComponent);
     component = fixture.componentInstance;
+    de = fixture.debugElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have equal number of section-title elements as nav elements', () => {
+    expect(component).toBeTruthy();
+
+    const ALL_NAV = de.queryAll(By.css('.privacy-nav'));
+    const ALL_TARGET = de.queryAll(By.css('.privacy-section-title'));
+
+    expect(ALL_NAV.length).toBeGreaterThan(0);
+    expect(ALL_TARGET.length).toBeGreaterThan(0);
+    expect(ALL_TARGET.length).toBe(ALL_NAV.length);
+  });
+
 });
