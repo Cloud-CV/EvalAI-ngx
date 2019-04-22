@@ -50,7 +50,6 @@ describe('PrivacyPolicyComponent', () => {
   });
 
   it('should have equal number of section-title elements as nav elements', () => {
-    expect(component).toBeTruthy();
 
     const ALL_NAV = de.queryAll(By.css('.privacy-nav'));
     const ALL_TARGET = de.queryAll(By.css('.privacy-section-title'));
