@@ -59,4 +59,15 @@ describe('PrivacyPolicyComponent', () => {
     expect(ALL_TARGET.length).toBe(ALL_NAV.length);
   });
 
+  it('should have same section title as nav element title', () => {
+
+    const ALL_NAV = de.queryAll(By.css('.privacy-nav'));
+    const ALL_TARGET = de.queryAll(By.css('.privacy-section-title'));
+
+    ALL_NAV.forEach((ele,index) => {
+      expect(ALL_TARGET[index].nativeElement.innerText).toBe(ele.nativeElement.innerText);
+    });
+
+  });
+
 });
