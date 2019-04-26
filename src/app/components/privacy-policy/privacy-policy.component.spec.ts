@@ -64,7 +64,7 @@ describe('PrivacyPolicyComponent', () => {
     const ALL_NAV = de.queryAll(By.css('.privacy-nav'));
     const ALL_TARGET = de.queryAll(By.css('.privacy-section-title'));
 
-    ALL_NAV.forEach((ele,index) => {
+    ALL_NAV.forEach((ele, index) => {
       expect(ALL_TARGET[index].nativeElement.innerText).toBe(ele.nativeElement.innerText);
     });
 
