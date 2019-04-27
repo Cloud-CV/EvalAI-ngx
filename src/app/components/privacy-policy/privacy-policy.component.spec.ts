@@ -17,6 +17,8 @@ describe('PrivacyPolicyComponent', () => {
   let component: PrivacyPolicyComponent;
   let fixture: ComponentFixture<PrivacyPolicyComponent>;
   let de: DebugElement;
+  let ALL_NAV;
+  let ALL_TARGET;
 
   const fakeActivatedRoute = {
     snapshot: { data: { } }
@@ -43,6 +45,8 @@ describe('PrivacyPolicyComponent', () => {
     component = fixture.componentInstance;
     de = fixture.debugElement;
     fixture.detectChanges();
+    ALL_NAV = de.queryAll(By.css('.privacy-nav'));
+    ALL_TARGET = de.queryAll(By.css('.privacy-section-title'));
   });
 
   it('should create', () => {
@@ -51,19 +55,12 @@ describe('PrivacyPolicyComponent', () => {
 
   it('should have equal number of section-title elements as nav elements', () => {
 
-    const ALL_NAV = de.queryAll(By.css('.privacy-nav'));
-    const ALL_TARGET = de.queryAll(By.css('.privacy-section-title'));
-
     expect(ALL_NAV.length).toBeGreaterThan(0);
     expect(ALL_TARGET.length).toBeGreaterThan(0);
     expect(ALL_TARGET.length).toBe(ALL_NAV.length);
   });
 
   it('should have same section title as nav element title', () => {
-
-    const ALL_NAV = de.queryAll(By.css('.privacy-nav'));
-    const ALL_TARGET = de.queryAll(By.css('.privacy-section-title'));
-
     ALL_NAV.forEach((ele, index) => {
       expect(ALL_TARGET[index].nativeElement.innerText).toBe(ele.nativeElement.innerText);
     });
