@@ -23,15 +23,19 @@
     "@angular/http": "^5.2.0",
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/pwa": "^0.12.4",
     "@angular/router": "^5.2.0",
+    "@angular/service-worker": "^5.2.0",
     "core-js": "^2.4.1",
     "ngx-twitter-timeline": "0.1.4",
     "normalize.css": "^8.0.0",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "tslib": "^1.9.0",
+    "zone.js": "^0.8.29"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.5",
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular/cli": "^7.3.8",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@compodoc/compodoc": "^1.1.2",
@@ -41,7 +45,7 @@
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~2.0.0",
+    "karma": "^4.0.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-cli": "~1.0.1",
     "karma-coverage-istanbul-reporter": "^1.2.1",
@@ -50,6 +54,6 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "^5.9.1",
-    "typescript": "^2.5.3"
+    "typescript": "<3.3.0"
   }
 }

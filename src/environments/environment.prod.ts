@@ -12,6 +12,6 @@
 // };
 
 export const environment = {
-  production: false,
+  production: true,
   api_endpoint: 'http://staging.evalai.cloudcv.org:8000/api/'
 };
