@@ -1,6 +1,6 @@
 <div class="challengelist-container">
  <div *ngIf="authServicePublic.isLoggedIn() || routerPublic.url == '/challenges/all'">
- <div class="challengelist-filters">
+ <div class="challengelist-filters" *ngIf="! (challengeRequest.toString() == 'me')">
  	<a [class.selected]="isUpcomingChecked" class="btn btn-filter" (click)="toggleFilter('isUpcomingChecked')">Upcoming Challenges</a>
  	<a [class.selected]="isOngoingChecked" class="btn btn-filter" (click)="toggleFilter('isOngoingChecked')">Ongoing Challenges</a>
  	<a [class.selected]="isPastChecked" class="btn btn-filter" (click)="toggleFilter('isPastChecked')">Past Challenges</a>

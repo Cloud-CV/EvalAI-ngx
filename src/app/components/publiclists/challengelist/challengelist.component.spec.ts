@@ -9,6 +9,7 @@ import { EndpointsService } from '../../../services/endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ChallengeService } from '../../../services/challenge.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ChallengelistComponent', () => {
@@ -25,7 +26,8 @@ describe('ChallengelistComponent', () => {
       providers: [ GlobalService,
                    ApiService,
                    AuthService,
-                   EndpointsService ],
+                   EndpointsService,
+                   ChallengeService ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
