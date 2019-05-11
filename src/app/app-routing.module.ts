@@ -25,10 +25,10 @@ import { ChallengeCreateComponent } from './components/challenge-create/challeng
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
+import {ServerErrorComponent} from './components/errors/server-error/server-error.component';
+import { NotFoundComponent } from './components/errors/not-found/not-found.component';
+import {HtmlErrorsComponent} from './components/errors/html-errors.component';
 import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
-import { NotFoundComponent } from './components/html-errors/not-found/not-found.component';
-import {HtmlErrorsComponent} from './components/html-errors/html-errors.component';
-import {ServerErrorComponent} from './components/html-errors/server-error/server-error.component';
 
 const routes: Routes = [
   {
