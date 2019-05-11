@@ -1,5 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GlobalService {
@@ -45,7 +46,7 @@ export class GlobalService {
   /**
    * constructor
    */
-  constructor() { }
+  constructor(private router: Router) { }
 
   /**
    * Update Scrolled State.
@@ -321,10 +322,12 @@ export class GlobalService {
       this.showToast('error', err.error['error'], 5);
     } else if (err.status === 404 && toast) {
       this.showToast('error', err.error['detail'], 5);
+      this.router.navigate(['/error/404']);
     } else if (err.status === 406 && toast) {
       this.showToast('error', err.error['error'], 5);
     } else if (toast) {
       this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
+      this.router.navigate(['/error/500']);
     }
   }
 
