@@ -325,9 +325,11 @@ export class GlobalService {
       this.router.navigate(['/error/404']);
     } else if (err.status === 406 && toast) {
       this.showToast('error', err.error['error'], 5);
+    } else if (err.status === 500 && toast) {
+      this.showToast('error', err.error['error'], 5);
+      this.router.navigate(['/error/500']);
     } else if (toast) {
       this.showToast('error', 'Something went wrong <' + err.status + '> ', 5);
-      this.router.navigate(['/error/500']);
     }
   }
 
