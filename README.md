@@ -51,6 +51,12 @@ Use [Docker Compose](https://docs.docker.com/compose/install/) to run all the co
     docker-compose up
     ```
 
+3. That's it. Open web browser and hit the url [http://127.0.0.1:8888](http://127.0.0.1:8888). Three users will be created by default which are listed below -
+
+    **SUPERUSER-** username: `admin` password: `password`  
+    **HOST USER-** username: `host` password: `password`  
+    **PARTICIPANT USER-** username: `participant` password: `password`
+
 ### For deploying with [Surge](https://surge.sh/):
 
 Surge will automatically generate deployment link whenever a pull request passes Travis CI. 

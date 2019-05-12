@@ -36,7 +36,7 @@ services:
       - "django"
 
   angularjs:
-    container_name: ngx_angularjs
+    container_name: evalai_ngx
     hostname: angularjs
     build:
       context: ./
