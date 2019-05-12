@@ -11,11 +11,9 @@ RUN mkdir /code
 COPY . /code
 
 WORKDIR /code
-RUN ls
 RUN npm install
 RUN npm audit fix
 
 EXPOSE 8888
-RUN ls
 
 CMD ["ng","serve", "--host", "0.0.0.0"]
