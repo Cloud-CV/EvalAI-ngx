@@ -1,10 +1,8 @@
-FROM node:9.4.0
-MAINTAINER CloudCV Team
+FROM node:12.2.0
 
-RUN apt-get update -qq && apt-get install -y build-essential git curl libfontconfig
+RUN apt-get update
+RUN apt-get install -y build-essential git curl libfontconfig
 RUN apt-get install nodejs-legacy -y
-RUN apt-get install npm -y
-RUN npm cache verify
 RUN npm install -g @angular/cli@1.6.5 --unsafe
 
 RUN mkdir /code
@@ -13,9 +11,11 @@ RUN mkdir /code
 COPY . /code
 
 WORKDIR /code
-
+RUN ls
 RUN npm install
+RUN npm audit fix
 
 EXPOSE 8888
+RUN ls
 
 CMD ["ng","serve", "--host", "0.0.0.0"]
