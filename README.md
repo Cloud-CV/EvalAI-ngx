@@ -35,31 +35,27 @@ Our ultimate goal is to build a centralized platform to host, participate and co
 
 Some background: Last year, the [Visual Question Answering Challenge (VQA) 2016](http://www.visualqa.org/vqa_v1_challenge.html) was hosted on some other platform, and on average evaluation would take **~10 minutes**. EvalAI hosted this year's [VQA Challenge 2017](https://evalai.cloudcv.org/featured-challenges/1/overview). This year, the dataset for the [VQA Challenge 2017](http://www.visualqa.org/challenge.html) is twice as large. Despite this, we’ve found that our parallelized backend only takes **~130 seconds** to evaluate on the whole test set VQA 2.0 dataset.
 
-## Installation Instructions
+## Development setup
 
-Setting up EvalAI-ngx on your local machine is really easy.
-Follow this guide to setup your development machine.
+Use [Docker Compose](https://docs.docker.com/compose/install/) to run all the components of EvalAI-ngx together. The steps are:
 
-Get the source code on your machine via git
-```
-git clone git@github.com:Cloud-CV/EvalAI-ngx.git
-```
-If you have not added [ssh key](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/) to your GitHub account then get the source code by running the following command
-```
-git clone https://github.com/Cloud-CV/EvalAI-ngx
-```
+1. Get the source code on to your machine via git.
 
-```
-npm install -g @angular/cli
-cd EvalAI-ngx/
-npm install
-```
+    ```shell
+    git clone https://github.com/Cloud-CV/EvalAI-ngx.git && cd evalai-ngx
+    ```
 
-## Development
+2. Build and run the Docker containers. This might take a while. You should be able to access EvalAI at `localhost:8888`.
 
-### For Running on localhost:
+    ```
+    docker-compose up
+    ```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+3. That's it. Open web browser and hit the url [http://127.0.0.1:8888](http://127.0.0.1:8888). Three users will be created by default which are listed below -
+
+    **SUPERUSER-** username: `admin` password: `password`  
+    **HOST USER-** username: `host` password: `password`  
+    **PARTICIPANT USER-** username: `participant` password: `password`
 
 ### For deploying with [Surge](https://surge.sh/):
 
@@ -103,22 +99,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-### Setup using Docker
-
-You can also use Docker Compose to run all the components of EvalAI-ngx together. The steps are:
-
-1. Get the source code on to your machine via git.
-
-    ```shell
-    git clone https://github.com/Cloud-CV/EvalAI-ngx.git && cd EvalAI-ngx
-    ```
-
-2. Build and run the Docker containers. This might take a while. You should be able to access EvalAI at `localhost:8888`.
-
-    ```
-    docker-compose -f docker-compose.dev.yml up -d --build
-    ```
-
 ## The Team
 
-EvalAI-ngx is currently maintained by [Akash Jain](http://www.jainakash.in/), [Shiv Baran Singh](http://www.shivbaran.in/), [Shivani Prakash Gupta](https://www.behance.net/shivaniprakash19), [Rishabh Jain](https://rishabhjain2018.github.io/) and [Deshraj Yadav](https://deshraj.github.io).
+EvalAI-ngx is currently maintained by [Shekhar Rajak](http://s-hacker.info/), [Mayank Lunayach](https://github.com/lunayach), [Shivani Prakash Gupta](https://www.behance.net/shivaniprakash19), [Rishabh Jain](https://rishabhjain2018.github.io/) and [Deshraj Yadav](https://deshraj.github.io).
