@@ -17,6 +17,8 @@ export class ChallengeService {
   private teamsSource = new BehaviorSubject([]);
   currentParticipantTeams = this.teamsSource.asObservable();
   private phasesSource = new BehaviorSubject([]);
+  private isHostSource = new BehaviorSubject(null);
+  currentHostStatus = this.isHostSource.asObservable();
   currentPhases = this.phasesSource.asObservable();
   private phaseSplitSource = new BehaviorSubject([]);
   currentPhaseSplit = this.phaseSplitSource.asObservable();
@@ -89,6 +91,16 @@ export class ChallengeService {
   changeCurrentHostTeam(hostTeam: any) {
     this.hostTeamSource.next(hostTeam);
   }
+
+
+  /**
+   * Update isHost Status.
+   * @param isHost boolean for isHost status.
+   */
+  changeHostStatus(isHost: boolean) {
+    this.isHostSource.next(isHost);
+  }
+
 
   /**
    * Fetch challenge details. (internally calls fetchStars, fetchParticipantTeams, fetchPhases, fetchPhaseSplits)
@@ -176,6 +188,40 @@ export class ChallengeService {
     );
   }
 
+
+  /**
+   * Deleting a particular challenge
+   * @param id  ID of the challenge to be updated
+   * @param callback  callback function.
+   * @param self  context this
+   */
+
+
+  deleteChallenge(id, callback = null, self = null) {
+    const API_PATH = this.endpointsService.deleteChallengeURL(id);
+    const SELF = this;
+    const BODY = JSON.stringify({});
+    this.apiService.postUrl(API_PATH, BODY).subscribe(
+      data => {
+        if (callback) {
+          callback(data, self);
+        } else {
+          SELF.changeCurrentStars(data);
+          SELF.globalService.showToast('success', 'Successfully deleted the Challenge.');
+        }
+      },
+      err => {
+        SELF.globalService.handleApiError(err, false);
+      },
+      () => {
+        console.log('Challenge', id, 'deleted!');
+      }
+    );
+  }
+
+
+
+
   /**
    * Load Javascript function.
    * @param url  Name of script.
@@ -201,6 +247,7 @@ export class ChallengeService {
             }
           }
         }
+        SELF.changeHostStatus(data['is_challenge_host']);
         if (teams.length === 0 || !participated) {
           SELF.changeParticipationStatus(false);
         }

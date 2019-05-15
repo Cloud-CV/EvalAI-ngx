@@ -127,6 +127,17 @@ export class EndpointsService {
   }
 
   /**
+   * Delete(i.e. disable a particular challenge)
+   * @param id challenge id
+   *
+   * */
+
+  deleteChallengeURL(id) {
+    return `${this.challenges}${this.challenge}${id}/disable`;
+  }
+
+
+  /**
    * Challenge participant teams for a given challenge id
    * @param id  challenge id
    */

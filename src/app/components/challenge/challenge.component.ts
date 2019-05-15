@@ -51,6 +51,11 @@ export class ChallengeComponent implements OnInit {
   isLoggedIn: any = false;
 
   /**
+   * If the user is a host of the challenge
+   */
+  isHost = false;
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  GlobalService Injection.
@@ -85,6 +90,7 @@ export class ChallengeComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
     });
+    this.challengeService.currentHostStatus.subscribe(status => this.isHost = status);
   }
 
   /**
@@ -93,6 +99,19 @@ export class ChallengeComponent implements OnInit {
   starToggle(challengeId) {
     if (this.isLoggedIn) {
       this.challengeService.starToggle(challengeId);
+    }
+  }
+
+  /**
+   * Delete click function.
+   */
+  deleteChallenge(challengeId) {
+    if (this.isLoggedIn && this.isHost) {
+        this.challengeService.deleteChallenge(challengeId);
+    } else if (!this.isLoggedIn) {
+      this.globalService.showToast('error', 'You are not logged in.');
+    } else if (!this.isHost) {
+      this.globalService.showToast('error', 'Only a host may delete a challenge.');
     }
   }
 }
