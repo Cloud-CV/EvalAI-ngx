@@ -113,7 +113,8 @@ import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
     PartnersComponent,
     RulesComponent,
     TestimonialsComponent,
-    InternalServerComponent
+    FeaturedChallengesComponent,
+    InternalServerComponent,
     HtmlErrorsComponent,
     ServerErrorComponent,
   ],
