@@ -32,7 +32,7 @@ describe('ServerErrorComponent', () => {
     expect(de.query(By.css('p')).query(By.css('a')).nativeElement.innerText).toBe(' EvalAi');
   });
 
-  it('should be redirected to "" ', () => {
+  it('should be redirected to homePage ', () => {
     expect(component).toBeTruthy();
     expect(de.query(By.css('p')).query(By.css('a')).attributes.valueOf()['href']).toBe('');
   });
