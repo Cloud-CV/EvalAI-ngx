@@ -12,7 +12,11 @@ import { GlobalService } from '../../services/global.service';
 })
 export class PrivacyPolicyComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) { }
+  visible: boolean;
+
+  constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) {
+    this.visible = false;
+  }
 
   /**
    * Checks if element is visible (called after scroll event)
@@ -85,6 +89,10 @@ export class PrivacyPolicyComponent implements OnInit {
    */
   @HostListener('window:scroll', [])
     onWindowScroll(): void {
+
+    const el = this.document.getElementById('privacy-policy-title');
+    this.visible = el.getBoundingClientRect().top < 0;
+
     if (!this.document['manuallyScrolling']) {
         const ALL_TARGETS = this.document.getElementsByClassName('privacy-section-title');
         const SELF = this;
