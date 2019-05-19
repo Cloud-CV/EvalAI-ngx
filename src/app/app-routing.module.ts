@@ -28,7 +28,6 @@ import { OurTeamComponent } from './components/our-team/our-team.component';
 import {ServerErrorComponent} from './components/errors/server-error/server-error.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import {HtmlErrorsComponent} from './components/errors/html-errors.component';
-import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
 
 const routes: Routes = [
   {
@@ -129,10 +128,6 @@ const routes: Routes = [
       {path: '404', component: NotFoundComponent},
       {path: '500', component: ServerErrorComponent}
     ]
-  },
-  {
-    path: '500',
-    component: InternalServerComponent
   },
   {
     path: '**',

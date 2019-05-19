@@ -10,7 +10,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import { ErrorHandlerService } from './../services/error-handler.service';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 
 @Injectable()

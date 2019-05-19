@@ -60,7 +60,6 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
-import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
 import { ServerErrorComponent } from './components/errors/server-error/server-error.component';
 import { HtmlErrorsComponent } from './components/errors/html-errors.component';
 
@@ -114,7 +113,6 @@ import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
     RulesComponent,
     TestimonialsComponent,
     FeaturedChallengesComponent,
-    InternalServerComponent,
     HtmlErrorsComponent,
     ServerErrorComponent,
   ],
