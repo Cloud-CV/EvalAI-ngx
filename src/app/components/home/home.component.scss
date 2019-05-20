@@ -3,7 +3,7 @@
 
 .home-container {
   overflow-x:hidden;
-  overflow-y:scroll;
+  overflow-y:hidden;
   .home-section-title {
     font-size: $fs-30;
     font-weight:$fw-regular;
@@ -34,6 +34,9 @@
     left: 0;
     top: 0;
     z-index: -1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
     img {
       width: 100%;
     }
