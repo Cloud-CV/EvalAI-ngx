@@ -52,6 +52,8 @@ git checkout -b your-branch-name
     
     - If you have to check for any linting issues, run the following command before creating the pull request:
         ```ng lint```
+
+    - For running the testcases locally use ```ng test``` command.
     
     - Also, For Pretifying the Frontend Code Use ```HTML/JS/CSS Pretifier```.
     
