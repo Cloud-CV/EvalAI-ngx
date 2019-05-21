@@ -25,7 +25,9 @@ import { ChallengeCreateComponent } from './components/challenge-create/challeng
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import {ServerErrorComponent} from './components/errors/server-error/server-error.component';
+import { NotFoundComponent } from './components/errors/not-found/not-found.component';
+import {HtmlErrorsComponent} from './components/errors/html-errors.component';
 
 const routes: Routes = [
   {
@@ -119,14 +121,20 @@ const routes: Routes = [
     ]
   },
   {
-    path: '404',
-    component: NotFoundComponent
+    path: 'error',
+    component: HtmlErrorsComponent,
+    children: [
+      {path: '', redirectTo: '404', pathMatch: 'full'},
+      {path: '404', component: NotFoundComponent},
+      {path: '500', component: ServerErrorComponent}
+    ]
   },
   {
     path: '**',
-    redirectTo: '/404',
+    redirectTo: 'error/404',
     pathMatch: 'full'
-  }
+  },
+
 ];
 
 @NgModule({

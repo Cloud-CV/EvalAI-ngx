@@ -1,16 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { GlobalService } from './global.service';
+import { ErrorHandlerService } from './error-handler.service';
 
-describe('GlobalService', () => {
+describe('ErrorHandlerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [GlobalService]
+      providers: [ErrorHandlerService]
     });
   });
 
-  it('should be created', inject([GlobalService], (service: GlobalService) => {
+  it('should be created', inject([ErrorHandlerService], (service: ErrorHandlerService) => {
     expect(service).toBeTruthy();
   }));
 });

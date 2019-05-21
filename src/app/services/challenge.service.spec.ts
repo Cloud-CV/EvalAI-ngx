@@ -5,12 +5,13 @@ import { EndpointsService } from './endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalService } from './global.service';
 import { AuthService } from './auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChallengeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [ChallengeService, ApiService, GlobalService, AuthService, EndpointsService],
-      imports: [ HttpClientModule ]
+      imports: [ HttpClientModule, RouterTestingModule ]
     });
   });
 
