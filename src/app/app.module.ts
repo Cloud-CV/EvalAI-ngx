@@ -10,7 +10,6 @@ import { ApiService } from './services/api.service';
 import { GlobalService } from './services/global.service';
 import { ChallengeService } from './services/challenge.service';
 import { EndpointsService } from './services/endpoints.service';
-import { ErrorHandlerService } from './services/error-handler.service';
 
 // Import Components
 import { AppComponent } from './app.component';
@@ -129,12 +128,6 @@ import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
     GlobalService,
     ChallengeService,
     EndpointsService,
-    ErrorHandlerService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true,
-    },
   ],
   bootstrap: [AppComponent]
 })
