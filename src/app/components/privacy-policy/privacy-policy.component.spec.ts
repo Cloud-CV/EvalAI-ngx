@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import { GlobalService } from '../../services/global.service';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
@@ -11,6 +11,7 @@ import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import {By} from '@angular/platform-browser';
 
 
 describe('PrivacyPolicyComponent', () => {
@@ -66,6 +67,53 @@ describe('PrivacyPolicyComponent', () => {
       console.log(`LOGE: NAV: ${ele.nativeElement.innerText}`);
       expect(ALL_TARGET[index].nativeElement.innerText).toBe(ele.nativeElement.innerText);
     });
+  });
+
+
+
+  it('should scroll the page', () => {
+
+    const ALL_TARGET = fixture.debugElement.queryAll(By.css('.privacy-section-title'));
+
+    ALL_TARGET[ALL_TARGET.length - 1].nativeElement.scrollIntoView();
+
+    // component.onWindowScroll();
+
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.onWindowScroll).toHaveBeenCalled();
+    });
+
+  });
+
+
+  it('should scroll the page manually', () => {
+
+    const ALL_NAV = fixture.debugElement.queryAll(By.css('.privacy-nav'));
+
+    // spyOn(component, 'scroll');
+
+    ALL_NAV.forEach((ele, index) => {
+      ele.nativeElement.click();
+      fixture.whenStable().then(() => {
+         expect(component.scroll).toHaveBeenCalled();
+       });
+    });
+
+  });
+
+
+  it('should click the Scroll top button', () => {
+
+    const btn = fixture.debugElement.query(By.css('.scroll-to-top'));
+
+    btn.nativeElement.click();
+
+    fixture.whenStable().then(() => {
+        expect(component.scrollToTop).toHaveBeenCalled();
+    });
+
   });
 
 });
