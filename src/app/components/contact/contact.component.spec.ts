@@ -33,7 +33,7 @@ describe('ContactComponent', () => {
         GlobalService,
         AuthService,
         ApiService,
-        {'provide': WindowService, 'useValue': MOCK_SERVICE },
+        {provide: WindowService, useValue: MOCK_SERVICE },
         {provide: ActivatedRoute, useValue: fakeActivatedRoute},
         {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
         EndpointsService
