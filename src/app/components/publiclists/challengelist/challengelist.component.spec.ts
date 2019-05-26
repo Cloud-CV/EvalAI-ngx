@@ -20,10 +20,17 @@ import {By} from '@angular/platform-browser';
 const routes: Routes = [
   {
     path: 'challenge',
-    redirectTo: 'challenges/all'
+    redirectTo: 'challenges'
   },
-  {path: 'challenges/all', component: ChallengelistComponent},
-  {path: 'challenges/me', component: ChallengelistComponent},
+  {
+    path: 'challenges',
+    component: PubliclistsComponent,
+    children: [
+      {path: '', redirectTo: 'all', pathMatch: 'full'},
+      {path: 'all', component: ChallengelistComponent},
+      {path: 'me', component: ChallengelistComponent}
+    ]
+  },
   {
     path: '**',
     redirectTo: '/challenges/all',
@@ -44,15 +51,15 @@ describe('ChallengelistComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientModule, RouterTestingModule.withRoutes(routes) ],
       declarations: [ ChallengelistComponent,
-        CardlistComponent,
-        ChallengecardComponent,
-        ForceloginComponent,
-        PubliclistsComponent],
+                      CardlistComponent,
+                      ChallengecardComponent,
+                      ForceloginComponent,
+                      PubliclistsComponent],
       providers: [ GlobalService,
-        ApiService,
-        AuthService,
-        ChallengeService,
-        EndpointsService ],
+                   ApiService,
+                   AuthService,
+                   ChallengeService,
+                   EndpointsService ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
       .compileComponents();
@@ -72,6 +79,51 @@ describe('ChallengelistComponent', () => {
     fixture.detectChanges();
 
     expect(component).toBeTruthy();
+  });
+
+
+  it('should route to all', () => {
+    router.navigate(['/challenges/all']).then(() => {
+      fixture.detectChanges();
+      expect(router.url).toBe('/challenges/all');
+    });
+  });
+
+  it('should route to me', () => {
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    router.navigate(['/challenges/me']).then(() => {
+      fixture.detectChanges();
+      expect(router.url).toBe('/challenges/me');
+    });
+  });
+
+  it('should toggle filters', () => {
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    fixture.detectChanges();
+    const elems = fixture.debugElement.queryAll(By.css('.challengelist-filters a'));
+    elems[0].nativeElement.click();
+    console.log(elems[0].nativeElement.innerText);
+    expect(component.isUpcomingChecked).toBe(false);
+
+    elems[1].nativeElement.click();
+    console.log(elems[1].nativeElement.innerText);
+    expect(component.isOngoingChecked).toBe(false);
+
+    elems[2].nativeElement.click();
+    console.log(elems[2].nativeElement.innerText);
+    expect(component.isPastChecked).toBe(true);
+
+    elems[2].nativeElement.click();
+    console.log(elems[2].nativeElement.innerText);
+    expect(component.isPastChecked).toBe(false);
+
+  });
+
+  it('should call seeMoreClicked', () => {
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    fixture.detectChanges();
+    component.seeMoreClicked();
+    expect(component.seeMore).toBeGreaterThanOrEqual(2);
   });
 
 });
