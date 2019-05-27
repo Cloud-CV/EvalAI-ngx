@@ -109,7 +109,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }),
           // filter for primary route
           filter((route) => route.outlet === 'primary'),
-        mergeMap((route) => route.data),)
+        mergeMap((route) => route.data), )
         // set platform based title service
       .subscribe((event) => this.titleService.setTitle(event['title']));
   }
