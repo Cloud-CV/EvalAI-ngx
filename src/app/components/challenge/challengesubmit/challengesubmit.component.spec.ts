@@ -54,7 +54,6 @@ describe('ChallengesubmitComponent', () => {
     fixture.ngZone.run(() => {
       router.navigate(['/challenge/0/submit']).then(() => {
         fixture.detectChanges();
-        console.log(router.url);
         expect(component).toBeTruthy();
       });
     });
