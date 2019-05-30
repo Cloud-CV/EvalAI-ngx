@@ -1,7 +1,7 @@
 // Import Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -10,7 +10,6 @@ import { ApiService } from './services/api.service';
 import { GlobalService } from './services/global.service';
 import { ChallengeService } from './services/challenge.service';
 import { EndpointsService } from './services/endpoints.service';
-
 
 // Import Components
 import { AppComponent } from './app.component';
@@ -52,7 +51,7 @@ import { VerifyEmailComponent } from './components/auth/verify-email/verify-emai
 import { ModalComponent } from './components/utility/modal/modal.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { OurTeamComponent } from './components/our-team/our-team.component';
 import { TwitterFeedComponent } from './components/home/twitter-feed/twitter-feed.component';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
@@ -60,6 +59,11 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { ServerErrorComponent } from './components/errors/server-error/server-error.component';
+import { HtmlErrorsComponent } from './components/errors/html-errors.component';
+
+// Interceptors
+import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 
 @NgModule({
   declarations: [
@@ -107,7 +111,9 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     PartnersComponent,
     RulesComponent,
     TestimonialsComponent,
-    FeaturedChallengesComponent
+    FeaturedChallengesComponent,
+    HtmlErrorsComponent,
+    ServerErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +127,7 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     ApiService,
     GlobalService,
     ChallengeService,
-    EndpointsService
+    EndpointsService,
   ],
   bootstrap: [AppComponent]
 })

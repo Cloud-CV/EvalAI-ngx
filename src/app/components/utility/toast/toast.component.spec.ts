@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToastComponent } from './toast.component';
 import { GlobalService } from '../../../services/global.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ToastComponent', () => {
   let component: ToastComponent;
@@ -10,6 +11,7 @@ describe('ToastComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ToastComponent ],
+      imports: [ RouterTestingModule ],
       providers: [ GlobalService ]
     })
     .compileComponents();

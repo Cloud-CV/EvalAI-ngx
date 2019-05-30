@@ -5,6 +5,7 @@ import { InputComponent } from '../input/input.component';
 import { GlobalService } from '../../../services/global.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ModalComponent', () => {
   let component: ModalComponent;
@@ -13,7 +14,7 @@ describe('ModalComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalComponent, InputComponent ],
-      imports: [ HttpClientModule ],
+      imports: [ HttpClientModule, RouterTestingModule ],
       providers: [ GlobalService ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfirmComponent } from './confirm.component';
 import { GlobalService } from '../../../services/global.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ConfirmComponent', () => {
   let component: ConfirmComponent;
@@ -11,6 +12,7 @@ describe('ConfirmComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ConfirmComponent ],
+      imports: [ RouterTestingModule ],
       providers: [ GlobalService ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
