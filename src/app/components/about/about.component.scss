@@ -35,6 +35,15 @@
 
 @include screen-small {
   .about-content-column {
+    left: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@include screen-medium {
+  .about-content-column {
+    left: 0px;
     padding-left: 20px;
     padding-right: 20px;
   }
