@@ -115,7 +115,7 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     AppRoutingModule,
     HttpClientModule,
     TextareaAutosizeModule,
-    NgxTwitterTimelineModule.forRoot()
+    NgxTwitterTimelineModule
   ],
   providers: [
     AuthService,
