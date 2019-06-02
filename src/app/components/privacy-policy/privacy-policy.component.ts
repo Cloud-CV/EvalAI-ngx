@@ -86,6 +86,16 @@ export class PrivacyPolicyComponent implements OnInit {
   @HostListener('window:scroll', [])
     onWindowScroll(): void {
     if (!this.document['manuallyScrolling']) {
+      const scrollToTopElement;
+        if (window.scrollY > 180) {
+          scrollToTopElement = this.document.getElementById('scroll-to-top');
+          scrollToTopElement.classList.remove('dis-none');
+          scrollToTopElement.className += ' dis-block';
+        } else if (window.scrollY < 180) {
+          scrollToTopElement = this.document.getElementById('scroll-to-top');
+          scrollToTopElement.classList.remove('dis-block');
+          scrollToTopElement.className += ' dis-none';
+        }
         const ALL_TARGETS = this.document.getElementsByClassName('privacy-section-title');
         const SELF = this;
         [].some.call(ALL_TARGETS, function (item) {
