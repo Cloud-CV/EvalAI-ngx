@@ -1,14 +1,14 @@
 <app-header-static></app-header-static>
 <div class="contact-container">
 	<div class="row">
-		<div class="col-md-8 ev-mt-50">
+		<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ev-mt-50">
 			<h4 class="contact-title ev-mt-17 ev-mb-13 fs-34 align-center fw-semibold">Contact Us</h4>
 			<app-input [label]="'name'" [placeholder]="'Name*'" [isRequired]="true" [icon]="'fa fa-user'" #formgroup></app-input>
 			<app-input [label]="'email'" [placeholder]="'Email*'" [isRequired]="true" [type]="'email'" [icon]="'fa fa-envelope'" #formgroup></app-input>
 			<app-input [label]="'message'" [placeholder]="'Message*'" [isRequired]="true" [type]="'textarea'" [icon]="'fa fa-comment'" #formgroup></app-input><br>
 			<button class="btn btn-waves-effect grad-btn grad-btn-dark ev-btn-dark" (click)="formValidate('formgroup')">Send</button>
 		</div>
-		<div class="rocket-container col-md-4">
+		<div class="rocket-container col-lg-4 col-md-4">
 			<div class="small-cloud cloud-1">
 				<img src="assets/images/cloud-1.png">
 			</div>

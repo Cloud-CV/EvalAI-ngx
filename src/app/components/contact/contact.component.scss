@@ -11,28 +11,20 @@
   min-height: 100vh;
 }
 
-/* media queries for contact-container */
-@media screen and (max-width: $screen-sm-md) {
-  .contact-container {
-    padding: 40px;
-  }
-}
-@media screen and (max-width: $screen-xsm) {
-  .contact-container {
-    text-align: center;
-  }
-}
-
 .contact-title {
   color: #4d4d4d;
   line-height: 110%;
   box-sizing: border-box;
 }
 
-/* media queries for contact-title */
-@media only screen and (max-width: $screen-sm-md) {
 
+/* media queries */
+
+@media only screen and (max-width: $screen-sm-md){
   .contact-title {	
-    margin-top: 100px;
+    margin-top: 10px;
+  }
+  .contact-container {
+    text-align: center;
   }
 }
