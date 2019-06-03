@@ -34,18 +34,17 @@
 }
 
 @include screen-small {
+  .about-title {
+    text-align: center;
+  }
   .about-content-column {
     left: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 }
 
 @include screen-medium {
   .about-content-column {
     left: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 }
 
