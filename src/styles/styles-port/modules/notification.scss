@@ -1,0 +1,67 @@
+// notification override
+#toast-container {
+    top: 64px;
+    right: 0;
+    box-shadow: none;
+    &>:hover {
+        box-shadow: none;
+    }
+}
+
+.toast-message {
+    font-size: 14px;
+    a {
+        color: $light-link;
+        &:hover {
+            // color: #cccccc;
+            text-decoration: none;
+        }
+    }
+    label {
+        // color: #ffffff;
+    }
+}
+
+.toast {
+    word-break: initial;
+    &.toast-success {
+             background-color: $med-green;
+             &:hover {
+                         background-color: $med-green;
+                     }
+    }
+    &.toast-error {
+            background-color: $med-red;
+             &:hover {
+                         background-color: $med-red;
+                     }
+    }
+
+    &.toast-info {
+             background-color: $blue;
+              &:hover {
+                         background-color: $blue;
+                     }
+    }
+
+    &.toast-wait {
+            background-color: $wait-blue;
+             &:hover {
+                         background-color: $wait-blue;
+                     }
+    }
+
+    &.toast-warning {
+             background-color: $med-orange;
+              &:hover {
+                         background-color: $hover-orange;
+                     }
+    }
+}
+
+//Hide it on small devices
+@media only screen and (max-width: 992px) {
+    #toast-container {
+        display: none;
+    }
+}
