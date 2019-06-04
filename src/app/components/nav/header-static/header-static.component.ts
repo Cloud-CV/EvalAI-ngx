@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, Inject, HostListener } from '@angular/core';
+import {Component, OnInit, OnDestroy, ChangeDetectorRef, Inject, HostListener, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
 import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import {ApiService} from '../../../services/api.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 /**
  * Component Class
@@ -13,6 +15,8 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./header-static.component.scss']
 })
 export class HeaderStaticComponent implements OnInit, OnDestroy {
+
+  user = {};
 
   /**
    * Header white flag
@@ -59,6 +63,9 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
    */
   public innerWidth: any;
 
+
+  @ViewChild('navContainer') navContainer: ElementRef;
+
   /**
    * Constructor.
    * @param document  Window document Injection.
@@ -73,7 +80,8 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private router: Router,
               private ref: ChangeDetectorRef,
-              private authService: AuthService,
+              public authService: AuthService,
+              private apiService: ApiService,
               @Inject(DOCUMENT) private document: Document) {
                  this.authState = authService.authState;
               }
@@ -102,18 +110,37 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateElements();
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth <= 810) {
-      this.isMenuExpanded = false;
+    if (this.innerWidth > 810) {
+      this.isMenuExpanded = true;
     }
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
     });
+
+    const  userkey = this.globalService.getData('userkey');
+    if (userkey) {
+      this.authService.fetchUserDetails();
+      this.apiService.getUrl('auth/user/').subscribe(
+        (data) => {
+          if (data.status === 200) {
+            this.user['name'] = data.user.name;
+          }
+        },
+        (err) => {
+          if (err.status === 401) {
+            this.globalService.resetStorage();
+          }
+        },
+        () => {}
+      );
+    }
   }
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth <= 810) {
-      this.isMenuExpanded = false;
+    if (this.innerWidth > 810) {
+      this.isMenuExpanded = true;
     }
   }
 
@@ -164,5 +191,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   menuExpander() {
     this.isMenuExpanded = !this.isMenuExpanded;
   }
+
+  profileDropdown(event) {}
 
 }
