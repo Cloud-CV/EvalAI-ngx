@@ -10,7 +10,7 @@ export class AuthService {
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
 
-
+  isAuth = false;
   /**
    * Modifications in Auth Services
    */
