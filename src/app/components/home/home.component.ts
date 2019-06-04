@@ -3,6 +3,7 @@ import {ApiService} from '../../services/api.service';
 import {EndpointsService} from '../../services/endpoints.service';
 import {AuthService} from '../../services/auth.service';
 import {GlobalService} from '../../services/global.service';
+import {BehaviorSubject} from 'rxjs';
 
 /**
  * Component Class
@@ -57,7 +58,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   hostChallenge() {}
 
   ngOnDestroy(): void {
-    this.userObserve.unSubscribe();
-    this.challengeObserve.unSubscribe();
+    // this.userObserve.unSubscribe();
+    // this.challengeObserve.unSubscribe();
   }
 }
