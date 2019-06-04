@@ -25,8 +25,6 @@ describe('PrivacyPolicyComponent', () => {
         GlobalService,
         AuthService,
         ApiService,
-        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
-        {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
         EndpointsService
       ],
       imports: [ HttpClientModule, RouterTestingModule ]

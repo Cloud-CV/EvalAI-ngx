@@ -24,8 +24,6 @@ describe('GetInvolvedComponent', () => {
         GlobalService,
         AuthService,
         ApiService,
-        {provide: ActivatedRoute, useValue: fakeActivatedRoute},
-        {provide: Router, useClass: class { navigate = jasmine.createSpy('navigate'); }},
         EndpointsService
       ],
       imports: [ RouterTestingModule, HttpClientModule ]
