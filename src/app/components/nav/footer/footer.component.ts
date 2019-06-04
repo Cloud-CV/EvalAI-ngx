@@ -14,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FooterComponent implements OnInit {
 
-  year = '2019';
+  year: any;
 
   /**
    * Router local/public instance
@@ -51,6 +51,14 @@ export class FooterComponent implements OnInit {
     if (!this.transparentHeaderUrls.includes(this.router.url)) {
       this.atHome = false;
     }
+
+    this.year = new Date().getFullYear();
+    const js = this.document.createElement('script');
+    // js.src = (/^http:/.test(this.document.location) ? 'http' : 'https') + '://buttons.github.io/buttons.js';
+    console.log('logi: ' + this.document.location);
+    js.src = 'https://buttons.github.io/buttons.js';
+    this.document.getElementsByTagName('head')[0].appendChild(js);
+
   }
 
   /**
