@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public user = {};
   public challengeList = [];
+  authServiceSubscription: any;
   constructor(private apiService: ApiService, private endpointService: EndpointsService, private authService: AuthService,
               private globalService: GlobalService) { }
 
@@ -26,24 +27,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    this.authService.fetchUserDetails();
-    this.apiService.getUrl(this.endpointService.userDetailsURL()).subscribe(
-      response => {
+    const logInStatus = this.authService.isLoggedIn();
+    this.authServiceSubscription = this.authService.change.subscribe((authState) => {
+      if (authState.isLoggedIn) {
         const status = response.status;
-        const details = response.data;
-        if (status === 200) {
-          this.user['name'] = details.username;
-        }
-      },
-      err => { this.globalService.handleApiError(err); },
-      () => {}
-    );
+        this.user = authState;
+      }
+    });
   }
 
   getChallenge() {
     this.apiService.getUrl(this.endpointService.featuredChallengesURL()).subscribe(
       response => {
         this.challengeList = response.data;
+        this.challengeList = response.results;
       },
       err => { this.globalService.handleApiError(err); },
       () => {}
@@ -53,5 +50,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   hostChallenge() {}
 
-  ngOnDestroy() {}
+  ngOnDestroy(): void {
+    if (this.authServiceSubscription) {
+      this.authServiceSubscription.unsubscribe();
+    }
+  }
 }
