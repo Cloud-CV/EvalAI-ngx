@@ -16,7 +16,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 })
 export class HeaderStaticComponent implements OnInit, OnDestroy {
 
-  user = {};
+  user = {username: ''};
 
   /**
    * Header white flag
@@ -115,25 +115,11 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
     }
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
+      if (this.authState.isLoggedIn) {
+        console.log('logi: header static', this.authState);
+        this.user = this.authState;
+      }
     });
-
-    const  userkey = this.globalService.getData('userkey');
-    if (userkey) {
-      this.authService.fetchUserDetails();
-      this.apiService.getUrl('auth/user/').subscribe(
-        (data) => {
-          if (data.status === 200) {
-            this.user['name'] = data.user.name;
-          }
-        },
-        (err) => {
-          if (err.status === 401) {
-            this.globalService.resetStorage();
-          }
-        },
-        () => {}
-      );
-    }
   }
 
   @HostListener('window:resize', ['$event'])
