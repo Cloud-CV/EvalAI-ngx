@@ -106,24 +106,6 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
         this.user = this.authState;
       }
     });
-
-    const  userkey = this.globalService.getData('userkey');
-    if (userkey) {
-      this.authService.fetchUserDetails();
-      this.apiService.getUrl('auth/user/').subscribe(
-        (data) => {
-          if (data.status === 200) {
-            this.user['name'] = data.user.name;
-          }
-        },
-        (err) => {
-          if (err.status === 401) {
-            this.globalService.resetStorage();
-          }
-        },
-        () => {}
-      );
-    }
   }
 
   @HostListener('window:resize', ['$event'])
