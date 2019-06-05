@@ -3,7 +3,6 @@ import { GlobalService } from './global.service';
 import { EndpointsService } from './endpoints.service';
 import { ApiService } from './api.service';
 import { BehaviorSubject } from 'rxjs';
-import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
