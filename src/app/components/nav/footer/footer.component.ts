@@ -14,6 +14,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FooterComponent implements OnInit {
 
+  year = '2019';
+
   /**
    * Router local/public instance
    */
