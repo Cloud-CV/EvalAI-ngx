@@ -67,6 +67,7 @@ import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
 import { EditphasemodalComponent } from './components/challenge/challengephases/editphasemodal/editphasemodal.component';
+import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
 import { SimpleHeaderComponent } from './components/nav/simple-header/simple-header.component';
 import {
   TermsAndConditionsModalComponent
