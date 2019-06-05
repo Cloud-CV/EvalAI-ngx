@@ -3,6 +3,7 @@ import { GlobalService } from './global.service';
 import { EndpointsService } from './endpoints.service';
 import { ApiService } from './api.service';
 import { BehaviorSubject } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,13 @@ export class AuthService {
   isAuth = false;
 
   /**
+   * Porting Ends
+   */
+
+
+  /**
    * Constructor.
+   * @param router
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.
