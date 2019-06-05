@@ -1,7 +1,12 @@
-<div class="loading-container">
-<div class="loader" id="loader-4">
-          <span></span>
-          <span></span>
-          <span></span>
+<!-- loader ported from AngularJS application -->
+<div class="loader-container fade" id="loader" *ngIf="authService.isLoader" >
+  <div class="text-med-black center w-300 loader-title">{{authService.loaderTitle}}</div>
+  <div class="loader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
-</div>
+
