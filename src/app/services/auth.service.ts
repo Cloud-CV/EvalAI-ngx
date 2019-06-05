@@ -1,8 +1,9 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import {Injectable, Output, EventEmitter, ElementRef} from '@angular/core';
 import { GlobalService } from './global.service';
 import { EndpointsService } from './endpoints.service';
 import { ApiService } from './api.service';
 import { BehaviorSubject } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -10,14 +11,52 @@ export class AuthService {
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
 
+
+  /**
+   * Ported From Angular Application
+   */
+  isRem = false;
   isAuth = false;
+  isMail = true;
+  userMail = '';
+  // getUser for signup
+  regUser = {};
+  // useDetails for login
+  getUser = {};
+  // color to show password strength
+  color = {};
+  isResetPassword = false;
+  // form error
+  isFormError = false;
+  FormError = {};
+  // to store the next redirect route
+  redirectUrl = {};
+
+  // default parameters
+  isLoader = false;
+  isPassConf = true;
+  regMsg = '';
+  wrnMsg = {};
+  isValid = {};
+  confirmMsg = '';
+  loaderTitle = '';
+  canShowPassword = false;
+  canShowConfirmPassword = false;
+
+  /**
+   * Porting Ends
+   */
+
+
   /**
    * Constructor.
+   * @param router
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.
    */
-  constructor(private globalService: GlobalService, private apiService: ApiService, private endpointsService: EndpointsService) { }
+  constructor(private router: Router, private globalService: GlobalService, private apiService: ApiService,
+              private endpointsService: EndpointsService) { }
 
     /**
      * Call this to update authentication state.
@@ -34,7 +73,7 @@ export class AuthService {
      * @param autoFetchUserDetails  User details fetch flag
      */
     loggedIn(autoFetchUserDetails = false) {
-      this.authState = {isLoggedIn: true};
+      this.authStateChange({isLoggedIn: true, username: ''});
       if (autoFetchUserDetails) {
         this.fetchUserDetails();
       }
@@ -61,6 +100,10 @@ export class AuthService {
           SELF.authStateChange(TEMP);
         },
         err => {
+          this.globalService.showToast('info', 'Timeout, Please login again to continue!');
+          this.globalService.resetStorage();
+          this.router.navigate(['/auth/login']);
+          this.authState = {isLoggedIn: false};
           SELF.globalService.handleApiError(err, false);
         },
         () => console.log('User details fetched')
@@ -126,12 +169,13 @@ export class AuthService {
       }
     }
 
-    /**
-     * User Details fetch Trigger
-     * @param  login token
-     * @param  callback function
-     */
-    verifyEmail(token, callback = () => {}) {
+  /**
+   * User Details fetch Trigger
+   * @param token
+   * @param success
+   * @param error
+   */
+    verifyEmail(token, success = () => {}, error = () => {}) {
       const API_PATH = this.endpointsService.verifyEmailURL();
       const SELF = this;
       const BODY = JSON.stringify({
@@ -139,12 +183,64 @@ export class AuthService {
       });
       this.apiService.postUrl(API_PATH, BODY).subscribe(
         data => {
-          callback();
+          success();
         },
         err => {
+          error();
           SELF.globalService.handleApiError(err);
         },
         () => console.log('Email Verified')
       );
     }
+
+
+
+
+
+  /**
+   * Ported From Angular Application
+   */
+
+  // show loader
+  startLoader(msg) {
+    this.isLoader = true;
+    this.loaderTitle = msg;
+  }
+
+  // stop loader
+  stopLoader() {
+    this.isLoader = false;
+    this.loaderTitle = '';
+  }
+
+  // toggle password visibility
+  togglePasswordVisibility() {
+    this.canShowPassword = !this.canShowPassword;
+  }
+
+  // toggle confirm password visibility
+  toggleConfirmPasswordVisibility() {
+    this.canShowConfirmPassword = !this.canShowConfirmPassword;
+  }
+
+  resetForm() {
+    // getUser for signup
+    this.regUser = {};
+    // useDetails for login
+    this.getUser = {};
+
+    // reset error msg
+    this.wrnMsg = {};
+
+    // switch off form errors
+    this.isFormError = false;
+
+    // reset form when link sent for reset password
+    this.isMail = true;
+
+    // reset the eye icon and type to password
+    this.canShowPassword = false;
+    this.canShowConfirmPassword = false;
+  }
+
 }
