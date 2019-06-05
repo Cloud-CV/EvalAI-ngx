@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     const logInStatus = this.authService.isLoggedIn();
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       if (authState.isLoggedIn) {
-        const status = response.status;
         this.user = authState;
       }
     });
@@ -39,7 +38,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   getChallenge() {
     this.apiService.getUrl(this.endpointService.featuredChallengesURL()).subscribe(
       response => {
-        this.challengeList = response.data;
         this.challengeList = response.results;
       },
       err => { this.globalService.handleApiError(err); },
