@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../../services/auth.service';
 
 /**
  * Component Class
@@ -13,7 +14,7 @@ export class LoadingComponent implements OnInit {
   /**
    * Constructor.
    */
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   /**
    * Component on intialized
