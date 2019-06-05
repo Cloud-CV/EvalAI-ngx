@@ -10,6 +10,7 @@ import { EndpointsService } from '../../../services/endpoints.service';
 import { WindowService } from '../../../services/window.service';
 import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 
 describe('LoginComponent', () => {
@@ -26,7 +27,7 @@ describe('LoginComponent', () => {
         ApiService,
         EndpointsService
       ],
-      imports: [ RouterTestingModule, HttpClientModule ],
+      imports: [ RouterTestingModule, HttpClientModule, FormsModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
