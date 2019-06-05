@@ -80,6 +80,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
 import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
+import {PasswordMismatchValidatorDirective} from './Directives/password.validator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,6 +132,7 @@ import { DashboardContentComponent } from './components/dashboard/dashboard-cont
     FeaturedChallengesComponent,
     DashboardContentComponent,
     HostAnalyticsComponent,
+    PasswordMismatchValidatorDirective,
     EditphasemodalComponent,
     ChallengeviewallsubmissionsComponent,
     TermsAndConditionsModalComponent
