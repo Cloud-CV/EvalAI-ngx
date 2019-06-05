@@ -22,11 +22,9 @@ export class VerifyEmailComponent implements OnInit {
   /**
    * Is Email verified
    */
-  isVerified = false;
-
+  email_verify_msg = '';
   /**
    * Constructor.
-   * @param document  Window document Injection.
    * @param authService  AuthService Injection.
    * @param globalService  GlobalService Injection.
    * @param apiService  Router Injection.
@@ -44,9 +42,16 @@ export class VerifyEmailComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['token']) {
         this.token = params['token'];
-        this.authService.verifyEmail(this.token, () => {
-          this.isVerified = true;
-        });
+        this.authService.verifyEmail(this.token,
+            () => {
+              this.email_verify_msg = 'Your email has been verified successfully';
+              this.authService.stopLoader();
+            },
+            () => {
+              this.email_verify_msg = 'Something went wrong!! Please try again.';
+              this.authService.stopLoader();
+            }
+        );
       }
     });
   }
