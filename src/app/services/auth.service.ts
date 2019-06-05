@@ -3,6 +3,7 @@ import { GlobalService } from './global.service';
 import { EndpointsService } from './endpoints.service';
 import { ApiService } from './api.service';
 import { BehaviorSubject } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +11,7 @@ export class AuthService {
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
 
-  isAuth = false;
+
   /**
    * Modifications in Auth Services
    */
@@ -28,7 +29,7 @@ export class AuthService {
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.
    */
-  constructor(private globalService: GlobalService, private apiService: ApiService,
+  constructor(private router: Router, private globalService: GlobalService, private apiService: ApiService,
               private endpointsService: EndpointsService) { }
 
     /**
@@ -75,6 +76,7 @@ export class AuthService {
         err => {
           this.globalService.showToast('info', 'Timeout, Please login again to continue!');
           this.globalService.resetStorage();
+          this.router.navigate(['/auth/login']);
           this.authState = {isLoggedIn: false};
           SELF.globalService.handleApiError(err, false);
         },
