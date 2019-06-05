@@ -33,6 +33,7 @@
               "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "./node_modules/froala-editor/css/froala_style.min.css",
               "./node_modules/ng-pick-datetime/assets/style/picker.min.css"
+              "src/styles/styles-port/main.scss"
             ],
             "scripts": [
               "./node_modules/froala-editor/js/froala_editor.pkgd.min.js"
