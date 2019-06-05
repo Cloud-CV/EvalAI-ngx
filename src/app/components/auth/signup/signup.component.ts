@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
               private windowService: WindowService,
               private globalService: GlobalService,
               private apiService: ApiService,
-              private authService: AuthService,
+              public authService: AuthService,
               private route: ActivatedRoute,
               private endpointsService: EndpointsService,
               private router: Router) { }

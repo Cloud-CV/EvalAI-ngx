@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit, AfterViewInit {
    * @param authService
    */
   constructor(private router: Router, private route: ActivatedRoute, private globalService: GlobalService,
-              private authService: AuthService) { }
+              public authService: AuthService) { }
 
   /**
    * Component on initialization.
