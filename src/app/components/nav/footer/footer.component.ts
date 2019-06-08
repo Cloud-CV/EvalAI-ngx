@@ -53,12 +53,6 @@ export class FooterComponent implements OnInit {
     }
 
     this.year = new Date().getFullYear();
-    const js = this.document.createElement('script');
-    // js.src = (/^http:/.test(this.document.location) ? 'http' : 'https') + '://buttons.github.io/buttons.js';
-    console.log('logi: ' + this.document.location);
-    js.src = 'https://buttons.github.io/buttons.js';
-    this.document.getElementsByTagName('head')[0].appendChild(js);
-
   }
 
   /**

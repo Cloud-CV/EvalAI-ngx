@@ -7,6 +7,24 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {GlobalService} from '../../../services/global.service';
 import {AuthService} from '../../../services/auth.service';
 import {EndpointsService} from '../../../services/endpoints.service';
+import {Routes} from '@angular/router';
+import {NotFoundComponent} from '../../not-found/not-found.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: DashboardContentComponent,
+  },
+  {
+    path: '404',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
+    pathMatch: 'full'
+  }
+];
 
 describe('DashboardContentComponent', () => {
   let component: DashboardContentComponent;
@@ -14,9 +32,9 @@ describe('DashboardContentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardContentComponent ],
+      declarations: [ DashboardContentComponent, NotFoundComponent ],
       providers: [ApiService, GlobalService, AuthService, EndpointsService],
-      imports: [HttpClientModule, RouterTestingModule]
+      imports: [HttpClientModule, RouterTestingModule.withRoutes(routes)]
     })
     .compileComponents();
   }));
