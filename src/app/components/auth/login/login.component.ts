@@ -19,6 +19,8 @@ import { Router, ActivatedRoute} from '@angular/router';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
+  isnameFocused = false;
+  ispasswordFocused = false;
   /**
    * Constructor.
    * @param document  window document injection

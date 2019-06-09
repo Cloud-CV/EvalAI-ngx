@@ -10,9 +10,9 @@
   <form name="loginForm" #loginForm='ngForm' (ngSubmit)="userLogin(loginForm.valid)" id="log-in" novalidate>
     <!-- username -->
     <div class="input-field align-left">
-      <input type="text" id="name" class="dark-autofill" name="name" [(ngModel)]="authService.getUser['name']" #name="ngModel" minLength="3" required>
+      <input type="text" id="name" class="dark-autofill" name="name" (focusin)="isnameFocused = true" (focusout)="isnameFocused = false"  [(ngModel)]="authService.getUser['name']" #name="ngModel" minLength="3" required>
       <span class="form-icon form-icon-dark"><i class="fa fa-user"></i></span>
-      <label for="name">Username*</label>
+      <label for="name" [class.active]="isnameFocused" >Username*</label>
       <div class="wrn-msg text-highlight"  *ngIf="name.invalid && (name.dirty || name.touched || loginForm.submitted)">
         <p *ngIf="name.errors.minlength">Username is too short.</p>
         <p *ngIf="name.errors.required">Username is required.</p>
@@ -20,13 +20,15 @@
     </div>
     <!-- password -->
     <div class="input-field align-left">
-      <input type="{{authService.canShowPassword ? 'text' : 'password'}}" id="password" (paste)="authService.getUser['password'] = ''" class="dark-autofill" name="password" [(ngModel)]="authService.getUser['password']" #password='ngModel'
+      <input type="{{authService.canShowPassword ? 'text' : 'password'}}" id="password" (paste)="authService.getUser['password'] = ''" class="dark-autofill" name="password"
+             (focusin)="ispasswordFocused = true" (focusout)="ispasswordFocused = false"
+             [(ngModel)]="authService.getUser['password']" #password='ngModel'
               autocomplete="new-password" minlength="8" required>
       <span class="form-icon form-icon-dark" (click)="authService.togglePasswordVisibility()">
                 <i *ngIf="!authService.canShowPassword" class="fa fa-eye pointer"></i>
                 <i *ngIf="authService.canShowPassword" class="fa fa-eye-slash pointer"></i>
             </span>
-      <label for="password">Password (min 8 characters) *</label>
+      <label for="password" [class.active]="ispasswordFocused" >Password (min 8 characters) *</label>
       <div class="wrn-msg text-highlight"  *ngIf="password.invalid && (password.dirty || password.touched || loginForm.submitted)">
         <p *ngIf="password.errors.minlength">Password is less than 8 characters.</p>
         <p *ngIf="password.errors.required">Password is required.</p>

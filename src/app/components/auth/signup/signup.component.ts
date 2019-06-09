@@ -26,6 +26,11 @@ export class SignupComponent implements OnInit, AfterViewInit {
   color = '';
   message = '';
 
+  isnameFocused = false;
+  ispasswordFocused = false;
+  iscnfrmpasswordFocused = false;
+  isemailFocused = false;
+
   /**
    * All forms in signup component
    */
