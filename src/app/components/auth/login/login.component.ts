@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     let redirectTo = '/dashboard';
     const REDIRECT_URL = self.globalService.getData(self.globalService.redirectStorageKey);
     if (REDIRECT_URL && REDIRECT_URL['path']) {
-      console.log('login component redirectCheck', REDIRECT_URL);
       redirectTo = REDIRECT_URL['path'];
       self.globalService.deleteData(self.globalService.redirectStorageKey);
     }
@@ -71,7 +70,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   // Function to login
   userLogin(loginFormValid) {
-    console.log('logi login component userLogin method: ', loginFormValid);
     if (!loginFormValid) { this.authService.stopLoader(); return; }
 
     this.authService.startLoader('Taking you to EvalAI!');

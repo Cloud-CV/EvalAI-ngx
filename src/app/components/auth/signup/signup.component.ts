@@ -126,7 +126,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   // Function to signup
   userSignUp(signupFormValid) {
-    console.log('signup component userSignUp method signupFormValid', signupFormValid);
     if (signupFormValid) {
       this.authService.startLoader('Setting up your details!');
       const SIGNUP_BODY = JSON.stringify({
@@ -155,8 +154,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
         err => {
           this.authService.stopLoader();
-          // this.globalService.handleFormError(this.ALL_FORMS[this.signupForm], err);
-          console.log('signup component userSignUp method error: ', err);
           if (err.status === 400) {
             this.authService.isFormError = true;
             let non_field_errors, isUsername_valid, isEmail_valid, isPassword1_valid, isPassword2_valid;
