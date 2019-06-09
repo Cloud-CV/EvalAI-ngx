@@ -11,7 +11,7 @@
     <!-- username -->
     <div class="input-field align-left">
       <input type="text" id="name" class="dark-autofill" name="name" #name="ngModel"
-             (focusin)="isnameFocused = true" (focusout)="isnameFocused = false"
+             (focusin)="isnameFocused = true" (focusout)="isnameFocused = authService.regUser['name'] !== ''"
              [(ngModel)]="authService.regUser['name']" minlength="3" required>
       <span class="form-icon form-icon-dark"><i class="fa fa-user"></i></span>
       <label for="name" [class.active]="isnameFocused">Username*</label>
@@ -23,7 +23,7 @@
     <!-- email -->
     <div class="input-field align-left">
       <input type="email" id="email" class="dark-autofill" name="email" #email="ngModel"
-             (focusin)="isemailFocused = true" (focusout)="isemailFocused = false"
+             (focusin)="isemailFocused = true" (focusout)="isemailFocused = authService.regUser['email'] !== ''"
              [(ngModel)]="authService.regUser['email']" required>
       <span class="form-icon form-icon-dark"><i class="fa fa-envelope"></i></span>
       <label for="email" [class.active]="isemailFocused">Email</label>
@@ -35,7 +35,7 @@
     <!-- password -->
     <div class="input-field align-left">
       <input type="{{authService.canShowPassword ? 'text' : 'password'}}" id="password" (paste)="authService.regUser['password'] = ''" class="dark-autofill" name="password" #password="ngModel"
-             (focusin)="ispasswordFocused = true" (focusout)="ispasswordFocused = false"
+             (focusin)="ispasswordFocused = true" (focusout)="ispasswordFocused = authService.regUser['password'] !== ''"
              [(ngModel)]="authService.regUser['password']" minlength="8" (change)="checkStrength(authService.regUser['password'])" required>
       <span class="form-icon form-icon-dark" (click)="authService.togglePasswordVisibility()">
                 <i *ngIf="!authService.canShowPassword" class="fa fa-eye pointer"></i>
@@ -53,7 +53,7 @@
     <!-- confirm password -->
     <div class="input-field align-left">
       <input type="{{authService.canShowConfirmPassword ? 'text' : 'password'}}" id="confirm_password" (paste)="authService.regUser['confirm_password'] = ''" class="dark-autofill" name="confirm_password" #confirm_password="ngModel"
-             (focusin)="iscnfrmpasswordFocused = true" (focusout)="iscnfrmpasswordFocused = false"
+             (focusin)="iscnfrmpasswordFocused = true" (focusout)="iscnfrmpasswordFocused = authService.regUser['confirm_password'] !== ''"
              [(ngModel)]="authService.regUser['confirm_password']" minlength="8"  required>
       <span class="form-icon form-icon-dark" (click)="authService.toggleConfirmPasswordVisibility()">
                 <i *ngIf="!authService.canShowConfirmPassword" class="fa fa-eye pointer"></i>
@@ -79,4 +79,4 @@
       </p>
     </div>
   </form>
-</div>
+ </div>
