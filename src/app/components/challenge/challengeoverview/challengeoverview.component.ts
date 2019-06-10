@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
+import { ApiService } from '../../../services/api.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 
 /**
  * Component Class
@@ -18,11 +21,18 @@ export class ChallengeoverviewComponent implements OnInit {
   challenge: any = null;
 
   /**
+   * Is challenge host
+   */
+  isChallengeHost = false;
+
+  /**
    * Constructor.
    * @param document  Window document Injection.
    * @param challengeService  ChallengeService Injection.
    */
-  constructor(private challengeService: ChallengeService, @Inject(DOCUMENT) private document: Document) { }
+  constructor(private challengeService: ChallengeService, @Inject(DOCUMENT) private document: Document,
+              private globalService: GlobalService, private apiService: ApiService,
+              private endpointsService: EndpointsService) { }
 
   /**
    * Component on initialized.
@@ -32,5 +42,39 @@ export class ChallengeoverviewComponent implements OnInit {
     challenge => {
       this.challenge = challenge;
     });
+    this.challengeService.isChallengeHost.subscribe(status => {
+      this.isChallengeHost = status;
+    });
+  }
+
+  editChallengeOverview() {
+    const SELF = this;
+
+    const apiCall = (params) => {
+      const BODY = JSON.stringify(params);
+      SELF.apiService.postUrl(
+        SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
+        BODY
+      ).subscribe(
+          data => {
+            SELF.globalService.showToast('success', 'The challenge title is  successfully updated!', 5);
+
+          },
+          err => {
+            SELF.globalService.handleApiError(err, true);
+            SELF.globalService.showToast('error', err);
+          },
+          () => console.log('EDIT-CHALLENGE-DESCRIPTION-FINISHED')
+        )
+    };
+
+    const PARAMS = {
+      title: 'Edit Challenge Description',
+      content: 'asdasdasd \n\nasdasdasdasd',
+      confirm: 'Submit',
+      deny: 'Cancel',
+      confirmCallback: apiCall
+    };
+    SELF.globalService.showModal(PARAMS);
   }
 }
