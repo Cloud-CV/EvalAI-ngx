@@ -197,4 +197,12 @@ export class InputComponent implements OnInit {
   transferClick(id) {
     this.document.getElementById(id).click();
   }
+
+  toggleErrorMessage () {
+    if (((this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty)) && this.isDirty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

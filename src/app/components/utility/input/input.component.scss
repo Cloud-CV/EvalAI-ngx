@@ -13,11 +13,11 @@
     position: absolute;
     right: 0;
     top: 10px;
-    color: #adb4d0;
+    color: $wild-blue;
     font-size: .9em;
   }
   label {
-    color: #adb4d0 !important;
+    color: $wild-blue !important;
     font-size: 0.8rem;
     position: absolute;
     pointer-events: none;
@@ -51,7 +51,7 @@
     font-weight: $fw-light;
     &:focus {
       outline: none;
-      border-bottom: 1px solid #ffaf4b;
+      border-bottom: 1px solid $yellow;
     }
     &.theme-dark {
       color: $gray-darker;
@@ -60,7 +60,7 @@
   }
   input:focus~label {
     top: -20px;
-    color: #adb4d0 !important;
+    color: $wild-blue !important;
     font-weight: 400;
     font-size: 0.8rem;
     -webkit-transform: translateY(-10%);
@@ -80,7 +80,7 @@
   }
   textarea:focus~label {
     top: -20px;
-    color: #adb4d0 !important;
+    color: $wild-blue !important;
     font-weight: 400;
     font-size: 0.8rem;
     -webkit-transform: translateY(-10%);
@@ -95,10 +95,9 @@
     left: 0;
     text-align: left;
     margin-top: 10px;
-    font-style: italic;
     font-size: 12px;
     font-weight: $fw-light;
-    color: #ffaf4b;
+    color: $yellow;
     &.hidden {
       opacity: 0;
     }
