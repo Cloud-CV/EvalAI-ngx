@@ -65,7 +65,7 @@ export class ChallengeoverviewComponent implements OnInit {
             SELF.globalService.showToast('error', err);
           },
           () => console.log('EDIT-CHALLENGE-DESCRIPTION-FINISHED')
-        )
+        );
     };
 
     const PARAMS = {

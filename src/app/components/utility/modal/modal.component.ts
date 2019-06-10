@@ -143,7 +143,7 @@ export class ModalComponent implements OnInit {
         this.isDisabled = true;
       }
     } else if (e.target.name === 'editChallengeTitle') {
-      if (e.target.value != this.challenge.title && e.target.value.length > 1) {
+      if (e.target.value !== this.challenge.title && e.target.value.length > 1) {
         this.isDisabled = false;
       } else {
         this.isDisabled = true;

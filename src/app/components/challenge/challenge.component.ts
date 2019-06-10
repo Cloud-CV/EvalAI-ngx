@@ -127,7 +127,7 @@ export class ChallengeComponent implements OnInit {
   togglePublishChallengeState() {
     const SELF = this;
     let toggleChallengePublishState, isPublished;
-    if (this.publishChallenge.state == 'Published') {
+    if (this.publishChallenge.state === 'Published') {
       toggleChallengePublishState = 'private';
       isPublished = false;
     } else {
@@ -220,7 +220,7 @@ export class ChallengeComponent implements OnInit {
    */
   deleteChallenge() {
     const SELF = this;
-    let redirectTo = '/dashboard';
+    const redirectTo = '/dashboard';
 
     const apiCall = () => {
       const BODY = JSON.stringify({});

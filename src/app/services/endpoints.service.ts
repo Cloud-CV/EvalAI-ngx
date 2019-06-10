@@ -227,7 +227,7 @@ export class EndpointsService {
    * @param challenge challenge id
    */
   editChallengeDetailsURL(hostTeam, challenge) {
-    return `${this.challenges}challenge_host_team/${hostTeam}/${this.challenge}${challenge}`
+    return `${this.challenges}challenge_host_team/${hostTeam}/${this.challenge}${challenge}`;
   }
 
   /**
@@ -235,6 +235,6 @@ export class EndpointsService {
    * @param challenge challenge id
    */
   deleteChallengeURL(challenge) {
-    return `${this.challenges}${this.challenge}${challenge}/disable`
+    return `${this.challenges}${this.challenge}${challenge}/disable`;
   }
 }
