@@ -53,12 +53,12 @@
                               <li><a [class.selected]="localRouter.url.endsWith('overview')" [routerLink]="['./overview']" class="text-light-black fw-semibold fs-15"><i class="fa fa-info"></i> Overview</a></li>
                               <li><a [class.selected]="localRouter.url.endsWith('evaluation')" [routerLink]="['./evaluation']" class="text-light-black fw-semibold fs-15"><i class="fa fa-bar-chart-o"></i> Evaluation</a></li>
                               <li><a [class.selected]="localRouter.url.endsWith('phases')" [routerLink]="['./phases']" class="text-light-black fw-semibold fs-15"><i class="fa fa-level-up"></i> Phases</a></li>
-                              <li *ngIf="(isRegistrationOpen && isParticipated) || (!isParticipated && isRegistrationOpen)"><a [class.selected]="localRouter.url.endsWith('participate')" [routerLink]="['./participate']" class="text-light-black fw-semibold fs-15"><i class="fa fa-free-code-camp"></i> Participate</a></li>
+                              <li *ngIf="isParticipated"><a [class.selected]="localRouter.url.endsWith('participate')" [routerLink]="['./participate']" class="text-light-black fw-semibold fs-15"><i class="fa fa-free-code-camp"></i> Participate</a></li>
                               <li *ngIf="isParticipated"><a [class.selected]="localRouter.url.endsWith('submit')" [routerLink]="['./submit']" class="text-light-black fw-semibold fs-15"><i class="fa fa-upload"></i> Submit</a></li>
                               <li *ngIf="isParticipated"><a [class.selected]="localRouter.url.endsWith('submissions')" [routerLink]="['./submissions']" class="text-light-black fw-semibold fs-15"><i class="fa fa-eye"></i> My Submissions</a></li>
                               <li *ngIf="isChallengeHost"><a [class.selected]="localRouter.url.endsWith('view-all-submissions')" [routerLink]="['./view-all-submissions']" class="text-light-black fw-semibold fs-15"><i class="fa fa-eye"></i>View All Submissions</a></li>
                               <li><a [class.selected]="localRouter.url.endsWith('leaderboard')" [routerLink]="['./leaderboard']" class="text-light-black fw-semibold fs-15"><i class="fa fa-th-list"></i> Leaderboard</a></li>
-                              <li *ngIf="isForumEnabled && forumURL"><a [class.selected]="localRouter.url.endsWith('discussions')" href="{{challenge.forumURL}}" target="_blank" class="text-light-black fw-semibold fs-15"><i class="fa fa-comments"></i> Discussions</a></li>
+                              <li *ngIf=""><a [class.selected]="localRouter.url.endsWith('discussions')" href="{{challenge.forumURL}}" target="_blank" class="text-light-black fw-semibold fs-15"><i class="fa fa-comments"></i> Discussions</a></li>
                           </ul>
                       </div>
                   </div>

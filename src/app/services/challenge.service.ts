@@ -140,7 +140,7 @@ export class ChallengeService {
         if (data['id'] === parseInt(id, 10)) {
           SELF.changeCurrentChallenge(data);
         }
-        let challengePublish = {
+        const challengePublish = {
           state: '',
           icon: ''
         };
