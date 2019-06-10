@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {ApiService} from '../../../services/api.service';
 import {EndpointsService} from '../../../services/endpoints.service';
@@ -12,7 +12,8 @@ export class ResetPasswordComponent implements OnInit {
 
   isemailFocused = false;
 
-  constructor(public authService: AuthService, private apiService: ApiService, private endpointService: EndpointsService) { }
+  constructor(public authService: AuthService, private apiService: ApiService, private endpointService: EndpointsService) {
+  }
 
   ngOnInit() {
     this.authService.resetForm();

@@ -1,13 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { InputComponent } from '../../../components/utility/input/input.component';
-import { WindowService } from '../../../services/window.service';
-import { ApiService } from '../../../services/api.service';
-import { AuthService } from '../../../services/auth.service';
-import { GlobalService } from '../../../services/global.service';
-import { EndpointsService } from '../../../services/endpoints.service';
-import { Router, ActivatedRoute} from '@angular/router';
+import {Component, OnInit, Inject} from '@angular/core';
+import {ViewChildren, QueryList, AfterViewInit} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+import {InputComponent} from '../../../components/utility/input/input.component';
+import {WindowService} from '../../../services/window.service';
+import {ApiService} from '../../../services/api.service';
+import {AuthService} from '../../../services/auth.service';
+import {GlobalService} from '../../../services/global.service';
+import {EndpointsService} from '../../../services/endpoints.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 /**
  * Component Class
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   isnameFocused = false;
   ispasswordFocused = false;
+
   /**
    * Constructor.
    * @param document  window document injection
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
               public authService: AuthService,
               private route: ActivatedRoute,
               private router: Router,
-              private endpointsService: EndpointsService) { }
+              private endpointsService: EndpointsService) {
+  }
 
   /**
    * Constructor on initialization
@@ -51,7 +53,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   /**
    * After view is initialized.
    */
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+  }
 
   /**
    * Constructor.
@@ -70,7 +73,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   // Function to login
   userLogin(loginFormValid) {
-    if (!loginFormValid) { this.authService.stopLoader(); return; }
+    if (!loginFormValid) {
+      this.authService.stopLoader();
+      return;
+    }
 
     this.authService.startLoader('Taking you to EvalAI!');
 
@@ -80,7 +86,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     };
 
     this.apiService.postUrl(this.endpointsService.loginURL(), LOGIN_BODY).subscribe(
-
       data => {
         this.globalService.storeData(this.globalService.authStorageKey, data['token']);
         this.authService.loggedIn(true);

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
-import { ApiService } from '../../../services/api.service';
-import { GlobalService } from '../../../services/global.service';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+import {ApiService} from '../../../services/api.service';
+import {GlobalService} from '../../../services/global.service';
 
 /**
  * Component Class
@@ -23,6 +23,7 @@ export class VerifyEmailComponent implements OnInit {
    * Is Email verified
    */
   email_verify_msg = '';
+
   /**
    * Constructor.
    * @param authService  AuthService Injection.
@@ -33,7 +34,8 @@ export class VerifyEmailComponent implements OnInit {
    */
   constructor(private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+  }
 
   /**
    * Component on initialized.
@@ -43,14 +45,14 @@ export class VerifyEmailComponent implements OnInit {
       if (params['token']) {
         this.token = params['token'];
         this.authService.verifyEmail(this.token,
-            () => {
-              this.email_verify_msg = 'Your email has been verified successfully';
-              this.authService.stopLoader();
-            },
-            () => {
-              this.email_verify_msg = 'Something went wrong!! Please try again.';
-              this.authService.stopLoader();
-            }
+          () => {
+            this.email_verify_msg = 'Your email has been verified successfully';
+            this.authService.stopLoader();
+          },
+          () => {
+            this.email_verify_msg = 'Something went wrong!! Please try again.';
+            this.authService.stopLoader();
+          }
         );
       }
     });

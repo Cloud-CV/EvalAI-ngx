@@ -1,12 +1,11 @@
-import {Component, OnInit, Inject, Directive} from '@angular/core';
-import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { InputComponent } from '../../../components/utility/input/input.component';
-import { WindowService } from '../../../services/window.service';
-import { ApiService } from '../../../services/api.service';
-import { EndpointsService } from '../../../services/endpoints.service';
-import { GlobalService } from '../../../services/global.service';
-import { Router, ActivatedRoute} from '@angular/router';
+import {Component, OnInit, Inject} from '@angular/core';
+import {AfterViewInit} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+import {WindowService} from '../../../services/window.service';
+import {ApiService} from '../../../services/api.service';
+import {EndpointsService} from '../../../services/endpoints.service';
+import {GlobalService} from '../../../services/global.service';
+import {Router, ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 
 /**
@@ -19,7 +18,6 @@ import {AuthService} from '../../../services/auth.service';
 })
 
 
-
 export class SignupComponent implements OnInit, AfterViewInit {
 
 
@@ -30,22 +28,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
   ispasswordFocused = false;
   iscnfrmpasswordFocused = false;
   isemailFocused = false;
-
-  /**
-   * All forms in signup component
-   */
-  ALL_FORMS: any = {};
-
-  /**
-   * Form elements name in signup form
-   */
-  signupForm = 'formsignup';
-
-  /**
-   * Signup form elements
-   */
-  @ViewChildren('formsignup')
-  components: QueryList<InputComponent>;
 
   /**
    * Constructor.
@@ -65,7 +47,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
               public authService: AuthService,
               private route: ActivatedRoute,
               private endpointsService: EndpointsService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   /**
    * Component init function.
@@ -77,52 +60,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
    * Component after view initialized.
    */
   ngAfterViewInit() {
-    // print array of CustomComponent objects
-    // this.componentlist = this.components.toArray();
-
-    this.ALL_FORMS[this.signupForm] = this.components;
   }
-
-
-
-  /**
-   * Validate form function.
-   * @param formname  Name of the form fields (#)
-   */
-  formValidate(formname) {
-    this.globalService.formValidate(this.ALL_FORMS[this.signupForm], this.formSubmit, this);
-  }
-
-  /**
-   * Form Submit function (Called after validation).
-   * @param self  context value of this.
-   */
-  formSubmit(self) {
-    const SIGNUP_BODY = JSON.stringify({
-      username: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'username'),
-      email: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'email'),
-      password1: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'password'),
-      password2: self.globalService.formValueForLabel(self.ALL_FORMS[self.signupForm], 'confirm password')
-    });
-    self.apiService.postUrl(self.endpointsService.signupURL(), SIGNUP_BODY).subscribe(
-      data => {
-        // Success Message in data.message
-        setTimeout(() => {
-          self.globalService.showToast('success', 'Registered successfully. Please verify your email address!', 5);
-        }, 1000);
-        self.router.navigate(['/auth/login']);
-      },
-      err => {
-        self.globalService.handleFormError(self.ALL_FORMS[self.signupForm], err);
-      },
-      () => console.log('SIGNUP-FORM-SUBMITTED')
-    );
-  }
-
-
-  /**
-   * Ported From Angular Application
-   */
 
   // Function to signup
   userSignUp(signupFormValid) {
