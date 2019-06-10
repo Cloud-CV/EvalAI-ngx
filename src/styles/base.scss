@@ -22,6 +22,8 @@ body {
 .content {
   line-height: 24px;
   letter-spacing: 0.1px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .go {
@@ -162,10 +164,21 @@ body {
 }
 
 
+/*icon colors*/
+
+.red-text {
+  color: #F44336;
+}
+
+.green-text {
+  color: #4CAF50;
+}
+
+
 /*anchors*/
 
 a {
-  // color: $red-light;
+  color: #3c3e49;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   cursor: pointer;
@@ -188,6 +201,10 @@ a.light-link {
   &:hover {
     color: white;
   }
+}
+
+a.dark-link:hover {
+  color: #ffaf4b;
 }
 
 a.text-light-black:hover {
@@ -323,6 +340,13 @@ ul {
   display: inline-block;
   transition: all 0.3s ease;
   font-size: $fs-14;
+}
+
+.btn:disabled {
+  background-color: #DFDFDF !important;
+  box-shadow: none;
+  color: #9F9F9F !important;
+  cursor: default;
 }
 
 .btn-nofill {

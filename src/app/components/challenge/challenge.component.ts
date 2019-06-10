@@ -108,10 +108,6 @@ export class ChallengeComponent implements OnInit {
       this.publishChallenge.state = publishChallenge.state;
       this.publishChallenge.icon = publishChallenge.icon;
     });
-
-    if (this.deleteChallengeModel == this.challenge.title) {
-      this.challengeNameConfirm = true;
-    }
   }
 
   /**
@@ -224,6 +220,7 @@ export class ChallengeComponent implements OnInit {
    */
   deleteChallenge() {
     const SELF = this;
+    let redirectTo = '/dashboard';
 
     const apiCall = () => {
       const BODY = JSON.stringify({});
@@ -232,6 +229,7 @@ export class ChallengeComponent implements OnInit {
         BODY
         ).subscribe(
         data => {
+          SELF.router.navigate([redirectTo]);
           SELF.globalService.showToast('success', 'The Challenge is successfully deleted!', 5);
         },
         err => {
