@@ -103,7 +103,7 @@
       position: absolute;
       top: -40px;
       left: -50px;
-      background: #252833;;
+      background: $blue-overlay-dark;
       height:100%;
       img {
           width: 130%;
@@ -165,7 +165,7 @@
       margin-left: 0px;
       padding-left: 0px;
       .link-team-user {
-          color: #adb4d0;
+          color: $blue-light;
           padding-right: 0px;
           font-size: 12px;
           line-height: 25px;
