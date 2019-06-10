@@ -88,25 +88,49 @@ p.no-top-para {
     border-radius: 10px;
 }
 
+
+/*font styles*/
+
 .fs-12 {
-    font-size: 12px;
+    font-size: $fs-12;
 }
 
 .fs-14 {
-    font-size: 14px;
+    font-size: $fs-14;
+}
+
+.fs-15 {
+  font-size: $fs-15;
 }
 
 .fs-16 {
-    font-size: 16px;
+    font-size: $fs-16;
 }
 
 .fs-18 {
-    font-size: 18px;
+    font-size: $fs-18;
 }
 
 .fs-20 {
-    font-size: 20px;
+    font-size: $fs-20;
 }
+
+.fs-22 {
+  font-size: $fs-22;
+}
+
+.fs-24 {
+  font-size: $fs-24;
+}
+
+.fs-30 {
+  font-size: $fs-30;
+}
+
+.fs-36 {
+  font-size: $fs-36;
+}
+
 
 .pointer {
     cursor: pointer;
@@ -865,9 +889,6 @@ tr {
     margin-bottom: 2.5%;
 }
 
-.fs-30 {
-    font-size: 30px;
-}
 
 .thumb {
     margin: 20px 0;
