@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {Component, OnInit, Inject, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../services/global.service';
+import {AuthService} from '../../services/auth.service';
 
 /**
  * Component Class
@@ -11,44 +12,42 @@ import { GlobalService } from '../../services/global.service';
   templateUrl: './publiclists.component.html',
   styleUrls: ['./publiclists.component.scss']
 })
-export class PubliclistsComponent implements OnInit {
+export class PubliclistsComponent implements OnInit, OnDestroy {
 
   /**
-   * Router local/public instance
+   * Authentication Service subscription
    */
-  localRouter: any;
+  authServiceSubscription: any;
 
   /**
    * Constructor.
    * @param document  Window document Injection.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.
+   * @param authService
    * @param globalService  GlobalService Injection.
    */
   constructor(private router: Router, private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document,
-              private globalService: GlobalService) { }
+              public  authService: AuthService, private globalService: GlobalService) { }
 
   /**
    * Component on intialized.
    */
   ngOnInit() {
-    this.localRouter = this.router;
-    this.scrollNav();
-    this.globalService.scrollToTop();
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/auth/login']);
+    }
+    this.authServiceSubscription = this.authService.change.subscribe((authState) => {
+      if (!authState.isLoggedIn) {
+        console.log('dashboard component auth state', authState);
+        this.router.navigate(['/auth/login']);
+      }
+    });
   }
 
-  /**
-   * Scroll Navigation headers on challenges and team pages.
-   */
-  scrollNav() {
-    if (this.router.url === '/challenges/all') {
-      this.document.getElementById('all-challenges-nav').scrollIntoView();
-    } else if (this.router.url === '/challenges/me') {
-      this.document.getElementById('all-challenges-nav').scrollIntoView();
-    } else if (this.router.url === '/teams/participants') {
-      this.document.getElementById('host-teams-nav').scrollIntoView();
-    } else if (this.router.url === '/teams/hosts') {
-      this.document.getElementById('host-teams-nav').scrollIntoView();
+  ngOnDestroy(): void {
+    if (this.authServiceSubscription) {
+      this.authServiceSubscription.unsubscribe();
     }
   }
 }
