@@ -42,7 +42,7 @@ Use [Docker Compose](https://docs.docker.com/compose/install/) to run all the co
 1. Get the source code on to your machine via git.
 
     ```shell
-    git clone https://github.com/Cloud-CV/EvalAI-ngx.git && cd evalai-ngx
+    git clone https://github.com/Cloud-CV/EvalAI-ngx.git evalai-ngx && cd evalai-ngx
     ```
 
 2. Build and run the Docker containers. This might take a while. You should be able to access EvalAI at `localhost:8888`.
@@ -75,7 +75,7 @@ Compodoc supports [these](https://compodoc.github.io/website/guides/jsdoc-tags.h
 
 ## Contributing
 
-Please go through our [Contribution Guidelines](https://github.com/Cloud-CV/EvalAI/blob/master/.github/CONTRIBUTING.md). Also go through our detailed [Code Structure Guide](https://github.com/Cloud-CV/EvalAI-ngx/blob/master/.github/CODE_STRUCTURE.md) to make the most of existing re-usable features. Finally, go through the [Pull Request Template](https://github.com/Cloud-CV/EvalAI-ngx/blob/master/.github/PULL_REQUEST_TEMPLATE.md) when creating your pull request.
+Please go through our [Contribution Guidelines](https://github.com/Cloud-CV/EvalAI-ngx/blob/master/.github/CONTRIBUTING.md). Also go through our detailed [Code Structure Guide](https://github.com/Cloud-CV/EvalAI-ngx/blob/master/.github/CODE_STRUCTURE.md) to make the most of existing re-usable features. Finally, go through the [Pull Request Template](https://github.com/Cloud-CV/EvalAI-ngx/blob/master/.github/PULL_REQUEST_TEMPLATE.md) when creating your pull request.
 
 
 
