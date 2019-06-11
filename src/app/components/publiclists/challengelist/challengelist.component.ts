@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {DOCUMENT} from '@angular/common';
 
 /**
  * Component Class
@@ -99,17 +100,24 @@ export class ChallengelistComponent implements OnInit {
   isLoggedIn: any = false;
 
   /**
+   * Is scroll button visible
+   */
+  isScrollbtnVisible = false;
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.
    * @param globalService  GlobalService Injection.
    * @param authService  AuthService Injection.
    * @param apiService  ApiService Injection.
+   * @param document
    */
   constructor(private apiService: ApiService,
               private authService: AuthService,
               private globalService: GlobalService,
               private router: Router,
+              @Inject(DOCUMENT) private document,
               private route: ActivatedRoute) { }
 
   /**
@@ -126,6 +134,20 @@ export class ChallengelistComponent implements OnInit {
     }
     this.authServicePublic = this.authService;
     this.routerPublic = this.router;
+  }
+
+
+  /**
+   * Listener for page scroll event
+   */
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const RECT =  this.document.getElementById('ongoing-challenges').getBoundingClientRect();
+    if (RECT.top < 0) {
+      this.isScrollbtnVisible = true;
+    } else {
+      this.isScrollbtnVisible = false;
+    }
   }
 
   /**
@@ -252,4 +274,7 @@ export class ChallengelistComponent implements OnInit {
     );
   }
 
+  scrollUp() {
+    this.document.getElementById('ongoing-challenges').scrollIntoView({behavior: 'smooth'});
+  }
 }
