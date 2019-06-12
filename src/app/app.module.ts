@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -113,7 +114,9 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxTwitterTimelineModule
+    NgxTwitterTimelineModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
   ],
   providers: [
     AuthService,
