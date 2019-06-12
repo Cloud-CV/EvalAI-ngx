@@ -78,8 +78,6 @@ export class ModalComponent implements OnInit {
       if (this.params['title']) {
         this.title = this.params['title'];
       }
-<<<<<<< Updated upstream
-=======
       if (this.params['label']) {
         this.label = this.params['label'];
       }
@@ -89,7 +87,6 @@ export class ModalComponent implements OnInit {
       if (this.params['editorContent']) {
         this.editorContent = this.params['editorContent'];
       }
->>>>>>> Stashed changes
       if (this.params['content']) {
         this.content = this.params['content'];
       }
@@ -116,7 +113,6 @@ export class ModalComponent implements OnInit {
    */
   formValidate() {
     if (this.formComponents.length > 0) {
-      console.log(this.formComponents);
       this.globalService.formValidate(this.formComponents, this.confirmed, this);
     } else {
       this.confirmed(this);

@@ -76,7 +76,6 @@ export class ChallengeevaluationComponent implements OnInit {
 
     const apiCall = (params) => {
       const BODY = JSON.stringify(params);
-      console.log(BODY);
       SELF.apiService.patchUrl(
         SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
         BODY
