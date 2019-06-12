@@ -66,6 +66,11 @@ export class ChallengecardComponent implements OnInit {
   stars = { 'count': 0, 'is_starred': false};
 
   /**
+   * Challenge stars
+   */
+  routerPublic: Router;
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.
@@ -85,6 +90,7 @@ export class ChallengecardComponent implements OnInit {
    * Component on initialized.
    */
   ngOnInit() {
+    this.routerPublic = this.router;
     this.preProcess();
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
