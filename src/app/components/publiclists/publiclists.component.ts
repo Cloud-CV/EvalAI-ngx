@@ -13,12 +13,6 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./publiclists.component.scss']
 })
 export class PubliclistsComponent implements OnInit, OnDestroy {
-
-  /**
-   * Authentication Service subscription
-   */
-  authServiceSubscription: any;
-
   /**
    * Constructor.
    * @param document  Window document Injection.
@@ -33,21 +27,7 @@ export class PubliclistsComponent implements OnInit, OnDestroy {
   /**
    * Component on intialized.
    */
-  ngOnInit() {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/auth/login']);
-    }
-    this.authServiceSubscription = this.authService.change.subscribe((authState) => {
-      if (!authState.isLoggedIn) {
-        console.log('dashboard component auth state', authState);
-        this.router.navigate(['/auth/login']);
-      }
-    });
-  }
+  ngOnInit() {}
 
-  ngOnDestroy(): void {
-    if (this.authServiceSubscription) {
-      this.authServiceSubscription.unsubscribe();
-    }
-  }
+  ngOnDestroy(): void {}
 }
