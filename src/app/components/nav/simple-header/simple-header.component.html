@@ -17,7 +17,7 @@
       <ul *ngIf="!authService.isAuth" class="right">
         <li class="text-med-gray"><a class="waves-effect waves-dark dark-link ev-header-overflow" routerLink="/auth/signup"> <span class="hide-on-small-only"> Sign Up </span></a></li>
         <li>
-          <a class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" routerLink="/auth/login">Log In</a>
+          <a class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" style="padding: 0 29px; font-size: 14px; display: inline-block" routerLink="/auth/login">Log In</a>
         </li>
       </ul>
       <ul class="side-nav" style="width:200px; transform:translateX(0px);" (click)="menuExpander()" *ngIf="!isMenuExpanded">
