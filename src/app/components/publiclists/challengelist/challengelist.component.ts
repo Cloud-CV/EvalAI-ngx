@@ -105,6 +105,11 @@ export class ChallengelistComponent implements OnInit {
   isScrollbtnVisible = false;
 
   /**
+   * Authentication Service subscription
+   */
+  authServiceSubscription: any;
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.
@@ -127,11 +132,21 @@ export class ChallengelistComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
     }
+
+    this.authServiceSubscription = this.authService.change.subscribe((authState) => {
+      this.isLoggedIn = authState.isLoggedIn;
+      if (!authState.isLoggedIn && this.router.url === '/challenges/me') {
+        console.log('challengelist component auth state', authState);
+        this.router.navigate(['/auth/login']);
+      }
+    });
+
     if (this.router.url === '/challenges/all') {
       this.fetchChallenges();
     } else if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
       this.fetchMyTeams();
     }
+
     this.authServicePublic = this.authService;
     this.routerPublic = this.router;
   }
