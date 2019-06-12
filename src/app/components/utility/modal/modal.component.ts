@@ -24,6 +24,11 @@ export class ModalComponent implements OnInit {
   title = 'Are you sure ?';
 
   /**
+   * Modal field label
+   */
+  label = '';
+
+  /**
    * Modal body
    */
   content = '';
@@ -73,6 +78,18 @@ export class ModalComponent implements OnInit {
       if (this.params['title']) {
         this.title = this.params['title'];
       }
+<<<<<<< Updated upstream
+=======
+      if (this.params['label']) {
+        this.label = this.params['label'];
+      }
+      if (this.params['isEditorRequired']) {
+        this.isEditorRequired = this.params['isEditorRequired'];
+      }
+      if (this.params['editorContent']) {
+        this.editorContent = this.params['editorContent'];
+      }
+>>>>>>> Stashed changes
       if (this.params['content']) {
         this.content = this.params['content'];
       }
@@ -99,6 +116,7 @@ export class ModalComponent implements OnInit {
    */
   formValidate() {
     if (this.formComponents.length > 0) {
+      console.log(this.formComponents);
       this.globalService.formValidate(this.formComponents, this.confirmed, this);
     } else {
       this.confirmed(this);
@@ -109,8 +127,19 @@ export class ModalComponent implements OnInit {
    * Modal Confirmed.
    */
   confirmed(self) {
+    let PARAMS = {};
+    if (self.isEditorRequired) {
+      if (self.editorContent === '') {
+        self.denyCallback();
+        self.isInputMessage = true;
+        self.editorValidationMessage = 'This field cannot be empty!';
+        return;
+      }
+      PARAMS[self.label] = self.editorContent;
+    } else {
+      PARAMS = self.globalService.formFields(self.formComponents);
+    }
     self.globalService.hideModal();
-    const PARAMS = self.globalService.formFields(self.formComponents);
     self.confirmCallback(PARAMS);
   }
 
@@ -120,6 +149,30 @@ export class ModalComponent implements OnInit {
   denied() {
     this.globalService.hideModal();
     this.denyCallback();
+  }
+
+  validateModalInput(e) {
+    if (e.target.name === 'challegenDeleteInput') {
+      if (e.target.value === this.challenge.title) {
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+      }
+    } else if (e.target.name === 'editChallengeTitle') {
+      if (e.target.value !== this.challenge.title && e.target.value.length > 1) {
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+      }
+    }
+  }
+
+  validateFileInput(e) {
+    if (e.target.value !== '') {
+      this.isDisabled = false;
+    } else {
+      this.isDisabled = true;
+    }
   }
 
 }

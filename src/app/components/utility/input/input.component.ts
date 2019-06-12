@@ -189,12 +189,4 @@ export class InputComponent implements OnInit {
       this.isValid ? this.message = '' : this.message = this.requiredMessage;
     }
   }
-
-  /**
-   * Trigger click on a DOM element.
-   * @param id  id of DOM element to be clicked
-   */
-  transferClick(id) {
-    this.document.getElementById(id).click();
-  }
 }

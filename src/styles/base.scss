@@ -102,6 +102,136 @@ body {
 }
 
 
+/**Rich text editor styles*/
+.fr-box.fr-basic .fr-element {
+  width: 800px;
+  height: 320px;
+}
+
+.second-toolbar a {
+  display: none;
+}
+
+/**File field styles*/
+.file-field {
+  position: relative;
+}
+
+.file-field .btn {
+  float: left;
+  height: 3rem;
+  line-height: 3rem;
+}
+
+.file-field input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.file-field .file-path-wrapper {
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+.file-path-wrapper input[type=text] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  transition: all 0.3s;
+}
+
+
+/*card styles*/
+
+.ev-card-panel {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 12px $shadow-black;
+}
+
+.ev-md-container {
+  padding: 30px 30px 40px 40px;
+}
+
+.no-pad-lr {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+
+/*grad button style*/
+
+.grad-btn {
+  border-radius: 20px;
+}
+
+.grad-btn-dark {
+  background: $med-gray;
+  font-weight: $fw-regular;
+  color: #fff;
+  box-shadow: 0px 4px 8px #9d9d9d;
+  &:hover {
+      box-shadow: 0px 0px 8px #9d9d9d;
+  }
+}
+
+.grad-btn-light {
+  background: $highlight;
+  font-weight: $fw-regular;
+  color: #fff;
+  box-shadow: 0px 4px 8px #9d9d9d;
+  &:hover {
+      box-shadow: 0px 0px 8px #9d9d9d;
+      background: $highlight;
+  }
+}
+
+.grad-btn-transparent {
+  background-color: rgba(0,0,0,0) !important;
+  font-weight: $fw-regular;
+  color: $med-gray;
+  border: 1px solid $med-gray !important;
+  box-shadow: 0px 4px 8px transparent;
+  &:hover {
+      box-shadow: 0px 0px 8px #9d9d9d !important;
+      background: $med-gray !important;
+      color: #fff;
+  }
+}
+
+
+/*icon colors*/
+
+.red-text {
+  color: #F44336;
+}
+
+.green-text {
+  color: #4CAF50;
+}
 
 
 /*anchors*/
