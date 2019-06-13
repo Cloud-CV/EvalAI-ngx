@@ -126,16 +126,16 @@ export class PrivacyPolicyComponent implements OnInit {
 
     // Removing -nav from the id of the clicked element
     const ELEMENT_ID = ID.slice(0, -4);
-    let element = this.document.getElementById(ELEMENT_ID);
-    var headerOffset = 72;
+    const element = this.document.getElementById(ELEMENT_ID);
+    const headerOffset = 72;
     const bodyRect = document.body.getBoundingClientRect().top;
     const elementRect = element.getBoundingClientRect().top;
     const elementPosition = elementRect - bodyRect;
     const offsetPosition = elementPosition - headerOffset;
 
     window.scrollTo({
-         top: offsetPosition,
-         behavior: "smooth"
+      top: offsetPosition,
+      behavior: 'smooth'
     });
     this.highlightSectionTitle(ELEMENT_ID);
   }
