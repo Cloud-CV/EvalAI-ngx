@@ -15,6 +15,7 @@
   position: relative;
   position: -webkit-sticky;
   position: sticky;
+    max-height: 65vh;
     ul {
       list-style-type: none;
       padding-left: 0;
@@ -52,6 +53,7 @@
       right: 4%;
       height: 50px;
       cursor: pointer;
+      z-index: 4 !important;
       &:hover {
         height: 55px;
       }
