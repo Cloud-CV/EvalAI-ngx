@@ -9,7 +9,7 @@
     margin-top: 30px;
     top: 10%;
     bottom: 0;
-    max-height: 600px;
+    max-height: 600px !important;
     overflow-y: scroll;
     
   position: relative;
@@ -44,7 +44,7 @@
     margin-top: 30px;
     padding-right: 50px;
     a {
-      color: #2196F3 !important;
+      color: $blue-lighter !important;
       font-weight: $fw-regular;
     }
     .scroll-to-top {
@@ -61,11 +61,11 @@
     .privacy-title {
       margin-top: 10px;
       font-size: $fs-34;
-      color: #4d4d4d;
+      color: $med-black;
       font-weight: $fw-semibold;
     }
     .privacy-section-content {
-      color: #4d4d4d;
+      color: $med-black;
       font-size: $fs-16;
       margin-top: 20px;
       line-height: 20px;
@@ -76,7 +76,7 @@
     }
     .privacy-section-title {
       font-size: $fs-20;
-      color: #4d4d4d;
+      color: $med-black;
       font-weight: $fw-bold;
       margin-top: 20px;
       &.scroll-selected {
@@ -86,13 +86,6 @@
   }
 }
 
-.dis-block {
-  display: block;
-}
-
-.dis-none {
-  display: none;
-}
 
 
 @include screen-small-medium {

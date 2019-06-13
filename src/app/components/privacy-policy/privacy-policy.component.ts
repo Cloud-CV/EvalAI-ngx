@@ -89,21 +89,10 @@ export class PrivacyPolicyComponent implements OnInit {
    */
   @HostListener('window:scroll', [])
     onWindowScroll(): void {
+      const el = this.document.getElementById('privacy-policy-title');
+      this.visible = el.getBoundingClientRect().top < 0;
 
-    const el = this.document.getElementById('privacy-policy-title');
-    this.visible = el.getBoundingClientRect().top < 0;
-
-    if (!this.document['manuallyScrolling']) {
-      let scrollToTopElement;
-        if (window.scrollY > 180) {
-          scrollToTopElement = this.document.getElementById('scroll-to-top');
-          scrollToTopElement.classList.remove('dis-none');
-          scrollToTopElement.className += ' dis-block';
-        } else if (window.scrollY < 180) {
-          scrollToTopElement = this.document.getElementById('scroll-to-top');
-          scrollToTopElement.classList.remove('dis-block');
-          scrollToTopElement.className += ' dis-none';
-        }
+      if (!this.document['manuallyScrolling']) {
         const ALL_TARGETS = this.document.getElementsByClassName('privacy-section-title');
         const SELF = this;
         [].some.call(ALL_TARGETS, function (item) {
@@ -118,7 +107,7 @@ export class PrivacyPolicyComponent implements OnInit {
             return true;
           }
         });
-    }
+      }
     }
 
   /**
@@ -137,7 +126,17 @@ export class PrivacyPolicyComponent implements OnInit {
 
     // Removing -nav from the id of the clicked element
     const ELEMENT_ID = ID.slice(0, -4);
-    this.document.getElementById(ELEMENT_ID).scrollIntoView({behavior: 'smooth'});
+    let element = this.document.getElementById(ELEMENT_ID);
+    var headerOffset = 72;
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = element.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
     this.highlightSectionTitle(ELEMENT_ID);
   }
 
