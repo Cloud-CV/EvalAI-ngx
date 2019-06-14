@@ -26,7 +26,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
   /**
    * Update
    */
-  @Input() update: any;
+  @Input() isOnChallengePage: any;
 
   /**
    * Delete team event
@@ -102,8 +102,8 @@ export class TeamcardComponent implements OnInit, OnChanges {
     if ((this.isHost && !this.isSelected) || !this.isHost) {
       this.isSelected = !this.isSelected;
       this.team['isSelected'] = this.isSelected;
-      if (this.isSelected) {
-      this.selectTeam();
+      if (this.isSelected && (this.isHost || this.isOnChallengePage)) {
+        this.selectTeam();
       }
     }
   }
@@ -143,7 +143,6 @@ export class TeamcardComponent implements OnInit, OnChanges {
    * UI view update, called after onInit.
    */
   updateView() {
-    console.log(this.team);
     this.teamView['team_name'] = this.team['team_name'];
     this.teamView['created_by'] = this.team['created_by'];
     this.teamView['team_url'] = this.team['team_url'];
@@ -155,11 +154,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
     } else {
       this.isSelected = false;
     }
-    if (this.selected) {
+    /*if (this.selected) {
       this.isSelected = true;
     } else {
       this.isSelected = false;
-    }
+    }*/
     const temp = this.team['members'];
     let memberString = '';
     for (let i = 0; i < temp.length; i++) {
