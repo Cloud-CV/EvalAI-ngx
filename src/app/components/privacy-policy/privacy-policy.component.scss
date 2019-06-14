@@ -35,8 +35,8 @@
       }
 
       li.scroll-selected {
-        color: $yellow-dark;
-        border-left: 5px solid $yellow-dark;
+        color: $yellow;
+        border-left: 5px solid $yellow;
       }
     }
   }
@@ -80,7 +80,7 @@
       font-weight: $fw-bold;
       margin-top: 20px;
       &.scroll-selected {
-        color: $yellow-dark;
+        color: $yellow;
       }
     }
   }
