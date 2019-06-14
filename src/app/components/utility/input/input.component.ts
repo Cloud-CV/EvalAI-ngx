@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Injectable, Component, OnInit, Input, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../../services/global.service';
+import { BehaviorSubject } from 'rxjs';
 
 /**
  * Component Class
@@ -10,6 +11,7 @@ import { GlobalService } from '../../../services/global.service';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })
+@Injectable()
 export class InputComponent implements OnInit {
 
   /**
@@ -58,6 +60,11 @@ export class InputComponent implements OnInit {
   @Input() readonly: boolean;
 
   /**
+   * Minimum datetime
+   */
+  @Input() mindatetime: string;
+
+  /**
    * Is email flag
    */
   isEmail = false;
@@ -68,9 +75,13 @@ export class InputComponent implements OnInit {
   isDirty = false;
 
   /**
-   * Is field valid
+   * @param isValid Is field valid
+   * @param valid boolean for toggling the isValid
    */
-  isValid = false;
+  isValid = new BehaviorSubject(false);
+  toggleIsValid(valid: boolean) {
+    this.isValid.next(valid)
+  }
 
   /**
    * Is field empty
@@ -123,6 +134,8 @@ export class InputComponent implements OnInit {
         this.isEmail = true;
       }
       this.type = 'text';
+    } else {
+      this.type = this.type;
     }
     if (this.label === undefined) {
       this.label = 'Default Label';
@@ -172,6 +185,11 @@ export class InputComponent implements OnInit {
     } else if (this.type === 'text' || this.type === 'textarea') {
        this.isValid = this.globalService.validateText(e);
        this.isValid ? this.message = '' : this.message = 'Enter a valid text';
+    } else if (this.type === 'number') {
+      this.isValid = this.globalService.validateInteger(e);
+      this.isValid ? this.message = '' : this.message = 'Enter a valid number';
+    } else if (this.type == 'datetime') {
+      this.isValid = true;
     } else if (this.type === 'password') {
        this.isValid = this.globalService.validatePassword(e);
        this.isValid ? this.message = '' : this.message = 'Password minimum 8 characters';

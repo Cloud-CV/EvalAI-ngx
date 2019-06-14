@@ -16,6 +16,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.2.15",
+    "@angular/cdk": "^6.4.7",
     "@angular/common": "^7.2.15",
     "@angular/compiler": "^7.2.15",
     "@angular/core": "^7.2.15",
@@ -26,6 +27,7 @@
     "@angular/router": "^7.2.15",
     "core-js": "^2.4.1",
     "ngx-textarea-autosize": "^2.0.3",
+    "ng-pick-datetime": "^7.0.0",
     "ngx-twitter-timeline": "^0.1.5",
     "normalize.css": "^8.0.0",
     "rxjs": "^6.5.2",
