@@ -17,6 +17,9 @@ import { EndpointsService } from '../../../services/endpoints.service';
 })
 export class TeamlistComponent implements OnInit {
 
+  isnameFocused = false;
+  isurlFocused = false;
+
   /**
    * Auth Service public instance
    */
@@ -71,6 +74,14 @@ export class TeamlistComponent implements OnInit {
    * Create team button
    */
   teamCreateButton = '';
+
+  /**
+   * Create team Object
+   */
+  create_team = {
+    team_name: '',
+    team_url: ''
+  };
 
   /**
    * Is a host
@@ -198,6 +209,14 @@ export class TeamlistComponent implements OnInit {
   }
 
   /**
+   * Show less results.
+   */
+  seeLessClicked() {
+    this.seeMore = this.seeMore - 1;
+    this.updateTeamsView(false);
+  }
+
+  /**
    * Update teams view (called after fetching teams from API).
    * @param reset  reset flag
    */
@@ -248,7 +267,8 @@ export class TeamlistComponent implements OnInit {
         temp[i]['isSelected'] = true;
       }
     }
-    self.allTems = temp;
+    self.allTeams = temp;
+    // console.log('LOGI teamlist unselectOtherTeam', self.allTeams);
     self.updateTeamsView(false);
   }
 
@@ -258,7 +278,7 @@ export class TeamlistComponent implements OnInit {
   appendIsSelected(teams) {
     for (let i = 0; i < teams.length; i++) {
       teams[i]['isSelected'] = false;
-      teams[i]['isHost'] = true;
+      teams[i]['isHost'] = this.isHost;
     }
     return teams;
   }
@@ -269,8 +289,11 @@ export class TeamlistComponent implements OnInit {
    */
   fetchTeams(path) {
     const SELF = this;
+    this.authService.startLoader('Fetching Teams');
     this.apiService.getUrl(path).subscribe(
       data => {
+        this.authService.stopLoader();
+        // console.log(data['results']);
         if (data['results']) {
           SELF.allTeams = data['results'];
           if (SELF.isHost || SELF.isOnChallengePage) {
@@ -304,6 +327,7 @@ export class TeamlistComponent implements OnInit {
         }
       },
       err => {
+        this.authService.stopLoader();
         SELF.globalService.handleApiError(err, false);
       },
       () => {
@@ -449,31 +473,34 @@ export class TeamlistComponent implements OnInit {
 
   /**
    * Called after create team form is validated.
-   * @param self  context value of this.
+   * @param isvalidForm
    */
-  createTeamSubmit(self) {
-    const API_PATH = self.createTeamsPath;
-    const url = self.globalService.formValueForLabel(self.components, 'team_url');
-    let TEAM_BODY: any = {
-      team_name: self.globalService.formValueForLabel(self.components, 'team_name')
-    };
-    if (url) {
-      TEAM_BODY['team_url'] = url;
+  createTeamSubmit(isvalidForm) {
+    if (isvalidForm) {
+      const API_PATH = this.createTeamsPath;
+      const url = this.create_team['team_url'];
+      let TEAM_BODY: any = {
+        team_name: this.create_team['team_name']
+      };
+      if (url) {
+        TEAM_BODY['team_url'] = url;
+      }
+      TEAM_BODY = JSON.stringify(TEAM_BODY);
+      this.authService.startLoader('Creating Team');
+      this.apiService.postUrl(API_PATH, TEAM_BODY).subscribe(
+        data => {
+          this.authService.stopLoader();
+          // Success Message in data.message
+          this.globalService.showToast('success', 'Team created successfully!', 5);
+          this.fetchMyTeams(this.fetchTeamsPath);
+        },
+        err => {
+          this.authService.stopLoader();
+          this.globalService.handleFormError(this.components, err);
+        },
+        () => console.log('CREATE-TEAM-FINISHED')
+      );
     }
-    TEAM_BODY = JSON.stringify(TEAM_BODY);
-    self.apiService.postUrl(API_PATH, TEAM_BODY).subscribe(
-      data => {
-        // Success Message in data.message
-        self.globalService.showToast('success', 'Team created successfully!', 5);
-        self.fetchMyTeams(self.fetchTeamsPath);
-        self.globalService.setFormValueForLabel(self.components, 'team_url', '');
-        self.globalService.setFormValueForLabel(self.components, 'team_name', '');
-      },
-      err => {
-        self.globalService.handleFormError(self.components, err);
-      },
-      () => console.log('CREATE-TEAM-FINISHED')
-    );
   }
 
   /**
