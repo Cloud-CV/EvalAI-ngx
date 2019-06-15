@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import {Component, OnInit, ViewChildren, QueryList, Inject} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
 import { GlobalService } from '../../services/global.service';
 import { ChallengeService } from '../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {DOCUMENT} from '@angular/common';
 
 /**
  * Component Class
@@ -14,6 +15,14 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./challenge-create.component.scss']
 })
 export class ChallengeCreateComponent implements OnInit {
+
+  isFormError = false;
+  isSyntaxErrorInYamlFile = false;
+  ChallengeCreateForm = {
+    input_file: null,
+    file_path: null
+  };
+  syntaxErrorInYamlFile = {};
 
   /**
    * Auth Service public instance
@@ -31,32 +40,23 @@ export class ChallengeCreateComponent implements OnInit {
   routerPublic = null;
 
   /**
-   * Form fields name
-   */
-  submitForm = 'formcreate';
-
-  /**
    * Selected Host team object
    */
   hostTeam: any = null;
-
-  /**
-   * Component Class
-   */
-  @ViewChildren('formcreate')
-  components: QueryList<ChallengeCreateComponent>;
 
   /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.
    * @param authService  AuthService Injection.
+   * @param document
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
    * @param challengeService  ChallengeService Injection.
    */
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
-              private challengeService: ChallengeService, private globalService: GlobalService, private apiService: ApiService) { }
+  constructor(public authService: AuthService, private router: Router, private route: ActivatedRoute,
+              private challengeService: ChallengeService, @Inject(DOCUMENT) private document,
+              private globalService: GlobalService, private apiService: ApiService) { }
 
   /**
    * Component on initialized.
@@ -78,28 +78,48 @@ export class ChallengeCreateComponent implements OnInit {
     });
   }
 
-  /**
-   * Form Validate function.
-   */
-  formValidate(formname) {
-    this.globalService.formValidate(this.components, this.formSubmit, this);
+  challengeCreate() {
+    console.log(this.ChallengeCreateForm);
+
+    if (this.ChallengeCreateForm['input_file'] !== null) {
+      const FORM_DATA: FormData = new FormData();
+      FORM_DATA.append('status', 'submitting');
+      FORM_DATA.append('zip_configuration', this.ChallengeCreateForm['input_file']);
+
+      this.challengeService.challengeCreate(
+        this.hostTeam['id'],
+        FORM_DATA,
+      ).subscribe(
+        data => {
+          this.globalService.showToast('success', 'Successfuly sent to EvalAI admin for approval.');
+          this.router.navigate(['/challenges/me']);
+        },
+        err => {
+          this.globalService.showToast('error', err.error.error);
+          this.isSyntaxErrorInYamlFile = true;
+          this.syntaxErrorInYamlFile = err.error.error;
+        },
+        () => {
+          console.log('Challenge Creation Zip Uploaded');
+        });
+    } else {
+      this.isFormError = true;
+      this.globalService.showToast('error', 'Please Upload File');
+    }
   }
 
-  /**
-   * Form Submit function (Called after validation).
-   */
-  formSubmit(self) {
-    const FORM_DATA: FormData = new FormData();
-    FORM_DATA.append('status', 'submitting');
-    FORM_DATA.append('zip_configuration', self.globalService.formItemForLabel(self.components, 'zip_configuration').fileSelected);
-    const SUCCESS_CALLBACK = () => {
-      self.router.navigate(['/challenges/me']);
-    };
-    self.challengeService.challengeCreate(
-      self.hostTeam['id'],
-      FORM_DATA,
-      SUCCESS_CALLBACK
-    );
+  handleUpload(event) {
+    const files = event.target.files;
+    console.log(files);
+
+    if (files.length >= 1) {
+      this.isFormError = false;
+      this.ChallengeCreateForm['input_file'] = event.target.files[0];
+      this.ChallengeCreateForm['file_path'] = event.target.files[0]['name'];
+      this.document.getElementsByClassName('file-path')[0].value = event.target.files[0]['name'];
+    } else {
+      this.isFormError = true;
+    }
   }
 
 }
