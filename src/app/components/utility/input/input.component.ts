@@ -28,6 +28,16 @@ export class InputComponent implements OnInit {
   @Input() type: string;
 
   /**
+   * Supported file type for file field
+   */
+  @Input() accept: string;
+
+  /**
+   * Name of input
+   */
+  @Input() name: string;
+
+  /**
    * Is it a required field
    */
   @Input() isRequired: boolean;
@@ -56,6 +66,16 @@ export class InputComponent implements OnInit {
    * Is field read-only
    */
   @Input() readonly: boolean;
+
+  /**
+   * Minimum datetime
+   */
+  @Input() mindatetime: string;
+
+  /**
+   * Input file value
+   */
+  @Input() fileValue = '';
 
   /**
    * Is email flag
@@ -126,6 +146,9 @@ export class InputComponent implements OnInit {
     }
     if (this.label === undefined) {
       this.label = 'Default Label';
+    }
+    if (this.accept === undefined) {
+      this.accept = '';
     }
     if (this.isRequired === undefined) {
       this.isRequired = false;

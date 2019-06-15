@@ -30,8 +30,6 @@ body {
 
 
 
-
-
 /* Margins */
 
 .ev-mt-50 {
@@ -86,6 +84,10 @@ body {
   font-weight: $fw-bold;
 }
 
+.fw-bolder {
+  font-weight: $fw-bolder;
+}
+
 
 
 /*Font sizes*/
@@ -127,6 +129,10 @@ body {
 }
 
 
+
+.text-highlight {
+  color: $yellow;
+}
 
 
 /*anchors*/
@@ -626,7 +632,8 @@ ul {
     .title {
       padding: 10px;
       font-size: $fs-18;
-      font-weight: $fw-bold;
+      font-weight: $fw-bolder;
+      margin-bottom: 30px;
     }
     .content {
       padding: 10px;
