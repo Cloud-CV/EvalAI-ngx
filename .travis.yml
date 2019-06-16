@@ -21,10 +21,7 @@ before_script:
 
 script:
   - ng lint
-  - ng test --watch=false --progress=false --code-coverage > test-log
-  - grep Executed test-log
-  - grep ERROR test-log
-  - grep LOGE test-log
+  - ng test
   - ng e2e
   - ng build --prod
 
