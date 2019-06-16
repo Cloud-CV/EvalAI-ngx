@@ -9,6 +9,8 @@ export class AuthService {
   authState = {isLoggedIn: false};
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
+  private tokenSource = new BehaviorSubject('');
+  currentToken = this.tokenSource.asObservable();
 
   /**
    * Constructor.
@@ -25,6 +27,14 @@ export class AuthService {
     authStateChange(state) {
       this.authState = state;
       this.authStateSource.next(this.authState);
+    }
+
+    /**
+     * 
+     * @param token current user token 
+     */
+    getAuthToken(token) {
+      this.tokenSource.next(token);
     }
 
     /**
@@ -112,6 +122,7 @@ export class AuthService {
      */
     isLoggedIn() {
       const token = this.globalService.getAuthToken();
+      this.getAuthToken(token);
       if (token) {
           if (!this.authState['isLoggedIn']) {
             this.loggedIn(true);

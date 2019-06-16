@@ -67,12 +67,37 @@ export class ChallengesubmitComponent implements OnInit {
   selectedPhase = null;
 
   /**
+   * Cli version
+   */
+  cliVersion = '';
+
+  /**
+   * Auth token
+   */
+  authToken = '';
+
+  /**
    * Submissions remaining for the selected phase
    */
   selectedPhaseSubmissions = {
     remaining_submissions_today_count: 0,
     remaining_submissions: 0
   };
+
+  /**
+   * Phase remaining submissions for docker based challenge
+   */
+  phaseRemainingSubmissions: any;
+
+  /**
+   * Flog for phase if submissions max exceeded, details, clock 
+   */
+  phaseRemainingSubmissionsFlags = {};
+
+  /**
+   * Phase remaining submissions countdown (days, hours, minutes, seconds)
+   */
+  phaseRemainingSubmissionsCountdown = {};
 
   /**
    * Component Class
@@ -105,6 +130,9 @@ export class ChallengesubmitComponent implements OnInit {
       this.challenge = challenge;
       this.isActive = this.challenge['is_active'];
       this.submissionGuidelines = this.challenge['submission_guidelines'];
+      if (this.challenge.cli_version !== null) {
+        this.cliVersion = this.challenge.cli_version;
+      }
     });
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
@@ -118,6 +146,83 @@ export class ChallengesubmitComponent implements OnInit {
         this.phases = phases;
         this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
     });
+
+    this.challengeService.isChallengeHost.subscribe(status => {
+      this.isChallengeHost = status;
+    });
+
+    this.authService.currentToken.subscribe(currentToken => {
+      this.authToken = currentToken;
+    });
+
+    if (this.challenge.is_docker_based) {
+      this.displayDockerSubmissionInstructions(this.challenge.id, this.isParticipated);
+    }
+  }
+
+  /**
+   * @param SELF current context
+   * @param eachPhase particular phase of a challenge
+   */
+  countDownTimer(SELF, eachPhase) {
+    const remainingTime = eachPhase.limits.remaining_time;
+    const days = Math.floor(remainingTime / 24 / 60 / 60);
+    const hoursLeft = Math.floor((remainingTime) - (days * 86400));
+    const hours = Math.floor(hoursLeft / 3600);
+    const minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+    const minutes = Math.floor(minutesLeft / 60);
+    let remainingSeconds = Math.floor(remainingTime % 60);
+    let remSeconds;
+    if (remainingSeconds < 10) {
+        remSeconds = "0" + remainingSeconds;
+    }
+    SELF.phaseRemainingSubmissionsCountdown[eachPhase.id] = {
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': remSeconds
+    };
+    if (remainingTime === 0) {
+        SELF.phaseRemainingSubmissionsFlags[eachPhase.id] = 'showSubmissionDetails';
+    } else {
+        remainingSeconds--;
+    }
+  }
+
+  /**
+   * @param challenge challenge id
+   * @param isParticipated Is user a participant
+   */
+  displayDockerSubmissionInstructions(challenge, isParticipated) {
+    if (isParticipated) {
+      const API_PATH = this.endpointsService.challengeSubmissionsRemainingURL(challenge);
+      const SELF = this;
+      this.apiService.getUrl(API_PATH).subscribe(
+        data => {
+          SELF.phaseRemainingSubmissions = data;
+          console.log('asdasdasd', data);
+          let details = SELF.phaseRemainingSubmissions.phases;
+          for (let i=0; i<details.length; i++) {
+            if (details[i].limits.submission_limit_exceeded === true) {
+              SELF.phaseRemainingSubmissionsFlags[details[i].id] = "maxExceeded";
+            } else if (details[i].limits.remaining_submissions_today_count > 0) {
+              SELF.phaseRemainingSubmissionsFlags[details[i].id] = "showSubmissionDetails";
+            } else {
+              let eachPhase = details[i];
+              SELF.phaseRemainingSubmissionsFlags[details[i].id] = "showClock";
+              setInterval(function () {
+                  SELF.countDownTimer(SELF, eachPhase);
+              }, 1000);
+              SELF.countDownTimer(SELF, eachPhase);
+            }
+          }
+        },
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => console.log('Remaining submissions fetched for docker based challenge')
+      )
+    }
   }
 
   /**
@@ -188,5 +293,35 @@ export class ChallengesubmitComponent implements OnInit {
       self.selectedPhase['id'],
       FORM_DATA
     );
+  }
+
+  copyTextToClipboard(val: string) {
+    if (val === 'pip install ') {
+      val += '"evalai' + this.cliVersion + '"';
+    } else if (val === 'evalai set_token ') {
+      val += this.authToken;
+    }
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+
+    this.globalService.showToast('success', 'Command copied to clipboard');
+  }
+
+  validateInput(inputValue) {
+    console.log(inputValue);
+    if (inputValue !== null) {
+      this.inputFile = false;
+    } else {
+      this.inputFile = true;
+    }
   }
 }
