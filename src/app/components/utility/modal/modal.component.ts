@@ -29,6 +29,31 @@ export class ModalComponent implements OnInit {
   content = '';
 
   /**
+   * Modal name
+   */
+  name = '';
+
+  /**
+   * If rich text editor required
+   */
+  isEditorRequired = false;
+
+  /**
+   * Modal edit content
+   */
+  editorContent = '';
+
+  /**
+   * If editor error message
+   */
+  isInputMessage = false;
+
+  /**
+   * Editor validation message
+   */
+  editorValidationMessage = '';
+
+  /**
    * Modal accept button
    */
   confirm = 'Yes';
@@ -73,6 +98,18 @@ export class ModalComponent implements OnInit {
       if (this.params['title']) {
         this.title = this.params['title'];
       }
+      if (this.params['label']) {
+        this.label = this.params['label'];
+      }
+      if (this.params['name']) {
+        this.name = this.params['name'];
+      }
+      if (this.params['isEditorRequired']) {
+        this.isEditorRequired = this.params['isEditorRequired'];
+      }
+      if (this.params['editorContent']) {
+        this.editorContent = this.params['editorContent'];
+      }
       if (this.params['content']) {
         this.content = this.params['content'];
       }
@@ -92,6 +129,12 @@ export class ModalComponent implements OnInit {
         this.form = this.params['form'];
       }
     }
+
+    if (this.isEditorRequired || this.name === 'updateSubmissionDetails') {
+      this.isDisabled = false;
+    }
+
+    this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
   }
 
   /**

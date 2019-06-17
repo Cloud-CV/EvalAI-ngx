@@ -25,6 +25,21 @@ export class SelectphaseComponent implements OnInit, OnChanges {
 
 
   /**
+   * Selected phase name
+   */
+  phaseName = '';
+
+  /**
+   * Selected phase visibility
+   */
+  phaseVisibility = false;
+
+  /**
+   * Phase selection type (radio button or select box)
+   */
+  @Input() phaseSelectionType: string;
+
+  /**
    * Currently selected phase
    */
   selectedPhase: any = null;
@@ -74,23 +89,8 @@ export class SelectphaseComponent implements OnInit, OnChanges {
    * @param phase  phase to be selected.
    */
   selectPhase(phase) {
-    this.selectedPhase = phase;
-    for (let i = 0; i < this.phases.length; i++) {
-      if (phase['phase_split'] && this.phases[i]['phase_split']) {
-        if (phase['id'] === this.phases[i]['id'] && phase['phase_split']['id'] === this.phases[i]['phase_split']['id']) {
-          this.phases[i]['is_selected'] = true;
-        } else {
-          this.phases[i]['is_selected'] = false;
-        }
-
-      } else {
-        if (phase['id'] === this.phases[i]['id']) {
-          this.phases[i]['is_selected'] = true;
-        } else {
-          this.phases[i]['is_selected'] = false;
-        }
-      }
-    }
+    this.phaseName = phase.name;
+    this.phaseVisibility = phase.showPrivate;
     this.phaseSelected(phase);
   }
 

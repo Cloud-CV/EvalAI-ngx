@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -115,7 +118,10 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     AppRoutingModule,
     HttpClientModule,
     TextareaAutosizeModule,
-    NgxTwitterTimelineModule
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [
     AuthService,
