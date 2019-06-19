@@ -185,6 +185,15 @@ export class EndpointsService {
   }
 
   /**
+   * Get all Challenge Submission
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
+  allChallengeSubmissionURL(challenge, phase) {
+    return `${this.challenges}${challenge}/challenge_phase/${phase}/submissions`;
+  }
+
+  /**
    * Challenge Submission Download
    * @param challenge  challenge id
    * @param phase  phase id
