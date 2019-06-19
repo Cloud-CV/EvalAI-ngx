@@ -70,6 +70,7 @@ import { DashFooterComponent } from './components/nav/dash-footer/dash-footer.co
 import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
 import { SimpleHeaderComponent } from './components/nav/simple-header/simple-header.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { HostAnalyticsComponent } from './components/analytics/host-analytics/host-analytics.component';
 import { EditphasemodalComponent } from './components/challenge/challengephases/editphasemodal/editphasemodal.component';
 import {
   TermsAndConditionsModalComponent
@@ -134,6 +135,7 @@ import { DashboardContentComponent } from './components/dashboard/dashboard-cont
     AnalyticsComponent,
     FeaturedChallengesComponent,
     DashboardContentComponent,
+    HostAnalyticsComponent
     EditphasemodalComponent,
     ChallengeviewallsubmissionsComponent,
     TermsAndConditionsModalComponent
