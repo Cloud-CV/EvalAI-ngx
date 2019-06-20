@@ -52,20 +52,4 @@ describe('PrivacyPolicyComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should have equal number of section-title elements as nav elements', () => {
-
-    expect(ALL_NAV.length).toBeGreaterThan(0);
-    expect(ALL_TARGET.length).toBeGreaterThan(0);
-    expect(ALL_TARGET.length).toBe(ALL_NAV.length);
-  });
-
-  // it('should have same section title as nav element title', () => {
-  //   ALL_NAV.forEach((ele, index) => {
-  //     console.log(`LOGE: TARGET: ${ALL_TARGET[index].nativeElement.innerText}`);
-  //     console.log(`LOGE: NAV: ${ele.nativeElement.innerText}`);
-  //     expect(ALL_TARGET[index].nativeElement.innerText + ' ').toBe(ele.nativeElement.innerText);
-  //   });
-  // });
-
 });
