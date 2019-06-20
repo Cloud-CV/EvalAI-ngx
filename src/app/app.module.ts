@@ -61,6 +61,9 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { EditphasemodalComponent } from './components/challenge/challengephases/editphasemodal/editphasemodal.component';
+import { ChallengeviewallsubmissionsComponent } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
+import { TermsAndConditionsModalComponent } from './components/challenge/challengeparticipate/terms-and-conditions-modal/terms-and-conditions-modal.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +111,10 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     PartnersComponent,
     RulesComponent,
     TestimonialsComponent,
-    FeaturedChallengesComponent
+    FeaturedChallengesComponent,
+    EditphasemodalComponent,
+    ChallengeviewallsubmissionsComponent,
+    TermsAndConditionsModalComponent
   ],
   imports: [
     BrowserModule,

@@ -30,12 +30,43 @@ export class GlobalService {
     denyCallback: null,
     form: []
   };
+
+  /**
+   * Edit challenge phase modal default settings
+   */
+  isEditPhaseModalVisible = false
+  editPhaseModalDefault = {
+    isEditPhaseModalVisible: false,
+    confirm: 'Submit',
+    deny: 'Cancel',
+    title: 'Edit Challenge Phase Details',
+    confirmCallback: null,
+    denyCallback: null
+  };
+
+  /**
+   * Terms and conditions modal default settings
+   */
+  isTermsAndConditionsModalVisible = false
+  termsAndConditionsModalDefault = {
+    isTermsAndConditionsModalVisible: false,
+    confirm: 'Submit',
+    deny: 'Cancel',
+    title: 'Terms and Conditions',
+    confirmCallback: null,
+    denyCallback: null
+  };
+
   private scrolledStateSource = new BehaviorSubject(this.scrolledStateDefault);
   currentScrolledState = this.scrolledStateSource.asObservable();
   private confirmSource = new BehaviorSubject(this.confirmDefault);
   currentConfirmParams = this.confirmSource.asObservable();
   private modalSource = new BehaviorSubject(this.modalDefault);
   currentModalParams = this.modalSource.asObservable();
+  private editPhasemodalSource = new BehaviorSubject(this.editPhaseModalDefault);
+  editPhaseModalParams = this.editPhasemodalSource.asObservable();
+  private termsAndConditionsSource = new BehaviorSubject(this.termsAndConditionsModalDefault);
+  termsAndConditionsModalParams = this.termsAndConditionsSource.asObservable();
 
   @Output() toast: EventEmitter<Object> = new EventEmitter();
   @Output() loading: EventEmitter<boolean> = new EventEmitter();
@@ -161,13 +192,59 @@ export class GlobalService {
   }
 
   /**
-   * Hide Modal Component
+   * Display Edit Challenge Phase Modal Component
+   * @param params  parameters for configuring edit challenge phase component (see markdown docs)
+   */
+  showEditPhaseModal(params) {
+    if (!this.isEditPhaseModalVisible) {
+      this.isEditPhaseModalVisible = true;
+      const TEMP = { isEditPhaseModalVisible: true};
+      this.editPhasemodalSource.next(Object.assign({}, params, TEMP));
+    }
+  }
+
+  /**
+   * Display terms and conditions Modal Component
+   * @param params  parameters for configuring terms and conditions component (see markdown docs)
+   */
+  showTermsAndConditionsModal(params) {
+    if (!this.isTermsAndConditionsModalVisible) {
+      this.isTermsAndConditionsModalVisible = true;
+      const TEMP = { isTermsAndConditionsModalVisible: true};
+      this.termsAndConditionsSource.next(Object.assign({}, params, TEMP));
+    }
+  }
+
+  /**
+   * Hide Reusable Modal Component
    */
   hideModal() {
     if (this.isModalVisible) {
       this.isModalVisible = false;
       const TEMP = { isModalVisible: false};
       this.modalSource.next(Object.assign({}, this.modalDefault, TEMP));
+    }
+  }
+
+  /**
+   * Hide Edit Challenge Phase Modal Component
+   */
+  hideEditPhaseModal() {
+    if (this.isEditPhaseModalVisible) {
+      this.isEditPhaseModalVisible = false;
+      const TEMP = { isEditPhaseModalVisible: false};
+      this.editPhasemodalSource.next(Object.assign({}, this.editPhaseModalDefault, TEMP));
+    }
+  }
+
+  /**
+   * Hide terms and conditions Modal Component
+   */
+  hideTermsAndConditionsModal() {
+    if (this.isTermsAndConditionsModalVisible) {
+      this.isTermsAndConditionsModalVisible = false;
+      const TEMP = { isTermsAndConditionsModalVisible: false};
+      this.termsAndConditionsSource.next(Object.assign({}, this.termsAndConditionsModalDefault, TEMP));
     }
   }
 
