@@ -64,7 +64,7 @@ describe('PrivacyPolicyComponent', () => {
     ALL_NAV.forEach((ele, index) => {
       console.log(`LOGE: TARGET: ${ALL_TARGET[index].nativeElement.innerText}`);
       console.log(`LOGE: NAV: ${ele.nativeElement.innerText}`);
-      expect(ALL_TARGET[index].nativeElement.innerText).toBe(ele.nativeElement.innerText);
+      expect(ALL_TARGET[index].nativeElement.innerText + ' ').toBe(ele.nativeElement.innerText);
     });
   });
 
