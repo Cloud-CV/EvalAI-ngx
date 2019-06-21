@@ -88,6 +88,35 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   submissionHighlighted: any = null;
 
   /**
+   * Download file types
+   */
+  fileTypes = [{ 'name': 'csv' }];
+
+  /**
+   * Selected file type
+   */
+  fileSelected = '';
+
+  /**
+   * Phase selection type (radio button or select box)
+   */
+  phaseSelectionType = 'selectBox';
+
+  /**
+   * Select box list type
+   */
+  phaseSelectionListType = 'phase';
+
+  /**
+   * @param showPagination Is pagination
+   * @param paginationMessage Pagination message
+   * @param isPrev Previous page state
+   * @param isNext Next page state
+   * @param currentPage Current Page number
+   */
+  paginationDetails: any = {};
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  GlobalService Injection.

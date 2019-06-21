@@ -67,6 +67,21 @@ export class ChallengesubmitComponent implements OnInit {
   selectedPhase = null;
 
   /**
+   * Cli version
+   */
+  cliVersion = '';
+
+  /**
+   * Auth token
+   */
+  authToken = '';
+
+  /**
+   * Phase selection type (radio button or select box)
+   */
+  phaseSelectionType = 'radioButton';
+
+  /**
    * Submissions remaining for the selected phase
    */
   selectedPhaseSubmissions = {
