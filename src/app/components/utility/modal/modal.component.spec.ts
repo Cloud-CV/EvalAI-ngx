@@ -6,9 +6,9 @@ import { GlobalService } from '../../../services/global.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ChallengeService } from '../../../services/challenge.service';
-import { ApiService } from '../../../api.service';
-import { AuthService } from '../../../auth.service';
-import { EndpointsService } from '../../../endpoints.service';
+import { ApiService } from '../../../services/api.service';
+import { AuthService } from '../../../services/auth.service';
+import { EndpointsService } from '../../../services/endpoints.service';
 
 describe('ModalComponent', () => {
   let component: ModalComponent;
