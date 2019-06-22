@@ -14,7 +14,8 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
    */
   authServiceSubscription: any;
 
-  constructor(public authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
     this.authService.isLoggedIn();
@@ -27,7 +28,7 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.authServiceSubscription) {
+    if (this.authServiceSubscription) {
       this.authServiceSubscription.unsubscribe();
     }
   }
