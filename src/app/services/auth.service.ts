@@ -22,6 +22,18 @@ export class AuthService {
 
 
   /**
+   * Modifications in Auth Services
+   */
+  // default parameters
+  isLoader = false;
+  loaderTitle = '';
+
+  /**
+   * Modifications Ends
+   */
+
+
+  /**
    * Constructor.
    * @param router
    * @param globalService  GlobalService Injection.
