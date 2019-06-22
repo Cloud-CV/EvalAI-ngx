@@ -10,6 +10,12 @@ export class AuthService {
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
 
+
+  /**
+   * Modifications in Auth Services
+   */
+  isAuth = false;
+
   /**
    * Constructor.
    * @param globalService  GlobalService Injection.
@@ -26,6 +32,7 @@ export class AuthService {
     authStateChange(state) {
       this.authState = state;
       this.authStateSource.next(this.authState);
+      this.isAuth = this.authState.isLoggedIn;
     }
 
     /**
