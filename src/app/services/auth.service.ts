@@ -16,7 +16,8 @@ export class AuthService {
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.
    */
-  constructor(private globalService: GlobalService, private apiService: ApiService, private endpointsService: EndpointsService) { }
+  constructor(private globalService: GlobalService, private apiService: ApiService,
+              private endpointsService: EndpointsService) { }
 
     /**
      * Call this to update authentication state.
@@ -32,7 +33,7 @@ export class AuthService {
      * @param autoFetchUserDetails  User details fetch flag
      */
     loggedIn(autoFetchUserDetails = false) {
-      this.authState = {isLoggedIn: true};
+      this.authStateChange({isLoggedIn: true, username: ''});
       if (autoFetchUserDetails) {
         this.fetchUserDetails();
       }
@@ -59,6 +60,9 @@ export class AuthService {
           SELF.authStateChange(TEMP);
         },
         err => {
+          this.globalService.showToast('info', 'Timeout, Please login again to continue!');
+          this.globalService.resetStorage();
+          this.authState = {isLoggedIn: false};
           SELF.globalService.handleApiError(err, false);
         },
         () => console.log('User details fetched')
