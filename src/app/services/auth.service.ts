@@ -33,8 +33,11 @@ export class AuthService {
   canShowPassword = false;
   canShowConfirmPassword = false;
 
+  // default parameters
+  isLoader = false;
+  loaderTitle = '';
   /**
-   * Porting Ends
+   * Modifications Ends
    */
 
 
