@@ -191,7 +191,7 @@ export class ChallengeComponent implements OnInit {
           SELF.globalService.handleApiError(err, true);
           SELF.globalService.showToast('error', err);
         },
-        () => console.log('PUBLISH-CHALLENGE-UPDATE-FINISHED')
+        () => console.log('EDIT-CHALLENGE-TITLE-FINISHED')
       );
     };
 
@@ -236,7 +236,7 @@ export class ChallengeComponent implements OnInit {
           SELF.globalService.handleApiError(err, true);
           SELF.globalService.showToast('error', err);
         },
-        () => console.log('PUBLISH-CHALLENGE-UPDATE-FINISHED')
+        () => console.log('DELETE-CHALLENGE-FINISHED')
       );
     };
 
