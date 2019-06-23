@@ -42,7 +42,7 @@ describe('TeamlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamlistComponent],
+      declarations: [ TeamlistComponent, PubliclistsComponent],
       providers: [ GlobalService, ApiService, AuthService, ChallengeService, EndpointsService ],
       imports: [ RouterTestingModule.withRoutes(routes), HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
