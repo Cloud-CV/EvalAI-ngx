@@ -94,7 +94,6 @@ describe('TeamlistComponent', () => {
     spyOn(TestBed.get(AuthService), 'isLoggedIn').and.returnValue(true);
     spyOn(TestBed.get(ChallengeService), 'changeCurrentHostTeam').and.returnValue(null);
     spyOn(component, 'selectedTeam').and.returnValue({});
-    // spyOn(router, 'url').and.returnValue('/teams/hosts');
 
     fixture.detectChanges();
 
@@ -107,7 +106,7 @@ describe('TeamlistComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        // expect(fixture.debugElement.injector.get(ChallengeService).changeCurrentHostTeam).toHaveBeenCalled();
+        expect(fixture.debugElement.injector.get(ChallengeService).changeCurrentHostTeam).toHaveBeenCalled();
       });
     });
 
