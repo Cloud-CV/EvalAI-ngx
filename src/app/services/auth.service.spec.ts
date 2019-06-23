@@ -5,7 +5,7 @@ import { GlobalService } from './global.service';
 import { EndpointsService } from './endpoints.service';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 describe('AuthService', () => {
   let authService: AuthService;

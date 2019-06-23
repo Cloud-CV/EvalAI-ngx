@@ -5,10 +5,8 @@ import { EndpointsService } from './endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalService } from './global.service';
 import { AuthService } from './auth.service';
-import {WindowService} from './window.service';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+
+import {Observable} from 'rxjs';
 
 
 

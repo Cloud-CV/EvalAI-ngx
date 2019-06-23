@@ -19,8 +19,7 @@ import {ChallengephasesComponent} from '../challengephases/challengephases.compo
 import {ChallengeparticipateComponent} from '../challengeparticipate/challengeparticipate.component';
 import {ChallengesubmitComponent} from '../challengesubmit/challengesubmit.component';
 import {NotFoundComponent} from '../../not-found/not-found.component';
-import {ChallengecardComponent} from '../../publiclists/challengelist/challengecard/challengecard.component';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {SelectphaseComponent} from '../../utility/selectphase/selectphase.component';
 
 
