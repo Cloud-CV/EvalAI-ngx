@@ -11,7 +11,6 @@ import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import {By} from '@angular/platform-browser';
 
 
 describe('PrivacyPolicyComponent', () => {
@@ -55,7 +54,6 @@ describe('PrivacyPolicyComponent', () => {
   });
 
   it('should have equal number of section-title elements as nav elements', () => {
-
     expect(ALL_NAV.length).toBeGreaterThan(0);
     expect(ALL_TARGET.length).toBeGreaterThan(0);
     expect(ALL_TARGET.length).toBe(ALL_NAV.length);
@@ -73,11 +71,7 @@ describe('PrivacyPolicyComponent', () => {
 
   it('should scroll the page', () => {
 
-    const ALL_TARGET = fixture.debugElement.queryAll(By.css('.privacy-section-title'));
-
     ALL_TARGET[ALL_TARGET.length - 1].nativeElement.scrollIntoView();
-
-    // component.onWindowScroll();
 
     fixture.detectChanges();
 
@@ -90,28 +84,11 @@ describe('PrivacyPolicyComponent', () => {
 
   it('should scroll the page manually', () => {
 
-    const ALL_NAV = fixture.debugElement.queryAll(By.css('.privacy-nav'));
-
-    // spyOn(component, 'scroll');
-
     ALL_NAV.forEach((ele, index) => {
       ele.nativeElement.click();
       fixture.whenStable().then(() => {
          expect(component.scroll).toHaveBeenCalled();
        });
-    });
-
-  });
-
-
-  it('should click the Scroll top button', () => {
-
-    const btn = fixture.debugElement.query(By.css('.scroll-to-top'));
-
-    btn.nativeElement.click();
-
-    fixture.whenStable().then(() => {
-        expect(component.scrollToTop).toHaveBeenCalled();
     });
 
   });
