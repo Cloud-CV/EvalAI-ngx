@@ -2,29 +2,18 @@ import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/t
 
 import { ChallengeleaderboardComponent } from './challengeleaderboard.component';
 import { ChallengeService } from '../../../services/challenge.service';
-import { SelectphaseComponent } from '../../../components/utility/selectphase/selectphase.component';
+import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 import { GlobalService } from '../../../services/global.service';
 import { ApiService } from '../../../services/api.service';
 import { AuthService } from '../../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ForceloginComponent } from '../../../components/utility/forcelogin/forcelogin.component';
+
 import { RouterTestingModule } from '@angular/router/testing';
 import { EndpointsService } from '../../../services/endpoints.service';
 import {Router, Routes, ActivatedRoute} from '@angular/router';
 
-import {ChallengeComponent} from '../challenge.component';
-import {ChallengeoverviewComponent} from '../challengeoverview/challengeoverview.component';
-import {ChallengeevaluationComponent} from '../challengeevaluation/challengeevaluation.component';
-import {ChallengephasesComponent} from '../challengephases/challengephases.component';
-import {ChallengeparticipateComponent} from '../challengeparticipate/challengeparticipate.component';
-import {ChallengesubmitComponent} from '../challengesubmit/challengesubmit.component';
-import {ChallengesubmissionsComponent} from '../challengesubmissions/challengesubmissions.component';
-
 import {NotFoundComponent} from '../../not-found/not-found.component';
-import {By} from '@angular/platform-browser';
-import {ObserveOnOperator} from 'rxjs/operators/observeOn';
-import {observable} from 'rxjs/symbol/observable';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 
 
@@ -102,19 +91,6 @@ describe('ChallengeleaderboardComponent', () => {
       component.selectPhaseSplitId(0, component);
     });
   });
-
-  // it('should call checkUrlParams', async() => {
-  //   spyOn(authService, 'isLoggedIn').and.returnValue(true);
-  //   router.navigate(['/challenge/0/leaderboard/']).then(() => {
-  //     fixture.detectChanges();
-  //     component.phases = [{'id': 0, 'leaderboard_public': true}];
-  //     component.phaseSplits = [{'id': 0, 'challenge_phase': 0, 'visibility': 3}];
-  //     // component.filteredPhaseSplits = [{}];
-  //     fixture.detectChanges();
-  //     component.filterPhases();
-  //     // component.checkUrlParams();
-  //   });
-  // });
 
   it('should call fetchLeaderboard successfully', () => {
     spyOn(authService, 'isLoggedIn').and.returnValue(true);
