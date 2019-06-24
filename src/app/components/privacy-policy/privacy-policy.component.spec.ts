@@ -86,15 +86,6 @@ describe('PrivacyPolicyComponent', () => {
     fixture.whenStable().then(() => {
       expect(component.scroll).toHaveBeenCalled();
       expect(component.highlightNav).toHaveBeenCalled();
-    });
-  });
-
-  it('should have called the highlight functions when scroll selected element is called', () => {
-    const scrollSelected = de.query(By.css('.scroll-selected'));
-    scrollSelected.nativeElement.click();
-
-    fixture.whenStable().then(() => {
-      expect(component.highlightNav).toHaveBeenCalled();
       expect(component.highlightSectionTitle).toHaveBeenCalled();
     });
   });
