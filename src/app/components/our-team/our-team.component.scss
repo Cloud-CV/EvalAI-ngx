@@ -156,13 +156,12 @@
   }
 
   .team-link-head {
-      padding: 10px 5px 10px 5px !important;
+      padding: 10px 5px 10px 5px;
       position: absolute;
       width: 100%;
       top: 0;
       z-index: 10;
       margin-left: 0px;
-      padding-left: 0px;
       .link-team-user {
           color: $blue-light;
           padding-right: 0px;
