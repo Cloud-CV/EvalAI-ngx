@@ -17,6 +17,7 @@ import { LoadingComponent } from './components/utility/loading/loading.component
 import { ConfirmComponent } from './components/utility/confirm/confirm.component';
 import { ModalComponent } from './components/utility/modal/modal.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {By} from '@angular/platform-browser';
 
 describe('AppComponent', () => {
 
@@ -79,9 +80,14 @@ describe('AppComponent', () => {
   }));
 
   // creation of app done
-  it('should create the app', async(() => {
+  it('should create the app', () => {
     const compFixture = TestBed.createComponent(AppComponent);
-    const app = compFixture.debugElement.componentInstance;
+    const app = compFixture.componentInstance;
+    compFixture.detectChanges();
+    app.onWindowScroll();
+
     expect(app).toBeTruthy();
-  }));
+  });
+
+
 });

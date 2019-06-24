@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import { GlobalService } from '../../services/global.service';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
@@ -54,7 +54,6 @@ describe('PrivacyPolicyComponent', () => {
   });
 
   it('should have equal number of section-title elements as nav elements', () => {
-
     expect(ALL_NAV.length).toBeGreaterThan(0);
     expect(ALL_TARGET.length).toBeGreaterThan(0);
     expect(ALL_TARGET.length).toBe(ALL_NAV.length);
@@ -66,6 +65,32 @@ describe('PrivacyPolicyComponent', () => {
       console.log(`LOGE: NAV: ${ele.nativeElement.innerText}`);
       expect(ALL_TARGET[index].nativeElement.innerText).toBe(ele.nativeElement.innerText);
     });
+  });
+
+
+
+  it('should scroll the page', () => {
+
+    ALL_TARGET[ALL_TARGET.length - 1].nativeElement.scrollIntoView();
+
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(component.onWindowScroll).toHaveBeenCalled();
+    });
+
+  });
+
+
+  it('should scroll the page manually', () => {
+
+    ALL_NAV.forEach((ele, index) => {
+      ele.nativeElement.click();
+      fixture.whenStable().then(() => {
+         expect(component.scroll).toHaveBeenCalled();
+       });
+    });
+
   });
 
 });
