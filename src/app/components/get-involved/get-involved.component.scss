@@ -56,12 +56,8 @@
         line-height: 20px;
         letter-spacing: 0.5px;
         a {
-          color: $red-light;
-
+          color: $yellow;
           transition: all 0.2s ease-in-out;
-          &:hover {
-            color: $red-dark;
-          }
         }
 
         .content-section {
