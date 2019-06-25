@@ -5,7 +5,7 @@
   overflow-x: hidden;
   .get-involved-title {
     font-size: $fs-34;
-    margin-top: 50px;
+    margin-top: 0px !important;
     margin-bottom: 13px;
     font-weight: $fw-semibold;
     color: #4d4d4d;
@@ -41,13 +41,13 @@
     overflow: auto;
     div {
       .get-involved-section-title {
+        border-bottom: 1px solid #e3e3e3;
+        line-height: 2em;
         font-weight: $fw-semibold;
-        margin-bottom: 30px;
         margin-top: 100px;
         font-size: $fs-24;
         color: #4d4d4d;
         box-sizing: border-box;
-        line-height: 110%;
       }
       .get-involved-section-body {
         color: #4d4d4d;
@@ -78,10 +78,15 @@
 
 
 @include screen-medium {
+  .get-involved-container {
+    .get-involved-title {
+      margin: 0px;
+    }
+  }
   .get-involved-section {
     div {
       .get-involved-section-title {
-        margin-top: 50px;
+        margin: 0px !important;
       }
     }
   }
@@ -103,7 +108,7 @@
       padding-right: 30px;
       div {
         .get-involved-section-title {
-          margin-top: 30px;
+          margin: 0px;
         }
       }
       img {
