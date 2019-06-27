@@ -65,6 +65,11 @@ export class ChallengeComponent implements OnInit {
   isLoggedIn: any = false;
 
   /**
+   * To call the API inside modal for editing the challenge details
+   */
+  apiCall: any;
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  GlobalService Injection.
@@ -135,7 +140,7 @@ export class ChallengeComponent implements OnInit {
       isPublished = true;
     }
 
-    const apiCall = () => {
+    SELF.apiCall = () => {
       const BODY = JSON.stringify({
         'published': isPublished
       });
@@ -166,7 +171,7 @@ export class ChallengeComponent implements OnInit {
       content: '',
       confirm: 'Yes, I\'m sure',
       deny: 'No',
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showConfirm(PARAMS);
   }
@@ -177,7 +182,7 @@ export class ChallengeComponent implements OnInit {
   editChallengeTitle() {
     const SELF = this;
 
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       SELF.apiService.patchUrl(
         SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
@@ -210,7 +215,7 @@ export class ChallengeComponent implements OnInit {
           value: this.challenge.title
         },
       ],
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }
@@ -222,7 +227,7 @@ export class ChallengeComponent implements OnInit {
     const SELF = this;
     const redirectTo = '/dashboard';
 
-    const apiCall = () => {
+    SELF.apiCall = () => {
       const BODY = JSON.stringify({});
       SELF.apiService.postUrl(
         SELF.endpointsService.deleteChallengeURL(SELF.challenge.id),
@@ -255,7 +260,7 @@ export class ChallengeComponent implements OnInit {
           value: ''
         },
       ],
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }

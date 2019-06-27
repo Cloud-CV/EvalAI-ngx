@@ -26,6 +26,11 @@ export class ChallengeoverviewComponent implements OnInit {
   isChallengeHost = false;
 
   /**
+   * To call the API inside modal for editing the challenge description
+   */
+  apiCall: any;
+
+  /**
    * Constructor.
    * @param document  Window document Injection.
    * @param challengeService  ChallengeService Injection.
@@ -50,7 +55,7 @@ export class ChallengeoverviewComponent implements OnInit {
   editChallengeOverview() {
     const SELF = this;
 
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       SELF.apiService.postUrl(
         SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
@@ -73,7 +78,7 @@ export class ChallengeoverviewComponent implements OnInit {
       content: 'asdasdasd \n\nasdasdasdasd',
       confirm: 'Submit',
       deny: 'Cancel',
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }
