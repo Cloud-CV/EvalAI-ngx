@@ -1,18 +1,9 @@
 @import "styles/styles-port/modules/variables";
 
-a.active-auth {
-  color: $dark-black;
-}
-
 .auth-light-link {
   &:hover {
     color: $highlight;
   }
-}
-
-.ev-horiz-list {
-  display: inline-block;
-  margin-right: 20px;
 }
 
 .fg-pass {
@@ -21,14 +12,6 @@ a.active-auth {
 
 .auth-container {
   transition: all 0.2s ease-in-out;
-}
-
-.wrn-msg {
-  font-size: 0.8em;
-}
-
-.reg-control {
-  margin-top: 15px;
 }
 
 .auth-home {
@@ -51,15 +34,6 @@ img.auth-logo {
   min-height: 100vh;
   overflow: hidden;
   position: relative;
-
-  input {
-    margin-bottom: 0px !important;
-  }
-
-  .input-field {
-    height: 72px !important;
-    max-height: 72px !important;
-  }
 }
 
 .graphic-cont {
