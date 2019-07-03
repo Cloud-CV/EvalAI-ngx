@@ -50,10 +50,10 @@
             </span>
       <label for="password" [class.active]="ispasswordFocused">
         <strong>Password-minlength:8 required</strong>
-        <span [style]="{color: color}">{{message}}</span>
+        <span [style.color]="color">{{' ' + message}}</span>
       </label>
       <div class="wrn-msg text-highlight"
-           *ngIf="password.invalid && (password.dirty || password.touched || signupForm.$submitted)">
+           *ngIf="password.invalid && (password.dirty || password.touched || signupForm.submitted)">
         <p *ngIf="password.errors.minlength">Password is less than 8 characters.</p>
         <p *ngIf="password.errors.required">Password is required.</p>
       </div>
@@ -72,12 +72,12 @@
             </span>
       <label for="confirm_password" [class.active]="iscnfrmpasswordFocused">Confirm Password *</label>
       <div class="wrn-msg text-highlight"
-           *ngIf="confirm_password.invalid && (confirm_password.dirty || confirm_password.touched || signupForm.submitted)">
+           *ngIf="(confirm_password.invalid ) && (confirm_password.dirty || confirm_password.touched || signupForm.submitted)">
         <p *ngIf="confirm_password.errors.minlength">Password is less than 8 characters.</p>
         <p *ngIf="confirm_password.errors.required">Password confirmation is required.</p>
       </div>
       <div class="wrn-msg text-highlight"
-           *ngIf="signupForm.errors !== null && (confirm_password.dirty || confirm_password.touched || signupForm.submitted)">
+           *ngIf="signupForm.errors !== null && confirm_password.valid && (confirm_password.dirty || confirm_password.touched || signupForm.submitted)">
         <p *ngIf="signupForm.errors['passwordMismatch']">Passwords do not match</p>
       </div>
     </div>
