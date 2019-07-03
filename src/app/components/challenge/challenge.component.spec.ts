@@ -29,7 +29,7 @@ describe('ChallengeComponent', () => {
   let component: ChallengeComponent;
   let fixture: ComponentFixture<ChallengeComponent>;
   let router, authService, authServiceSpy;
-  let fakeActivatedRoute = {
+  const fakeActivatedRoute = {
     id: 1
   };
   let challengeService, challengeServiceSpy;
@@ -37,7 +37,7 @@ describe('ChallengeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         ChallengeComponent,
         HeaderStaticComponent,
         ChallengeoverviewComponent,
@@ -53,11 +53,11 @@ describe('ChallengeComponent', () => {
         TeamlistComponent,
         SelectphaseComponent
       ],
-      providers: [ 
-        ApiService, 
-        GlobalService, 
-        ChallengeService, 
-        AuthService, 
+      providers: [
+        ApiService,
+        GlobalService,
+        ChallengeService,
+        AuthService,
         EndpointsService,
         {
           provide: ActivatedRoute,
@@ -254,7 +254,7 @@ describe('ChallengeComponent', () => {
       observer.complete();
       return {unsubscribe() {}};
     }));
-    
+
     component.deleteChallenge();
     fixture.detectChanges();
     expect(globalService.showModal).toHaveBeenCalled();
@@ -273,7 +273,7 @@ describe('ChallengeComponent', () => {
       observer.complete();
       return {unsubscribe() {}};
     }));
-    
+
     component.deleteChallenge();
     fixture.detectChanges();
     expect(globalService.showModal).toHaveBeenCalled();
