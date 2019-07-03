@@ -41,6 +41,7 @@ export class VerifyEmailComponent implements OnInit {
    * Component on initialized.
    */
   ngOnInit() {
+    this.authService.startLoader('Verifying Email');
     this.route.params.subscribe(params => {
       if (params['token']) {
         this.token = params['token'];
