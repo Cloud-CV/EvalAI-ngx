@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 import { InputComponent } from '../input/input.component';
+import { ChallengeService } from '../../../services/challenge.service';
 
 /**
  * Component Class
@@ -64,6 +65,16 @@ export class ModalComponent implements OnInit {
   form = [];
 
   /**
+   * challenge object
+   */
+  challenge: any;
+
+  /**
+   * delete challenge button disable
+   */
+  isDisabled = true;
+
+  /**
    * Modal form items
    */
   @ViewChildren('formmodal')
@@ -83,7 +94,7 @@ export class ModalComponent implements OnInit {
    * Constructor.
    * @param globalService  GlobalService Injection.
    */
-  constructor(private globalService: GlobalService) { }
+  constructor(private globalService: GlobalService, private challengeService: ChallengeService) { }
 
   /**
    * Component on intialized.
@@ -162,6 +173,22 @@ export class ModalComponent implements OnInit {
   denied() {
     this.globalService.hideModal();
     this.denyCallback();
+  }
+
+  validateModalInput(e) {
+    if (e.target.name === 'challegenDeleteInput') {
+      if (e.target.value === this.challenge.title) {
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+      }
+    } else if (e.target.name === 'editChallengeTitle') {
+      if (e.target.value !== this.challenge.title && e.target.value.length > 1) {
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+      }
+    }
   }
 
 }

@@ -12,7 +12,11 @@ import { GlobalService } from '../../services/global.service';
 })
 export class PrivacyPolicyComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) { }
+  visible: boolean;
+
+  constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) {
+    this.visible = false;
+  }
 
   /**
    * Checks if element is visible (called after scroll event)
@@ -85,7 +89,10 @@ export class PrivacyPolicyComponent implements OnInit {
    */
   @HostListener('window:scroll', [])
     onWindowScroll(): void {
-    if (!this.document['manuallyScrolling']) {
+      const el = this.document.getElementById('privacy-policy-title');
+      this.visible = el.getBoundingClientRect().top < 0;
+
+      if (!this.document['manuallyScrolling']) {
         const ALL_TARGETS = this.document.getElementsByClassName('privacy-section-title');
         const SELF = this;
         [].some.call(ALL_TARGETS, function (item) {
@@ -100,7 +107,7 @@ export class PrivacyPolicyComponent implements OnInit {
             return true;
           }
         });
-    }
+      }
     }
 
   /**
@@ -119,19 +126,24 @@ export class PrivacyPolicyComponent implements OnInit {
 
     // Removing -nav from the id of the clicked element
     const ELEMENT_ID = ID.slice(0, -4);
-    this.document.getElementById(ELEMENT_ID).scrollIntoView();
+    const element = this.document.getElementById(ELEMENT_ID);
+    const headerOffset = 72;
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = element.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
     this.highlightSectionTitle(ELEMENT_ID);
-    const SCROLLED_Y = window.scrollY;
-    if (SCROLLED_Y) {
-      const HEADER_HEIGHT = this.document.getElementById('header-static').clientHeight;
-      window.scroll(0, SCROLLED_Y - HEADER_HEIGHT);
-    }
   }
 
   /**
    * Scrolls to the top of the page
    */
   scrollToTop() {
-    this.document.body.scrollTop = this.document.documentElement.scrollTop = 0;
+    this.document.getElementById('privacy-policy-title').scrollIntoView({behavior: 'smooth'});
   }
 }
