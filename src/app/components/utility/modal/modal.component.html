@@ -8,7 +8,8 @@
     </div>
     <div class="form">
       <div *ngFor="let item of form">
-        <app-input [name]="item['name']" (input)="validateModalInput($event)" [isRequired]="item['isRequired']" [label]="item['label']" [placeholder]="item['placeholder']" [type]="item['type']" [theme]="'dark'" [icon]="item['icon']" [value]="item['value']" #formmodal></app-input>
+        <app-input *ngIf="item['type'] != 'file'" [name]="item['name']" (input)="validateModalInput($event)" [isRequired]="item['isRequired']" [label]="item['label']" [placeholder]="item['placeholder']" [type]="item['type']" [icon]="item['icon']" [value]="item['value']" [message]="inputErrorMessage" #formmodal></app-input>
+        <app-input *ngIf="item['type'] == 'file'" [name]="item['name']" (change)="validateFileInput($event)" [isRequired]="item['isRequired']" [label]="item['label']" [placeholder]="item['placeholder']" [type]="item['type']" [icon]="item['icon']" [value]="item['value']" #formmodal></app-input>
       </div>
     </div>
     <div class="buttons">
