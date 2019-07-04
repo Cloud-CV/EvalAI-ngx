@@ -55,7 +55,7 @@ export class ChallengeoverviewComponent implements OnInit {
   editChallengeOverview() {
     const SELF = this;
 
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       SELF.apiService.patchUrl(
         SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
@@ -81,7 +81,7 @@ export class ChallengeoverviewComponent implements OnInit {
       editorContent: this.challenge.description,
       confirm: 'Submit',
       deny: 'Cancel',
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }

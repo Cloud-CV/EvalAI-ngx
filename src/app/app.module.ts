@@ -115,7 +115,6 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxTwitterTimelineModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     TextareaAutosizeModule,
