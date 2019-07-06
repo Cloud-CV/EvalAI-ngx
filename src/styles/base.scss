@@ -208,6 +208,14 @@ body {
   }
 }
 
+/* textarea styles */
+.settings-section {
+  textarea {
+    margin: 0px !important;
+    padding: 0px !important;
+    min-height: 2rem !important;
+  }
+}
 
 /*icon colors*/
 

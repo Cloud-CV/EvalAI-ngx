@@ -61,6 +61,7 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
+import { ChallengesettingsComponent } from './components/challenge/challengesettings/challengesettings.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
     PartnersComponent,
     RulesComponent,
     TestimonialsComponent,
-    FeaturedChallengesComponent
+    FeaturedChallengesComponent,
+    ChallengesettingsComponent
   ],
   imports: [
     BrowserModule,

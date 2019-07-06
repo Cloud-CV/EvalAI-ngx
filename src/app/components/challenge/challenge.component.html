@@ -145,6 +145,11 @@
                                     class="text-light-black fw-semibold fs-15">
                                     <i class="fa fa-comments"></i> Discussions
                                 </a></li>
+                            <li *ngIf="isChallengeHost"><a
+                                    [class.selected]="localRouter.url.endsWith('settings')"
+                                    [routerLink]="['./settings']"
+                                    class="text-light-black fw-semibold fs-15"><i
+                                        class="fa fa-gear"></i> Settings</a></li>
                         </ul>
                     </div>
                 </div>
