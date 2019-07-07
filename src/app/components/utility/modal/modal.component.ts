@@ -151,7 +151,10 @@ export class ModalComponent implements OnInit {
    * Modal Confirmed.
    */
   confirmed(self) {
-    if (this.editorContent === '') {
+    const content_text = document.createElement('div');
+    content_text.innerHTML = this.editorContent;
+    const actual_text = content_text.textContent || content_text.innerText || '';
+    if (actual_text.trim() === '') {
       this.denyCallback();
       this.isInputMessage = true;
       this.editorValidationMessage = 'Challenge description cannot be empty!';
@@ -164,7 +167,7 @@ export class ModalComponent implements OnInit {
         };
       }
       self.confirmCallback(PARAMS);
-  }
+    }
   }
 
   /**

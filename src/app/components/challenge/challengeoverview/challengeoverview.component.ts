@@ -76,7 +76,6 @@ export class ChallengeoverviewComponent implements OnInit {
 
     const PARAMS = {
       title: 'Edit Challenge Description',
-      content: '',
       isEditorRequired: true,
       editorContent: this.challenge.description,
       confirm: 'Submit',
