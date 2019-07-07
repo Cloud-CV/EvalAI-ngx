@@ -72,6 +72,11 @@ export class ChallengesubmitComponent implements OnInit {
   submitForm = 'formsubmit';
 
   /**
+   * Phase selection type (radio button or select box)
+   */
+  phaseSelectionType = 'radioButton';
+
+  /**
    * Challenge phases list
    */
   phases = [];
