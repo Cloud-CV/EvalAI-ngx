@@ -64,7 +64,6 @@ export class ChallengeoverviewComponent implements OnInit {
           data => {
             SELF.challenge.description = data.description;
             SELF.globalService.showToast('success', 'The description is successfully updated!', 5);
-
           },
           err => {
             SELF.globalService.handleApiError(err, true);
