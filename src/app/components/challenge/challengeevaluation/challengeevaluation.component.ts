@@ -175,7 +175,7 @@ export class ChallengeevaluationComponent implements OnInit {
           SELF.globalService.showToast('error', err);
         },
         () => console.log('EDIT-EVALUATION-SCRIPT-FINISHED')
-      )
+      );
     };
 
     /**
