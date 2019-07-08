@@ -106,7 +106,6 @@ export class ChallengeevaluationComponent implements OnInit {
     const PARAMS = {
       title: 'Edit Evaluation Details',
       label: 'evaluation_details',
-      content: '',
       isEditorRequired: true,
       editorContent: this.challenge.evaluation_details,
       confirm: 'Submit',
@@ -146,7 +145,6 @@ export class ChallengeevaluationComponent implements OnInit {
     const PARAMS = {
       title: 'Edit Terms And Conditions',
       label: 'terms_and_conditions',
-      content: '',
       isEditorRequired: true,
       editorContent: this.challenge.terms_and_conditions,
       confirm: 'Submit',
