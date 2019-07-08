@@ -36,6 +36,12 @@ export class ChallengeevaluationComponent implements OnInit {
   tncElement: any;
 
   /**
+   * To call the API inside modal for editing the challenge evaluation
+   * details, evaluation script and terms and conditions
+   */
+  apiCall: any;
+
+  /**
    * Constructor.
    * @param document  window document Injection.
    * @param challengeService  ChallengeService Injection.
@@ -73,15 +79,16 @@ export class ChallengeevaluationComponent implements OnInit {
    */
   editEvaluationCriteria() {
     const SELF = this;
-
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
+      console.log(BODY);
       SELF.apiService.patchUrl(
         SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
         BODY
       ).subscribe(
         data => {
           SELF.challenge.evaluation_details = data.evaluation_details;
+          console.log(data);
           this.updateView();
           SELF.globalService.showToast('success', 'The evaluation details is successfully updated!', 5);
         },
@@ -104,7 +111,7 @@ export class ChallengeevaluationComponent implements OnInit {
       editorContent: this.challenge.evaluation_details,
       confirm: 'Submit',
       deny: 'Cancel',
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }
@@ -114,8 +121,7 @@ export class ChallengeevaluationComponent implements OnInit {
    */
   editTermsAndConditions() {
     const SELF = this;
-
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       SELF.apiService.patchUrl(
         SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
@@ -145,7 +151,7 @@ export class ChallengeevaluationComponent implements OnInit {
       editorContent: this.challenge.terms_and_conditions,
       confirm: 'Submit',
       deny: 'Cancel',
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }
@@ -155,8 +161,7 @@ export class ChallengeevaluationComponent implements OnInit {
    */
   editEvaluationScript() {
     const SELF = this;
-
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const FORM_DATA: FormData = new FormData();
       FORM_DATA.append('evaluation_script', params['evaluation_script']);
       SELF.apiService.patchFileUrl(
@@ -178,7 +183,6 @@ export class ChallengeevaluationComponent implements OnInit {
      */
     const PARAMS = {
       title: 'Edit Evaluation Script',
-      content: '',
       confirm: 'Submit',
       deny: 'Cancel',
       form: [
@@ -191,7 +195,7 @@ export class ChallengeevaluationComponent implements OnInit {
           value: ''
         },
       ],
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }

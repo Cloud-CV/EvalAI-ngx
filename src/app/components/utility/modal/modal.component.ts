@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 import { InputComponent } from '../input/input.component';
+import { ChallengeService } from '../../../services/challenge.service';
 
 /**
  * Component Class
@@ -34,6 +35,26 @@ export class ModalComponent implements OnInit {
   content = '';
 
   /**
+   * If rich text editor required
+   */
+  isEditorRequired = false;
+
+  /**
+   * Modal edit content
+   */
+  editorContent = '';
+
+  /**
+   * If editor error message
+   */
+  isInputMessage = false;
+
+  /**
+   * Editor validation message
+   */
+  editorValidationMessage = '';
+
+  /**
    * Modal accept button
    */
   confirm = 'Yes';
@@ -47,6 +68,16 @@ export class ModalComponent implements OnInit {
    * Modal form items list
    */
   form = [];
+
+  /**
+   * challenge object
+   */
+  challenge: any;
+
+  /**
+   * delete challenge button disable
+   */
+  isDisabled = true;
 
   /**
    * Modal form items
@@ -68,7 +99,7 @@ export class ModalComponent implements OnInit {
    * Constructor.
    * @param globalService  GlobalService Injection.
    */
-  constructor(private globalService: GlobalService) { }
+  constructor(private globalService: GlobalService, private challengeService: ChallengeService) { }
 
   /**
    * Component on intialized.
@@ -106,6 +137,11 @@ export class ModalComponent implements OnInit {
         this.form = this.params['form'];
       }
     }
+    if (this.isEditorRequired) {
+      this.isDisabled = false;
+    }
+
+    this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
   }
 
   /**
@@ -125,7 +161,10 @@ export class ModalComponent implements OnInit {
   confirmed(self) {
     let PARAMS = {};
     if (self.isEditorRequired) {
-      if (self.editorContent === '') {
+      const content_text = document.createElement('div');
+      content_text.innerHTML = this.editorContent;
+      const actual_text = content_text.textContent || content_text.innerText || '';
+      if (actual_text.trim() === '') {
         self.denyCallback();
         self.isInputMessage = true;
         self.editorValidationMessage = 'This field cannot be empty!';
@@ -170,5 +209,4 @@ export class ModalComponent implements OnInit {
       this.isDisabled = true;
     }
   }
-
 }
