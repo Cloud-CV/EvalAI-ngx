@@ -185,6 +185,25 @@ export class EndpointsService {
   }
 
   /**
+   * Filter challenge submissions in my submissions by participant team name
+   * @param challenge challenge id
+   * @param phase phase id
+   * @param participantTeamName participant team name
+   */
+  challengeSubmissionWithFilterQueryURL(challenge, phase, participantTeamName) {
+    return `${this.jobs}${this.challenge}${challenge}/challenge_phase/${phase}/submission?participant_team__team_name=${participantTeamName}`;
+  }
+
+  /**
+   * Get all Challenge Submission
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
+  allChallengeSubmissionURL(challenge, phase) {
+    return `${this.challenges}${challenge}/challenge_phase/${phase}/submissions`;
+  }
+
+  /**
    * Challenge Submission Download
    * @param challenge  challenge id
    * @param phase  phase id

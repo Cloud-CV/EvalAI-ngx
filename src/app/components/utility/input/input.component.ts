@@ -181,6 +181,10 @@ export class InputComponent implements OnInit {
        this.isValid = this.globalService.validatePassword(e);
        this.isValid ? this.message = '' : this.message = 'Password minimum 8 characters';
     }
+    if (this.name === 'bannedEmailIds' || this.name === 'filterByTeamName') {
+      this.message = '';
+      this.isRequired = false;
+    }
   }
 
   /**
