@@ -30,6 +30,11 @@ export class InputComponent implements OnInit {
   @Input() type: string;
 
   /**
+   * Name of input
+   */
+  @Input() name: string;
+
+  /**
    * Is it a required field
    */
   @Input() isRequired: boolean;

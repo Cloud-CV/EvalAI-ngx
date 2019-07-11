@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { FormsModule } from '@angular/forms';
 
 // Import serivces
 import { AuthService } from './services/auth.service';

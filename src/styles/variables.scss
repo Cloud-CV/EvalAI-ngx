@@ -3,30 +3,49 @@
 
 /* Blue Shades */
 
+$light-gray: #adb4d0;
+$med-gray: #3c3e49;
+$dark-gray: #252833;
 $blue-dark: #33526e;
 $blue-darker: #273e54;
-$blue-light: #adc8e0;
+$blue-light: #adb4d0;
 $blue-medium: #32485d;
+$blue-lighter: #2196F3;
 $blue-medium-dark: #056cf0;
 $wild-blue: #adb4d0;
 
 $teal: #008081;
+
+/* Black Shades */
+$med-black: #4d4d4d;
 
 /* Purple Shades */
 $purple-medium: #a178b7;
 
 /* Red Shades */
 
-$red-dark: #cb8474;
+$red-dark: #252833;
 $red-light: #eb8474;
 
 
+/*black shades*/
 
-/* Orange Shades */
+$shadow-black: #dedede;
+$light-black: #9d9d9d;
+$med-black: #4d4d4d;
+$dark-black: #4d4d4d;
+
+ /*orange shades*/
 
 $yellow: #ffaf4b;
 $yellow-light: #ffecc8;
+$orange: #ff9800;
 $orange-light: #ffd99a;
+$highlight: #ffaf4b;
+$highlight-dark: #ff7b2e;
+$med-orange: #DF9C3E;
+$hover-orange: #DA8F27;
+
 
 /* Pink Shades */
 $pink-dark: #d7387f;
@@ -52,6 +71,7 @@ $gray-medium: #d4d4d4;
 $gray-dark: #9d9d9d;
 $gray-darker: #273e54;
 $gray-lighter: #fafafa;
+$dark-black: #4d4d4d;
 
 /* fire shades */
 
@@ -69,13 +89,15 @@ $overlay-medium: rgba(0, 0, 0, 0.5);
 $white-overlay-light: rgba(255, 255, 255, 0.2);
 $white-overlay-medium: rgba(255, 255, 255, 0.5);
 $white-overlay-dark: rgba(255, 255, 255, 0.7);
-$blue-overlay-dark: rgba(39, 62, 84, 0.8);
+$blue-overlay-dark: #252833;
 
 
 /* Font sizes */
 
 $fs-12: 12px;
+$fs-13: 13px;
 $fs-14: 14px;
+$fs-15: 15px;
 $fs-16: 16px;
 $fs-18: 18px;
 $fs-20: 20px;
@@ -96,6 +118,6 @@ $fw-bold: 700;
 
 /* Screen Sizes */
 
-$screen-sm: 810px;
+$screen-sm: 768px;
 $screen-sm-md: 992px;
 $screen-md: 1130px;
