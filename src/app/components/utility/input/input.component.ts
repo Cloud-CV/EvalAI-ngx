@@ -1,7 +1,6 @@
 import { Injectable, Component, OnInit, Input, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../../services/global.service';
-import { BehaviorSubject } from 'rxjs';
 
 /**
  * Component Class
@@ -11,7 +10,6 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })
-@Injectable()
 export class InputComponent implements OnInit {
 
   /**
