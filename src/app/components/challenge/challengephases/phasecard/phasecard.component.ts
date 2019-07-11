@@ -76,8 +76,10 @@ export class PhasecardComponent implements OnInit {
 
     const apiCall = (params) => {
       const FORM_DATA: FormData = new FormData(params);
-      for (let key in params) {
-        FORM_DATA.append(key, params[key]);
+      for (const key in params) {
+        if (params[key]) {
+          FORM_DATA.append(key, params[key]);
+        }
       }
       console.log(FORM_DATA);
       SELF.apiService.patchFileUrl(
@@ -93,7 +95,7 @@ export class PhasecardComponent implements OnInit {
           SELF.globalService.showToast('error', err);
         },
         () => console.log('EDIT-CHALLENGE-PHASE-DETAILS-FINISHED')
-      )
+      );
     };
 
     const PARAMS = {

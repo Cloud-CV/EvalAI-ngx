@@ -197,7 +197,7 @@ export class InputComponent implements OnInit {
     } else if (this.type === 'number') {
       this.isValid = this.globalService.validateInteger(e);
       this.isValid ? this.message = '' : this.message = 'Enter a valid number';
-    } else if (this.type == 'datetime') {
+    } else if (this.type === 'datetime') {
       this.isValid = true;
     } else if (this.type === 'password') {
        this.isValid = this.globalService.validatePassword(e);

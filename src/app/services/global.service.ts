@@ -37,7 +37,7 @@ export class GlobalService {
   /**
    * Edit challenge phase modal default settings
    */
-  isEditPhaseModalVisible = false
+  isEditPhaseModalVisible = false;
   editPhaseModalDefault = {
     isEditPhaseModalVisible: false,
     confirm: 'Submit',
@@ -264,7 +264,7 @@ export class GlobalService {
           TEMP[item.label.toLowerCase()] = date.toISOString();
         } else {
           TEMP[item.label.toLowerCase()] = item.value;
-        } 
+        }
       }
     });
     return TEMP;
