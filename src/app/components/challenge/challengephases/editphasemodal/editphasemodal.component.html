@@ -8,7 +8,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 col-lr-pad">
           <div class="input-field align-left">
               <div class="fs-16 w-400 text-med-black">Phase Name</div>
-              <app-input class="mt-20" [isRequired]="true" [label]="'name'" [placeholder]="''" [type]="'text'" [icon]="" [value]="name" #formmodal></app-input>
+              <app-input class="mt-20" [isRequired]="true" [editPhaseDetails]="editPhaseDetails" [label]="'name'" [placeholder]="''" [type]="'text'" [icon]="" [value]="name" #formmodal></app-input>
           </div>
         </div>
       </div>
@@ -29,13 +29,13 @@
         <div class="col-lg-4 col-md-4 col-sm-12 col-lr-pad">
           <div class="input-field align-left">
             <span class="text-med-black fw-regular fs-16">Start date and time</span>
-            <app-input class="mt-20" [mindatetime]="todayDateTime" [name]="'start_date'" [isRequired]="true" [label]="'start_date'" [placeholder]="''" [type]="'datetime'" [value]="startDate" #formmodal></app-input>
+            <app-input class="mt-20" [mindatetime]="todayDateTime" [editPhaseDetails]="editPhaseDetails" [name]="'start_date'" [isRequired]="true" [label]="'start_date'" [placeholder]="''" [type]="'datetime'" [value]="startDate" #formmodal></app-input>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12 col-lr-pad">
           <div class="input-field align-left">
             <span class="text-med-black fw-regular fs-16">End date and time</span>
-            <app-input class="mt-20" [mindatetime]="startDate" [name]="'end_date'" [isRequired]="true" [label]="'end_date'" [placeholder]="''" [type]="'datetime'" [value]="endDate" #formmodal></app-input>
+            <app-input class="mt-20" [mindatetime]="startDate" [editPhaseDetails]="editPhaseDetails" [name]="'end_date'" [isRequired]="true" [label]="'end_date'" [placeholder]="''" [type]="'datetime'" [value]="endDate" #formmodal></app-input>
           </div>
         </div>
       </div>
@@ -43,27 +43,27 @@
       <div class="col-lg-4 col-md-4 col-sm-12 col-lr-pad">
         <div class="input-field align-left">
           <span class="text-med-black fw-regular fs-16">Submissions/day</span>
-          <app-input class="mt-20" id="max_submissions_per_day" [name]="'max_submissions_per_day'" [isRequired]="true" [label]="'max_submissions_per_day'" [placeholder]="''" [type]="'number'" [value]="maxSubmissionsPerDay" #formmodal></app-input>
+          <app-input class="mt-20" id="max_submissions_per_day" [editPhaseDetails]="editPhaseDetails" [name]="'max_submissions_per_day'" [isRequired]="true" [label]="'max_submissions_per_day'" [placeholder]="''" [type]="'number'" [value]="maxSubmissionsPerDay" #formmodal></app-input>
         </div>
       </div>
 
       <div class="col-lg-4 col-md-4 col-sm-12 col-lr-pad">
         <div class="input-field align-left">
           <span class="text-med-black fw-regular fs-16">Submissions/month</span>
-          <app-input class="mt-20" min="challenge_phase.max_submissions_per_day" id="max_submissions" [name]="'max_submissions'" [isRequired]="true" [label]="'max_submissions_per_month'" [placeholder]="''" [type]="'number'" [value]="maxSubmissionsPerMonth" #formmodal></app-input>
+          <app-input class="mt-20" min="challenge_phase.max_submissions_per_day" [editPhaseDetails]="editPhaseDetails" id="max_submissions" [name]="'max_submissions'" [isRequired]="true" [label]="'max_submissions_per_month'" [placeholder]="''" [type]="'number'" [value]="maxSubmissionsPerMonth" #formmodal></app-input>
         </div>
       </div>
 
       <div class="col-lg-4 col-md-4 col-sm-12 col-lr-pad">
         <div class="input-field align-left">
           <span class="text-med-black fw-regular fs-16">Total submissions</span>
-          <app-input class="mt-20" min="challenge_phase.max_submissions_per_month" id="max_submissions" [name]="'max_submissions'" [isRequired]="true" [label]="'max_submissions'" [placeholder]="''" [type]="'number'" [value]="maxSubmissions" #formmodal></app-input>
+          <app-input class="mt-20" min="challenge_phase.max_submissions_per_month" [editPhaseDetails]="editPhaseDetails" id="max_submissions" [name]="'max_submissions'" [isRequired]="true" [label]="'max_submissions'" [placeholder]="''" [type]="'number'" [value]="maxSubmissions" #formmodal></app-input>
         </div>
       </div>
 
       <div class="row row-lr-margin">
         <div class="col-lg-6 col-md-6 col-sm-12 col-lr-pad">
-          <app-input [name]="testAnnotationFile" [label]="'test_annotation'" [placeholder]="''" [type]="'file'" [value]="''" #formmodal></app-input>
+          <app-input [name]="testAnnotationFile" [label]="'test_annotation'" [editPhaseDetails]="editPhaseDetails" [placeholder]="''" [type]="'file'" [value]="''" #formmodal></app-input>
         </div>
       </div>
 

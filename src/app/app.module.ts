@@ -135,8 +135,7 @@ import { EditphasemodalComponent } from './components/challenge/challengephases/
     ApiService,
     GlobalService,
     ChallengeService,
-    EndpointsService,
-    InputComponent
+    EndpointsService
   ],
   bootstrap: [AppComponent]
 })

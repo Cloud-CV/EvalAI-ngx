@@ -90,6 +90,11 @@ export class EditphasemodalComponent implements OnInit {
   isDisabled = false;
 
   /**
+   * Is edit phase details
+   */
+  editPhaseDetails = true;
+
+  /**
    * Modal form items
    */
   @ViewChildren('formmodal')
@@ -109,7 +114,7 @@ export class EditphasemodalComponent implements OnInit {
    * Constructor.
    * @param globalService  GlobalService Injection.
    */
-  constructor(private globalService: GlobalService, private inputComponent: InputComponent) { }
+  constructor(private globalService: GlobalService) { }
 
   ngOnInit() {
     if (this.params) {
@@ -153,7 +158,6 @@ export class EditphasemodalComponent implements OnInit {
         this.denyCallback = this.params['denyCallback'];
       }
     }
-    this.inputComponent.toggleIsValid(true);
     this.todayDateTime = new Date();
   }
 

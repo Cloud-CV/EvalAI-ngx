@@ -70,6 +70,11 @@ export class InputComponent implements OnInit {
   @Input() mindatetime: string;
 
   /**
+   * Is editing phase details
+   */
+  @Input() editPhaseDetails: boolean;
+
+  /**
    * Is email flag
    */
   isEmail = false;
@@ -80,13 +85,9 @@ export class InputComponent implements OnInit {
   isDirty = false;
 
   /**
-   * @param isValid Is field valid
-   * @param valid boolean for toggling the isValid
+   * Is field valid
    */
-  isValid = new BehaviorSubject(false);
-  toggleIsValid(valid: boolean) {
-    this.isValid.next(valid)
-  }
+  isValid = false;
 
   /**
    * Is field empty
@@ -167,6 +168,9 @@ export class InputComponent implements OnInit {
     }
     if (this.readonly) {
       this.isReadonly = true;
+    }
+    if (this.editPhaseDetails === true) {
+      this.isValid = true;
     }
   }
 
