@@ -166,7 +166,6 @@ export class EditphasemodalComponent implements OnInit {
    */
   formValidate() {
     if (this.formComponents.length > 0) {
-      console.log(this.formComponents);
       this.globalService.formValidate(this.formComponents, this.confirmed, this);
     } else {
       this.confirmed(this);

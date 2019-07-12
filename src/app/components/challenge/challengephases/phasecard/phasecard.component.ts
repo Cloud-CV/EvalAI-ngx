@@ -81,7 +81,6 @@ export class PhasecardComponent implements OnInit {
           FORM_DATA.append(key, params[key]);
         }
       }
-      console.log(FORM_DATA);
       SELF.apiService.patchFileUrl(
         SELF.endpointsService.updateChallengePhaseDetailsURL(SELF.challenge.id, SELF.phase['id']),
         FORM_DATA
@@ -94,7 +93,7 @@ export class PhasecardComponent implements OnInit {
         err => {
           SELF.globalService.showToast('error', err);
         },
-        () => console.log('EDIT-CHALLENGE-PHASE-DETAILS-FINISHED')
+        () => {}
       );
     };
 
