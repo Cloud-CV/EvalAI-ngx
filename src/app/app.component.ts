@@ -93,9 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.globalEditPhaseModalSubscription = this.globalService.editPhaseModalParams.subscribe(params => {
-      setTimeout(() => {
-        this.editPhaseModalParams = params;
-      }, 0);
+      this.editPhaseModalParams = params;
     });
 
     this.globalServiceSubscriptionScrollTop = this.globalService.scrolltop.subscribe(() => {

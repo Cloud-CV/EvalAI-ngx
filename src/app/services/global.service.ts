@@ -478,10 +478,7 @@ export class GlobalService {
    * @returns boolean indicating valid/invalid text
    */
   validateInteger(integer) {
-    if (integer > 0) {
-      return true;
-    }
-    return false;
+    return integer > 0;
   }
 
   /**

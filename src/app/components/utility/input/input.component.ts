@@ -138,8 +138,6 @@ export class InputComponent implements OnInit {
         this.isEmail = true;
       }
       this.type = 'text';
-    } else {
-      this.type = this.type;
     }
     if (this.label === undefined) {
       this.label = 'Default Label';

@@ -17,7 +17,7 @@
     <span class="input-bar"></span>
     <label [class.is-not-empty]="!isEmpty" [class.theme-dark]="theme=='dark'">{{placeholder}}</label>
     <i class="input-icon {{icon}}" *ngIf="isIconPresent"></i>
-    <div class="input-message" #textValue [class.hidden]="toggleErrorMessage()">{{message}}</div>
+    <div class="input-message" [class.hidden]="toggleErrorMessage()">{{message}}</div>
   </div>
 
   <div *ngIf="type=='datetime'">

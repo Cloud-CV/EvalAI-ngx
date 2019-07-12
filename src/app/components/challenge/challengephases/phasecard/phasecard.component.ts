@@ -22,12 +22,12 @@ export class PhasecardComponent implements OnInit {
   /**
    * start date of phase
    */
-  startDate: any;
+  startDate: string;
 
   /**
    * End date of phase
    */
-  endDate: any;
+  endDate: string;
 
   /**
    * Challenge object
