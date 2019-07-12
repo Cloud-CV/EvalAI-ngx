@@ -78,9 +78,8 @@ export class PhasecardComponent implements OnInit {
 
   editChallengePhase() {
     const SELF = this;
-
     SELF.apiCall = (params) => {
-      const FORM_DATA: FormData = new FormData(params);
+      const FORM_DATA: FormData = new FormData();
       for (const key in params) {
         if (params[key]) {
           FORM_DATA.append(key, params[key]);
