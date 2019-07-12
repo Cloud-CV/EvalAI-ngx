@@ -40,6 +40,11 @@ export class PhasecardComponent implements OnInit {
   isChallengeHost = false;
 
   /**
+   * To call the API inside modal for editing the challenge phase details
+   */
+  apiCall: any;
+
+  /**
    * Constructor.
    * @param globalService  GlobalService Injection.
    */
@@ -74,7 +79,7 @@ export class PhasecardComponent implements OnInit {
   editChallengePhase() {
     const SELF = this;
 
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const FORM_DATA: FormData = new FormData(params);
       for (const key in params) {
         if (params[key]) {
@@ -109,7 +114,7 @@ export class PhasecardComponent implements OnInit {
       maxSubmissions: SELF.phase['max_submissions'],
       confirm: 'Submit',
       deny: 'Cancel',
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showEditPhaseModal(PARAMS);
   }
