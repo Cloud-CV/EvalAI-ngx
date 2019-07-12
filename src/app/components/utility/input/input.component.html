@@ -26,7 +26,7 @@
       (input)="validateInput($event.target.value)" [class.isValid]="isValid"
       [class.theme-dark]="theme=='dark'" type="{{type}}"
       [readonly]="isReadonly">
-    <owl-date-time #datetime></owl-date-time>
+    <owl-date-time [hour12Timer] = "true" #datetime></owl-date-time>
     <span class="input-bar"></span>
     <label [class.is-not-empty]="!isEmpty" [class.theme-dark]="theme=='dark'">{{placeholder}}</label>
     <i class="input-icon {{icon}}" *ngIf="isIconPresent"></i>
