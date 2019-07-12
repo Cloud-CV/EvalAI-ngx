@@ -23,6 +23,11 @@ export class SelectphaseComponent implements OnInit, OnChanges {
   @Input() phaseSelected: any;
 
   /**
+   * Phase selection type (radio button or select box)
+   */
+  @Input() phaseSelectionType: string;
+
+  /**
    * Challenge object
    */
   challenge: any;

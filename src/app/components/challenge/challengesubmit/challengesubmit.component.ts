@@ -5,7 +5,6 @@ import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EndpointsService } from '../../../services/endpoints.service';
-import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 
 /**
  * Component Class
@@ -78,14 +77,14 @@ export class ChallengesubmitComponent implements OnInit {
   phases = [];
 
   /**
-   * Filtered challenge phases
-   */
-  filteredPhases = [];
-
-  /**
    * Selected phase object
    */
   selectedPhase = null;
+
+  /**
+   * Phase selection type (radio button or select box)
+   */
+  phaseSelectionType = 'radioButton';
 
   /**
    * Submissions remaining for the selected phase
@@ -101,8 +100,8 @@ export class ChallengesubmitComponent implements OnInit {
   /**
    * Component Class
    */
-  @ViewChildren('phaseselect')
-  components: QueryList<SelectphaseComponent>;
+  @ViewChildren('formsubmit')
+  components: QueryList<ChallengesubmitComponent>;
 
   /**
    * Constructor.
@@ -139,7 +138,11 @@ export class ChallengesubmitComponent implements OnInit {
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
-        this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
+        for (var j=0; j<this.phases.length; j++){
+          if (phases[j].is_public == false) {
+            this.phases[j].showPrivate = true;
+          }
+      }
     });
 
     this.challengeService.isChallengeHost.subscribe(status => {
