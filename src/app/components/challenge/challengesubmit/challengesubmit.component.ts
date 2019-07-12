@@ -77,6 +77,11 @@ export class ChallengesubmitComponent implements OnInit {
   phases = [];
 
   /**
+   * Filtered challenge phases
+   */
+  filteredPhases = [];
+
+  /**
    * Selected phase object
    */
   selectedPhase = null;
@@ -138,11 +143,12 @@ export class ChallengesubmitComponent implements OnInit {
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
-        for (var j=0; j<this.phases.length; j++){
-          if (phases[j].is_public == false) {
+        this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
+        for (let j = 0; j < this.phases.length; j++) {
+          if (phases[j].is_public === false) {
             this.phases[j].showPrivate = true;
           }
-      }
+        }
     });
 
     this.challengeService.isChallengeHost.subscribe(status => {
@@ -161,8 +167,8 @@ export class ChallengesubmitComponent implements OnInit {
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         let phaseDetails;
-        for (let i=0; i<data.phases.length; i++) {
-          if (data.phases[i].id == phase) {
+        for (let i = 0; i < data.phases.length; i++) {
+          if (data.phases[i].id === phase) {
             phaseDetails = data.phases[i].limits;
             break;
           }
@@ -227,7 +233,7 @@ export class ChallengesubmitComponent implements OnInit {
       self.submissionError = 'Please select phase!';
       return;
     }
-    
+
     const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');
     FORM_DATA.append('input_file', self.globalService.formItemForLabel(self.components, 'input_file').fileSelected);
