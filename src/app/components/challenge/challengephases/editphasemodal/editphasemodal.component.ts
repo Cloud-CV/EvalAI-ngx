@@ -47,17 +47,17 @@ export class EditphasemodalComponent implements OnInit {
   /**
    * Challenge phase max submissions per day
    */
-  maxSubmissionsPerDay:number;
+  maxSubmissionsPerDay: number;
 
   /**
    * Challenge phase max submissions per month
    */
-  maxSubmissionsPerMonth:number;
+  maxSubmissionsPerMonth: number;
 
   /**
    * Challenge phase max submissions
    */
-  maxSubmissions:number;
+  maxSubmissions: number;
 
   /**
    * If editor error message
@@ -182,7 +182,7 @@ export class EditphasemodalComponent implements OnInit {
       self.editorValidationMessage = 'This field cannot be empty!';
       return;
     }
-    let PARAMS = self.globalService.formFields(self.formComponents);
+    const PARAMS = self.globalService.formFields(self.formComponents);
     PARAMS[self.label] = self.description;
     self.globalService.hideEditPhaseModal();
     self.confirmCallback(PARAMS);
