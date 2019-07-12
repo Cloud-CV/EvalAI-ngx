@@ -225,7 +225,7 @@ export class ChallengesubmitComponent implements OnInit {
    */
   formSubmit(self) {
     self.submissionError = '';
-    let submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
+    const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
     if (submissionFile === null || submissionFile === '') {
       self.submissionError = 'Please upload file!';
       return;
