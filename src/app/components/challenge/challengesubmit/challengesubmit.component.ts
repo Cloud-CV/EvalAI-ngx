@@ -5,6 +5,7 @@ import { GlobalService } from '../../../services/global.service';
 import { ChallengeService } from '../../../services/challenge.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EndpointsService } from '../../../services/endpoints.service';
+import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 
 /**
  * Component Class
@@ -72,11 +73,6 @@ export class ChallengesubmitComponent implements OnInit {
   submitForm = 'formsubmit';
 
   /**
-   * Phase selection type (radio button or select box)
-   */
-  phaseSelectionType = 'radioButton';
-
-  /**
    * Challenge phases list
    */
   phases = [];
@@ -105,8 +101,8 @@ export class ChallengesubmitComponent implements OnInit {
   /**
    * Component Class
    */
-  @ViewChildren('formsubmit')
-  components: QueryList<ChallengesubmitComponent>;
+  @ViewChildren('phaseselect')
+  components: QueryList<SelectphaseComponent>;
 
   /**
    * Constructor.
@@ -137,7 +133,6 @@ export class ChallengesubmitComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
       if (!status) {
-        console.log('navigating to /participate');
         this.router.navigate(['../participate'], {relativeTo: this.route});
       }
     });
@@ -252,7 +247,6 @@ export class ChallengesubmitComponent implements OnInit {
   }
 
   validateInput(inputValue) {
-    console.log(inputValue);
     if (inputValue !== null) {
       this.inputFile = false;
     } else {

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 import { InputComponent } from '../input/input.component';
+import { ChallengeService } from '../../../services/challenge.service';
 
 /**
  * Component Class
@@ -24,9 +25,34 @@ export class ModalComponent implements OnInit {
   title = 'Are you sure ?';
 
   /**
+   * Modal field label
+   */
+  label = '';
+
+  /**
    * Modal body
    */
   content = '';
+
+  /**
+   * If rich text editor required
+   */
+  isEditorRequired = false;
+
+  /**
+   * Modal edit content
+   */
+  editorContent = '';
+
+  /**
+   * If editor error message
+   */
+  isInputMessage = false;
+
+  /**
+   * Editor validation message
+   */
+  editorValidationMessage = '';
 
   /**
    * Modal accept button
@@ -42,6 +68,16 @@ export class ModalComponent implements OnInit {
    * Modal form items list
    */
   form = [];
+
+  /**
+   * challenge object
+   */
+  challenge: any;
+
+  /**
+   * delete challenge button disable
+   */
+  isDisabled = true;
 
   /**
    * Modal form items
@@ -63,7 +99,7 @@ export class ModalComponent implements OnInit {
    * Constructor.
    * @param globalService  GlobalService Injection.
    */
-  constructor(private globalService: GlobalService) { }
+  constructor(private globalService: GlobalService, private challengeService: ChallengeService) { }
 
   /**
    * Component on intialized.
@@ -72,6 +108,15 @@ export class ModalComponent implements OnInit {
     if (this.params) {
       if (this.params['title']) {
         this.title = this.params['title'];
+      }
+      if (this.params['label']) {
+        this.label = this.params['label'];
+      }
+      if (this.params['isEditorRequired']) {
+        this.isEditorRequired = this.params['isEditorRequired'];
+      }
+      if (this.params['editorContent']) {
+        this.editorContent = this.params['editorContent'];
       }
       if (this.params['content']) {
         this.content = this.params['content'];
@@ -92,6 +137,11 @@ export class ModalComponent implements OnInit {
         this.form = this.params['form'];
       }
     }
+    if (this.isEditorRequired) {
+      this.isDisabled = false;
+    }
+
+    this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
   }
 
   /**
@@ -109,8 +159,22 @@ export class ModalComponent implements OnInit {
    * Modal Confirmed.
    */
   confirmed(self) {
+    let PARAMS = {};
+    if (self.isEditorRequired) {
+      const content_text = document.createElement('div');
+      content_text.innerHTML = this.editorContent;
+      const actual_text = content_text.textContent || content_text.innerText || '';
+      if (actual_text.trim() === '') {
+        self.denyCallback();
+        self.isInputMessage = true;
+        self.editorValidationMessage = 'This field cannot be empty!';
+        return;
+      }
+      PARAMS[self.label] = self.editorContent;
+    } else {
+      PARAMS = self.globalService.formFields(self.formComponents);
+    }
     self.globalService.hideModal();
-    const PARAMS = self.globalService.formFields(self.formComponents);
     self.confirmCallback(PARAMS);
   }
 
@@ -122,4 +186,27 @@ export class ModalComponent implements OnInit {
     this.denyCallback();
   }
 
+  validateModalInput(e) {
+    if (e.target.name === 'challegenDeleteInput') {
+      if (e.target.value === this.challenge.title) {
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+      }
+    } else if (e.target.name === 'editChallengeTitle') {
+      if (e.target.value !== this.challenge.title && e.target.value.length > 1) {
+        this.isDisabled = false;
+      } else {
+        this.isDisabled = true;
+      }
+    }
+  }
+
+  validateFileInput(e) {
+    if (e.target.value !== '') {
+      this.isDisabled = false;
+    } else {
+      this.isDisabled = true;
+    }
+  }
 }

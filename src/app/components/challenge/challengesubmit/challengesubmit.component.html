@@ -1,17 +1,21 @@
 <div class="challenge-card">
   <div class="ev-card-panel ev-md-container card-bt-margin">
-    <p *ngIf="!isActive"><strong class="fw-semibold">Sorry, the challenge is not active.</strong></p>
+    <p *ngIf="!isActive"><strong class="fw-semibold">Sorry, the challenge is not
+        active.</strong></p>
     <div *ngIf="isActive" class="row row-lr-margin">
       <div class="col-md-11 col-sm-11 col-lr-pad">
         <span class="fs-20 fw-light">Submission Guidelines</span>
         <div *ngIf="isChallengeHost">
           <div class="fw-semibold content">
-            <p><strong class="fw-semibold">Note: </strong>Your submissions won't be visible on leaderboard for 
-            <strong class="fw-semibold blue-text"> Public Challenge Phases </strong> since you are a challenge host
-            for this challenge.<br> This feature is only for your testing purposes.</p>
+            <p><strong class="fw-semibold">Note: </strong>Your submissions won't
+              be visible on leaderboard for
+              <strong class="fw-semibold blue-text"> Public Challenge Phases
+              </strong> since you are a challenge host
+              for this challenge.<br> This feature is only for your testing
+              purposes.</p>
           </div>
         </div>
-        <div [innerHTML]="submissionGuidelines" class="content"></div>   
+        <div [innerHTML]="submissionGuidelines" class="content"></div>
       </div>
 
       <div *ngIf="isChallengeHost" class="col-md-1 col-sm-1 col-lr-pad">
@@ -34,51 +38,62 @@
         <div class="exist-team-card">
           <ul>
             <b class="fw-bold content fs-14">Select phase:</b>
-            <app-selectphase [phases]="filteredPhases" [phaseSelectionType]="phaseSelectionType" [phaseSelected]="phaseSelected()"></app-selectphase>
+            <app-selectphase [phases]="filteredPhases"
+              [phaseSelected]="phaseSelected()" #phaseselect></app-selectphase>
 
             <div class="form">
               <div class="row row-lr-margin">
                 <div class="col-md-10 col-sm-10 col-lr-pad">
-                  <app-input (change)="validateInput($event.target.value)" [label]="'input_file'" [accept]="'.json, .zip, .txt, .tsv, .gz'" [placeholder]="''" [type]="'file'" [value]="''" #formsubmit></app-input>
+                  <app-input (change)="validateInput($event.target.value)"
+                    [label]="'input_file'" [accept]="'.json, .zip, .txt, .tsv,
+                    .gz'" [placeholder]="''" [type]="'file'" [value]="''"
+                    #formsubmit></app-input>
                 </div>
               </div>
-              
+
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
                   <div class="input-field align-left">
-                    <app-input [label]="'method_name'" [placeholder]="'Method name (Optional)'" [type]="'text'" [icon]="" [value]="name" #formsubmit></app-input>
+                    <app-input [label]="'method_name'" [placeholder]="'Method
+                      name (Optional)'" [type]="'text'" [icon]="" [value]="name"
+                      #formsubmit></app-input>
                   </div>
                 </div>
               </div>
-            
+
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
-                  <app-input [label]="'method_description'" [type]="'textarea'" [placeholder]="'Method description (Optional)'" #formsubmit></app-input><br>
+                  <app-input [label]="'method_description'" [type]="'textarea'"
+                    [placeholder]="'Method description (Optional)'" #formsubmit></app-input><br>
                 </div>
               </div>
-            
+
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
-                  <app-input [label]="'project_url'" [type]="'text'" [placeholder]="'Project URL (Optional)'" #formsubmit></app-input>
+                  <app-input [label]="'project_url'" [type]="'text'"
+                    [placeholder]="'Project URL (Optional)'" #formsubmit></app-input>
                 </div>
               </div>
-            
+
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
-                  <app-input [label]="'publication_url'" [type]="'text'" [placeholder]="'Publication URL (Optional)'" #formsubmit></app-input>
+                  <app-input [label]="'publication_url'" [type]="'text'"
+                    [placeholder]="'Publication URL (Optional)'" #formsubmit></app-input>
                 </div>
               </div>
 
               <div *ngIf="submissionError" class="red-text col-lr-pad">
                 <strong class="fw-semibold">{{submissionError}}</strong><br><br>
               </div>
-            
+
               <div class="pagination">
                 <div class="row rm-gut row-lr-margin">
                   <div class="col-sm-12 col-md-12 col-lr-pad">
-                    <div class="align-left ">
-                      <button class="btn btn-waves-effect grad-rec-btn waves-dark ev-btn-dark grad-btn-dark fw-light fs-14"
-                        [disabled]="disableSubmit || inputFile" (click)="formValidate()">Submit</button>
+                    <div class="align-left">
+                      <button class="btn btn-waves-effect grad-rec-btn
+                        waves-dark ev-btn-dark grad-btn-dark fw-light fs-14"
+                        [disabled]="disableSubmit || inputFile"
+                        (click)="formValidate()">Submit</button>
                     </div>
                     <br><br>
                   </div>
@@ -90,7 +105,8 @@
       </div>
 
       <div *ngIf="maxExceeded" class="col-md-5 col-sm-4 col-xs-12">
-        <div class="ev-submission-card-body exist-team-card ev-remaining-submission remaining-submission-clock">
+        <div class="ev-submission-card-body exist-team-card
+          ev-remaining-submission remaining-submission-clock">
           <div class="row row-lr-margin">
             <span class="color-black">
               <strong class="fw-semibold fs-15">
@@ -101,40 +117,42 @@
         </div>
       </div>
 
-      <div *ngIf="selectedPhaseSubmissions.showSubmissionDetails" class="col-md-5 col-sm-5 col-xs-12">
-        <div class="ev-card-body exist-team-card ev-remaining-submission remaining-submission-clock">
+      <div *ngIf="selectedPhaseSubmissions.showSubmissionDetails"
+        class="col-md-5 col-sm-5 col-xs-12">
+        <div class="ev-card-body exist-team-card ev-remaining-submission
+          remaining-submission-clock">
           <div class="row row-lr-margin">
             <span class="color-black">
-              <strong  class="fw-semibold fs-15">
+              <strong class="fw-semibold fs-15">
                 Today's remaining Submissions:
               </strong>
             </span>
             <span class="color-black">
-              <strong  class="fw-semibold fs-15">
+              <strong class="fw-semibold fs-15">
                 {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_today_count}}
               </strong>
             </span>
           </div>
-          <div class="row row-lr-margin"> 
+          <div class="row row-lr-margin">
             <span class="color-black">
-              <strong  class="fw-semibold fs-15">
+              <strong class="fw-semibold fs-15">
                 Monthly remaining submissions:
               </strong>
             </span>
             <span class="color-black">
-              <strong  class="fw-semibold fs-15">
+              <strong class="fw-semibold fs-15">
                 {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_this_month_count}}
               </strong>
             </span>
           </div>
           <div class="row row-lr-margin">
             <span class="color-black">
-              <strong  class="fw-semibold  fs-15">
+              <strong class="fw-semibold fs-15">
                 Total remaining submissions:
               </strong>
             </span>
             <span class="color-black">
-              <strong  class="fw-semibold fs-15">
+              <strong class="fw-semibold fs-15">
                 {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_count}}
               </strong>
             </span>
@@ -143,7 +161,8 @@
       </div>
 
       <div *ngIf="showClock" class="col-md-5 col-sm-12">
-        <div class="ev-card-body exist-team-card ev-remaining-submission remaining-submission-clock">
+        <div class="ev-card-body exist-team-card ev-remaining-submission
+          remaining-submission-clock">
           <div class="row row-lr-margin">
             <strong class="text-med-black">
               Message:
