@@ -27,6 +27,11 @@ export class ChallengesubmitComponent implements OnInit {
   challenge: any;
 
   /**
+   * Is challenge host
+   */
+  isChallengeHost: any;
+
+  /**
    * Router public instance
    */
   routerPublic: any;
@@ -40,6 +45,21 @@ export class ChallengesubmitComponent implements OnInit {
    * Is challenge currently active
    */
   isActive: any;
+
+  /**
+   * Submission input file
+   */
+  inputFile = true;
+
+  /**
+   * Disable submit button
+   */
+  disableSubmit = true;
+
+  /**
+   * Submission error
+   */
+  submissionError = '';
 
   /**
    * Guidelines text
@@ -77,11 +97,24 @@ export class ChallengesubmitComponent implements OnInit {
   authToken = '';
 
   /**
+   * Phase selection type (radio button or select box)
+   */
+  phaseSelectionType = 'radioButton';
+
+  /**
+   * Api call inside the modal to edit the submission guidelines
+   */
+  apiCall: any;
+
+  /**
    * Submissions remaining for the selected phase
    */
   selectedPhaseSubmissions = {
-    remaining_submissions_today_count: 0,
-    remaining_submissions: 0
+    showSubmissionDetails: false,
+    remainingSubmissions: {},
+    maxExceeded: false,
+    maxExceededMessage: '',
+    message: ''
   };
 
   /**
@@ -90,7 +123,7 @@ export class ChallengesubmitComponent implements OnInit {
   phaseRemainingSubmissions: any;
 
   /**
-   * Flog for phase if submissions max exceeded, details, clock 
+   * Flog for phase if submissions max exceeded, details, clock
    */
   phaseRemainingSubmissionsFlags = {};
 
@@ -137,7 +170,6 @@ export class ChallengesubmitComponent implements OnInit {
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
       if (!status) {
-        console.log('navigating to /participate');
         this.router.navigate(['../participate'], {relativeTo: this.route});
       }
     });
@@ -145,19 +177,25 @@ export class ChallengesubmitComponent implements OnInit {
       phases => {
         this.phases = phases;
         this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
+        for (let j = 0; j < this.phases.length; j++) {
+          if (phases[j].is_public === false) {
+            this.phases[j].showPrivate = true;
+          }
+        }
     });
 
     this.challengeService.isChallengeHost.subscribe(status => {
       this.isChallengeHost = status;
     });
 
-    this.authService.currentToken.subscribe(currentToken => {
-      this.authToken = currentToken;
+    this.challengeService.isChallengeHost.subscribe(status => {
+      this.isChallengeHost = status;
     });
 
     if (this.challenge.is_docker_based) {
       this.displayDockerSubmissionInstructions(this.challenge.id, this.isParticipated);
     }
+    this.authToken = this.globalService.getAuthToken();
   }
 
   /**
@@ -174,7 +212,7 @@ export class ChallengesubmitComponent implements OnInit {
     let remainingSeconds = Math.floor(remainingTime % 60);
     let remSeconds;
     if (remainingSeconds < 10) {
-        remSeconds = "0" + remainingSeconds;
+        remSeconds = '0' + remainingSeconds;
     }
     SELF.phaseRemainingSubmissionsCountdown[eachPhase.id] = {
         'days': days,
@@ -200,16 +238,15 @@ export class ChallengesubmitComponent implements OnInit {
       this.apiService.getUrl(API_PATH).subscribe(
         data => {
           SELF.phaseRemainingSubmissions = data;
-          console.log('asdasdasd', data);
-          let details = SELF.phaseRemainingSubmissions.phases;
-          for (let i=0; i<details.length; i++) {
+          const details = SELF.phaseRemainingSubmissions.phases;
+          for (let i = 0; i < details.length; i++) {
             if (details[i].limits.submission_limit_exceeded === true) {
-              SELF.phaseRemainingSubmissionsFlags[details[i].id] = "maxExceeded";
+              SELF.phaseRemainingSubmissionsFlags[details[i].id] = 'maxExceeded';
             } else if (details[i].limits.remaining_submissions_today_count > 0) {
-              SELF.phaseRemainingSubmissionsFlags[details[i].id] = "showSubmissionDetails";
+              SELF.phaseRemainingSubmissionsFlags[details[i].id] = 'showSubmissionDetails';
             } else {
-              let eachPhase = details[i];
-              SELF.phaseRemainingSubmissionsFlags[details[i].id] = "showClock";
+              const eachPhase = details[i];
+              SELF.phaseRemainingSubmissionsFlags[details[i].id] = 'showClock';
               setInterval(function () {
                   SELF.countDownTimer(SELF, eachPhase);
               }, 1000);
@@ -221,7 +258,7 @@ export class ChallengesubmitComponent implements OnInit {
           SELF.globalService.handleApiError(err);
         },
         () => console.log('Remaining submissions fetched for docker based challenge')
-      )
+      );
     }
   }
 
@@ -231,15 +268,28 @@ export class ChallengesubmitComponent implements OnInit {
    * @param phase  phase id
    */
   fetchRemainingSubmissions(challenge, phase) {
-    const API_PATH = this.endpointsService.challengeSubmissionsRemainingURL(challenge, phase);
+    const API_PATH = this.endpointsService.challengeSubmissionsRemainingURL(challenge);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-        if (data['remaining_submissions']) {
-          SELF.selectedPhaseSubmissions = data;
-        } else if (data['message']) {
-          SELF.selectedPhaseSubmissions['remaining_submissions_today_count'] = 0;
-          SELF.globalService.showToast('info', data['message']);
+        let phaseDetails;
+        for (let i = 0; i < data.phases.length; i++) {
+          if (data.phases[i].id === phase) {
+            phaseDetails = data.phases[i].limits;
+            break;
+          }
+        }
+        if (phaseDetails.submission_limit_exceeded) {
+          this.selectedPhaseSubmissions.maxExceeded = true;
+          this.selectedPhaseSubmissions.maxExceededMessage = phaseDetails.message;
+          this.disableSubmit = true;
+        } else if (phaseDetails.remaining_submissions_today_count > 0) {
+          this.selectedPhaseSubmissions.remainingSubmissions = phaseDetails;
+          this.selectedPhaseSubmissions.showSubmissionDetails = true;
+          this.disableSubmit = false;
+        } else {
+          this.selectedPhaseSubmissions.message = phaseDetails;
+          this.disableSubmit = true;
         }
       },
       err => {
@@ -266,10 +316,9 @@ export class ChallengesubmitComponent implements OnInit {
 
   /**
    * Form validate function
-   * @param formname  name of the form fields (#)
    */
-  formValidate(formname) {
-    if (this.selectedPhaseSubmissions['remaining_submissions_today_count']) {
+  formValidate() {
+    if (this.selectedPhaseSubmissions.remainingSubmissions['remaining_submissions_today_count']) {
       this.globalService.formValidate(this.components, this.formSubmit, this);
     } else {
       this.globalService.showToast('info', 'You have exhausted today\'s submission limit');
@@ -281,6 +330,16 @@ export class ChallengesubmitComponent implements OnInit {
    * @param self  context value of this
    */
   formSubmit(self) {
+    self.submissionError = '';
+    const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
+    if (submissionFile === null || submissionFile === '') {
+      self.submissionError = 'Please upload file!';
+      return;
+    } else if (self.selectedPhase['id'] === undefined) {
+      self.submissionError = 'Please select phase!';
+      return;
+    }
+
     const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');
     FORM_DATA.append('input_file', self.globalService.formItemForLabel(self.components, 'input_file').fileSelected);
@@ -291,7 +350,14 @@ export class ChallengesubmitComponent implements OnInit {
     self.challengeService.challengeSubmission(
       self.challenge['id'],
       self.selectedPhase['id'],
-      FORM_DATA
+      FORM_DATA,
+      () => {
+        self.globalService.setFormValueForLabel(self.components, 'input_file', null);
+        self.globalService.setFormValueForLabel(self.components, 'method_name', '');
+        self.globalService.setFormValueForLabel(self.components, 'method_description', '');
+        self.globalService.setFormValueForLabel(self.components, 'project_url', '');
+        self.globalService.setFormValueForLabel(self.components, 'publication_url', '');
+      }
     );
   }
 
@@ -301,27 +367,57 @@ export class ChallengesubmitComponent implements OnInit {
     } else if (val === 'evalai set_token ') {
       val += this.authToken;
     }
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = val;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
+    const textBox = document.createElement('textarea');
+    textBox.style.position = 'fixed';
+    textBox.style.left = '0';
+    textBox.style.top = '0';
+    textBox.style.opacity = '0';
+    textBox.value = val;
+    document.body.appendChild(textBox);
+    textBox.focus();
+    textBox.select();
     document.execCommand('copy');
-    document.body.removeChild(selBox);
+    document.body.removeChild(textBox);
 
     this.globalService.showToast('success', 'Command copied to clipboard');
   }
 
+  /**
+   * Edit submission guidelines
+   */
+  editSubmissionGuideline() {
+    const SELF = this;
+    SELF.apiCall = (params) => {
+      const BODY = JSON.stringify(params);
+      SELF.apiService.patchUrl(
+        SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
+        BODY
+      ).subscribe(
+        data => {
+          SELF.submissionGuidelines = data.submission_guidelines;
+          SELF.globalService.showToast('success', 'The submission guidelines is successfully updated!', 5);
+        },
+        err => {
+          SELF.globalService.handleApiError(err, true);
+          SELF.globalService.showToast('error', err);
+        },
+        () => {}
+      );
+    };
+
+    const PARAMS = {
+      title: 'Edit Submission Guidelines',
+      label: 'submission_guidelines',
+      isEditorRequired: true,
+      editorContent: this.challenge.submission_guidelines,
+      confirm: 'Submit',
+      deny: 'Cancel',
+      confirmCallback: SELF.apiCall
+    };
+    SELF.globalService.showModal(PARAMS);
+  }
+
   validateInput(inputValue) {
-    console.log(inputValue);
-    if (inputValue !== null) {
-      this.inputFile = false;
-    } else {
-      this.inputFile = true;
-    }
+    this.inputFile = inputValue === null;
   }
 }
