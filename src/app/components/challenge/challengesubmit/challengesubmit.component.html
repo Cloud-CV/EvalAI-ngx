@@ -38,8 +38,7 @@
           <li class="content">Install evalai-cli<br>
             <code>$ pip install evalai{{cliVersion}}</code>
             <button class="btn ev-btn-dark btn-waves-effect waves-dark grad-btn
-              code-btn"
-              (click)="copyTextToClipboard('pip install ')">
+              code-btn" (click)="copyTextToClipboard('pip install ')">
               <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to
                 clipboard."></i>
             </button>
@@ -58,14 +57,13 @@
               &lt;phase_name&gt;</code>
             <button class="btn ev-btn-dark btn-waves-effect waves-dark grad-btn
               code-btn"
-              (click)="copyTextToClipboard('evalai push <image>:<tag> --phase
-                <phase_name>')">
+              (click)="copyTextToClipboard('evalai push <image>:<tag> --phase <phase_name>')">
                   <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to
                     clipboard."></i>
                 </button>
               </li>
-              <li class="content">For more commands, please refer to <a
-                  class="text-highlight"
+              <li class="content">For more commands, please refer to 
+                <a class="text-highlight"
                   href="https://evalai-cli.cloudcv.org/" target="_blank">evalai-cli
                   documentation.</a>
               </li>
@@ -95,14 +93,12 @@
             <tr *ngFor="let key of phaseRemainingSubmissions.phases">
               <td class="content">{{key.name}}
                 <br>
-                <strong class="text-med-black">Start date: </strong>{{key.start_date
-                | date:'medium'}}
+                <strong class="text-med-black">Start date: </strong>{{key.start_date | date:'medium'}}
                 <br>
-                <strong class="text-med-black">End date: </strong>{{key.end_date
-                | date:'medium'}}
+                <strong class="text-med-black">End date: </strong>{{key.end_date | date:'medium'}}
               </td>
-              <td *ngIf="phaseRemainingSubmissionsFlags[key.id] ===
-                'showSubmissionDetails'" class="content">
+              <td *ngIf="phaseRemainingSubmissionsFlags[key.id] === 'showSubmissionDetails'"
+              class="content">
                 <strong class="fw-semibold">
                   Today:
                 </strong>
@@ -116,8 +112,7 @@
                 </strong>
                 {{key.limits.remaining_submissions_count}}
               </td>
-              <td *ngIf="phaseRemainingSubmissionsFlags[key.id] === 'showClock'"
-                class="content">
+              <td *ngIf="phaseRemainingSubmissionsFlags[key.id] === 'showClock'" class="content">
                 <strong class="fw-semibold">{{key.limits.message}}</strong><br>
                 Next submission will be available in<br>
                 <div>
@@ -129,22 +124,19 @@
                   {{phaseRemainingSubmissionsCountdown[key.id].seconds}} seconds
                 </div>
               </td>
-              <td *ngIf="phaseRemainingSubmissionsFlags[key.id] ===
-                'maxExceeded'" class="content">
+              <td *ngIf="phaseRemainingSubmissionsFlags[key.id] === 'maxExceeded'"
+              class="content">
                 <strong>{{key.limits.message}}</strong><br>
                 <strong>
                   {{key.limits.maxExceededMessage}}
                 </strong>
               </td>
               <td>
-                <code>$ evalai push &lt;image&gt;:&lt;tag&gt; --phase
-                  {{key.slug}}</code>
+                <code>$ evalai push &lt;image&gt;:&lt;tag&gt; --phase {{key.slug}}</code>
                 <button class="btn ev-btn-dark btn-waves-effect waves-dark
                   grad-btn code-btn"
-                  (click)="copyTextToClipboard('evalai push <image>:<tag>
-                    --phase key.slug')">
-                    <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to
-                      clipboard."></i>
+                  (click)="copyTextToClipboard('evalai push <image>:<tag> --phase key.slug')">
+                    <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to clipboard."></i>
                   </button>
                 </td>
               </tr>
@@ -172,8 +164,7 @@
                       <div class="col-md-10 col-sm-10 col-lr-pad
                         submit-upload-file">
                         <app-input (change)="validateInput($event.target.value)"
-                          [label]="'input_file'" [accept]="'.json, .zip, .txt,
-                          .tsv, .gz'"
+                          [label]="'input_file'" [accept]="'.json, .zip, .txt, .tsv, .gz'"
                           [placeholder]="''" [type]="'file'" [value]="''"
                           #formsubmit></app-input>
                       </div>
@@ -184,7 +175,7 @@
                         <div class="input-field align-left">
                           <app-input [label]="'method_name'"
                             [placeholder]="'Method name (Optional)'"
-                            [type]="'text'" [icon]="" [value]="''"
+                            [type]="'text'" [icon]="''" [value]="''"
                             #formsubmit></app-input>
                         </div>
                       </div>
