@@ -368,7 +368,7 @@ export class ChallengesubmitComponent implements OnInit {
     textBox.style.left = '0';
     textBox.style.top = '0';
     textBox.style.opacity = '0';
-    textBox.value = ref.getAttribute('value');
+    textBox.value = ref.innerText.split('$ ')[1];
     document.body.appendChild(textBox);
     textBox.focus();
     textBox.select();
