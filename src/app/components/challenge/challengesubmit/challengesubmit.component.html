@@ -37,8 +37,9 @@
         <ol>
           <li class="content">Install evalai-cli<br>
             <code>$ pip install evalai{{cliVersion}}</code>
-            <button class="btn ev-btn-dark btn-waves-effect waves-dark grad-btn
-              code-btn" (click)="copyTextToClipboard('pip install ')">
+            <button id="checking" class="btn ev-btn-dark btn-waves-effect waves-dark grad-btn
+              code-btn" value='pip install "evalai{{cliVersion}}"'
+              (click)="copyTextToClipboard(install_cli)" #install_cli>
               <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to
                 clipboard."></i>
             </button>
@@ -46,8 +47,8 @@
           <li class="content">Add your EvalAI account token to evalai-cli<br>
             <code>$ evalai set_token {{authToken}}</code>
             <button class="btn ev-btn-dark btn-waves-effect waves-dark grad-btn
-              code-btn"
-              (click)="copyTextToClipboard('evalai set_token ')">
+              code-btn" value="evalai set_token {{authToken}}"
+              (click)="copyTextToClipboard(token)" #token>
               <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to
                 clipboard."></i>
             </button>
@@ -56,11 +57,11 @@
             <code>$ evalai push &lt;image&gt;:&lt;tag&gt; --phase
               &lt;phase_name&gt;</code>
             <button class="btn ev-btn-dark btn-waves-effect waves-dark grad-btn
-              code-btn"
-              (click)="copyTextToClipboard('evalai push <image>:<tag> --phase <phase_name>')">
-                  <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to
+              code-btn" value="evalai push <image>:<tag> --phase <phase_name>"
+              (click)="copyTextToClipboard(evalai_push)" #evalai_push>
+              <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to
                     clipboard."></i>
-                </button>
+            </button>
               </li>
               <li class="content">For more commands, please refer to 
                 <a class="text-highlight"
@@ -134,8 +135,8 @@
               <td>
                 <code>$ evalai push &lt;image&gt;:&lt;tag&gt; --phase {{key.slug}}</code>
                 <button class="btn ev-btn-dark btn-waves-effect waves-dark
-                  grad-btn code-btn"
-                  (click)="copyTextToClipboard('evalai push <image>:<tag> --phase key.slug')">
+                  grad-btn code-btn" value="evalai push <image>:<tag> --phase {{key.slug}}"
+                  (click)="copyTextToClipboard(submission_command)" #submission_command>
                     <i class="fa fa-clipboard" aria-hidden="true" alt="Copy to clipboard."></i>
                   </button>
                 </td>

@@ -225,6 +225,7 @@ export class ChallengesubmitComponent implements OnInit {
     } else {
         remainingSeconds--;
     }
+    SELF.phaseRemainingSubmissionsCountdown[eachPhase.id].seconds = remainingSeconds;
   }
 
   /**
@@ -361,18 +362,13 @@ export class ChallengesubmitComponent implements OnInit {
     );
   }
 
-  copyTextToClipboard(val: string) {
-    if (val === 'pip install ') {
-      val += '"evalai' + this.cliVersion + '"';
-    } else if (val === 'evalai set_token ') {
-      val += this.authToken;
-    }
+  copyTextToClipboard(ref: HTMLElement) {
     const textBox = document.createElement('textarea');
     textBox.style.position = 'fixed';
     textBox.style.left = '0';
     textBox.style.top = '0';
     textBox.style.opacity = '0';
-    textBox.value = val;
+    textBox.value = ref.getAttribute('value');
     document.body.appendChild(textBox);
     textBox.focus();
     textBox.select();
