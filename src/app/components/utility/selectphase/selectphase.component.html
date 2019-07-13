@@ -1,4 +1,4 @@
-<span *ngIf="phaseSelectionType=='radioButton'">
+<ng-container *ngIf="phaseSelectionType=='radioButton'">
 <li *ngFor="let item of phases">
   <input
     [disabled]="challenge['currentDate'] < item.start_date || challenge['currentDate'] >= item.end_date"
@@ -30,4 +30,4 @@
 
   <div class="clearfix"></div>
 </li>
-</span>
+</ng-container>

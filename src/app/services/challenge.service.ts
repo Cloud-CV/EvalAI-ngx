@@ -325,6 +325,7 @@ export class ChallengeService {
    * @param challenge  id of challenge.
    * @param phase  challenge phase id.
    * @param formData  Form Data for submission (file)
+   * @param callback callback function
    */
   challengeSubmission(challenge, phase, formData, callback = () => {}) {
     const API_PATH = this.endpointsService.challengeSubmissionURL(challenge, phase);

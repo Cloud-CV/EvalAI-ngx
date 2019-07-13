@@ -92,6 +92,11 @@ export class ChallengesubmitComponent implements OnInit {
   phaseSelectionType = 'radioButton';
 
   /**
+   * Api call inside the modal to edit the submission guidelines
+   */
+  apiCall: any;
+
+  /**
    * Submissions remaining for the selected phase
    */
   selectedPhaseSubmissions = {
@@ -255,11 +260,42 @@ export class ChallengesubmitComponent implements OnInit {
     );
   }
 
+  /**
+   * Edit submission guidelines
+   */
+  editSubmissionGuideline() {
+    const SELF = this;
+    SELF.apiCall = (params) => {
+      const BODY = JSON.stringify(params);
+      SELF.apiService.patchUrl(
+        SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
+        BODY
+      ).subscribe(
+        data => {
+          SELF.submissionGuidelines = data.submission_guidelines;
+          SELF.globalService.showToast('success', 'The submission guidelines is successfully updated!', 5);
+        },
+        err => {
+          SELF.globalService.handleApiError(err, true);
+          SELF.globalService.showToast('error', err);
+        },
+        () => {}
+      );
+    };
+
+    const PARAMS = {
+      title: 'Edit Submission Guidelines',
+      label: 'submission_guidelines',
+      isEditorRequired: true,
+      editorContent: this.challenge.submission_guidelines,
+      confirm: 'Submit',
+      deny: 'Cancel',
+      confirmCallback: SELF.apiCall
+    };
+    SELF.globalService.showModal(PARAMS);
+  }
+
   validateInput(inputValue) {
-    if (inputValue !== null) {
-      this.inputFile = false;
-    } else {
-      this.inputFile = true;
-    }
+    this.inputFile = inputValue === null;
   }
 }

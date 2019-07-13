@@ -330,7 +330,6 @@ export class GlobalService {
     components.map((item) => {
       if (item.label.toLowerCase() === label.toLowerCase()) {
         value = item;
-        console.log(value);
         valueFound = true;
       }
     });

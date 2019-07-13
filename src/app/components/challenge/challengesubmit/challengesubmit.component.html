@@ -19,7 +19,7 @@
       </div>
 
       <div *ngIf="isChallengeHost" class="col-md-1 col-sm-1 col-lr-pad">
-        <a class="pointer" (click)="editChallengePhase(phase)">
+        <a class="pointer" (click)="editSubmissionGuideline()">
           <i class="fa fa-pencil" aria-hidden="true">
           </i>
         </a>
@@ -43,10 +43,10 @@
 
             <div class="form">
               <div class="row row-lr-margin">
-                <div class="col-md-10 col-sm-10 col-lr-pad">
+                <div class="col-md-10 col-sm-10 col-lr-pad submit-upload-file">
                   <app-input (change)="validateInput($event.target.value)"
-                    [label]="'input_file'" [accept]="'.json, .zip, .txt, .tsv,
-                    .gz'" [placeholder]="''" [type]="'file'" [value]="''"
+                    [label]="'input_file'" [accept]="'.json, .zip, .txt, .tsv, .gz'"
+                    [placeholder]="''" [type]="'file'" [value]="''"
                     #formsubmit></app-input>
                 </div>
               </div>
@@ -54,8 +54,8 @@
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
                   <div class="input-field align-left">
-                    <app-input [label]="'method_name'" [placeholder]="'Method
-                      name (Optional)'" [type]="'text'" [icon]="" [value]="''"
+                    <app-input [label]="'method_name'" [placeholder]="'Method name (Optional)'"
+                    [type]="'text'" [icon]="" [value]="''"
                       #formsubmit></app-input>
                   </div>
                 </div>
