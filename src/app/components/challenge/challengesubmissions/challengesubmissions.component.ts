@@ -87,7 +87,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   /**
    * Is phase selected
    */
-  isPhaseSelected: boolean = false;
+  isPhaseSelected = false;
 
   /**
    * Highlighted submission
@@ -174,7 +174,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
-        for (var i=0; i<this.phases.length; i++) {
+        for (let i = 0; i < this.phases.length; i++) {
           if (this.phases[i].is_public === false) {
               this.phases[i].showPrivate = true;
           }
@@ -273,13 +273,13 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
       if (this.selectedPhase === null) {
         this.globalService.showToast('error', 'Please select a challenge phase!');
       } else if (this.fileSelected === '') {
-        this.globalService.showToast('error', 'The file type requested is not valid!')
+        this.globalService.showToast('error', 'The file type requested is not valid!');
       }
     }
   }
 
   /**
-   * 
+   * load data with pagination
    */
   loadPaginationData = function(url) {
     if (url !== null) {
@@ -291,7 +291,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
           SELF.submissions = data['results'];
           SELF.paginationDetails.next = data.next;
           SELF.paginationDetails.previous = data.previous;
-  
+
           // condition for pagination
           if (data.next === null) {
             SELF.paginationDetails.isNext = 'disabled';
@@ -315,7 +315,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         }
       );
     }
-  }
+  };
 
   /**
    * Update submission's leaderboard visibility.
@@ -376,10 +376,12 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     isBaseline = !isBaseline;
     this.updateBaselineStatus(submissionId);
     if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id'] && submissionId) {
-      const API_PATH = this.endpointsService.challengeSubmissionUpdateURL(this.challenge['id'], this.selectedPhase['id'], submissionId);
+      const API_PATH = this.endpointsService.challengeSubmissionUpdateURL(
+        this.challenge['id'], this.selectedPhase['id'], submissionId
+      );
       const SELF = this;
       const BODY = JSON.stringify({
-        "is_baseline": isBaseline
+        'is_baseline': isBaseline
       });
       this.apiService.patchUrl(API_PATH, BODY).subscribe(
         data => {},
@@ -391,7 +393,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         }
       );
     }
-  }
+  };
 
   /**
    * Fetch number of submissions for a challenge phase.
