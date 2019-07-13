@@ -7,8 +7,6 @@ import { ChallengeService } from '../../../services/challenge.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
-import { Observable } from 'rxjs';
-
 
 /**
  * Component Class
@@ -87,6 +85,11 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   selectedPhase: any = null;
 
   /**
+   * Is phase selected
+   */
+  isPhaseSelected: boolean = false;
+
+  /**
    * Highlighted submission
    */
   submissionHighlighted: any = null;
@@ -114,6 +117,11 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
    * @param currentPage Current Page number
    */
   paginationDetails: any = {};
+
+  /**
+   * To call the API inside modal for editing the submission
+   */
+  apiCall: any;
 
   /**
    * Constructor.
@@ -186,6 +194,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     const SELF = this;
     return (phase) => {
       SELF.selectedPhase = phase;
+      SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;
       if (SELF.challenge['id'] && phase['id']) {
         SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
@@ -413,7 +422,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
    */
   editSubmission(submission) {
     const SELF = this;
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       SELF.apiService.patchUrl(
         SELF.endpointsService.challengeSubmissionUpdateURL(SELF.challenge.id, submission.challenge_phase, submission.id),
@@ -470,7 +479,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
           icon: 'fa fa-pencil'
         }
       ],
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }

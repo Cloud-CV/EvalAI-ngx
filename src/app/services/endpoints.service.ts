@@ -152,6 +152,15 @@ export class EndpointsService {
   }
 
   /**
+   * Challenge phase details
+   * @param id  challenge id
+   * @param phaseId challenge phase id
+   */
+  updateChallengePhaseDetailsURL(id, phaseId) {
+    return `${this.challenges}${this.challenge}${id}/challenge_phase/${phaseId}`;
+  }
+
+  /**
    * Challenge phase split for a given challenge id
    * @param id  challenge id
    */
@@ -215,9 +224,25 @@ export class EndpointsService {
   /**
    * Challenge Submissions Remaining
    * @param challenge  challenge id
-   * @param phase  phase id
    */
-  challengeSubmissionsRemainingURL(challenge, phase) {
-    return `${this.jobs}${challenge}/phases/${phase}/remaining_submissions`;
+  challengeSubmissionsRemainingURL(challenge) {
+    return `${this.jobs}${challenge}/remaining_submissions`;
+  }
+
+  /**
+   * Edit challenge details
+   * @param hostTeam challenge host team id
+   * @param challenge challenge id
+   */
+  editChallengeDetailsURL(hostTeam, challenge) {
+    return `${this.challenges}challenge_host_team/${hostTeam}/${this.challenge}${challenge}`;
+  }
+
+  /**
+   * Delete challenge
+   * @param challenge challenge id
+   */
+  deleteChallengeURL(challenge) {
+    return `${this.challenges}${this.challenge}${challenge}/disable`;
   }
 }
