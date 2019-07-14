@@ -393,7 +393,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         }
       );
     }
-  };
+  }
 
   /**
    * Fetch number of submissions for a challenge phase.

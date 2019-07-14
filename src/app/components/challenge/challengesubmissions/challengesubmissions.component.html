@@ -34,7 +34,7 @@
             grad-btn-dark fw-light fs-14" (click)='downloadSubmission()'>Download</a>
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 col-lr-pad"
-          *ngIf="selectedPhase">
+             *ngIf="selectedPhase">
           <div class="add-line-height">
             <span>
               <strong class="fw-semibold text-med-black">
@@ -42,7 +42,7 @@
               </strong>
             </span>
             <span class="show-submission-count text-highlight">
-              {{submissionCount|| 0}}
+              {{submissionCount || 0}}
             </span>
           </div>
         </div>
@@ -54,9 +54,9 @@
         <div class="col-md-12 col-lr-pad">
           <div *ngIf="!isPhaseSelected" class="result-wrn">No phase selected.</div>
           <div *ngIf="paginationDetails.showPagination == false && isPhaseSelected"
-          class="result-wrn">No results found.</div>
-          <div *ngIf="paginationDetails.showPagination == true && submissions.length> 0"
-            class="table-scroll">
+               class="result-wrn">No results found.</div>
+          <div *ngIf="paginationDetails.showPagination == true && submissions.length > 0"
+               class="table-scroll">
             <table class="centered highlight all-submission-table">
               <thead>
                 <tr class="content">
@@ -115,13 +115,13 @@
                   <td>{{key.submitted_at | date:'medium'}}</td>
 
                   <td *ngIf="selectedPhase['leaderboard_public']"><div>
-                      <input [checked]="key.is_public" *ngIf="key.status == 'finished'"
-                        type="checkbox" id="isPublic{{ key.id }}"
-                        (change)="changeSubmissionVisibility(key.id,
-                        key.is_public)" class="cbx hidden" />
-                      <label for="isPublic{{ key.id }}" class="cbx-label"></label>
-                      <div *ngIf="key.status !== 'finished'" class="center"> N/A
-                      </div></div>
+                    <input [checked]="key.is_public" *ngIf="key.status == 'finished'"
+                      type="checkbox" id="isPublic{{ key.id }}"
+                      (change)="changeSubmissionVisibility(key.id,
+                      key.is_public)" class="cbx hidden" />
+                    <label for="isPublic{{ key.id }}" class="cbx-label"></label>
+                    <div *ngIf="key.status !== 'finished'" class="center"> N/A
+                    </div></div>
                   </td>
                   <td *ngIf="isChallengeHost">
                     <input [checked]="key.is_baseline" *ngIf="key.status == 'finished'"
@@ -143,17 +143,19 @@
       </div>
     </div>
 
-    <div class="pagination" *ngIf="paginationDetails.showPagination && submissions.length> 0">
+    <div class="pagination" *ngIf="paginationDetails.showPagination && submissions.length > 0">
       <div class="row row-lr-margin">
         <div class="col-sm-12 left-align col-lr-pad">
           <button [ngClass]="paginationDetails.isPrev" class="btn-floating
-            btn-pagination waves-effect waves-light"(click)="loadPaginationData(paginationDetails.previous)">
+            btn-pagination waves-effect waves-light"
+            (click)="loadPaginationData(paginationDetails.previous)">
             <i class="fa fa-chevron-left"></i>
           </button>
           <span class="pagination-title">
             <strong class="text-med-black fw-semibold content">
               Page {{paginationDetails.currentPage}} of {{paginationDetails.totalPage}}
-            </strong></span>
+            </strong>
+          </span>
           <button [ngClass]="paginationDetails.isNext" class="btn-floating
             btn-pagination waves-effect waves-light"
             (click)="loadPaginationData(paginationDetails.next)">
