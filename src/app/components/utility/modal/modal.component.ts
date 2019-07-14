@@ -37,7 +37,7 @@ export class ModalComponent implements OnInit {
   /**
    * Modal name
    */
-  name = '';
+  isButtonDisabled: boolean;
 
   /**
    * If rich text editor required
@@ -117,8 +117,8 @@ export class ModalComponent implements OnInit {
       if (this.params['label']) {
         this.label = this.params['label'];
       }
-      if (this.params['name']) {
-        this.name = this.params['name'];
+      if (this.params['isButtonDisabled']) {
+        this.isButtonDisabled = this.params['isButtonDisabled'];
       }
       if (this.params['isEditorRequired']) {
         this.isEditorRequired = this.params['isEditorRequired'];
@@ -146,7 +146,7 @@ export class ModalComponent implements OnInit {
       }
     }
 
-    if (this.isEditorRequired || this.name === 'updateSubmissionDetails') {
+    if (this.isEditorRequired || this.isButtonDisabled) {
       this.isDisabled = false;
     }
     this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);

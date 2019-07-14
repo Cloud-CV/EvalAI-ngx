@@ -372,7 +372,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
    * @param submissionId Submission Id
    * @param isBaseline baseline boolean flag
    */
-  changeBaselineStatus = function(submissionId, isBaseline) {
+  changeBaselineStatus(submissionId, isBaseline) {
     isBaseline = !isBaseline;
     this.updateBaselineStatus(submissionId);
     if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id'] && submissionId) {
@@ -383,8 +383,8 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
       const BODY = JSON.stringify({
         'is_baseline': isBaseline
       });
-      this.apiService.patchUrl(API_PATH, BODY).subscribe(
-        data => {},
+      SELF.apiService.patchUrl(API_PATH, BODY).subscribe(
+        () => {},
         err => {
           SELF.globalService.handleApiError(err);
         },
@@ -430,7 +430,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         SELF.endpointsService.challengeSubmissionUpdateURL(SELF.challenge.id, submission.challenge_phase, submission.id),
         BODY
         ).subscribe(
-        data => {
+        () => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Data updated successfully', 5);
           SELF.fetchSubmissions(SELF.challenge.id, SELF.selectedPhase.id);
@@ -444,7 +444,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     const PARAMS = {
       title: 'Update Submission Details',
       content: '',
-      name: 'updateSubmissionDetails',
+      isButtonDisabled: true,
       confirm: 'Submit',
       deny: 'Cancel',
       form: [
