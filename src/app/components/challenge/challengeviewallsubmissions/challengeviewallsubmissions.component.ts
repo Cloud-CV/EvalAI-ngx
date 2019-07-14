@@ -87,6 +87,11 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   selectedPhase: any = null;
 
   /**
+   * Is phase selected
+   */
+  isPhaseSelected = false;
+
+  /**
    * Highlighted submission
    */
   submissionHighlighted: any = null;
@@ -112,59 +117,59 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   fieldsToExportOptions = [
     {
       'label': 'Team Name',
-      'id': 'participant_team' 
+      'id': 'participant_team'
     },
     {
       'label': 'Team Members',
-      'id': 'participant_team_members' 
+      'id': 'participant_team_members'
     },
     {
       'label': 'Team Members Email Id',
-      'id': 'participant_team_members_email' 
+      'id': 'participant_team_members_email'
     },
     {
       'label': 'Challenge Phase',
-      'id': 'challenge_phase' 
+      'id': 'challenge_phase'
     },
     {
       'label': 'Status',
-      'id': 'status' 
+      'id': 'status'
     },
     {
       'label': 'Created By',
-      'id': 'created_by' 
+      'id': 'created_by'
     },
     {
       'label': 'Execution Time',
-      'id': 'execution_time' 
+      'id': 'execution_time'
     },
     {
       'label': 'Submission Number',
-      'id': 'submission_number' 
+      'id': 'submission_number'
     },
     {
       'label': 'Submitted File',
-      'id': 'input_file' 
+      'id': 'input_file'
     },
     {
       'label': 'Stdout File',
-      'id': 'stdout_file' 
+      'id': 'stdout_file'
     },
     {
       'label': 'Stderr File',
-      'id': 'stderr_file' 
+      'id': 'stderr_file'
     },
     {
       'label': 'Submitted At',
-      'id': 'created_at' 
+      'id': 'created_at'
     },
     {
       'label': 'Submission Result File',
-      'id': 'submission_result_file' 
+      'id': 'submission_result_file'
     },
     {
       'label': 'Submission Metadata File',
-      'id': 'submission_metadata_file' 
+      'id': 'submission_metadata_file'
     }
   ];
 
@@ -219,7 +224,6 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       if (!status) {
         this.globalService.storeData(this.globalService.redirectStorageKey, {path: this.routerPublic.url});
         let redirectToPath = '';
-        console.log(this.router.url.split('/'));
         if (this.router.url.split('/').length === 4) {
           redirectToPath = '../participate';
         } else if (this.router.url.split('/').length === 5) {
@@ -233,7 +237,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
-        for (var i=0; i<this.phases.length; i++) {
+        for (let i = 0; i < this.phases.length; i++) {
           if (this.phases[i].is_public === false) {
               this.phases[i].showPrivate = true;
           }
@@ -253,6 +257,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
     const SELF = this;
     return (phase) => {
       SELF.selectedPhase = phase;
+      SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;
       if (SELF.challenge['id'] && phase['id']) {
         SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
@@ -329,8 +334,8 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
           }
         );
       } else {
-        let fieldsExport = [];
-        for(let i = 0 ; i < SELF.fieldsToExportOptions.length ; i++) {
+        const fieldsExport = [];
+        for (let i = 0; i < SELF.fieldsToExportOptions.length ; i++) {
           if (SELF.fieldsToGetExport.includes(SELF.fieldsToExportOptions[i].id)) {
             fieldsExport.push(SELF.fieldsToExportOptions[i].id);
           }
@@ -353,13 +358,13 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       if (this.selectedPhase === null) {
         this.globalService.showToast('error', 'Please select a challenge phase!');
       } else if (this.fileSelected === '') {
-        this.globalService.showToast('error', 'The file type requested is not valid!')
+        this.globalService.showToast('error', 'The file type requested is not valid!');
       }
     }
   }
 
   /**
-   * 
+   * load data with pagination
    */
   loadPaginationData = function(url) {
     if (url !== null) {
@@ -371,7 +376,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
           SELF.submissions = data['results'];
           SELF.paginationDetails.next = data.next;
           SELF.paginationDetails.previous = data.previous;
-  
+
           // condition for pagination
           if (data.next === null) {
             SELF.paginationDetails.isNext = 'disabled';
@@ -395,7 +400,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
         }
       );
     }
-  }
+  };
 
   /**
    * Update submission's leaderboard visibility.
@@ -423,8 +428,8 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       const SELF = this;
       const BODY = JSON.stringify({is_public: is_public});
       this.apiService.patchUrl(API_PATH, BODY).subscribe(
-        data => {
-          if (is_public){
+        () => {
+          if (is_public) {
             SELF.globalService.showToast('success', 'The submission is made public');
           } else {
             SELF.globalService.showToast('success', 'The submission is made private');

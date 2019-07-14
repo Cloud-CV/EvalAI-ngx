@@ -21,7 +21,9 @@ import { ChallengeparticipateComponent } from './components/challenge/challengep
 import { ChallengeleaderboardComponent } from './components/challenge/challengeleaderboard/challengeleaderboard.component';
 import { ChallengesubmitComponent } from './components/challenge/challengesubmit/challengesubmit.component';
 import { ChallengesubmissionsComponent } from './components/challenge/challengesubmissions/challengesubmissions.component';
-import { ChallengeviewallsubmissionsComponent } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
+import {
+  ChallengeviewallsubmissionsComponent
+} from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
 import { ChallengeCreateComponent } from './components/challenge-create/challenge-create.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';

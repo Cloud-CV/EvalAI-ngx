@@ -1,8 +1,14 @@
 // Import Modules
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -62,7 +68,9 @@ import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
 import { EditphasemodalComponent } from './components/challenge/challengephases/editphasemodal/editphasemodal.component';
-import { ChallengeviewallsubmissionsComponent } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
+import {
+  ChallengeviewallsubmissionsComponent
+} from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
 
 @NgModule({
   declarations: [
@@ -116,10 +124,18 @@ import { ChallengeviewallsubmissionsComponent } from './components/challenge/cha
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    NgxTwitterTimelineModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     TextareaAutosizeModule,
-    NgxTwitterTimelineModule
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [
     AuthService,
