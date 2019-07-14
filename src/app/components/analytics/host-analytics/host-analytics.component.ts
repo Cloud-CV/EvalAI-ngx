@@ -37,10 +37,10 @@ export class HostAnalyticsComponent implements OnInit {
   ngOnInit() {
     this.getHostTeam();
     this.getChallengeHost();
-    this.showChallengeAnalysis();
   }
 
   errCallBack(err) {
+    this.authService.stopLoader();
     this.globalService.handleApiError(err);
     if (err.status === 403) {
       this.globalService.showToast('error', 'Permission Denied');
@@ -78,7 +78,8 @@ export class HostAnalyticsComponent implements OnInit {
     this.apiService.getUrl('challenges/challenge?mode=host').subscribe(
       (response) => {
         console.log(response);
-        this.challengeList = response.status === 200 ? response.results : [];
+        this.challengeList = response.results;
+        this.challengeListCount = this.challengeList.length;
       },
       (err) => {
         this.errCallBack(err);
@@ -94,8 +95,11 @@ export class HostAnalyticsComponent implements OnInit {
 
     if (this.challengeId != null) {
       this.isTeamSelected = true;
+
+      this.authService.startLoader(`Fetching Team count for challenge ${this.challengeId}`);
       this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/team/count').subscribe(
         (response) => {
+          this.authService.stopLoader();
           console.log(response);
           this.totalChallengeTeams = response.participant_team_count;
         },
@@ -107,9 +111,10 @@ export class HostAnalyticsComponent implements OnInit {
         }
       );
 
-
+      this.authService.startLoader(`Fetching phases for challenge ${this.challengeId}`);
       this.apiService.getUrl('challenges/challenge/' + this.challengeId + '/challenge_phase').subscribe(
         (response) => {
+          this.authService.stopLoader();
           console.log(response);
           this.currentPhase = response.results;
           const challengePhaseId = [];
@@ -140,18 +145,16 @@ export class HostAnalyticsComponent implements OnInit {
           }
 
           for (let phaseCount = 0; phaseCount < this.currentPhase.length; phaseCount++) {
-            challengePhaseId.push(this.currentPhase[phaseCount].id);
+            // challengePhaseId.push(this.currentPhase[phaseCount].id);
             // tslint:disable-next-line:max-line-length
             this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/challenge_phase/' + this.currentPhase[phaseCount].id + '/last_submission_datetime_analysis/')
               .subscribe(
                 (res) => {
                   console.log(res);
-                  if (res.status === 200) {
-                    for (let i = 0; i < challengePhaseId.length; i++) {
-                      if (challengePhaseId[i] === res.challenge_phase) {
-                        this.lastSubmissionTime[challengePhaseId[i]] = res.last_submission_timestamp_in_challenge_phase;
-                        break;
-                      }
+                  for (let i = 0; i < challengePhaseId.length; i++) {
+                    if (challengePhaseId[i] === res.challenge_phase) {
+                      this.lastSubmissionTime[challengePhaseId[i]] = res.last_submission_timestamp_in_challenge_phase;
+                      break;
                     }
                   }
                 },
@@ -173,6 +176,7 @@ export class HostAnalyticsComponent implements OnInit {
         }
       );
 
+
       for (let i = 0; i < this.challengeList.length; i++) {
         if (this.challengeList[i].id === this.challengeId) {
           this.currentChallengeDetails = this.challengeList[i];
@@ -188,11 +192,11 @@ export class HostAnalyticsComponent implements OnInit {
   downloadChallengeParticipantTeams() {
     console.log('clicked Download Challenge Participant');
 
-    this.apiService.getUrl('analytics/challenges/' + this.challengeId + '/download_all_participants/')
+    this.apiService.getUrl(`analytics/challenges/${this.challengeId}/download_all_participants/`, false)
       .subscribe(
         (response) => {
           console.log(response);
-          this.windowService.downloadFile(response.data, 'participant_teams_' + this.challengeId + '.csv');
+          this.windowService.downloadFile(response, 'participant_teams_' + this.challengeId + '.csv');
         },
         (err) => {
           console.log(err);
