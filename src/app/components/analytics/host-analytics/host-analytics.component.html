@@ -17,7 +17,7 @@
       </div>
       <ul>
         <li class="analytics-list analytics-team-input" *ngFor="let value  of challengeList">
-          <input type="radio" name="selectExistTeam" class="with-gap selectTeam" id="{{value.id}}" value="{{value.id}}" ng-model="analytics.challengeId">
+          <input type="radio" name="selectExistTeam" class="with-gap selectTeam" id="{{value.id}}" value="{{value.id}}" [(ngModel)]="challengeId">
           <label for="{{value.id}}">
             <div class="show-member-title pointer">{{value.title}} <span class="text-light-black">hosted by</span> {{value.creator.team_name}}
             </div>
