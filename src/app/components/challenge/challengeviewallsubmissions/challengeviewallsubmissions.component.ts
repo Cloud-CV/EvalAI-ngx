@@ -105,9 +105,6 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
    */
   phaseSelectionType = 'selectBox';
 
-  SubmissionVisibilityIcon;
-  SubmissionVisibilityText;
-
   /**
    * Fields to be exported
    */
@@ -369,7 +366,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
           SELF.globalService.handleApiError(err);
         },
         () => {
-          console.log('Updated submission visibility', id);
+          console.log('Updated submission visibility', submission.id);
         }
       );
     }
