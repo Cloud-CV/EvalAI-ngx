@@ -105,6 +105,9 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
    */
   phaseSelectionType = 'selectBox';
 
+  SubmissionVisibilityIcon;
+  SubmissionVisibilityText;
+
   /**
    * Fields to be exported
    */
@@ -209,6 +212,15 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissions = data['results'];
+        for (let i = 0; i < SELF.submissions.length; i++) {
+          if (SELF.submissions[i].is_public) {
+            SELF.submissions[i].submissionVisibilityIcon = 'visibility';
+            SELF.submissions[i].submissionVisibilityText = 'Public';
+          } else {
+            SELF.submissions[i].submissionVisibilityIcon = 'visibility_off';
+            SELF.submissions[i].submissionVisibilityText = 'Private';
+          }
+        }
         SELF.paginationDetails.next = data.next;
         SELF.paginationDetails.previous = data.previous;
         SELF.paginationDetails.totalPage = Math.ceil(data.count / 100);
@@ -329,21 +341,27 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
 
   /**
    * Change Submission's leaderboard visibility API.
-   * @param id  Submission id
+   * @param submission  Selected submission
    * @param is_public  visibility boolean flag
    */
-  changeSubmissionVisibility(id, is_public) {
+  changeSubmissionVisibility(submission, is_public) {
     is_public = !is_public;
-    this.updateSubmissionVisibility(id);
-    if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id'] && id) {
-      const API_PATH = this.endpointsService.challengeSubmissionUpdateURL(this.challenge['id'], this.selectedPhase['id'], id);
+    this.updateSubmissionVisibility(submission.id);
+    if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id'] && submission.id) {
+      const API_PATH = this.endpointsService.challengeSubmissionUpdateURL(
+        this.challenge['id'], this.selectedPhase['id'], submission.id
+      );
       const SELF = this;
       const BODY = JSON.stringify({is_public: is_public});
       this.apiService.patchUrl(API_PATH, BODY).subscribe(
         () => {
           if (is_public) {
+            submission.submissionVisibilityIcon = 'visibility';
+            submission.submissionVisibilityText = 'Public';
             SELF.globalService.showToast('success', 'The submission is made public');
           } else {
+            submission.submissionVisibilityIcon = 'visibility_off';
+            submission.submissionVisibilityText = 'Private';
             SELF.globalService.showToast('success', 'The submission is made private');
           }
         },
