@@ -113,6 +113,11 @@ export class TeamlistComponent implements OnInit {
   challenge: any;
 
   /**
+   * To call the API inside the modal
+   */
+  apiCall: any;
+
+  /**
    * Form components
    */
   teamForm = 'formteam';
@@ -313,7 +318,7 @@ export class TeamlistComponent implements OnInit {
   deleteTeamWrapper() {
     const SELF = this;
     const deleteTeam = (e) => {
-      const apiCall = () => {
+      SELF.apiCall = () => {
         SELF.apiService.deleteUrl(SELF.deleteTeamsPath + '/' + e).subscribe(
         data => {
           // Success Message in data.message
@@ -332,7 +337,7 @@ export class TeamlistComponent implements OnInit {
         content: 'Note: This action will remove you from the team.',
         confirm: 'Yes',
         deny: 'Cancel',
-        confirmCallback: apiCall
+        confirmCallback: SELF.apiCall
       };
       SELF.globalService.showConfirm(PARAMS);
       return false;
@@ -346,7 +351,7 @@ export class TeamlistComponent implements OnInit {
   editTeamWrapper() {
     const SELF = this;
     const editTeam = (team) => {
-      const apiCall = (params) => {
+      SELF.apiCall = (params) => {
         const BODY = JSON.stringify(params);
         SELF.apiService.patchUrl(SELF.endpointsService.participantTeamURL(team), BODY).subscribe(
         data => {
@@ -381,7 +386,7 @@ export class TeamlistComponent implements OnInit {
             type: 'text'
           }
         ],
-        confirmCallback: apiCall
+        confirmCallback: SELF.apiCall
       };
       SELF.globalService.showModal(PARAMS);
     };
@@ -394,7 +399,7 @@ export class TeamlistComponent implements OnInit {
   addMembersToTeamWrapper() {
     const SELF = this;
     const addMembersToTeam = (team) => {
-      const apiCall = (params) => {
+      SELF.apiCall = (params) => {
         const BODY = JSON.stringify(params);
         let apiPath = SELF.endpointsService.participantTeamInviteURL(team);
         if (SELF.isHost) {
@@ -427,7 +432,7 @@ export class TeamlistComponent implements OnInit {
             type: 'email'
           }
         ],
-        confirmCallback: apiCall
+        confirmCallback: SELF.apiCall
       };
       SELF.globalService.showModal(PARAMS);
     };
@@ -486,7 +491,7 @@ export class TeamlistComponent implements OnInit {
     const SELF = this;
     const apiCall = () => {
       SELF.challengeService.participateInChallenge(SELF.challenge['id'], SELF.selectedTeam['id']);
-    }
+    };
 
     const PARAMS = {
       title: 'Terms and Conditions',

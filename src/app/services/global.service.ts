@@ -20,6 +20,9 @@ export class GlobalService {
     denyCallback: null
   };
 
+  /**
+   * Reusable modal default settings
+   */
   isModalVisible = false;
   modalDefault = {
     isModalVisible: false,
@@ -34,7 +37,7 @@ export class GlobalService {
   /**
    * Edit challenge phase modal default settings
    */
-  isEditPhaseModalVisible = false
+  isEditPhaseModalVisible = false;
   editPhaseModalDefault = {
     isEditPhaseModalVisible: false,
     confirm: 'Submit',
@@ -47,7 +50,7 @@ export class GlobalService {
   /**
    * Terms and conditions modal default settings
    */
-  isTermsAndConditionsModalVisible = false
+  isTermsAndConditionsModalVisible = false;
   termsAndConditionsModalDefault = {
     isTermsAndConditionsModalVisible: false,
     confirm: 'Submit',
@@ -180,8 +183,8 @@ export class GlobalService {
   }
 
   /**
-   * Display Modal Component
-   * @param params  parameters for configuring confirm component (see markdown docs)
+   * Display Reusable Modal Component
+   * @param params  parameters for configuring reusable modal component (see markdown docs)
    */
   showModal(params) {
     if (!this.isModalVisible) {
@@ -290,8 +293,17 @@ export class GlobalService {
   formFields(components) {
     const TEMP = {};
     components.map((item) => {
-      console.log(item);
-      TEMP[item.label.toLowerCase()] = item.value;
+      if (item.type === 'file' && item.fileSelected != null) {
+        TEMP[item.label] = item.fileSelected;
+      }
+      if (item.type !== 'file') {
+        if (item.type === 'datetime') {
+          const date = new Date(item.value);
+          TEMP[item.label.toLowerCase()] = date.toISOString();
+        } else {
+          TEMP[item.label.toLowerCase()] = item.value;
+        }
+      }
     });
     return TEMP;
   }
@@ -320,7 +332,32 @@ export class GlobalService {
   }
 
   /**
-   * Get Form item for a label
+   * Set Form field value for a label
+   * @param components  form components
+   * @param label  label to fetch
+   * @param value new value to be set
+   * @returns value of form item
+   */
+  setFormValueForLabel(components, label, value) {
+    let valueFound = false;
+    components.map((item) => {
+      if (item.label.toLowerCase() === label.toLowerCase()) {
+        if (item.type === 'file') {
+          item.fileValue = value;
+          item.placeholder = '';
+        } else {
+          item.value = value;
+        }
+        valueFound = true;
+      }
+    });
+    if (!valueFound) {
+      console.error('Form value not found for ' + label);
+    }
+  }
+
+  /**
+   * Set Form item for a label
    * @param components  form components
    * @param label  label to fetch
    * @returns form item
@@ -496,6 +533,15 @@ export class GlobalService {
       return true;
     }
     return false;
+  }
+
+  /**
+   * Form input number validator
+   * @param integer  number integer
+   * @returns boolean indicating valid/invalid text
+   */
+  validateInteger(integer) {
+    return integer > 0;
   }
 
   /**
