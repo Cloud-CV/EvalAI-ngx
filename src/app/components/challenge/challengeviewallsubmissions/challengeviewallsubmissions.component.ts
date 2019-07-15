@@ -112,68 +112,6 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   phaseSelectionType = 'selectBox';
 
   /**
-   * Fields export options
-   */
-  fieldsToExportOptions = [
-    {
-      'label': 'Team Name',
-      'id': 'participant_team'
-    },
-    {
-      'label': 'Team Members',
-      'id': 'participant_team_members'
-    },
-    {
-      'label': 'Team Members Email Id',
-      'id': 'participant_team_members_email'
-    },
-    {
-      'label': 'Challenge Phase',
-      'id': 'challenge_phase'
-    },
-    {
-      'label': 'Status',
-      'id': 'status'
-    },
-    {
-      'label': 'Created By',
-      'id': 'created_by'
-    },
-    {
-      'label': 'Execution Time',
-      'id': 'execution_time'
-    },
-    {
-      'label': 'Submission Number',
-      'id': 'submission_number'
-    },
-    {
-      'label': 'Submitted File',
-      'id': 'input_file'
-    },
-    {
-      'label': 'Stdout File',
-      'id': 'stdout_file'
-    },
-    {
-      'label': 'Stderr File',
-      'id': 'stderr_file'
-    },
-    {
-      'label': 'Submitted At',
-      'id': 'created_at'
-    },
-    {
-      'label': 'Submission Result File',
-      'id': 'submission_result_file'
-    },
-    {
-      'label': 'Submission Metadata File',
-      'id': 'submission_metadata_file'
-    }
-  ];
-
-  /**
    * Fields to be exported
    */
   fieldsToGetExport: any = [];
@@ -333,26 +271,6 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
             console.log('Download complete.', SELF.challenge['id'], SELF.selectedPhase['id']);
           }
         );
-      } else {
-        const fieldsExport = [];
-        for (let i = 0; i < SELF.fieldsToExportOptions.length ; i++) {
-          if (SELF.fieldsToGetExport.includes(SELF.fieldsToExportOptions[i].id)) {
-            fieldsExport.push(SELF.fieldsToExportOptions[i].id);
-          }
-        }
-        const BODY = JSON.stringify(fieldsExport);
-        console.log(BODY, typeof BODY);
-        SELF.apiService.postUrl(
-          API_PATH,
-          BODY).subscribe(
-            data => {
-              SELF.windowService.downloadFile(data, 'all_submissions.csv');
-            },
-            err => {
-              SELF.globalService.handleApiError(err);
-            },
-            () => console.log('Download complete.', SELF.challenge['id'], SELF.selectedPhase['id'])
-          );
       }
     } else {
       if (this.selectedPhase === null) {

@@ -27,16 +27,6 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-md-4 col-sm-4 align-left custom-field-export">
-          <mat-form-field>
-            <mat-label>Custom Fields to Export (Optional)</mat-label>
-            <mat-select multiple [(ngModel)]="fieldsToGetExport"
-              class="rm-margin">
-              <mat-option *ngFor="let key of fieldsToExportOptions"
-                id="option-text-color" value={{key.id}}>{{key.label}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
         <div class="col-md-2 col-sm-2 col-xs-6 col-lr-pad download-submissions">
           <a class="ev-btn btn-waves-effect grad-rec-btn waves-dark ev-btn-dark
             grad-btn-dark fw-light fs-14" (click)='downloadSubmission()'>Download</a>
