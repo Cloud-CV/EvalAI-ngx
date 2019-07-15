@@ -7,8 +7,7 @@ import { ChallengeService } from '../../../services/challenge.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
-import { Observable } from 'rxjs';
-
+import { environment } from '../../../../environments/environment.staging';
 
 /**
  * Component Class
@@ -90,11 +89,6 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
    * Is phase selected
    */
   isPhaseSelected = false;
-
-  /**
-   * Highlighted submission
-   */
-  submissionHighlighted: any = null;
 
   /**
    * Download file types
@@ -284,10 +278,10 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   /**
    * load data with pagination
    */
-  loadPaginationData = function(url) {
+  loadPaginationData(url) {
     if (url !== null) {
       const SELF = this;
-      const API_PATH = url.split('localhost:8000/api/')[1];
+      const API_PATH = url.split(environment.api_endpoint)[1];
 
       SELF.apiService.getUrl(API_PATH, true).subscribe(
         data => {
@@ -318,7 +312,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
         }
       );
     }
-  };
+  }
 
   /**
    * Update submission's leaderboard visibility.
