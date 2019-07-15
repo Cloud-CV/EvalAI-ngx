@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TermsAndConditionsModalComponent } from './terms-and-conditions-modal.component';
+import { GlobalService } from '../../../../services/global.service';
+import { FormsModule } from '@angular/forms';
 
 describe('TermsAndConditionsModalComponent', () => {
   let component: TermsAndConditionsModalComponent;
@@ -8,7 +10,9 @@ describe('TermsAndConditionsModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TermsAndConditionsModalComponent ]
+      imports: [ FormsModule ],
+      declarations: [ TermsAndConditionsModalComponent ],
+      providers: [ GlobalService ]
     })
     .compileComponents();
   }));
