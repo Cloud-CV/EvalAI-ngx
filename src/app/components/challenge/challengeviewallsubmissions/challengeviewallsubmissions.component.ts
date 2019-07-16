@@ -210,13 +210,15 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       data => {
         SELF.submissions = data['results'];
         for (let i = 0; i < SELF.submissions.length; i++) {
-          if (SELF.submissions[i].is_public) {
-            SELF.submissions[i].submissionVisibilityIcon = 'visibility';
-            SELF.submissions[i].submissionVisibilityText = 'Public';
-          } else {
-            SELF.submissions[i].submissionVisibilityIcon = 'visibility_off';
-            SELF.submissions[i].submissionVisibilityText = 'Private';
-          }
+          (SELF.submissions[i].is_public) ?
+          (
+            SELF.submissions[i].submissionVisibilityIcon = 'visibility',
+            SELF.submissions[i].submissionVisibilityText = 'Public'
+          ) :
+          (
+            SELF.submissions[i].submissionVisibilityIcon = 'visibility_off',
+            SELF.submissions[i].submissionVisibilityText = 'Private'
+          );
         }
         SELF.paginationDetails.next = data.next;
         SELF.paginationDetails.previous = data.previous;
@@ -352,22 +354,21 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       const BODY = JSON.stringify({is_public: is_public});
       this.apiService.patchUrl(API_PATH, BODY).subscribe(
         () => {
-          if (is_public) {
-            submission.submissionVisibilityIcon = 'visibility';
-            submission.submissionVisibilityText = 'Public';
-            SELF.globalService.showToast('success', 'The submission is made public');
-          } else {
-            submission.submissionVisibilityIcon = 'visibility_off';
-            submission.submissionVisibilityText = 'Private';
-            SELF.globalService.showToast('success', 'The submission is made private');
-          }
+          (is_public) ?
+          (
+            submission.submissionVisibilityIcon = 'visibility',
+            submission.submissionVisibilityText = 'Public',
+            SELF.globalService.showToast('success', 'The submission is made public')
+          ) :
+          (
+            submission.submissionVisibilityText = 'Private',
+            SELF.globalService.showToast('success', 'The submission is made private')
+          );
         },
         err => {
           SELF.globalService.handleApiError(err);
         },
-        () => {
-          console.log('Updated submission visibility', submission.id);
-        }
+        () => {}
       );
     }
   }
