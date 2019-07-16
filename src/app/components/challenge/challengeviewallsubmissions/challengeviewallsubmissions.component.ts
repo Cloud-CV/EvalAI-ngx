@@ -361,6 +361,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
             SELF.globalService.showToast('success', 'The submission is made public')
           ) :
           (
+            submission.submissionVisibilityIcon = 'visibility_off',
             submission.submissionVisibilityText = 'Private',
             SELF.globalService.showToast('success', 'The submission is made private')
           );
