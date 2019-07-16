@@ -120,6 +120,11 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   paginationDetails: any = {};
 
   /**
+   * API call inside the modal
+   */
+  apiCall: any;
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  GlobalService Injection.
@@ -395,5 +400,30 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
         console.log('Fetched submission counts', challenge, phase);
       }
     );
+  }
+
+  /**
+   * Modal to confirm the change of submission visibility
+   * @param submission  Selected submission
+   * @param submissionVisibility current submission visibility
+   */
+  confirmSubmissionVisibility(submission, submissionVisibility) {
+    const SELF = this;
+    let toggleSubmissionVisibilityState;
+    (submissionVisibility) ?
+    (toggleSubmissionVisibilityState = 'private') :
+    (toggleSubmissionVisibilityState = 'public');
+
+    SELF.apiCall = () => {
+      SELF.changeSubmissionVisibility(submission, submissionVisibility);
+    };
+
+    const PARAMS = {
+      title: 'Make this submission ' + toggleSubmissionVisibilityState + '?',
+      confirm: 'Yes, I\'m sure',
+      deny: 'No',
+      confirmCallback: SELF.apiCall
+    };
+    SELF.globalService.showConfirm(PARAMS);
   }
 }

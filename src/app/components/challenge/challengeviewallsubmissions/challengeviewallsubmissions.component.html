@@ -107,7 +107,7 @@
                   <td>
                     <a [matMenuTriggerFor]="settingsmenu"><i class="fa fa-gear"></i></a>
                     <mat-menu #settingsmenu="matMenu">
-                        <button (click)="changeSubmissionVisibility(key, key.is_public)" mat-menu-item>
+                        <button (click)="confirmSubmissionVisibility(key, key.is_public)" mat-menu-item>
                           <mat-icon class="green-text">{{key.submissionVisibilityIcon}}</mat-icon>
                           <span>{{key.submissionVisibilityText}}</span>
                         </button>
