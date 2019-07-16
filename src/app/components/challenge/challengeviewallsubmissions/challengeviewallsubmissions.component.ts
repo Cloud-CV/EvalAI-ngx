@@ -215,15 +215,10 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       data => {
         SELF.submissions = data['results'];
         for (let i = 0; i < SELF.submissions.length; i++) {
-          (SELF.submissions[i].is_public) ?
-          (
-            SELF.submissions[i].submissionVisibilityIcon = 'visibility',
-            SELF.submissions[i].submissionVisibilityText = 'Public'
-          ) :
-          (
-            SELF.submissions[i].submissionVisibilityIcon = 'visibility_off',
-            SELF.submissions[i].submissionVisibilityText = 'Private'
-          );
+          SELF.submissions[i].submissionVisibilityIcon =
+            (SELF.submissions[i].is_public) ? 'visibility' : 'visibility_off';
+          SELF.submissions[i].submissionVisibilityText =
+            (SELF.submissions[i].is_public) ? 'Public' : 'Private';
         }
         SELF.paginationDetails.next = data.next;
         SELF.paginationDetails.previous = data.previous;
@@ -359,17 +354,10 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       const BODY = JSON.stringify({is_public: is_public});
       this.apiService.patchUrl(API_PATH, BODY).subscribe(
         () => {
-          (is_public) ?
-          (
-            submission.submissionVisibilityIcon = 'visibility',
-            submission.submissionVisibilityText = 'Public',
-            SELF.globalService.showToast('success', 'The submission is made public')
-          ) :
-          (
-            submission.submissionVisibilityIcon = 'visibility_off',
-            submission.submissionVisibilityText = 'Private',
-            SELF.globalService.showToast('success', 'The submission is made private')
-          );
+          submission.submissionVisibilityIcon = (is_public) ? 'visibility' : 'visibility_off';
+          submission.submissionVisibilityIcon = (is_public) ? 'Public' : 'Private';
+          const toastMessage = (is_public) ? 'The submission is made public' : 'The submission is made private';
+          SELF.globalService.showToast('success', toastMessage);
         },
         err => {
           SELF.globalService.handleApiError(err);
