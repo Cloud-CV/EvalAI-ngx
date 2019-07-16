@@ -154,13 +154,4 @@ describe('ChallengeevaluationComponent', () => {
     expect(apiService.patchFileUrl).toHaveBeenCalled();
     expect(globalService.showToast).toHaveBeenCalledWith('error', expectedErrorMsg);
   });
-
-  // it('should update details through `updateView` method', () => {
-  //   component.challenge.evaluation_details = 'Random';
-  //   component.updateView();
-  //   component.challenge.evaluation_details = 'Random';
-  //   expect(component.evaluationElement.innerHTML).toEqual('asda');
-  //   expect(component.tncElement.innerHTML).toEqual('asdasa');
-  // });
-
 });
