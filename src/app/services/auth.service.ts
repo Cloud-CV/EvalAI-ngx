@@ -72,7 +72,7 @@ export class AuthService {
           this.authState = {isLoggedIn: false};
           SELF.globalService.handleApiError(err, false);
         },
-        () => console.log('User details fetched')
+        () => {}
       );
     }
 
