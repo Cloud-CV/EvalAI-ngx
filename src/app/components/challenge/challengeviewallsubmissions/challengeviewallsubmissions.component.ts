@@ -355,7 +355,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       this.apiService.patchUrl(API_PATH, BODY).subscribe(
         () => {
           submission.submissionVisibilityIcon = (is_public) ? 'visibility' : 'visibility_off';
-          submission.submissionVisibilityIcon = (is_public) ? 'Public' : 'Private';
+          submission.submissionVisibilityText = (is_public) ? 'Public' : 'Private';
           const toastMessage = (is_public) ? 'The submission is made public' : 'The submission is made private';
           SELF.globalService.showToast('success', toastMessage);
         },
