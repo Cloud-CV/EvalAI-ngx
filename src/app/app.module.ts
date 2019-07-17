@@ -74,6 +74,8 @@ import {
 import {
   ChallengeviewallsubmissionsComponent
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,9 @@ import {
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [
     AuthService,
