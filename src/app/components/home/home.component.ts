@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   hostChallenge() {
-    if(this.authService.isAuth) {
+    if (this.authService.isAuth) {
       this.router.navigate(['/challenge-create']);
     } else {
       this.router.navigate(['/auth/login']);
