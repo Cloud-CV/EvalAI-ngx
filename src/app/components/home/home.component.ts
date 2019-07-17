@@ -4,6 +4,7 @@ import {EndpointsService} from '../../services/endpoints.service';
 import {AuthService} from '../../services/auth.service';
 import {GlobalService} from '../../services/global.service';
 import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 /**
  * Component Class
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public challengeList = [];
   authServiceSubscription: any;
   constructor(private apiService: ApiService, private endpointService: EndpointsService, private authService: AuthService,
-              private globalService: GlobalService) { }
+              private globalService: GlobalService, private router: Router) { }
 
   ngOnInit() {
     this.init();
@@ -46,7 +47,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
 
-  hostChallenge() {}
+  hostChallenge() {
+    if(this.authService.isAuth) {
+      this.router.navigate(['/challenge-create']);
+    } else {
+      this.router.navigate(['/auth/login']);
+    }
+  }
 
   ngOnDestroy(): void {
     if (this.authServiceSubscription) {
