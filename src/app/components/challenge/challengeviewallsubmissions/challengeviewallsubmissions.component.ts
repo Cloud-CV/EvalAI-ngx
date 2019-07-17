@@ -421,16 +421,14 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
    */
   reRunSubmission(submissionId) {
     const SELF = this;
-
+    const API_PATH = SELF.endpointsService.reRunSubmissionURL(submissionId);
     SELF.apiCall = () => {
       const BODY = {};
-      SELF.apiService.postUrl(
-        SELF.endpointsService.reRunSubmissionURL(submissionId), BODY
-      ).subscribe(
-        (data) => {
+      SELF.apiService.postUrl(API_PATH, BODY).subscribe(
+        data => {
           SELF.globalService.showToast('success', data.success, 5);
         },
-        (err) => {
+        err => {
           SELF.globalService.handleApiError(err);
         },
         () => {}
