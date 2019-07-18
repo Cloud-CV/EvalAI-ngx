@@ -15,11 +15,11 @@ RUN npm audit fix
 COPY . /code
 
 # Generate build
-RUN ng build --prod
+RUN ng build --output-path=dist
 
 FROM nginx:1.16.0-alpine
 
 # Copy artifact build from the 'build environment'
 ARG ANGULAR_ENV
 COPY docker/prod/nodejs/nginx_staging.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /code/dist /usr/share/nginx/html
+COPY --from=node /code/dist /usr/share/nginx/html
