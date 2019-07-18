@@ -15,10 +15,6 @@
   font-size: 20px;
 }
 
-.side-intro {
-  /*border-bottom: 1px solid $med-gray;*/
-}
-
 .links-section-outer {
   overflow: auto;
   height: 100%;
@@ -43,7 +39,6 @@
         color: $highlight;
       }
       &.side-active-link {
-        /*background-color: $dust-gray;*/
         color: $med-black;
         border-right: 1px solid $highlight;
       }
