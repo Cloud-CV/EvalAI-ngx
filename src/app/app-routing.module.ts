@@ -32,6 +32,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {AnalyticsComponent} from './components/analytics/analytics.component';
 import {HostAnalyticsComponent} from './components/analytics/host-analytics/host-analytics.component';
 import {ResetPasswordComponent} from './components/auth/reset-password/reset-password.component';
+import {ResetPasswordConfirmComponent} from './components/auth/reset-password-confirm/reset-password-confirm.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
       {path: 'reset-password', component: ResetPasswordComponent},
+      {path: 'reset-password/confirm/:user_id/:reset_token', component: ResetPasswordConfirmComponent},
       {path: 'signup', component: SignupComponent},
       {path: 'verify-email/:token', component: VerifyEmailComponent},
       {path: '**', redirectTo: 'login'}
