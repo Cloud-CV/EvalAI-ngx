@@ -156,7 +156,12 @@ export class ChallengesubmitComponent implements OnInit {
   /**
    * Is clock initialised
    */
-  isClockStarted = false;
+  isClockStarted: boolean;
+
+  /**
+   * Set interval timer
+   */
+  timer: any;
 
   /**
    * Component Class
@@ -311,16 +316,18 @@ export class ChallengesubmitComponent implements OnInit {
   fetchRemainingSubmissions(challenge, phase) {
     const API_PATH = this.endpointsService.challengeSubmissionsRemainingURL(challenge);
     const SELF = this;
+    clearInterval(SELF.timer);
+    SELF.isClockStarted = false;
     SELF.selectedPhaseSubmissions.showClock = false;
     SELF.selectedPhaseSubmissions.showSubmissionDetails = false;
     SELF.selectedPhaseSubmissions.maxExceeded = false;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         let phaseDetails, eachPhase;
-        data.phases.forEach(element => {
+        data.phases.some(element => {
           eachPhase = element;
           phaseDetails = eachPhase.limits;
-          return eachPhase.id === phase;
+          return element.id === phase;
         });
         if (phaseDetails.submission_limit_exceeded) {
           this.selectedPhaseSubmissions.maxExceeded = true;
@@ -334,7 +341,7 @@ export class ChallengesubmitComponent implements OnInit {
           this.selectedPhaseSubmissions.showClock = true;
           this.selectedPhaseSubmissions.clockMessage = phaseDetails;
           this.disableSubmit = true;
-          setInterval(function () {
+          SELF.timer = setInterval(function () {
             SELF.countDownTimer(SELF, eachPhase);
           }, 1000);
           SELF.countDownTimer(SELF, eachPhase);
