@@ -139,9 +139,9 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     EmailValidatorDirective,
     ResetPasswordComponent,
     EditphasemodalComponent,
+    ResetPasswordConfirmComponent,
     ChallengeviewallsubmissionsComponent,
     TermsAndConditionsModalComponent
-    ResetPasswordConfirmComponent
   ],
   imports: [
     BrowserModule,
