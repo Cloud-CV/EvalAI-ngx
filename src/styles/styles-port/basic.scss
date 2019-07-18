@@ -88,25 +88,49 @@ p.no-top-para {
     border-radius: 10px;
 }
 
+
+/*font styles*/
+
 .fs-12 {
-    font-size: 12px;
+    font-size: $fs-12;
 }
 
 .fs-14 {
-    font-size: 14px;
+    font-size: $fs-14;
+}
+
+.fs-15 {
+  font-size: $fs-15;
 }
 
 .fs-16 {
-    font-size: 16px;
+    font-size: $fs-16;
 }
 
 .fs-18 {
-    font-size: 18px;
+    font-size: $fs-18;
 }
 
 .fs-20 {
-    font-size: 20px;
+    font-size: $fs-20;
 }
+
+.fs-22 {
+  font-size: $fs-22;
+}
+
+.fs-24 {
+  font-size: $fs-24;
+}
+
+.fs-30 {
+  font-size: $fs-30;
+}
+
+.fs-36 {
+  font-size: $fs-36;
+}
+
 
 .pointer {
     cursor: pointer;
@@ -157,6 +181,10 @@ span.inline {
 }
 
 /*bg color*/
+
+.white-bg {
+  background-color: #fff;
+}
 
 .ev-dark-bg {
     background-color: $dark-gray;
@@ -321,6 +349,83 @@ nav {
 .ev-btn-light:hover {
     background: $light-gray;
 }
+
+
+/*grad button style*/
+
+.grad-btn {
+  border-radius: 20px;
+}
+
+.grad-btn-dark {
+  background: $med-gray;
+  font-weight: $rob-reg;
+  color: #fff;
+  box-shadow: 0px 4px 8px #9d9d9d;
+  &:hover {
+    box-shadow: 0px 0px 8px #9d9d9d;
+  }
+}
+
+.grad-btn-light {
+  background: $highlight;
+  font-weight: $rob-reg;
+  color: #fff;
+  box-shadow: 0px 4px 8px #9d9d9d;
+  &:hover {
+    box-shadow: 0px 0px 8px #9d9d9d;
+    background: $highlight;
+  }
+}
+
+.grad-btn-transparent {
+  background-color: rgba(0,0,0,0);
+  font-weight: $rob-reg;
+  color: $med-gray;
+  border: 1px solid $med-gray;
+  box-shadow: 0px 4px 8px transparent;
+  &:hover {
+    box-shadow: 0px 0px 8px #9d9d9d;
+    background: $med-gray;
+    color: #fff;
+  }
+}
+
+.view-container {
+  min-height: 100vh;
+}
+
+.grad-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 100px 40px 100px;
+  clear: both;
+}
+
+.rm-grad-pad {
+  padding: 30px 100px 30px 100px;
+}
+
+.grad-span {
+  display: inline;
+}
+
+/*media queries*/
+
+@media screen and (max-width: $med-screen) {
+  .grad-container {
+    padding:40px;
+  }
+}
+
+
+@media screen and (max-width: $small-screen) {
+  .grad-container {
+    text-align: center;
+  }
+}
+
+
 
 /*card styles*/
 
@@ -865,9 +970,6 @@ tr {
     margin-bottom: 2.5%;
 }
 
-.fs-30 {
-    font-size: 30px;
-}
 
 .thumb {
     margin: 20px 0;
