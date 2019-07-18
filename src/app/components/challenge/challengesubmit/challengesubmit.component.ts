@@ -317,13 +317,11 @@ export class ChallengesubmitComponent implements OnInit {
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         let phaseDetails, eachPhase;
-        for (let i = 0; i < data.phases.length; i++) {
-          if (data.phases[i].id === phase) {
-            eachPhase = data.phases[i];
-            phaseDetails = data.phases[i].limits;
-            break;
-          }
-        }
+        data.phases.forEach(element => {
+          eachPhase = element;
+          phaseDetails = eachPhase.limits;
+          return eachPhase.id === phase;
+        });
         if (phaseDetails.submission_limit_exceeded) {
           this.selectedPhaseSubmissions.maxExceeded = true;
           this.selectedPhaseSubmissions.maxExceededMessage = phaseDetails.message;
