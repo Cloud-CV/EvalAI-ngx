@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit {
         email: this.authService.getUser['email']
       });
 
-      this.apiService.postUrl(this.endpointService.signupURL(), RESET_BODY).subscribe(
+      this.apiService.postUrl('auth/password/reset/', RESET_BODY).subscribe(
         response => {
           this.authService.isMail = false;
           this.authService.getUser['error'] = false;
