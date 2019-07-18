@@ -1,7 +1,7 @@
 <div class="team-card-container" [class.selected]='isSelected' [class.noexpand] = 'isHost' [class.expand] = '!isHost'>
 <div class="team-card-container-child">
   <div class="team-content" (click)='selectToggle()'>
-    <i class="far fa-circle selectstate" *ngIf='!isSelected && (isHost || isOnChallengePage)'></i>
+    <i class="fa fa-circle selectstate" *ngIf='!isSelected && (isHost || isOnChallengePage)'></i>
     <i class="fa fa-check selectstate" aria-hidden="true" *ngIf='isSelected && (isHost || isOnChallengePage)'></i>
     <i class="fa fa-users" aria-hidden="true"></i>
     <div class="team-details">
