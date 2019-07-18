@@ -230,7 +230,7 @@ export class ChallengesubmitComponent implements OnInit {
    */
   countDownTimer(SELF, eachPhase) {
     if (!SELF.isClockStarted) {
-      SELF.remainingTime = parseInt(eachPhase.limits.remaining_time);
+      SELF.remainingTime = parseInt(eachPhase.limits.remaining_time, 10);
     }
     SELF.days = Math.floor(SELF.remainingTime / 24 / 60 / 60);
     const hoursLeft = Math.floor(SELF.remainingTime - SELF.days * 86400);
