@@ -22,4 +22,3 @@ FROM nginx:1.16.0-alpine
 # Copy artifact build from the 'build environment'
 ARG ANGULAR_ENV
 COPY docker/prod/nodejs/nginx_staging.conf /etc/nginx/conf.d/default.conf
-COPY --from=node /code/dist /usr/share/nginx/html

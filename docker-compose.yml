@@ -40,9 +40,9 @@ services:
     hostname: angularjs
     build:
       context: ./
-      dockerfile: docker/prod/nodejs/Dockerfile
+      dockerfile: docker/dev/angularjs/Dockerfile
     environment:
-      ANGULAR_ENV: staging
+      ANGULAR_ENV: development
     ports:
       - "8888:4200"
       - "4200:4200"
