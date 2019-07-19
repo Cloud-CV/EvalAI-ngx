@@ -1,6 +1,7 @@
-/*
-@import './variables.scss';
-@import './mixins.scss';
+@import "styles/variables";
+.loader-title {
+  margin-top: 39vh;
+}
 
 .loader-container {
   position: fixed;
@@ -88,5 +89,4 @@
       opacity: 0;
   }
 }
-*/
 
