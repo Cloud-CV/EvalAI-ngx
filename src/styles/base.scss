@@ -24,6 +24,7 @@ body {
   letter-spacing: 0.1px;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.87);
+  flex: 1;
 }
 
 .display-flex {
@@ -422,6 +423,10 @@ mat-chip {
 .ev-md-container {
   padding: 30px 40px 40px 40px;
 }
+
+//.ev-md-container {
+//  padding: 40px;
+//}
 
 .bottom-card-container {
 	padding: 40px;
@@ -1484,8 +1489,20 @@ td, th {
   line-height: 40px;
 }
 
+/*pagination*/
+
 .btn-pagination {
-  background-color: $yellow;
+  background-color: $highlight;
+  i {
+    font-size: 16px;
+  }
+}
+
+.btn-pagination:hover {
+  background-color: $highlight;
+  i {
+    font-size: 16px;
+  }
 }
 
 .btn.disabled, .btn-floating.disabled, .btn-floating:disabled {
