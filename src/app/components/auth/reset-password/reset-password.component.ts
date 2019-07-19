@@ -33,7 +33,7 @@ export class ResetPasswordComponent implements OnInit {
           this.authService.isMail = false;
           this.authService.getUser['error'] = false;
           this.authService.isFormError = false;
-          this.authService.deliveredMsg = response.data.success;
+          this.authService.deliveredMsg = response.detail;
           this.authService.getUser['email'] = '';
           this.authService.stopLoader();
         },
@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
           this.authService.stopLoader();
         },
 
-        () => console.log('RESET-PASSWORD-FORM-SUBMITTED')
+        () => {}
       );
     } else {
       this.authService.stopLoader();

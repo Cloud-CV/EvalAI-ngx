@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.globalService.handleApiError(err);
         }
       },
-      () => console.log('LOGIN-FORM-SUBMITTED')
+      () => {}
     );
   }
 

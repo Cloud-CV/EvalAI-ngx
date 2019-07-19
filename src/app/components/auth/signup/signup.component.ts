@@ -123,7 +123,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
           }
         },
 
-        () => console.log('SIGNUP-FORM-SUBMITTED')
+        () => {}
       );
     }
   }

@@ -15,8 +15,8 @@ export class ResetPasswordConfirmComponent implements OnInit {
   uid: any = '';
   token: any = '';
 
-  isnewpassword1Focused = false;
-  isnewpassword2Focused = false;
+  isNewPassword1Focused = false;
+  isNewPassword2Focused = false;
 
   constructor(public authService: AuthService, private apiService: ApiService, private endpointService: EndpointsService,
   private globalService: GlobalService, private route: ActivatedRoute) {
@@ -83,7 +83,7 @@ export class ResetPasswordConfirmComponent implements OnInit {
             }
           },
 
-          () => console.log('RESET-PASSWORD-CONFIRM-FORM-SUBMITTED')
+          () => {}
         );
     }
   }
