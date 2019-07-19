@@ -14,33 +14,10 @@ export class AuthService {
   /**
    * Ported From Angular Application
    */
-  isRem = false;
   isAuth = false;
-  isMail = true;
-  userMail = '';
-  // getUser for signup
-  regUser = {};
-  // useDetails for login
-  getUser = {};
   // color to show password strength
   color = {};
-  isResetPassword = false;
-  // form error
-  isFormError = false;
-  FormError = {};
-  // to store the next redirect route
-  redirectUrl = {};
-
-  // default parameters
-  isLoader = false;
-  isPassConf = true;
-  regMsg = '';
-  wrnMsg = {};
   isValid = {};
-  confirmMsg = '';
-  loaderTitle = '';
-  canShowPassword = false;
-  canShowConfirmPassword = false;
 
   /**
    * Porting Ends
@@ -190,55 +167,4 @@ export class AuthService {
         () => console.log('Email Verified')
       );
     }
-
-
-
-
-
-  /**
-   * Ported From Angular Application
-   */
-
-  // show loader
-  startLoader(msg) {
-    this.isLoader = true;
-    this.loaderTitle = msg;
-  }
-
-  // stop loader
-  stopLoader() {
-    this.isLoader = false;
-    this.loaderTitle = '';
-  }
-
-  // toggle password visibility
-  togglePasswordVisibility() {
-    this.canShowPassword = !this.canShowPassword;
-  }
-
-  // toggle confirm password visibility
-  toggleConfirmPasswordVisibility() {
-    this.canShowConfirmPassword = !this.canShowConfirmPassword;
-  }
-
-  resetForm() {
-    // getUser for signup
-    this.regUser = {};
-    // useDetails for login
-    this.getUser = {};
-
-    // reset error msg
-    this.wrnMsg = {};
-
-    // switch off form errors
-    this.isFormError = false;
-
-    // reset form when link sent for reset password
-    this.isMail = true;
-
-    // reset the eye icon and type to password
-    this.canShowPassword = false;
-    this.canShowConfirmPassword = false;
-  }
-
 }
