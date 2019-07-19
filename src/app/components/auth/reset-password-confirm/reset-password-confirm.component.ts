@@ -35,7 +35,7 @@ export class ResetPasswordConfirmComponent implements OnInit {
 
   resetPasswordConfirm(resetconfirmFormValid) {
     if (resetconfirmFormValid) {
-      this.authService.startLoader('Resetting Your Password');
+      this.globalService.startLoader('Resetting Your Password');
 
       const RESET_BODY = JSON.stringify({
         'new_password1': this.authService.getUser['new_password1'],
@@ -49,11 +49,11 @@ export class ResetPasswordConfirmComponent implements OnInit {
           response => {
             this.authService.isResetPassword = true;
             this.authService.deliveredMsg = response.data.detail;
-            this.authService.stopLoader();
+            this.globalService.stopLoader();
           },
 
           err => {
-            this.authService.stopLoader();
+            this.globalService.stopLoader();
             if (err.status === 400) {
               this.authService.isFormError = true;
               let non_field_errors, token_valid, password1_valid, password2_valid;
@@ -75,7 +75,7 @@ export class ResetPasswordConfirmComponent implements OnInit {
               } catch (error) {
                 setTimeout(() => {
                   this.authService.FormError = 'Something went wrong! Please refresh the page and try again.';
-                  this.globalService.showToast('Error', 'Reset Password UnSuccessfull.Please Try Again!', 5);
+                  this.globalService.showToast('Error', 'Reset Password UnSuccessful.Please Try Again!', 5);
                 }, 1000);
               }
             } else {

@@ -41,18 +41,18 @@ export class VerifyEmailComponent implements OnInit {
    * Component on initialized.
    */
   ngOnInit() {
-    this.authService.startLoader('Verifying Email');
+    this.globalService.startLoader('Verifying Email');
     this.route.params.subscribe(params => {
       if (params['token']) {
         this.token = params['token'];
         this.authService.verifyEmail(this.token,
           () => {
             this.email_verify_msg = 'Your email has been verified successfully';
-            this.authService.stopLoader();
+            this.globalService.stopLoader();
           },
           () => {
             this.email_verify_msg = 'Something went wrong!! Please try again.';
-            this.authService.stopLoader();
+            this.globalService.stopLoader();
           }
         );
       }

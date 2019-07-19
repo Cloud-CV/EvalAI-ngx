@@ -65,7 +65,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   // Function to signup
   userSignUp(signupFormValid) {
     if (signupFormValid) {
-      this.authService.startLoader('Setting up your details!');
+      this.globalService.startLoader('Setting up your details!');
       const SIGNUP_BODY = JSON.stringify({
         username: this.authService.regUser['name'],
         email: this.authService.regUser['email'],
@@ -87,11 +87,11 @@ export class SignupComponent implements OnInit, AfterViewInit {
           }, 1000);
 
           this.router.navigate(['/auth/login']);
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
         },
 
         err => {
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
           if (err.status === 400) {
             this.authService.isFormError = true;
             let non_field_errors, isUsername_valid, isEmail_valid, isPassword1_valid, isPassword2_valid;

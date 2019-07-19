@@ -74,11 +74,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   // Function to login
   userLogin(loginFormValid) {
     if (!loginFormValid) {
-      this.authService.stopLoader();
+      this.globalService.stopLoader();
       return;
     }
 
-    this.authService.startLoader('Taking you to EvalAI!');
+    this.globalService.startLoader('Taking you to EvalAI!');
 
     const LOGIN_BODY = {
       'username': this.authService.getUser['name'],
@@ -89,12 +89,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
       data => {
         this.globalService.storeData(this.globalService.authStorageKey, data['token']);
         this.authService.loggedIn(true);
-        this.authService.stopLoader();
+        this.globalService.stopLoader();
         this.redirectCheck(this);
       },
 
       err => {
-        this.authService.stopLoader();
+        this.globalService.stopLoader();
 
         if (err.status === 400) {
           this.authService.isFormError = true;

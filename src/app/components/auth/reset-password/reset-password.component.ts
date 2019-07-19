@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {ApiService} from '../../../services/api.service';
 import {EndpointsService} from '../../../services/endpoints.service';
+import {GlobalService} from '../../../services/global.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -12,7 +13,8 @@ export class ResetPasswordComponent implements OnInit {
 
   isemailFocused = false;
 
-  constructor(public authService: AuthService, private apiService: ApiService, private endpointService: EndpointsService) {
+  constructor(public authService: AuthService, private globalService: GlobalService, private apiService: ApiService,
+              private endpointService: EndpointsService) {
   }
 
   ngOnInit() {
@@ -22,7 +24,7 @@ export class ResetPasswordComponent implements OnInit {
   // function to reset password
   resetPassword(resetPassFormValid) {
     if (resetPassFormValid) {
-      this.authService.startLoader('Sending Mail');
+      this.globalService.startLoader('Sending Mail');
 
       const RESET_BODY = JSON.stringify({
         email: this.authService.getUser['email']
@@ -35,19 +37,19 @@ export class ResetPasswordComponent implements OnInit {
           this.authService.isFormError = false;
           this.authService.deliveredMsg = response.detail;
           this.authService.getUser['email'] = '';
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
         },
 
         err => {
           this.authService.isFormError = true;
           this.authService.FormError = 'Something went wrong. Please try again';
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
         },
 
         () => {}
       );
     } else {
-      this.authService.stopLoader();
+      this.globalService.stopLoader();
     }
   }
 }

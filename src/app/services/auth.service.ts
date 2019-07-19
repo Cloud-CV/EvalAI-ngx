@@ -11,13 +11,8 @@ export class AuthService {
   change = this.authStateSource.asObservable();
 
 
-  /**
-   * Ported From Angular Application
-   */
-  isRem = false;
   isAuth = false;
   isMail = true;
-  userMail = '';
   // getUser for signup
   regUser = {};
   // useDetails for login
@@ -28,29 +23,18 @@ export class AuthService {
   // form error
   isFormError = false;
   FormError = {};
-  // to store the next redirect route
-  redirectUrl = {};
 
   // default parameters
   isLoader = false;
-  isPassConf = true;
   regMsg = '';
   wrnMsg = {};
   isValid = {};
-  confirmMsg = '';
   deliveredMsg = '';
-  loaderTitle = '';
   canShowPassword = false;
   canShowConfirmPassword = false;
 
   /**
-   * Porting Ends
-   */
-
-
-  /**
    * Constructor.
-   * @param router
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.

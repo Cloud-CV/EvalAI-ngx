@@ -12,12 +12,7 @@ export class EmailValidatorDirective implements Validator {
   }
 
   validate(control: AbstractControl): ValidationErrors {
-    const RE = new RegExp (['^(([^<>()[\\]\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\.,;:\\s@\"]+)*)',
-      '|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.',
-      '[0-9]{1,3}\])|(([a-zA-Z\\-0-9]+\\.)+',
-      '[a-zA-Z]{2,}))$'].join(''));
     const email = control.get('email');
-    console.log(email);
     if (email) {
       return this.globalService.validateEmail(email.value) ? null : { 'InvalidEmail': true };
     }
