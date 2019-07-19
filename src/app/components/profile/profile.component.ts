@@ -227,6 +227,7 @@ export class ProfileComponent implements OnInit {
     const PARAMS = {
       title: 'Change Password',
       content: '',
+      isButtonDisabled: true,
       confirm: 'Submit',
       deny: 'Cancel',
       form: [
