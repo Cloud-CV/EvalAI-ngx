@@ -79,8 +79,6 @@ export class ChallengeCreateComponent implements OnInit {
   }
 
   challengeCreate() {
-    console.log(this.ChallengeCreateForm);
-
     if (this.ChallengeCreateForm['input_file'] !== null) {
       const FORM_DATA: FormData = new FormData();
       FORM_DATA.append('status', 'submitting');
