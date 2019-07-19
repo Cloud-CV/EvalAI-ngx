@@ -241,10 +241,6 @@ export class InputComponent implements OnInit {
   }
 
   toggleErrorMessage () {
-    if (((this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty) || this.message !== '') && this.isDirty) {
-      return false;
-    } else {
-      return true;
-    }
+    return !(((this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty) || this.message !== '') && this.isDirty);
   }
 }

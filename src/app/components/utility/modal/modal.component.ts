@@ -233,35 +233,15 @@ export class ModalComponent implements OnInit {
   validateModalInput(e) {
     this.inputErrorMessage = '';
     if (e.target.name === 'challegenDeleteInput') {
-      if (e.target.value === this.challenge.title) {
-        this.isDisabled = false;
-      } else {
-        this.isDisabled = true;
-      }
+      this.isDisabled = e.target.value !== this.challenge.title;
     } else if (e.target.name === 'editChallengeTitle') {
-      if (e.target.value !== this.challenge.title && e.target.value.length > 1) {
-        this.isDisabled = false;
-      } else {
-        this.isDisabled = true;
-      }
+      this.isDisabled = e.target.value === this.challenge.title;
     } else if (e.target.name === 'update_first_name') {
-      if (e.target.value !== this.user.first_name && e.target.value.length > 1) {
-        this.isDisabled = false;
-      } else {
-        this.isDisabled = true;
-      }
+      this.isDisabled = e.target.value === this.user.first_name;
     } else if (e.target.name === 'update_last_name') {
-      if (e.target.value !== this.user.last_name  && e.target.value.length > 1) {
-        this.isDisabled = false;
-      } else {
-        this.isDisabled = true;
-      }
+      this.isDisabled = e.target.value === this.user.last_name;
     } else if (e.target.name === 'update_affiliation') {
-      if (e.target.value !== this.user.affiliation && e.target.value.length > 1) {
-        this.isDisabled = false;
-      } else {
-        this.isDisabled = true;
-      }
+      this.isDisabled = e.target.value === this.user.affiliation;
     } else if (e.target.name === 'old_password') {
       this.oldPassword = e.target.value;
     } else if (e.target.name === 'new_password1') {
@@ -278,10 +258,6 @@ export class ModalComponent implements OnInit {
   }
 
   validateFileInput(e) {
-    if (e.target.value !== '') {
-      this.isDisabled = false;
-    } else {
-      this.isDisabled = true;
-    }
+    this.isDisabled = e.target.value === '';
   }
 }
