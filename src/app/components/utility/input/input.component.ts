@@ -240,7 +240,11 @@ export class InputComponent implements OnInit {
     this.document.getElementById(id).click();
   }
 
+  showErrorCondition () {
+    return (this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty)
+  }
+
   toggleErrorMessage () {
-    return !(((this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty) || this.message !== '') && this.isDirty);
+    return !((this.showErrorCondition() || this.message !== '') && this.isDirty);
   }
 }

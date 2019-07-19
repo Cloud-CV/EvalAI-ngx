@@ -91,14 +91,14 @@ export class ModalComponent implements OnInit {
   oldPassword = '';
 
   /**
-   * New password 1
+   * New password
    */
-  newPassword1 = '';
+  newPassword = '';
 
   /**
-   * New password 2
+   * Re-type new password
    */
-  newPassword2 = '';
+  retype_newPassword = '';
 
   /**
    * delete challenge button disable
@@ -245,13 +245,13 @@ export class ModalComponent implements OnInit {
     } else if (e.target.name === 'old_password') {
       this.oldPassword = e.target.value;
     } else if (e.target.name === 'new_password1') {
-      this.newPassword1 = e.target.value;
+      this.newPassword = e.target.value;
       if (e.target.value === this.oldPassword) {
         this.inputErrorMessage = 'Old password cannot be same as New Password';
       }
     } else if (e.target.name === 'new_password2') {
-      this.newPassword2 = e.target.value;
-      if (e.target.value !== this.newPassword1) {
+      this.retype_newPassword = e.target.value;
+      if (e.target.value !== this.newPassword) {
         this.inputErrorMessage = 'Password do not match';
       }
     }
