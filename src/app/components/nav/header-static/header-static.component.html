@@ -3,7 +3,7 @@
     <div class="nav-wrapper">
       <a (click)="menuExpander()" class="button-collapse main-header-link"><i class="fa fa-bars"></i></a>
       <ul class="hide-on-med-and-down">
-        <li><a class="waves-effect waves-dark main-header-link evalai-logo" routerLink="/" routerLinkActive="active"><img src="assets/images-port/evalai-logo-single.png"></a></li>
+        <li><a class="waves-effect waves-dark main-header-link evalai-logo" routerLink="/" routerLinkActive="active"><img src="assets/images/evalai-logo-single.png"></a></li>
         <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" routerLink="/challenges">All Challenges</a></li>
         <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" href="https://evalai-forum.cloudcv.org/" target="_blank">Forum</a></li>
         <!-- show after authenticate user -->

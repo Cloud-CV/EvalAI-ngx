@@ -70,7 +70,7 @@ export class DashboardContentComponent implements OnInit {
       err => {
         SELF.globalService.handleApiError(err);
       },
-      () => console.log('Ongoing challenges fetched!')
+      () => {}
     );
   }
 
@@ -97,9 +97,7 @@ export class DashboardContentComponent implements OnInit {
       err => {
         SELF.globalService.handleApiError(err, false);
       },
-      () => {
-        console.log('Teams fetched for teamlist', path);
-      }
+      () => {}
     );
   }
 

@@ -45,7 +45,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       if (!authState.isLoggedIn) {
-        console.log('dashboard component auth state', authState);
         this.router.navigate(['/auth/login']);
       }
     });

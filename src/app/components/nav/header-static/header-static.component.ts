@@ -116,7 +116,6 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
       if (this.authState.isLoggedIn) {
-        console.log('logi: header static', this.authState);
         this.user = this.authState;
       }
     });
