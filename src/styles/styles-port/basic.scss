@@ -50,21 +50,8 @@ p.no-top-para {
     margin-top: 2px;
 }
 
-.pointer {
-    cursor: pointer;
-}
-
 .rm-row-bot {
     margin-bottom: 0px;
-}
-
-/*inline list*/
-
-ul.inline-list {
-    li {
-        display: inline-block;
-        margin-right: 20px;
-    }
 }
 
 span.inline {
@@ -141,10 +128,6 @@ nav {
     font-weight: 400;
 }
 
-.text-highlight {
-    color: $link-hover-dark;
-}
-
 .text-white {
     color: #fff;
 }
@@ -169,10 +152,6 @@ nav {
     color: #252833;
 }
 
-.text-highlight {
-    color: $highlight;
-}
-
 .ev-btn-scroll {
  background: #252833;
  border-radius: 50%;
@@ -194,16 +173,8 @@ nav {
   background: #3c3e49;
 }
 
-.ev-btn-dark {
-    background: $dark-gray;
-}
-
 .ev-btn-light {
     background: #ffffff;
-}
-
-.ev-btn-dark:hover {
-    background: $med-gray;
 }
 
 .ev-btn-light:hover {
@@ -393,24 +364,8 @@ a.dark-link {
     color: $dark-link;
 }
 
-a.dark-link:hover {
-    color: $highlight;
-}
-
 a.text-light-black:hover {
     color: $highlight;
-}
-
-.align-left {
-    text-align: left;
-}
-
-.align-right {
-    text-align: right;
-}
-
-.align-center {
-    text-align: center;
 }
 
 /*to remove gutter from col*/
