@@ -1,4 +1,4 @@
-@import "styles/styles-port/main";
+@import "styles/variables";
 
 .org-link {
   margin-right: 30px;
@@ -40,6 +40,18 @@
   nav.grad-shadow-1 {
     box-shadow: 0 0 10px $light-black;
   }
+}
+
+a.evalai-logo {
+  width: 60px;
+  img {
+    width: 100%;
+    vertical-align: middle;
+  }
+}
+
+.background {
+  background-color: $dark-gray;
 }
 
 @media only screen and (max-width: $med-screen) {
