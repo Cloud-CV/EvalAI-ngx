@@ -80,6 +80,7 @@ export class ChallengeComponent implements OnInit {
    * @param apiService  Router Injection.
    * @param endpointsService  EndpointsService Injection.
    * @param challengeService  ChallengeService Injection.
+   * @param DOCUMENT Document Injection
    */
   constructor(@Inject(DOCUMENT) document: any, private router: Router, private route: ActivatedRoute,
               private apiService: ApiService, private globalService: GlobalService,
