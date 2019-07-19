@@ -9,19 +9,7 @@
 
 
 
-/*common styles */
-
 /*dynamic header styles*/
-.dropdown-content {
-  margin-top: 64px;
-  right: 0;
-  left: auto !important;
-  min-width: 160px;
-  background-color: rgba(0, 0, 0, 0.2);
-  li {
-    text-align: right;
-  }
-}
 
 #ev-dropdown li a:hover {
   background-color: white;
@@ -90,92 +78,7 @@ a.dashboard-evailai-logo {
 
 /*landing page css*/
 
-
-/*dynamic header style*/
-
-.dyn-header {
-  position: relative;
-  z-index: 999;
-  nav {
-    background-color: rgba(0, 0, 0, 0);
-    box-shadow: 0 0 0 0 #000;
-    a {
-      color: $light-link;
-      font-weight: $rob-med;
-      img.cloudcv-logo {
-        height: 50px;
-        width: 50px;
-        vertical-align: middle;
-      }
-    }
-    a:hover {
-      color: $link-hover-dark;
-    }
-    a.light-link {
-      color: $med-link;
-      transition: all 0.2s ease-in-out;
-    }
-    a.light-link:hover {
-      color: $light-link;
-    }
-    a.active {
-      color: $link-hover-dark;
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-  }
-}
-
-
 /*main intor*/
-
-section.bg-section {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  background-color: $med-gray;
-  .bg-image {
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
-    //        background-image: url('../../images/background.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: right;
-  }
-}
-
-.ev-head {
-  margin-top: 100px;
-}
-
-.ev-head-small {
-  margin-top: 80px;
-}
-
-.ev-intro {
-  margin-top: -10px;
-}
-
-.ev-insight {
-  position: absolute;
-  bottom: 0px;
-  color: $light-gray;
-  width: 75%;
-  right: 0;
-  height: 70vh;
-  overflow: hidden;
-  direction: ltr;
-}
-
-#mobile-demo {
-  li {
-    a {
-      color: $med-black;
-    }
-  }
-}
 
 .background {
   background-color: $dark-gray;
@@ -191,11 +94,6 @@ section.bg-section {
 .ev-reverse-details {
   box-shadow: none;
 }
-
-.full-view {
-  min-height: 100vh;
-}
-
 
 /*simple header*/
 
@@ -234,9 +132,6 @@ section.bg-section {
       color: #ffaf4b;
       background-color: rgba(0, 0, 0, 0);
     }
-    nav.grad-shadow-1 {
-      box-shadow: 0 0 10px #9d9d9d;
-    }
   }
 }
 @media only screen and (max-width: 992px) {
@@ -255,55 +150,145 @@ section.bg-section {
   z-index: 3;
 }
 
-.insight-text {
-  color: $light-black;
-  &:hover {
-    color: $highlight;
-  }
-}
-
-.cloud-big {
+.rocket-anim {
+  width: 150px;
+  padding-right: 50px;
   position: absolute;
-  display: inline-block;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  height: 100%;
+  left: 62%;
+  z-index: 0;
+  /* margin: auto; */
+  margin-top: 21vh;
+  animation: rocket 3s alternate infinite;
   img {
-    height: 100%;
+    width: 100%;
   }
 }
 
-.cloud-big-2 {
-  right: 0px;
+.rocket-container {
+  position: relative;
+}
+
+.small-cloud {
   z-index: 0;
-  bottom: 4px;
-  transform: rotate(-4deg);
 }
 
-.grad-vh {
-  min-height: 100vh;
+.cloud-1 {
+  width: 80px;
+  position: absolute;
+  right: 0;
+  top: -1-0px;
+  animation: cloud-one 7s linear infinite;
+  img {
+    width: 100%;
+  }
 }
 
-.landing-is {
-  font-size: 126px;
-  margin-top: 34px;
+@keyframes rocket {
+  0% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
 }
 
-.is-line,
-.big-line {
+@keyframes cloud-one {
+  0% {
+    top: -100px;
+  }
+  100% {
+    top: 100vh;
+  }
+}
+
+.cloud-2 {
+  width: 100px;
+  position: absolute;
+  right: 150px;
+  top: -140px;
+  animation: cloud-two 10s linear infinite;
+  animation-delay: 5s;
+  img {
+    width: 100%;
+  }
+}
+
+@keyframes cloud-two {
+  0% {
+    top: -140px;
+  }
+  100% {
+    top: 100vh;
+  }
+}
+
+.cloud-3 {
+  width: 100px;
+  position: absolute;
+  right: -60px;
+  top: -120px;
+  animation: cloud-three 8s linear infinite;
+  img {
+    width: 100%;
+  }
+}
+
+@keyframes cloud-three {
+  0% {
+    top: -120px;
+  }
+  100% {
+    top: 100vh;
+  }
+}
+
+.cloud-4 {
+  width: 100px;
+  position: absolute;
+  right: 120px;
+  top: -120px;
+  animation: cloud-four 14s linear infinite;
+  img {
+    width: 100%;
+  }
+}
+
+@keyframes cloud-four {
+  0% {
+    top: -80px;
+  }
+  100% {
+    top: 100vh;
+  }
+}
+
+.bird-anim {
+  width: 200px;
+  position: absolute;
+  right: 0px;
+  top: -300px;
+  animation: bird 15s linear infinite;
+  animation-delay: 4s;
+  img {
+    width: 100%;
+  }
+}
+
+@keyframes bird {
+  0% {
+    top: -300px;
+  }
+  100% {
+    top: 100vh;
+  }
+}
+
+.is-line {
   display: block;
   height: 2px;
   width: 50px;
   background: $highlight;
   margin-top: 22px;
-}
-
-.big-line {
-  width: 100px;
-  height: 1px;
-  margin: 8px 0px 12px 0px;
-  background: $light-black;
 }
 
 
@@ -339,20 +324,6 @@ section.bg-section {
   }
 }
 
-.challenge-logo {
-  img {
-    width: 80px;
-    vertical-align: middle;
-  }
-}
-
-a.view-more {
-  color: $highlight;
-  &:hover {
-    color: $highlight-dark;
-  }
-}
-
 .org-logo{
   max-width: 100%;
   height: 120px;
@@ -376,23 +347,11 @@ a.view-more {
 
 @media only screen and (max-width: $med-screen) {
 
-  .dyn-header {
-    nav {
-      a.org-link {
-        float: right;
-        padding-right: 20px;
-      }
-    }
+  .rocket-container {
+    display:none;
   }
   .head {
     margin-top: 40px;
-  }
-  .ev-head-small {
-    margin-top: 20px;
-  }
-  .ev-insight {
-    bottom: 0px;
-    width: 100%;
   }
   .sim-header {
     width: 100%;
@@ -488,11 +447,6 @@ a.view-more {
 }
 
 .light-dark-container {
-  .loader-title {
-    color: $med-gray;
-    font-size: 18px;
-    font-weight: 500;
-  }
 }
 
 
@@ -503,3 +457,4 @@ a.view-more {
     width: 100%;
   }
 }
+
