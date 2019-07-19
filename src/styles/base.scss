@@ -638,6 +638,12 @@ a.active-challenge {
   outline: none;
 }
 
+.challenge-description a, .evaluation-details a, .terms-and-conditions a,
+.phase-description a, .submission-guidelines a {
+    color: #2196F3;
+    cursor: pointer;
+}
+
 
 
 
@@ -1305,4 +1311,10 @@ td, th {
   border-bottom: 2px solid #ffaf4b;
   display: block;
   color: #4d4d4d;
+}
+
+/*position default*/
+
+.ev-fixed {
+  position: fixed;
 }
