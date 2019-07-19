@@ -241,7 +241,7 @@ export class InputComponent implements OnInit {
   }
 
   showErrorCondition () {
-    return (this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty)
+    return (this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty);
   }
 
   toggleErrorMessage () {
