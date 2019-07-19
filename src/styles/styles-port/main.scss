@@ -40,3 +40,299 @@
 @import "modules/main-header.scss";
 
 
+
+.dashboard-footer {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+
+@media only screen and(min-width:768px) and(max-width:$med-screen) {
+  .dashboard-footer {
+    width: 100%;
+    padding-left: 220px;
+  }
+}
+
+/* header styles */
+
+.ev-header-overflow {
+  margin-top: -2px;
+}
+
+.med-link {
+  i {
+    height: auto;
+  }
+}
+
+
+/*landing page logo*/
+
+a.evalai-logo {
+  width: 60px;
+  img {
+    width: 100%;
+    vertical-align: middle;
+  }
+}
+
+
+/*dashboard logo*/
+
+a.dashboard-evailai-logo {
+  width: 110px;
+  img {
+    width: 100%;
+    vertical-align: middle;
+  }
+}
+
+
+
+/*landing page css*/
+
+/*main intor*/
+
+.background {
+  background-color: $dark-gray;
+}
+
+.ev-details,
+.ev-reverse-details {
+  position: relative;
+  box-shadow: 6px -1px 9px $super-light-shadow;
+  padding: 0;
+}
+
+.ev-reverse-details {
+  box-shadow: none;
+}
+
+/*simple header*/
+
+.sim-header {
+  font-size: 18px;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  position: relative;
+  nav {
+    background-color:rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 0 #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 100px;
+    transition: all 0.1s ease-in-out;
+    a.sim-header-link {
+      color: #4d4d4d;
+      font-weight: 400;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: #ffaf4b;
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+    a.light-link {
+      color: #9ca3be;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: #fff;
+      }
+    }
+    a.active {
+      color: #ffaf4b;
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+}
+@media only screen and (max-width: 992px) {
+  .sim-header nav {
+    padding: 0px 30px;
+  }
+}
+
+.grad-head {
+  padding-top: 10vh;
+}
+
+.landing-buttons {
+  margin-top: 35px;
+  position: relative;
+  z-index: 3;
+}
+
+.is-line {
+  display: block;
+  height: 2px;
+  width: 50px;
+  background: $highlight;
+  margin-top: 22px;
+}
+
+
+/*space man*/
+
+.spaceman {
+  width: 200px;
+  position: absolute;
+  right: 0px;
+  top: 100px;
+  animation: spaceman-anim 4s alternate linear infinite;
+  img {
+    width: 100%;
+  }
+}
+
+@keyframes spaceman-anim {
+  0% {
+    transform: rotate(0deg);
+    top: 100px;
+  }
+  30% {
+    transform: rotate(20deg);
+    top: 150px;
+  }
+  70% {
+    transform: rotate(0deg);
+    top: 190px;
+  }
+  100% {
+    transform: rotate(-10deg);
+    top: 240px;
+  }
+}
+
+.org-logo{
+  max-width: 100%;
+  height: 120px;
+  text-align: center;
+
+  img{
+    height: 75%;
+    max-width: 100%;
+    width: auto;
+    transition:all 0.2s ease-in-out;
+  }
+  &:hover{
+    img{
+      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
+    }
+  }
+}
+
+/*media queries*/
+
+@media only screen and (max-width: $med-screen) {
+  .head {
+    margin-top: 40px;
+  }
+  .sim-header {
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width: $small-screen) {
+  .org-logo{
+    height: auto;
+    width: 100%;
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+#fb-logo{
+  height: 175px;
+  width: 160px;
+  padding-bottom:30%;
+}
+
+#mapillary-logo{
+  height:70px;
+  width:210px;
+}
+
+#umbc-logo{
+  height:70px;
+  width:180px;
+}
+
+#draper-logo {
+  height: 110px;
+  padding-bottom:5%;
+}
+
+#ebay-logo{
+  padding-top:5%;
+  height: 80px;
+  width:160px;
+}
+
+#iitm-logo{
+  height:100px;
+  width:100px;
+}
+
+#adelaide-logo{
+  height:80px;
+  width:180px;
+}
+
+#pitt-logo{
+  height:80px;
+  width:180px;
+}
+
+
+
+
+
+/*web page css*/
+
+.dashboard-flex {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  flex: 1;
+  min-height: 100vh;
+}
+
+.web-container {
+  width: calc(100vw - 223px);
+  float: right;
+  padding-top: 70px;
+  overflow-x: hidden;
+  &.center {
+    float: none;
+    margin: 0 auto;
+    text-align: left;
+    overflow: hidden;
+  }
+}
+
+#sidenav-overlay {
+  z-index: 1;
+}
+
+.light-dark-container {
+}
+
+
+/*media queries*/
+
+@media only screen and (max-width: $med-screen) {
+  .web-container {
+    width: 100%;
+  }
+}
+
