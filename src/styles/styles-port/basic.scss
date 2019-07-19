@@ -1,17 +1,3 @@
-/*ng cloak default styling*/
-
-[ng\:cloak],
-[ng-cloak],
-[data-ng-cloak],
-[x-ng-cloak],
-.ng-cloak,
-.x-ng-cloak {
-    display: none !important;
-}
-
-.display-large {
-    display: block;
-}
 .display-small {
     display: none;
 }
@@ -64,74 +50,6 @@ p.no-top-para {
     margin-top: 2px;
 }
 
-
-/*scrollbar customization*/
-
-::-webkit-scrollbar {
-    width: 4px;
-    border-radius: 10px;
-    height: 5px;
-}
-
-::-webkit-scrollbar-track-piece {
-    background-color: $dark-gray;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-    background-color: $light-gray;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:vertical {
-    background-color: $light-gray;
-    border-radius: 10px;
-}
-
-
-/*font styles*/
-
-.fs-12 {
-    font-size: $fs-12;
-}
-
-.fs-14 {
-    font-size: $fs-14;
-}
-
-.fs-15 {
-  font-size: $fs-15;
-}
-
-.fs-16 {
-    font-size: $fs-16;
-}
-
-.fs-18 {
-    font-size: $fs-18;
-}
-
-.fs-20 {
-    font-size: $fs-20;
-}
-
-.fs-22 {
-  font-size: $fs-22;
-}
-
-.fs-24 {
-  font-size: $fs-24;
-}
-
-.fs-30 {
-  font-size: $fs-30;
-}
-
-.fs-36 {
-  font-size: $fs-36;
-}
-
-
 .pointer {
     cursor: pointer;
 }
@@ -162,40 +80,14 @@ span.inline {
     content: '';
 }
 
-/*position default*/
-
-.ev-fixed {
-    position: fixed;
-}
-
-.ev-absolute {
-    position: absolute;
-}
-
-
-
-/*margin for column*/
-
-.ev-mt-50 {
-    margin-top: 50px;
-}
-
 /*bg color*/
+
+.white-bg {
+  background-color: #fff;
+}
 
 .ev-dark-bg {
     background-color: $dark-gray;
-}
-
-.ev-dust-bg {
-    background-color: $dust-gray;
-}
-
-.ev-light-bg {
-    background-color: $light-gray;
-}
-
-.ev-black-bg {
-    /*background-color: $grad-black;*/
 }
 
 .ev-super-light-bg {
@@ -204,24 +96,12 @@ span.inline {
 
 /*main intro page*/
 
-.ev-md-container {
-    padding: 40px;
-}
-
 .ev-sm-container {
     padding: 10px 20px;
 }
 
-.ev-big-container {
-    padding: 30px 60px;
-}
-
 .padding-lr-header {
     padding: 0px 100px;
-}
-
-.padding-sm-lr-header {
-    padding: 0px 40px;
 }
 
 a.active {
@@ -253,10 +133,6 @@ nav {
     color: #fff;
 }
 
-.w-200 {
-    font-weight: 200;
-}
-
 .w-300 {
     font-weight: 300;
 }
@@ -265,24 +141,12 @@ nav {
     font-weight: 400;
 }
 
-.w-500 {
-    font-weight: 500;
-}
-
-.w-600 {
-    font-weight: 600;
-}
-
 .text-highlight {
     color: $link-hover-dark;
 }
 
 .text-white {
     color: #fff;
-}
-
-.text-light-black {
-    color: $light-black;
 }
 
 .text-med-black {
@@ -346,25 +210,49 @@ nav {
     background: $light-gray;
 }
 
-/*card styles*/
 
-.ev-card-panel {
-    position: relative;
-    display: block;
-    background-color: #fff;
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0px 0px 12px $shadow-black;
+/*grad button style*/
+
+.view-container {
+  min-height: 100vh;
 }
+
+.grad-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 100px 40px 100px;
+  clear: both;
+}
+
+.rm-grad-pad {
+  padding: 30px 100px 30px 100px;
+}
+
+.grad-span {
+  display: inline;
+}
+
+/*media queries*/
+
+@media screen and (max-width: $med-screen) {
+  .grad-container {
+    padding:40px;
+  }
+}
+
+
+@media screen and (max-width: $small-screen) {
+  .grad-container {
+    text-align: center;
+  }
+}
+
+
+
+/*card styles*/
 
 .ev-card-content {
     padding: 10px;
-}
-
-.ev-card-body {
-    padding: 10px 30px;
 }
 
 .ev-panel-title {
@@ -436,22 +324,6 @@ nav {
     box-shadow: 0px 0px 10px $shadow-black;
 }
 
-.ev-z-depth-4 {
-    box-shadow: 0px 0px 8px $shadow-black;
-}
-
-.ev-z-depth-3 {
-    box-shadow: 0px 0px 6px $shadow-black;
-}
-
-.ev-z-depth-2 {
-    box-shadow: 0px 0px 4px $shadow-black;
-}
-
-.ev-z-depth-1 {
-    box-shadow: 0px 0px 2px $shadow-black;
-}
-
 .ev-view {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -467,14 +339,6 @@ nav {
 
 .fade {
     transition: all linear 500ms;
-    opacity: 1;
-}
-
-.fade.ng-hide {
-    opacity: 0;
-}
-
-.fade.ng-show {
     opacity: 1;
 }
 
@@ -567,35 +431,6 @@ a.text-light-black:hover {
     }
 }
 
-/*pagination*/
-
-.pagination-container {
-    margin-top: 25px;
-    .md-button.md-warn.md-raised {
-        background-color: $highlight;
-    }
-    .md-button.md-primary,
-    .md-button.md-primary.md-raised,
-    .md-button.md-primary.md-raised:not([disabled]):hover,
-    .md-button.md-primary.md-raised:active {
-        background-color: $dark-gray;
-    }
-}
-
-.btn-pagination {
-    background-color: $highlight;
-    i {
-        font-size: 16px;
-    }
-}
-
-.btn-pagination:hover {
-    background-color: $highlight;
-    i {
-        font-size: 16px;
-    }
-}
-
 /* label color */
 
 .input-field label,
@@ -668,10 +503,6 @@ input[type="checkbox"].filled-in:not(:checked)+label:after {
 
 /* icon prefix focus color */
 
-.input-field .prefix.active {
-    color: #000;
-}
-
 input {
     font-weight: 300;
     border-bottom: 1px solid $light-gray;
@@ -693,30 +524,9 @@ input {
     }
 }
 
-.ev-spinner-dark {
-    border-color: $light-link;
-}
-
-.ev-spinner-light {
-    border-color: $highlight;
-}
-
 
 
 /*loader*/
-
-.show-loader {
-    display: block;
-}
-
-.hide-loader {
-    display: none;
-}
-
-.low-screen {
-    transition: all 0.2s ease-in-out;
-    opacity: 0.2;
-}
 
 .loader-title {
     margin-top: 39vh;
@@ -730,23 +540,6 @@ input {
     top: 0;
     z-index: 5;
     background-color: transparent;
-}
-
-.card-loader-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 5;
-    background-color: transparent;
-    .loader-title {
-        margin-top: 14vh;
-    }
-    .loader {
-        margin-top: 20%;
-        top: 0;
-    }
 }
 
 .loader {
@@ -824,10 +617,6 @@ input {
 
 /*default margins*/
 
-.mt-12 {
-    margin-top: 12px;
-}
-
 .rm-mt {
     margin-top: 0px;
 }
@@ -839,20 +628,10 @@ input {
     flex-direction: column;
 }
 
-.content {
-    flex: 1;
-}
-
 
 /*media queries*/
 
 @media only screen and (max-width: $med-screen) {
-    .display-large {
-        display: none;
-    }
-    .display-small {
-        display: block;
-    }
     .padding-lr-header {
         padding: 0px 20px;
     }
@@ -871,10 +650,6 @@ input {
 .margin-8 {
     margin-left: 8%;
     margin-right: 8%;
-}
-
-.font-weight-b {
-    font-weight: bold;
 }
 
 tr {
