@@ -73,6 +73,12 @@ a.dashboard-evailai-logo {
 /*media queries*/
 
 @media only screen and (max-width: $med-screen) {
+  .side-nav .userView{
+    padding: 28px;
+  }
+}
+
+@media only screen and (max-width: $med-screen) {
   .sim-header {
     width: 100%;
   }
