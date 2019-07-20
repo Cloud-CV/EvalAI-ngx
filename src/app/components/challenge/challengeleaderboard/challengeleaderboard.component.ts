@@ -190,10 +190,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       if (params['split']) {
         this.selectedPhaseSplitId = params['split'];
         this.selectPhaseSplitId(this.selectedPhaseSplitId, this);
-      } else {
-        if (this.filteredPhaseSplits.length > 0) {
-          this.router.navigate([this.filteredPhaseSplits[0]['id']], {relativeTo: this.route});
-        }
       }
     });
   }
