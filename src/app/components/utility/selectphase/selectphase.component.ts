@@ -103,7 +103,9 @@ export class SelectphaseComponent implements OnInit, OnChanges {
 
   /**
    * Select a particular phase split.
-   * @param phase  phase split to be selected.
+   * @param phaseSplit  phase split to be selected.
+   * @param phaseSelectionType phase selection type (radio button or select box).
+   * @param phaseSelectionListType phase selection list type (phase or phase split)
    */
   selectPhaseSplit(phaseSplit, phaseSelectionType, phaseSelectionListType) {
     this.phaseSelectionType = phaseSelectionType;

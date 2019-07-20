@@ -119,7 +119,6 @@ export class ApiService {
    */
   loadingWrapper(httpCall, isLoader = true) {
     const SELF = this;
-    console.log(isLoader);
     if (isLoader) {
       setTimeout(() => {this.globalService.toggleLoading(true); }, 100);
     }

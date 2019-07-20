@@ -10,7 +10,8 @@
     </div>
     <div class="ev-md-container bottom-hr-line">
       <div (click)="refreshLeaderboard()" class="pointer update-page" *ngIf="showLeaderboardUpdate">
-        <span class="text-white">Page is Outdated, Click to update&nbsp; <i class="fa fa-refresh text-highlight"></i></span>
+        <span class="text-white">Page is Outdated, Click to update&nbsp;
+        <i class="fa fa-refresh text-highlight"></i></span>
       </div>
       <div class="row row-lr-margin phase-title">
         <div class="col-sm-12">
@@ -19,8 +20,10 @@
       </div>
       <div class="row row-lr-margin">
         <div class="col-sm-6 col-xs-12 col-lr-pad phase-select-box">
-          <app-selectphase [phases]="filteredPhaseSplits" [phaseSelectionType]="phaseSelectionType" 
-            [phaseSelectionListType]="phaseSelectionListType" [phaseSplitSelected]="phaseSplitSelected()" 
+          <app-selectphase [phases]="filteredPhaseSplits"
+            [phaseSelectionType]="phaseSelectionType"
+            [phaseSelectionListType]="phaseSelectionListType"
+            [phaseSplitSelected]="phaseSplitSelected()"
             #phasesplitselect>
           </app-selectphase>
         </div>
@@ -31,8 +34,10 @@
       <div class="row row-lr-margin">
         <div class="horizontal-scroll">
           <div class="col-sm-12 col-lr-pad">
-            <div *ngIf="leaderboard.length <= 0 && selectedPhaseSplit == null" class="fw-regular result-wrn">No phase selected.</div>
-              <div *ngIf="leaderboard.length > 0 && selectedPhaseSplit" class="result-wrn content">
+            <div *ngIf="leaderboard.length <= 0 && selectedPhaseSplit == null"
+              class="fw-regular result-wrn">No phase selected.</div>
+              <div *ngIf="leaderboard.length > 0 && selectedPhaseSplit"
+                class="result-wrn content">
                 <mat-chip-list>
                   <mat-chip>B</mat-chip> - Baseline submission
                 </mat-chip-list>
@@ -65,7 +70,8 @@
                         </span>
                       </a>
                     </td>
-                    <td *ngFor="let key of leaderboard[0].leaderboard__schema.labels;index as i" [attr.data-index]="i" class="align-center">
+                    <td *ngFor="let key of leaderboard[0].leaderboard__schema.labels;index as i"
+                      [attr.data-index]="i" class="align-center">
                         <a (click)="sortColumn!='number' && columnIndexSort != i && 
                           reverseSort = false;sortColumn == 'number' && columnIndexSort == i && 
                           reverseSort=!reverseSort;sortColumn = 'number';columnIndexSort = i;sortLeaderboard();">

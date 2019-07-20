@@ -314,14 +314,13 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
 
   /**
    * Fetch leaderboard for a phase split
-   * @param phaseSplitId  id of the phase split
+   * @param phaseSplitId id of the phase split
    */
   fetchLeaderboard(phaseSplitId) {
     const API_PATH = this.endpointsService.challengeLeaderboardURL(phaseSplitId);
     const SELF = this;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-        console.log(data['results']);
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(phaseSplitId);
       },
@@ -347,9 +346,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
         err => {
           SELF.globalService.handleApiError(err);
         },
-        () => {
-          console.log('Fetched leaderboard for split:', phaseSplitId);
-        }
+        () => {}
       );
     }, 5000);
   }
@@ -367,9 +364,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       err => {
         SELF.globalService.handleApiError(err);
       },
-      () => {
-        console.log('Fetched leaderboard for split:', SELF.selectedPhaseSplit['id']);
-      }
+      () => {}
     );
   }
 }
