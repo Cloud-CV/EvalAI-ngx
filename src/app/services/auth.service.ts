@@ -11,17 +11,10 @@ export class AuthService {
   change = this.authStateSource.asObservable();
 
 
-  /**
-   * Ported From Angular Application
-   */
   isAuth = false;
   // color to show password strength
   color = {};
   isValid = {};
-
-  /**
-   * Porting Ends
-   */
 
 
   /**
@@ -146,25 +139,23 @@ export class AuthService {
 
   /**
    * User Details fetch Trigger
-   * @param token
-   * @param success
-   * @param error
+   * @param  login token
+   * @param  callback function
    */
-    verifyEmail(token, success = () => {}, error = () => {}) {
-      const API_PATH = this.endpointsService.verifyEmailURL();
-      const SELF = this;
-      const BODY = JSON.stringify({
-        key: token
-      });
-      this.apiService.postUrl(API_PATH, BODY).subscribe(
-        data => {
-          success();
-        },
-        err => {
-          error();
-          SELF.globalService.handleApiError(err);
-        },
-        () => console.log('Email Verified')
-      );
-    }
+  verifyEmail(token, callback = () => {}) {
+    const API_PATH = this.endpointsService.verifyEmailURL();
+    const SELF = this;
+    const BODY = JSON.stringify({
+      key: token
+    });
+    this.apiService.postUrl(API_PATH, BODY).subscribe(
+      data => {
+        callback();
+      },
+      err => {
+        SELF.globalService.handleApiError(err);
+      },
+      () => console.log('Email Verified')
+    );
+  }
 }
