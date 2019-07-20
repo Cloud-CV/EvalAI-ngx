@@ -136,7 +136,6 @@ export class ChallengelistComponent implements OnInit {
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.isLoggedIn = authState.isLoggedIn;
       if (!authState.isLoggedIn && this.router.url === '/challenges/me') {
-        console.log('challengelist component auth state', authState);
         this.router.navigate(['/auth/login']);
       }
     });
@@ -238,9 +237,7 @@ export class ChallengelistComponent implements OnInit {
       err => {
         SELF.globalService.handleApiError(err, false);
       },
-      () => {
-        console.log('Teams fetched', path);
-      }
+      () => {}
     );
   }
 
@@ -285,7 +282,7 @@ export class ChallengelistComponent implements OnInit {
       err => {
         SELF.globalService.handleApiError(err);
       },
-      () => console.log(path.slice(SELF.apiPathCommon.length) + ' challenges fetched!')
+      () => {}
     );
   }
 
