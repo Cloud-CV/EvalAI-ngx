@@ -49,6 +49,11 @@ export class ProfileComponent implements OnInit {
   isTokenModalVisible = false;
 
   /**
+   * To call the API inside modal for updating the user details and password
+   */
+  apiCall: any;
+
+  /**
    * Form components from 'formtoken'
    */
   @ViewChildren('formtoken')
@@ -121,7 +126,7 @@ export class ProfileComponent implements OnInit {
    */
   updateUserDetails() {
     const SELF = this;
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       console.log(params);
       SELF.apiService.putUrl(SELF.endpointsService.userDetailsURL(),
@@ -146,6 +151,7 @@ export class ProfileComponent implements OnInit {
         {
           isRequired: true,
           label: 'first_name',
+          name: 'update_first_name',
           placeholder: 'First Name',
           type: 'text',
           value: this.user['first_name']
@@ -153,6 +159,7 @@ export class ProfileComponent implements OnInit {
         {
           isRequired: true,
           label: 'last_name',
+          name: 'update_last_name',
           placeholder: 'Last Name',
           type: 'text',
           value: this.user['last_name']
@@ -160,12 +167,13 @@ export class ProfileComponent implements OnInit {
         {
           isRequired: true,
           label: 'affiliation',
+          name: 'update_affiliation',
           placeholder: 'Affiliated To',
           type: 'text',
           value: this.user['affiliation']
         }
       ],
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
 
@@ -194,7 +202,7 @@ export class ProfileComponent implements OnInit {
    */
   updatePassword() {
     const SELF = this;
-    const apiCall = (params) => {
+    SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       console.log(params);
       SELF.apiService.postUrl(SELF.endpointsService.changePasswordURL(),
@@ -219,29 +227,33 @@ export class ProfileComponent implements OnInit {
     const PARAMS = {
       title: 'Change Password',
       content: '',
+      isButtonDisabled: true,
       confirm: 'Submit',
       deny: 'Cancel',
       form: [
         {
           isRequired: true,
           label: 'old_password',
+          name: 'old_password',
           placeholder: 'Old Password*',
           type: 'password'
         },
         {
           isRequired: true,
           label: 'new_password1',
+          name: 'new_password1',
           placeholder: 'New Pasword*',
           type: 'password'
         },
         {
           isRequired: true,
           label: 'new_password2',
+          name: 'new_password2',
           placeholder: 'New Password (Again)*',
           type: 'password'
         }
       ],
-      confirmCallback: apiCall
+      confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
   }

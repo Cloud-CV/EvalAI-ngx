@@ -83,6 +83,11 @@ export class TeamlistComponent implements OnInit {
   isOnChallengePage = false;
 
   /**
+   * User participated
+   */
+  isParticipated: boolean;
+
+  /**
    * Fetch teams URL
    */
   fetchTeamsPath: any;
@@ -108,9 +113,23 @@ export class TeamlistComponent implements OnInit {
   challenge: any;
 
   /**
+   * To call the API inside the modal
+   */
+  apiCall: any;
+
+  /**
    * Form components
    */
   teamForm = 'formteam';
+
+  /**
+   * @param showPagination Is pagination
+   * @param paginationMessage Pagination message
+   * @param isPrev Previous page state
+   * @param isNext Next page state
+   * @param currentPage Current Page number
+   */
+  paginationDetails: any = {};
 
   /**
    * Form fields in the team form (team cards)
@@ -142,6 +161,10 @@ export class TeamlistComponent implements OnInit {
   ngOnInit() {
     this.authServicePublic = this.authService;
     this.routerPublic = this.router;
+    this.challengeService.currentParticipationStatus.subscribe(status => {
+      this.isParticipated = status;
+    });
+
     if (this.router.url === '/teams/hosts') {
       this.isHost = true;
       this.fetchTeamsPath = 'hosts/challenge_host_team';
@@ -208,6 +231,12 @@ export class TeamlistComponent implements OnInit {
     return selectTeam;
   }
 
+  selectedParticipantTeam(team) {
+    const SELF = this;
+    SELF.selectedTeam = team;
+    SELF.unselectOtherTeams(SELF);
+  }
+
   /**
    * Unselecting other teams function.
    */
@@ -248,6 +277,30 @@ export class TeamlistComponent implements OnInit {
             SELF.allTeams = SELF.appendIsSelected(SELF.allTeams);
           }
           SELF.updateTeamsView(true);
+
+          if (data.count === 0) {
+            SELF.paginationDetails.showPagination = false;
+            SELF.paginationDetails.paginationMessage = 'No team exists for now. Start by creating a new team!';
+          } else {
+            SELF.paginationDetails.showPagination = true;
+            SELF.paginationDetails.paginationMessage = '';
+          }
+
+          // condition for pagination
+          SELF.paginationDetails.totalPage = Math.ceil(data.count / 100);
+          if (data.next === null) {
+            SELF.paginationDetails.isNext = 'disabled';
+            SELF.paginationDetails.currentPage = 1;
+          } else {
+            SELF.paginationDetails.isNext = '';
+            SELF.paginationDetails.currentPage = data.next.split('page=')[1] - 1;
+          }
+
+          if (data.previous === null) {
+            SELF.paginationDetails.isPrev = 'disabled';
+          } else {
+            SELF.paginationDetails.isPrev = '';
+          }
         }
       },
       err => {
@@ -265,7 +318,7 @@ export class TeamlistComponent implements OnInit {
   deleteTeamWrapper() {
     const SELF = this;
     const deleteTeam = (e) => {
-      const apiCall = () => {
+      SELF.apiCall = () => {
         SELF.apiService.deleteUrl(SELF.deleteTeamsPath + '/' + e).subscribe(
         data => {
           // Success Message in data.message
@@ -284,7 +337,7 @@ export class TeamlistComponent implements OnInit {
         content: 'Note: This action will remove you from the team.',
         confirm: 'Yes',
         deny: 'Cancel',
-        confirmCallback: apiCall
+        confirmCallback: SELF.apiCall
       };
       SELF.globalService.showConfirm(PARAMS);
       return false;
@@ -298,7 +351,7 @@ export class TeamlistComponent implements OnInit {
   editTeamWrapper() {
     const SELF = this;
     const editTeam = (team) => {
-      const apiCall = (params) => {
+      SELF.apiCall = (params) => {
         const BODY = JSON.stringify(params);
         SELF.apiService.patchUrl(SELF.endpointsService.participantTeamURL(team), BODY).subscribe(
         data => {
@@ -333,7 +386,7 @@ export class TeamlistComponent implements OnInit {
             type: 'text'
           }
         ],
-        confirmCallback: apiCall
+        confirmCallback: SELF.apiCall
       };
       SELF.globalService.showModal(PARAMS);
     };
@@ -346,7 +399,7 @@ export class TeamlistComponent implements OnInit {
   addMembersToTeamWrapper() {
     const SELF = this;
     const addMembersToTeam = (team) => {
-      const apiCall = (params) => {
+      SELF.apiCall = (params) => {
         const BODY = JSON.stringify(params);
         let apiPath = SELF.endpointsService.participantTeamInviteURL(team);
         if (SELF.isHost) {
@@ -379,7 +432,7 @@ export class TeamlistComponent implements OnInit {
             type: 'email'
           }
         ],
-        confirmCallback: apiCall
+        confirmCallback: SELF.apiCall
       };
       SELF.globalService.showModal(PARAMS);
     };
@@ -413,6 +466,8 @@ export class TeamlistComponent implements OnInit {
         // Success Message in data.message
         self.globalService.showToast('success', 'Team created successfully!', 5);
         self.fetchMyTeams(self.fetchTeamsPath);
+        self.globalService.setFormValueForLabel(self.components, 'team_url', '');
+        self.globalService.setFormValueForLabel(self.components, 'team_name', '');
       },
       err => {
         self.globalService.handleFormError(self.components, err);
@@ -433,6 +488,19 @@ export class TeamlistComponent implements OnInit {
    * Participate in the challenge using selected team.
    */
   participateInChallenge() {
-    this.challengeService.participateInChallenge(this.challenge['id'], this.selectedTeam['id']);
+    const SELF = this;
+    const apiCall = () => {
+      SELF.challengeService.participateInChallenge(SELF.challenge['id'], SELF.selectedTeam['id']);
+    };
+
+    const PARAMS = {
+      title: 'Terms and Conditions',
+      label: 'I accept the terms and conditions',
+      content: SELF.challenge.terms_and_conditions,
+      confirm: 'Participate',
+      deny: 'Cancel',
+      confirmCallback: apiCall
+    };
+    SELF.globalService.showTermsAndConditionsModal(PARAMS);
   }
 }
