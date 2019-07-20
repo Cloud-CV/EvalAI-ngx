@@ -132,7 +132,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   /**
    * Filter query as participant team name
    */
-  filterSubmissionsQuery: string;
+  filterSubmissionsQuery = '';
 
   /**
    * Modal form items
