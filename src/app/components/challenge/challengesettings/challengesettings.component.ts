@@ -19,7 +19,7 @@ export class ChallengesettingsComponent implements OnInit {
   /**
    * Participants banned emails ids
    */
-  bannedEmailIds: string;
+  bannedEmailIds: string[];
 
   /**
    * Input to edit the banned participants emails

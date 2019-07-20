@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChallengesettingsComponent } from './challengesettings.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { GlobalService } from '../../../services/global.service';
+import { ChallengeService } from '../../../services/challenge.service';
+import { AuthService } from '../../../services/auth.service';
+import { ApiService } from '../../../services/api.service';
+import { WindowService } from '../../../services/window.service';
+import { EndpointsService } from '../../../services/endpoints.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ChallengesettingsComponent', () => {
   let component: ChallengesettingsComponent;
@@ -8,7 +16,11 @@ describe('ChallengesettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChallengesettingsComponent ]
+      declarations: [ ChallengesettingsComponent ],
+      providers: [ ChallengeService, GlobalService, AuthService, ApiService,
+        WindowService, EndpointsService ],
+      imports: [ HttpClientModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
