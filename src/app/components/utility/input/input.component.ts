@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Injectable, Component, OnInit, Input, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../../services/global.service';
 
@@ -28,6 +28,11 @@ export class InputComponent implements OnInit {
   @Input() type: string;
 
   /**
+   * Supported file type for file field
+   */
+  @Input() accept: string;
+
+  /**
    * Name of input
    */
   @Input() name: string;
@@ -48,6 +53,11 @@ export class InputComponent implements OnInit {
   @Input() icon: string;
 
   /**
+   * Input field message
+   */
+  @Input() message: string;
+
+  /**
    * Custom validate function
    */
   @Input() validate: Function;
@@ -61,6 +71,21 @@ export class InputComponent implements OnInit {
    * Is field read-only
    */
   @Input() readonly: boolean;
+
+  /**
+   * Minimum datetime
+   */
+  @Input() mindatetime: string;
+
+  /**
+   * Input file value
+   */
+  @Input() fileValue = '';
+
+  /**
+   * Is editing phase details
+   */
+  @Input() editPhaseDetails: boolean;
 
   /**
    * Is email flag
@@ -103,11 +128,6 @@ export class InputComponent implements OnInit {
   fileSelected = null;
 
   /**
-   * Input field message
-   */
-  message = 'Required field';
-
-  /**
    * Input field message for required fields
    */
   requiredMessage = 'Required field';
@@ -132,6 +152,15 @@ export class InputComponent implements OnInit {
     if (this.label === undefined) {
       this.label = 'Default Label';
     }
+    if (this.message === undefined) {
+      this.message = 'Required field';
+    } else if (this.message !== '') {
+      this.isValid = false;
+      this.isEmpty = false;
+    }
+    if (this.accept === undefined) {
+      this.accept = '';
+    }
     if (this.isRequired === undefined) {
       this.isRequired = false;
     }
@@ -155,6 +184,9 @@ export class InputComponent implements OnInit {
     if (this.readonly) {
       this.isReadonly = true;
     }
+    if (this.editPhaseDetails === true) {
+      this.isValid = true;
+    }
   }
 
   /**
@@ -177,6 +209,11 @@ export class InputComponent implements OnInit {
     } else if (this.type === 'text' || this.type === 'textarea') {
        this.isValid = this.globalService.validateText(e);
        this.isValid ? this.message = '' : this.message = 'Enter a valid text';
+    } else if (this.type === 'number') {
+      this.isValid = this.globalService.validateInteger(e);
+      this.isValid ? this.message = '' : this.message = 'Enter a valid number';
+    } else if (this.type === 'datetime') {
+      this.isValid = true;
     } else if (this.type === 'password') {
        this.isValid = this.globalService.validatePassword(e);
        this.isValid ? this.message = '' : this.message = 'Password minimum 8 characters';
@@ -203,11 +240,11 @@ export class InputComponent implements OnInit {
     this.document.getElementById(id).click();
   }
 
+  showErrorCondition () {
+    return (this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty);
+  }
+
   toggleErrorMessage () {
-    if (((this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty)) && this.isDirty) {
-      return false;
-    } else {
-      return true;
-    }
+    return !((this.showErrorCondition() || this.message !== '') && this.isDirty);
   }
 }
