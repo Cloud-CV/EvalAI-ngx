@@ -1,9 +1,79 @@
 @import "styles/variables";
 
-a.dark-link {
-  color: #252833 !important;
+a.dashboard-evailai-logo {
+  width: 110px;
+  img {
+    width: 100%;
+    vertical-align: middle;
+  }
+}
+
+.ev-header-overflow {
+  margin-top: -2px;
+}
+
+.sim-header {
+  font-size: 18px;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  position: relative;
+  nav {
+    background-color:rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 0 #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 100px;
+    transition: all 0.1s ease-in-out;
+    a.sim-header-link {
+      color: #4d4d4d;
+      font-weight: 400;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: #ffaf4b;
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+    a.light-link {
+      color: #9ca3be;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: #fff;
+      }
+    }
+    a.active {
+      color: #ffaf4b;
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+}
+@media only screen and (max-width: 992px) {
+  .sim-header nav {
+    padding: 0px 30px;
+  }
+}
+
+.background {
+  background-color: $dark-gray;
 }
 
 .side-nav li {
   float: none !important;
 }
+
+@media only screen and (max-width: $med-screen) {
+  .side-nav .userView{
+    padding: 28px;
+  }
+}
+
+/*media queries*/
+
+@media only screen and (max-width: $med-screen) {
+  .sim-header {
+    width: 100%;
+  }
+}
+
