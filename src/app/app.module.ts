@@ -76,7 +76,6 @@ import {
 import {
   ChallengeviewallsubmissionsComponent
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
-import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
