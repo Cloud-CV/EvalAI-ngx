@@ -83,3 +83,9 @@ a.dashboard-evailai-logo {
 .side-nav li {
   float: none !important;
 }
+
+@media only screen and (max-width: $med-screen) {
+  .side-nav .userView{
+    padding: 28px;
+  }
+}
