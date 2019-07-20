@@ -35,7 +35,10 @@
           </span>
           <span *ngIf="!isBannedEmailInputVisible" class="display-inline">
             <span class="row">
-              <span class="col-md-7 col-sm-7 li-mr">
+              <span class="col-md-7 col-sm-7 li-mr" *ngIf="challenge.banned_email_ids <= 0">
+                None
+              </span>
+              <span *ngIf="challenge.banned_email_ids.length > 0" class="col-md-7 col-sm-7 li-mr">
                 <span style="white-space: pre-line;" *ngFor="let
                   participant_email of challenge.banned_email_ids"
                   class="settings-value">{{participant_email}}<wbr></span>
