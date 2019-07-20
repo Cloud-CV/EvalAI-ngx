@@ -14,9 +14,6 @@ export class DashFooterComponent implements OnInit {
 
   ngOnInit() {
     this.year = new Date().getFullYear();
-    const js = this.document.createElement('script');
-    js.src = 'https://buttons.github.io/buttons.js';
-    this.document.getElementsByTagName('head')[0].appendChild(js);
   }
 
 }
