@@ -21,12 +21,17 @@ export class DashboardContentComponent implements OnInit {
   /**
    * Host teams list
    */
-  hostteams = [];
+  hostTeams = [];
 
   /**
    * Participant teams list
    */
-  participantteams = [];
+  participantTeams = [];
+
+  /**
+   * Path for routing
+   */
+  routePath = '/auth/login';
 
   /**
    * Constructor.
@@ -49,7 +54,7 @@ export class DashboardContentComponent implements OnInit {
    */
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate([this.routePath]);
     } else {
       this.fetchChallengesFromApi(this.endpointsService.allChallengesURL('present'));
       this.fetchTeams(this.endpointsService.allParticipantTeamsURL());
@@ -88,9 +93,9 @@ export class DashboardContentComponent implements OnInit {
       data => {
         if (data['results']) {
           if (isHost) {
-            SELF.hostteams = data['results'];
+            SELF.hostTeams = data['results'];
           } else {
-            SELF.participantteams = data['results'];
+            SELF.participantTeams = data['results'];
           }
         }
       },

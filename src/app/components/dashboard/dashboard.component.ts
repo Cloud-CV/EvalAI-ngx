@@ -21,6 +21,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   authServiceSubscription: any;
 
   /**
+   * Path for routing
+   */
+  routePath = '/auth/login';
+
+  /**
    * Constructor.
    * @param endpointsService  EndpointService Injection.
    * @param route  ActivatedRoute Injection.
@@ -41,11 +46,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate([this.routePath]);
     }
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       if (!authState.isLoggedIn) {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate([this.routePath]);
       }
     });
   }
