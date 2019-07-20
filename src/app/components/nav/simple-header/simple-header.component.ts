@@ -98,7 +98,6 @@ export class SimpleHeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
-      console.log('simple header component auth state', this.authState);
       if (authState.isLoggedIn) {
         this.user = this.authState;
       }
