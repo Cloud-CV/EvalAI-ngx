@@ -19,12 +19,12 @@ export class ChallengesettingsComponent implements OnInit {
   /**
    * Participants banned emails ids
    */
-  bannedEmailIds: string = '';
+  bannedEmailIds: string;
 
   /**
    * Input to edit the banned participants emails
    */
-  isBannedEmailInputVisible: boolean = false;
+  isBannedEmailInputVisible: boolean;
 
   constructor(private challengeService: ChallengeService, private globalService: GlobalService,
               private apiService: ApiService, private endpointsService: EndpointsService) { }
@@ -44,8 +44,8 @@ export class ChallengesettingsComponent implements OnInit {
   getBannedEmailsListObject(bannedEmailInputValue) {
     const bannedEmailIds = [];
     // First remove all the whitespaces and then split
-    let splittedEmails = bannedEmailInputValue.replace(/\s/g, '').split(',');
-    for (let i=0; i<splittedEmails.length; i++) {
+    const splittedEmails = bannedEmailInputValue.replace(/\s/g, '').split(',');
+    for (let i = 0; i < splittedEmails.length; i++) {
       bannedEmailIds.push(splittedEmails[i]);
     }
     return bannedEmailIds;
