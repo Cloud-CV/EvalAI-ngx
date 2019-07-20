@@ -14,11 +14,8 @@ import {WindowService} from '../../../services/window.service';
 export class HostAnalyticsComponent implements OnInit {
 
   hostTeam = [];
-  teamId = null;
-  currentTeamName = null;
   challengeListCount = 0;
   challengeList = [];
-  challengeAnalysisDetail = {};
   isTeamSelected = false;
   challengeId = null;
   currentChallengeDetails = {};
@@ -178,7 +175,8 @@ export class HostAnalyticsComponent implements OnInit {
 
 
       for (let i = 0; i < this.challengeList.length; i++) {
-        if (this.challengeList[i].id === this.challengeId) {
+        // tslint:disable-next-line:triple-equals
+        if (this.challengeList[i]['id'] == this.challengeId) {
           this.currentChallengeDetails = this.challengeList[i];
         }
       }

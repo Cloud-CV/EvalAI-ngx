@@ -35,13 +35,14 @@
           <div class="col s12 m4 l2">
             <div class="image-container analytics-image">
               <img *ngIf="currentChallengeDetails['image']!==null" [src]='currentChallengeDetails["image"]'>
+              <img *ngIf="currentChallengeDetails['image'] == null" src='assets/images/404.png'>
             </div>
           </div>
           <div class="col m8 l10">
             <div class="card-content analytics-card-content ">
               <h3 class="fs-20 rm-mt"><span>{{currentChallengeDetails['title']}}</span>
               </h3>
-              <span class="text-light-black">Hosted by: </span> {{currentChallengeDetails['creator.team_name']}}
+              <span class="text-light-black">Hosted by: </span> {{currentChallengeDetails['creator']['team_name']}}
             </div>
           </div>
         </div>

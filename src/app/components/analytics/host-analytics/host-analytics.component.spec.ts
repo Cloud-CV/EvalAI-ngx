@@ -12,6 +12,7 @@ import {DashboardComponent} from '../../dashboard/dashboard.component';
 import {LoginComponent} from '../../auth/login/login.component';
 import {NotFoundComponent} from '../../not-found/not-found.component';
 import {WindowService} from '../../../services/window.service';
+import {FormsModule} from '@angular/forms';
 
 
 const routes: Routes = [
@@ -40,7 +41,7 @@ describe('HostAnalyticsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HostAnalyticsComponent, NotFoundComponent ],
       providers: [ApiService, AuthService, EndpointsService, GlobalService, WindowService],
-      imports: [RouterTestingModule.withRoutes(routes), HttpClientModule]
+      imports: [RouterTestingModule.withRoutes(routes), HttpClientModule, FormsModule]
     })
     .compileComponents();
   }));
