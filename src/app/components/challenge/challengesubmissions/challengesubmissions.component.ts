@@ -8,8 +8,6 @@ import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 import { InputComponent } from '../../utility/input/input.component';
-import { Observable } from 'rxjs';
-
 
 /**
  * Component Class
@@ -58,6 +56,11 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   isParticipated: any;
 
   /**
+   * Is user a challenge host
+   */
+  isChallengeHost = false;
+
+  /**
    * Submissions list
    */
   submissions = [];
@@ -88,30 +91,29 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   selectedPhase: any = null;
 
   /**
+   * Is phase selected
+   */
+  isPhaseSelected = false;
+
+  /**
    * Highlighted submission
    */
   submissionHighlighted: any = null;
 
   /**
-   * To call the API inside modal for editing the submission
+   * Download file types
    */
-  apiCall: any;
+  fileTypes = [{ 'name': 'csv' }];
 
   /**
-   * Phase selection type i.e. radio button or select box
+   * Selected file type
+   */
+  fileSelected = '';
+
+  /**
+   * Phase selection type (radio button or select box)
    */
   phaseSelectionType = 'selectBox';
-
-  /**
-   * Filter query as participant team name
-   */
-  filterSubmissionsQuery: string = '';
-
-  /**
-   * Modal form items
-   */
-  @ViewChildren('formFilter')
-  formComponents: QueryList<InputComponent>;
 
   /**
    * @param showPagination Is pagination
@@ -121,6 +123,22 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
    * @param currentPage Current Page number
    */
   paginationDetails: any = {};
+
+  /**
+   * To call the API inside modal for editing the submission
+   */
+  apiCall: any;
+
+  /**
+   * Filter query as participant team name
+   */
+  filterSubmissionsQuery: string;
+
+  /**
+   * Modal form items
+   */
+  @ViewChildren('formFilter')
+  formComponents: QueryList<InputComponent>;
 
   /**
    * Constructor.
@@ -173,44 +191,17 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
-        this.filteredPhases = this.phases.filter(phase => phase['is_active'] === true);
-        this.route.params.subscribe(params => {
-          if (params['phase']) {
-            this.selectedPhaseId = params['phase'];
-            this.selectPhaseId(this.selectedPhaseId, this);
-          } else {
-            if (this.filteredPhases.length > 0) {
-              this.router.navigate([this.filteredPhases[0]['id']], {relativeTo: this.route});
-            }
+        for (let i = 0; i < this.phases.length; i++) {
+          if (this.phases[i].is_public === false) {
+              this.phases[i].showPrivate = true;
           }
-        });
+        }
+        this.filteredPhases = this.phases;
     });
-  }
 
-  /**
-   * Select a challenge phase function.
-   * @param id  challenge phase id
-   * @param self  context value of this
-   */
-  selectPhaseId(id, self) {
-    for (let i = 0; i < self.filteredPhases.length; i++) {
-      if (parseInt(id, 10) === self.filteredPhases[i]['id']) {
-        self.selectedPhase = self.filteredPhases[i];
-        const checkViewInit = () => {
-          if (self.viewInit) {
-            self.components.map((item) => {
-              item.selectPhase(self.selectedPhase);
-            });
-          } else {
-            setTimeout(() => {
-              checkViewInit();
-            }, 200);
-          }
-        };
-        checkViewInit();
-        break;
-      }
-    }
+    this.challengeService.isChallengeHost.subscribe(status => {
+      this.isChallengeHost = status;
+    });
   }
 
   /**
@@ -219,19 +210,12 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   phaseSelected() {
     const SELF = this;
     return (phase) => {
-      if (SELF.router.url.endsWith('submissions')) {
-        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
-      } else if (SELF.router.url.indexOf(phase['id']) < 0 && SELF.router.url.split('/').length === 5) {
-        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
-      } else if (SELF.router.url.indexOf(phase['id']) < 0 && SELF.router.url.split('/').length === 6) {
-        SELF.router.navigate(['../../' + phase['id']], {relativeTo: this.route});
-      } else {
-        SELF.selectedPhase = phase;
-        SELF.submissionCount = 0;
-        if (SELF.challenge['id'] && phase['id']) {
-          SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
-          SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
-        }
+      SELF.selectedPhase = phase;
+      SELF.isPhaseSelected = true;
+      SELF.submissionCount = 0;
+      if (SELF.challenge['id'] && phase['id']) {
+        SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
+        SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
       }
     };
   }
@@ -255,21 +239,31 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     SELF.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissions = data['results'];
-        console.log(SELF.submissions);
-        SELF.route.params.subscribe(params => {
-          if (params['submission']) {
-            SELF.submissionHighlighted = params['submission'];
-            SELF.submissions.map((item) => {
-              item['is_highlighted'] = false;
-              if (SELF.submissionHighlighted && item['submitted_at'] === SELF.submissionHighlighted) {
-                item['is_highlighted'] = true;
-              }
-            });
-          } else {
-            // Don't highlight anything by default
-            SELF.submissionHighlighted = null;
-          }
-        });
+        SELF.paginationDetails.next = data.next;
+        SELF.paginationDetails.previous = data.previous;
+        SELF.paginationDetails.totalPage = Math.ceil(data.count / 100);
+
+        if (data.count === 0) {
+          SELF.paginationDetails.showPagination = false;
+          SELF.paginationDetails.paginationMessage = 'No results found';
+        } else {
+          SELF.paginationDetails.showPagination = true;
+          SELF.paginationDetails.paginationMessage = '';
+        }
+
+        // condition for pagination
+        if (data.next === null) {
+          SELF.paginationDetails.isNext = 'disabled';
+          SELF.paginationDetails.currentPage = 1;
+        } else {
+          SELF.paginationDetails.isNext = '';
+          SELF.paginationDetails.currentPage = Math.ceil(data.next.split('page=')[1] - 1);
+        }
+        if (data.previous === null) {
+          SELF.paginationDetails.isPrev = 'disabled';
+        } else {
+          SELF.paginationDetails.isPrev = '';
+        }
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -294,8 +288,10 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
    * Download Submission csv.
    */
   downloadSubmission() {
-    if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id']) {
-      const API_PATH = this.endpointsService.challengeSubmissionDownloadURL(this.challenge['id'], this.selectedPhase['id']);
+    if (this.challenge['id'] && this.selectedPhase && this.fileSelected) {
+      const API_PATH = this.endpointsService.challengeSubmissionDownloadURL(
+        this.challenge['id'], this.selectedPhase['id'], this.fileSelected
+      );
       const SELF = this;
       this.apiService.getUrl(API_PATH, false).subscribe(
         data => {
@@ -308,8 +304,53 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
           console.log('Download complete.', this.challenge['id'], this.selectedPhase['id']);
         }
       );
+    } else {
+      if (this.selectedPhase === null) {
+        this.globalService.showToast('error', 'Please select a challenge phase!');
+      } else if (this.fileSelected === '') {
+        this.globalService.showToast('error', 'The file type requested is not valid!');
+      }
     }
   }
+
+  /**
+   * load data with pagination
+   */
+  loadPaginationData = function(url) {
+    if (url !== null) {
+      const SELF = this;
+      const API_PATH = url.split('localhost:8000/api/')[1];
+
+      SELF.apiService.getUrl(API_PATH, true).subscribe(
+        data => {
+          SELF.submissions = data['results'];
+          SELF.paginationDetails.next = data.next;
+          SELF.paginationDetails.previous = data.previous;
+
+          // condition for pagination
+          if (data.next === null) {
+            SELF.paginationDetails.isNext = 'disabled';
+            SELF.paginationDetails.currentPage = Math.ceil(data.count / 100);
+          } else {
+            SELF.paginationDetails.isNext = '';
+            SELF.paginationDetails.currentPage = Math.ceil(data.next.split('page=')[1] - 1);
+          }
+
+          if (data.previous === null) {
+            SELF.paginationDetails.isPrev = 'disabled';
+          } else {
+            SELF.paginationDetails.isPrev = '';
+          }
+        },
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => {
+          console.log('Fetched pagination submissions');
+        }
+      );
+    }
+  };
 
   /**
    * Update submission's leaderboard visibility.
@@ -343,6 +384,47 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         },
         () => {
           console.log('Updated submission visibility', id);
+        }
+      );
+    }
+  }
+
+  /**
+   * Update baseline status on my submissions tab
+   * @param submissionId Submission Id
+   */
+  updateBaselineStatus(submissionId) {
+    for (let i = 0; i < this.submissions.length; i++) {
+      if (this.submissions[i]['id'] === submissionId) {
+        this.submissions[i]['is_baseline'] = !this.submissions[i]['is_baseline'];
+        break;
+      }
+    }
+  }
+
+  /**
+   * Change baseline status API
+   * @param submissionId Submission Id
+   * @param isBaseline baseline boolean flag
+   */
+  changeBaselineStatus(submissionId, isBaseline) {
+    isBaseline = !isBaseline;
+    this.updateBaselineStatus(submissionId);
+    if (this.challenge['id'] && this.selectedPhase && this.selectedPhase['id'] && submissionId) {
+      const API_PATH = this.endpointsService.challengeSubmissionUpdateURL(
+        this.challenge['id'], this.selectedPhase['id'], submissionId
+      );
+      const SELF = this;
+      const BODY = JSON.stringify({
+        'is_baseline': isBaseline
+      });
+      SELF.apiService.patchUrl(API_PATH, BODY).subscribe(
+        () => {},
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => {
+          console.log('Updated submission visibility', submissionId);
         }
       );
     }
@@ -383,7 +465,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         SELF.endpointsService.challengeSubmissionUpdateURL(SELF.challenge.id, submission.challenge_phase, submission.id),
         BODY
         ).subscribe(
-        data => {
+        () => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Data updated successfully', 5);
           SELF.fetchSubmissions(SELF.challenge.id, SELF.selectedPhase.id);
@@ -397,6 +479,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     const PARAMS = {
       title: 'Update Submission Details',
       content: '',
+      isButtonDisabled: true,
       confirm: 'Submit',
       deny: 'Cancel',
       form: [
@@ -405,28 +488,32 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
           label: 'method_name',
           placeholder: 'Method Name',
           type: 'text',
-          value: submission['method_name']
+          value: submission['method_name'],
+          icon: 'fa fa-pencil'
         },
         {
           isRequired: false,
           label: 'method_description',
           placeholder: 'Method Description',
-          type: 'text',
-          value: submission['method_description']
+          type: 'textarea',
+          value: submission['method_description'],
+          icon: 'fa fa-pencil'
         },
         {
           isRequired: false,
           label: 'project_url',
           placeholder: 'Project Url',
           type: 'text',
-          value: submission['project_url']
+          value: submission['project_url'],
+          icon: 'fa fa-pencil'
         },
         {
           isRequired: false,
           label: 'publication_url',
           placeholder: 'Publication Url',
           type: 'text',
-          value: submission['publication_url']
+          value: submission['publication_url'],
+          icon: 'fa fa-pencil'
         }
       ],
       confirmCallback: SELF.apiCall
