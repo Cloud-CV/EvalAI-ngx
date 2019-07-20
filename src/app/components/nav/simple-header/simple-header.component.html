@@ -4,12 +4,12 @@
       <a href="javascript:void(0)" (click)="menuExpander()" class="button-collapse sim-header-link"><i class="fa fa-bars"></i></a>
       <ul class="left ">
         <li class="text-med-gray"><a class="waves-effect waves-dark dark-link ev-header-overflow dashboard-evailai-logo" routerLink="/"> <span class="hide-on-small-only"><img src="assets/images/evalai-logo.png"></span></a></li>
-        <li class="text-med-gray"><a class="waves-effect waves-dark dark-link main-header-link" style="color:#252833" routerLink="/challenges">All Challenges</a></li>
-        <li class="text-med-gray"><a class="waves-effect waves-dark dark-link main-header-link" style="color:#252833" href="https://evalai-forum.cloudcv.org/" target="_blank">Forum</a></li>
+        <li class="text-med-gray"><a class="waves-effect waves-dark dark-link main-header-link" routerLink="/challenges">All Challenges</a></li>
+        <li class="text-med-gray"><a class="waves-effect waves-dark dark-link main-header-link" href="https://evalai-forum.cloudcv.org/" target="_blank">Forum</a></li>
         <!-- <li class="text-med-gray">{{pageTitle}}</li> -->
       </ul>
       <ul *ngIf="authService.isAuth" class="right">
-        <li class="text-med-gray"><a class="waves-effect waves-dark dark-link ev-header-overflow" routerLink="/profile"> <span class="hide-on-small-only" style="color:#252833" ><span class="text-light-black">Hi</span>{{' ' + user.username}} </span></a></li>
+        <li class="text-med-gray"><a class="waves-effect waves-dark dark-link ev-header-overflow" routerLink="/profile"> <span class="hide-on-small-only" ><span class="text-light-black">Hi</span>{{' ' + user.username}} </span></a></li>
         <li>
           <div class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" (click)="logOut()">Logout</div>
         </li>
