@@ -152,6 +152,15 @@ export class EndpointsService {
   }
 
   /**
+   * Challenge phase details
+   * @param id  challenge id
+   * @param phaseId challenge phase id
+   */
+  updateChallengePhaseDetailsURL(id, phaseId) {
+    return `${this.challenges}${this.challenge}${id}/challenge_phase/${phaseId}`;
+  }
+
+  /**
    * Challenge phase split for a given challenge id
    * @param id  challenge id
    */
@@ -185,16 +194,6 @@ export class EndpointsService {
   }
 
   /**
-   * Filter challenge submissions in my submissions by participant team name
-   * @param challenge challenge id
-   * @param phase phase id
-   * @param participantTeamName participant team name
-   */
-  challengeSubmissionWithFilterQueryURL(challenge, phase, participantTeamName) {
-    return `${this.jobs}${this.challenge}${challenge}/challenge_phase/${phase}/submission?participant_team__team_name=${participantTeamName}`;
-  }
-
-  /**
    * Get all Challenge Submission
    * @param challenge  challenge id
    * @param phase  phase id
@@ -218,8 +217,8 @@ export class EndpointsService {
    * @param challenge  challenge id
    * @param phase  phase id
    */
-  challengeSubmissionDownloadURL(challenge, phase) {
-    return `${this.challenges}${challenge}/phase/${phase}/download_all_submissions/csv/`;
+  challengeSubmissionDownloadURL(challenge, phase, fileSelected) {
+    return `${this.challenges}${challenge}/phase/${phase}/download_all_submissions/${fileSelected}/`;
   }
 
   /**
@@ -244,10 +243,9 @@ export class EndpointsService {
   /**
    * Challenge Submissions Remaining
    * @param challenge  challenge id
-   * @param phase  phase id
    */
-  challengeSubmissionsRemainingURL(challenge, phase) {
-    return `${this.jobs}${challenge}/phases/${phase}/remaining_submissions`;
+  challengeSubmissionsRemainingURL(challenge) {
+    return `${this.jobs}${challenge}/remaining_submissions`;
   }
 
   /**
@@ -265,5 +263,13 @@ export class EndpointsService {
    */
   deleteChallengeURL(challenge) {
     return `${this.challenges}${this.challenge}${challenge}/disable`;
+  }
+
+  /**
+   * Re-run submission
+   * @param submission submission id
+   */
+  reRunSubmissionURL(submission) {
+    return `${this.jobs}submissions/${submission}/re-run/`;
   }
 }
