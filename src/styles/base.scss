@@ -553,6 +553,10 @@ ul {
   background: #3c3e49;
 }
 
+.ev-btn-dark:focus {
+  background-color: $dark-gray !important;
+}
+
 
 /* checkbox styles */
 [type="checkbox"] + label {
@@ -1534,6 +1538,30 @@ td, th {
   color: #9d9d9d;
 }
 
+.text-med-black {
+  color: $med-black;
+}
+
+.text-dark-black {
+  color: $dark-black;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-light-gray {
+  color: $light-gray;
+}
+
+.text-med-gray {
+  color: #3c3e49;
+}
+
+.text-dark-gray {
+  color: #252833;
+}
+
 .orange-text {
   color: $orange;
 }
@@ -1576,23 +1604,6 @@ input.dark-autofill:-webkit-autofill:focus,
 input.dark-autofill:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #4d4d4d !important;
-}
-
-input[type="radio"].selectTeam + label {
-  font-size: 15px;
-  color: $med-black;
-  vertical-align: middle;
-}
-
-[type="radio"]:checked + label:after,
-[type="radio"].with-gap:checked + label:after {
-  background-color: #252833;
-}
-
-[type="radio"]:checked + label:after,
-[type="radio"].with-gap:checked + label:before,
-[type="radio"].with-gap:checked + label:after {
-  border: 2px solid #252833;
 }
 
 body,
@@ -1641,6 +1652,13 @@ span.inline {
 
 /*main intro page*/
 
+.ev-container {
+  width: 100%;
+  padding: 20px 40px;
+  position: relative;
+  color: #fff;
+}
+
 .ev-sm-container {
   padding: 10px 20px;
 }
@@ -1654,10 +1672,6 @@ a.active {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.ev-btn-dark:focus {
-  background-color: $dark-gray !important;
-}
-
 nav {
   ul {
     li {
@@ -1669,45 +1683,6 @@ nav {
       }
     }
   }
-}
-
-.ev-container {
-  width: 100%;
-  padding: 20px 40px;
-  position: relative;
-  color: #fff;
-}
-
-.w-300 {
-  font-weight: 300;
-}
-
-.w-400 {
-  font-weight: 400;
-}
-
-.text-white {
-  color: #fff;
-}
-
-.text-med-black {
-  color: $med-black;
-}
-
-.text-dark-black {
-  color: $dark-black;
-}
-
-.text-light-gray {
-  color: $light-gray;
-}
-
-.text-med-gray {
-  color: #3c3e49;
-}
-
-.text-dark-gray {
-  color: #252833;
 }
 
 .ev-btn-scroll {
@@ -1854,14 +1829,6 @@ nav {
   padding-bottom: 20px;
 }
 
-.btn {
-  text-transform: none;
-  font-family: 'Roboto';
-  i {
-    font-size: 14px;
-  }
-}
-
 .fade {
   transition: all linear 500ms;
   opacity: 1;
@@ -1942,37 +1909,21 @@ a.text-light-black:hover {
 
 /* label color */
 
-.input-field label,
-input[type=checkbox]+label {
-  color: $light-gray;
-  font-size: 0.8em;
-  font-weight: 400;
+input[type="radio"].selectTeam + label {
+  font-size: 15px;
+  color: $med-black;
+  vertical-align: middle;
 }
 
-input[type="checkbox"].filled-in:checked+label:after {
-  width: 17px;
-  height: 17px;
-  border: 1px solid $link-hover-dark;
-  background-color: $link-hover-dark;
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:after {
+  background-color: #252833;
 }
 
-input[type="checkbox"]+label {
-  padding-left: 24px;
-  line-height: 20px;
-}
-
-input[type="checkbox"].filled-in:checked+label:before {
-  top: 0;
-  left: 2px;
-  width: 5px;
-  height: 11px;
-}
-
-input[type="checkbox"].filled-in:not(:checked)+label:after {
-  width: 17px;
-  height: 17px;
-  border: 1px solid $light-gray;
-  background-color: transparent;
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:before,
+[type="radio"].with-gap:checked + label:after {
+  border: 2px solid #252833;
 }
 
 /* label focus color */
