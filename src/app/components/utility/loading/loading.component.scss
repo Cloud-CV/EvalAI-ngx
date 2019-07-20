@@ -1,3 +1,4 @@
+@import "styles/variables";
 .loader {
   width: $loader-size;
   height: $loader-height;
@@ -40,17 +41,4 @@
   top: 0;
   z-index: 5;
   background-color: transparent;
-}
-
-.fade {
-  transition: all linear 500ms;
-  opacity: 1;
-}
-
-.fade.ng-hide {
-  opacity: 0;
-}
-
-.fade.ng-show {
-  opacity: 1;
 }

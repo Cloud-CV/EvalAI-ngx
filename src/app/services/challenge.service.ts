@@ -352,7 +352,6 @@ export class ChallengeService {
    */
   challengeCreate(hostTeam, formData, callback = () => {}) {
     const API_PATH = this.endpointsService.challengeCreateURL(hostTeam);
-    const SELF = this;
     return  this.apiService.postFileUrl(API_PATH, formData);
   }
 

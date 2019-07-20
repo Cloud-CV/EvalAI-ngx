@@ -83,16 +83,18 @@ export class ChallengeCreateComponent implements OnInit {
       const FORM_DATA: FormData = new FormData();
       FORM_DATA.append('status', 'submitting');
       FORM_DATA.append('zip_configuration', this.ChallengeCreateForm['input_file']);
-
+      this.authService.startLoader('Creating Challenge');
       this.challengeService.challengeCreate(
         this.hostTeam['id'],
         FORM_DATA,
       ).subscribe(
         data => {
+          this.authService.stopLoader();
           this.globalService.showToast('success', 'Successfuly sent to EvalAI admin for approval.');
           this.router.navigate(['/challenges/me']);
         },
         err => {
+          this.authService.stopLoader();
           this.globalService.showToast('error', err.error.error);
           this.isSyntaxErrorInYamlFile = true;
           this.syntaxErrorInYamlFile = err.error.error;
