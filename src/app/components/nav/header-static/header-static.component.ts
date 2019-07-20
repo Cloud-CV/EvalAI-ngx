@@ -177,6 +177,4 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
     this.isMenuExpanded = !this.isMenuExpanded;
   }
 
-  profileDropdown(event) {}
-
 }
