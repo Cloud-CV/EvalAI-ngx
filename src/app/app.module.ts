@@ -66,9 +66,7 @@ import { PartnersComponent } from './components/home/partners/partners.component
 import { RulesComponent } from './components/home/rules/rules.component';
 import { TestimonialsComponent } from './components/home/testimonials/testimonials.component';
 import { FeaturedChallengesComponent } from './components/home/featured-challenges/featured-challenges.component';
-import { DashFooterComponent } from './components/nav/dash-footer/dash-footer.component';
 import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
-import { SimpleHeaderComponent } from './components/nav/simple-header/simple-header.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HostAnalyticsComponent } from './components/analytics/host-analytics/host-analytics.component';
 import { EditphasemodalComponent } from './components/challenge/challengephases/editphasemodal/editphasemodal.component';
@@ -129,8 +127,6 @@ import { DashboardContentComponent } from './components/dashboard/dashboard-cont
     RulesComponent,
     TestimonialsComponent,
     SideBarComponent,
-    DashFooterComponent,
-    SimpleHeaderComponent,
     AnalyticsComponent,
     FeaturedChallengesComponent,
     DashboardContentComponent,
