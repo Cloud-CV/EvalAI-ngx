@@ -37,7 +37,7 @@ export class HostAnalyticsComponent implements OnInit {
   }
 
   errCallBack(err) {
-    this.authService.stopLoader();
+    this.globalService.stopLoader();
     this.globalService.handleApiError(err);
     if (err.status === 403) {
       this.globalService.showToast('error', 'Permission Denied');
@@ -93,10 +93,10 @@ export class HostAnalyticsComponent implements OnInit {
     if (this.challengeId != null) {
       this.isTeamSelected = true;
 
-      this.authService.startLoader(`Fetching Team count for challenge ${this.challengeId}`);
+      this.globalService.startLoader(`Fetching Team count for challenge ${this.challengeId}`);
       this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/team/count').subscribe(
         (response) => {
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
           console.log(response);
           this.totalChallengeTeams = response.participant_team_count;
         },
@@ -108,10 +108,10 @@ export class HostAnalyticsComponent implements OnInit {
         }
       );
 
-      this.authService.startLoader(`Fetching phases for challenge ${this.challengeId}`);
+      this.globalService.startLoader(`Fetching phases for challenge ${this.challengeId}`);
       this.apiService.getUrl('challenges/challenge/' + this.challengeId + '/challenge_phase').subscribe(
         (response) => {
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
           console.log(response);
           this.currentPhase = response.results;
           const challengePhaseId = [];
