@@ -214,6 +214,16 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   }
 
   /**
+   * Filter challenge submissions in view all submissions by participant team name
+   * @param challenge challenge id
+   * @param phase phase id
+   * @param participantTeamName participant team name
+   */
+  allChallengeSubmissionWithFilterQueryUrl(challenge, phase, participantTeamName) {
+    return `${this.challenges}${challenge}/challenge_phase/${phase}/submissions?participant_team__team_name=${participantTeamName}`;
+  }
+
+  /**
    * Challenge Submission Download
    * @param challenge  challenge id
    * @param phase  phase id
