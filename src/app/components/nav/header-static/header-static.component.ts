@@ -109,10 +109,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.updateElements();
-    this.innerWidth = window.innerWidth;
-    if (this.innerWidth > 810) {
-      this.isMenuExpanded = true;
-    }
+    this.checkInnerWidth();
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
       if (this.authState.isLoggedIn) {
@@ -123,10 +120,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.innerWidth = window.innerWidth;
-    if (this.innerWidth > 810) {
-      this.isMenuExpanded = true;
-    }
+    this.checkInnerWidth();
   }
 
   /**
@@ -175,6 +169,13 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
    */
   menuExpander() {
     this.isMenuExpanded = !this.isMenuExpanded;
+  }
+
+  checkInnerWidth() {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth > 810) {
+      this.isMenuExpanded = true;
+    }
   }
 
 }

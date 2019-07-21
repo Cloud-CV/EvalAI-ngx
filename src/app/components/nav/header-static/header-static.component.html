@@ -12,7 +12,7 @@
       </ul>
       <ul class="right hide-on-med-and-down">
         <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" routerLink="/auth/signup" routerLinkActive="active">Sign Up</a></li>
-        <li *ngIf="!authService.isAuth"><a class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" style="padding: 0 29px; font-size: 14px; display: inline-block" routerLink="/auth/login" routerLinkActive="active">Log In</a></li>
+        <li *ngIf="!authService.isAuth"><a class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" routerLink="/auth/login" routerLinkActive="active">Log In</a></li>
         <!-- show after authenticate user -->
         <li *ngIf="authService.isAuth">
           <a (click)="profileDropdown($event)" class="dropdown-button waves-effect waves-dark main-header-link" data-activates='ev-dropdown' routerLink="/profile" routerLinkActive="active"> <span class="text-light-black">Hi</span><strong>{{' ' + user.username}}</strong> &nbsp;
@@ -22,7 +22,7 @@
           <div class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" (click)="logOut()">Logout</div>
         </li>
       </ul>
-      <ul class="side-nav" style="width:200px; transform:translateX(0px);" (click)="menuExpander()" *ngIf="!isMenuExpanded">
+      <ul class="side-nav expand-menu" (click)="menuExpander()" *ngIf="!isMenuExpanded">
         <li>
           <div class="userView">
             <div class="background">
