@@ -16,6 +16,8 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  challengeCreateRoute = '/challenge-create';
+  authRoute = '/auth/login';
   public user = {};
   public challengeList = [];
   authServiceSubscription: any;
@@ -28,7 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    const logInStatus = this.authService.isLoggedIn();
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       if (authState.isLoggedIn) {
         this.user = authState;
@@ -49,9 +50,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   hostChallenge() {
     if (this.authService.isAuth) {
-      this.router.navigate(['/challenge-create']);
+      this.router.navigate([this.challengeCreateRoute]);
     } else {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate([this.authRoute]);
     }
   }
 

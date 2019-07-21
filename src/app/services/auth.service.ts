@@ -17,13 +17,7 @@ export class AuthService {
   isAuth = false;
 
   /**
-   * Porting Ends
-   */
-
-
-  /**
    * Constructor.
-   * @param router
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.
@@ -141,27 +135,27 @@ export class AuthService {
       }
     }
 
-  /**
-   * User Details fetch Trigger
-   * @param token
-   * @param success
-   * @param error
-   */
-    verifyEmail(token, success = () => {}, error = () => {}) {
-      const API_PATH = this.endpointsService.verifyEmailURL();
-      const SELF = this;
-      const BODY = JSON.stringify({
-        key: token
-      });
-      this.apiService.postUrl(API_PATH, BODY).subscribe(
-        data => {
-          success();
-        },
-        err => {
-          error();
-          SELF.globalService.handleApiError(err);
-        },
-        () => console.log('Email Verified')
-      );
-    }
+    /**
+     * User Details fetch Trigger
+     * @param token
+     * @param success
+     * @param error
+     */
+      verifyEmail(token, success = () => {}, error = () => {}) {
+        const API_PATH = this.endpointsService.verifyEmailURL();
+        const SELF = this;
+        const BODY = JSON.stringify({
+          key: token
+        });
+        this.apiService.postUrl(API_PATH, BODY).subscribe(
+          data => {
+            success();
+          },
+          err => {
+            error();
+            SELF.globalService.handleApiError(err);
+          },
+          () => console.log('Email Verified')
+        );
+      }
 }
