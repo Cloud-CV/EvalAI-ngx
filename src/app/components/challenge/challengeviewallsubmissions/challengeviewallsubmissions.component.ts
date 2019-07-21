@@ -108,7 +108,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   /**
    * Filter query as participant team name
    */
-  filterSubmissionsQuery: string;
+  filterSubmissionsQuery = '';
 
   /**
    * Fields to be exported
