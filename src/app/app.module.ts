@@ -134,7 +134,7 @@ import { DashboardContentComponent } from './components/dashboard/dashboard-cont
     AnalyticsComponent,
     FeaturedChallengesComponent,
     DashboardContentComponent,
-    HostAnalyticsComponent
+    HostAnalyticsComponent,
     EditphasemodalComponent,
     ChallengeviewallsubmissionsComponent,
     TermsAndConditionsModalComponent
