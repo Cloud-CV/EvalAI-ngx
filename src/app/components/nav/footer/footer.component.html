@@ -1,5 +1,5 @@
-<footer class="ev-md-container ev-footer ev-dark-bg">
-  <div class="grad-container rm-grad-pad">
+<footer class="ev-md-container ev-dark-bg" [class.ev-footer]="!isDash" [class.dashboard-footer]="isDash">
+  <div class="grad-container" [class.rm-grad-pad]="!isDash">
     <div class="row">
       <div class="col l6 s12">
         <h5 class="white-text">EvalAI</h5>

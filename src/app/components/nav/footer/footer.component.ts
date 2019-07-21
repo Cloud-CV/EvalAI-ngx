@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {Component, OnInit, Inject, Input} from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import { DOCUMENT } from '@angular/common';
@@ -13,6 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+
+  @Input() isDash = false;
 
   year: any;
 

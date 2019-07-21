@@ -6,7 +6,7 @@
       <app-dashboard-content></app-dashboard-content>
     </div>
     <!--Dashboard-Footer-->
-    <app-dash-footer *ngIf="authService.isAuth"></app-dash-footer>
+    <app-footer [isDash]="true" *ngIf="authService.isAuth"></app-footer>
   </div>
 </div>
 <div class="clearfix"></div>

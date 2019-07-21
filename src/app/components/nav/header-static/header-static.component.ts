@@ -19,19 +19,14 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   user = {username: ''};
 
   /**
-   * Header white flag
-   */
-  headerWhite = false;
-
-  /**
-   * Header is transparent on these URLs
-   */
-  transparentHeaderUrls = ['', '/'];
-
-  /**
    * Is router at '/'
    */
   atHome = true;
+
+  /**
+   * At dashboard
+   */
+  isDash = false;
 
   /**
    * Scroll position
@@ -63,6 +58,8 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
    */
   public innerWidth: any;
 
+  routePath = '/dashboard';
+
 
   @ViewChild('navContainer') navContainer: ElementRef;
 
@@ -90,16 +87,8 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
    * Update View Elements (called after onInit).
    */
   updateElements() {
-    this.headerWhite = false;
     this.atHome = true;
-
-    if (!this.transparentHeaderUrls.includes(this.router.url)) {
-      this.atHome = false;
-      this.headerWhite = true;
-    }
-
     this.globalServiceSubscription = this.globalService.currentScrolledState.subscribe(scrolledState => {
-      this.headerWhite = scrolledState || !this.atHome;
       this.scrolledState = scrolledState;
     });
   }
@@ -110,6 +99,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateElements();
     this.checkInnerWidth();
+    this.isDash = this.router.url === this.routePath;
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
       if (this.authState.isLoggedIn) {
@@ -128,7 +118,6 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
    */
   sendMeHome() {
     this.atHome = true;
-    this.headerWhite = false;
     this.ref.detectChanges();
     this.router.navigate(['']);
   }

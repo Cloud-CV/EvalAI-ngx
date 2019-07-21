@@ -7,7 +7,8 @@
         <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" routerLink="/challenges">All Challenges</a></li>
         <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" href="https://evalai-forum.cloudcv.org/" target="_blank">Forum</a></li>
         <!-- show after authenticate user -->
-        <li *ngIf="authService.isAuth"><a class="waves-effect waves-dark main-header-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+        <li *ngIf="authService.isAuth && !isDash"><a class="waves-effect waves-dark main-header-link" (click) ="isDash = true" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+        <li *ngIf="authService.isAuth && isDash"><a class="waves-effect waves-dark main-header-link" routerLink="/challenges" routerLinkActive="active">All Challenges</a></li>
         <li *ngIf="authService.isAuth"><a class="waves-effect waves-dark main-header-link" href="https://evalai-forum.cloudcv.org/" target="_blank">Forum</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
@@ -15,7 +16,7 @@
         <li *ngIf="!authService.isAuth"><a class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" routerLink="/auth/login" routerLinkActive="active">Log In</a></li>
         <!-- show after authenticate user -->
         <li *ngIf="authService.isAuth">
-          <a (click)="profileDropdown($event)" class="dropdown-button waves-effect waves-dark main-header-link" data-activates='ev-dropdown' routerLink="/profile" routerLinkActive="active"> <span class="text-light-black">Hi</span><strong>{{' ' + user.username}}</strong> &nbsp;
+          <a class="dropdown-button waves-effect waves-dark main-header-link" data-activates='ev-dropdown' routerLink="/profile" routerLinkActive="active"> <span class="text-light-black">Hi</span><strong>{{' ' + user.username}}</strong> &nbsp;
           </a>
         </li>
         <li *ngIf="authService.isAuth">
