@@ -10,28 +10,7 @@ export class AuthService {
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
 
-
-  /**
-   * Modifications in Auth Services
-   */
   isAuth = false;
-
-  /**
-   * Porting Ends
-   */
-
-
-  /**
-   * Modifications in Auth Services
-   */
-  // default parameters
-  isLoader = false;
-  loaderTitle = '';
-
-  /**
-   * Modifications Ends
-   */
-
 
   /**
    * Constructor.
