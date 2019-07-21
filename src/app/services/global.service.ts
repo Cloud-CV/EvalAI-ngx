@@ -46,6 +46,11 @@ export class GlobalService {
     confirmCallback: null,
     denyCallback: null
   };
+  /**
+   * Variables for loader
+   */
+  isLoader = false;
+  loaderTitle = '';
 
   /**
    * Terms and conditions modal default settings
@@ -554,5 +559,23 @@ export class GlobalService {
       return true;
     }
     return false;
+  }
+
+  /**
+   * Start loader message
+   * @param msg  string
+   */
+  startLoader(msg) {
+    this.isLoader = true;
+    this.loaderTitle = msg;
+  }
+
+  /**
+   * Stop loader msg
+   * @param msg string
+   */
+  stopLoader() {
+    this.isLoader = false;
+    this.loaderTitle = '';
   }
 }
