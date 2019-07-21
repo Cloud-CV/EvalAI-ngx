@@ -77,6 +77,7 @@ import { SideBarComponent } from './components/utility/side-bar/side-bar.compone
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
+import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,6 +126,7 @@ import { MatIconModule } from '@angular/material/icon';
     TestimonialsComponent,
     SideBarComponent,
     FeaturedChallengesComponent,
+    DashboardContentComponent,
     EditphasemodalComponent,
     ChallengeviewallsubmissionsComponent,
     TermsAndConditionsModalComponent
