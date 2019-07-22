@@ -24,7 +24,7 @@
           </label>
         </li>
       </ul>
-      <div class="mt-30 btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14 show-analytics-btn" [hidden]="challengeListCount === 0" (click)="showChallengeAnalysis()">Show Analysis &nbsp;<i class="fa fa-chevron-right"></i> </div>
+      <div class="mt-30 btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14 show-analytics-btn" *ngIf="challengeListCount !== 0" (click)="showChallengeAnalysis()">Show Analysis &nbsp;<i class="fa fa-chevron-right"></i> </div>
     </div>
     <div class="col s12 m7">
       <h4 class="fs-18">Challenge Analysis</h4>
@@ -79,31 +79,31 @@
             </p>
             <div class="row center">
               <div class="col m3">
-                <div class="text-light-black fs-12">
+                <div class="analytics-heading text-light-black fs-12">
                   Total Submissions
                 </div>
-                <p class="no-top-para fs-20">
+                <p class="analytics-content no-top-para mb-5 fs-20">
                   {{totalSubmission[item.id] || 0}}
                 </p>
                 <div class="short-hr-line"></div>
               </div>
               <div class="col m3">
-                <div class="text-light-black fs-12">
+                <div class="analytics-heading text-light-black fs-12">
                   Participant Teams
                 </div>
-                <p class="no-top-para fs-20">
+                <p class="analytics-content no-top-para mb-5 fs-20">
                   {{totalParticipatedTeams[item.id] || 0}}
                 </p>
                 <div class="short-hr-line"></div>
               </div>
               <div class="col m3">
-                <div class="text-light-black fs-12">
+                <div class="analytics-heading text-light-black fs-12">
                   Latest Submission At
                 </div>
-                <p *ngIf="lastSubmissionTime[item.id]" class="no-top-para mb-5">
+                <p *ngIf="lastSubmissionTime[item.id]" class="analytics-content no-top-para mb-5">
                   {{lastSubmissionTime[item.id] | date:'medium'}}
                 </p>
-                <p *ngIf="!lastSubmissionTime[item.id]" class="no-top-para fs-20">
+                <p *ngIf="!lastSubmissionTime[item.id]" class="analytics-content no-top-para mb-5 fs-20">
                   None
                 </p>
                 <div class="short-hr-line"></div>

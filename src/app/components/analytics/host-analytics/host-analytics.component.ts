@@ -24,6 +24,7 @@ export class HostAnalyticsComponent implements OnInit {
   totalParticipatedTeams = {};
   lastSubmissionTime = {};
   totalChallengeTeams = [];
+  routePath = '/auth/login';
 
 
   constructor(private apiService: ApiService, private globalService: GlobalService,
@@ -44,7 +45,7 @@ export class HostAnalyticsComponent implements OnInit {
     } else if (err.status === 401) {
       this.globalService.showToast('error', 'Timeout, Please login again to continue!');
       this.globalService.resetStorage();
-      this.router.navigate(['/auth/login']);
+      this.router.navigate([this.routePath]);
     }
   }
 
@@ -60,7 +61,7 @@ export class HostAnalyticsComponent implements OnInit {
         } else if (err.status === 401) {
           this.globalService.showToast('error', 'Timeout, Please login again to continue!');
           this.globalService.resetStorage();
-          this.router.navigate(['/auth/login']);
+          this.router.navigate([this.routePath]);
         }
       },
       () => {}
@@ -88,7 +89,8 @@ export class HostAnalyticsComponent implements OnInit {
       this.isTeamSelected = true;
 
       this.globalService.startLoader(`Fetching Team count for challenge ${this.challengeId}`);
-      this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/team/count').subscribe(
+      let API_PATH = this.endpointService.teamCountAnalyticsURL(this.challengeId);
+      this.apiService.getUrl(API_PATH).subscribe(
         (response) => {
           this.globalService.stopLoader();
           this.totalChallengeTeams = response.participant_team_count;
@@ -100,7 +102,8 @@ export class HostAnalyticsComponent implements OnInit {
       );
 
       this.globalService.startLoader(`Fetching phases for challenge ${this.challengeId}`);
-      this.apiService.getUrl('challenges/challenge/' + this.challengeId + '/challenge_phase').subscribe(
+      API_PATH = this.endpointService.challengePhaseURL(this.challengeId);
+      this.apiService.getUrl(API_PATH).subscribe(
         (response) => {
           this.globalService.stopLoader();
           this.currentPhase = response.results;
@@ -108,9 +111,8 @@ export class HostAnalyticsComponent implements OnInit {
 
           for (let phaseCount = 0; phaseCount < this.currentPhase.length; phaseCount++) {
             challengePhaseId.push(this.currentPhase[phaseCount].id);
-
-            // tslint:disable-next-line:max-line-length
-            this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/challenge_phase/' + this.currentPhase[phaseCount].id + '/analytics')
+            const PATH_API = this.endpointService.challengePhaseAnalyticsURL(this.challengeId, this.currentPhase[phaseCount].id);
+            this.apiService.getUrl(PATH_API)
               .subscribe(
                 (res) => {
                   for (let i = 0; i < challengePhaseId.length; i++) {
@@ -129,14 +131,18 @@ export class HostAnalyticsComponent implements OnInit {
           }
 
           for (let phaseCount = 0; phaseCount < this.currentPhase.length; phaseCount++) {
-            // challengePhaseId.push(this.currentPhase[phaseCount].id);
-            // tslint:disable-next-line:max-line-length
-            this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/challenge_phase/' + this.currentPhase[phaseCount].id + '/last_submission_datetime_analysis/')
+            const PATH_API = this.endpointService.lastSubmissionAnalyticsURL(this.challengeId, this.currentPhase[phaseCount].id);
+            this.apiService.getUrl(PATH_API)
               .subscribe(
                 (res) => {
                   for (let i = 0; i < challengePhaseId.length; i++) {
                     if (challengePhaseId[i] === res.challenge_phase) {
-                      this.lastSubmissionTime[challengePhaseId[i]] = res.last_submission_timestamp_in_challenge_phase;
+                      const reg = new RegExp('^[0-9]');
+                      if (reg.test(res.last_submission_timestamp_in_challenge_phase)) {
+                        this.lastSubmissionTime[challengePhaseId[i]] = res.last_submission_timestamp_in_challenge_phase;
+                      } else {
+                        this.lastSubmissionTime[challengePhaseId[i]] = undefined;
+                      }
                       break;
                     }
                   }
@@ -157,8 +163,8 @@ export class HostAnalyticsComponent implements OnInit {
 
 
       for (let i = 0; i < this.challengeList.length; i++) {
-        // tslint:disable-next-line:triple-equals
-        if (this.challengeList[i]['id'] == this.challengeId) {
+        this.challengeList[i]['id'] = String(this.challengeList[i]['id']);
+        if (this.challengeList[i]['id'] === this.challengeId) {
           this.currentChallengeDetails = this.challengeList[i];
         }
       }
@@ -170,8 +176,8 @@ export class HostAnalyticsComponent implements OnInit {
 
 
   downloadChallengeParticipantTeams() {
-
-    this.apiService.getUrl(`analytics/challenges/${this.challengeId}/download_all_participants/`, false)
+    const API_PATH = this.endpointService.downloadParticipantsAnalyticsURL(this.challengeId);
+    this.apiService.getUrl(API_PATH, false)
       .subscribe(
         (response) => {
           this.windowService.downloadFile(response, 'participant_teams_' + this.challengeId + '.csv');
