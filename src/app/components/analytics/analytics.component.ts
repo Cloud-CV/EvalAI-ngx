@@ -20,7 +20,6 @@ export class AnalyticsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authService.isLoggedIn();
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
-      console.log('Analytics Component', authState);
       if (!authState.isLoggedIn) {
         this.router.navigate(['/auth/login']);
       }

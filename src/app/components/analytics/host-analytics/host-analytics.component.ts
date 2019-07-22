@@ -51,7 +51,6 @@ export class HostAnalyticsComponent implements OnInit {
   getHostTeam() {
     this.apiService.getUrl('hosts/challenge_host_team').subscribe(
       (response) => {
-        console.log(response);
         this.hostTeam = response.status === 200 ? [] : response.results;
       },
       (err) => {
@@ -64,9 +63,7 @@ export class HostAnalyticsComponent implements OnInit {
           this.router.navigate(['/auth/login']);
         }
       },
-      () => {
-        console.log('Fetched Host Team');
-      }
+      () => {}
     );
   }
 
@@ -74,16 +71,13 @@ export class HostAnalyticsComponent implements OnInit {
   getChallengeHost() {
     this.apiService.getUrl('challenges/challenge?mode=host').subscribe(
       (response) => {
-        console.log(response);
         this.challengeList = response.results;
         this.challengeListCount = this.challengeList.length;
       },
       (err) => {
         this.errCallBack(err);
       },
-      () => {
-        console.log('Fetched Host Challenge Details');
-      }
+      () => {}
     );
   }
 
@@ -97,22 +91,18 @@ export class HostAnalyticsComponent implements OnInit {
       this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/team/count').subscribe(
         (response) => {
           this.globalService.stopLoader();
-          console.log(response);
           this.totalChallengeTeams = response.participant_team_count;
         },
         (err) => {
           this.errCallBack(err);
         },
-        () => {
-          console.log('Fetched Team Count For Challenge');
-        }
+        () => {}
       );
 
       this.globalService.startLoader(`Fetching phases for challenge ${this.challengeId}`);
       this.apiService.getUrl('challenges/challenge/' + this.challengeId + '/challenge_phase').subscribe(
         (response) => {
           this.globalService.stopLoader();
-          console.log(response);
           this.currentPhase = response.results;
           const challengePhaseId = [];
 
@@ -123,7 +113,6 @@ export class HostAnalyticsComponent implements OnInit {
             this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/challenge_phase/' + this.currentPhase[phaseCount].id + '/analytics')
               .subscribe(
                 (res) => {
-                  console.log(res);
                   for (let i = 0; i < challengePhaseId.length; i++) {
                     if (challengePhaseId[i] === res.challenge_phase) {
                       this.totalSubmission[challengePhaseId[i]] = res.total_submissions;
@@ -135,9 +124,7 @@ export class HostAnalyticsComponent implements OnInit {
                 (err) => {
                   this.errCallBack(err);
                 },
-                () => {
-                  console.log('Fetched Analytics For Challenge Phase');
-                }
+                () => {}
               );
           }
 
@@ -147,7 +134,6 @@ export class HostAnalyticsComponent implements OnInit {
             this.apiService.getUrl('analytics/challenge/' + this.challengeId + '/challenge_phase/' + this.currentPhase[phaseCount].id + '/last_submission_datetime_analysis/')
               .subscribe(
                 (res) => {
-                  console.log(res);
                   for (let i = 0; i < challengePhaseId.length; i++) {
                     if (challengePhaseId[i] === res.challenge_phase) {
                       this.lastSubmissionTime[challengePhaseId[i]] = res.last_submission_timestamp_in_challenge_phase;
@@ -158,9 +144,7 @@ export class HostAnalyticsComponent implements OnInit {
                 (err) => {
                   this.errCallBack(err);
                 },
-                () => {
-                  console.log('Fetched Last Submissions For Challenge Phase');
-                }
+                () => {}
               );
           }
 
@@ -168,9 +152,7 @@ export class HostAnalyticsComponent implements OnInit {
         (err) => {
           this.errCallBack(err);
         },
-        () => {
-          console.log('Fetched Challenge Phase for Challenge Id');
-        }
+        () => {}
       );
 
 
@@ -188,21 +170,16 @@ export class HostAnalyticsComponent implements OnInit {
 
 
   downloadChallengeParticipantTeams() {
-    console.log('clicked Download Challenge Participant');
 
     this.apiService.getUrl(`analytics/challenges/${this.challengeId}/download_all_participants/`, false)
       .subscribe(
         (response) => {
-          console.log(response);
           this.windowService.downloadFile(response, 'participant_teams_' + this.challengeId + '.csv');
         },
         (err) => {
-          console.log(err);
           this.globalService.showToast('error', err.error.error);
         },
-        () => {
-          console.log('Downloaded Challenge Participants');
-        }
+        () => {}
       );
   }
 
