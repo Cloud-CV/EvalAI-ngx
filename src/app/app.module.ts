@@ -75,10 +75,10 @@ import {
   ChallengeviewallsubmissionsComponent
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
 import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
-import { DashFooterComponent } from './components/nav/dash-footer/dash-footer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
+import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -128,7 +128,7 @@ import { MatIconModule } from '@angular/material/icon';
     ChallengesettingsComponent,
     SideBarComponent,
     FeaturedChallengesComponent,
-    DashFooterComponent,
+    DashboardContentComponent,
     EditphasemodalComponent,
     ChallengeviewallsubmissionsComponent,
     TermsAndConditionsModalComponent
