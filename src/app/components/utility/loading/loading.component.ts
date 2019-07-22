@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../../services/auth.service';
+import {GlobalService} from '../../../services/global.service';
 
 /**
  * Component Class
@@ -14,7 +14,7 @@ export class LoadingComponent implements OnInit {
   /**
    * Constructor.
    */
-  constructor(public authService: AuthService) { }
+  constructor(public globalService: GlobalService) { }
 
   /**
    * Component on intialized

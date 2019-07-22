@@ -46,10 +46,10 @@ export class GlobalService {
     confirmCallback: null,
     denyCallback: null
   };
+
   /**
-   * Variables for loader
+   * Title loader
    */
-  isLoader = false;
   loaderTitle = '';
 
   /**
@@ -566,16 +566,15 @@ export class GlobalService {
    * @param msg  string
    */
   startLoader(msg) {
-    this.isLoader = true;
+    this.isLoading = true;
     this.loaderTitle = msg;
   }
 
   /**
    * Stop loader msg
-   * @param msg string
    */
   stopLoader() {
-    this.isLoader = false;
+    this.isLoading = false;
     this.loaderTitle = '';
   }
 }
