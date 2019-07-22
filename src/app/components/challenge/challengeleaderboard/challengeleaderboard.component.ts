@@ -319,6 +319,8 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   fetchLeaderboard(phaseSplitId) {
     const API_PATH = this.endpointsService.challengeLeaderboardURL(phaseSplitId);
     const SELF = this;
+    SELF.leaderboard = [];
+    SELF.showLeaderboardUpdate = false;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);

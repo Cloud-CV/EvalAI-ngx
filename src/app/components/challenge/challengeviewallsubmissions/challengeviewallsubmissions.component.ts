@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren, ViewChild, AfterViewInit, Self } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { WindowService } from '../../../services/window.service';
@@ -111,6 +111,11 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   phaseSelectionListType = 'phase';
 
   /**
+   * Filter query as participant team name
+   */
+  filterSubmissionsQuery = '';
+
+  /**
    * Fields to be exported
    */
   fieldsToGetExport: any = [];
@@ -214,9 +219,16 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
    * @param phase  phase id
    */
   fetchSubmissions(challenge, phase) {
-    const API_PATH = this.endpointsService.allChallengeSubmissionURL(challenge, phase);
     const SELF = this;
-    this.apiService.getUrl(API_PATH).subscribe(
+    let API_PATH;
+    if (SELF.filterSubmissionsQuery === '') {
+      API_PATH = SELF.endpointsService.allChallengeSubmissionURL(challenge, phase);
+    } else {
+      API_PATH = SELF.endpointsService.allChallengeSubmissionWithFilterQueryUrl(
+        challenge, phase, SELF.filterSubmissionsQuery
+      );
+    }
+    SELF.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissions = data['results'];
         for (let i = 0; i < SELF.submissions.length; i++) {
@@ -267,6 +279,16 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   }
 
   /**
+   * Filter submissions by participant team name
+   * @param participantTeamName Participant team name
+   */
+  filterSubmissions(participantTeamName) {
+    const SELF = this;
+    SELF.filterSubmissionsQuery = participantTeamName;
+    SELF.fetchSubmissions(SELF.challenge['id'], SELF.selectedPhase['id']);
+  }
+
+  /**
    * Download Submission csv.
    */
   downloadSubmission() {
@@ -310,7 +332,6 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
           SELF.submissions = data['results'];
           SELF.paginationDetails.next = data.next;
           SELF.paginationDetails.previous = data.previous;
-
           // condition for pagination
           if (data.next === null) {
             SELF.paginationDetails.isNext = 'disabled';
