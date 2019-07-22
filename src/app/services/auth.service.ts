@@ -10,11 +10,14 @@ export class AuthService {
   private authStateSource = new BehaviorSubject(this.authState);
   change = this.authStateSource.asObservable();
 
+
+  /**
+   * Modifications in Auth Services
+   */
   isAuth = false;
 
   /**
    * Constructor.
-   * @param router
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.
