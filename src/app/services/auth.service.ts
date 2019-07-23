@@ -33,15 +33,7 @@ export class AuthService {
   canShowPassword = false;
   canShowConfirmPassword = false;
 
-  // default parameters
-  isLoader = false;
-  loaderTitle = '';
-  /**
-   * Modifications Ends
-   */
-
-
-  /**
+   /**
    * Constructor.
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.

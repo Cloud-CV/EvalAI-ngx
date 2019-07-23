@@ -99,11 +99,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   isOnChallengePage = false;
 
   /**
-   * User participated
-   */
-  isParticipated: boolean;
-
-  /**
    * Fetch teams URL
    */
   fetchTeamsPath: any;
@@ -139,19 +134,25 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   teamForm = 'formteam';
 
   /**
-   * @param showPagination Is pagination
-   * @param paginationMessage Pagination message
-   * @param isPrev Previous page state
-   * @param isNext Next page state
-   * @param currentPage Current Page number
-   */
-  paginationDetails: any = {};
-
-  /**
    * Form fields in the team form (team cards)
    */
   @ViewChildren('formteam')
   components: QueryList<TeamlistComponent>;
+
+  /**
+   * Routh path for login
+   */
+  authRoutePath = '/auth/login';
+
+  /**
+   * Route path for host teams
+   */
+  hostTeamRoutePath = '/teams/hosts';
+
+  /**
+   * Route path for participant teams
+   */
+  participantTeamRoutePath = '/teams/participants';
 
   /**
    * Constructor.
@@ -175,16 +176,21 @@ export class TeamlistComponent implements OnInit, OnDestroy {
    * Component on initialized.
    */
   ngOnInit() {
-    this.authServicePublic = this.authService;
     this.routerPublic = this.router;
+
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate([this.authRoutePath]);
+    }
+
+    this.authServicePublic = this.authService;
 
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       if (!authState.isLoggedIn) {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate([this.authRoutePath]);
       }
     });
 
-    if (this.router.url === '/teams/hosts') {
+    if (this.router.url === this.hostTeamRoutePath) {
       this.isHost = true;
       this.fetchTeamsPath = 'hosts/challenge_host_team';
       this.createTeamsPath = 'hosts/create_challenge_host_team';
@@ -194,7 +200,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       this.teamSelectTitle = 'Select a Challenge Host Team';
       this.teamCreateButton = 'Create Host Team';
     } else {
-      if (this.router.url !== '/teams/participants') {
+      if (this.router.url !== this.participantTeamRoutePath) {
         this.isOnChallengePage = true;
         this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
       }
@@ -264,12 +270,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     return selectTeam;
   }
 
-  selectedParticipantTeam(team) {
-    const SELF = this;
-    SELF.selectedTeam = team;
-    SELF.unselectOtherTeams(SELF);
-  }
-
   /**
    * Unselecting other teams function.
    */
@@ -282,6 +282,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       }
     }
     self.allTeams = temp;
+    // console.log('LOGI teamlist unselectOtherTeam', self.allTeams);
     self.updateTeamsView(false);
   }
 
@@ -302,47 +303,26 @@ export class TeamlistComponent implements OnInit, OnDestroy {
    */
   fetchTeams(path) {
     const SELF = this;
-    this.authService.startLoader('Fetching Teams');
+    this.globalService.startLoader('Fetching Teams');
     this.apiService.getUrl(path).subscribe(
       data => {
-        this.authService.stopLoader();
+        this.globalService.stopLoader();
+        // console.log(data['results']);
         if (data['results']) {
           SELF.allTeams = data['results'];
           if (SELF.isHost || SELF.isOnChallengePage) {
             SELF.allTeams = SELF.appendIsSelected(SELF.allTeams);
           }
           SELF.updateTeamsView(true);
-
-          if (data.count === 0) {
-            SELF.paginationDetails.showPagination = false;
-            SELF.paginationDetails.paginationMessage = 'No team exists for now. Start by creating a new team!';
-          } else {
-            SELF.paginationDetails.showPagination = true;
-            SELF.paginationDetails.paginationMessage = '';
-          }
-
-          // condition for pagination
-          SELF.paginationDetails.totalPage = Math.ceil(data.count / 100);
-          if (data.next === null) {
-            SELF.paginationDetails.isNext = 'disabled';
-            SELF.paginationDetails.currentPage = 1;
-          } else {
-            SELF.paginationDetails.isNext = '';
-            SELF.paginationDetails.currentPage = data.next.split('page=')[1] - 1;
-          }
-
-          if (data.previous === null) {
-            SELF.paginationDetails.isPrev = 'disabled';
-          } else {
-            SELF.paginationDetails.isPrev = '';
-          }
         }
       },
       err => {
-        this.authService.stopLoader();
+        this.globalService.stopLoader();
         SELF.globalService.handleApiError(err, false);
       },
-      () => {}
+      () => {
+        console.log('Teams fetched for teamlist', path, 'on', SELF.routerPublic.url);
+      }
     );
   }
 
@@ -363,7 +343,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         err => {
           SELF.globalService.handleApiError(err);
         },
-        () => {}
+        () => console.log('DELETE-TEAM-FINISHED')
         );
       };
       const PARAMS = {
@@ -397,8 +377,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         err => {
           SELF.globalService.handleApiError(err);
         },
-        () => {}
+        () => console.log('TEAM-UPDATE-FINISHED')
         );
+        console.log('api_call', params, team);
       };
       const PARAMS = {
         title: 'Change Team Name',
@@ -448,8 +429,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         err => {
           SELF.globalService.handleApiError(err, true);
         },
-        () => {}
+        () => console.log('USER-ADDED-TO-TEAM-FINISHED')
         );
+        console.log('api_call', params, team);
       };
       const PARAMS = {
         title: 'Add other members to this Team',
@@ -494,19 +476,19 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         TEAM_BODY['team_url'] = url;
       }
       TEAM_BODY = JSON.stringify(TEAM_BODY);
-      this.authService.startLoader('Creating Team');
+      this.globalService.startLoader('Creating Team');
       this.apiService.postUrl(API_PATH, TEAM_BODY).subscribe(
         data => {
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
           // Success Message in data.message
           this.globalService.showToast('success', 'Team created successfully!', 5);
           this.fetchMyTeams(this.fetchTeamsPath);
         },
         err => {
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
           this.globalService.handleFormError(this.components, err);
         },
-        () => {}
+        () => console.log('CREATE-TEAM-FINISHED')
       );
     }
   }
@@ -523,19 +505,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
    * Participate in the challenge using selected team.
    */
   participateInChallenge() {
-    const SELF = this;
-    const apiCall = () => {
-      SELF.challengeService.participateInChallenge(SELF.challenge['id'], SELF.selectedTeam['id']);
-    };
-
-    const PARAMS = {
-      title: 'Terms and Conditions',
-      label: 'I accept the terms and conditions',
-      content: SELF.challenge.terms_and_conditions,
-      confirm: 'Participate',
-      deny: 'Cancel',
-      confirmCallback: apiCall
-    };
-    SELF.globalService.showTermsAndConditionsModal(PARAMS);
+    this.challengeService.participateInChallenge(this.challenge['id'], this.selectedTeam['id']);
   }
 }
