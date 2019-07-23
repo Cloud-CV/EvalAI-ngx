@@ -405,6 +405,7 @@ export class GlobalService {
   handleFormError(form, err, toast = true) {
     const ERR = err.error;
     if (this.toastErrorCodes.indexOf(err.status) > -1 && ERR !== null && typeof ERR === 'object') {
+      console.error(err);
       for (const KEY in ERR) {
         if (KEY === 'non_field_errors') {
           this.showToast('error', ERR[KEY][0], 5);
@@ -427,6 +428,7 @@ export class GlobalService {
    * @param toast  toast show flag
    */
   handleApiError(err, toast = true) {
+    console.error(err);
     if (err.status === 401) {
       this.checkTokenValidity(err, toast);
     } else if (err.status === 403 && toast) {
