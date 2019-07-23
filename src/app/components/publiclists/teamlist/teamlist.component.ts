@@ -282,6 +282,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       }
     }
     self.allTeams = temp;
+    // console.log('LOGI teamlist unselectOtherTeam', self.allTeams);
     self.updateTeamsView(false);
   }
 
@@ -319,7 +320,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         this.globalService.stopLoader();
         SELF.globalService.handleApiError(err, false);
       },
-      () => {}
+      () => {
+        console.log('Teams fetched for teamlist', path, 'on', SELF.routerPublic.url);
+      }
     );
   }
 
@@ -340,7 +343,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         err => {
           SELF.globalService.handleApiError(err);
         },
-        () => {}
+        () => console.log('DELETE-TEAM-FINISHED')
         );
       };
       const PARAMS = {
@@ -374,8 +377,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         err => {
           SELF.globalService.handleApiError(err);
         },
-        () => {}
+        () => console.log('TEAM-UPDATE-FINISHED')
         );
+        console.log('api_call', params, team);
       };
       const PARAMS = {
         title: 'Change Team Name',
@@ -425,8 +429,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         err => {
           SELF.globalService.handleApiError(err, true);
         },
-        () => {}
+        () => console.log('USER-ADDED-TO-TEAM-FINISHED')
         );
+        console.log('api_call', params, team);
       };
       const PARAMS = {
         title: 'Add other members to this Team',
@@ -483,7 +488,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
           this.globalService.stopLoader();
           this.globalService.handleFormError(this.components, err);
         },
-        () => {}
+        () => console.log('CREATE-TEAM-FINISHED')
       );
     }
   }
