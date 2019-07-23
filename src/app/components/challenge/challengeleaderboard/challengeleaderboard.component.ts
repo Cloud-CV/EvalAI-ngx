@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, AfterViewInit, Self } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
@@ -313,6 +313,37 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
+   * Sort the rank and participant team leaderboard column
+   * @param sortColumn sort column ('rank' or 'string')
+   */
+  sortNonMetricsColumn (sortColumn) {
+    const SELF = this;
+    if (SELF.sortColumn === sortColumn) {
+      SELF.reverseSort = !SELF.reverseSort;
+    } else {
+      SELF.reverseSort = false;
+    }
+    SELF.sortColumn = sortColumn;
+    SELF.sortLeaderboard();
+  }
+
+  /**
+   * To sort by the metrics column
+   * @param index Schema labels index
+   */
+  sortMetricsColumn (index) {
+    const SELF = this;
+    if (SELF.sortColumn === 'number' && SELF.columnIndexSort === index) {
+      SELF.reverseSort = !SELF.reverseSort;
+    } else {
+      SELF.reverseSort = false;
+    }
+    SELF.sortColumn = 'number';
+    SELF.columnIndexSort = index;
+    SELF.sortLeaderboard();
+  }
+
+  /**
    * Fetch leaderboard for a phase split
    * @param phaseSplitId id of the phase split
    */
@@ -335,6 +366,10 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     );
   }
 
+  /**
+   * Call leaderboard API in the interval of 5 seconds
+   * @param phaseSplitId id of the phase split
+   */
   startLeaderboard(phaseSplitId) {
     const API_PATH = this.endpointsService.challengeLeaderboardURL(phaseSplitId);
     const SELF = this;
@@ -353,6 +388,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     }, 5000);
   }
 
+  /**
+   * Refresh leaderboard if there is any update in data
+   */
   refreshLeaderboard() {
     const API_PATH = this.endpointsService.challengeLeaderboardURL(this.selectedPhaseSplit['id']);
     const SELF = this;

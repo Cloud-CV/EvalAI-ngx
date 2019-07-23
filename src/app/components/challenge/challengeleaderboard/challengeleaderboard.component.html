@@ -47,20 +47,18 @@
                 <thead>
                   <tr class="content">
                     <td data-field="rank" class="align-center">
-                      <a (click)="sortColumn!='rank' && reverseSort = false;sortColumn == 'rank' && 
-                        reverseSort=!reverseSort;sortColumn='rank';sortLeaderboard();">
+                      <a (click)="sortNonMetricsColumn('rank')">
                         <span class="fw-regular fs-18">Rank </span>
                         <span class="fa-stack fa-1x">
                           <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
-                            sortColumn == 'rank'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                            sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
                           <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort && 
-                            sortColumn == 'rank'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                            sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
                         </span>
                       </a>
                     </td>
                     <td data-field="team" class="align-center">
-                      <a (click)="sortColumn!='string' && reverseSort = false;sortColumn == 'string' && 
-                        reverseSort=!reverseSort;sortColumn='string';sortLeaderboard();">
+                      <a (click)="sortNonMetricsColumn('string')">
                         <span class="fw-regular fs-18">Participant Team</span>
                         <span class="fa-stack fa-1x">
                           <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
@@ -72,9 +70,7 @@
                     </td>
                     <td *ngFor="let key of leaderboard[0].leaderboard__schema.labels;index as i"
                       [attr.data-index]="i" class="align-center">
-                        <a (click)="sortColumn!='number' && columnIndexSort != i && 
-                          reverseSort = false;sortColumn == 'number' && columnIndexSort == i && 
-                          reverseSort=!reverseSort;sortColumn = 'number';columnIndexSort = i;sortLeaderboard();">
+                        <a (click)="sortMetricsColumn(i)">
                           <span class="fw-regular fs-18">{{key}}</span>
                           <span class="fa-stack fa-1x">
                             <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
@@ -85,8 +81,7 @@
                         </a>
                     </td>
                     <td data-field="submission_time" class="align-center">
-                      <a (click)="sortColumn!='date' && reverseSort = false;sortColumn == 'date' && 
-                        reverseSort=!reverseSort;sortColumn='date';sortLeaderboard();">
+                      <a (click)="sortNonMetricsColumn('date')">
                         <span class="fs-18 fw-regular">Last submission at</span>
                         <span class="fa-stack fa-1x">
                           <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
