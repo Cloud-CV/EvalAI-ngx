@@ -51,6 +51,11 @@ export class ChallengelistComponent implements OnInit {
   apiPathCommon = 'challenges/challenge/';
 
   /**
+   * Host teams API common path
+   */
+  hostTeamsapiPathCommon = 'hosts/challenge_host_team';
+
+  /**
    * API path mapping
    */
   apiPathMapping = {
@@ -110,6 +115,31 @@ export class ChallengelistComponent implements OnInit {
   authServiceSubscription: any;
 
   /**
+   * All challenges common route path
+   */
+  allChallengesRoutePathCommon = '/challenges/all';
+
+  /**
+   * My challenges common route path
+   */
+  myChallengesRoutePathCommon = '/challenges/me';
+
+  /**
+   * Host teams common route path
+   */
+  hostTeamsRoutePathCommon = '/teams/hosts';
+
+  /**
+   * Challenge common path
+   */
+  challengeRoutePathCommon = '/challenge';
+
+  /**
+   * Auth common route path
+   */
+  authRoutePathCommon = '/auth/';
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.
@@ -135,14 +165,14 @@ export class ChallengelistComponent implements OnInit {
 
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.isLoggedIn = authState.isLoggedIn;
-      if (!authState.isLoggedIn && this.router.url === '/challenges/me') {
-        this.router.navigate(['/auth/login']);
+      if (!authState.isLoggedIn && this.router.url === this.myChallengesRoutePathCommon) {
+        this.router.navigate([`${this.authRoutePathCommon}login`]);
       }
     });
 
-    if (this.router.url === '/challenges/all') {
+    if (this.router.url === this.allChallengesRoutePathCommon) {
       this.fetchChallenges();
-    } else if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
+    } else if (this.router.url === this.myChallengesRoutePathCommon && this.authService.isLoggedIn()) {
       this.fetchMyTeams();
     }
 
@@ -157,19 +187,14 @@ export class ChallengelistComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     const RECT =  this.document.getElementById('ongoing-challenges').getBoundingClientRect();
-    if (RECT.top < 0) {
-      this.isScrollbtnVisible = true;
-    } else {
-      this.isScrollbtnVisible = false;
-    }
+    this.isScrollbtnVisible = RECT.top < 0;
   }
 
   /**
    * Fetch teams function.
    */
   fetchMyTeams() {
-    // this.fetchTeams('participants/participant_team');
-    this.fetchTeams('hosts/challenge_host_team');
+    this.fetchTeams(this.hostTeamsapiPathCommon);
   }
 
   /**
@@ -213,7 +238,7 @@ export class ChallengelistComponent implements OnInit {
    * Filtering challenges by teams
    */
   filterChallengesByTeams() {
-    if (this.router.url === '/challenges/me' && this.authService.isLoggedIn()) {
+    if (this.router.url === this.myChallengesRoutePathCommon && this.authService.isLoggedIn()) {
       this.filteredChallenges = this.filteredChallenges.filter((v, i, a) => this.allTeams.indexOf(v['creator']['id']) > -1);
     }
   }

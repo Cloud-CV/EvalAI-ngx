@@ -71,6 +71,11 @@ export class ChallengecardComponent implements OnInit {
   routerPublic: Router;
 
   /**
+   * My challenge route
+   */
+  myChallengesRoute = '/challenges/me';
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.

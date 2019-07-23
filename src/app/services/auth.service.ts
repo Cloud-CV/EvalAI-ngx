@@ -17,11 +17,6 @@ export class AuthService {
   isAuth = false;
 
   /**
-   * Porting Ends
-   */
-
-
-  /**
    * Constructor.
    * @param router
    * @param globalService  GlobalService Injection.

@@ -12,7 +12,7 @@ import {AuthService} from '../../services/auth.service';
   templateUrl: './publiclists.component.html',
   styleUrls: ['./publiclists.component.scss']
 })
-export class PubliclistsComponent implements OnInit, OnDestroy {
+export class PubliclistsComponent {
   /**
    * Constructor.
    * @param document  Window document Injection.
@@ -24,10 +24,4 @@ export class PubliclistsComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document,
               public  authService: AuthService, private globalService: GlobalService) { }
 
-  /**
-   * Component on intialized.
-   */
-  ngOnInit() {}
-
-  ngOnDestroy(): void {}
 }
