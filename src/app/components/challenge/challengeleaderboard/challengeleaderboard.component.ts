@@ -348,21 +348,13 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Stops fetching the leaderborad data in the interval of 5 seconds
-   * @param phaseSplitId
-   */
-  stopLeaderboard () {
-    clearInterval(this.pollingInterval);
-  }
-
-  /**
    * Fetch leaderboard for a phase split
    * @param phaseSplitId id of the phase split
    */
   fetchLeaderboard(phaseSplitId) {
     const API_PATH = this.endpointsService.challengeLeaderboardURL(phaseSplitId);
     const SELF = this;
-    SELF.stopLeaderboard();
+    clearInterval(SELF.pollingInterval);
     SELF.leaderboard = [];
     SELF.showLeaderboardUpdate = false;
     this.apiService.getUrl(API_PATH).subscribe(
@@ -384,7 +376,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   startLeaderboard(phaseSplitId) {
     const API_PATH = this.endpointsService.challengeLeaderboardURL(phaseSplitId);
     const SELF = this;
-    SELF.stopLeaderboard();
+    clearInterval(SELF.pollingInterval);
     SELF.pollingInterval = setInterval(function() {
       SELF.apiService.getUrl(API_PATH, true, false).subscribe(
         data => {
@@ -410,7 +402,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     SELF.showLeaderboardUpdate = false;
     SELF.apiService.getUrl(API_PATH).subscribe(
       data => {
-        SELF.leaderboard = data['results'];
+        SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
       },
       err => {
