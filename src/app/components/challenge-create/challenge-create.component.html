@@ -1,9 +1,8 @@
 <app-side-bar *ngIf="authService.isAuth"></app-side-bar>
-<app-simple-header></app-simple-header>
+<app-header-static></app-header-static>
 <div class="web-container" [style.center]="!authService.isAuth">
   <div class="challenge-create-flex">
     <div class="challenge-create-content">
-
 
       <section class="ev-md-container text-center ">
         <div class="row">
@@ -48,10 +47,8 @@
         </div>
       </section>
 
-
     </div>
-    <!--Dashboard-Footer-->
-    <app-dash-footer *ngIf="authService.isAuth"></app-dash-footer>
+    <app-footer [isDash]="true" *ngIf="authService.isAuth"></app-footer>
   </div>
 </div>
 <div class="clearfix"></div>

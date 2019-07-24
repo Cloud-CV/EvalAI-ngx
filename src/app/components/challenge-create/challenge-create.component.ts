@@ -45,6 +45,16 @@ export class ChallengeCreateComponent implements OnInit {
   hostTeam: any = null;
 
   /**
+   * Route for hosted challenges
+   */
+  hostedChallengesRoute = '/challenges/me';
+
+  /**
+   * Route path for host teams
+   */
+  hostTeamsRoute = '/teams/hosts';
+
+  /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
    * @param router  Router Injection.
@@ -73,7 +83,7 @@ export class ChallengeCreateComponent implements OnInit {
         setTimeout(() => {
           this.globalService.showToast('info', 'Please select a host team');
         }, 1000);
-        this.router.navigate(['/teams/hosts']);
+        this.router.navigate([this.hostTeamsRoute]);
       }
     });
   }
@@ -83,25 +93,24 @@ export class ChallengeCreateComponent implements OnInit {
       const FORM_DATA: FormData = new FormData();
       FORM_DATA.append('status', 'submitting');
       FORM_DATA.append('zip_configuration', this.ChallengeCreateForm['input_file']);
-      this.authService.startLoader('Creating Challenge');
+      this.globalService.startLoader('Creating Challenge');
       this.challengeService.challengeCreate(
         this.hostTeam['id'],
         FORM_DATA,
       ).subscribe(
         data => {
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
           this.globalService.showToast('success', 'Successfuly sent to EvalAI admin for approval.');
-          this.router.navigate(['/challenges/me']);
+          this.router.navigate([this.hostedChallengesRoute]);
         },
         err => {
-          this.authService.stopLoader();
+          this.globalService.stopLoader();
           this.globalService.showToast('error', err.error.error);
           this.isSyntaxErrorInYamlFile = true;
           this.syntaxErrorInYamlFile = err.error.error;
         },
-        () => {
-          console.log('Challenge Creation Zip Uploaded');
-        });
+        () => {}
+        );
     } else {
       this.isFormError = true;
       this.globalService.showToast('error', 'Please Upload File');
@@ -110,7 +119,6 @@ export class ChallengeCreateComponent implements OnInit {
 
   handleUpload(event) {
     const files = event.target.files;
-    console.log(files);
 
     if (files.length >= 1) {
       this.isFormError = false;
