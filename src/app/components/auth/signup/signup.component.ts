@@ -1,6 +1,6 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {AfterViewInit} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
+import { Component, OnInit, Inject } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import {WindowService} from '../../../services/window.service';
 import {ApiService} from '../../../services/api.service';
 import {EndpointsService} from '../../../services/endpoints.service';
@@ -28,6 +28,16 @@ export class SignupComponent implements OnInit, AfterViewInit {
   ispasswordFocused = false;
   iscnfrmpasswordFocused = false;
   isemailFocused = false;
+
+  /**
+   * Login route path
+   */
+  loginRoute = '/auth/login';
+
+  /**
+   * Signup route path
+   */
+  signupRoute = '/auth/signup';
 
   /**
    * Constructor.
@@ -86,7 +96,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
             this.globalService.showToast('success', 'Registered successfully. Please verify your email address!', 5);
           }, 1000);
 
-          this.router.navigate(['/auth/login']);
+          this.router.navigate([this.loginRoute]);
           this.globalService.stopLoader();
         },
 
@@ -115,7 +125,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
             } catch (error) {
               setTimeout(() => {
-                this.globalService.showToast('Error', 'Registeration UnSuccessfull.Please Try Again!', 5);
+                this.globalService.showToast('Error', 'Registration UnSuccessful.Please Try Again!', 5);
               }, 1000);
             }
           } else {

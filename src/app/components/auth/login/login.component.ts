@@ -1,13 +1,13 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {ViewChildren, QueryList, AfterViewInit} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {InputComponent} from '../../../components/utility/input/input.component';
-import {WindowService} from '../../../services/window.service';
-import {ApiService} from '../../../services/api.service';
-import {AuthService} from '../../../services/auth.service';
-import {GlobalService} from '../../../services/global.service';
-import {EndpointsService} from '../../../services/endpoints.service';
-import {Router, ActivatedRoute} from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { InputComponent } from '../../../components/utility/input/input.component';
+import { WindowService } from '../../../services/window.service';
+import { ApiService } from '../../../services/api.service';
+import { AuthService } from '../../../services/auth.service';
+import { GlobalService } from '../../../services/global.service';
+import { EndpointsService } from '../../../services/endpoints.service';
+import { Router, ActivatedRoute} from '@angular/router';
 
 /**
  * Component Class
@@ -21,6 +21,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   isnameFocused = false;
   ispasswordFocused = false;
+
+  /**
+   * Route path for dashboard
+   */
+  dashboardRoute = '/dashboard';
+
+  /**
+   * Route path for login
+   */
+  loginRoute = '/auth/login';
+
+  /**
+   * Route path for signup
+   */
+  signupRoute = '/auth/signup';
 
   /**
    * Constructor.
@@ -61,7 +76,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
    * @param self  Router Injection.
    */
   redirectCheck(self) {
-    let redirectTo = '/dashboard';
+    let redirectTo = this.dashboardRoute;
     const REDIRECT_URL = self.globalService.getData(self.globalService.redirectStorageKey);
     if (REDIRECT_URL && REDIRECT_URL['path']) {
       redirectTo = REDIRECT_URL['path'];

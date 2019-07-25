@@ -1,7 +1,4 @@
 @import "styles/variables";
-.loader-title {
-  margin-top: 39vh;
-}
 
 .loader-container {
   position: fixed;
@@ -22,10 +19,10 @@
   z-index: 5;
   background-color: transparent;
   .loader-title {
-      margin-top: 14vh;
+      margin-top: 39vh;
   }
   .loader {
-      margin-top: 20%;
+      margin-top: 45vh;
       top: 0;
   }
 }
@@ -66,7 +63,7 @@
 
 .fade {
   transition: all linear 500ms;
-  opacity: 1;
+  background: #ffffff96;
 }
 
 @keyframes shift {

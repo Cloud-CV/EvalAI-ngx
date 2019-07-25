@@ -172,7 +172,7 @@ export class AuthService {
           error();
           SELF.globalService.handleApiError(err);
         },
-        () => console.log('Email Verified')
+        () => {}
       );
     }
 

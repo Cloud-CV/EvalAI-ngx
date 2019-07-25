@@ -11,7 +11,7 @@ import {AuthService} from '../../services/auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit, AfterViewInit {
+export class AuthComponent implements OnInit {
 
   /**
    * router local instance
@@ -40,14 +40,11 @@ export class AuthComponent implements OnInit, AfterViewInit {
     this.authService.resetForm();
   }
 
-  ngAfterViewInit(): void {
-  }
-
   /**
    * Navigate to a certain URL.
    * @param url  URL to navigate to (not in paranthesis)
    */
   navigateTo(url) {
-    this.router.navigate([url]);
+    this.router.navigate([ url ]);
   }
 }

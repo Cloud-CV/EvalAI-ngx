@@ -25,6 +25,11 @@ export class VerifyEmailComponent implements OnInit {
   email_verify_msg = '';
 
   /**
+   * Login route path
+   */
+  loginRoute = '/auth/login';
+
+  /**
    * Constructor.
    * @param authService  AuthService Injection.
    * @param globalService  GlobalService Injection.

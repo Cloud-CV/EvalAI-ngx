@@ -18,6 +18,16 @@ export class ResetPasswordConfirmComponent implements OnInit {
   isNewPassword1Focused = false;
   isNewPassword2Focused = false;
 
+  /**
+   * Login route path
+   */
+  loginRoute = '/auth/login';
+
+  /**
+   * Signup route path
+   */
+  signupRoute = '/auth/signup';
+
   constructor(public authService: AuthService, private apiService: ApiService, private endpointService: EndpointsService,
   private globalService: GlobalService, private route: ActivatedRoute) {
   }
@@ -44,7 +54,9 @@ export class ResetPasswordConfirmComponent implements OnInit {
         'token': this.token,
       });
 
-      this.apiService.postUrl('auth/password/reset/confirm', RESET_BODY)
+      const API_PATH = this.endpointService.resetPasswordConfirmURL();
+
+      this.apiService.postUrl(API_PATH, RESET_BODY)
         .subscribe(
           response => {
             this.authService.isResetPassword = true;

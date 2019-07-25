@@ -4,7 +4,7 @@ import { LoginComponent } from './login.component';
 import { InputComponent } from '../../utility/input/input.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { GlobalService} from '../../../services/global.service';
+import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { WindowService } from '../../../services/window.service';
@@ -19,7 +19,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent, InputComponent],
+      declarations: [ LoginComponent, InputComponent ],
       providers: [
         GlobalService,
         AuthService,
@@ -27,10 +27,10 @@ describe('LoginComponent', () => {
         ApiService,
         EndpointsService
       ],
-      imports: [RouterTestingModule, HttpClientModule, FormsModule],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports: [ RouterTestingModule, HttpClientModule, FormsModule ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {

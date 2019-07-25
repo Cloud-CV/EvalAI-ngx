@@ -13,6 +13,28 @@ export class ResetPasswordComponent implements OnInit {
 
   isemailFocused = false;
 
+  /**
+   * Login route path
+   */
+  loginRoute = '/auth/login';
+
+  /**
+   * Signup route path
+   */
+  signupRoute = '/auth/signup';
+
+  /**
+   * Reset-password route path
+   */
+  resetPasswordRoute = '/auth/reset-password';
+
+  /**
+   *
+   * @param authService
+   * @param globalService
+   * @param apiService
+   * @param endpointService
+   */
   constructor(public authService: AuthService, private globalService: GlobalService, private apiService: ApiService,
               private endpointService: EndpointsService) {
   }
@@ -30,7 +52,9 @@ export class ResetPasswordComponent implements OnInit {
         email: this.authService.getUser['email']
       });
 
-      this.apiService.postUrl('auth/password/reset/', RESET_BODY).subscribe(
+      const API_PATH = this.endpointService.resetPasswordURL();
+
+      this.apiService.postUrl(API_PATH, RESET_BODY).subscribe(
         response => {
           this.authService.isMail = false;
           this.authService.getUser['error'] = false;
