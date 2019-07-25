@@ -57,6 +57,11 @@ export class ChallengeComponent implements OnInit {
   challenge: any;
 
   /**
+   * Array of phases
+   */
+  phases: any;
+
+  /**
    * Challenge stars
    */
   stars: any;
@@ -286,4 +291,51 @@ export class ChallengeComponent implements OnInit {
     };
     SELF.globalService.showModal(PARAMS);
   }
+
+  /**
+   * Make Submission Public
+   */
+  submissionPublic() {
+    this.phases.forEach((phase) => {
+      const API_PATH = this.endpointsService.challengeSubmissionURL(this.challenge['id'], phase['id']);
+      this.apiService.getUrl(API_PATH).subscribe(
+        (data) => {
+          console.log('Submission Data', data);
+          data['results'].forEach((submission) => {
+            this.changeSubmissionVisibility(submission['id'], phase['id']);
+          });
+        },
+        () => {
+        },
+        () => {
+        }
+      );
+    });
+  }
+
+
+  /**
+   * Change Submission's leaderboard visibility API.
+   * @param id  Submission id
+   * @param phase_id
+   */
+  changeSubmissionVisibility(id, phase_id) {
+    if (this.challenge['id'] && phase_id && id) {
+      const API_PATH = this.endpointsService.challengeSubmissionUpdateURL(this.challenge['id'], phase_id, id);
+      const SELF = this;
+      const BODY = JSON.stringify({is_public: true});
+      this.apiService.patchUrl(API_PATH, BODY).subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          SELF.globalService.handleApiError(err);
+        },
+        () => {
+          console.log('Updated submission visibility', id);
+        }
+      );
+    }
+  }
+
 }

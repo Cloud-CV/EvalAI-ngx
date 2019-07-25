@@ -5,6 +5,7 @@
 @import './grid.scss';
 @import './font.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import './theming.scss';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -2165,6 +2166,11 @@ input {
 
 .mb-5 {
   margin-bottom: 5px;
+}
+
+.margin-4 {
+  margin-left: 4%;
+  margin-right: 4%;
 }
 
 .margin-8 {
