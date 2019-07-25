@@ -79,7 +79,7 @@ import {
   ChallengeviewallsubmissionsComponent
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
 import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 import {PasswordMismatchValidatorDirective} from './Directives/password.validator';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
@@ -157,6 +157,8 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     TextareaAutosizeModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatCheckboxModule,
+    MatIconModule,
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,

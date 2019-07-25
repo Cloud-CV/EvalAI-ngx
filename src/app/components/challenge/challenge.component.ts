@@ -286,4 +286,22 @@ export class ChallengeComponent implements OnInit {
     };
     SELF.globalService.showModal(PARAMS);
   }
+  stopParticipation() {
+    if (this.isChallengeHost && this.challenge['id'] !== null) {
+      const BODY = JSON.stringify({
+        'is_registration_open': !this.challenge['is_registration_open']
+      });
+      this.apiService.patchUrl(
+        this.endpointsService.editChallengeDetailsURL(this.challenge.creator.id, this.challenge.id),
+        BODY
+      ).subscribe(
+        data => {
+          this.challenge['is_registration_open'] = !this.challenge['is_registration_open'];
+        },
+        err => {},
+        () => {}
+        );
+    }
+  }
+
 }
