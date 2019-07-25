@@ -69,13 +69,13 @@ import { FeaturedChallengesComponent } from './components/home/featured-challeng
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HostAnalyticsComponent } from './components/analytics/host-analytics/host-analytics.component';
 import { EditphasemodalComponent } from './components/challenge/challengephases/editphasemodal/editphasemodal.component';
-import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
 import {
   TermsAndConditionsModalComponent
 } from './components/challenge/challengeparticipate/terms-and-conditions-modal/terms-and-conditions-modal.component';
 import {
   ChallengeviewallsubmissionsComponent
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
+import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 

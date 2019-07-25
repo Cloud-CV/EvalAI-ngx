@@ -154,11 +154,6 @@ export class TeamcardComponent implements OnInit, OnChanges {
     } else {
       this.isSelected = false;
     }
-    /*if (this.selected) {
-      this.isSelected = true;
-    } else {
-      this.isSelected = false;
-    }*/
     const temp = this.team['members'];
     let memberString = '';
     for (let i = 0; i < temp.length; i++) {
