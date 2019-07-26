@@ -85,6 +85,7 @@ import {PasswordMismatchValidatorDirective} from './Directives/password.validato
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
+import { MatCheckboxModule, MatTableModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,7 +161,9 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
+    MatTableModule
   ],
   providers: [
     AuthService,
