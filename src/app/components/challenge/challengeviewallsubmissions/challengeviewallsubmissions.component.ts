@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren, ViewChild, AfterViewInit, Self, Inject} from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { WindowService } from '../../../services/window.service';
@@ -8,6 +8,9 @@ import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 import { environment } from '../../../../environments/environment.staging';
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {SelectFieldDialogComponent} from './select-field-dialog/select-field-dialog.component';
 
 /**
  * Component Class
@@ -121,6 +124,53 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   fieldsToGetExport: any = [];
 
   /**
+   * Fields to be exported
+   */
+  submissionFields = [{
+    'label': 'Team Name',
+    'id': 'participant_team'
+  }, {
+    'label': 'Team Members',
+    'id': 'participant_team_members'
+  }, {
+    'label': 'Team Members Email Id',
+    'id': 'participant_team_members_email'
+  }, {
+    'label': 'Challenge Phase',
+    'id': 'challenge_phase'
+  }, {
+    'label': 'Status',
+    'id': 'status'
+  }, {
+    'label': 'Created By',
+    'id': 'created_by'
+  }, {
+    'label': 'Execution Time',
+    'id': 'execution_time'
+  }, {
+    'label': 'Submission Number',
+    'id': 'submission_number'
+  }, {
+    'label': 'Submitted File',
+    'id': 'input_file'
+  }, {
+    'label': 'Stdout File',
+    'id': 'stdout_file'
+  }, {
+    'label': 'Stderr File',
+    'id': 'stderr_file'
+  }, {
+    'label': 'Submitted At',
+    'id': 'created_at'
+  }, {
+    'label': 'Submission Result File',
+    'id': 'submission_result_file'
+  }, {
+    'label': 'Submission Metadata File',
+    'id': 'submission_metadata_file'
+  }];
+
+  /**
    * @param showPagination Is pagination
    * @param paginationMessage Pagination message
    * @param isPrev Previous page state
@@ -146,7 +196,8 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
    */
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private challengeService: ChallengeService, private globalService: GlobalService,
-              private apiService: ApiService, private windowService: WindowService, private endpointsService: EndpointsService) { }
+              private apiService: ApiService, private windowService: WindowService, private endpointsService: EndpointsService,
+              public fieldDialog: MatDialog ) { }
 
   /**
    * Component after view initialized.
@@ -299,6 +350,19 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       const SELF = this;
       if (SELF.fieldsToGetExport.length === 0 || SELF.fieldsToGetExport === undefined) {
         SELF.apiService.getUrl(API_PATH, false).subscribe(
+          data => {
+            SELF.windowService.downloadFile(data, 'all_submissions.csv');
+          },
+          err => {
+            SELF.globalService.handleApiError(err);
+          },
+          () => {
+            console.log('Download complete.', SELF.challenge['id'], SELF.selectedPhase['id']);
+          }
+        );
+      } else {
+        const BODY = JSON.stringify(this.fieldsToGetExport);
+        SELF.apiService.postUrl(API_PATH, this.fieldsToGetExport, false).subscribe(
           data => {
             SELF.windowService.downloadFile(data, 'all_submissions.csv');
           },
@@ -537,4 +601,22 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
     };
     SELF.globalService.showConfirm(PARAMS);
   }
+
+  openFieldDialog() {
+    const dialogRef = this.fieldDialog.open(SelectFieldDialogComponent, {
+      height: '250px',
+      width: '500px',
+      data: {fields: this.submissionFields}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result !== undefined) {
+        this.fieldsToGetExport = result;
+        console.log('Fields to get Exported', this.fieldsToGetExport);
+      }
+
+    });
+  }
+
 }

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import {SelectFieldDialogComponent} from './select-field-dialog/select-field-dialog.component';
 
 describe('ChallengeviewallsubmissionsComponent', () => {
   let component: ChallengeviewallsubmissionsComponent;
@@ -19,7 +20,7 @@ describe('ChallengeviewallsubmissionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChallengeviewallsubmissionsComponent ],
+      declarations: [ ChallengeviewallsubmissionsComponent, SelectFieldDialogComponent ],
       providers: [ ChallengeService, GlobalService, AuthService, ApiService,
         EndpointsService, WindowService ],
       imports: [ HttpClientModule, RouterTestingModule, MatMenuModule, MatIconModule ],
