@@ -9,8 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 import { InputComponent } from '../../utility/input/input.component';
 
-import {Observable} from 'rxjs';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 /**
  * Component Class
  */
@@ -144,6 +143,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   apiCall: any;
 
   columnsToDisplay = ['status', 'stderr_file', 'stdout_file', 'submission_result_file'];
+  columnsHeadings = ['Status', 'Stderr File', 'Stdout File', 'Submission Result File'];
 
   expandedElement: null;
 

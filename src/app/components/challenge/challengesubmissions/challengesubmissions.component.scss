@@ -59,11 +59,17 @@
   background: #4CAF50;
 }
 
-
+.collapsible-table{
+  overflow: auto;
+}
 
 tr.detail-row {
   height: 0;
   overflow: hidden;
+}
+
+.cell-outside {
+  padding: 8px;
 }
 
 tr.element-row:not(.expanded-row):hover {
@@ -75,10 +81,6 @@ tr.element-row:not(.expanded-row):hover {
 
 tr.element-row:not(.expanded-row):active {
   background: #efefef;
-}
-
-.element-row td {
-  font-weight: 400;
 }
 
 .expanded-row {
@@ -139,5 +141,12 @@ tr.element-row:not(.expanded-row):active {
     border-bottom-color: lightgrey;
     border-bottom-width: 1px;
     padding-bottom: 20px;
+  }
+  .element {
+    display: flex;
+    flex-direction: column;
+  }
+  .element-description {
+    margin-left: 0;
   }
 }
