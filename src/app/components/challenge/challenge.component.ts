@@ -129,6 +129,10 @@ export class ChallengeComponent implements OnInit {
         content: document.location.href
       });
     });
+    this.challengeService.currentPhases.subscribe(
+      phases => {
+        this.phases = phases;
+      });
     this.challengeService.currentStars.subscribe(stars => this.stars = stars);
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
@@ -297,7 +301,7 @@ export class ChallengeComponent implements OnInit {
    */
   submissionPublic() {
     this.phases.forEach((phase) => {
-      const API_PATH = this.endpointsService.challengeSubmissionURL(this.challenge['id'], phase['id']);
+      const API_PATH = this.endpointsService.allChallengeSubmissionURL(this.challenge['id'], phase['id']);
       this.apiService.getUrl(API_PATH).subscribe(
         (data) => {
           console.log('Submission Data', data);

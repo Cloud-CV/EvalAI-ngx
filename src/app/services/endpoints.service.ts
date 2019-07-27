@@ -230,6 +230,16 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   }
 
   /**
+   * Challenge Submission Visibility
+   * @param challenge  challenge id
+   * @param phase  phase id
+   * @param submission  submission id
+   */
+  allChallengeSubmissionUpdateURL(challenge, phase, submission) {
+    return `${this.challengeSubmissionURL(challenge, phase)}${submission}`;
+  }
+
+  /**
    * Filter challenge submissions in view all submissions by participant team name
    * @param challenge challenge id
    * @param phase phase id
