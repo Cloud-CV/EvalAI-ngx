@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChildren, ViewChild, AfterViewInit, Self, Inject} from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, ViewChild, AfterViewInit, Self, Inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { WindowService } from '../../../services/window.service';
@@ -9,8 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
 import { environment } from '../../../../environments/environment.staging';
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {SelectFieldDialogComponent} from './select-field-dialog/select-field-dialog.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { SelectFieldDialogComponent } from './select-field-dialog/select-field-dialog.component';
 
 /**
  * Component Class
@@ -604,7 +604,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
 
   openFieldDialog() {
     const dialogRef = this.fieldDialog.open(SelectFieldDialogComponent, {
-      height: '250px',
+      height: '290px',
       width: '500px',
       data: {fields: this.submissionFields}
     });
@@ -614,8 +614,8 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
       if (result !== undefined) {
         this.fieldsToGetExport = result;
         console.log('Fields to get Exported', this.fieldsToGetExport);
+        this.downloadSubmission();
       }
-
     });
   }
 

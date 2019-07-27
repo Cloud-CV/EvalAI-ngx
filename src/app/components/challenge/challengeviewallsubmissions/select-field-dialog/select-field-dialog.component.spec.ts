@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectFieldDialogComponent } from './select-field-dialog.component';
+import { MAT_DIALOG_DATA, MatChipsModule, MatDialogModule, MatDialogRef } from '@angular/material';
+
+const data = {fields: []};
 
 describe('SelectFieldDialogComponent', () => {
   let component: SelectFieldDialogComponent;
@@ -8,7 +11,9 @@ describe('SelectFieldDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectFieldDialogComponent ]
+      declarations: [ SelectFieldDialogComponent ],
+      providers: [{provide: MatDialogRef, useValue: {}}, {provide: MAT_DIALOG_DATA, useValue: data}],
+      imports: [MatChipsModule, MatDialogModule]
     })
     .compileComponents();
   }));

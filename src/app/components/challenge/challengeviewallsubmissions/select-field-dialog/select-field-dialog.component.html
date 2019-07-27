@@ -1,14 +1,12 @@
 <h2 mat-dialog-title>Select Fields</h2>
-<div mat-dialog-content class="field-dialog-content">
+<div class="field-dialog-content">
   <mat-chip-list>
     <mat-chip [class.chip-selected]="field.selected" (click)="selection(field)" *ngFor="let field of data.fields">
       {{field.label}}
     </mat-chip>
   </mat-chip-list>
 </div>
-<mat-dialog-actions align="end">
-  <!--a class="grad-rec-btn waves-dark ev-btn-dark fw-light fs-14"  (click)='onDone()'>Done</a-->
-  <!--button mat-button class="fw-regular fs-14 text-highlight">Done</button-->
-  <a class="fw-regular fs-14 text-highlight "  (click)='selectAll()'>Select All</a>
+<mat-dialog-actions>
+  <a class="fw-regular fs-14 text-highlight action-btn"  (click)='selectAll()'>Select All</a>
   <a class="fw-regular fs-14 text-highlight"  (click)='onDone()'>Done</a>
 </mat-dialog-actions>

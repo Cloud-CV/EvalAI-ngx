@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import {SelectFieldDialogComponent} from './select-field-dialog/select-field-dialog.component';
+import { SelectFieldDialogComponent } from './select-field-dialog/select-field-dialog.component';
+import { MatDialogModule } from '@angular/material';
 
 describe('ChallengeviewallsubmissionsComponent', () => {
   let component: ChallengeviewallsubmissionsComponent;
@@ -23,7 +24,7 @@ describe('ChallengeviewallsubmissionsComponent', () => {
       declarations: [ ChallengeviewallsubmissionsComponent, SelectFieldDialogComponent ],
       providers: [ ChallengeService, GlobalService, AuthService, ApiService,
         EndpointsService, WindowService ],
-      imports: [ HttpClientModule, RouterTestingModule, MatMenuModule, MatIconModule ],
+      imports: [ HttpClientModule, RouterTestingModule, MatMenuModule, MatIconModule, MatDialogModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
