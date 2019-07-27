@@ -25,6 +25,7 @@
 						<br> <strong class="fs-14 phase-value">{{phase['max_submissions_per_month']}}</strong></p>
 					<p><strong class="text-light-black fw-semibold fs-12">Max total submissions</strong>
 						<br> <strong class="fs-14 phase-value">{{phase['max_submissions']}}</strong></p>
+          <mat-checkbox color="primary" *ngIf="isChallengeHost" (click)="toggleLeaderboard()" [(ngModel)]="isLeaderboardPublic">LeaderBoard</mat-checkbox>
 				</div>
 			</div>
 		</div>

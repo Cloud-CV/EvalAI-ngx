@@ -23,13 +23,14 @@ export class ChallengephasesComponent implements OnInit {
   phases: any;
 
   /**
+   * Challenge host status
+   */
+  isChallengeHost: boolean;
+
+  /**
    * Constructor.
-   * @param route  ActivatedRoute Injection.
-   * @param router  GlobalService Injection.
-   * @param authService  AuthService Injection.
-   * @param globalService  GlobalService Injection.
-   * @param apiService  Router Injection.
    * @param challengeService  ChallengeService Injection.
+   * @param document
    */
   constructor(private challengeService: ChallengeService, @Inject(DOCUMENT) private document: Document) { }
 
@@ -44,6 +45,9 @@ export class ChallengephasesComponent implements OnInit {
     this.challengeService.currentPhases.subscribe(
     phases => {
       this.phases = phases;
+    });
+    this.challengeService.isChallengeHost.subscribe(status => {
+      this.isChallengeHost = status;
     });
   }
 }

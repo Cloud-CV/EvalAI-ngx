@@ -177,6 +177,15 @@ export class EndpointsService {
   }
 
   /**
+   * Challenge phase for a given challenge id
+   * @param challenge  challenge id
+   * @param phase  phase id
+   */
+  challengePhaseUpdateURL(challenge, phase) {
+    return `${this.challengePhaseURL(challenge)}/${phase}`;
+  }
+
+  /**
    * Challenge phase split for a given challenge id
    * @param id  challenge id
    */
