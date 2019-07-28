@@ -9,6 +9,7 @@ import { ApiService } from '../../../services/api.service';
 import { WindowService } from '../../../services/window.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChallengesettingsComponent', () => {
   let component: ChallengesettingsComponent;
@@ -19,7 +20,7 @@ describe('ChallengesettingsComponent', () => {
       declarations: [ ChallengesettingsComponent ],
       providers: [ ChallengeService, GlobalService, AuthService, ApiService,
         WindowService, EndpointsService ],
-      imports: [ HttpClientModule ],
+      imports: [ RouterTestingModule, HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
