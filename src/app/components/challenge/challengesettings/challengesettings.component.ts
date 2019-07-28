@@ -3,6 +3,8 @@ import { ChallengeService } from '../../../services/challenge.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
 
 @Component({
   selector: 'app-challengesettings',
@@ -20,6 +22,29 @@ export class ChallengesettingsComponent implements OnInit {
    * Participants banned emails ids
    */
   bannedEmailIds: string[];
+
+  /**
+   * Email validation for the banned email ids
+   */
+  isValidationError = false;
+
+  /**
+   * Email error message
+   */
+  message: string;
+
+  /**
+   * Separator key codes
+   */
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  /**
+   * Banned email ids chips property
+   */
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
 
   /**
    * Input to edit the banned participants emails
@@ -41,25 +66,63 @@ export class ChallengesettingsComponent implements OnInit {
     this.bannedEmailIds = this.challenge.banned_email_ids;
   }
 
-  getBannedEmailsListObject(bannedEmailInputValue) {
-    const bannedEmailIds = [];
-    // First remove all the whitespaces and then split
-    const splittedEmails = bannedEmailInputValue.split(',').map(item => item.trim());
-    for (let i = 0; i < splittedEmails.length; i++) {
-      bannedEmailIds.push(splittedEmails[i]);
+  /**
+   * Add banned email chip
+   * @param event current event
+   */
+  add(event: MatChipInputEvent): void {
+    const SELF = this;
+    const input = event.input;
+    const value = event.value;
+    SELF.isValidationError = false;
+    SELF.message = '';
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      if (!SELF.validateEmail(value.trim())) {
+        SELF.isValidationError = true;
+        SELF.message = 'Please enter a valid email!';
+      } else {
+        SELF.bannedEmailIds.push(value.trim());
+      }
     }
-    return bannedEmailIds;
+
+    if (value !== '' && !SELF.isValidationError) {
+      SELF.updateBannedEmailList();
+    }
+    // Reset the input value
+    if (input && !SELF.isValidationError) {
+      input.value = '';
+    }
   }
 
-  validateInput(bannedEmailInputValue) {
-    this.bannedEmailIds = bannedEmailInputValue;
+  /**
+   * Remove banned email chip
+   * @param email Banned email id
+   */
+  remove(email): void {
+    const SELF = this;
+    const index = this.bannedEmailIds.indexOf(email);
+
+    if (index >= 0) {
+      this.bannedEmailIds.splice(index, 1);
+    }
+    SELF.updateBannedEmailList();
   }
+
+  validateEmail(email) {
+    if (email === '') {
+      return true;
+    }
+    // const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.
+    // ,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // return regex.test(String(email).toLowerCase());
+}
 
   updateBannedEmailList() {
     const SELF = this;
-    const bannedEmailIds = this.getBannedEmailsListObject(this.bannedEmailIds);
     const BODY = JSON.stringify({
-      banned_email_ids: bannedEmailIds
+      banned_email_ids: SELF.bannedEmailIds
     });
     SELF.apiService.patchUrl(
       SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),

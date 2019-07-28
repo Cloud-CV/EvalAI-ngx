@@ -35,6 +35,14 @@ textarea {
     min-height: 2rem !important;
 }
 
+.email-list-text {
+    white-space: pre-line;
+}
+
+.error-message {
+    color: $highlight;
+}
+
 .display-inline {
     display: flex;
     align-items: center;
