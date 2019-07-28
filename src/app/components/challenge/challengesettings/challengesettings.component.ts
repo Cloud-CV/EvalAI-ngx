@@ -74,7 +74,7 @@ export class ChallengesettingsComponent implements OnInit {
           SELF.globalService.handleApiError(err, true);
           SELF.globalService.showToast('error', err);
         },
-        () => console.log('BANNED-EMAIL-IDS-UPDATE-FINISHED')
+        () => {}
       );
   }
 
