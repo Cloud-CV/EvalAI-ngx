@@ -115,7 +115,7 @@ export class ChallengesettingsComponent implements OnInit {
       return true;
     }
     const regex = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
-    return String(email).search (regex) != -1;
+    return String(email).search (regex) !== -1;
   }
 
   updateBannedEmailList() {
