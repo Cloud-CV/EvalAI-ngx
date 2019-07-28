@@ -44,7 +44,7 @@ export class ChallengesettingsComponent implements OnInit {
   getBannedEmailsListObject(bannedEmailInputValue) {
     const bannedEmailIds = [];
     // First remove all the whitespaces and then split
-    const splittedEmails = bannedEmailInputValue.replace(/\s/g, '').split(',');
+    const splittedEmails = bannedEmailInputValue.split(',').map(item => item.trim());
     for (let i = 0; i < splittedEmails.length; i++) {
       bannedEmailIds.push(splittedEmails[i]);
     }
