@@ -1409,8 +1409,9 @@ code {
     border-radius: 2px;
     background: white;
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
+    max-height: 585px !important;
     z-index: 999;
     transform: translate(-50%, -50%);
     font-size: $fs-16;
@@ -1421,7 +1422,6 @@ code {
       padding: 10px;
       font-size: $fs-18;
       font-weight: $fw-bolder;
-      margin-bottom: 30px;
     }
     .content {
       padding: 10px;
@@ -1433,6 +1433,13 @@ code {
       padding: 10px;
       text-align: right;
     }
+  }
+}
+
+.modal-inputs {
+  .input-group .input-field {
+    padding: 0px !important;
+    margin-top: 0px !important;
   }
 }
 
