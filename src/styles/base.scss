@@ -230,6 +230,11 @@ mat-label {
   .mat-form-field-infix {
     width: 478px !important;
   }
+
+  .input-group .input-field {
+    padding: 0px !important;
+    margin-top: 0px !important;
+  }
 }
 
 .mat-select-trigger {
@@ -1235,6 +1240,11 @@ code {
   }
 }
 
+.btn:hover {
+  cursor: pointer;
+  background-color: $dark-gray !important;
+}
+
 .btn:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
@@ -1252,7 +1262,7 @@ code {
   0px,
   $overlay-light);
   &:hover {
-    background: $gray-light;
+    background: $gray-light !important;
     border: 1px solid $gray-light;
     color: black;
     @include box-shadow(0px,
@@ -1304,7 +1314,7 @@ code {
     0px,
     $overlay-light);
     border: 1.5px solid $gray-light;
-    background: $gray-light;
+    background: $gray-light !important;
     color: black;
   }
 }
@@ -1319,7 +1329,7 @@ code {
     box-shadow: 0px 4px 8px transparent;
     &:hover {
         box-shadow: 0px 0px 8px #9d9d9d;
-        background: $med-gray;
+        background: $med-gray !important;
         color: #fff;
     }
   }
@@ -1690,6 +1700,7 @@ html {
 }
 
 a {
+  cursor: pointer;
   color: $med-gray;
 }
 
