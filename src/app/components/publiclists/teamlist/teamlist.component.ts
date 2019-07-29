@@ -275,7 +275,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     if (reset) {
       this.seeMore = 1;
     }
-    this.filteredTeams = this.allTeams.slice(0, (this.seeMore * this.windowSize));
+    this.filteredTeams = this.allTeams.slice(((this.seeMore - 1) * this.windowSize), (this.seeMore * this.windowSize));
     this.filteredTeamSource.next(this.filteredTeams);
   }
 
