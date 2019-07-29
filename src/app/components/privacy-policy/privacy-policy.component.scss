@@ -13,7 +13,7 @@
     overflow-y: scroll;
 
     .privacy-nav {
-      font-weight: 400;
+      font-weight: $fw-regular;
     }
     
   position: relative;
@@ -69,7 +69,7 @@
       font-weight: $fw-semibold;
     }
     .privacy-section-content {
-      font-weight: 300;
+      font-weight: $fw-light;
       color: $med-black;
       font-size: $fs-16;
       margin-top: 20px;
