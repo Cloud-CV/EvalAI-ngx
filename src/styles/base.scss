@@ -550,6 +550,11 @@ ul {
 }
 
 .submit-upload-file {
+  .file-path-wrapper {
+    input {
+      color: black !important;
+    }
+  }
   .input-group .file-field .btn {
     border-radius: 2px !important;
     background: $dark-gray !important;
