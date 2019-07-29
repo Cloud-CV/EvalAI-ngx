@@ -81,6 +81,7 @@ const routes: Routes = [
       {path: 'leaderboard', component: ChallengeleaderboardComponent},
       {path: 'leaderboard/:split', component: ChallengeleaderboardComponent},
       {path: 'leaderboard/:split/:entry', component: ChallengeleaderboardComponent},
+      {path: 'leaderboard/:split/filter/:day', component: ChallengeleaderboardComponent},
       {path: 'settings', component: ChallengesettingsComponent}
     ]
   },

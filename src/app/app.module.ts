@@ -10,7 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 // Import serivces
 import { AuthService } from './services/auth.service';
 import { WindowService } from './services/window.service';
@@ -85,6 +86,7 @@ import {PasswordMismatchValidatorDirective} from './Directives/password.validato
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
+import {MatInputModule, MatNativeDateModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,7 +162,11 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     AuthService,

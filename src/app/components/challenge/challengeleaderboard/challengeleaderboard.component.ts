@@ -240,7 +240,13 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       } else if (SELF.router.url.split('/').length === 5) {
         SELF.router.navigate(['../' + phaseSplit['id']], {relativeTo: this.route});
       } else if (SELF.router.url.split('/').length === 6) {
-        SELF.router.navigate(['../../' + phaseSplit['id']], {relativeTo: this.route});
+        if (SELF.selectedPhaseSplit['id'] !== phaseSplit['id']) {
+          SELF.router.navigate(['../../' + phaseSplit['id']], {relativeTo: this.route});
+        }
+      } else if (SELF.router.url.split('/').length === 7) {
+        if (SELF.selectedPhaseSplit['id'] !== phaseSplit['id']) {
+          SELF.router.navigate(['../../../' + phaseSplit['id']], {relativeTo: this.route});
+        }
       }
       SELF.selectedPhaseSplit = phaseSplit;
       if (SELF.selectedPhaseSplit) {
@@ -270,11 +276,19 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       if (params['entry']) {
         self.entryHighlighted = params['entry'];
         self.leaderboard.map((item) => {
-          item['is_highlighted'] = false;
-          if (self.entryHighlighted && item['submission__participant_team__team_name'] === self.entryHighlighted) {
-            item['is_highlighted'] = true;
+          item['is_highlighted'] = self.entryHighlighted && item['submission__participant_team__team_name'] === self.entryHighlighted;
+        });
+        console.log('Is highlited', self.leaderboard);
+      }
+      if (params['day']) {
+        const TEMP = [];
+        self.leaderboard.map((item) => {
+          const d2 = new Date(Date.parse(item['submission__submitted_at']));
+          if (d2.getTime() <= params['day']) {
+            TEMP.push(item);
           }
         });
+        self.leaderboard = TEMP;
       }
     });
   }
@@ -410,5 +424,17 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       },
       () => {}
     );
+  }
+
+  goToUniqueLink(ele) {
+    console.log(ele.value.getTime());
+    console.log(this.selectedPhaseSplit['id']);
+    if (this.router.url.split('/').length === 6) {
+      this.router.navigate(['../', 'filter', ele.value.getTime()], {relativeTo: this.route});
+    } else if(this.router.url.split('/').length === 7) {
+      this.router.navigate(['../../', 'filter', ele.value.getTime()], {relativeTo: this.route});
+    } else {
+      this.router.navigate(['filter', ele.value.getTime()], {relativeTo: this.route});
+    }
   }
 }
