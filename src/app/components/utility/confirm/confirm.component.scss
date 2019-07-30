@@ -15,7 +15,11 @@
   }
 }
 
-.row ul.confirm-buttons li {
+.row ul {
+  margin: 0px;
+}
+
+.confirm-buttons li {
   display: inline-block;
   margin: 9px 9px;
 }

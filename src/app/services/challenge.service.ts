@@ -4,6 +4,7 @@ import { GlobalService } from './global.service';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from './auth.service';
 import { EndpointsService } from './endpoints.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ChallengeService {
@@ -40,7 +41,8 @@ export class ChallengeService {
    * @param authService  AuthService Injection.
    */
   constructor(private apiService: ApiService, private globalService: GlobalService,
-              private authService: AuthService, private endpointsService: EndpointsService) { }
+              private authService: AuthService, private endpointsService: EndpointsService,
+              private router: Router) { }
 
   /**
    * Update current Challenge.
@@ -313,7 +315,21 @@ export class ChallengeService {
         SELF.fetchParticipantTeams(id);
       },
       err => {
-        SELF.globalService.handleApiError(err);
+        if (!err.is_profile_complete) {
+          const redirectToProfile = () => {
+            this.router.navigate(['/profile/']);
+          };
+          const PARAMS = {
+            title: 'Sorry, Each participant of a team must complete their profile \
+            in order to participate in this challenge!',
+            confirm: 'Complete Profile',
+            deny: 'Close',
+            confirmCallback: redirectToProfile
+          };
+          SELF.globalService.showConfirm(PARAMS);
+        } else {
+          SELF.globalService.handleApiError(err);
+        }
       },
       () => {
         console.log('Challenge participated');
