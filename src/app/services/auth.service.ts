@@ -3,6 +3,7 @@ import { GlobalService } from './global.service';
 import { EndpointsService } from './endpoints.service';
 import { ApiService } from './api.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -11,20 +12,36 @@ export class AuthService {
   change = this.authStateSource.asObservable();
 
 
-  /**
-   * Modifications in Auth Services
-   */
   isAuth = false;
+  isMail = true;
+  // getUser for signup
+  regUser = {};
+  // useDetails for login
+  getUser = {};
+  // color to show password strength
+  color = {};
+  isResetPassword = false;
+  // form error
+  isFormError = false;
+  FormError = {};
+
+  // default parameters
+  isLoader = false;
+  regMsg = '';
+  wrnMsg = {};
+  isValid = {};
+  deliveredMsg = '';
+  canShowPassword = false;
+  canShowConfirmPassword = false;
 
   /**
    * Constructor.
-   * @param router
    * @param globalService  GlobalService Injection.
    * @param apiService  ApiService Injection.
    * @param endpointsService  EndpointsService Injection.
    */
   constructor(private globalService: GlobalService, private apiService: ApiService,
-              private endpointsService: EndpointsService) { }
+              private endpointsService: EndpointsService, private router: Router) { }
 
     /**
      * Call this to update authentication state.
@@ -52,8 +69,10 @@ export class AuthService {
      */
     logOut() {
       const temp = {isLoggedIn: false};
+      const routePath = '/auth/login';
       this.globalService.deleteData(this.globalService.authStorageKey);
       this.authStateChange(temp);
+      this.router.navigate([routePath]);
     }
 
     /**
@@ -136,27 +155,57 @@ export class AuthService {
       }
     }
 
-    /**
-     * User Details fetch Trigger
-     * @param token
-     * @param success
-     * @param error
-     */
-      verifyEmail(token, success = () => {}, error = () => {}) {
-        const API_PATH = this.endpointsService.verifyEmailURL();
-        const SELF = this;
-        const BODY = JSON.stringify({
-          key: token
-        });
-        this.apiService.postUrl(API_PATH, BODY).subscribe(
-          data => {
-            success();
-          },
-          err => {
-            error();
-            SELF.globalService.handleApiError(err);
-          },
-          () => console.log('Email Verified')
-        );
-      }
+  /**
+   * User Details fetch Trigger
+   * @param token
+   * @param success
+   * @param error
+   */
+    verifyEmail(token, success = () => {}, error = () => {}) {
+      const API_PATH = this.endpointsService.verifyEmailURL();
+      const SELF = this;
+      const BODY = JSON.stringify({
+        key: token
+      });
+      this.apiService.postUrl(API_PATH, BODY).subscribe(
+        data => {
+          success();
+        },
+        err => {
+          error();
+          SELF.globalService.handleApiError(err);
+        },
+        () => {}
+      );
+    }
+
+  // toggle password visibility
+  togglePasswordVisibility() {
+    this.canShowPassword = !this.canShowPassword;
+  }
+
+  // toggle confirm password visibility
+  toggleConfirmPasswordVisibility() {
+    this.canShowConfirmPassword = !this.canShowConfirmPassword;
+  }
+
+  resetForm() {
+    // getUser for signup
+    this.regUser = {};
+    // useDetails for login
+    this.getUser = {};
+
+    // reset error msg
+    this.wrnMsg = {};
+
+    // switch off form errors
+    this.isFormError = false;
+
+    // reset form when link sent for reset password
+    this.isMail = true;
+
+    // reset the eye icon and type to password
+    this.canShowPassword = false;
+    this.canShowConfirmPassword = false;
+  }
 }

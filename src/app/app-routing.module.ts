@@ -14,6 +14,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
 import { AboutComponent } from './components/about/about.component';
 import { ChallengeComponent } from './components/challenge/challenge.component';
+import { ChallengesettingsComponent } from './components/challenge/challengesettings/challengesettings.component';
 import { ChallengeoverviewComponent} from './components/challenge/challengeoverview/challengeoverview.component';
 import { ChallengeevaluationComponent } from './components/challenge/challengeevaluation/challengeevaluation.component';
 import { ChallengephasesComponent} from './components/challenge/challengephases/challengephases.component';
@@ -31,6 +32,8 @@ import { OurTeamComponent } from './components/our-team/our-team.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {AnalyticsComponent} from './components/analytics/analytics.component';
 import {HostAnalyticsComponent} from './components/analytics/host-analytics/host-analytics.component';
+import {ResetPasswordComponent} from './components/auth/reset-password/reset-password.component';
+import {ResetPasswordConfirmComponent} from './components/auth/reset-password-confirm/reset-password-confirm.component';
 
 const routes: Routes = [
   {
@@ -50,6 +53,8 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
+      {path: 'reset-password', component: ResetPasswordComponent},
+      {path: 'reset-password/confirm/:user_id/:reset_token', component: ResetPasswordConfirmComponent},
       {path: 'signup', component: SignupComponent},
       {path: 'verify-email/:token', component: VerifyEmailComponent},
       {path: '**', redirectTo: 'login'}
@@ -75,7 +80,8 @@ const routes: Routes = [
       {path: 'view-all-submissions', component: ChallengeviewallsubmissionsComponent},
       {path: 'leaderboard', component: ChallengeleaderboardComponent},
       {path: 'leaderboard/:split', component: ChallengeleaderboardComponent},
-      {path: 'leaderboard/:split/:entry', component: ChallengeleaderboardComponent}
+      {path: 'leaderboard/:split/:entry', component: ChallengeleaderboardComponent},
+      {path: 'settings', component: ChallengesettingsComponent}
     ]
   },
   {

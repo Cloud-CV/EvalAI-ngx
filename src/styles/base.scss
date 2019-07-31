@@ -24,6 +24,7 @@ body {
   letter-spacing: 0.1px;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.87);
+  flex: 1;
 }
 
 .display-flex {
@@ -37,6 +38,32 @@ body {
 .rm-margin {
   margin: 0px;
 }
+
+.rm-pad {
+  padding: 0 !important;
+}
+
+.rm-pad-top {
+  padding-top: 0 !important;
+}
+
+.rm-pad-btm {
+  padding-btm: 0 !important;
+}
+
+.rm-pad-rt {
+  padding-right: 0 !important;
+}
+
+.rm-pad-lt {
+  padding-left: 0 !important;
+}
+
+.result-wrn {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
 
 /* Margins */
 
@@ -203,6 +230,11 @@ mat-label {
   .mat-form-field-infix {
     width: 478px !important;
   }
+
+  .input-group .input-field {
+    padding: 0px !important;
+    margin-top: 0px !important;
+  }
 }
 
 .mat-select-trigger {
@@ -316,6 +348,11 @@ mat-label {
 
 
 /* Chip Styles */
+
+.mat-form-field-infix {
+  padding: 0px !important;
+}
+
 mat-chip-list {
   display: inline-block;
 }
@@ -328,7 +365,32 @@ mat-chip {
 }
 
 
+
+/* Refresh list page */
+
+.update-page {
+  display: block;
+  background: $dark-gray;
+  overflow: auto;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  width: auto;
+  right: 0;
+  padding: 10px 30px;
+  box-shadow: 2px 2px 9px #6d6d6d;
+  border-radius: 3px 0px 0px 3px;
+  font-weight: $fw-light;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+      box-shadow: -1px 0px 9px #bbbbbb;
+  }
+}
+
+
 /**File field styles*/
+
 .file-field {
   position: relative;
 }
@@ -488,6 +550,11 @@ ul {
 }
 
 .submit-upload-file {
+  .file-path-wrapper {
+    input {
+      color: black !important;
+    }
+  }
   .input-group .file-field .btn {
     border-radius: 2px !important;
     background: $dark-gray !important;
@@ -525,7 +592,6 @@ ul {
 }
 
 .btn-waves-effect {
-  padding: 13px 33px 13px 33px;
   border: none;
   position: relative;
   cursor: pointer;
@@ -537,6 +603,10 @@ ul {
   z-index: 1;
   will-change: opacity, transform;
   transition: .3s ease-out;
+}
+
+.ev-btn {
+  padding: 13px 33px 13px 33px;
 }
 
 .ev-btn-dark {
@@ -587,7 +657,7 @@ input[type="checkbox"] {
 input[type=checkbox]+label {
   color: $light-gray;
   font-size: 0.8em;
-  font-weight: 400;
+  font-weight: $fw-regular;
 }
 
 input[type=checkbox].filled-in:checked+label:after {
@@ -695,6 +765,7 @@ input[type=checkbox].filled-in:not(:checked)+label:after {
 
 
 /* radio button styles */
+
 [type=radio]:not(:checked), [type=radio]:checked {
   position: absolute;
   left: -9999px;
@@ -1135,7 +1206,7 @@ ul {
 code {
   font-family: Roboto;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: $fw-light;
   background: #eff0f1;
   border: #eff0f1 dashed 1px;
   padding: 6px;
@@ -1174,6 +1245,11 @@ code {
   }
 }
 
+.btn:hover {
+  cursor: pointer;
+  background-color: $dark-gray !important;
+}
+
 .btn:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
@@ -1191,7 +1267,7 @@ code {
   0px,
   $overlay-light);
   &:hover {
-    background: $gray-light;
+    background: $gray-light !important;
     border: 1px solid $gray-light;
     color: black;
     @include box-shadow(0px,
@@ -1243,7 +1319,7 @@ code {
     0px,
     $overlay-light);
     border: 1.5px solid $gray-light;
-    background: $gray-light;
+    background: $gray-light !important;
     color: black;
   }
 }
@@ -1258,7 +1334,7 @@ code {
     box-shadow: 0px 4px 8px transparent;
     &:hover {
         box-shadow: 0px 0px 8px #9d9d9d;
-        background: $med-gray;
+        background: $med-gray !important;
         color: #fff;
     }
   }
@@ -1338,8 +1414,9 @@ code {
     border-radius: 2px;
     background: white;
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
+    max-height: 585px !important;
     z-index: 999;
     transform: translate(-50%, -50%);
     font-size: $fs-16;
@@ -1350,7 +1427,6 @@ code {
       padding: 10px;
       font-size: $fs-18;
       font-weight: $fw-bolder;
-      margin-bottom: 30px;
     }
     .content {
       padding: 10px;
@@ -1362,6 +1438,13 @@ code {
       padding: 10px;
       text-align: right;
     }
+  }
+}
+
+.modal-inputs {
+  .input-group .input-field {
+    padding: 0px !important;
+    margin-top: 0px !important;
   }
 }
 
@@ -1452,8 +1535,20 @@ td, th {
   line-height: 40px;
 }
 
+/*pagination*/
+
 .btn-pagination {
-  background-color: $yellow;
+  background-color: $highlight;
+  i {
+    font-size: 16px;
+  }
+}
+
+.btn-pagination:hover {
+  background-color: $highlight;
+  i {
+    font-size: 16px;
+  }
 }
 
 .btn.disabled, .btn-floating.disabled, .btn-floating:disabled {
@@ -1617,6 +1712,7 @@ html {
 }
 
 a {
+  cursor: pointer;
   color: $med-gray;
 }
 
@@ -1969,7 +2065,7 @@ input[type="radio"].selectTeam + label {
 /* icon prefix focus color */
 
 input {
-  font-weight: 300;
+  font-weight: $fw-light;
   border-bottom: 1px solid $light-gray;
 }
 

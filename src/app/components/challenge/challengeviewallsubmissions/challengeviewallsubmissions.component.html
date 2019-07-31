@@ -11,6 +11,7 @@
       <div class="row row-lr-margin">
         <div class="col-sm-6 col-xs-12 col-lr-pad phase-select-box">
           <app-selectphase [phases]="filteredPhases"
+            [phaseSelectionListType]="phaseSelectionListType"
             [phaseSelectionType]="phaseSelectionType"
             [phaseSelected]="phaseSelected()" #phaseselect></app-selectphase>
         </div>
@@ -33,8 +34,8 @@
           </a>
         </div>
         <div *ngIf="selectedPhase">
-          <div class="row row-lr-margin phase-title">
-            <div class="col-sm-12 col-xs-12">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 filter-team">
               <strong class="fw-semibold content fs-15">Filter Submissions by Team name</strong>
             </div>
           </div>
@@ -70,8 +71,6 @@
                   <th data-field="file">Stderr File</th>
                   <th data-field="file">Result File</th>
                   <th data-field="file">Metadata File</th>
-                  <th *ngIf="selectedPhase['leaderboard_public']"
-                    data-field="file">Show on Leaderboard</th>
                   <th data-field="settings">Submission Settings</th>
                 </tr>
               </thead>
@@ -110,30 +109,21 @@
                       class="blue-text"><i class="fa fa-external-link"></i> Link</a></td>
                   <td *ngIf="!key.submission_metadata_file">None</td>
 
-                  <td *ngIf="selectedPhase['leaderboard_public']">
-                    <input [checked]="key.is_public" *ngIf="key.status == 'finished'"
-                    type="checkbox" id="isPublic{{ key.id }}"
-                      (change)="changeSubmissionVisibility(key.id, key.is_public)"
-                      class="cbx hidden" />
-                    <label for="isPublic{{ key.id }}" class="cbx-label"></label>
-                    <span *ngIf="key.status !== 'finished'"> N/A </span>
-                  </td>
-
                   <td>
                     <a [matMenuTriggerFor]="settingsmenu"><i class="fa fa-gear"></i></a>
                     <mat-menu #settingsmenu="matMenu" yPosition="below">
-                      <button (click)="confirmSubmissionFlagChange(key, key.is_flagged)" mat-menu-item>
+                      <a (click)="confirmSubmissionFlagChange(key, key.is_flagged)" mat-menu-item>
                         <mat-icon>{{key.submissionFlagIcon}}</mat-icon>
                         <span>{{key.submissionFlagText}}</span>
-                      </button>
-                      <button *ngIf="key.status == 'finished'" (click)="confirmSubmissionVisibility(key, key.is_public)" mat-menu-item>
+                      </a>
+                      <a *ngIf="key.status == 'finished'" (click)="confirmSubmissionVisibility(key, key.is_public)" mat-menu-item>
                         <mat-icon>{{key.submissionVisibilityIcon}}</mat-icon>
                         <span>{{key.submissionVisibilityText}}</span>
-                      </button>
-                      <button (click)="reRunSubmission(key.id)" mat-menu-item>
+                      </a>
+                      <a (click)="reRunSubmission(key.id)" mat-menu-item>
                         <mat-icon>refresh</mat-icon>
                         <span>Re-run submission</span>
-                      </button>
+                      </a>
                     </mat-menu>
                   </td>
                 </tr>
