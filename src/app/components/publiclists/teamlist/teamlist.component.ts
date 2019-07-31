@@ -513,6 +513,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         },
         err => {
           this.globalService.stopLoader();
+          this.globalService.showToast('error', err.error.team_name, 5);
           this.globalService.handleFormError(this.components, err);
         },
         () => {}
@@ -534,9 +535,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   participateInChallenge() {
     const confirmCallback = () => { this.challengeService.participateInChallenge(this.challenge['id'], this.selectedTeam['id']); };
 
-    let content = '' + '<ol>\n';
+    let content = '' + '<ol>';
     this.termsAndConditionContent.forEach((item) => {
-      content += `<li>${item}</li>\n`;
+      content += `<li>${item}</li>`;
     });
     content += '</ol>';
 

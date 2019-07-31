@@ -21,12 +21,12 @@ export class TeamcardComponent implements OnInit, OnChanges {
   /**
    * Selected flag
    */
-  @Input() selected: any;
+  @Input() selected: boolean;
 
   /**
    * Update
    */
-  @Input() isOnChallengePage: any;
+  @Input() isOnChallengePage: boolean;
 
   /**
    * Delete team event
