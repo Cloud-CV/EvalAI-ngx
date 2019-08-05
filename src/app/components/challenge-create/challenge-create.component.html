@@ -17,13 +17,12 @@
 
                 <div class="file-path-wrapper">
                   <input disabled class="file-path validate" name="file_path" type="text">
+                  <div *ngIf="isFormError" class="wrn-msg text-highlight fs-12"> Please Upload File </div>
                 </div>
 
                 <div class="align-left reg-control">
                   <button class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" type="submit" value="Submit">Submit</button>
                 </div>
-
-                <div *ngIf="isFormError" class="wrn-msg text-highlight align-right"> Please Upload File </div>
 
               </form>
             </div>
@@ -51,6 +50,5 @@
     <app-footer [isDash]="true" *ngIf="authService.isAuth"></app-footer>
   </div>
 </div>
-<div class="clearfix"></div>
 
 <app-footer *ngIf="!authService.isAuth"></app-footer>
