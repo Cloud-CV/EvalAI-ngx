@@ -7,12 +7,12 @@
       <div class="team-details">
         <span *ngIf="teamView['team_url'] != ''" class="pointer">
           <strong class="text-med-black fw-bold">Team: </strong>
-          <a class="orange-text" href="{{teamView['team_url']}}" target="_blank">{{teamView.team_name}}</a>
+          <a class="orange-text" href="{{teamView['team_url']}}" target="_blank">{{teamView['team_name']}}</a>
         </span>
         <span *ngIf="teamView['team_url'] == ''" class="pointer">
-          <strong class="text-med-black fw-bold">Team: </strong>{{teamView.team_name}}
+          <strong class="text-med-black fw-bold">Team: </strong>{{teamView['team_name']}}
         </span>
-        <br><strong class="text-med-black fw-bold">Created By: </strong>{{teamView.created_by}}
+        <br><strong class="text-med-black fw-bold">Created By: </strong>{{teamView['created_by']}}
       </div>
       <span *ngIf="!isOnChallengePage" class='team-icons'>
         <a (click)="addMembersToTeam($event)"><i class="fa fa-user-plus list-icon text-highlight w-300 left" aria-hidden="true"></i></a>
