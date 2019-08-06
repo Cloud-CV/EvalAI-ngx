@@ -15,16 +15,14 @@
                         <div class="col-lg-7 col-md-6">
                             <div class="card-content">
                                 <p>
-                                    <span style="line-height: 1.5" class="fs-18">
-                                        <strong style="color: rgba(0, 0, 0, 0.87);"
-                                            class="fw-semibold">
+                                    <span class="ev-lh fs-18">
+                                        <strong class="challenge-page-title fw-semibold">
                                             {{challenge['title']}}
                                         </strong>
                                     </span>
                                     &nbsp;
                                     <span *ngIf="isChallengeHost">
-                                        <a style="padding-right: 4px;"
-                                            class="pointer"
+                                        <a class="ev-pr-4 pointer"
                                             (click)="editChallengeTitle()">
                                             <i class="fa fa-pencil"
                                                 aria-hidden="true"></i>
@@ -36,7 +34,7 @@
                                         </a>
                                     </span>
                                     <br>
-                                    <span style="line-height: 1.5"
+                                    <span class="ev-lh"
                                         *ngIf="challenge.creator.team_url != ''"><strong
                                             class="text-light-black fw-semibold
                                             fs-15">Organized by:</strong><a
@@ -46,7 +44,7 @@
                                             {{challenge['creator']['team_name']}}
                                         </a>
                                     </span>
-                                    <span style="line-height: 1.5"
+                                    <span class="ev-lh"
                                         *ngIf="challenge.creator.team_url == ''"><strong
                                             class="text-light-black fw-semibold
                                             fs-15">Organized by:</strong>
@@ -54,7 +52,7 @@
                                     </span>
 
                                     <br>
-                                    <span style="line-height: 1.5"
+                                    <span class="ev-lh"
                                         *ngIf="isChallengeHost">
                                         <span>
                                             <a class="pointer"
@@ -123,7 +121,7 @@
                                         [routerLink]="['./leaderboard']"
                                         class="text-light-black fw-semibold fs-15">
                                         <i class="fa fa-th-list"></i> Leaderboard</a></li>
-                                <li *ngIf=""><a
+                                <li *ngIf="challenge.enable_forum && challenge.forum_url"><a
                                         [class.selected]="localRouter.url.endsWith('discussions')"
                                         href="{{challenge.forumURL}}"
                                         target="_blank"
