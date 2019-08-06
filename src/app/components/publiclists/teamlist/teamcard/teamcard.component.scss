@@ -3,7 +3,6 @@
 
 .team-card-container {
   font-size: $fs-16;
-  color: $gray-darker;
   font-weight: $fw-light;
   overflow: auto;
   position: relative;
@@ -33,6 +32,13 @@
       font-size: $fs-24;
       vertical-align:top;
       margin-top:10px;
+    }
+    .circle-icon {
+      font-size: 19px;
+      color: #4d4d4d;
+    }
+    .fa-users {
+      font-size: initial;
     }
     .title {
       &.toptitle {

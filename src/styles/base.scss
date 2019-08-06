@@ -79,6 +79,10 @@ body {
   margin-bottom: 13px;
 }
 
+.ev-mb-20 {
+  margin-bottom: 20px;
+}
+
 
 
 
@@ -499,6 +503,7 @@ li:last-child {
 }
 
 .exist-team-card ul li {
+  display: flex;
   margin: 20px 0px;
   min-height: 40px;
 }
@@ -861,11 +866,6 @@ label {
 
 *, *:before, *:after {
   box-sizing: inherit;
-}
-
-.radio-button-text {
-  width: calc(100% - 35px);
-  float: right;
 }
 
 
@@ -1428,7 +1428,6 @@ code {
     font-size: $fs-16;
     color: $gray-darker;
     padding: 30px;
-    overflow-y: scroll;
     .title {
       color: $med-black;
       padding: 10px;
