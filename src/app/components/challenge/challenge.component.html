@@ -1,8 +1,8 @@
 <div class="mid-container">
-    <app-side-bar *ngIf="authService.isAuth"></app-side-bar>
+    <app-side-bar *ngIf="isLoggedIn"></app-side-bar>
     <app-header-static></app-header-static>
 
-    <div class="web-container" [class.center]="!authService.isAuth">
+    <div class="web-container" [class.center]="!isLoggedIn">
         <div class="challenge-container">
             <div class="challenge-card">
                 <div class="top-card-container ev-card-panel">
@@ -144,8 +144,8 @@
             </div>
             <router-outlet></router-outlet>
         </div>
-        <app-footer *ngIf="authService.isAuth"></app-footer>
+        <app-footer *ngIf="isLoggedIn"></app-footer>
     </div>
 
-    <app-footer *ngIf="!authService.isAuth"></app-footer>
+    <app-footer *ngIf="!isLoggedIn"></app-footer>
 </div>
