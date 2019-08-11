@@ -20,6 +20,11 @@ export class PhasecardComponent implements OnInit {
   @Input() phase: object;
 
   /**
+   * Phase Leaderboard Status
+   */
+  isLeaderboardPublic: boolean;
+
+  /**
    * start date of phase
    */
   startDate: string;
@@ -47,6 +52,9 @@ export class PhasecardComponent implements OnInit {
   /**
    * Constructor.
    * @param globalService  GlobalService Injection.
+   * @param challengeService
+   * @param apiService ApiService Injection
+   * @param endpointsService
    */
   constructor(private globalService: GlobalService, private challengeService: ChallengeService,
               private apiService: ApiService, private endpointsService: EndpointsService) { }
@@ -74,6 +82,7 @@ export class PhasecardComponent implements OnInit {
     const END_DATE = new Date(Date.parse(this.phase['end_date']));
     this.startDate = this.globalService.formatDate12Hour(START_DATE);
     this.endDate = this.globalService.formatDate12Hour(END_DATE);
+    this.isLeaderboardPublic = this.phase['leaderboard_public'];
   }
 
   editChallengePhase() {
@@ -86,7 +95,7 @@ export class PhasecardComponent implements OnInit {
         }
       }
       SELF.apiService.patchFileUrl(
-        SELF.endpointsService.updateChallengePhaseDetailsURL(SELF.challenge.id, SELF.phase['id']),
+        SELF.endpointsService.updateChallengePhaseDetailsURL(SELF.challenge['id'], SELF.phase['id']),
         FORM_DATA
       ).subscribe(
         data => {
@@ -118,4 +127,29 @@ export class PhasecardComponent implements OnInit {
     SELF.globalService.showEditPhaseModal(PARAMS);
   }
 
+  toggleLeaderboard() {
+    console.log(this.isLeaderboardPublic);
+
+    this.phase['leaderboard_public'] = !this.phase['leaderboard_public'];
+    const PHASE_BODY = JSON.stringify(this.phase);
+
+    const path = this.endpointsService.challengePhaseUpdateURL(this.challenge['id'], this.phase['id']);
+    console.log(path);
+
+    this.apiService.putUrl(path, PHASE_BODY)
+      .subscribe(
+        (res) => {
+          this.isLeaderboardPublic = this.phase['leaderboard_public'];
+          console.log(res);
+        },
+        (err) => {
+          this.phase['leaderboard_public'] = !this.phase['leaderboard_public'];
+          this.isLeaderboardPublic = this.phase['leaderboard_public'];
+          console.log(err);
+          this.globalService.handleApiError(err);
+        },
+        () => {
+        }
+      );
+  }
 }

@@ -8,6 +8,8 @@ import { ChallengeService } from '../../../../services/challenge.service';
 import { EndpointsService } from '../../../../services/endpoints.service';
 import { ApiService } from '../../../../services/api.service';
 import { AuthService } from '../../../../services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material';
 
 describe('PhasecardComponent', () => {
   let component: PhasecardComponent;
@@ -17,7 +19,7 @@ describe('PhasecardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PhasecardComponent ],
       providers: [ GlobalService, ChallengeService, EndpointsService, ApiService, AuthService ],
-      imports: [ RouterTestingModule, HttpClientModule ]
+      imports: [ HttpClientModule, RouterTestingModule, FormsModule, MatCheckboxModule ]
     })
     .compileComponents();
   }));
