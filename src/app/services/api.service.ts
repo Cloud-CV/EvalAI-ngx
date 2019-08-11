@@ -41,6 +41,7 @@ export class ApiService {
    * HTTP GET wrapper.
    * @param path  path of API call.
    * @param isJson  set to false when fetching some non-JSON content.
+   * @param isLoader
    */
   getUrl(path: string, isJson = true, isLoader = true) {
     if (isJson) {
@@ -57,10 +58,17 @@ export class ApiService {
    * HTTP POST wrapper.
    * @param path  path of API call.
    * @param body  stringified json body.
+   * @param isJson
    */
-  postUrl(path: string, body: any) {
-    this.prepareHttpOptions();
-    return this.loadingWrapper(this.http.post(this.API + path, body, this.HTTP_OPTIONS));
+  postUrl(path: string, body: any, isJson = true) {
+    if (isJson) {
+      this.prepareHttpOptions();
+      return this.loadingWrapper(this.http.post(this.API + path, body, this.HTTP_OPTIONS));
+    } else {
+      this.prepareHttpOptions(true);
+      const TEMP = Object.assign({}, this.HTTP_OPTIONS, { observe: 'response', responseType: 'text' });
+      return this.loadingWrapper(this.http.post(this.API + path, body, TEMP));
+    }
   }
 
   /**

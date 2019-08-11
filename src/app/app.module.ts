@@ -80,6 +80,11 @@ import {
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
 import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
 
+//  Import Angular Material Components
+import { MatDialogModule } from '@angular/material/dialog';
+import {
+  SelectFieldDialogComponent
+} from './components/challenge/challengeviewallsubmissions/select-field-dialog/select-field-dialog.component';
 import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 import {PasswordMismatchValidatorDirective} from './Directives/password.validator';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
@@ -143,7 +148,8 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     EditphasemodalComponent,
     ResetPasswordConfirmComponent,
     ChallengeviewallsubmissionsComponent,
-    TermsAndConditionsModalComponent
+    TermsAndConditionsModalComponent,
+    SelectFieldDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -160,8 +166,10 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
   ],
+  entryComponents: [SelectFieldDialogComponent],
   providers: [
     AuthService,
     WindowService,
