@@ -9,6 +9,7 @@ import {AuthService} from '../../../services/auth.service';
 import {EndpointsService} from '../../../services/endpoints.service';
 import {Routes} from '@angular/router';
 import {NotFoundComponent} from '../../not-found/not-found.component';
+import { Observable } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -29,6 +30,8 @@ const routes: Routes = [
 describe('DashboardContentComponent', () => {
   let component: DashboardContentComponent;
   let fixture: ComponentFixture<DashboardContentComponent>;
+  let authService: AuthService;
+  let apiService: ApiService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,10 +45,29 @@ describe('DashboardContentComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardContentComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    authService = TestBed.get(AuthService);
+    apiService = TestBed.get(ApiService);
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
+  });
+
+  it('should call fetch apis', () => {
+    const res = {
+      'results': [],
+      'status': 400,
+      'error': {'error': 'Error Testing'}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'getUrl').and.returnValue(new Observable((observer) => {
+      observer.next(res);
+      observer.error(res);
+      observer.complete();
+      return {unsubscribe() {}};
+    }));
+    fixture.detectChanges();
+    expect(apiService.getUrl).toHaveBeenCalled();
   });
 });

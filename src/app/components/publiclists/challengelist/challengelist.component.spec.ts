@@ -16,6 +16,7 @@ import {Router, Routes} from '@angular/router';
 import {PubliclistsComponent} from '../publiclists.component';
 
 import {By} from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ describe('ChallengelistComponent', () => {
   let component: ChallengelistComponent;
   let fixture: ComponentFixture<ChallengelistComponent>;
   let authService: AuthService;
+  let apiService: ApiService;
   let globalService: GlobalService;
   let challengeService: ChallengeService;
   let router: Router;
@@ -62,6 +64,7 @@ describe('ChallengelistComponent', () => {
     router = TestBed.get(Router);
     fixture = TestBed.createComponent(ChallengelistComponent);
     authService = TestBed.get(AuthService);
+    apiService = TestBed.get(ApiService);
     globalService = TestBed.get(GlobalService);
     challengeService = TestBed.get(ChallengeService);
     component = fixture.componentInstance;
@@ -74,4 +77,73 @@ describe('ChallengelistComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should call fetch challenges', () => {
+    const res = {
+      'results': [{'id': '1', 'creator': {'id': 1}}],
+      'status': 403,
+      'error': {'error': {'error': 'Error Testing'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'getUrl').and.returnValue(new Observable((observer) => {
+      observer.next(res);
+      observer.error(res);
+      observer.complete();
+      return {unsubscribe() {}};
+    }));
+    router.navigate(['/challenges/all']).then(() => {
+      component.isPastChecked = true;
+      fixture.detectChanges();
+    });
+    component.fetchChallenges('isUpcomingChecked');
+    expect(apiService.getUrl).toHaveBeenCalled();
+  });
+
+  it('should call fetch teams', () => {
+    const res = {
+      'results': [{'id': '1', 'creator': {'id': 1}}],
+      'status': 403,
+      'error': {'error': {'error': 'Error Testing'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'getUrl').and.returnValue(new Observable((observer) => {
+      observer.next(res);
+      observer.error(res);
+      observer.complete();
+      return {unsubscribe() {}};
+    }));
+    router.navigate(['/challenges/me']).then(() => {
+      component.isPastChecked = true;
+      fixture.detectChanges();
+    });
+  });
+
+  it('should call toggle filters', () => {
+    const res = {
+      'results': [{'id': '1', 'creator': {'id': 1}}],
+      'status': 403,
+      'error': {'error': {'error': 'Error Testing'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'getUrl').and.returnValue(new Observable((observer) => {
+      observer.next(res);
+      observer.error(res);
+      observer.complete();
+      return {unsubscribe() {}};
+    }));
+    fixture.detectChanges();
+    component.toggleFilter('isPastChecked');
+    component.isPastChecked = true;
+    component.toggleFilter('isPastChecked');
+    component.toggleFilter('isUpcomingChecked');
+    component.toggleFilter('isOngoingChecked');
+    component.seeMoreClicked();
+    expect(apiService.getUrl).toHaveBeenCalled();
+  });
+
+  it('should call scroll up', () => {
+    router.navigate(['/challenges/all']).then(() => {
+      fixture.detectChanges();
+      component.scrollUp();
+    });
+  });
 });
