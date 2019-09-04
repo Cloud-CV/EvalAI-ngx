@@ -35,85 +35,135 @@
         <div class="horizontal-scroll">
           <div class="col-sm-12 col-lr-pad">
             <div *ngIf="leaderboard.length <= 0 && selectedPhaseSplit == null"
-              class="fw-regular result-wrn">No phase selected.</div>
-              <div *ngIf="leaderboard.length > 0 && selectedPhaseSplit"
-                class="result-wrn content">
-                <mat-chip-list>
-                  <mat-chip>B</mat-chip> - Baseline submission
-                </mat-chip-list>
-              </div>
-
-              <table *ngIf="leaderboard.length > 0 && selectedPhaseSplit" class="centered highlight">
-                <thead>
-                  <tr class="content">
-                    <td data-field="rank" class="align-center">
-                      <a (click)="sortNonMetricsColumn('rank')">
-                        <span class="fw-regular fs-18">Rank </span>
-                        <span class="fa-stack fa-1x">
-                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
-                            sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort && 
-                            sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                        </span>
-                      </a>
-                    </td>
-                    <td data-field="team" class="align-center">
-                      <a (click)="sortNonMetricsColumn('string')">
-                        <span class="fw-regular fs-18">Participant Team</span>
-                        <span class="fa-stack fa-1x">
-                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
-                            sortColumn == 'string'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="reverseSort && 
-                            sortColumn == 'string'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                        </span>
-                      </a>
-                    </td>
-                    <td *ngFor="let key of leaderboard[0].leaderboard__schema.labels;index as i"
-                      [attr.data-index]="i" class="align-center">
-                        <a (click)="sortMetricsColumn(i)">
-                          <span class="fw-regular fs-18">{{key}}</span>
-                          <span class="fa-stack fa-1x">
-                            <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
-                              sortColumn == 'number'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                            <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort && 
-                              sortColumn == 'number'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                          </span>
-                        </a>
-                    </td>
-                    <td data-field="submission_time" class="align-center">
-                      <a (click)="sortNonMetricsColumn('date')">
-                        <span class="fs-18 fw-regular">Last submission at</span>
-                        <span class="fa-stack fa-1x">
-                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
-                            sortColumn == 'date'? 'text-med-black' : 'text-light-black w-500'"></i>
-                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort && 
-                            sortColumn == 'date'? 'text-med-black' : 'text-light-black w-500'"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let key of leaderboard" class="content">
-                    <td>{{initial_ranking[key.submission__participant_team__team_name]}}</td>
-                    <td class="fw-regular">{{key.submission__participant_team__team_name}}
-                      <span *ngIf="key.submission__is_baseline">
-                        <mat-chip-list>
-                          <mat-chip>B</mat-chip>
-                        </mat-chip-list>
-                      </span>
-                    </td>
-                    <td *ngFor="let score of key.result">{{score | number : '1.2-2'}}</td>
-                    <td><div>{{ key.submission__submitted_at_formatted }}</div></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div *ngIf="leaderboard.length <= 0 && selectedPhaseSplit">
-                <p>No results to show!</p>
-              </div>
+                 class="fw-regular result-wrn">No phase selected.</div>
+            <div *ngIf="leaderboard.length > 0 && selectedPhaseSplit"
+                 class="result-wrn content">
+              <mat-chip-list>
+                <mat-chip>B</mat-chip> - Baseline submission
+              </mat-chip-list>
+            </div>
+            <div *ngIf="leaderboard.length <= 0 && selectedPhaseSplit">
+              <p>No results to show!</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="collapsible-table">
+      <table mat-table *ngIf="leaderboard.length > 0 && selectedPhaseSplit"
+             [dataSource]="leaderboard" multiTemplateDataRows
+             class="mat-elevation-z0">
+
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of leaderboard[0].leaderboard__schema.labels;index as i">
+          <th mat-header-cell class="cell-outside" *matHeaderCellDef>
+            <a (click)="sortMetricsColumn(i)">
+              <span class="fw-regular fs-18">{{column}}</span>
+              <span class="fa-stack fa-1x">
+                  <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
+                    sortColumn == 'number'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                  <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort &&
+                    sortColumn == 'number'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                </span>
+            </a>
+          </th>
+          <td mat-cell class="cell-outside" *matCellDef="let element" >
+            <span *ngIf="element['result'][i] !== null">{{element['result'][i]}}</span>
+            <span *ngIf="element['result'][i] === null">{{"None"}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rank">
+          <th mat-header-cell class="cell-outside" *matHeaderCellDef>
+            <a (click)="sortNonMetricsColumn('rank')">
+              <span class="fw-regular fs-18">Rank </span>
+              <span class="fa-stack fa-1x">
+                  <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
+                    sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                  <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort &&
+                    sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                </span>
+            </a>
+          </th>
+          <td mat-cell class="cell-outside" *matCellDef="let element">
+            {{initial_ranking[element.submission__participant_team__team_name]}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="participant_team">
+          <th mat-header-cell class="cell-outside" *matHeaderCellDef>
+            <a (click)="sortNonMetricsColumn('string')">
+              <span class="fw-regular fs-18">Participant Team</span>
+              <span class="fa-stack fa-1x">
+                  <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
+                    sortColumn == 'string'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                  <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort &&
+                    sortColumn == 'string'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
+                </span>
+            </a>
+          </th>
+          <td mat-cell (click)="goToUniqueLink(element)" class="cell-outside" *matCellDef="let element">
+            {{element.submission__participant_team__team_name}}
+            <span *ngIf="element.submission__is_baseline">
+                <mat-chip-list>
+                  <mat-chip>B</mat-chip>
+                </mat-chip-list>
+              </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="submitted_at">
+          <th mat-header-cell class="cell-outside" *matHeaderCellDef>
+            <a (click)="sortNonMetricsColumn('date')">
+              <span class="fs-18 fw-regular">Last submission at</span>
+              <span class="fa-stack fa-1x">
+                  <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
+                    sortColumn == 'date'? 'text-med-black' : 'text-light-black w-500'"></i>
+                  <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort &&
+                    sortColumn == 'date'? 'text-med-black' : 'text-light-black w-500'"></i>
+                </span>
+            </a>
+          </th>
+          <td mat-cell class="cell-outside" *matCellDef="let element">
+            <div>{{ element.submission__submitted_at_formatted }}</div>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+            <div class="elements" [class.detail-row]="element != expandedElement" [class.expanded-row]="element == expandedElement"
+                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="elements-detail">
+                <div class="element">
+                  <span class="element-description-attribution">Method Name</span>
+                  <span class="fw-regular element-description"> {{element.submission__method_name}} </span>
+                </div>
+                <div class="element">
+                  <span class="element-description-attribution">Method Description</span>
+                  <span class="fw-regular element-description"> {{element.method_description}} </span>
+                </div>
+                <div class="element">
+                  <span class="element-description-attribution">Project Url</span>
+                  <span class="fw-regular element-description"> {{element.project_url}} </span>
+                </div>
+                <div class="element">
+                  <span class="element-description-attribution">Publication Url</span>
+                  <span class="fw-regular element-description"> {{element.publication_url}} </span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+            class="element-row"
+            [class.expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+      </table>
+    </div>
+
 </div>

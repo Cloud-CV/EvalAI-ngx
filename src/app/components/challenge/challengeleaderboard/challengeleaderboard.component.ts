@@ -1,11 +1,13 @@
-import { Component, OnInit, QueryList, ViewChildren, AfterViewInit, Self } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
-import { ApiService } from '../../../services/api.service';
-import { GlobalService } from '../../../services/global.service';
-import { ChallengeService } from '../../../services/challenge.service';
-import { EndpointsService } from '../../../services/endpoints.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {AuthService} from '../../../services/auth.service';
+import {ApiService} from '../../../services/api.service';
+import {GlobalService} from '../../../services/global.service';
+import {ChallengeService} from '../../../services/challenge.service';
+import {EndpointsService} from '../../../services/endpoints.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SelectphaseComponent} from '../../utility/selectphase/selectphase.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {element} from 'protractor';
 
 /**
  * Component Class
@@ -13,7 +15,14 @@ import { SelectphaseComponent } from '../../utility/selectphase/selectphase.comp
 @Component({
   selector: 'app-challengeleaderboard',
   templateUrl: './challengeleaderboard.component.html',
-  styleUrls: ['./challengeleaderboard.component.scss']
+  styleUrls: ['./challengeleaderboard.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
 
@@ -127,6 +136,10 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     public: 3,
   };
 
+  columnsToDisplay = ['rank', 'participant_team', 'submitted_at'];
+
+  expandedElement: null;
+
   /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
@@ -157,11 +170,14 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     this.routerPublic = this.router;
     this.challengeService.currentChallenge.subscribe(challenge => {
       this.challenge = challenge;
+      console.log('Challenge leaderboard', this.challenge);
     });
+
     this.challengeService.currentPhases.subscribe(
       phases => {
         this.phases = phases;
         this.filterPhases();
+        console.log('Leaderboard Phases', this.phases);
     });
     this.challengeService.currentPhaseSplit.subscribe(
       phaseSplits => {
@@ -283,7 +299,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * Sort leaderboard entries wrapper
    */
   sortLeaderboard() {
-    this.leaderboard = this.leaderboard.sort((obj1, obj2) => {
+    let sortedLeaderboard = this.leaderboard.sort((obj1, obj2) => {
       const RET1 = this.sortFunction(obj1);
       const RET2 = this.sortFunction(obj2);
       if (RET1 > RET2) {
@@ -295,8 +311,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       return 0;
     });
     if (this.reverseSort) {
-      this.leaderboard = this.leaderboard.reverse();
+      sortedLeaderboard = sortedLeaderboard.reverse();
     }
+    this.leaderboard = sortedLeaderboard.slice();
   }
 
   /**
@@ -359,6 +376,15 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     SELF.showLeaderboardUpdate = false;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
+        console.log('Fetched leader board Results', data['results']);
+        if (data['results'].length > 0) {
+          const leaderboard_metrics = data['results'][0]['leaderboard__schema']['labels'];
+          const rank = this.columnsToDisplay.shift();
+          const part_teams = this.columnsToDisplay.shift();
+          this.columnsToDisplay = leaderboard_metrics.concat(this.columnsToDisplay);
+          this.columnsToDisplay.unshift(part_teams);
+          this.columnsToDisplay.unshift(rank);
+        }
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(phaseSplitId);
       },
