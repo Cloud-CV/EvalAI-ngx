@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -85,6 +86,7 @@ import {PasswordMismatchValidatorDirective} from './Directives/password.validato
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
+import { DashboardAnalyticsComponent } from './components/dashboard/dashboard-analytics/dashboard-analytics.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -143,7 +145,8 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     EditphasemodalComponent,
     ResetPasswordConfirmComponent,
     ChallengeviewallsubmissionsComponent,
-    TermsAndConditionsModalComponent
+    TermsAndConditionsModalComponent,
+    DashboardAnalyticsComponent
   ],
   imports: [
     BrowserModule,
@@ -160,7 +163,8 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     AuthService,
