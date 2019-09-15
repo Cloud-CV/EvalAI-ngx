@@ -3,18 +3,20 @@
 .dashboard-analytics {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin: 25px 20px 0 20px;
+  //margin-top: 25px;
+  height: calc(85vh - 20px);
 }
 
 .analysis-card {
-  margin: 20px;
-  margin-top: 0px;
   background-color: $gray-lighter !important;
+  height: 100%;
 }
 
 .content {
   display: flex;
   flex-direction: row;
+  height:90%;
 }
 
 .challenge-team-list {
@@ -61,8 +63,6 @@
 .challenge-list {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  //border-right: 0.5px solid $gray-medium;
   padding-right: 15px;
   padding-bottom: 15px;
   overflow: auto;
@@ -80,10 +80,8 @@
 .team-list {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  //border-right: 0.5px solid $gray-medium;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  padding-right: 15px;
+  padding-bottom: 15px;
   overflow: auto;
   mat-card {
     margin-top: 10px;
@@ -101,6 +99,14 @@
   width: 75%;
   display: flex;
   flex-direction: column;
+}
+
+.analysis-challenge-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 0 15px 15px;
+  width: 75%;
 }
 
 .analysis-content {
@@ -144,6 +150,13 @@
     max-height: 70%;
     padding: 10px;
     border-top: 0.5px solid $gray-dark;
+
+    .visualization-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
   }
 }
 

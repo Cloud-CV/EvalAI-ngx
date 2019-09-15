@@ -33,7 +33,7 @@ export class DashboardAnalyticsComponent implements OnInit {
   toggleParticipant = true;
 
   challengeWindowSize = 4;
-  teamWindowSize = 4;
+  teamWindowSize = 20;
 
   challengePage = 1;
   teamPage = 1;

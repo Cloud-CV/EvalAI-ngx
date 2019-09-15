@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material';
+import { ChartsModule } from 'ng2-charts';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -87,6 +88,8 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
 import { DashboardAnalyticsComponent } from './components/dashboard/dashboard-analytics/dashboard-analytics.component';
+import { RankVisualsComponent } from './components/dashboard/dashboard-analytics/rank-visuals/rank-visuals.component';
+import { SubmissionVisualsComponent } from './components/dashboard/dashboard-analytics/submission-visuals/submission-visuals.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,7 +149,9 @@ import { DashboardAnalyticsComponent } from './components/dashboard/dashboard-an
     ResetPasswordConfirmComponent,
     ChallengeviewallsubmissionsComponent,
     TermsAndConditionsModalComponent,
-    DashboardAnalyticsComponent
+    DashboardAnalyticsComponent,
+    RankVisualsComponent,
+    SubmissionVisualsComponent
   ],
   imports: [
     BrowserModule,
@@ -164,7 +169,8 @@ import { DashboardAnalyticsComponent } from './components/dashboard/dashboard-an
     MatChipsModule,
     MatMenuModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    ChartsModule,
   ],
   providers: [
     AuthService,

@@ -43,6 +43,18 @@
 
     <div class="challenge-team-analysis">
 
+      <div class="analysis-challenge-info">
+        <span class="fs-14 fw-regular"> Analysis VQA Challenge</span>
+        <div>
+          <span class="fs-12 fw-semibold mr-5 text-gray">
+              Select Phase
+          </span>
+          <span class="fs-10 fw-regular text-highlight">
+              Train Phase
+          </span>
+        </div>
+      </div>
+
       <div class="analysis-content">
         <mat-card class="rank-submission-analysis">
           <div class="rank-submission-toggle">
@@ -80,7 +92,17 @@
               </div>
             </div>
           </div>
-          <div class="rank-submission-visualization"></div>
+          <div class="rank-submission-visualization">
+            <div class="visualization-info">
+              <span class="fs-14 fw-semibold text-med-gray" *ngIf="isRankAnalysis"> Rank Analysis</span>
+              <span class="fs-14 fw-semibold" *ngIf="!isRankAnalysis"> Submission Analysis</span>
+              <span class="fs-12 fw-regular text-highlight">
+                  Train Phase
+              </span>
+            </div>
+            <app-rank-visuals *ngIf="isRankAnalysis"></app-rank-visuals>
+            <app-submission-visuals *ngIf="!isRankAnalysis"></app-submission-visuals>
+          </div>
         </mat-card>
         <mat-card class="submission-visualization"></mat-card>
       </div>

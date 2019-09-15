@@ -3,7 +3,8 @@
 <div class="web-container" [style.center]="!authService.isAuth">
   <div class="dashboard-flex">
     <div class="dashboard-content">
-      <app-dashboard-content></app-dashboard-content>
+      <!--app-dashboard-content></app-dashboard-content-->
+      <app-dashboard-analytics></app-dashboard-analytics>
     </div>
     <!--Dashboard-Footer-->
     <app-footer [isDash]="true" *ngIf="authService.isAuth"></app-footer>

@@ -175,6 +175,10 @@ body {
 
 /*Font sizes*/
 
+.fs-10 {
+  font-size: $fs-10;
+}
+
 .fs-12 {
   font-size: $fs-12;
 }
@@ -1661,6 +1665,10 @@ td, th {
   color: $light-gray;
 }
 
+.text-gray {
+  color: $gray-dark;
+}
+
 .text-med-gray {
   color: #3c3e49;
 }
@@ -2163,8 +2171,20 @@ input {
   }
 }
 
+.mt-5 {
+  margin-top: 5px;
+}
+
 .mb-5 {
   margin-bottom: 5px;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
+.mr-5 {
+  margin-right: 5px;
 }
 
 .margin-8 {
