@@ -10,8 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCardModule } from '@angular/material';
 import { ChartsModule } from 'ng2-charts';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -171,6 +173,8 @@ import { SubmissionVisualsComponent } from './components/dashboard/dashboard-ana
     MatIconModule,
     MatCardModule,
     ChartsModule,
+    MatButtonModule,
+    MatTooltipModule,
   ],
   providers: [
     AuthService,

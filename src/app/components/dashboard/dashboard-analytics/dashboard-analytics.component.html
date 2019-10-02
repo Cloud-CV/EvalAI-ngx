@@ -49,9 +49,14 @@
           <span class="fs-12 fw-semibold mr-5 text-gray">
               Select Phase
           </span>
-          <span class="fs-10 fw-regular text-highlight">
-              Train Phase
-          </span>
+          <button mat-stroked-button [matMenuTriggerFor]="menu" class="fs-12 fw-regular text-highlight select-button">
+            Train Phase
+            <i class="fa fa-chevron-down fs-10 fw-semibold"></i>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Train Phase</button>
+            <button mat-menu-item>Test Phase</button>
+          </mat-menu>
         </div>
       </div>
 
@@ -96,15 +101,41 @@
             <div class="visualization-info">
               <span class="fs-14 fw-semibold text-med-gray" *ngIf="isRankAnalysis"> Rank Analysis</span>
               <span class="fs-14 fw-semibold" *ngIf="!isRankAnalysis"> Submission Analysis</span>
-              <span class="fs-12 fw-regular text-highlight">
-                  Train Phase
-              </span>
+              <div>
+                <button mat-stroked-button [matMenuTriggerFor]="menu" class="fs-12 fw-regular text-highlight select-button">
+                  Weekly
+                  <i class="fa fa-chevron-down fs-10 fw-semibold"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>Daily</button>
+                  <button mat-menu-item>Weekly</button>
+                  <button mat-menu-item>Monthly</button>
+                </mat-menu>
+              </div>
             </div>
             <app-rank-visuals *ngIf="isRankAnalysis"></app-rank-visuals>
             <app-submission-visuals *ngIf="!isRankAnalysis"></app-submission-visuals>
           </div>
         </mat-card>
-        <mat-card class="submission-visualization"></mat-card>
+        <mat-card class="submission-visualization">
+          <span class="fs-12 fw-semibold">Submissions</span>
+          <div class="submission-canvas">
+            <div class="cell-row" *ngFor="let num of ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']">
+              <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7]"  matTooltip="Info about the action" class="cell"></div>
+              <div class="fs-8 fw-semibold text-med-gray cell-row-label">{{num}}</div>
+            </div>
+          </div>
+          <div class="select-submission-duration">
+            <button mat-button [matMenuTriggerFor]="menu" class="rm-pad fs-10 fw-semibold">
+              Weekly
+              <i class="fa fa-chevron-down fs-8 fw-semibold"></i>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Daily</button>
+              <button mat-menu-item>Weekly</button>
+            </mat-menu>
+          </div>
+        </mat-card>
       </div>
 
     </div>

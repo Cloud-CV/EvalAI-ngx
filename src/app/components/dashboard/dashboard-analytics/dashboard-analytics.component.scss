@@ -101,6 +101,16 @@
   flex-direction: column;
 }
 
+.select-button {
+  line-height: 18px;
+  background-color: $gray-lighter;
+  padding: 0 10px 0 10px;
+  i {
+    margin-left: 10px;
+    color: $gray-medium;
+  }
+}
+
 .analysis-challenge-info {
   display: flex;
   flex-direction: row;
@@ -118,6 +128,7 @@
 
 .rank-submission-analysis {
   width: 75%;
+  height: 100%;
   padding: unset;
   display: flex;
   flex-direction: column;
@@ -150,19 +161,58 @@
     max-height: 70%;
     padding: 10px;
     border-top: 0.5px solid $gray-dark;
+    overflow: auto;
 
     .visualization-info {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
     }
   }
 }
 
 .submission-visualization {
   width: 25%;
+  height: 100%;
   margin-left: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+
+  .submission-canvas {
+    max-height: 90%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    .cell-row {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 5px;
+      border: none;
+      .cell {
+        height: 8px;
+        width: 15px;
+        margin-right: 4px;
+        background-color: $gray-medium;
+      }
+      .cell-row-label {
+        height: 8px;
+        line-height: 8px;
+        border: none;
+      }
+    }
+  }
+
+  .select-submission-duration {
+    border-top: 0.5px solid $gray-medium;
+    button {
+      background-color: white;
+      line-height: 15px;
+      text-align: left;
+    }
+  }
 }
 
 .paginator-toggle {
