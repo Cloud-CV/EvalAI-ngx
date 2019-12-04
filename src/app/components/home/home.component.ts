@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         setTimeout(() => self.globalService.showToast('success', response.message, 5), 1000);
       },
       // Show Form Error on Failure
-      err => { self.globalService.handleApiError(err);},
+      err => { self.globalService.handleApiError(err); },
       () => {}
     );
   }
