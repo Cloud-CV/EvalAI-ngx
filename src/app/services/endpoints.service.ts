@@ -76,6 +76,14 @@ export class EndpointsService {
     return `${this.challenges}featured/`;
   }
   /**
+   * Subscribe to Newsletters
+   */
+
+  subscribeURL() {
+    return `web/subscribe/`;
+  }
+
+  /**
    * All Participant teams
    */
   allParticipantTeamsURL() {
