@@ -141,8 +141,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
 // function to check password strength
   checkStrength(password) {
+    
     const passwordStrength = this.authService.passwordStrength(password);
     this.message = passwordStrength[0];
     this.color = passwordStrength[1];
-  }
+  
+}
 }
