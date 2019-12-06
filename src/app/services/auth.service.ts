@@ -120,8 +120,8 @@ export class AuthService {
       let color = '';
       let strength = '';
       if (passed === 0) {
-        strength= '';
-        color= '';
+        strength='';
+        color='';
       }
       if (passed === 1) {
         strength = 'Weak';
