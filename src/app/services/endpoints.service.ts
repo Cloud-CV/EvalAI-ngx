@@ -75,7 +75,7 @@ export class EndpointsService {
   featuredChallengesURL() {
     return `${this.challenges}featured/`;
   }
-  
+
   /**
    * Subscribe to Newsletters
    */
