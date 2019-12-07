@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   public user = {};
   public challengeList = [];
 
-  /**
+ /**
  * Subscribe Form
  */
 
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Form submit function (Called after validation).
-   * @param self  context value of this
+   * @param self context value of this
    * Validate Subscribe Form
    */
   formValidate(formname) {
@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       // Show Form Error on Failure
       err => {
         if (err.error.message) {
-          setTimeout(() => self.globalService.showToast('success', err.error.message, 5), 1000);
+          setTimeout(() => self.globalService.showToast('error', err.error.message, 5), 1000);
         } else {
         self.globalService.handleApiError(err);
         }
