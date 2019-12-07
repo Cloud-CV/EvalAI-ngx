@@ -70,4 +70,39 @@ git checkout -b your-branch-name
 
     - Once all comments are addressed, the reviewer will give an LGTM (‘looks good to me’) and merge the PR.
 
+4. Rules for great commit messages:
+    
+    - Write your commit message in the imperative: "Fix bug" and not "Fixed bug" or "Fixes bug."
+    
+    - Bullet points are frequently used, typically a hyphen(-) or asterisk(*) is used for the bullet.
+    
+    - A proper commit message should always be able to complete this sentence: "If applied, this commit will <your commit message here>"
+    
+    - Do not end the subject line with a period
+    
+    - Capitalize the subject line and each paragraph
+    
+    - Do not assume the reviewer understands what the original problem was.
+    
+    - Describe why a change is being made.
+    
+5. Commit message is important as it should answers/should do the following:
+    
+    - How does it address the issue?
+    
+    - What effects does the patch have?
+    
+    - hints at improved code structure.
+    
+    - Describe limitations of the current code.
+    
+    - The reader should properly understand why the necessary changes were made.
+    
+    - Commit messages are crucial as they are a concise explanation of what upgrades have been made.
+    
+6. Examples of great commit messages:
+    - Add CPU arch filter scheduler support
+    - Fix crash issue
+    
+    - Change design template
 ***Congratulations, you have successfully contributed to Project EvalAI!***
