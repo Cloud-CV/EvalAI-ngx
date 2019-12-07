@@ -15,6 +15,7 @@ import { InputComponent } from '../../components/utility/input/input.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   challengeCreateRoute = '/challenge-create';
   authRoute = '/auth/login';
@@ -113,6 +114,4 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.authServiceSubscription.unsubscribe();
     }
   }
-
-
 }
