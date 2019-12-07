@@ -69,5 +69,37 @@ git checkout -b your-branch-name
     - If your checks have passed, your PR will be assigned a reviewer who will review your code and provide comments. Please address each review comment by pushing new commits to the same branch (the PR will automatically update, so you don’t need to submit a new one). Once you are done, comment below each review comment marking it as “Done”. Feel free to use the thread to have a discussion about comments that you don’t understand completely or don’t agree with.
 
     - Once all comments are addressed, the reviewer will give an LGTM (‘looks good to me’) and merge the PR.
+4. Rules for great commit messages:
+    
+    - Write your commit message in the imperative: "Fix bug" and not "Fixed bug" or "Fixes bug."
+    
+    - Bullet points are frequently used, typically a hyphen(-) or asterisk(*) is used for the bullet.
+    
+    - A proper commit message should always be able to complete this sentence: "If applied, this commit will <your commit message here>"
+    
+    - Do not end the subject line with a period
+    
+    - Capitalize the subject line and each paragraph
+    
+    - Do not assume the reviewer understands what the original problem was.
+    
+    - Describe why a change is being made.
+    
+5. Commit message is important as it should answers/should do the following:
+    
+    - How does it address the issue?
+    
+    - What effects does the patch have?
+    
+    - Hints at improved code structure
+    
+    - Provide concise explaination to the user about limitations of the current code, like a bug or an issue
 
+6. Examples of a great commit message:
+
+    - Add CPU arch filter scheduler support
+    
+    - Fix submission worker crash issue
+    
+    - Change design template
 ***Congratulations, you have successfully contributed to Project EvalAI!***
