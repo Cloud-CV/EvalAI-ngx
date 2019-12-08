@@ -111,7 +111,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   /**
    * Download file types
    */
-  fileTypes = [{ 'name': 'csv' }, { 'name': 'tsv' }, { 'name': 'gz' }];
+  fileTypes = [{ 'name': 'csv' }];
 
   /**
    * Selected file type
