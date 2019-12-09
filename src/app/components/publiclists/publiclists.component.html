@@ -1,5 +1,4 @@
 <app-side-bar *ngIf="authService.isAuth"></app-side-bar>
-<app-header-static></app-header-static>
 <div class="web-container" [style.center]="!authService.isAuth">
   <div class="dashboard-flex">
     <div class="dashboard-content">
@@ -9,5 +8,3 @@
   </div>
 </div>
 <div class="clearfix"></div>
-
-<app-footer *ngIf="!authService.isAuth"></app-footer>
