@@ -38,6 +38,29 @@
 					{{user.affiliation}}
 				</div>
 			</div>
+			<div class="item">
+				<span class="text-light-black fw-semibold fs-12">
+					Google Scholar Url<br>
+				</span>
+				<div class="content fw-regular">
+					{{user.google_scholar_url}}
+				</div>
+			</div>
+				<div class="item">
+					<span class="text-light-black fw-semibold fs-12">
+						GitHub Url<br>
+					</span>
+					<div class="content fw-regular">
+						{{user.github_url}}
+					</div>
+			</div>
+			<div class="item">
+				<span class="text-light-black fw-semibold fs-12">
+					Lindedin Url<br>
+				</span>
+				<div class="content fw-regular">
+					{{user.linkedin_url}}
+				</div>
 		</div>
 		<div class="item">
 			<div class="highlight">
@@ -59,7 +82,7 @@
 				</div>
 
 				<div class="modal-container" [class.hidden]="!isTokenModalVisible">
-					<div class="modal-card">
+					<div class="modal-card" >
 						<div class="title">
 							API Authentication Token
 						</div>
