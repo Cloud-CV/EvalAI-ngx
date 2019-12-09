@@ -403,11 +403,11 @@ export class ChallengesubmitComponent implements OnInit {
       self.submissionError = 'Please select phase!';
       return;
     } else if (submissionProjectUrl == null || submissionProjectUrl === '') {
-        self.submissionError = 'Please provide a valid project url!';
-        return;
+      self.submissionError = 'Please provide a valid project url!';
+      return;
     } else if (submissionPublicationUrl == null || submissionPublicationUrl === '') {
-        self.submissionError = 'Please provide a valid publication url!';
-        return;
+      self.submissionError = 'Please provide a valid publication url!';
+      return;
     }
 
     const FORM_DATA: FormData = new FormData();
