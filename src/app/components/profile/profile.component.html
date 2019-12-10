@@ -1,5 +1,4 @@
 <app-header-static></app-header-static>
-
 <div class="mid-container">
 	<div class="container-top profile-container">
 		<div class="align-center">
@@ -15,12 +14,12 @@
 		</div>
 		<div class="user-details">
 			<div class="item">
-				<span class="text-light-black fw-semibold fs-12">
-					First Name<br>
-				</span>
-				<div class="content fw-regular">
-					{{user.first_name}}
-				</div>
+			<span class="text-light-black fw-semibold fs-12">
+				First Name<br>
+			</span>
+			<div class="content fw-regular">
+				{{user.first_name}}
+			</div>
 			</div>
 			<div class="item">
 				<span class="text-light-black fw-semibold fs-12">
@@ -28,7 +27,7 @@
 				</span>
 				<div class="content fw-regular">
 					{{user.last_name}}
-				</div>
+			</div>
 			</div>
 			<div class="item">
 				<span class="text-light-black fw-semibold fs-12">
@@ -46,13 +45,13 @@
 					{{user.google_scholar_url}}
 				</div>
 			</div>
-				<div class="item">
-					<span class="text-light-black fw-semibold fs-12">
-						GitHub Url<br>
-					</span>
-					<div class="content fw-regular">
-						{{user.github_url}}
-					</div>
+		    <div class="item">
+			    <span class="text-light-black fw-semibold fs-12">
+					GitHub Url<br>
+			    </span>
+			    <div class="content fw-regular">
+				    {{user.github_url}}
+                </div>
 			</div>
 			<div class="item">
 				<span class="text-light-black fw-semibold fs-12">
@@ -61,8 +60,8 @@
 				<div class="content fw-regular">
 					{{user.linkedin_url}}
 				</div>
-		</div>
-		<div class="item">
+			</div>
+			<div class="item">
 			<div class="highlight">
 				<span class="fw-regular fs-14">Profile Completed</span>
 				<br> <span class="text-med-black">{{pcomp}}</span>
@@ -71,14 +70,14 @@
 				<br>
 				<div class="item">
 					<button class="btn btn-waves-effect waves-dark grad-btn grad-btn-dark
-						fs-16 rm-pad-top" (click)="isTokenModalVisible= true;">Get your Auth Token</button>
+					fs-16 rm-pad-top" (click)="isTokenModalVisible= true;">Get your Auth Token</button>
 				</div>
 				<div class="item change-password">
 					<a (click)="updatePassword()" class="dark-link pointer">
-						<strong class="fw-semibold fs-15 change-password-text">Change Password</strong>
+					<strong class="fw-semibold fs-15 change-password-text">Change Password</strong>
 					</a>
 					<button (click)="updateUserDetails()" class="btn btn-waves-effect
-						waves-dark grad-btn grad-btn-dark rm-pad-top fs-16">Update Profile</button>
+					waves-dark grad-btn grad-btn-dark rm-pad-top fs-16">Update Profile</button>
 				</div>
 
 				<div class="modal-container" [class.hidden]="!isTokenModalVisible">
@@ -120,5 +119,4 @@
 		</div>
 	</div>
 </div>
-
 <app-footer></app-footer>
