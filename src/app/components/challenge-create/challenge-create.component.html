@@ -3,24 +3,27 @@
 <div class="web-container" [style.center]="!authService.isAuth">
   <div class="challenge-create-flex">
     <div class="challenge-create-content">
-
       <section class="ev-md-container text-center ">
         <div class="row">
           <div class="col s12 m9 offset-m3">
-            <div class="zip-file-title">Please upload zip file to create a challenge!</div>
+              <div class="zip-file-title">Please upload zip file or provide the link to it  to create a challenge!</div>
+              <mat-radio-group class="smallradio"  [(ngModel)]="checked" (change)="Oncheckboxclicked(checked)">
+              <mat-radio-button name="upload_challange" value="false" >Upload File</mat-radio-button>
+              <mat-radio-button name="upload_challange" value="true" >Provide Link</mat-radio-button>
+              </mat-radio-group>
             <div class="file-field input-field col s6">
               <form name="ChallengeCreateForm" #ChallengeCreateForm="ngForm" (ngSubmit)="challengeCreate()" novalidate>
-                <div class="waves-effect waves-dark btn ev-btn-dark w-300 fs-14">
+                <div class="waves-effect waves-dark btn ev-btn-dark w-300 fs-14" id="upload_file" >
                   <span>Upload File</span>
-                  <input name="input_file" (change)="handleUpload($event)" accept=".json, .zip, .txt" type="file" class="text-dark-black dark-autofill w-400" [(ngModel)]="ChallengeCreateForm['input_file']">
+                  <input name="input_file" (change)="handleUpload($event)"  accept=".json, .zip, .txt" type="file" class="text-dark-black dark-autofill w-400" [(ngModel)]="ChallengeCreateForm['input_file']">
                 </div>
 
-                <div class="file-path-wrapper">
-                  <input disabled class="file-path validate" name="file_path" type="text">
-                  <div *ngIf="isFormError" class="wrn-msg text-highlight fs-12"> Please Upload File </div>
-                </div>
+                <div class="file-path-wrapper" id="prov_url"  >
+                  <input  class="file-path validate" name="file_path" type="url">
+                  <div *ngIf="isFormError" class="wrn-msg text-highlight fs-12"> Please Provide a valid Url to file </div>
+                </div> 
 
-                <div class="align-left reg-control">
+                <div class="align-left reg-control" id="Submitbutton" >
                   <button class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" type="submit" value="Submit">Submit</button>
                 </div>
 

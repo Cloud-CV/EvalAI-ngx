@@ -1,5 +1,28 @@
 @import "styles/variables";
 
+
+#upload_file {
+  display: none;
+}
+#prov_url {
+  display: none;
+}
+#Submitbutton {
+  display: none;
+}
+ .mat-radio-group{
+  display: flex;
+  margin: 15px 0;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.mat-radio-button{
+  padding-right: 10%;
+}
+
+
+
 .challenge-create-flex {
   display: flex;
   flex-direction: column;

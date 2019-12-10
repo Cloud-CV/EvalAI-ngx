@@ -15,7 +15,7 @@ import {DOCUMENT} from '@angular/common';
   styleUrls: ['./challenge-create.component.scss']
 })
 export class ChallengeCreateComponent implements OnInit {
-
+  checked_box;
   isFormError = false;
   isSyntaxErrorInYamlFile = false;
   ChallengeCreateForm = {
@@ -87,6 +87,7 @@ export class ChallengeCreateComponent implements OnInit {
       }
     });
   }
+  
 
   challengeCreate() {
     if (this.ChallengeCreateForm['input_file'] !== null) {
@@ -113,13 +114,16 @@ export class ChallengeCreateComponent implements OnInit {
         );
     } else {
       this.isFormError = true;
-      this.globalService.showToast('error', 'Please Upload File');
+      if (this.checked_box == "true") {
+        this.globalService.showToast('error', 'Please Provide a Url to File');
+      }if (this.checked_box== "false") {
+        this.globalService.showToast('error', 'Please Upload File');
+      }
     }
   }
 
   handleUpload(event) {
     const files = event.target.files;
-
     if (files.length >= 1) {
       this.isFormError = false;
       this.ChallengeCreateForm['input_file'] = event.target.files[0];
@@ -129,5 +133,19 @@ export class ChallengeCreateComponent implements OnInit {
       this.isFormError = true;
     }
   }
-
+   Oncheckboxclicked(CheckedWhich: any){
+    var filebutton = <HTMLScriptElement>document.getElementById('upload_file');
+    var submit_button = <HTMLScriptElement>document.getElementById('Submitbutton');
+    var urlfield =<HTMLScriptElement>document.getElementById('prov_url');
+    if (CheckedWhich == "true" ) {
+     urlfield.style.display = 'block';
+     filebutton.style.display = 'none';
+     submit_button.style.display = 'block';
+    }if (CheckedWhich == "false") {
+      filebutton.style.display = 'block';
+     urlfield.style.display = 'none';
+     submit_button.style.display = 'block';
+    }
+    this.checked_box = CheckedWhich;
+  }
 }
