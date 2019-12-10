@@ -1,6 +1,9 @@
 @import './variables.scss';
 @import './mixins.scss';
-
+ .pro_inf{
+	margin-inline-end: -60%;
+	margin-block-start: -10%;
+ }
 .mid-container {
 	background-color: #fafafa;
 	.profile-container {
