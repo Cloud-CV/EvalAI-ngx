@@ -396,16 +396,17 @@ export class ChallengesubmitComponent implements OnInit {
     const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
     const submissionProjectUrl = self.globalService.formValueForLabel(self.components, 'project_url');
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
+    let regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
     if (submissionFile === null || submissionFile === '') {
       self.submissionError = 'Please upload file!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
       return;
-    } else if (submissionProjectUrl == null || submissionProjectUrl === '') {
+    } else if (submissionProjectUrl != "" && !regex.test(submissionProjectUrl)) {
       self.submissionError = 'Please provide a valid project url!';
       return;
-    } else if (submissionPublicationUrl == null || submissionPublicationUrl === '') {
+    } else if (submissionPublicationUrl != "" && !regex.test(submissionPublicationUrl)) {
       self.submissionError = 'Please provide a valid publication url!';
       return;
     }
