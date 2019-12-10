@@ -171,6 +171,30 @@ export class ProfileComponent implements OnInit {
           placeholder: 'Affiliated To',
           type: 'text',
           value: this.user['affiliation']
+        },
+        {
+          isRequired: true,
+          label: 'google_scholar_url',
+          name: 'update_google_scholar_url',
+          placeholder: 'Google Scholar Url',
+          type: 'url',
+          value: this.user['google_scholar_url']
+        },
+        {
+          isRequired: true,
+          label: 'github_url;',
+          name: 'update_github_url',
+          placeholder: 'GitHub Url',
+          type: 'url',
+          value: this.user['github_url']
+        },
+        {
+          isRequired: true,
+          label: 'linkedin_url;',
+          name: 'linkedin_url',
+          placeholder: 'Linkedin Url',
+          type: 'url',
+          value: this.user['linkedin_url']
         }
       ],
       confirmCallback: SELF.apiCall
