@@ -1,9 +1,32 @@
 @import './variables.scss';
 @import './mixins.scss';
- .pro_inf{
+  .pro_inf{
 	margin-inline-end: -60%;
-	margin-block-start: -10%;
- }
+ 	margin-block-start: -22%;
+  }
+#auth_tok {
+	margin-left: -50%;
+}
+#prov_id {
+	margin-left: -50%;
+}
+#prof_img{
+	position: center;
+	margin-top: 5%;
+}
+#update_prof{
+	margin-block-start: -4%;
+	margin-left: 60%;
+	
+}
+#pass_chn{
+	margin-block-start: -7%;
+	margin-right: -5%;
+	
+}
+.card{
+	overflow: hidden;
+}
 .mid-container {
 	background-color: #fafafa;
 	.profile-container {
@@ -97,3 +120,59 @@
 		}
 	}
 }
+.profile-sidebar {
+    position: fixed;
+    z-index: 9;
+    font-size: 14px;
+    /*padding:0px  30px;*/
+    min-width: 200px;
+    min-height: 100vh;
+    background-color: $dust-gray;
+    top: 0;
+    left: -200px;
+    text-align: center;
+    color: #fff;
+    /*transition:all 0.2s ease-in-out;*/
+    ul {
+        margin-top: 20px;
+        text-align: left;
+        li {
+            padding: 10px 0px;
+        }
+    }
+    input[type="checkbox"] + label {
+        font-size: 12px;
+    }
+}
+.token-width {
+    width: 400px;
+}
+.profile-edit-group {
+    margin-top: 60px;
+}
+
+.pass-title {
+    margin-bottom: 30px;
+}
+
+.back-profile-group {
+    margin-top: 60px;
+}
+
+img.profile-pic {
+    height: 80px;
+}
+
+.user-info {
+    li {
+        margin-bottom: 36px;
+    }
+    margin-bottom: 20px;
+}
+.user-urls {
+    li {
+        margin-bottom: 33px;
+    }
+    margin-bottom: 20px;
+}
+
