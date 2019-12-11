@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="aboutTitle" datatype="html">
+        <source>About Us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aboutContent1" datatype="html">
+        <source>EvalAI is built by a team of open source enthusiasts working at
+					<x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>CloudCV<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. CloudCV aims to make AI research
+					reproducible and easily accessible. We want to reduce the barrier to entry for doing research
+					and make it easier for researchers, students and developers to develop and use state-of-the-art
+					algorithms as a service.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/about/about.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aboutTitle2" datatype="html">
+        <source>With EvalAI, we want to standardize the process of
+					evaluating different methods on a dataset and make it simple to host a competition.
+					Comparing a new method with other existing approaches is an essential component of
+					research and this process has traditionally been affected by difference in evaluation
+					metric implementation, different splits of the dataset or minor modifications in the
+					algorithm. This makes it extremely hard to reproduce numbers from published papers
+					and reliably compare your method with other existing approaches. By building EvalAI, we
+					hope to make this easier by standardizing the dataset splits, evaluation metrics and by
+					maintaining a public leaderboard of hosted challenges.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/about/about.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

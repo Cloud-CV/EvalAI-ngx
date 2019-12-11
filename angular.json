@@ -73,7 +73,30 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
-            }
+            },
+	          "production-es": {
+		        "optimization": true,
+		        "outputHashing": "all",
+		        "outputPath": "dist/browser/es/",
+		        "sourceMap": false,
+		        "extractCss": true,
+		        "namedChunks": false,
+		        "aot": true,
+		        "extractLicenses": true,
+		        "vendorChunk": false,
+		        "buildOptimizer": true,
+		        "fileReplacements": [
+		            {
+		                "replace": "src/environments/environment.ts",
+	       	          "with": "src/environments/environment.prod.ts"
+		            }
+		       ],
+		         "baseHref": "/es/",
+		         "i18nFile": "src/locale/messages.es.xlf",
+		         "i18nFormat": "xlf",
+		         "i18nLocale": "es",
+		         "i18nMissingTranslation": "error"
+	          }
           }
         },
         "serve": {
@@ -87,6 +110,9 @@
             },
             "production": {
               "browserTarget": "evalai:build:production"
+            },
+            "production-es": {
+              "browserTarget": "evalai:build:production-es"
             }
           }
         },
