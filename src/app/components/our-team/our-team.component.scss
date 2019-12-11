@@ -121,40 +121,41 @@
   }
 
   .team-profile {
-      display: block;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
-      position: absolute;
-      bottom: 25px;
-      left: 15px;
-      box-shadow: 0px 4px 8px #989898;
-      img {
-          width: 100%;
-      }
-  }
-
-  .team-player {
+      display: flex;
+      width: 100%;
+      height: 74px;
       position: absolute;
       bottom: 14px;
-      text-align: right;
-      padding-left: 50px;
-      right: 15px;
-      .text-dark-black {
-          color: $dark-black;
-          font-size: $fs-15;
-          font-weight: $fw-semibold;
-          padding-left: 30px;
+      padding: 0 15px;
+      justify-content: space-between;
+      img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          box-shadow: 0px 4px 8px #989898;
+          object-fit: cover;
+          object-position: top;
+          flex-shrink: 0;
       }
-      .text-med-black {
-          color: $dark-black;
-          font-size: $fs-13;
-      }
-      h4 {
-          font-size: $fs-16;
-      }
+      .team-player {
+          text-align: right;
+          align-self: end;
+          .text-dark-black {
+              color: $dark-black;
+              font-size: $fs-15;
+              font-weight: $fw-semibold;
+          }
+          .text-med-black {
+              color: $dark-black;
+              font-size: $fs-13;
+          }
+          h4 {
+              font-size: $fs-16;
+          }
+    }
   }
+
+
 
   .team-link-head {
       padding: 10px 5px 10px 5px;
