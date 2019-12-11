@@ -35,7 +35,7 @@
                 <i *ngIf="!authService.canShowPassword" class="fa fa-eye pointer"></i>
                 <i *ngIf="authService.canShowPassword" class="fa fa-eye-slash pointer"></i>
             </span>
-      <label for="password" [class.active]="ispasswordFocused">Password (min 8 characters) *</label>
+      <label for="password" [class.active]="ispasswordFocused">Password </label>
       <div class="wrn-msg text-highlight"
            *ngIf="password.invalid && (password.dirty || password.touched || loginForm.submitted)">
         <p *ngIf="password.errors.minlength">Password is less than 8 characters.</p>
