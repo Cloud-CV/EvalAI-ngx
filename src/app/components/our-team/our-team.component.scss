@@ -139,7 +139,7 @@
       }
       .team-player {
           text-align: right;
-          align-self: end;
+          align-self: flex-end;
           .text-dark-black {
               color: $dark-black;
               font-size: $fs-15;
