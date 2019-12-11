@@ -40,7 +40,6 @@
 		font-weight: $fw-light;
 		color:$gray-dark;
 		margin:30px;
-
 		.dark {
 			color:$gray-darker;
 		}
@@ -90,10 +89,8 @@
 				color: $red-medium;
 			}
 		}
-
 	}
 }
-
 .modal-container{
 	.modal-card { 
 		.title {
@@ -104,7 +101,6 @@
 		}
 	}
 }
-
 @include screen-medium {
 	.profile-container {
 		.card {
@@ -112,7 +108,6 @@
 		}
 	}
 }
-
 @include screen-small {
 	.profile-container {
 		.card {

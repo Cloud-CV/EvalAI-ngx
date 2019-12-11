@@ -173,7 +173,7 @@ export class ProfileComponent implements OnInit {
           value: this.user['affiliation']
         },
         {
-          isRequired: true,
+          isRequired: false,
           label: 'google_scholar_url',
           name: 'update_google_scholar_url',
           placeholder: 'Google Scholar Url',
@@ -181,7 +181,7 @@ export class ProfileComponent implements OnInit {
           value: this.user['google_scholar_url']
         },
         {
-          isRequired: true,
+          isRequired: false,
           label: 'github_url;',
           name: 'update_github_url',
           placeholder: 'GitHub Url',
@@ -189,7 +189,7 @@ export class ProfileComponent implements OnInit {
           value: this.user['github_url']
         },
         {
-          isRequired: true,
+          isRequired: false,
           label: 'linkedin_url;',
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
