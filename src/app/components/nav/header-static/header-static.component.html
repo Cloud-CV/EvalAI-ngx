@@ -1,4 +1,4 @@
-<div class="main-header padding-lr-header">
+<div *ngIf="!isAuthPage" class="main-header padding-lr-header">
   <nav [class.grad-shadow-1]="scrolledState">
     <div class="nav-wrapper">
       <a (click)="menuExpander()" class="button-collapse main-header-link"><i class="fa fa-bars"></i></a>
