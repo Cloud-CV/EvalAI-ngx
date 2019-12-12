@@ -73,6 +73,23 @@ export class OurTeamComponent implements OnInit {
     this.fetchOurTeamMembers();
   }
 
+  ngAfterViewChecked() {
+     const DIVS = document.querySelectorAll('.team-player');
+     
+     for (let i = 0; i < DIVS.length; i++) {
+        let tooltip = DIVS[i].getElementsByClassName('text-name-tooltip')[0];
+        let name = DIVS[i].getElementsByClassName('text-dark-black')[0];
+        
+        // Check if name is collapsed
+        if (name.scrollHeight > name.clientHeight) {
+           tooltip.className = "text-name-tooltip enabled";
+        }
+        else {
+           tooltip.className = "text-name-tooltip disabled";
+        }
+     }
+  }
+
   /**
    * Fetching team members
    */
