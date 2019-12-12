@@ -188,6 +188,10 @@ img.profile-pic {
 #user_info{
 	margin-top: 50px;
 }
+@media only screen and (max-width: 992px) {
+	.container-fluid {
+	  width: 100%; } }
+  
 
 
 
