@@ -510,6 +510,12 @@ export class TeamlistComponent implements OnInit, OnDestroy {
           // Success Message in data.message
           this.globalService.showToast('success', 'Team created successfully!', 5);
           this.fetchMyTeams(this.fetchTeamsPath);
+
+          // Reset input
+          this.create_team = {
+            team_url: '',
+            team_name: ''
+          }
         },
         err => {
           this.globalService.stopLoader();
