@@ -1,40 +1,13 @@
 @import './variables.scss';
 @import './mixins.scss';
-  .pro_inf{
-	margin-inline-end: -60%;
- 	margin-block-start: -22%;
-  }
-#auth_tok {
-	margin-left: -50%;
-}
-#prov_id {
-	margin-left: -50%;
-}
-#prof_img{
-	position: center;
-	margin-top: 5%;
-}
-#update_prof{
-	margin-block-start: -4%;
-	margin-left: 60%;
+ 
+#card_container {
 	
-}
-#pass_chn{
-	margin-block-start: -7%;
-	margin-right: -5%;
-	
-}
-.card{
-	overflow: hidden;
-}
-.mid-container {
-	background-color: #fafafa;
-	.profile-container {
-		.card {
-			background: $gray-lighter;
-			padding-bottom:30px;
-			width:50%;
-			margin:0 auto;
+.card {
+		background: $gray-lighter;
+		padding-bottom:30px;
+		width:50%;
+		margin:0 auto;
 		}
 		font-size:$fs-16;
 		font-weight: $fw-light;
@@ -90,7 +63,6 @@
 			}
 		}
 	}
-}
 .modal-container{
 	.modal-card { 
 		.title {
@@ -143,7 +115,7 @@
     width: 400px;
 }
 .profile-edit-group {
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
 .pass-title {
@@ -160,14 +132,63 @@ img.profile-pic {
 
 .user-info {
     li {
-        margin-bottom: 36px;
-    }
+     margin-top: 10px;
+  }
+   margin-top: 20px;
+ }
+ .user-urls {
+      margin-top: 75px;
+ }
+.container-fluid{
+	width: calc(100vw - 223px);
+    float: right;
+    padding-top: 70px;
+	overflow-x: hidden;
+}
+.main_content{
+	box-sizing: inherit;
+}
+.row{
+	display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+	
+}
+.dashboard{
+	-webkit-box-flex: 1;
+    flex: 1;
+	
+}
+#card_container{
+	padding: 40px;
+}
+#sty_card{
+	margin-left: auto;
+    margin-right: auto;
     margin-bottom: 20px;
 }
-.user-urls {
-    li {
-        margin-bottom: 33px;
-    }
-    margin-bottom: 20px;
+.challenge-title-container{
+	padding-bottom: 0;
 }
+.ev-card-panel{
+	position: relative;
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 12px #dedede;
+}
+.ev-z-depth-5{
+	box-shadow: 0 0 10px #dedede;
+}
+#user_info{
+	margin-top: 50px;
+}
+
+
+
 
