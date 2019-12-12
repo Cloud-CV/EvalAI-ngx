@@ -515,7 +515,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
           this.create_team = {
             team_url: '',
             team_name: ''
-          }
+          };
         },
         err => {
           this.globalService.stopLoader();
