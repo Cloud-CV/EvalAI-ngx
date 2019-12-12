@@ -1,7 +1,7 @@
 <app-header-static></app-header-static>
 <div class="main_content">
-	<app-side-bar class="ev-sidebar ev-fixed  fixed hide-on-med-and-down"></app-side-bar>
-	<div class="container-fluid">
+	<app-side-bar style="background-color: rgb(250,250,250)"></app-side-bar>
+	<div class="container-fluid main_content">
 		<div class="row">
 			<div class="dashboard">
 				<div class="md-container  main_content" id="card_container">
@@ -16,7 +16,7 @@
 									{{user.email}}
 								</div>
 							</div>
-							<div class="item">
+							<div class="item" id="profile_layout">
 								<div class="highlight">
 									<span class="fw-regular fs-14">Profile Completed</span>
 									<br> <span class="text-med-black">{{pcomp}}</span>
@@ -30,6 +30,8 @@
 						</div>
 						<div class="col s12 m4 l4 center user-info" id="user_info">
 							<div class="user-details">
+								<ul>
+									<li>
 								<div class="item">
 									<span class="text-light-black fw-semibold fs-12">
 										First Name<br>
@@ -38,6 +40,8 @@
 										{{user.first_name}}
 									</div>
 								</div>
+									</li>
+									<li>
 								<div class="item">
 									<span class="text-light-black fw-semibold fs-12">
 										Last Name<br>
@@ -46,6 +50,8 @@
 										{{user.last_name}}
 									</div>
 								</div>
+								</li>
+								<li>
 								<div class="item">
 									<span class="text-light-black fw-semibold fs-12">
 										Affiliated to<br>
@@ -54,29 +60,33 @@
 										{{user.affiliation}}
 									</div>
 								</div>
-								<div>
-									<button (click)="updateUserDetails()" class="btn btn-waves-effect
-										waves-dark grad-btn grad-btn-dark rm-pad-top fs-16">Update Profile</button>
-									</div>
+								</li>
+								</ul>
 								</div>
 							</div>		
 							<div class="col s12 m5 l5 user-urls center" >
-								<div class="item">
-									<span class="text-light-black fw-semibold fs-12">
-										Google Scholar Url<br>
-									</span>
-									<div class="content fw-regular">
-										{{user.google_scholar_url}}
-									</div>
-								</div>
-								<div class="item">
-									<span class="text-light-black fw-semibold fs-12">
+								<ul>
+									<li>
+									<div class="item">
+										<span class="text-light-black fw-semibold fs-12">
 										GitHub Url<br>
-									</span>
+										</span>
 									<div class="content fw-regular">
 										{{user.github_url}}
 									</div>
+									</div>
+								</li>
+								<li>
+							    <div class="item">
+								<span class="text-light-black fw-semibold fs-12">
+								Google Scholar Url<br>
+								</span>
+								<div class="content fw-regular">
+								{{user.google_scholar_url}}
 								</div>
+							    </div>
+								</li>
+								<li>
 								<div class="item">
 									<span class="text-light-black fw-semibold fs-12">
 										Linkedin Url<br>
@@ -85,16 +95,23 @@
 										{{user.linkedin_url}}
 									</div>
 								</div>
-								<div>
-									<a (click)="updatePassword()" class="dark-link pointer">
-										<strong class="fw-semibold fs-15 change-password-text">Change Password</strong>
-									</a>
-								</div>
-							</div>
-						</div>
+							</li>
+						</ul>
+						<ul class="inline-list profile-edit-group center">
+							<li >
+								<a (click)="updatePassword()" class="dark-link pointer">
+									<strong class="fw-semibold fs-15 change-password-text">Change Password</strong>
+								</a>
+							</li>
+							<li>
+								<button (click)="updateUserDetails()" class="btn btn-waves-effect waves-dark grad-btn grad-btn-dark rm-pad-top fs-16">Update Profile</button>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-			<app-footer class="row" ></app-footer>
 		</div>
 	</div>
+	<app-footer class="container-fluid" ></app-footer>
+  </div>
+</div>

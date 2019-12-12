@@ -115,7 +115,8 @@
     width: 400px;
 }
 .profile-edit-group {
-    margin-top: 50px;
+	margin-bottom: 50px;
+	margin-right: -20px;
 }
 
 .pass-title {
@@ -132,12 +133,16 @@ img.profile-pic {
 
 .user-info {
     li {
-     margin-top: 10px;
+     margin-bottom: 36px;
   }
    margin-top: 20px;
  }
  .user-urls {
-      margin-top: 75px;
+      li {
+		margin-bottom: 33px;
+	  }
+	  margin-bottom: 20px;
+	  margin-top: 25px;
  }
 .container-fluid{
 	width: calc(100vw - 223px);
@@ -147,6 +152,7 @@ img.profile-pic {
 }
 .main_content{
 	box-sizing: inherit;
+	background-color: rgb(250,250,250);
 }
 .row{
 	display: -webkit-box;
@@ -163,6 +169,8 @@ img.profile-pic {
 }
 #card_container{
 	padding: 40px;
+	min-height: 100vh;
+	margin: 0px;
 }
 #sty_card{
 	margin-left: auto;
@@ -186,11 +194,15 @@ img.profile-pic {
 	box-shadow: 0 0 10px #dedede;
 }
 #user_info{
-	margin-top: 50px;
+	margin-top: 25px;
 }
 @media only screen and (max-width: 992px) {
 	.container-fluid {
 	  width: 100%; } }
+#profile_layout{
+	margin-top: 20px;
+}
+
   
 
 
