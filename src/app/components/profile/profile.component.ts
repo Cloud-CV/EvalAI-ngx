@@ -90,12 +90,12 @@ export class ProfileComponent implements OnInit {
    * Process user details function.
    */
   processUserDetails() {
-     this.first_name = (this.user['first_name'] === '-') ? '' : this.user['first_name']
-     this.last_name = (this.user['last_name'] === '-') ? '' : this.user['last_name']
-     this.affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation']
-     this.google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url']
-     this.github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url']
-     this.linkedin_url = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url']
+     this.first_name = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
+     this.last_name = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
+     this.affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation'];
+     this.google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
+     this.github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
+     this.linkedin_url = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url'];
     let countLeft = 0;
     let count = 0;
     for (const i in this.user) {
