@@ -182,7 +182,7 @@ export class ProfileComponent implements OnInit {
         },
         {
           isRequired: false,
-          label: 'github_url;',
+          label: 'github_url',
           name: 'update_github_url',
           placeholder: 'GitHub Url',
           type: 'url',
@@ -190,7 +190,7 @@ export class ProfileComponent implements OnInit {
         },
         {
           isRequired: false,
-          label: 'linkedin_url;',
+          label: 'linkedin_url',
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
           type: 'url',
