@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { InputComponent } from '../utility/input/input.component';
+
 /**
  * Component Class
  */
@@ -16,6 +17,7 @@ import { InputComponent } from '../utility/input/input.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
   /**
    * User object
    */
@@ -74,6 +76,7 @@ export class ProfileComponent implements OnInit {
               private route: ActivatedRoute,
               private endpointsService: EndpointsService,
               private windowService: WindowService) { }
+
   /**
    * Component on intialized.
    */
@@ -139,7 +142,7 @@ export class ProfileComponent implements OnInit {
           SELF.globalService.showToast('success', 'User details updated successfully', 5);
           SELF.authService.fetchUserDetails();
         },
-                               err => {
+        err => {
           SELF.globalService.handleApiError(err, true);
         },
         () => console.log('USER-UPDATE-FINISHED')
@@ -203,6 +206,7 @@ export class ProfileComponent implements OnInit {
       confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
+
   }
 
   /**
@@ -222,6 +226,7 @@ export class ProfileComponent implements OnInit {
     this.windowService.copyToClipboard(this.globalService.getAuthToken());
     this.globalService.showToast('success', 'Copied to clipboard', 5);
   }
+
   /**
    * Display modal to update password.
    */
@@ -236,7 +241,7 @@ export class ProfileComponent implements OnInit {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Password updated successfully', 5);
           SELF.authService.fetchUserDetails();
-                               },
+        },
         err => {
           if (err.status === 400 && err.error && err.error.old_password) {
             SELF.globalService.showToast('error', err.error.old_password[0], 5);
