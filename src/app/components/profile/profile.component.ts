@@ -201,8 +201,6 @@ export class ProfileComponent implements OnInit {
     SELF.globalService.showModal(PARAMS);
 
   }
-  
-
   /**
    * Download Auth Token as a JSON file.
    */
