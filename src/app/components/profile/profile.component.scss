@@ -3,13 +3,13 @@
  
 #card_container {
 	
-.card {
-	background: $gray-lighter;
-	padding-bottom:30px;
-	width:50%;
-	margin:0 auto;
+	.card {
+		background: $gray-lighter;
+		padding-bottom:30px;
+		width:50%;
+		margin:0 auto;
 	}
-
+	
 	font-size:$fs-16;
 	font-weight: $fw-light;
 	color:$gray-dark;
@@ -27,11 +27,6 @@
 		text-align: center;
 	}
 
-	.item button {
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
-
 	.profile-photo {
 		height:80px;
 	    border-radius:50%;
@@ -42,35 +37,35 @@
 		margin-top: 14px;
 		margin-bottom: 14px;
 	}
-
+	
 	.change-password {
 		margin-top: 25px;
 		margin-bottom: 14px;
 		.change-password-text {
-		margin-right: 20px;
-		margin-bottom: 12px;
+			margin-right: 20px;
+			margin-bottom: 12px;
+		}
 	}
-}
-
-.modal-container {
-	&.hidden {
-	display:none;
-}
-}
-
-.copy {
-	background: none !important;
-	border: none !important;
-	color: $red-light !important;
-	font-size: $fs-24 !important;
-	i {
-		margin-left:-20px;
+	
+	.modal-container {
+		&.hidden {
+			display:none;
+		}
 	}
-	&:hover {
-		box-shadow:none !important;
-		color: $red-medium;
+	
+	.copy {
+		background: none !important;
+		border: none !important;
+		color: $red-light !important;
+		font-size: $fs-24 !important;
+		i {
+			margin-left:-20px;
+		}
+		&:hover {
+			box-shadow:none !important;
+			color: $red-medium;
+		}
 	}
-}
 }
 
 .modal-container {
@@ -238,4 +233,8 @@ img.profile-pic {
 
 #sty_button {
 	max-lines: 80;
+}
+#auth_butt_style {
+	margin-top: -80px;
+	margin-left: 350px;
 }
