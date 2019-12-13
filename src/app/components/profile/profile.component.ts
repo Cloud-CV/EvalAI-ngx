@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
    * User object
    */
   user: any;
-
   /**
    * Profile completion score
    */
@@ -173,7 +172,7 @@ export class ProfileComponent implements OnInit {
           value: this.user['affiliation']
         },
         {
-          isRequired: false,
+          isRequired: true,
           label: 'google_scholar_url',
           name: 'update_google_scholar_url',
           placeholder: 'Google Scholar Url',

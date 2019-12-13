@@ -59,6 +59,7 @@ export class ModalComponent implements OnInit {
    * Editor validation message
    */
   editorValidationMessage = '';
+  urlval = "/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/"
 
   /**
    * Modal accept button
@@ -242,6 +243,12 @@ export class ModalComponent implements OnInit {
       this.isDisabled = e.target.value === this.user.last_name;
     } else if (e.target.name === 'update_affiliation') {
       this.isDisabled = e.target.value === this.user.affiliation;
+    } else if (e.target.name === 'update_google_scholar_url') {
+      this.isDisabled = e.target.value === this.user.google_scholar_url;
+    } else if (e.target.name === 'update_github_url') {
+      this.isDisabled = e.target.value === this.user.github_url;
+    } else if (e.target.name === 'linkedin_url') {
+      this.isDisabled = e.target.value === this.user.linkedin_url;
     } else if (e.target.name === 'old_password') {
       this.oldPassword = e.target.value;
     } else if (e.target.name === 'new_password1') {
@@ -255,9 +262,15 @@ export class ModalComponent implements OnInit {
         this.inputErrorMessage = 'Password do not match';
       }
     }
+    if (this.user.google_scholar_url !== this.urlval || this.user.github_url !== this.urlval || this.user.linkedin_url !== this.urlval) {
+      this.inputErrorMessage = 'Please Enter a Valid Url';
+    }
+
+
   }
 
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';
   }
+
 }
