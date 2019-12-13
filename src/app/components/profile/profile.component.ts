@@ -194,7 +194,7 @@ export class ProfileComponent implements OnInit {
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
           type: 'url',
-           value: l
+           value: this.linkedin_url
          }
       ],
       confirmCallback: SELF.apiCall
