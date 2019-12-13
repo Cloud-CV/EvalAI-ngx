@@ -102,7 +102,6 @@ export class ProfileComponent implements OnInit {
         count = count + 1;
       }
     }
-    
     const TEMP = ((countLeft / count) * 100).toString();
     this.pcomp = (100 - parseInt(TEMP, 10)).toString() + '%';
   }
