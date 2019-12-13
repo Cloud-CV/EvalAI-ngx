@@ -31,31 +31,38 @@ export class ProfileComponent implements OnInit {
    * Profile completion score
    */
   pcomp: any;
+
   /**
    * Auth token string
    */
   token = '';
+
   /**
    * Is modal visible
    */
   tokenModalButtonFlag = true;
+
   /**
    * Auth token Modal Button text
    */
   tokenModalButton = 'Show Token';
+
   /**
    * Modal display flag
    */
   isTokenModalVisible = false;
+  
   /**
    * To call the API inside modal for updating the user details and password
    */
   apiCall: any;
+
   /**
    * Form components from 'formtoken'
    */
   @ViewChildren('formtoken')
   formTokenComponents: QueryList<InputComponent>;
+
   /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
@@ -67,12 +74,12 @@ export class ProfileComponent implements OnInit {
    * @param windowService  WindowService Injection.
    */
   constructor(private apiService: ApiService,
-    private authService: AuthService,
-    private globalService: GlobalService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private endpointsService: EndpointsService,
-    private windowService: WindowService) { }
+              private authService: AuthService,
+              private globalService: GlobalService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private endpointsService: EndpointsService,
+              private windowService: WindowService) { }
   /**
    * Component on intialized.
    */
@@ -87,6 +94,7 @@ export class ProfileComponent implements OnInit {
       this.processUserDetails();
     });
   }
+
   /**
    * Process user details function.
    */
@@ -105,6 +113,7 @@ export class ProfileComponent implements OnInit {
     const TEMP = ((countLeft / count) * 100).toString();
     this.pcomp = (100 - parseInt(TEMP, 10)).toString() + '%';
   }
+
   /**
    * Token Modal toggle function.
    */
@@ -114,6 +123,7 @@ export class ProfileComponent implements OnInit {
     const TOKEN_INPUT = this.globalService.formItemForLabel(this.formTokenComponents, 'token');
     TOKEN_INPUT.type = this.tokenModalButtonFlag ? 'password' : 'text';
   }
+
   /**
    * Displays a Modal to update user details
    */
@@ -200,6 +210,7 @@ export class ProfileComponent implements OnInit {
     };
     SELF.globalService.showModal(PARAMS);
   }
+
   /**
    * Download Auth Token as a JSON file.
    */
@@ -209,6 +220,7 @@ export class ProfileComponent implements OnInit {
                                   'token.json',
                                   {type: 'text/json'});
   }
+
   /**
    * Copy auth token to clipboard.
    */
@@ -216,6 +228,7 @@ export class ProfileComponent implements OnInit {
     this.windowService.copyToClipboard(this.globalService.getAuthToken());
     this.globalService.showToast('success', 'Copied to clipboard', 5);
   }
+  
   /**
    * Display modal to update password.
    */
