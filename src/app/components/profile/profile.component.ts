@@ -118,12 +118,12 @@ export class ProfileComponent implements OnInit {
    * Displays a Modal to update user details
    */
   updateUserDetails() {
-    this.first_name = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
-    this.last_name = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
-    this.affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation'];
-    this.google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
-    this.github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
-    this.linkedin_url = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url'];
+    const first_name = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
+    const last_name = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
+    const affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation'];
+    const google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
+    const github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
+    const linkedin_url = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url'];
     const SELF = this;
     SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
