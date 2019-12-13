@@ -9,6 +9,7 @@
 	width:50%;
 	margin:0 auto;
 	}
+
 	font-size:$fs-16;
 	font-weight: $fw-light;
 	color:$gray-dark;
@@ -16,26 +17,32 @@
 	.dark {
 		color:$gray-darker;
 	}
+
 	.highlight {
 		color: $yellow;
 	}
+
 	.item {
 		margin-bottom: 13px;
 		text-align: center;
 	}
+
 	.item button {
 		padding-top: 10px;
 		padding-bottom: 10px;
 	}
+
 	.profile-photo {
 		height:80px;
 	    border-radius:50%;
 		@include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
 	}
+
 	.user-details {
 		margin-top: 14px;
 		margin-bottom: 14px;
 	}
+
 	.change-password {
 		margin-top: 25px;
 		margin-bottom: 14px;
@@ -44,11 +51,13 @@
 		margin-bottom: 12px;
 	}
 }
+
 .modal-container {
 	&.hidden {
-    display:none;
+	display:none;
 }
 }
+
 .copy {
 	background: none !important;
 	border: none !important;
@@ -63,6 +72,7 @@
 	}
 }
 }
+
 .modal-container {
 	.modal-card { 
 		.title {
@@ -74,6 +84,7 @@
 	}
 	
 }
+
 @include screen-medium {
 	.profile-container {
 		.card {
@@ -81,6 +92,7 @@
 		}
 	}
 }
+
 @include screen-small {
 	.profile-container {
 		.card {
@@ -88,6 +100,7 @@
 		}
 	}
 }
+
 .profile-sidebar {
     position: fixed;
     z-index: 9;
@@ -110,28 +123,35 @@
 		font-size: 12px;
 	}
 }
+
 .token-width {
     width: 400px;
 }
+
 .profile-edit-group {
 	margin-bottom: 50px;
 	margin-right: -20px;
 }
+
 .pass-title {
     margin-bottom: 30px;
 }
+
 .back-profile-group {
     margin-top: 60px;
 }
+
 img.profile-pic {
     height: 80px;
 }
+
 .user-info {
     li {
      margin-bottom: 36px;
   }
    margin-top: 20px;
  }
+
  .user-urls {
       li {
 		margin-bottom: 33px;
@@ -139,16 +159,19 @@ img.profile-pic {
 	  margin-bottom: 20px;
 	  margin-top: 25px;
  }
+
 .container-fluid {
 	width: calc(100vw - 223px);
     float: right;
     padding-top: 70px;
 	overflow-x: hidden;
 }
+
 .main_content {
 	box-sizing: inherit;
 	background-color: rgb(250,250,250);
 }
+
 .row { 
 	display: -webkit-box;
     display: flex;
@@ -157,24 +180,29 @@ img.profile-pic {
     flex-direction: column;
 	
 }
+
 .dashboard {
 	-webkit-box-flex: 1;
     flex: 1;
 	
 }
+
 #card_container {
 	padding: 40px;
 	min-height: 100vh;
 	margin: 0px;
 }
+
 #sty_card {
 	margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
 }
+
 .challenge-title-container {
 	padding-bottom: 0;
 }
+
 .ev-card-panel {
 	position: relative;
     display: block;
@@ -185,23 +213,29 @@ img.profile-pic {
     overflow: hidden;
     box-shadow: 0 0 12px #dedede;
 }
+
 .ev-z-depth-5 {
 	box-shadow: 0 0 10px #dedede;
 }
+
 #user_info {
 	margin-top: 25px;
 }
+
 @media only screen and (max-width: 992px) {
 	.container-fluid {
 	  width: 100%; 
 	}
 }
+
 #profile_layout {
 	margin-top: 40px;
 }
+
 #auth_tok {
 	max-lines: 80;
 }
+
 #sty_button {
 	max-lines: 80;
 }
