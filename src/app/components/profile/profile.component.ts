@@ -7,7 +7,6 @@ import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { InputComponent } from '../utility/input/input.component';
-
 /**
  * Component Class
  */
@@ -17,47 +16,40 @@ import { InputComponent } from '../utility/input/input.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
   /**
    * User object
    */
   user: any;
+  uservalue: any;
   /**
    * Profile completion score
    */
   pcomp: any;
-
   /**
    * Auth token string
    */
   token = '';
-
   /**
    * Is modal visible
    */
   tokenModalButtonFlag = true;
-
   /**
    * Auth token Modal Button text
    */
   tokenModalButton = 'Show Token';
-
   /**
    * Modal display flag
    */
   isTokenModalVisible = false;
-
   /**
    * To call the API inside modal for updating the user details and password
    */
   apiCall: any;
-
   /**
    * Form components from 'formtoken'
    */
   @ViewChildren('formtoken')
   formTokenComponents: QueryList<InputComponent>;
-
   /**
    * Constructor.
    * @param route  ActivatedRoute Injection.
@@ -75,7 +67,6 @@ export class ProfileComponent implements OnInit {
               private route: ActivatedRoute,
               private endpointsService: EndpointsService,
               private windowService: WindowService) { }
-
   /**
    * Component on intialized.
    */
@@ -86,11 +77,11 @@ export class ProfileComponent implements OnInit {
     }
     this.authService.change.subscribe((details) => {
       this.user = details;
+      this.uservalue = details;
       this.token = this.globalService.getAuthToken();
       this.processUserDetails();
     });
   }
-
   /**
    * Process user details function.
    */
@@ -106,10 +97,16 @@ export class ProfileComponent implements OnInit {
         count = count + 1;
       }
     }
+    for (const i in this.uservalue) {
+      if (this.uservalue.hasOwnProperty(i)) {
+        if (this.uservalue[i] === '' || this.uservalue[i] === undefined || this.uservalue[i] === null) {
+            this.uservalue[i] = '';
+          }
+        }
+      }
     const TEMP = ((countLeft / count) * 100).toString();
     this.pcomp = (100 - parseInt(TEMP, 10)).toString() + '%';
   }
-
   /**
    * Token Modal toggle function.
    */
@@ -119,7 +116,6 @@ export class ProfileComponent implements OnInit {
     const TOKEN_INPUT = this.globalService.formItemForLabel(this.formTokenComponents, 'token');
     TOKEN_INPUT.type = this.tokenModalButtonFlag ? 'password' : 'text';
   }
-
   /**
    * Displays a Modal to update user details
    */
@@ -153,7 +149,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_first_name',
           placeholder: 'First Name',
           type: 'text',
-          value: this.user['first_name']
+          value: this.uservalue['first_name']
         },
         {
           isRequired: true,
@@ -161,7 +157,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_last_name',
           placeholder: 'Last Name',
           type: 'text',
-          value: this.user['last_name']
+          value: this.uservalue['last_name']
         },
         {
           isRequired: true,
@@ -169,7 +165,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_affiliation',
           placeholder: 'Affiliated To',
           type: 'text',
-          value: this.user['affiliation']
+          value: this.uservalue['affiliation']
         },
         {
           isRequired: true,
@@ -177,7 +173,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_google_scholar_url',
           placeholder: 'Google Scholar Url',
           type: 'url',
-          value: this.user['google_scholar_url']
+          value: this.uservalue['google_scholar_url']
         },
         {
           isRequired: false,
@@ -185,7 +181,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_github_url',
           placeholder: 'GitHub Url',
           type: 'url',
-          value: this.user['github_url']
+          value: this.uservalue['github_url']
         },
         {
           isRequired: false,
@@ -193,13 +189,12 @@ export class ProfileComponent implements OnInit {
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
           type: 'url',
-          value: this.user['linkedin_url']
+          value: this.uservalue['linkedin_url']
         }
       ],
       confirmCallback: SELF.apiCall
     };
     SELF.globalService.showModal(PARAMS);
-
   }
   /**
    * Download Auth Token as a JSON file.
@@ -210,7 +205,6 @@ export class ProfileComponent implements OnInit {
                                   'token.json',
                                   {type: 'text/json'});
   }
-
   /**
    * Copy auth token to clipboard.
    */
@@ -218,7 +212,6 @@ export class ProfileComponent implements OnInit {
     this.windowService.copyToClipboard(this.globalService.getAuthToken());
     this.globalService.showToast('success', 'Copied to clipboard', 5);
   }
-
   /**
    * Display modal to update password.
    */
