@@ -24,7 +24,7 @@
 							</div>
 							<br>
 							<br>
-							<div class="item">
+							<div class="item" id="auth_tok">
 								<button class="btn btn-waves-effect waves-dark grad-btn grad-btn-dark fs-16 rm-pad-top" (click)="isTokenModalVisible= true;"> Get your Auth Token</button>
 							</div>
 						</div>
@@ -97,7 +97,7 @@
 								</div>
 							</li>
 						</ul>
-						<ul class="inline-list profile-edit-group center">
+						<ul class="inline-list profile-edit-group center" id="sty_button">
 							<li >
 								<a (click)="updatePassword()" class="dark-link pointer">
 									<strong class="fw-semibold fs-15 change-password-text">Change Password</strong>
@@ -108,10 +108,43 @@
 							</li>
 						</ul>
 					</div>
+					<div class="modal-container" [class.hidden]="!isTokenModalVisible">
+						<div class="modal-card">
+							<div class="title">
+								API Authentication Token
+							</div>
+							<div class="form row">
+								<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+									<app-input [label]="'token'" [placeholder]="'Auth Token'"
+									[type]="'password'" [theme]="'dark'" [value]="token" [readonly]="true"
+									#formtoken></app-input>
+								</div>
+								<button class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn ev-btn-dark
+								btn-waves-effect waves-dark grad-btn code-btn"
+								(click)="copyToken()">
+								<i class="fa fa-clipboard" aria-hidden="true" alt="Copy to clipboard."></i>
+							</button>
+						</div>
+						<ul class="inline-list">
+							<li>
+								<a (click)="isTokenModalVisible= false;" class="dark-link pointer">
+									<strong class="fw-semibold fs-15">Cancel</strong>
+								</a>
+							</li>
+							<li>
+								<a (click)="downloadToken()" class="dark-link pointer">
+									<strong class="fw-semibold fs-15">Download JSON</strong>
+								</a>
+							</li>
+							<li>
+								<span class="btn btn-waves-effect waves-dark grad-btn grad-btn-dark fs-14 rm-pad-top" (click)="tokenModalButtonToggle()">{{tokenModalButton}}</span>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<app-footer class="container-fluid" ></app-footer>
-  </div>
+</div>
 </div>
