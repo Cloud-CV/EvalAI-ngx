@@ -173,7 +173,7 @@ export class ProfileComponent implements OnInit {
           value: this.affiliation
         },
         {
-          isRequired: true,
+          isRequired: false,
           label: 'google_scholar_url',
           name: 'update_google_scholar_url',
           placeholder: 'Google Scholar Url',
