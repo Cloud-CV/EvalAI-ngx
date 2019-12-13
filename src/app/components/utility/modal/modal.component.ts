@@ -94,7 +94,7 @@ export class ModalComponent implements OnInit {
    * Old password
    */
   oldPassword = '';
-  
+
   /**
    * New password
    */
@@ -270,7 +270,7 @@ export class ModalComponent implements OnInit {
       this.inputErrorMessage = 'Please Enter a Valid Url';
     }
   }
-  
+
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';
   }
