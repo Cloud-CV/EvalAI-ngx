@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   google_scholar_url: any;
   github_url: any;
   linkedin_url: any;
+
   /**
    * Profile completion score
    */
@@ -66,12 +67,12 @@ export class ProfileComponent implements OnInit {
    * @param windowService  WindowService Injection.
    */
   constructor(private apiService: ApiService,
-              private authService: AuthService,
-              private globalService: GlobalService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private endpointsService: EndpointsService,
-              private windowService: WindowService) { }
+    private authService: AuthService,
+    private globalService: GlobalService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private endpointsService: EndpointsService,
+    private windowService: WindowService) { }
   /**
    * Component on intialized.
    */
@@ -90,23 +91,18 @@ export class ProfileComponent implements OnInit {
    * Process user details function.
    */
   processUserDetails() {
-     this.first_name = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
-     this.last_name = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
-     this.affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation'];
-     this.google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
-     this.github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
-     this.linkedin_url = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url'];
     let countLeft = 0;
     let count = 0;
     for (const i in this.user) {
       if (this.user.hasOwnProperty(i)) {
         if (this.user[i] === '' || this.user[i] === undefined || this.user[i] === null) {
-          this.user[i] = '-';
-          countLeft = countLeft + 1;
+            this.user[i] = '-';
+            countLeft = countLeft + 1;
         }
         count = count + 1;
       }
     }
+    
     const TEMP = ((countLeft / count) * 100).toString();
     this.pcomp = (100 - parseInt(TEMP, 10)).toString() + '%';
   }
@@ -123,21 +119,27 @@ export class ProfileComponent implements OnInit {
    * Displays a Modal to update user details
    */
   updateUserDetails() {
+    this.first_name = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
+    this.last_name = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
+    this.affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation'];
+    this.google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
+    this.github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
+    this.linkedin_url = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url'];
     const SELF = this;
     SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
       console.log(params);
       SELF.apiService.putUrl(SELF.endpointsService.userDetailsURL(),
-        BODY).subscribe(
-          data => {
-            // Success Message in data.message
-            SELF.globalService.showToast('success', 'User details updated successfully', 5);
-            SELF.authService.fetchUserDetails();
-          },
-          err => {
-            SELF.globalService.handleApiError(err, true);
-          },
-          () => console.log('USER-UPDATE-FINISHED')
+                             BODY).subscribe(
+        data => {
+          // Success Message in data.message
+          SELF.globalService.showToast('success', 'User details updated successfully', 5);
+          SELF.authService.fetchUserDetails();
+        },
+                               err => {
+          SELF.globalService.handleApiError(err, true);
+        },
+        () => console.log('USER-UPDATE-FINISHED')
       );
     };
     const PARAMS = {
@@ -192,7 +194,7 @@ export class ProfileComponent implements OnInit {
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
           type: 'url',
-           value: this.linkedin_url
+           value: l
          }
       ],
       confirmCallback: SELF.apiCall
@@ -224,22 +226,22 @@ export class ProfileComponent implements OnInit {
       const BODY = JSON.stringify(params);
       console.log(params);
       SELF.apiService.postUrl(SELF.endpointsService.changePasswordURL(),
-        BODY).subscribe(
-          data => {
-            // Success Message in data.message
-            SELF.globalService.showToast('success', 'Password updated successfully', 5);
-            SELF.authService.fetchUserDetails();
-          },
-          err => {
-            if (err.status === 400 && err.error && err.error.old_password) {
-              SELF.globalService.showToast('error', err.error.old_password[0], 5);
-            } else if (err.status === 400 && err.error && err.error.new_password2) {
-              SELF.globalService.showToast('error', err.error.new_password2[0], 5);
-            } else {
-              SELF.globalService.handleApiError(err, true);
-            }
-          },
-          () => console.log('PASSWORD-UPDATE-FINISHED')
+                             BODY).subscribe(
+        data => {
+          // Success Message in data.message
+          SELF.globalService.showToast('success', 'Password updated successfully', 5);
+          SELF.authService.fetchUserDetails();
+                               },
+        err => {
+          if (err.status === 400 && err.error && err.error.old_password) {
+            SELF.globalService.showToast('error', err.error.old_password[0], 5);
+          } else if (err.status === 400 && err.error && err.error.new_password2) {
+            SELF.globalService.showToast('error', err.error.new_password2[0], 5);
+          } else {
+            SELF.globalService.handleApiError(err, true);
+          }
+        },
+        () => console.log('PASSWORD-UPDATE-FINISHED')
       );
     };
     const PARAMS = {
