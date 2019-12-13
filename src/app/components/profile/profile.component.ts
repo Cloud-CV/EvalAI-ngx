@@ -88,22 +88,23 @@ export class ProfileComponent implements OnInit {
   processUserDetails() {
     let countLeft = 0;
     let count = 0;
+    for (const i in this.uservalue) {
+      if (this.uservalue.hasOwnProperty(i)) {
+        if ( this.uservalue[i] === '' || this.uservalue[i] === undefined || this.uservalue[i] === null) {
+            this.uservalue[i] = '-';
+          }
+        }
+      }
     for (const i in this.user) {
       if (this.user.hasOwnProperty(i)) {
         if (this.user[i] === '' || this.user[i] === undefined || this.user[i] === null) {
-            this.user[i] = '-';
+            this.user[i] = '';
             countLeft = countLeft + 1;
         }
         count = count + 1;
       }
     }
-    for (const i in this.uservalue) {
-      if (this.uservalue.hasOwnProperty(i)) {
-        if (this.uservalue[i] === '' || this.uservalue[i] === undefined || this.uservalue[i] === null) {
-            this.uservalue[i] = '';
-          }
-        }
-      }
+    
     const TEMP = ((countLeft / count) * 100).toString();
     this.pcomp = (100 - parseInt(TEMP, 10)).toString() + '%';
   }
@@ -120,6 +121,7 @@ export class ProfileComponent implements OnInit {
    * Displays a Modal to update user details
    */
   updateUserDetails() {
+    
     const SELF = this;
     SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
@@ -149,7 +151,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_first_name',
           placeholder: 'First Name',
           type: 'text',
-          value: this.uservalue['first_name']
+          value: this.user['first_name']
         },
         {
           isRequired: true,
@@ -157,7 +159,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_last_name',
           placeholder: 'Last Name',
           type: 'text',
-          value: this.uservalue['last_name']
+          value: this.user['last_name']
         },
         {
           isRequired: true,
@@ -165,7 +167,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_affiliation',
           placeholder: 'Affiliated To',
           type: 'text',
-          value: this.uservalue['affiliation']
+          value: this.user['affiliation']
         },
         {
           isRequired: true,
@@ -173,7 +175,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_google_scholar_url',
           placeholder: 'Google Scholar Url',
           type: 'url',
-          value: this.uservalue['google_scholar_url']
+          value: this.user['google_scholar_url']
         },
         {
           isRequired: false,
@@ -181,7 +183,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_github_url',
           placeholder: 'GitHub Url',
           type: 'url',
-          value: this.uservalue['github_url']
+          value: this.user['github_url']
         },
         {
           isRequired: false,
@@ -189,7 +191,7 @@ export class ProfileComponent implements OnInit {
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
           type: 'url',
-          value: this.uservalue['linkedin_url']
+          value: this.user['linkedin_url']
         }
       ],
       confirmCallback: SELF.apiCall
