@@ -20,12 +20,6 @@ export class ProfileComponent implements OnInit {
    * User object
    */
   user: any;
-  first_name: any;
-  last_name: any;
-  affiliation: any;
-  google_scholar_url: any;
-  github_url: any;
-  linkedin_url: any;
 
   /**
    * Profile completion score
@@ -163,7 +157,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_first_name',
           placeholder: 'First Name',
           type: 'text',
-          value: this.first_name
+          value: first_name
         },
         {
           isRequired: true,
@@ -171,7 +165,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_last_name',
           placeholder: 'Last Name',
           type: 'text',
-          value: this.last_name
+          value: last_name
         },
         {
           isRequired: true,
@@ -179,7 +173,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_affiliation',
           placeholder: 'Affiliated To',
           type: 'text',
-          value: this.affiliation
+          value: affiliation
         },
         {
           isRequired: false,
@@ -187,7 +181,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_google_scholar_url',
           placeholder: 'Google Scholar Url',
           type: 'url',
-          value: this.google_scholar_url
+          value: google_scholar_url
         },
         {
           isRequired: false,
@@ -195,7 +189,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_github_url',
           placeholder: 'GitHub Url',
           type: 'url',
-          value: this.github_url
+          value: github_url
         },
         {
           isRequired: false,
@@ -203,7 +197,7 @@ export class ProfileComponent implements OnInit {
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
           type: 'url',
-           value: this.linkedin_url
+           value: linkedin_url
          }
       ],
       confirmCallback: SELF.apiCall

@@ -4,6 +4,7 @@ import { GlobalService } from '../../../services/global.service';
 import { InputComponent } from '../input/input.component';
 import { ChallengeService } from '../../../services/challenge.service';
 import { AuthService } from '../../../services/auth.service';
+
 /**
  * Component Class
  */
@@ -13,102 +14,130 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+
   /**
    * Input parameters object
    */
   @Input() params: any;
+
   /**
    * Modal title
    */
   title = 'Are you sure ?';
+
   /**
    * Modal field label
    */
   label = '';
+
   /**
    * Modal body
    */
   content = '';
+
   /**
    * Modal name
    */
   isButtonDisabled: boolean;
+
   /**
    * If rich text editor required
    */
   isEditorRequired = false;
+
   /**
    * Modal edit content
    */
   editorContent = '';
+
   /**
    * If editor error message
    */
   isInputMessage = false;
+
   /**
    * Editor validation message
    */
   editorValidationMessage = '';
+
+  /**
+   * Variable To Check Url Syntax
+   */
   urlval = '/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/';
+
   /**
    * Modal accept button
    */
   confirm = 'Yes';
+
   /**
    * Modal deny button
    */
   deny = 'Cancel';
+
   /**
    * Modal form items list
    */
   form = [];
+
   /**
    * challenge object
    */
   challenge: any;
+
   /**
    * User object
    */
   user: any;
+
   /**
    * Old password
    */
   oldPassword = '';
+  
   /**
    * New password
    */
   newPassword = '';
+
   /**
    * Re-type new password
    */
   retype_newPassword = '';
+
   /**
    * delete challenge button disable
    */
   isDisabled = true;
+
   /**
    * Input field message
    */
   inputErrorMessage = '';
+
   /**
    * Modal form items
    */
   @ViewChildren('formmodal')
   formComponents: QueryList<InputComponent>;
+
   /**
    * Modal confirmed callback
    */
   confirmCallback = (params) => {};
+
   /**
    * Modal denied callback
    */
   denyCallback = () => {};
+
   /**
    * Constructor.
    * @param globalService  GlobalService Injection.
    */
   constructor(private globalService: GlobalService, private challengeService: ChallengeService,
               private authService: AuthService) { }
+
   /**
    * Component on intialized.
    */
@@ -148,14 +177,17 @@ export class ModalComponent implements OnInit {
         this.form = this.params['form'];
       }
     }
+
     this.authService.change.subscribe((details) => {
       this.user = details;
     });
+
     if (this.isEditorRequired || this.isButtonDisabled) {
       this.isDisabled = false;
     }
     this.challengeService.currentChallenge.subscribe(challenge => this.challenge = challenge);
   }
+
   /**
    * Form Validate function.
    */
@@ -171,6 +203,7 @@ export class ModalComponent implements OnInit {
       this.confirmed(this);
     }
   }
+
   /**
    * Modal Confirmed.
    */
@@ -193,6 +226,7 @@ export class ModalComponent implements OnInit {
     self.globalService.hideModal();
     self.confirmCallback(PARAMS);
   }
+
   /**
    * Modal Denied.
    */
@@ -200,6 +234,7 @@ export class ModalComponent implements OnInit {
     this.globalService.hideModal();
     this.denyCallback();
   }
+
   validateModalInput(e) {
     this.inputErrorMessage = '';
     if (e.target.name === 'challegenDeleteInput') {
@@ -235,6 +270,7 @@ export class ModalComponent implements OnInit {
       this.inputErrorMessage = 'Please Enter a Valid Url';
     }
   }
+  
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';
   }
