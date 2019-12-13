@@ -63,7 +63,7 @@
 	}
 }
 }
-.modal-container{
+.modal-container {
 	.modal-card { 
 		.title {
 			margin-bottom: 20px;
@@ -117,26 +117,21 @@
 	margin-bottom: 50px;
 	margin-right: -20px;
 }
-
 .pass-title {
     margin-bottom: 30px;
 }
-
 .back-profile-group {
     margin-top: 60px;
 }
-
 img.profile-pic {
     height: 80px;
 }
-
 .user-info {
     li {
      margin-bottom: 36px;
   }
    margin-top: 20px;
  }
- 
  .user-urls {
       li {
 		margin-bottom: 33px;
@@ -144,20 +139,17 @@ img.profile-pic {
 	  margin-bottom: 20px;
 	  margin-top: 25px;
  }
-
-.container-fluid{
+.container-fluid {
 	width: calc(100vw - 223px);
     float: right;
     padding-top: 70px;
 	overflow-x: hidden;
 }
-
-.main_content{
+.main_content {
 	box-sizing: inherit;
 	background-color: rgb(250,250,250);
 }
-
-.row{
+.row { 
 	display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
@@ -165,30 +157,25 @@ img.profile-pic {
     flex-direction: column;
 	
 }
-
-.dashboard{
+.dashboard {
 	-webkit-box-flex: 1;
     flex: 1;
 	
 }
-
-#card_container{
+#card_container {
 	padding: 40px;
 	min-height: 100vh;
 	margin: 0px;
 }
-
-#sty_card{
+#sty_card {
 	margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
 }
-
-.challenge-title-container{
+.challenge-title-container {
 	padding-bottom: 0;
 }
-
-.ev-card-panel{
+.ev-card-panel {
 	position: relative;
     display: block;
     background-color: #fff;
@@ -198,27 +185,23 @@ img.profile-pic {
     overflow: hidden;
     box-shadow: 0 0 12px #dedede;
 }
-
-.ev-z-depth-5{
+.ev-z-depth-5 {
 	box-shadow: 0 0 10px #dedede;
 }
-
-#user_info{
+#user_info {
 	margin-top: 25px;
 }
-
 @media only screen and (max-width: 992px) {
 	.container-fluid {
 	  width: 100%; 
 	}
 }
-
-#profile_layout{
+#profile_layout {
 	margin-top: 40px;
 }
-#auth_tok{
+#auth_tok {
 	max-lines: 80;
 }
-#sty_button{
+#sty_button {
 	max-lines: 80;
 }
