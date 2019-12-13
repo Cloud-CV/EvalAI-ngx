@@ -88,13 +88,6 @@ export class ProfileComponent implements OnInit {
   processUserDetails() {
     let countLeft = 0;
     let count = 0;
-    for (const i in this.uservalue) {
-      if (this.uservalue.hasOwnProperty(i)) {
-        if ( this.uservalue[i] === '' || this.uservalue[i] === undefined || this.uservalue[i] === null) {
-            this.uservalue[i] = '-';
-          }
-        }
-      }
     for (const i in this.user) {
       if (this.user.hasOwnProperty(i)) {
         if (this.user[i] === '' || this.user[i] === undefined || this.user[i] === null) {
@@ -104,6 +97,13 @@ export class ProfileComponent implements OnInit {
         count = count + 1;
       }
     }
+    for (const i in this.uservalue) {
+      if (this.uservalue.hasOwnProperty(i)) {
+        if ( this.uservalue[i] === '' || this.uservalue[i] === undefined || this.uservalue[i] === null) {
+            this.uservalue[i] = '-';
+          }
+        }
+      }
     
     const TEMP = ((countLeft / count) * 100).toString();
     this.pcomp = (100 - parseInt(TEMP, 10)).toString() + '%';
