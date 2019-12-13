@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
    * Modal display flag
    */
   isTokenModalVisible = false;
-  
+
   /**
    * To call the API inside modal for updating the user details and password
    */
@@ -228,7 +228,6 @@ export class ProfileComponent implements OnInit {
     this.windowService.copyToClipboard(this.globalService.getAuthToken());
     this.globalService.showToast('success', 'Copied to clipboard', 5);
   }
-  
   /**
    * Display modal to update password.
    */
