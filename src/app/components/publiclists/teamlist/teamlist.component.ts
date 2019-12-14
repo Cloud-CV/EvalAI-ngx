@@ -520,6 +520,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
 
           this.isnameFocused = false;
           this.isurlFocused = false;
+          this.isTeamNameRequired = false;
         },
         err => {
           this.globalService.stopLoader();
