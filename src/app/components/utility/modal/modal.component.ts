@@ -61,11 +61,6 @@ export class ModalComponent implements OnInit {
   editorValidationMessage = '';
 
   /**
-   * Variable To Check Url Syntax
-   */
-  regex = new RegExp('/^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?/;');
-
-  /**
    * Modal accept button
    */
   confirm = 'Yes';
@@ -236,6 +231,7 @@ export class ModalComponent implements OnInit {
   }
 
   validateModalInput(e) {
+    const regex = new RegExp('/^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?/;');
     this.inputErrorMessage = '';
     if (e.target.name === 'challegenDeleteInput') {
       this.isDisabled = e.target.value !== this.challenge.title;
@@ -266,13 +262,13 @@ export class ModalComponent implements OnInit {
         this.inputErrorMessage = 'Password do not match';
       }
     }
-    if ( this.regex.test(this.user.googleScholarUrl)  || this.regex.test(this.user.githubUrl) || this.regex.test(this.user.linkedinUrl) ) {
+    if ( regex.test(this.user.googleScholarUrl)  || regex.test(this.user.githubUrl) || regex.test(this.user.linkedinUrl) ) {
       this.inputErrorMessage = '';
     }else {
       this.inputErrorMessage = 'Please Enter a Valid Url';
     }
   }
-
+  
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';
   }
