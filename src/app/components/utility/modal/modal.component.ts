@@ -63,7 +63,7 @@ export class ModalComponent implements OnInit {
   /**
    * Variable To Check Url Syntax
    */
-  urlval = '/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/';
+  regex = new RegExp('/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/;')
 
   /**
    * Modal accept button
@@ -266,7 +266,7 @@ export class ModalComponent implements OnInit {
         this.inputErrorMessage = 'Password do not match';
       }
     }
-    if (this.user.google_scholar_url !== this.urlval || this.user.github_url !== this.urlval || this.user.linkedin_url !== this.urlval) {
+    if (this.user.google_scholar_url !==this.regex|| this.user.github_url !== this.regex || this.user.linkedin_url !== this.regex) {
       this.inputErrorMessage = 'Please Enter a Valid Url';
     }
   }

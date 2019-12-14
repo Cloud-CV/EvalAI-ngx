@@ -125,8 +125,8 @@ export class ProfileComponent implements OnInit {
    * Displays a Modal to update user details
    */
   updateUserDetails() {
-    const first_name = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
-    const last_name = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
+    const firstName = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
+    const lastName = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
     const affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation'];
     const google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
     const github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
@@ -160,7 +160,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_first_name',
           placeholder: 'First Name',
           type: 'text',
-          value: first_name
+          value: firstName
         },
         {
           isRequired: true,
@@ -168,7 +168,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_last_name',
           placeholder: 'Last Name',
           type: 'text',
-          value: last_name
+          value: lastName
         },
         {
           isRequired: true,
