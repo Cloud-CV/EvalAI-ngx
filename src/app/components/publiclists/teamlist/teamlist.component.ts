@@ -528,7 +528,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         },
         () => {}
       );
-    } else if (this.create_team['team_name'] == '') {
+    } else if (this.create_team['team_name'] === '') {
       this.isTeamNameRequired = true;
     }
   }
