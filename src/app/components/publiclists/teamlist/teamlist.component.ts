@@ -19,7 +19,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
 
   isnameFocused = false;
   isurlFocused = false;
-  validateTeamName = true;
+  isTeamNameRequired = false;
 
   /**
    * Auth Service public instance
@@ -520,7 +520,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
 
           this.isnameFocused = false;
           this.isurlFocused = false;
-          this.validateTeamName = false;
         },
         err => {
           this.globalService.stopLoader();
@@ -529,6 +528,8 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         },
         () => {}
       );
+    } else if (this.create_team['team_name'] == '') {
+      this.isTeamNameRequired = true;
     }
   }
 
