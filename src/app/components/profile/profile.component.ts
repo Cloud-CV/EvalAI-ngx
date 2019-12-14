@@ -128,9 +128,9 @@ export class ProfileComponent implements OnInit {
     const firstName = (this.user['first_name'] === '-') ? '' : this.user['first_name'];
     const lastName = (this.user['last_name'] === '-') ? '' : this.user['last_name'];
     const affiliation = (this.user['affiliation'] === '-') ? '' : this.user['affiliation'];
-    const google_scholar_url = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
-    const github_url = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
-    const linkedin_url = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url'];
+    const googleScholarUrl = (this.user['google_scholar_url'] === '-') ? '' : this.user['google_scholar_url'];
+    const githubUrl = (this.user['github_url'] === '-') ? '' : this.user['github_url'];
+    const linkedinUrl = (this.user['linkedin_url'] === '-') ? '' : this.user['linkedin_url'];
     const SELF = this;
     SELF.apiCall = (params) => {
       const BODY = JSON.stringify(params);
@@ -184,7 +184,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_google_scholar_url',
           placeholder: 'Google Scholar Url',
           type: 'url',
-          value: google_scholar_url
+          value: googleScholarUrl
         },
         {
           isRequired: false,
@@ -192,7 +192,7 @@ export class ProfileComponent implements OnInit {
           name: 'update_github_url',
           placeholder: 'GitHub Url',
           type: 'url',
-          value: github_url
+          value: githubUrl
         },
         {
           isRequired: false,
@@ -200,7 +200,7 @@ export class ProfileComponent implements OnInit {
           name: 'linkedin_url',
           placeholder: 'Linkedin Url',
           type: 'url',
-           value: linkedin_url
+           value: linkedinUrl
          }
       ],
       confirmCallback: SELF.apiCall
