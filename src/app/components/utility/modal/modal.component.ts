@@ -248,7 +248,7 @@ export class ModalComponent implements OnInit {
     } else if (e.target.name === 'update_affiliation') {
       this.isDisabled = e.target.value === this.user.affiliation;
     } else if (e.target.name === 'update_google_scholar_url') {
-      this.isDisabled = e.target.value === this.user.google_scholar_url;
+      this.isDisabled = e.target.value === this.user.googleScholarUrl;
     } else if (e.target.name === 'update_github_url') {
       this.isDisabled = e.target.value === this.user.github_url;
     } else if (e.target.name === 'linkedin_url') {
@@ -266,10 +266,10 @@ export class ModalComponent implements OnInit {
         this.inputErrorMessage = 'Password do not match';
       }
     }
-    if ( this.regex.test(this.user.google_scholar_url) !== true || this.regex.test(this.user.github_url) !== true|| this.regex.test(this.user.linkedin_url) !== true ) {
-      this.inputErrorMessage = 'Please Enter a Valid Url';
-    }else {
+    if ( this.regex.test(this.user.googleScholarUrl)  || this.regex.test(this.user.githubUrl) || this.regex.test(this.user.linkedinUrl) ) {
       this.inputErrorMessage = '';
+    }else {
+      this.inputErrorMessage = 'Please Enter a Valid Url';
     }
   }
 
