@@ -514,7 +514,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
           // Reset input
           this.create_team = {
             team_url: '',
-            team_name: ''
+            team_name: ' '
           };
         },
         err => {
