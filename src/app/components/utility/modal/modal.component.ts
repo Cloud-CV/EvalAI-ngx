@@ -27,6 +27,7 @@ export class ModalComponent implements OnInit {
    */
   title = 'Are you sure ?';
   urlval: boolean ;
+  field_details: any;
 
   /**
    * Modal field label
@@ -112,6 +113,7 @@ export class ModalComponent implements OnInit {
    * Input field message
    */
   inputErrorMessage = '';
+  InputErrorUrl = '';
 
   /**
    * Modal form items
@@ -190,12 +192,14 @@ export class ModalComponent implements OnInit {
    * Form Validate function.
    */
   formValidate() {
+    this.InputErrorUrl = '';
     if (this.formComponents.length > 0) {
       console.log(this.formComponents);
       if (this.title === 'Update Profile') {
-        this.confirmed(this);
-      } if (this.urlval === false) {
-      } else {
+        if (this.urlval == true ) {
+          this.confirmed(this);
+        }
+      }  else {
         this.globalService.formValidate(this.formComponents, this.confirmed, this);
       }
     } else {
@@ -235,7 +239,7 @@ export class ModalComponent implements OnInit {
   }
 
   validateModalInput(e) {
-    const regex = new RegExp('/^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?^/');
+    const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
     this.inputErrorMessage = '';
     if (e.target.name === 'challegenDeleteInput') {
       this.isDisabled = e.target.value !== this.challenge.title;
@@ -248,11 +252,11 @@ export class ModalComponent implements OnInit {
     } else if (e.target.name === 'update_affiliation') {
       this.isDisabled = e.target.value === this.user.affiliation;
     } else if (e.target.name === 'update_google_scholar_url') {
-      this.isDisabled = e.target.value === this.user.googleScholarUrl;
+      this.isDisabled = e.target.value === this.user.update_google_scholar_url;
     } else if (e.target.name === 'update_github_url') {
-      this.isDisabled = e.target.value === this.user.githubUrl;
+      this.isDisabled = e.target.value === this.user.update_github_url;
     } else if (e.target.name === 'linkedin_url') {
-      this.isDisabled = e.target.value === this.user.linkedinUrl;
+      this.isDisabled = e.target.value === this.user.linkedin_url;
     } else if (e.target.name === 'old_password') {
       this.oldPassword = e.target.value;
     } else if (e.target.name === 'new_password1') {
@@ -265,16 +269,28 @@ export class ModalComponent implements OnInit {
       if (e.target.value !== this.newPassword) {
         this.inputErrorMessage = 'Password do not match';
       }
+    } if (this.formComponents._results[3].value !== '' ) {
+      if (regex.test(this.formComponents._results[3].value) == false ) {
+      this.inputErrorMessage = 'Please Enter a Valid Url';
+      this.urlval = false;
+      console.log(this.formComponents._results[3].value)
+    } else if (regex.test(this.formComponents._results[3].value) == true ) {
+      this.inputErrorMessage = '';
+      this.urlval = true;
+      console.log(this.urlval)
     }
-      if (regex.test(this.user.googleScholarUrl) !== true ||
-      regex.test(this.user.githubUrl) !== true || regex.test(this.user.linkedinUrl) !== true ) {
-        this.inputErrorMessage = 'Please Enter a Valid Url';
-        this.urlval = false;
-      } else {
-        this.inputErrorMessage = '';
-        this.urlval = true;
-      }
+  } if (this.formComponents._results[4].value !== '') {
+    if ( regex.test(this.formComponents._results[4].value) == false ) {
+      this.inputErrorMessage = 'Please Enter a Valid Url';
+      this.urlval = false;
+      console.log(this.formComponents._results[3].value)
+    } else if (regex.test(this.formComponents._results[4].value) == true) {
+      this.inputErrorMessage = '';
+      this.urlval = true;
+      console.log(this.urlval)
+    }
   }
+}
 
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';

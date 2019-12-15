@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit  {
    * User object
    */
   user: any;
-  inputErrorMessage = '';
 
   /**
    * Profile completion score
