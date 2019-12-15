@@ -194,10 +194,8 @@ export class ModalComponent implements OnInit {
       console.log(this.formComponents);
       if (this.title === 'Update Profile') {
         this.confirmed(this);
-      } if (this.urlval == false) {
-        
-      }
-      else {
+      } if (this.urlval === false) {
+      } else {
         this.globalService.formValidate(this.formComponents, this.confirmed, this);
       }
     } else {
@@ -237,7 +235,7 @@ export class ModalComponent implements OnInit {
   }
 
   validateModalInput(e) {
-    const regex = new RegExp('/^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?/');
+    const regex = new RegExp('/^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?^/');
     this.inputErrorMessage = '';
     if (e.target.name === 'challegenDeleteInput') {
       this.isDisabled = e.target.value !== this.challenge.title;
@@ -268,15 +266,14 @@ export class ModalComponent implements OnInit {
         this.inputErrorMessage = 'Password do not match';
       }
     } 
-      if (regex.test(this.user.googleScholarUrl) !== true || regex.test(this.user.githubUrl) !== true || regex.test(this.user.linkedinUrl) !== true ) {
+      if (regex.test(this.user.googleScholarUrl) !== true || 
+      regex.test(this.user.githubUrl) !== true || regex.test(this.user.linkedinUrl) !== true ) {
         this.inputErrorMessage = 'Please Enter a Valid Url';
         this.urlval = false;
-      }else {
+      } else {
         this.inputErrorMessage = '';
         this.urlval = true;
-      }
-
-     
+      } 
   }
 
   validateFileInput(e) {
