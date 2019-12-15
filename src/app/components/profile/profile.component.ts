@@ -16,18 +16,18 @@ import { InputComponent } from '../utility/input/input.component';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit  {
 
   /**
    * User object
    */
   user: any;
+  inputErrorMessage = '';
 
   /**
    * Profile completion score
    */
   pcomp: any;
-
   /**
    * Auth token string
    */
@@ -205,6 +205,7 @@ export class ProfileComponent implements OnInit {
       ],
       confirmCallback: SELF.apiCall
     };
+    
     SELF.globalService.showModal(PARAMS);
 
   }
