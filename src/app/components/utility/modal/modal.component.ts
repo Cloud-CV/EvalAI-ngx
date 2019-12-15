@@ -292,7 +292,6 @@ export class ModalComponent implements OnInit {
     } else if (regex.test(this.formComponents._results[5].value) === true) {
       this.inputErrorMessage = '';
       this.urlval = true;
-      
     }
   }
 }
