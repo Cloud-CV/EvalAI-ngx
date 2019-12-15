@@ -88,6 +88,7 @@ export class ModalComponent implements OnInit {
    * User object
    */
   user: any;
+  urlform: any;
 
   /**
    * Old password
@@ -192,7 +193,6 @@ export class ModalComponent implements OnInit {
    * Form Validate function.
    */
   formValidate() {
-    this.InputErrorUrl = '';
     if (this.formComponents.length > 0) {
       console.log(this.formComponents);
       if (this.title === 'Update Profile') {
@@ -206,7 +206,7 @@ export class ModalComponent implements OnInit {
       this.confirmed(this);
     }
   }
-  
+
   /**
    * Modal Confirmed.
    *  */
@@ -279,21 +279,21 @@ export class ModalComponent implements OnInit {
     }
   } if (this.formComponents._results[4].value !== '') {
     if ( regex.test(this.formComponents._results[4].value) === false ) {
-      this.inputErrorMessage = 'Please Enter a Valid Url';
-      this.urlval = false;
-    } else if (regex.test(this.formComponents._results[4].value) === true) {
-      this.inputErrorMessage = '';
-      this.urlval = true;
-    }
-  }  if (this.formComponents._results[5].value !== '') {
-    if ( regex.test(this.formComponents._results[5].value) === false ) {
-      this.inputErrorMessage = 'Please Enter a Valid Url';
-      this.urlval = false;
-    } else if (regex.test(this.formComponents._results[5].value) === true) {
-      this.inputErrorMessage = '';
-      this.urlval = true;
-    }
-  }
+       this.inputErrorMessage = 'Please Enter a Valid Url';
+       this.urlval = false;
+     } else if (regex.test(this.formComponents._results[4].value) === true) {
+       this.inputErrorMessage = '';
+       this.urlval = true;
+     }
+    }  if (this.formComponents._results[5].value !== '') {
+     if ( regex.test(this.formComponents._results[5].value) === false ) {
+       this.inputErrorMessage = 'Please Enter a Valid Url';
+       this.urlval = false;
+     } else if (regex.test(this.formComponents._results[5].value) === true) {
+       this.inputErrorMessage = '';
+       this.urlval = true;
+     }
+   }
 }
 
   validateFileInput(e) {
