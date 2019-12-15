@@ -196,7 +196,7 @@ export class ModalComponent implements OnInit {
     if (this.formComponents.length > 0) {
       console.log(this.formComponents);
       if (this.title === 'Update Profile') {
-        if (this.urlval == true ) {
+        if (this.urlval === true ) {
           this.confirmed(this);
         }
       }  else {
@@ -270,24 +270,29 @@ export class ModalComponent implements OnInit {
         this.inputErrorMessage = 'Password do not match';
       }
     } if (this.formComponents._results[3].value !== '' ) {
-      if (regex.test(this.formComponents._results[3].value) == false ) {
+      if (regex.test(this.formComponents._results[3].value) === false ) {
       this.inputErrorMessage = 'Please Enter a Valid Url';
       this.urlval = false;
-      console.log(this.formComponents._results[3].value)
-    } else if (regex.test(this.formComponents._results[3].value) == true ) {
+    } else if (regex.test(this.formComponents._results[3].value) === true ) {
       this.inputErrorMessage = '';
       this.urlval = true;
-      console.log(this.urlval)
     }
   } if (this.formComponents._results[4].value !== '') {
-    if ( regex.test(this.formComponents._results[4].value) == false ) {
+    if ( regex.test(this.formComponents._results[4].value) === false ) {
       this.inputErrorMessage = 'Please Enter a Valid Url';
       this.urlval = false;
-      console.log(this.formComponents._results[3].value)
-    } else if (regex.test(this.formComponents._results[4].value) == true) {
+    } else if (regex.test(this.formComponents._results[4].value) === true) {
       this.inputErrorMessage = '';
       this.urlval = true;
-      console.log(this.urlval)
+    }
+  }  if (this.formComponents._results[5].value !== '') {
+    if ( regex.test(this.formComponents._results[5].value) === false ) {
+      this.inputErrorMessage = 'Please Enter a Valid Url';
+      this.urlval = false;
+    } else if (regex.test(this.formComponents._results[5].value) === true) {
+      this.inputErrorMessage = '';
+      this.urlval = true;
+      
     }
   }
 }
