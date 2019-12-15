@@ -19,7 +19,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
 
   isnameFocused = false;
   isurlFocused = false;
-  isTeamNameRequired = false;
 
   /**
    * Auth Service public instance
@@ -364,7 +363,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         SELF.apiService.deleteUrl(SELF.deleteTeamsPath + '/' + e).subscribe(
         data => {
           // Success Message in data.message
-          SELF.globalService.showToast('success', 'You were removed from the team!', 5);
+          SELF.globalService.showToast('success', 'You removed the team!', 5);
           SELF.fetchMyTeams(SELF.fetchTeamsPath);
           SELF.selectedTeam = null;
         },
@@ -375,8 +374,8 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         );
       };
       const PARAMS = {
-        title: 'Would you like to remove yourself ?',
-        content: 'Note: This action will remove you from the team.',
+        title: 'Would you like to remove the team ?',
+        content: 'Note: This action will remove the selected team.',
         confirm: 'Yes',
         deny: 'Cancel',
         confirmCallback: SELF.apiCall
@@ -511,16 +510,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
           // Success Message in data.message
           this.globalService.showToast('success', 'Team created successfully!', 5);
           this.fetchMyTeams(this.fetchTeamsPath);
-
-          // Reset input
-          this.create_team = {
-            team_url: '',
-            team_name: ''
-          };
-
-          this.isnameFocused = false;
-          this.isurlFocused = false;
-          this.isTeamNameRequired = false;
         },
         err => {
           this.globalService.stopLoader();
@@ -529,8 +518,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         },
         () => {}
       );
-    } else if (this.create_team['team_name'] === '') {
-      this.isTeamNameRequired = true;
     }
   }
 
