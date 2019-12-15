@@ -189,7 +189,7 @@ export class ModalComponent implements OnInit {
   /**
    * Form Validate function.
    */
-  formValidate() { 
+  formValidate() {
     if (this.formComponents.length > 0) {
       console.log(this.formComponents);
       if (this.title === 'Update Profile') {
@@ -200,12 +200,12 @@ export class ModalComponent implements OnInit {
       }
     } else {
       this.confirmed(this);
-    } 
+    }
   }
 
   /**
    * Modal Confirmed.
-   */
+   *  */
   confirmed(self) {
     let PARAMS = {};
     if (self.isEditorRequired) {
@@ -265,15 +265,15 @@ export class ModalComponent implements OnInit {
       if (e.target.value !== this.newPassword) {
         this.inputErrorMessage = 'Password do not match';
       }
-    } 
-      if (regex.test(this.user.googleScholarUrl) !== true || 
+    }
+      if (regex.test(this.user.googleScholarUrl) !== true ||
       regex.test(this.user.githubUrl) !== true || regex.test(this.user.linkedinUrl) !== true ) {
         this.inputErrorMessage = 'Please Enter a Valid Url';
         this.urlval = false;
       } else {
         this.inputErrorMessage = '';
         this.urlval = true;
-      } 
+      }
   }
 
   validateFileInput(e) {
