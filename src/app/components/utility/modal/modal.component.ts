@@ -206,7 +206,7 @@ export class ModalComponent implements OnInit {
       this.confirmed(this);
     }
   }
-
+  
   /**
    * Modal Confirmed.
    *  */
