@@ -5,7 +5,7 @@ import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/ro
 import { DOCUMENT } from '@angular/common';
 import {ApiService} from '../../../services/api.service';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
-
+import {map, filter} from 'rxjs/operators';
 /**
  * Component Class
  */
@@ -27,6 +27,11 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
    * At dashboard
    */
   isDash = false;
+
+  /**
+   * Is router at a url that includes 'auth'
+   */
+  isAuthPage = false;
 
   /**
    * Scroll position
@@ -99,6 +104,10 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateElements();
     this.checkInnerWidth();
+    this.router.events.pipe(
+        // filter for navigation end
+      filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => this.isAuthPage = event['url'].includes('/auth'));
     this.isDash = this.router.url === this.routePath;
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
