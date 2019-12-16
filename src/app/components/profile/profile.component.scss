@@ -67,9 +67,8 @@
 		}
 	}
 }
-
-.modal-container {
-	.modal-card { 
+.modal-container{
+	.modal-card {
 		.title {
 			margin-bottom: 20px;
 		}
@@ -77,7 +76,6 @@
 			margin-top: 15px;
 		}
 	}
-	
 }
 
 @include screen-medium {
@@ -234,7 +232,7 @@ img.profile-pic {
 #sty_button {
 	max-lines: 80;
 }
-#auth_butt_style {
+#auth_button_style {
 	margin-top: -80px;
 	margin-left: 350px;
 }
