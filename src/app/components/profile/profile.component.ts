@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
    * Profile completion score
    */
   pcomp: any;
-  
+
   /**
    * Auth token string
    */
