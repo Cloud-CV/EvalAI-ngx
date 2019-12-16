@@ -204,7 +204,6 @@ export class ProfileComponent implements OnInit  {
       ],
       confirmCallback: SELF.apiCall
     };
-    
     SELF.globalService.showModal(PARAMS);
 
   }
