@@ -236,3 +236,8 @@ img.profile-pic {
 	margin-top: -80px;
 	margin-left: 90%;
 }
+#auth_tok_button{
+	@media (max-width: 1270px) {
+		height: auto;
+	}
+}
