@@ -4,8 +4,6 @@ import { GlobalService } from '../../../services/global.service';
 import { InputComponent } from '../input/input.component';
 import { ChallengeService } from '../../../services/challenge.service';
 import { AuthService } from '../../../services/auth.service';
-import { ProfileComponent } from '../../profile/profile.component';
-
 
 /**
  * Component Class
@@ -15,7 +13,6 @@ import { ProfileComponent } from '../../profile/profile.component';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-
 export class ModalComponent implements OnInit {
 
   /**
@@ -87,7 +84,6 @@ export class ModalComponent implements OnInit {
    * User object
    */
   user: any;
-  urlform: any;
 
   /**
    * Old password
@@ -191,12 +187,11 @@ export class ModalComponent implements OnInit {
    * Form Validate function.
    */
   formValidate() {
-    const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
     if (this.formComponents.length > 0) {
       console.log(this.formComponents);
       if (this.title === 'Update Profile') {
         this.confirmed(this);
-        }  else {
+      } else {
         this.globalService.formValidate(this.formComponents, this.confirmed, this);
       }
     } else {
@@ -204,9 +199,9 @@ export class ModalComponent implements OnInit {
     }
   }
 
- /**
+  /**
    * Modal Confirmed.
-   *  */
+   */
   confirmed(self) {
     let PARAMS = {};
     if (self.isEditorRequired) {
@@ -247,7 +242,7 @@ export class ModalComponent implements OnInit {
       this.isDisabled = e.target.value === this.user.last_name;
     } else if (e.target.name === 'update_affiliation') {
       this.isDisabled = e.target.value === this.user.affiliation;
-    }  else if (e.target.name === 'old_password') {
+    } else if (e.target.name === 'old_password') {
       this.oldPassword = e.target.value;
     } else if (e.target.name === 'new_password1') {
       this.newPassword = e.target.value;
@@ -260,7 +255,7 @@ export class ModalComponent implements OnInit {
         this.inputErrorMessage = 'Password do not match';
       }
     }
-}
+  }
 
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';

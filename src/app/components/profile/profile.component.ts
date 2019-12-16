@@ -16,7 +16,7 @@ import { InputComponent } from '../utility/input/input.component';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit  {
+export class ProfileComponent implements OnInit {
 
   /**
    * User object
@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit  {
    * Profile completion score
    */
   pcomp: any;
+  
   /**
    * Auth token string
    */
