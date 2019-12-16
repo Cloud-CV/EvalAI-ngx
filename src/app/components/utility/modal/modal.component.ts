@@ -204,7 +204,7 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  /**
+ /**
    * Modal Confirmed.
    *  */
   confirmed(self) {
