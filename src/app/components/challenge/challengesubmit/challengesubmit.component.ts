@@ -15,6 +15,13 @@ import { EndpointsService } from '../../../services/endpoints.service';
   styleUrls: ['./challengesubmit.component.scss']
 })
 export class ChallengesubmitComponent implements OnInit {
+ /**
+  * Url error Message
+  */
+inputErrorMessage = '';
+urlfilled= true;
+urlboxchecked = false;
+fileboxchecked= false;
 
   /**
    * Is user logged in
@@ -49,7 +56,7 @@ export class ChallengesubmitComponent implements OnInit {
   /**
    * Submission input file
    */
-  inputFile = true;
+  inputFile = false;
 
   /**
    * Disable submit button
@@ -344,6 +351,7 @@ export class ChallengesubmitComponent implements OnInit {
           this.selectedPhaseSubmissions.remainingSubmissions = phaseDetails;
           this.selectedPhaseSubmissions.showSubmissionDetails = true;
           this.disableSubmit = false;
+          this.Oncheckboxclicked(null)
         } else {
           this.selectedPhaseSubmissions.showClock = true;
           this.selectedPhaseSubmissions.clockMessage = phaseDetails;
@@ -394,12 +402,15 @@ export class ChallengesubmitComponent implements OnInit {
   formSubmit(self) {
     self.submissionError = '';
     const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
-    if (submissionFile === null || submissionFile === '') {
+    const submissionUrl = self.globalService.formItemForLabel(self.components, 'submission_url').fileValue;
+    if (submissionFile === null || submissionFile === '' && this.fileboxchecked === true) {
       self.submissionError = 'Please upload file!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
       return;
+    } else if (submissionUrl === null || submissionUrl === '' && this.urlboxchecked === true) {
+      self.submissionError = 'Please Enter a Valid Url';
     }
 
     const FORM_DATA: FormData = new FormData();
@@ -409,6 +420,7 @@ export class ChallengesubmitComponent implements OnInit {
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
+    FORM_DATA.append('submission_url',self.globalService.formValueForLabel(self.components,'submission_url'));
     self.challengeService.challengeSubmission(
       self.challenge['id'],
       self.selectedPhase['id'],
@@ -419,6 +431,7 @@ export class ChallengesubmitComponent implements OnInit {
         self.globalService.setFormValueForLabel(self.components, 'method_description', '');
         self.globalService.setFormValueForLabel(self.components, 'project_url', '');
         self.globalService.setFormValueForLabel(self.components, 'publication_url', '');
+        self.globalService.setFormValueForLabel(self.components, 'submission_url', '');
       }
     );
   }
@@ -475,6 +488,46 @@ export class ChallengesubmitComponent implements OnInit {
   }
 
   validateInput(inputValue) {
-    this.inputFile = inputValue === null;
+    if (this.fileboxchecked === true) {
+      this.inputFile = inputValue === null;
+      console.log
+    } else if (this.urlboxchecked = true) {
+      this.inputErrorMessage = '';
+      const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
+      if (!regex.test(inputValue)) {
+        this.inputErrorMessage = "Please Enter a Valid Url";
+        this.inputFile = true;
+      } else {
+        this.inputErrorMessage = '';
+        this.inputFile = false;
+      }
+    }
   }
-}
+
+  Oncheckboxclicked(value: any){
+    var phasebutton = <HTMLScriptElement>document.getElementById('Submission_option_hidden');
+    var formhidden = <HTMLScriptElement>document.getElementById('form_hidden');
+    var uploadbutton= <HTMLScriptElement>document.getElementById('uploadbutton');
+    var url_field = <HTMLScriptElement>document.getElementById('url_field');
+    phasebutton.style.display = 'block';
+    if (value == 'fileUrl') {
+      formhidden.style.display = 'block';
+      url_field.style.display = 'block';
+      uploadbutton.style.display = 'none';
+      this.urlboxchecked = true;
+      this.fileboxchecked = false;
+      this.inputFile = true;
+    }
+    if (value == 'fileUpload') {
+      formhidden.style.display = 'block';
+      uploadbutton.style.display = 'block';
+      url_field.style.display = 'none';
+      this.fileboxchecked = true;
+      this.urlboxchecked = false;
+      this.inputFile = true;
+    }
+
+    
+    
+    }
+  }
