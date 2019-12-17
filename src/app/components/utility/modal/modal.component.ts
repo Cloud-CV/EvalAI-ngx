@@ -228,7 +228,7 @@ export class ModalComponent implements OnInit {
     this.globalService.hideModal();
     this.denyCallback();
   }
-  
+
   validURL(str) { // https://stackoverflow.com/a/34695026/10103199
     const a  = document.createElement('a');
     a.href = str;
