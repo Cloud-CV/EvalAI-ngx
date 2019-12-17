@@ -344,6 +344,7 @@ export class ChallengesubmitComponent implements OnInit {
           this.selectedPhaseSubmissions.remainingSubmissions = phaseDetails;
           this.selectedPhaseSubmissions.showSubmissionDetails = true;
           this.disableSubmit = false;
+          this.Oncheckboxclicked(null)
         } else {
           this.selectedPhaseSubmissions.showClock = true;
           this.selectedPhaseSubmissions.clockMessage = phaseDetails;
@@ -477,4 +478,25 @@ export class ChallengesubmitComponent implements OnInit {
   validateInput(inputValue) {
     this.inputFile = inputValue === null;
   }
-}
+
+  Oncheckboxclicked(value: any){
+    var phasebutton = <HTMLScriptElement>document.getElementById('Submission_option_hidden');
+    var formhidden = <HTMLScriptElement>document.getElementById('form_hidden');
+    var uploadbutton= <HTMLScriptElement>document.getElementById('uploadbutton');
+    var url_field = <HTMLScriptElement>document.getElementById('url_field');
+    phasebutton.style.display = 'block';
+    if (value == 'fileUrl') {
+      formhidden.style.display = 'block';
+      url_field.style.display = 'block';
+      uploadbutton.style.display = 'none';
+    }
+    if (value == 'fileUpload') {
+      formhidden.style.display = 'block';
+      uploadbutton.style.display = 'block';
+      url_field.style.display = 'none';
+    }
+
+    
+    
+    }
+  }
