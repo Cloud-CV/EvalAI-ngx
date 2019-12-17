@@ -228,12 +228,11 @@ export class ModalComponent implements OnInit {
     this.globalService.hideModal();
     this.denyCallback();
   }
-
   
-  validURL(str) { //https://stackoverflow.com/a/34695026/10103199
-    var a  = document.createElement('a');
+  validURL(str) { // https://stackoverflow.com/a/34695026/10103199
+    const a  = document.createElement('a');
     a.href = str;
-    return (a.host && a.host != window.location.host);
+    return (a.host && a.host !== window.location.host);
   }
 
    validateModalInput(e) {
