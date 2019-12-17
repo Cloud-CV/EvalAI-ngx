@@ -364,7 +364,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         SELF.apiService.deleteUrl(SELF.deleteTeamsPath + '/' + e).subscribe(
         data => {
           // Success Message in data.message
-          SELF.globalService.showToast('success', 'You removed the team!', 5);
+          SELF.globalService.showToast('success', 'You were removed from the team!', 5);
           SELF.fetchMyTeams(SELF.fetchTeamsPath);
           SELF.selectedTeam = null;
         },
@@ -375,8 +375,8 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         );
       };
       const PARAMS = {
-        title: 'Would you like to remove the team ?',
-        content: 'Note: This action will remove the team.',
+        title: 'Would you like to remove yourself ?',
+        content: 'Note: This action will remove you from the team.',
         confirm: 'Yes',
         deny: 'Cancel',
         confirmCallback: SELF.apiCall
