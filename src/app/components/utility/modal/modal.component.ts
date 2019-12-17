@@ -188,7 +188,6 @@ export class ModalComponent implements OnInit {
    */
   formValidate() {
     if (this.formComponents.length > 0) {
-      console.log(this.formComponents);
       if (this.title === 'Update Profile') {
         this.confirmed(this);
       } else {
@@ -230,32 +229,64 @@ export class ModalComponent implements OnInit {
     this.denyCallback();
   }
 
-  validateModalInput(e) {
-    this.inputErrorMessage = '';
-    if (e.target.name === 'challegenDeleteInput') {
-      this.isDisabled = e.target.value !== this.challenge.title;
-    } else if (e.target.name === 'editChallengeTitle') {
-      this.isDisabled = e.target.value === this.challenge.title;
-    } else if (e.target.name === 'update_first_name') {
-      this.isDisabled = e.target.value === this.user.first_name;
-    } else if (e.target.name === 'update_last_name') {
-      this.isDisabled = e.target.value === this.user.last_name;
-    } else if (e.target.name === 'update_affiliation') {
-      this.isDisabled = e.target.value === this.user.affiliation;
-    } else if (e.target.name === 'old_password') {
-      this.oldPassword = e.target.value;
-    } else if (e.target.name === 'new_password1') {
-      this.newPassword = e.target.value;
-      if (e.target.value === this.oldPassword) {
-        this.inputErrorMessage = 'Old password cannot be same as New Password';
-      }
-    } else if (e.target.name === 'new_password2') {
-      this.retype_newPassword = e.target.value;
-      if (e.target.value !== this.newPassword) {
-        this.inputErrorMessage = 'Password do not match';
-      }
-    }
+  
+  validURL(str) {
+    var a  = document.createElement('a');
+    a.href = str;
+    return (a.host && a.host != window.location.host);
   }
+
+   validateModalInput(e) {
+
+     this.inputErrorMessage = '';
+     if (e.target.name === 'challegenDeleteInput') {
+       this.isDisabled = e.target.value !== this.challenge.title;
+     } else if (e.target.name === 'editChallengeTitle') {
+       this.isDisabled = e.target.value === this.challenge.title;
+     } else if (e.target.name === 'update_first_name') {
+       this.isDisabled = e.target.value === this.user.first_name;
+     } else if (e.target.name === 'update_last_name') {
+       this.isDisabled = e.target.value === this.user.last_name;
+     } else if (e.target.name === 'update_affiliation') {
+       this.isDisabled = e.target.value === this.user.affiliation;
+     } else if (e.target.name === 'update_google_scholar_url') {
+       if (this.validURL(e.target.value)) {
+        this.isDisabled = e.target.value === this.user.google_scholar_url;
+       } else {
+        //  In case they want to empty the field.
+        this.isDisabled = false;
+        this.inputErrorMessage = 'Google Scholar URL is not a valid URL, be sure to include HTTP/HTTPS';
+       }
+     } else if (e.target.name === 'update_github_url') {
+      if (this.validURL(e.target.value)) {
+        this.isDisabled = e.target.value === this.user.github_url;
+       } else {
+        //  In case they want to empty the field.
+        this.isDisabled = false;
+        this.inputErrorMessage = 'GitHub URL is not a valid URL, be sure to include HTTP/HTTPS';
+       }
+     } else if (e.target.name === 'update_linkedin_url') {
+      if (this.validURL(e.target.value)) {
+        this.isDisabled = e.target.value === this.user.linkedin_url;
+       } else {
+        //  In case they want to empty the field.
+        this.isDisabled = false;
+        this.inputErrorMessage = 'LinkedIn URL is not a valid URL, be sure to include HTTP/HTTPS';
+       }
+     } else if (e.target.name === 'old_password') {
+       this.oldPassword = e.target.value;
+     } else if (e.target.name === 'new_password1') {
+       this.newPassword = e.target.value;
+       if (e.target.value === this.oldPassword) {
+         this.inputErrorMessage = 'Old password cannot be same as New Password';
+       }
+     } else if (e.target.name === 'new_password2') {
+       this.retype_newPassword = e.target.value;
+       if (e.target.value !== this.newPassword) {
+         this.inputErrorMessage = 'Password do not match';
+       }
+     }
+   }
 
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';
