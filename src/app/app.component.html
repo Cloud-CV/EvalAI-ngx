@@ -1,5 +1,5 @@
 <!-- The <router-outlet> tells the router where to display routed views. -->
-<app-header-static [isDash]="true"></app-header-static>
+<app-header-static *ngIf="authService.isAuth"></app-header-static>
 <router-outlet></router-outlet>
 <app-toast></app-toast>
 <app-loading *ngIf="isLoading"></app-loading>
@@ -7,4 +7,4 @@
 <app-modal *ngIf="modalParams['isModalVisible']" [params]="modalParams"></app-modal>
 <app-editphasemodal *ngIf="editPhaseModalParams['isEditPhaseModalVisible']" [params]="editPhaseModalParams"></app-editphasemodal>
 <app-terms-and-conditions-modal *ngIf="termsAndConditionsModalParams['isTermsAndConditionsModalVisible']" [params]="termsAndConditionsModalParams"></app-terms-and-conditions-modal>
-<app-footer [isDash]="true"></app-footer>	
+<app-footer *ngIf="authService.isAuth"></app-footer>	
