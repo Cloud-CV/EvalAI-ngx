@@ -81,8 +81,9 @@ export class AppComponent implements OnInit, OnDestroy {
         } else {
           this.footer = true;
         }
+            }
+            });
       }
-    }
   /**
    * Component when initialized. Subscribes to observables
    */
