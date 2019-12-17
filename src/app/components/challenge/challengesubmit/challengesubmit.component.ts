@@ -19,9 +19,9 @@ export class ChallengesubmitComponent implements OnInit {
   * Url error Message
   */
 inputErrorMessage = '';
-urlfilled= true;
+urlfilled = true;
 urlboxchecked = false;
-fileboxchecked= false;
+fileboxchecked = false;
 
   /**
    * Is user logged in
@@ -351,7 +351,7 @@ fileboxchecked= false;
           this.selectedPhaseSubmissions.remainingSubmissions = phaseDetails;
           this.selectedPhaseSubmissions.showSubmissionDetails = true;
           this.disableSubmit = false;
-          this.Oncheckboxclicked(null)
+          this.Oncheckboxclicked(null);
         } else {
           this.selectedPhaseSubmissions.showClock = true;
           this.selectedPhaseSubmissions.clockMessage = phaseDetails;
@@ -420,7 +420,7 @@ fileboxchecked= false;
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
-    FORM_DATA.append('submission_url',self.globalService.formValueForLabel(self.components,'submission_url'));
+    FORM_DATA.append('submission_url', self.globalService.formValueForLabel(self.components, 'submission_url'));
     self.challengeService.challengeSubmission(
       self.challenge['id'],
       self.selectedPhase['id'],
@@ -490,12 +490,11 @@ fileboxchecked= false;
   validateInput(inputValue) {
     if (this.fileboxchecked === true) {
       this.inputFile = inputValue === null;
-      console.log
     } else if (this.urlboxchecked = true) {
       this.inputErrorMessage = '';
       const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
       if (!regex.test(inputValue)) {
-        this.inputErrorMessage = "Please Enter a Valid Url";
+        this.inputErrorMessage = 'Please Enter a Valid Url';
         this.inputFile = true;
       } else {
         this.inputErrorMessage = '';
@@ -504,13 +503,13 @@ fileboxchecked= false;
     }
   }
 
-  Oncheckboxclicked(value: any){
-    var phasebutton = <HTMLScriptElement>document.getElementById('Submission_option_hidden');
-    var formhidden = <HTMLScriptElement>document.getElementById('form_hidden');
-    var uploadbutton= <HTMLScriptElement>document.getElementById('uploadbutton');
-    var url_field = <HTMLScriptElement>document.getElementById('url_field');
+  Oncheckboxclicked(value: any) {
+    const phasebutton = <HTMLScriptElement>document.getElementById('Submission_option_hidden');
+    const formhidden = <HTMLScriptElement>document.getElementById('form_hidden');
+    const uploadbutton = <HTMLScriptElement>document.getElementById('uploadbutton');
+    const url_field = <HTMLScriptElement>document.getElementById('url_field');
     phasebutton.style.display = 'block';
-    if (value == 'fileUrl') {
+    if (value === 'fileUrl') {
       formhidden.style.display = 'block';
       url_field.style.display = 'block';
       uploadbutton.style.display = 'none';
@@ -518,7 +517,7 @@ fileboxchecked= false;
       this.fileboxchecked = false;
       this.inputFile = true;
     }
-    if (value == 'fileUpload') {
+    if (value === 'fileUpload') {
       formhidden.style.display = 'block';
       uploadbutton.style.display = 'block';
       url_field.style.display = 'none';
@@ -526,8 +525,5 @@ fileboxchecked= false;
       this.urlboxchecked = false;
       this.inputFile = true;
     }
-
-    
-    
-    }
   }
+}
