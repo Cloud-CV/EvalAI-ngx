@@ -2,14 +2,11 @@
 @import './mixins.scss';
 
 .challenge-container {
-  width: calc(100vw - 223px);
-    float: right;
-    padding-top: 70px;
-    overflow-x: hidden;
-    @media only screen and (max-width: 992px) {
-      width: 100%; 
-    }
-  }
+  width: 83.5%;
+  margin: 0 auto;
+  margin-bottom:50px;
+  padding-top: 70px;
+}
 
 @include screen-medium {
   .challenge-container {
