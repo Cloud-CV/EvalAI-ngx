@@ -230,7 +230,7 @@ export class ModalComponent implements OnInit {
   }
 
   
-  validURL(str) {
+  validURL(str) { //https://stackoverflow.com/a/34695026/10103199
     var a  = document.createElement('a');
     a.href = str;
     return (a.host && a.host != window.location.host);
