@@ -24,7 +24,8 @@
           [type]="item['type']" [icon]="item['icon']" [value]="item['value']"
           #formmodal></app-input>
       </div>
-      <small>{{invalidFieldsAsText}}</small>
+      <small class="editor-validation-message">{{invalidFieldsAsText}}</small><br>
+      <small>Include HTTP/HTTPS.</small>
     </div>
     <div class="buttons">
       <ul style="margin-right: 20px;" class="inline-list pointer">

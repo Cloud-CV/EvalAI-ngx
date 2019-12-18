@@ -235,6 +235,11 @@ export class ModalComponent implements OnInit {
     this.denyCallback();
   }
 
+  validProtocol(string) {
+    const res = string.match(/^(http|https):\/\/./g);
+    return (res !== null);
+  }
+
   validURL(string) { // https://stackoverflow.com/a/49849482/10103199
     const res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
     return (res !== null);
@@ -254,40 +259,40 @@ export class ModalComponent implements OnInit {
      } else if (e.target.name === 'update_affiliation') {
        this.isDisabled = e.target.value === this.user.affiliation;
      } else if (e.target.name === 'update_google_scholar_url') {
-       if (this.validURL(e.target.value)) {
+       if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
          this.isDisabled = e.target.value === this.user.google_scholar_url;
 
          this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
-         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
+         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
        } else {
          this.isDisabled = false; // In case they want to empty the field.
 
          if (!(this.invalidFields.find(element => element === 'Google Scholar'))) { this.invalidFields.push('Google Scholar'); }
-         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
+         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
        }
      } else if (e.target.name === 'update_github_url') {
-      if (this.validURL(e.target.value)) {
+      if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.github_url;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
        } else {
         this.isDisabled = false; // In case they want to empty the field.
 
         if (!(this.invalidFields.find(element => element === 'GitHub'))) { this.invalidFields.push('GitHub'); }
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
        }
      } else if (e.target.name === 'update_linkedin_url') {
-      if (this.validURL(e.target.value)) {
+      if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.linkedin_url;
 
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
        } else {
         this.isDisabled = false; // In case they want to empty the field.
 
         if (!(this.invalidFields.find(element => element === 'LinkedIn'))) { this.invalidFields.push('LinkedIn'); }
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
        }
      } else if (e.target.name === 'old_password') {
        this.oldPassword = e.target.value;
