@@ -264,9 +264,11 @@ export class ModalComponent implements OnInit {
 
          this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
          this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
+       } else if (e.target.value === '') {
+         this.invalidFields = [];
+         this.invalidFieldsAsText = "";
+         this.isDisabled = false;
        } else {
-         this.isDisabled = false; // In case they want to empty the field.
-
          if (!(this.invalidFields.find(element => element === 'Google Scholar'))) { this.invalidFields.push('Google Scholar'); }
          this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
        }
@@ -276,9 +278,11 @@ export class ModalComponent implements OnInit {
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
+       } else if (e.target.value === '') {
+         this.invalidFields = [];
+         this.invalidFieldsAsText = "";
+         this.isDisabled = false;
        } else {
-        this.isDisabled = false; // In case they want to empty the field.
-
         if (!(this.invalidFields.find(element => element === 'GitHub'))) { this.invalidFields.push('GitHub'); }
         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
        }
