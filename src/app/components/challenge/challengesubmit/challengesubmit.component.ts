@@ -402,11 +402,22 @@ fileboxchecked = false;
   formSubmit(self) {
     self.submissionError = '';
     const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
-    if (submissionFile === null || submissionFile === '' ) {
+
+    const submissionProjectUrl = self.globalService.formValueForLabel(self.components, 'project_url');
+    const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
+    const regex = new RegExp('([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
+    if (submissionFile === null || submissionFile === '') {
+
       self.submissionError = 'Please upload file!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
+      return;
+    } else if (submissionProjectUrl !== '' && !regex.test(submissionProjectUrl)) {
+      self.submissionError = 'Please provide a valid project url!';
+      return;
+    } else if (submissionPublicationUrl !== '' && !regex.test(submissionPublicationUrl)) {
+      self.submissionError = 'Please provide a valid publication url!';
       return;
     }
 
