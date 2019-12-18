@@ -402,15 +402,12 @@ fileboxchecked = false;
   formSubmit(self) {
     self.submissionError = '';
     const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
-    const submissionUrl = self.globalService.formItemForLabel(self.components, 'submission_url').fileValue;
-    if (submissionFile === null || submissionFile === '' && this.fileboxchecked === true) {
+    if (submissionFile === null || submissionFile === '' ) {
       self.submissionError = 'Please upload file!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
       return;
-    } else if (submissionUrl === null || submissionUrl === '' && this.urlboxchecked === true) {
-      self.submissionError = 'Please Enter a Valid Url';
     }
 
     const FORM_DATA: FormData = new FormData();
