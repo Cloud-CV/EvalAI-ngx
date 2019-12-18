@@ -402,12 +402,10 @@ fileboxchecked = false;
   formSubmit(self) {
     self.submissionError = '';
     const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
-
     const submissionProjectUrl = self.globalService.formValueForLabel(self.components, 'project_url');
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
-    const regex = new RegExp('([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
-    if (submissionFile === null || submissionFile === '') {
-
+    const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
+    if (submissionFile === null || submissionFile === '' && this.fileboxchecked) {
       self.submissionError = 'Please upload file!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
@@ -496,19 +494,19 @@ fileboxchecked = false;
   }
 
   validateInput(inputValue) {
+    const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
     if (this.fileboxchecked === true) {
       this.inputFile = inputValue === null;
     } else if (this.urlboxchecked = true) {
       this.inputErrorMessage = '';
-      const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
       if (!regex.test(inputValue)) {
-        this.inputErrorMessage = 'Please Enter a Valid Url';
+        this.inputErrorMessage = 'Please Enter a valid url';
         this.inputFile = true;
       } else {
         this.inputErrorMessage = '';
         this.inputFile = false;
       }
-    }
+    } 
   }
 
   Oncheckboxclicked(value: any) {
