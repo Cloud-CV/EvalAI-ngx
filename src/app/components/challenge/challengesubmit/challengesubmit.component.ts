@@ -22,6 +22,7 @@ inputErrorMessage = '';
 urlfilled = true;
 urlboxchecked = false;
 fileboxchecked = false;
+validFileUrl = false;
 
   /**
    * Is user logged in
@@ -404,7 +405,7 @@ fileboxchecked = false;
     const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
     const submissionProjectUrl = self.globalService.formValueForLabel(self.components, 'project_url');
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
-    const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
+    const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
     if (submissionFile === null || submissionFile === '' && this.fileboxchecked) {
       self.submissionError = 'Please upload file!';
       return;
@@ -426,7 +427,9 @@ fileboxchecked = false;
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
-    FORM_DATA.append('submission_url', self.globalService.formValueForLabel(self.components, 'submission_url'));
+    if (this.validFileUrl === true) {
+      FORM_DATA.append('file_url', self.globalService.formValueForLabel(self.components, 'file_url'));
+    }
     self.challengeService.challengeSubmission(
       self.challenge['id'],
       self.selectedPhase['id'],
@@ -437,7 +440,7 @@ fileboxchecked = false;
         self.globalService.setFormValueForLabel(self.components, 'method_description', '');
         self.globalService.setFormValueForLabel(self.components, 'project_url', '');
         self.globalService.setFormValueForLabel(self.components, 'publication_url', '');
-        self.globalService.setFormValueForLabel(self.components, 'submission_url', '');
+        self.globalService.setFormValueForLabel(self.components, 'file_url', '');
       }
     );
   }
@@ -495,16 +498,21 @@ fileboxchecked = false;
 
   validateInput(inputValue) {
     const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
+    const validExtensions = ["json", "zip", "csv"];
     if (this.fileboxchecked === true) {
       this.inputFile = inputValue === null;
     } else if (this.urlboxchecked = true) {
+      const extension = inputValue.split(".").pop();
       this.inputErrorMessage = '';
-      if (!regex.test(inputValue)) {
-        this.inputErrorMessage = 'Please Enter a valid url';
-        this.inputFile = true;
-      } else {
+      if (regex.test(inputValue) && validExtensions.includes(extension)) {
         this.inputErrorMessage = '';
         this.inputFile = false;
+        this.validFileUrl = true;
+
+      } else {
+        this.inputErrorMessage = 'Please enter a valid URL which ends in json, zip or csv file extension!';
+        this.inputFile = true;
+        this.validFileUrl = false;
       }
     }
   }
