@@ -498,11 +498,11 @@ validFileUrl = false;
 
   validateInput(inputValue) {
     const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
-    const validExtensions = ["json", "zip", "csv"];
+    const validExtensions = ['json', 'zip', 'csv'];
     if (this.fileboxchecked === true) {
       this.inputFile = inputValue === null;
     } else if (this.urlboxchecked = true) {
-      const extension = inputValue.split(".").pop();
+      const extension = inputValue.split('.').pop();
       this.inputErrorMessage = '';
       if (regex.test(inputValue) && validExtensions.includes(extension)) {
         this.inputErrorMessage = '';
