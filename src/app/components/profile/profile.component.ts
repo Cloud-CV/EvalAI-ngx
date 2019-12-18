@@ -197,7 +197,7 @@ export class ProfileComponent implements OnInit {
           isRequired: false,
           label: 'linkedin_url',
           name: 'update_linkedin_url',
-          placeholder: 'Linkedin Url',
+          placeholder: 'LinkedIn Url',
           type: 'url',
            value: linkedinUrl
          }

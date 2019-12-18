@@ -36,6 +36,12 @@ export class ModalComponent implements OnInit {
   content = '';
 
   /**
+   * Invalid fields
+   */
+  invalidFields = [];
+  invalidFieldsAsText = '';
+
+  /**
    * Modal name
    */
   isButtonDisabled: boolean;
@@ -229,10 +235,9 @@ export class ModalComponent implements OnInit {
     this.denyCallback();
   }
 
-  validURL(str) { // https://stackoverflow.com/a/34695026/10103199
-    const a  = document.createElement('a');
-    a.href = str;
-    return (a.host && a.host !== window.location.host);
+  validURL(string) { // https://stackoverflow.com/a/49849482/10103199
+    const res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    return (res !== null);
   }
 
    validateModalInput(e) {
@@ -250,27 +255,39 @@ export class ModalComponent implements OnInit {
        this.isDisabled = e.target.value === this.user.affiliation;
      } else if (e.target.name === 'update_google_scholar_url') {
        if (this.validURL(e.target.value)) {
-        this.isDisabled = e.target.value === this.user.google_scholar_url;
+         this.isDisabled = e.target.value === this.user.google_scholar_url;
+
+         this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
+         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
        } else {
-        //  In case they want to empty the field.
-        this.isDisabled = false;
-        this.inputErrorMessage = 'Google Scholar URL is not a valid URL, be sure to include HTTP/HTTPS';
+         this.isDisabled = false; // In case they want to empty the field.
+
+         if (!(this.invalidFields.find(element => element === 'Google Scholar'))) { this.invalidFields.push('Google Scholar'); }
+         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
        }
      } else if (e.target.name === 'update_github_url') {
       if (this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.github_url;
+
+        this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
        } else {
-        //  In case they want to empty the field.
-        this.isDisabled = false;
-        this.inputErrorMessage = 'GitHub URL is not a valid URL, be sure to include HTTP/HTTPS';
+        this.isDisabled = false; // In case they want to empty the field.
+
+        if (!(this.invalidFields.find(element => element === 'GitHub'))) { this.invalidFields.push('GitHub'); }
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
        }
      } else if (e.target.name === 'update_linkedin_url') {
       if (this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.linkedin_url;
+
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
+        this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
        } else {
-        //  In case they want to empty the field.
-        this.isDisabled = false;
-        this.inputErrorMessage = 'LinkedIn URL is not a valid URL, be sure to include HTTP/HTTPS';
+        this.isDisabled = false; // In case they want to empty the field.
+
+        if (!(this.invalidFields.find(element => element === 'LinkedIn'))) { this.invalidFields.push('LinkedIn'); }
+        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? `${this.invalidFields.join(' and ')} are` : `${this.invalidFields.join('')} is`} not valid` : null;
        }
      } else if (e.target.name === 'old_password') {
        this.oldPassword = e.target.value;
