@@ -235,6 +235,26 @@ export class ModalComponent implements OnInit {
     this.denyCallback();
   }
 
+  convertFieldArrayIntoText(fields) {
+    let finalText = '';
+
+    if (fields.length) {
+      if (fields.length >= 1) {
+        if (fields.length > 2) {
+          finalText = `${fields.join(', ')} are not valid`;
+        } else {
+          finalText = `${fields.join(' and ')} are not valid`;
+        }
+      } else {
+        finalText = `${fields.join('')} is not valid`;
+      }
+    } else {
+      finalText = '';
+    }
+
+    this.invalidFieldsAsText = finalText;
+  }
+
   validProtocol(string) {
     const res = string.match(/^(http|https):\/\/./g);
     return (res !== null);
@@ -245,73 +265,77 @@ export class ModalComponent implements OnInit {
     return (res !== null);
   }
 
-   validateModalInput(e) {
+  validateModalInput(e) {
+    this.inputErrorMessage = '';
+    if (e.target.name === 'challegenDeleteInput') {
+      this.isDisabled = e.target.value !== this.challenge.title;
+    } else if (e.target.name === 'editChallengeTitle') {
+      this.isDisabled = e.target.value === this.challenge.title;
+    } else if (e.target.name === 'update_first_name') {
+      this.isDisabled = e.target.value === this.user.first_name;
+    } else if (e.target.name === 'update_last_name') {
+      this.isDisabled = e.target.value === this.user.last_name;
+    } else if (e.target.name === 'update_affiliation') {
+      this.isDisabled = e.target.value === this.user.affiliation;
+    } else if (e.target.name === 'update_google_scholar_url') {
+      if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
+        this.isDisabled = e.target.value === this.user.google_scholar_url;
 
-     this.inputErrorMessage = '';
-     if (e.target.name === 'challegenDeleteInput') {
-       this.isDisabled = e.target.value !== this.challenge.title;
-     } else if (e.target.name === 'editChallengeTitle') {
-       this.isDisabled = e.target.value === this.challenge.title;
-     } else if (e.target.name === 'update_first_name') {
-       this.isDisabled = e.target.value === this.user.first_name;
-     } else if (e.target.name === 'update_last_name') {
-       this.isDisabled = e.target.value === this.user.last_name;
-     } else if (e.target.name === 'update_affiliation') {
-       this.isDisabled = e.target.value === this.user.affiliation;
-     } else if (e.target.name === 'update_google_scholar_url') {
-       if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
-         this.isDisabled = e.target.value === this.user.google_scholar_url;
-
-         this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
-         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
-       } else if (e.target.value === '') {
-         this.invalidFields = [];
-         this.invalidFieldsAsText = "";
-         this.isDisabled = false;
-       } else {
-         if (!(this.invalidFields.find(element => element === 'Google Scholar'))) { this.invalidFields.push('Google Scholar'); }
-         this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
-       }
-     } else if (e.target.name === 'update_github_url') {
+        this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
+        this.convertFieldArrayIntoText(this.invalidFields);
+      } else if (e.target.value === '') {
+        this.invalidFieldsAsText = '';
+        this.isDisabled = false;
+      } else {
+        if (!(this.invalidFields.find(element => element === 'Google Scholar'))) {
+          this.invalidFields.push('Google Scholar');
+        }
+        this.convertFieldArrayIntoText(this.invalidFields);
+      }
+    } else if (e.target.name === 'update_github_url') {
       if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.github_url;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
-       } else if (e.target.value === '') {
-         this.invalidFields = [];
-         this.invalidFieldsAsText = "";
-         this.isDisabled = false;
-       } else {
-        if (!(this.invalidFields.find(element => element === 'GitHub'))) { this.invalidFields.push('GitHub'); }
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
-       }
-     } else if (e.target.name === 'update_linkedin_url') {
+        this.convertFieldArrayIntoText(this.invalidFields);
+      } else if (e.target.value === '') {
+        this.invalidFieldsAsText = '';
+        this.isDisabled = false;
+      } else {
+        if (!(this.invalidFields.find(element => element === 'GitHub'))) {
+          this.invalidFields.push('GitHub');
+        }
+        this.convertFieldArrayIntoText(this.invalidFields);
+      }
+    } else if (e.target.name === 'update_linkedin_url') {
       if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.linkedin_url;
 
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
+        this.convertFieldArrayIntoText(this.invalidFields);
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
-       } else {
-        this.isDisabled = false; // In case they want to empty the field.
-
-        if (!(this.invalidFields.find(element => element === 'LinkedIn'))) { this.invalidFields.push('LinkedIn'); }
-        this.invalidFieldsAsText = this.invalidFields.length ? `${this.invalidFields.length > 1 ? (this.invalidFields.length > 2 ? `${this.invalidFields.join(', ')} are` : `${this.invalidFields.join(' and ')} are`) : `${this.invalidFields.join('')} is`} not valid` : null;
-       }
-     } else if (e.target.name === 'old_password') {
-       this.oldPassword = e.target.value;
-     } else if (e.target.name === 'new_password1') {
-       this.newPassword = e.target.value;
-       if (e.target.value === this.oldPassword) {
-         this.inputErrorMessage = 'Old password cannot be same as New Password';
-       }
-     } else if (e.target.name === 'new_password2') {
-       this.retype_newPassword = e.target.value;
-       if (e.target.value !== this.newPassword) {
-         this.inputErrorMessage = 'Password do not match';
-       }
-     }
-   }
+      } else if (e.target.value === '') {
+        this.invalidFieldsAsText = '';
+        this.isDisabled = false;
+      } else {
+        if (!(this.invalidFields.find(element => element === 'LinkedIn'))) {
+          this.invalidFields.push('LinkedIn');
+        }
+        this.convertFieldArrayIntoText(this.invalidFields);
+      }
+    } else if (e.target.name === 'old_password') {
+      this.oldPassword = e.target.value;
+    } else if (e.target.name === 'new_password1') {
+      this.newPassword = e.target.value;
+      if (e.target.value === this.oldPassword) {
+        this.inputErrorMessage = 'Old password cannot be same as New Password';
+      }
+    } else if (e.target.name === 'new_password2') {
+      this.retype_newPassword = e.target.value;
+      if (e.target.value !== this.newPassword) {
+        this.inputErrorMessage = 'Password do not match';
+      }
+    }
+  }
 
   validateFileInput(e) {
     this.isDisabled = e.target.value === '';
