@@ -20,8 +20,8 @@ export class ChallengesubmitComponent implements OnInit {
   */
 inputErrorMessage = '';
 urlfilled = true;
-urlboxchecked: boolean = false;
-fileboxchecked: boolean = false;
+urlboxchecked = false;
+fileboxchecked = false;
 validFileUrl = false;
 
   /**
@@ -390,7 +390,7 @@ validFileUrl = false;
    */
   formValidate() {
     if (this.selectedPhaseSubmissions.remainingSubmissions['remaining_submissions_today_count']) {
-      this.globalService.formValidate(this.components, this.formSubmit, this,);
+      this.globalService.formValidate(this.components, this.formSubmit, this, );
     } else {
       this.globalService.showToast('info', 'You have exhausted today\'s submission limit');
     }
@@ -515,7 +515,6 @@ validFileUrl = false;
         this.validFileUrl = false;
       }
     }
-    
   }
 
   Oncheckboxclicked(value: any) {
