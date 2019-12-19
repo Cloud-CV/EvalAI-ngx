@@ -3,7 +3,7 @@ import {mergeMap, map, filter} from 'rxjs/operators';
 import { Component, OnInit, OnDestroy, HostListener, Inject } from '@angular/core';
 import { GlobalService } from './services/global.service';
 import { AuthService } from './services/auth.service';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, NavigationStart } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   globalEditPhaseModalSubscription: any;
   globalTermsAndConditionsModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
-
+  showNav: boolean = false;
   /**
    * Constructor.
    * @param document  Window document injection
@@ -48,8 +48,16 @@ export class AppComponent implements OnInit, OnDestroy {
   private globalService: GlobalService,
   private authService: AuthService
   ) {
+    router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        if (event['url'] === '/auth' || event['url'] === '/dashboard'){
+          this.showNav = false;
+        } else {
+          this.showNav = true;
+        }
+      }
+    });
   }
-
   /**
    * Scroll event listener.
    */
