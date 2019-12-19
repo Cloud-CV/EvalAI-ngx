@@ -50,15 +50,15 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event['url'] == '/auth' || event['url'] == '/dashboard' || event['url'] == '/analytics' || event['url'] == '/challenge-create') {
+        if (event['url'] === '/auth' || event['url'] === '/dashboard' || event['url'] === '/analytics' 
+            || event['url'] === '/challenge-create') {
           this.showNav = false;
         } else {
           this.showNav = true;
         }
       }
     });
-  }    
-  
+  }
   /**
    * Scroll event listener.
    */
