@@ -53,7 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
         if (event['url'] === '/auth/login' || event['url'] === '/dashboard' || event['url'] === '/auth/signup') {
           this.showNav = false;
         } else {
-          this.showNav = false;
+          this.showNav = true;
         }
       }
     });
