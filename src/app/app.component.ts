@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event['url'] === '/auth/login' || event['url'] === '/dashboard' || event['url'] === '/auth/signup') {
+        if (event['url'] === '/auth/login' || event['url'] === '/web/dashboard' || event['url'] === '/auth/signup') {
           this.showNav = false;
         } else {
           this.showNav = true;
