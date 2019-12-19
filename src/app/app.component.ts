@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   globalEditPhaseModalSubscription: any;
   globalTermsAndConditionsModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
+  
   /**
    * Constructor.
    * @param document  Window document injection
@@ -39,7 +40,6 @@ export class AppComponent implements OnInit, OnDestroy {
    * @param globalService  GlobalService Injection.
    * @param authService  AuthService Injection.
    */
-
   constructor(
   @Inject(DOCUMENT) private document: Document,
   public router: Router,
