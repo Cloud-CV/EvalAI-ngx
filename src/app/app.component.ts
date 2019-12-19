@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   globalEditPhaseModalSubscription: any;
   globalTermsAndConditionsModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
-  showNav: boolean = false;
+  showNav = false;
   /**
    * Constructor.
    * @param document  Window document injection
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event['url'] === '/auth' || event['url'] === '/dashboard'){
+        if (event['url'] === '/auth' || event['url'] === '/dashboard') {
           this.showNav = false;
         } else {
           this.showNav = true;
