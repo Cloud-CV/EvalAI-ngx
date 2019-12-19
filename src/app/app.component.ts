@@ -51,21 +51,17 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
   }
 
- constructor(private router: Router) {
+  constructor(private router: Router) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event['url'] == '/components/auth' || event['url'] == '/components/dashboard') {
-          this.header = false;
+        if (event['url'] == '/auth' || event['url'] == '/dashboard') {
+          this.showNav = false;
         } else {
-          this.header = true;
-        }
-        if (event['url'] == '/components/auth') {
-          this.footer = false;
-        } else {
-          this.footer = true;
+          this.showNav = true;
         }
       }
-    }
+    });
+  }
     
   
   /**
