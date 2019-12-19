@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { Router, NavigationStart } from '@angular/router';
 
 
 
