@@ -30,7 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
   globalEditPhaseModalSubscription: any;
   globalTermsAndConditionsModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
-  showNav = false;
   /**
    * Constructor.
    * @param document  Window document injection
