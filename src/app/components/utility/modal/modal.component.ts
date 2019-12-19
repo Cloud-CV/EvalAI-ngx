@@ -241,12 +241,12 @@ export class ModalComponent implements OnInit {
     if (fields.length) {
       if (fields.length >= 1) {
         if (fields.length > 2) {
-          finalText = `${fields.join(', ')} are not valid`;
+          finalText = `${fields.join(', ')} are not valid. Use HTTPS.`;
         } else {
-          finalText = `${fields.join(' and ')} are not valid`;
+          finalText = `${fields.join(' and ')} are not valid. Use HTTPS.`;
         }
       } else {
-        finalText = `${fields.join('')} is not valid`;
+        finalText = `${fields.join('')} is not valid. Use HTTPS.`;
       }
     } else {
       finalText = '';
@@ -284,8 +284,10 @@ export class ModalComponent implements OnInit {
         this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
         this.convertFieldArrayIntoText(this.invalidFields);
       } else if (e.target.value === '') {
-        this.invalidFieldsAsText = '';
         this.isDisabled = false;
+
+        this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
+        this.convertFieldArrayIntoText(this.invalidFields);
       } else {
         if (!(this.invalidFields.find(element => element === 'Google Scholar'))) {
           this.invalidFields.push('Google Scholar');
@@ -299,8 +301,10 @@ export class ModalComponent implements OnInit {
         this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
         this.convertFieldArrayIntoText(this.invalidFields);
       } else if (e.target.value === '') {
-        this.invalidFieldsAsText = '';
         this.isDisabled = false;
+
+        this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
+        this.convertFieldArrayIntoText(this.invalidFields);
       } else {
         if (!(this.invalidFields.find(element => element === 'GitHub'))) {
           this.invalidFields.push('GitHub');
@@ -314,8 +318,10 @@ export class ModalComponent implements OnInit {
         this.convertFieldArrayIntoText(this.invalidFields);
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
       } else if (e.target.value === '') {
-        this.invalidFieldsAsText = '';
         this.isDisabled = false;
+
+        this.convertFieldArrayIntoText(this.invalidFields);
+        this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
       } else {
         if (!(this.invalidFields.find(element => element === 'LinkedIn'))) {
           this.invalidFields.push('LinkedIn');
