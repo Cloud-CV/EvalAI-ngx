@@ -20,8 +20,8 @@ export class ChallengesubmitComponent implements OnInit {
   */
 inputErrorMessage = '';
 urlfilled = true;
-urlboxchecked = false;
-fileboxchecked = false;
+urlboxchecked: boolean = false;
+fileboxchecked: boolean = false;
 validFileUrl = false;
 
   /**
@@ -390,7 +390,7 @@ validFileUrl = false;
    */
   formValidate() {
     if (this.selectedPhaseSubmissions.remainingSubmissions['remaining_submissions_today_count']) {
-      this.globalService.formValidate(this.components, this.formSubmit, this);
+      this.globalService.formValidate(this.components, this.formSubmit, this,);
     } else {
       this.globalService.showToast('info', 'You have exhausted today\'s submission limit');
     }
@@ -406,7 +406,7 @@ validFileUrl = false;
     const submissionProjectUrl = self.globalService.formValueForLabel(self.components, 'project_url');
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
     const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
-    if (submissionFile === null || submissionFile === '' && this.fileboxchecked) {
+    if (submissionFile === null || submissionFile === '' && self.fileboxchecked) {
       self.submissionError = 'Please upload file!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
@@ -427,7 +427,7 @@ validFileUrl = false;
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
-    if (this.validFileUrl === true) {
+    if (self.validFileUrl === true) {
       FORM_DATA.append('file_url', self.globalService.formValueForLabel(self.components, 'file_url'));
     }
     self.challengeService.challengeSubmission(
@@ -515,6 +515,7 @@ validFileUrl = false;
         this.validFileUrl = false;
       }
     }
+    
   }
 
   Oncheckboxclicked(value: any) {
