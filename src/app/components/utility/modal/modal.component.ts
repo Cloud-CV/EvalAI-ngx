@@ -315,13 +315,13 @@ export class ModalComponent implements OnInit {
       if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.linkedin_url;
 
-        this.convertFieldArrayIntoText(this.invalidFields);
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
+        this.convertFieldArrayIntoText(this.invalidFields);
       } else if (e.target.value === '') {
         this.isDisabled = false;
 
-        this.convertFieldArrayIntoText(this.invalidFields);
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
+        this.convertFieldArrayIntoText(this.invalidFields);
       } else {
         if (!(this.invalidFields.find(element => element === 'LinkedIn'))) {
           this.invalidFields.push('LinkedIn');
