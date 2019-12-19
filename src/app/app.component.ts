@@ -30,7 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
   globalEditPhaseModalSubscription: any;
   globalTermsAndConditionsModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
-  
   /**
    * Constructor.
    * @param document  Window document injection
@@ -48,20 +47,16 @@ export class AppComponent implements OnInit, OnDestroy {
   private globalService: GlobalService,
   private authService: AuthService
   ) {
-  }
-
-  constructor(private router: Router) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event['url'] == '/auth' || event['url'] == '/dashboard') {
+        if (event['url'] == '/auth' || event['url'] == '/dashboard' || event['url'] == '/analytics' || event['url'] == '/challenge-create') {
           this.showNav = false;
         } else {
           this.showNav = true;
         }
       }
     });
-  }
-    
+  }    
   
   /**
    * Scroll event listener.
