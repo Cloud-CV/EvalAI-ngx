@@ -165,7 +165,7 @@
             <li>
               <input
                   type="radio" name="submissionOptions" class="with-gap selectPhase"
-                  id="fileUrl" (click)="onSubmissionOption = true; ShowForm = true">
+                  id="fileUrl" (click)="isSubmissionUsingUrl = true; showForm = true">
               <label for="fileUrl"></label>
               <div id="radio_button_url" class="show-member-title pointer">
                   <strong class="text-med-black">Enter file URL (for file size > 400MB) </strong>
@@ -173,24 +173,24 @@
               
               <input
                   type="radio" name="submissionOptions" class="with-gap selectPhase"
-                  id="fileUpload" (click)="onSubmissionOption = false; ShowForm = true">
+                  id="fileUpload" (click)="isSubmissionUsingUrl = false; showForm = true">
               <label for="fileUpload"></label>
               <div id="radio_button_file" class="show-member-title pointer">
                   <strong  class="text-med-black">Upload file </strong>
               </div>
             </li>
               </div>
-              <div  [hidden]="!ShowForm" class="form">
+              <div  [hidden]="!showForm" class="form">
               <div class="row row-lr-margin">
                 <div class="col-md-10 col-sm-10 col-lr-pad
                   submit-upload-file">
-                  <div [hidden]="onSubmissionOption">
+                  <div [hidden]="isSubmissionUsingUrl">
                     <app-input (change)="validateInput($event.target.value)"
                     [label]="'input_file'" [accept]="'.json, .zip, .txt, .tsv, .gz'"
                     [placeholder]="''" [type]="'file'" [value]="''"
                     #formsubmit></app-input>
                   </div>
-                  <div [hidden]="!onSubmissionOption">
+                  <div [hidden]="!isSubmissionUsingUrl">
                     <app-input (input)="validateInput($event.target.value)" 
                     [label]="'file_url'" [placeholder]="'Submission file URL'"
                     [type]="'URL'" [icon]="''" [value]="''" [message]="inputErrorMessage"
