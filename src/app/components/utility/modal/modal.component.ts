@@ -241,12 +241,12 @@ export class ModalComponent implements OnInit {
     if (fields.length) {
       if (fields.length >= 1) {
         if (fields.length > 2) {
-          finalText = `${fields.join(', ')} are not valid. Use HTTPS.`;
+          finalText = `${fields.join(', ')} are not valid. \n\n\nBe sure to include HTTP/HTTPS.`;
         } else {
-          finalText = `${fields.join(' and ')} are not valid. Use HTTPS.`;
+          finalText = `${fields.join(' and ')} are not valid. \n\n\nBe sure to include HTTP/HTTPS.`;
         }
       } else {
-        finalText = `${fields.join('')} is not valid. Use HTTPS.`;
+        finalText = `${fields.join('')} is not valid. \n\n\nBe sure to include HTTP/HTTPS.`;
       }
     } else {
       finalText = '';
@@ -255,13 +255,8 @@ export class ModalComponent implements OnInit {
     this.invalidFieldsAsText = finalText;
   }
 
-  validProtocol(string) {
-    const res = string.match(/^(http|https):\/\/./g);
-    return (res !== null);
-  }
-
-  validURL(string) { // https://stackoverflow.com/a/49849482/10103199
-    const res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+  validURL(string) {
+    const res = string.match(/^((http|https):\/\/.)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
     return (res !== null);
   }
 
@@ -278,7 +273,7 @@ export class ModalComponent implements OnInit {
     } else if (e.target.name === 'update_affiliation') {
       this.isDisabled = e.target.value === this.user.affiliation;
     } else if (e.target.name === 'update_google_scholar_url') {
-      if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
+      if (this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.google_scholar_url;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
@@ -295,7 +290,7 @@ export class ModalComponent implements OnInit {
         this.convertFieldArrayIntoText(this.invalidFields);
       }
     } else if (e.target.name === 'update_github_url') {
-      if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
+      if (this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.github_url;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
@@ -312,7 +307,7 @@ export class ModalComponent implements OnInit {
         this.convertFieldArrayIntoText(this.invalidFields);
       }
     } else if (e.target.name === 'update_linkedin_url') {
-      if (this.validProtocol(e.target.value) && this.validURL(e.target.value)) {
+      if (this.validURL(e.target.value)) {
         this.isDisabled = e.target.value === this.user.linkedin_url;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
