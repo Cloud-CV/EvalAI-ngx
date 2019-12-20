@@ -22,6 +22,7 @@ inputErrorMessage = '';
 urlboxchecked = false;
 fileboxchecked = false;
 validFileUrl = false;
+onSubmissionOption: boolean;
 
   /**
    * Is user logged in
@@ -56,7 +57,7 @@ validFileUrl = false;
   /**
    * Submission input file
    */
-  inputFile = false;
+  inputFile = true;
 
   /**
    * Disable submit button
@@ -351,7 +352,6 @@ validFileUrl = false;
           this.selectedPhaseSubmissions.remainingSubmissions = phaseDetails;
           this.selectedPhaseSubmissions.showSubmissionDetails = true;
           this.disableSubmit = false;
-          this.onSubmissionOptionChange(null);
         } else {
           this.selectedPhaseSubmissions.showClock = true;
           this.selectedPhaseSubmissions.clockMessage = phaseDetails;
@@ -426,7 +426,7 @@ validFileUrl = false;
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
-    if (self.validFileUrl === true) {
+    if (self.validFileUrl === true && self.urlboxchecked) {
       FORM_DATA.append('file_url', self.globalService.formValueForLabel(self.components, 'file_url'));
     }
     self.challengeService.challengeSubmission(
@@ -500,9 +500,9 @@ validFileUrl = false;
   validateInput(inputValue) {
     const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
     const validExtensions = ['json', 'zip', 'csv'];
-    if (this.fileboxchecked === true) {
+    if (this.onSubmissionOption = false) {
       this.inputFile = inputValue === null;
-    } else if (this.urlboxchecked = true) {
+    } else if (this.onSubmissionOption = true) {
       const extension = inputValue.split('.').pop();
       this.inputErrorMessage = '';
       if (regex.test(inputValue) && validExtensions.includes(extension)) {
@@ -515,30 +515,6 @@ validFileUrl = false;
         this.inputFile = true;
         this.validFileUrl = false;
       }
-    }
-  }
-
-  onSubmissionOptionChange(value: any) {
-    const phasebutton = <HTMLScriptElement>document.getElementById('Submission_option_hidden');
-    const formhidden = <HTMLScriptElement>document.getElementById('form_hidden');
-    const uploadbutton = <HTMLScriptElement>document.getElementById('uploadbutton');
-    const url_field = <HTMLScriptElement>document.getElementById('url_field');
-    phasebutton.style.display = 'block';
-    if (value === 'fileUrl') {
-      formhidden.style.display = 'block';
-      url_field.style.display = 'block';
-      uploadbutton.style.display = 'none';
-      this.urlboxchecked = true;
-      this.fileboxchecked = false;
-      this.inputFile = true;
-    }
-    if (value === 'fileUpload') {
-      formhidden.style.display = 'block';
-      uploadbutton.style.display = 'block';
-      url_field.style.display = 'none';
-      this.fileboxchecked = true;
-      this.urlboxchecked = false;
-      this.inputFile = true;
     }
   }
 }
