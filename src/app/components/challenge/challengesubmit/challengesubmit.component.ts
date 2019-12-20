@@ -19,7 +19,6 @@ export class ChallengesubmitComponent implements OnInit {
   * Url error Message
   */
 inputErrorMessage = '';
-urlfilled = true;
 urlboxchecked = false;
 fileboxchecked = false;
 validFileUrl = false;
@@ -352,7 +351,7 @@ validFileUrl = false;
           this.selectedPhaseSubmissions.remainingSubmissions = phaseDetails;
           this.selectedPhaseSubmissions.showSubmissionDetails = true;
           this.disableSubmit = false;
-          this.Oncheckboxclicked(null);
+          this.onSubmissionOptionChange(null);
         } else {
           this.selectedPhaseSubmissions.showClock = true;
           this.selectedPhaseSubmissions.clockMessage = phaseDetails;
@@ -440,7 +439,9 @@ validFileUrl = false;
         self.globalService.setFormValueForLabel(self.components, 'method_description', '');
         self.globalService.setFormValueForLabel(self.components, 'project_url', '');
         self.globalService.setFormValueForLabel(self.components, 'publication_url', '');
+        if (self.validFileUrl === true) {
         self.globalService.setFormValueForLabel(self.components, 'file_url', '');
+        }
       }
     );
   }
@@ -517,7 +518,7 @@ validFileUrl = false;
     }
   }
 
-  Oncheckboxclicked(value: any) {
+  onSubmissionOptionChange(value: any) {
     const phasebutton = <HTMLScriptElement>document.getElementById('Submission_option_hidden');
     const formhidden = <HTMLScriptElement>document.getElementById('form_hidden');
     const uploadbutton = <HTMLScriptElement>document.getElementById('uploadbutton');

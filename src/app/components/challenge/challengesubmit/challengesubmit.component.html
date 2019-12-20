@@ -165,7 +165,7 @@
             <li>
               <input
                   type="radio" name="submissionOptions" class="with-gap selectPhase"
-                  id="fileUrl"  (click)="Oncheckboxclicked('fileUrl')">
+                  id="fileUrl" (click)="onSubmissionOptionChange('fileUrl')">
               <label for="fileUrl"></label>
               <div id="radio_button_url" class="show-member-title pointer">
                   <strong class="text-med-black">Enter file URL (for file size > 400MB) </strong>
@@ -173,7 +173,7 @@
               
               <input
                   type="radio" name="submissionOptions" class="with-gap selectPhase"
-                  id="fileUpload" (click)="Oncheckboxclicked('fileUpload')">
+                  id="fileUpload" (click)="onSubmissionOptionChange('fileUpload')">
               <label for="fileUpload"></label>
               <div id="radio_button_file" class="show-member-title pointer">
                   <strong  class="text-med-black">Upload file </strong>
@@ -185,52 +185,52 @@
                 <div class="col-md-10 col-sm-10 col-lr-pad
                   submit-upload-file">
                   <div id="uploadbutton" >
-                  <app-input (change)="validateInput($event.target.value)"
+                    <app-input (change)="validateInput($event.target.value)"
                     [label]="'input_file'" [accept]="'.json, .zip, .txt, .tsv, .gz'"
                     [placeholder]="''" [type]="'file'" [value]="''"
                     #formsubmit></app-input>
                   </div>
                   <div id="url_field">
-                  <app-input (input)="validateInput($event.target.value)" 
-                    [label]="'submission_url'" [placeholder]="'Submission file URL'"
+                    <app-input (input)="validateInput($event.target.value)" 
+                    [label]="'file_url'" [placeholder]="'Submission file URL'"
                     [type]="'URL'" [icon]="''" [value]="''" [message]="inputErrorMessage"
                     #formsubmit></app-input>
                   </div>
                 </div>
               </div>
-
+              
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
                   <div class="input-field align-left">
                     <app-input [label]="'method_name'"
-                      [placeholder]="'Method name (Optional)'"
-                      [type]="'text'" [icon]="''" [value]="''"
-                      #formsubmit></app-input>
+                    [placeholder]="'Method name (Optional)'"
+                    [type]="'text'" [icon]="''" [value]="''"
+                    #formsubmit></app-input>
                   </div>
                 </div>
               </div>
-
+              
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
                   <app-input [label]="'method_description'"
-                    [type]="'textarea'"
-                    [placeholder]="'Method description (Optional)'"
-                    #formsubmit></app-input><br>
+                  [type]="'textarea'"
+                  [placeholder]="'Method description (Optional)'"
+                  #formsubmit></app-input><br>
                 </div>
               </div>
 
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
-                  <app-input  [label]="'project_url'" [type]="'text'"
-                    [placeholder]="'Project URL (Optional)'" #formsubmit></app-input>
+                  <app-input [label]="'project_url'" [type]="'text'"
+                  [placeholder]="'Project URL (Optional)'" #formsubmit></app-input>
                 </div>
               </div>
 
               <div class="row row-lr-margin">
                 <div class="align-left col-sm-10 col-lr-pad">
                   <app-input [label]="'publication_url'" [type]="'text'"
-                    [placeholder]="'Publication URL (Optional)'"
-                    #formsubmit></app-input>
+                  [placeholder]="'Publication URL (Optional)'"
+                  #formsubmit></app-input>
                 </div>
               </div>
 
@@ -243,10 +243,9 @@
                   <div class="col-sm-12 col-md-12 col-lr-pad">
                     <div class="align-left">
                       <button class="btn btn-waves-effect grad-rec-btn
-                        waves-dark ev-btn-dark grad-btn-dark fw-light
-                        fs-14"
-                        [disabled]="disableSubmit || inputFile"
-                        (click)="formValidate()">Submit</button>
+                      waves-dark ev-btn-dark grad-btn-dark fw-light fs-14"
+                      [disabled]="disableSubmit || inputFile"
+                      (click)="formValidate()">Submit</button>
                     </div>
                     <br><br>
                   </div>
@@ -254,83 +253,83 @@
               </div>
             </div>
           </div>
-          </ul>
-        </div>
+        </ul>
       </div>
-
-      <div *ngIf="selectedPhaseSubmissions.maxExceeded" class="col-md-5 col-sm-4 col-xs-12">
-        <div class="ev-submission-card-body exist-team-card
-          ev-remaining-submission remaining-submission-clock">
-          <div class="row row-lr-margin">
-            <span class="color-black">
-              <strong class="fw-semibold fs-15 red-text">
-                {{ selectedPhaseSubmissions.maxExceededMessage }}
-              </strong>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="selectedPhaseSubmissions.showSubmissionDetails"
-        class="col-md-5 col-sm-5 col-xs-12">
-        <div class="ev-card-body exist-team-card ev-remaining-submission
-          remaining-submission-clock">
-          <div class="row row-lr-margin">
-            <span class="color-black">
-              <strong class="fw-regular fs-15">
-                Today's remaining Submissions:
-              </strong>
-            </span>
-            <span class="color-black">
-              <strong class="fw-light fs-15">
-                {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_today_count}}
-              </strong>
-            </span>
-          </div>
-          <div class="row row-lr-margin">
-            <span class="color-black">
-              <strong class="fw-regular fs-15">
-                Monthly remaining submissions:
-              </strong>
-            </span>
-            <span class="color-black">
-              <strong class="fw-light fs-15">
-                {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_this_month_count}}
-              </strong>
-            </span>
-          </div>
-          <div class="row row-lr-margin">
-            <span class="color-black">
-              <strong class="fw-regular fs-15">
-                Total remaining submissions:
-              </strong>
-            </span>
-            <span class="color-black">
-              <strong class="fw-light fs-15">
-                {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_count}}
-              </strong>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="selectedPhaseSubmissions.showClock" class="col-md-5 col-sm-12 col-xs-12">
-        <div class="ev-card-body exist-team-card ev-remaining-submission
-          remaining-submission-clock">
-          <div class="row row-lr-margin">
-            <strong class="fw-regular text-med-black">
-              Message:
-            </strong> {{selectedPhaseSubmissions.clockMessage.message}}
-          </div>
-          <div class="fw-regular">
-            Next set of submissions will be available after:
-          </div>
-          <div>
-            <span *ngIf="days!=0">{{days}} Days, </span>{{hours}}
-            hours : {{minutes}} minutes : {{seconds}} seconds
-          </div>
-        </div>
+    </div>
+    
+    <div *ngIf="selectedPhaseSubmissions.maxExceeded" class="col-md-5 col-sm-4 col-xs-12">
+      <div class="ev-submission-card-body exist-team-card
+      ev-remaining-submission remaining-submission-clock">
+      <div class="row row-lr-margin">
+        <span class="color-black">
+          <strong class="fw-semibold fs-15 red-text">
+            {{ selectedPhaseSubmissions.maxExceededMessage }}
+          </strong>
+        </span>
       </div>
     </div>
   </div>
+  
+  <div *ngIf="selectedPhaseSubmissions.showSubmissionDetails"
+  class="col-md-5 col-sm-5 col-xs-12">
+  <div class="ev-card-body exist-team-card ev-remaining-submission
+  remaining-submission-clock">
+  <div class="row row-lr-margin">
+    <span class="color-black">
+      <strong class="fw-regular fs-15">
+        Today's remaining Submissions:
+      </strong>
+    </span>
+    <span class="color-black">
+      <strong class="fw-light fs-15">
+        {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_today_count}}
+      </strong>
+    </span>
+  </div>
+  <div class="row row-lr-margin">
+    <span class="color-black">
+      <strong class="fw-regular fs-15">
+        Monthly remaining submissions:
+      </strong>
+    </span>
+    <span class="color-black">
+      <strong class="fw-light fs-15">
+        {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_this_month_count}}
+      </strong>
+    </span>
+  </div>
+  <div class="row row-lr-margin">
+    <span class="color-black">
+      <strong class="fw-regular fs-15">
+        Total remaining submissions:
+      </strong>
+    </span>
+    <span class="color-black">
+      <strong class="fw-light fs-15">
+        {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_count}}
+      </strong>
+    </span>
+  </div>
+</div>
+</div>
+
+<div *ngIf="selectedPhaseSubmissions.showClock" class="col-md-5 col-sm-12 col-xs-12">
+  <div class="ev-card-body exist-team-card ev-remaining-submission
+  remaining-submission-clock">
+  <div class="row row-lr-margin">
+    <strong class="fw-regular text-med-black">
+      Message:
+    </strong> {{selectedPhaseSubmissions.clockMessage.message}}
+  </div>
+  <div class="fw-regular">
+    Next set of submissions will be available after:
+  </div>
+  <div>
+    <span *ngIf="days!=0">{{days}} Days, </span>{{hours}}
+    hours : {{minutes}} minutes : {{seconds}} seconds
+  </div>
+</div>
+</div>
+</div>
+</div>
 </div>
