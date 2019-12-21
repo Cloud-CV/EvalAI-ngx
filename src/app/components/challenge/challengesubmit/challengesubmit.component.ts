@@ -19,10 +19,8 @@ export class ChallengesubmitComponent implements OnInit {
   * Url error Message
   */
 inputErrorMessage = '';
-urlboxchecked = false;
-fileboxchecked = false;
 validFileUrl = false;
-onSubmissionOption: boolean;
+isSubmissionUsingUrl: boolean;
 
   /**
    * Is user logged in
@@ -404,9 +402,15 @@ onSubmissionOption: boolean;
     const submissionFile = self.globalService.formItemForLabel(self.components, 'input_file').fileValue;
     const submissionProjectUrl = self.globalService.formValueForLabel(self.components, 'project_url');
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
+    const submissionFileUrl = self.globalService.formItemForLabel(self.components, 'file_url');
     const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
-    if (submissionFile === null || submissionFile === '' && self.fileboxchecked) {
+    if (submissionFile === null || submissionFile === '' && !self.isSubmissionUsingUrl) {
       self.submissionError = 'Please upload file!';
+      self.inputFile = true;
+      return;
+    } else if (submissionFileUrl !== '' && !self.validFileUrl && self.isSubmissionUsingUrl) {
+      self.submissionError = 'Please enter a valid URL which ends in json, zip or csv file extension!';
+      self.inputFile = true;
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
@@ -426,7 +430,7 @@ onSubmissionOption: boolean;
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
-    if (self.validFileUrl === true && self.urlboxchecked) {
+    if (self.validFileUrl === true && self.isSubmissionUsingUrl) {
       FORM_DATA.append('file_url', self.globalService.formValueForLabel(self.components, 'file_url'));
     }
     self.challengeService.challengeSubmission(
@@ -444,6 +448,7 @@ onSubmissionOption: boolean;
         }
       }
     );
+    self.inputFile = true;
   }
 
   copyTextToClipboard(ref: HTMLElement) {
@@ -498,23 +503,22 @@ onSubmissionOption: boolean;
   }
 
   validateInput(inputValue) {
-    const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/);
+    const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
     const validExtensions = ['json', 'zip', 'csv'];
-    if (this.onSubmissionOption = false) {
+    if (this.isSubmissionUsingUrl === false) {
       this.inputFile = inputValue === null;
-    } else if (this.onSubmissionOption = true) {
+    } else if (this.isSubmissionUsingUrl === true) {
       const extension = inputValue.split('.').pop();
-      this.inputErrorMessage = '';
+      console.log("5")
       if (regex.test(inputValue) && validExtensions.includes(extension)) {
         this.inputErrorMessage = '';
         this.inputFile = false;
         this.validFileUrl = true;
-
       } else {
         this.inputErrorMessage = 'Please enter a valid URL which ends in json, zip or csv file extension!';
         this.inputFile = true;
         this.validFileUrl = false;
       }
-    }
+    } 
   }
 }
