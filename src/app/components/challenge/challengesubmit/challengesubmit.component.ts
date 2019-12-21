@@ -53,16 +53,6 @@ isSubmissionUsingUrl: boolean;
   isActive: any;
 
   /**
-   * Submission input file
-   */
-  inputFile = true;
-
-  /**
-   * Disable submit button
-   */
-  disableSubmit = true;
-
-  /**
    * Submission error
    */
   submissionError = '';
@@ -345,15 +335,12 @@ isSubmissionUsingUrl: boolean;
         if (phaseDetails.submission_limit_exceeded) {
           this.selectedPhaseSubmissions.maxExceeded = true;
           this.selectedPhaseSubmissions.maxExceededMessage = phaseDetails.message;
-          this.disableSubmit = true;
         } else if (phaseDetails.remaining_submissions_today_count > 0) {
           this.selectedPhaseSubmissions.remainingSubmissions = phaseDetails;
           this.selectedPhaseSubmissions.showSubmissionDetails = true;
-          this.disableSubmit = false;
         } else {
           this.selectedPhaseSubmissions.showClock = true;
           this.selectedPhaseSubmissions.clockMessage = phaseDetails;
-          this.disableSubmit = true;
           SELF.timer = setInterval(function () {
             SELF.countDownTimer(SELF, eachPhase);
           }, 1000);
@@ -404,13 +391,12 @@ isSubmissionUsingUrl: boolean;
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
     const submissionFileUrl = self.globalService.formItemForLabel(self.components, 'file_url');
     const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
-    if (submissionFile === null || submissionFile === '' && !self.isSubmissionUsingUrl) {
+    if (self.isSubmissionUsingUrl === false && submissionFile === null || submissionFile === '') {
       self.submissionError = 'Please upload file!';
-      self.inputFile = true;
+      console.log(self.isSubmissionUsingUrl);
       return;
-    } else if (submissionFileUrl !== '' && !self.validFileUrl && self.isSubmissionUsingUrl) {
+    } else if (self.isSubmissionUsingUrl && submissionFileUrl !== '' && !self.validFileUrl) {
       self.submissionError = 'Please enter a valid URL which ends in json, zip or csv file extension!';
-      self.inputFile = true;
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
@@ -448,7 +434,6 @@ isSubmissionUsingUrl: boolean;
         }
       }
     );
-    self.inputFile = true;
   }
 
   copyTextToClipboard(ref: HTMLElement) {
@@ -505,20 +490,15 @@ isSubmissionUsingUrl: boolean;
   validateInput(inputValue) {
     const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
     const validExtensions = ['json', 'zip', 'csv'];
-    if (this.isSubmissionUsingUrl === false) {
-      this.inputFile = inputValue === null;
-    } else if (this.isSubmissionUsingUrl === true) {
+    if (this.isSubmissionUsingUrl === true) {
       const extension = inputValue.split('.').pop();
-      console.log("5")
       if (regex.test(inputValue) && validExtensions.includes(extension)) {
         this.inputErrorMessage = '';
-        this.inputFile = false;
         this.validFileUrl = true;
       } else {
         this.inputErrorMessage = 'Please enter a valid URL which ends in json, zip or csv file extension!';
-        this.inputFile = true;
         this.validFileUrl = false;
       }
-    } 
+    }
   }
 }
