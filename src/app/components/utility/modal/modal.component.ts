@@ -274,7 +274,7 @@ export class ModalComponent implements OnInit {
       this.isDisabled = e.target.value === this.user.affiliation;
     } else if (e.target.name === 'update_google_scholar_url') {
       if (this.validURL(e.target.value) || e.target.value === '') {
-        this.isDisabled = (e.target.value === '' ? false : e.target.value === this.user.google_scholar_url);
+        this.isDisabled = false;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
         this.convertFieldArrayIntoText(this.invalidFields);
@@ -286,7 +286,7 @@ export class ModalComponent implements OnInit {
       }
     } else if (e.target.name === 'update_github_url') {
       if (this.validURL(e.target.value) || e.target.value === '') {
-        this.isDisabled = (e.target.value === '' ? false : e.target.value === this.user.github_url);
+        this.isDisabled = false;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
         this.convertFieldArrayIntoText(this.invalidFields);
@@ -298,7 +298,7 @@ export class ModalComponent implements OnInit {
       }
     } else if (e.target.name === 'update_linkedin_url') {
       if (this.validURL(e.target.value) || e.target.value === '') {
-        this.isDisabled = (e.target.value === '' ? false : e.target.value === this.user.linkedin_url);
+        this.isDisabled = false;
 
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
         this.convertFieldArrayIntoText(this.invalidFields);
