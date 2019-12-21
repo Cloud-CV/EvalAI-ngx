@@ -279,10 +279,12 @@ export class ModalComponent implements OnInit {
         this.invalidFields = this.invalidFields.filter(element => element !== 'Google Scholar');
         this.convertFieldArrayIntoText(this.invalidFields);
       } else {
+
         if (!(this.invalidFields.find(element => element === 'Google Scholar'))) {
           this.invalidFields.push('Google Scholar');
         }
         this.convertFieldArrayIntoText(this.invalidFields);
+        this.isDisabled = true;
       }
     } else if (e.target.name === 'update_github_url') {
       if (this.validURL(e.target.value) || e.target.value === '') {
@@ -291,10 +293,12 @@ export class ModalComponent implements OnInit {
         this.invalidFields = this.invalidFields.filter(element => element !== 'GitHub');
         this.convertFieldArrayIntoText(this.invalidFields);
       } else {
+
         if (!(this.invalidFields.find(element => element === 'GitHub'))) {
           this.invalidFields.push('GitHub');
         }
         this.convertFieldArrayIntoText(this.invalidFields);
+        this.isDisabled = true;
       }
     } else if (e.target.name === 'update_linkedin_url') {
       if (this.validURL(e.target.value) || e.target.value === '') {
@@ -303,10 +307,12 @@ export class ModalComponent implements OnInit {
         this.invalidFields = this.invalidFields.filter(element => element !== 'LinkedIn');
         this.convertFieldArrayIntoText(this.invalidFields);
       } else {
+
         if (!(this.invalidFields.find(element => element === 'LinkedIn'))) {
           this.invalidFields.push('LinkedIn');
         }
         this.convertFieldArrayIntoText(this.invalidFields);
+        this.isDisabled = true;
       }
     } else if (e.target.name === 'old_password') {
       this.oldPassword = e.target.value;
