@@ -374,7 +374,7 @@ isSubmissionUsingUrl: any;
    */
   formValidate() {
     if (this.selectedPhaseSubmissions.remainingSubmissions['remaining_submissions_today_count']) {
-      this.globalService.formValidate(this.components, this.formSubmit, this,);
+      this.globalService.formValidate(this.components, this.formSubmit, this, );
     } else {
       this.globalService.showToast('info', 'You have exhausted today\'s submission limit');
     }
@@ -411,7 +411,7 @@ isSubmissionUsingUrl: any;
     const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');
     if (!self.isSubmissionUsingUrl) {
-      FORM_DATA.append('input_file', self.globalService.formItemForLabel(self.components, 'input_file').fileSelected); 
+      FORM_DATA.append('input_file', self.globalService.formItemForLabel(self.components, 'input_file').fileSelected);
     }
     FORM_DATA.append('method_name', self.globalService.formValueForLabel(self.components, 'method_name'));
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
@@ -426,7 +426,7 @@ isSubmissionUsingUrl: any;
       FORM_DATA,
       () => {
         if (!self.isSubmissionUsingUrl) {
-          self.globalService.setFormValueForLabel(self.components, 'input_file', null); 
+          self.globalService.setFormValueForLabel(self.components, 'input_file', null);
         }
         self.globalService.setFormValueForLabel(self.components, 'method_name', '');
         self.globalService.setFormValueForLabel(self.components, 'method_description', '');
