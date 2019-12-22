@@ -20,7 +20,7 @@ export class ChallengesubmitComponent implements OnInit {
   */
 inputErrorMessage = '';
 validFileUrl = false;
-isSubmissionUsingUrl: boolean;
+isSubmissionUsingUrl: any;
 
   /**
    * Is user logged in
@@ -391,11 +391,10 @@ isSubmissionUsingUrl: boolean;
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
     const submissionFileUrl = self.globalService.formItemForLabel(self.components, 'file_url');
     const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
-    if (self.isSubmissionUsingUrl === false && submissionFile === null || submissionFile === '') {
+    if (self.isSubmissionUsingUrl === false && (submissionFile === null || submissionFile === '')) {
       self.submissionError = 'Please upload file!';
-      console.log(self.isSubmissionUsingUrl);
       return;
-    } else if (self.isSubmissionUsingUrl && submissionFileUrl !== '' && !self.validFileUrl) {
+    } else if (self.isSubmissionUsingUrl === true && (submissionFileUrl !== '' && !self.validFileUrl)) {
       self.submissionError = 'Please enter a valid URL which ends in json, zip or csv file extension!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
