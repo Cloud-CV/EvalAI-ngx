@@ -374,7 +374,7 @@ isSubmissionUsingUrl: any;
    */
   formValidate() {
     if (this.selectedPhaseSubmissions.remainingSubmissions['remaining_submissions_today_count']) {
-      this.globalService.formValidate(this.components, this.formSubmit, this, );
+      this.globalService.formValidate(this.components, this.formSubmit, this,);
     } else {
       this.globalService.showToast('info', 'You have exhausted today\'s submission limit');
     }
@@ -391,11 +391,11 @@ isSubmissionUsingUrl: any;
     const submissionPublicationUrl = self.globalService.formValueForLabel(self.components, 'publication_url');
     const submissionFileUrl = self.globalService.formItemForLabel(self.components, 'file_url');
     const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
-    if (self.isSubmissionUsingUrl === false && (submissionFile === null || submissionFile === '')) {
+    if (!self.isSubmissionUsingUrl && (submissionFile === null || submissionFile === '')) {
       self.submissionError = 'Please upload file!';
       return;
-    } else if (self.isSubmissionUsingUrl === true && (submissionFileUrl !== '' && !self.validFileUrl)) {
-      self.submissionError = 'Please enter a valid URL which ends in json, zip or csv file extension!';
+    } else if (self.isSubmissionUsingUrl && (submissionFileUrl !== '' && !self.validFileUrl)) {
+      self.submissionError = 'Please enter a valid URL!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
@@ -410,7 +410,9 @@ isSubmissionUsingUrl: any;
 
     const FORM_DATA: FormData = new FormData();
     FORM_DATA.append('status', 'submitting');
-    FORM_DATA.append('input_file', self.globalService.formItemForLabel(self.components, 'input_file').fileSelected);
+    if (!self.isSubmissionUsingUrl) {
+      FORM_DATA.append('input_file', self.globalService.formItemForLabel(self.components, 'input_file').fileSelected); 
+    }
     FORM_DATA.append('method_name', self.globalService.formValueForLabel(self.components, 'method_name'));
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
@@ -423,7 +425,9 @@ isSubmissionUsingUrl: any;
       self.selectedPhase['id'],
       FORM_DATA,
       () => {
-        self.globalService.setFormValueForLabel(self.components, 'input_file', null);
+        if (!self.isSubmissionUsingUrl) {
+          self.globalService.setFormValueForLabel(self.components, 'input_file', null); 
+        }
         self.globalService.setFormValueForLabel(self.components, 'method_name', '');
         self.globalService.setFormValueForLabel(self.components, 'method_description', '');
         self.globalService.setFormValueForLabel(self.components, 'project_url', '');
@@ -495,7 +499,7 @@ isSubmissionUsingUrl: any;
         this.inputErrorMessage = '';
         this.validFileUrl = true;
       } else {
-        this.inputErrorMessage = 'Please enter a valid URL which ends in json, zip or csv file extension!';
+        this.inputErrorMessage = 'Please enter a valid URL!';
         this.validFileUrl = false;
       }
     }
