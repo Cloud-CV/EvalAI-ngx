@@ -237,7 +237,6 @@ export class ModalComponent implements OnInit {
 
   convertFieldArrayIntoText(fields) {
     let finalText = '';
-
     if (fields.length) {
       if (fields.length > 1) {
         finalText = `${fields.join(', ')} are not valid. \n\n\nBe sure to include HTTP/HTTPS.`;
@@ -247,7 +246,6 @@ export class ModalComponent implements OnInit {
     } else {
       finalText = '';
     }
-
     this.invalidFieldsAsText = finalText;
   }
 
