@@ -374,7 +374,7 @@ isSubmissionUsingUrl: any;
    */
   formValidate() {
     if (this.selectedPhaseSubmissions.remainingSubmissions['remaining_submissions_today_count']) {
-      this.globalService.formValidate(this.components, this.formSubmit, this, );
+      this.globalService.formValidate(this.components, this.formSubmit, this);
     } else {
       this.globalService.showToast('info', 'You have exhausted today\'s submission limit');
     }
@@ -401,7 +401,7 @@ isSubmissionUsingUrl: any;
       self.submissionError = 'Please select phase!';
       return;
     } else if (submissionProjectUrl !== '' && !regex.test(submissionProjectUrl)) {
-      self.submissionError = 'Please provide a valid project url!';
+      self.submissionError = 'Please enter a valid Submission URL!';
       return;
     } else if (submissionPublicationUrl !== '' && !regex.test(submissionPublicationUrl)) {
       self.submissionError = 'Please provide a valid publication url!';
@@ -412,14 +412,13 @@ isSubmissionUsingUrl: any;
     FORM_DATA.append('status', 'submitting');
     if (!self.isSubmissionUsingUrl) {
       FORM_DATA.append('input_file', self.globalService.formItemForLabel(self.components, 'input_file').fileSelected);
+    } else if (self.validFileUrl && self.isSubmissionUsingUrl) {
+      FORM_DATA.append('file_url', self.globalService.formValueForLabel(self.components, 'file_url'));
     }
     FORM_DATA.append('method_name', self.globalService.formValueForLabel(self.components, 'method_name'));
     FORM_DATA.append('method_description', self.globalService.formValueForLabel(self.components, 'method_description'));
     FORM_DATA.append('project_url', self.globalService.formValueForLabel(self.components, 'project_url'));
     FORM_DATA.append('publication_url', self.globalService.formValueForLabel(self.components, 'publication_url'));
-    if (self.validFileUrl === true && self.isSubmissionUsingUrl) {
-      FORM_DATA.append('file_url', self.globalService.formValueForLabel(self.components, 'file_url'));
-    }
     self.challengeService.challengeSubmission(
       self.challenge['id'],
       self.selectedPhase['id'],
@@ -427,14 +426,13 @@ isSubmissionUsingUrl: any;
       () => {
         if (!self.isSubmissionUsingUrl) {
           self.globalService.setFormValueForLabel(self.components, 'input_file', null);
-        }
+        } else if (self.validFileUrl && self.isSubmissionUsingUrl) {
+          self.globalService.setFormValueForLabel(self.components, 'file_url', '');
+          }
         self.globalService.setFormValueForLabel(self.components, 'method_name', '');
         self.globalService.setFormValueForLabel(self.components, 'method_description', '');
         self.globalService.setFormValueForLabel(self.components, 'project_url', '');
         self.globalService.setFormValueForLabel(self.components, 'publication_url', '');
-        if (self.validFileUrl === true) {
-        self.globalService.setFormValueForLabel(self.components, 'file_url', '');
-        }
       }
     );
   }
@@ -493,13 +491,13 @@ isSubmissionUsingUrl: any;
   validateInput(inputValue) {
     const regex = new RegExp(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/);
     const validExtensions = ['json', 'zip', 'csv'];
-    if (this.isSubmissionUsingUrl === true) {
+    if (this.isSubmissionUsingUrl) {
       const extension = inputValue.split('.').pop();
       if (regex.test(inputValue) && validExtensions.includes(extension)) {
         this.inputErrorMessage = '';
         this.validFileUrl = true;
       } else {
-        this.inputErrorMessage = 'Please enter a valid URL!';
+        this.inputErrorMessage = 'Please enter a valid Submission URL!';
         this.validFileUrl = false;
       }
     }
