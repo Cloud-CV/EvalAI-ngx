@@ -246,8 +246,9 @@
             </ul>
           </div>
         </div>
-        <div *ngIf="selectedPhaseSubmissions.maxExceeded" class="col-md-5 col-sm-4 col-xs-12">
-          <div class="ev-submission-card-body exist-team-card
+      <div *ngIf="selectedPhaseSubmissions.maxExceeded" 
+      class="col-md-5 col-sm-4 col-xs-12">
+        <div class="ev-submission-card-body exist-team-card
           ev-remaining-submission remaining-submission-clock">
           <div class="row row-lr-margin">
             <span class="color-black">
@@ -258,65 +259,64 @@
           </div>
         </div>
       </div>
-      <div *ngIf="selectedPhaseSubmissions.showSubmissionDetails"
-      class="col-md-5 col-sm-5 col-xs-12">
-      <div class="ev-card-body exist-team-card ev-remaining-submission
-      remaining-submission-clock">
-      <div class="row row-lr-margin">
-        <span class="color-black">
-          <strong class="fw-regular fs-15">
-            Today's remaining Submissions:
-          </strong>
-        </span>
-        <span class="color-black">
-          <strong class="fw-light fs-15">
-            {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_today_count}}
-          </strong>
-        </span>
+      <div *ngIf="selectedPhaseSubmissions.showSubmissionDetails" class="col-md-5 col-sm-5 col-xs-12">
+        <div class="ev-card-body exist-team-card ev-remaining-submission 
+        remaining-submission-clock">
+          <div class="row row-lr-margin">
+            <span class="color-black">
+              <strong class="fw-regular fs-15">
+                Today's remaining Submissions:
+              </strong>
+            </span>
+            <span class="color-black">
+              <strong class="fw-light fs-15">
+                {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_today_count}}
+              </strong>
+            </span>
+          </div>
+          <div class="row row-lr-margin">
+            <span class="color-black">
+              <strong class="fw-regular fs-15">
+                Monthly remaining submissions:
+              </strong>
+            </span>
+            <span class="color-black">
+              <strong class="fw-light fs-15">
+                {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_this_month_count}}
+              </strong>
+            </span>
+          </div>
+          <div class="row row-lr-margin">
+            <span class="color-black">
+              <strong class="fw-regular fs-15">
+                Total remaining submissions:
+              </strong>
+            </span>
+            <span class="color-black">
+              <strong class="fw-light fs-15">
+                {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_count}}
+              </strong>
+            </span>
+          </div>
+        </div>
       </div>
-      <div class="row row-lr-margin">
-        <span class="color-black">
-          <strong class="fw-regular fs-15">
-            Monthly remaining submissions:
-          </strong>
-        </span>
-        <span class="color-black">
-          <strong class="fw-light fs-15">
-            {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_this_month_count}}
-          </strong>
-        </span>
-      </div>
-      <div class="row row-lr-margin">
-        <span class="color-black">
-          <strong class="fw-regular fs-15">
-            Total remaining submissions:
-          </strong>
-        </span>
-        <span class="color-black">
-          <strong class="fw-light fs-15">
-            {{selectedPhaseSubmissions.remainingSubmissions.remaining_submissions_count}}
-          </strong>
-        </span>
+      <div *ngIf="selectedPhaseSubmissions.showClock" class="col-md-5 col-sm-12 col-xs-12">
+        <div class="ev-card-body exist-team-card ev-remaining-submission 
+        remaining-submission-clock">
+          <div class="row row-lr-margin">
+            <strong class="fw-regular text-med-black">
+              Message:
+            </strong> {{selectedPhaseSubmissions.clockMessage.message}}
+          </div>
+          <div class="fw-regular">
+            Next set of submissions will be available after:
+          </div>
+          <div>
+            <span *ngIf="days!=0">{{days}} Days, </span>{{hours}}
+            hours : {{minutes}} minutes : {{seconds}} seconds
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div *ngIf="selectedPhaseSubmissions.showClock" class="col-md-5 col-sm-12 col-xs-12">
-    <div class="ev-card-body exist-team-card ev-remaining-submission 
-    remaining-submission-clock">
-      <div class="row row-lr-margin">
-        <strong class="fw-regular text-med-black">
-          Message:
-        </strong> {{selectedPhaseSubmissions.clockMessage.message}}
-      </div>
-      <div class="fw-regular">
-        Next set of submissions will be available after:
-      </div>
-      <div>
-        <span *ngIf="days!=0">{{days}} Days, </span>{{hours}}
-        hours : {{minutes}} minutes : {{seconds}} seconds
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 </div>

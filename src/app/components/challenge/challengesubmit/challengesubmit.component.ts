@@ -395,13 +395,13 @@ isSubmissionUsingUrl: any;
       self.submissionError = 'Please upload file!';
       return;
     } else if (self.isSubmissionUsingUrl && (submissionFileUrl !== '' && !self.validFileUrl)) {
-      self.submissionError = 'Please enter a valid URL!';
+      self.submissionError = 'Please enter a valid Submission URL!';
       return;
     } else if (self.selectedPhase['id'] === undefined) {
       self.submissionError = 'Please select phase!';
       return;
     } else if (submissionProjectUrl !== '' && !regex.test(submissionProjectUrl)) {
-      self.submissionError = 'Please enter a valid Submission URL!';
+      self.submissionError = 'Please provide a valid project url!';
       return;
     } else if (submissionPublicationUrl !== '' && !regex.test(submissionPublicationUrl)) {
       self.submissionError = 'Please provide a valid publication url!';
