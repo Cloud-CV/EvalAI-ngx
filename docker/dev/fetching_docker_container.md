@@ -27,8 +27,10 @@ Courtesy: niks from StackOverflow. See: https://stackoverflow.com/questions/7106
 
 #### Host a zip file containing the required data
 A zip file can be maintained with the required files. This should be updated by
-an automated script whenever an update is made in one of the related files. This
-way, we can run `git clone` once and serve multiple times with it.
+an automated script whenever an update is made in one of the related files.
+`git clone` will be run once on the server, the required files / folders should
+be moved and put into the downloadable zip file.
+This way, we can run `git clone` once and serve multiple times with it.
 
 #### Summary
 * While all three approaches are workable, I think the first one (recommended by Yash)
