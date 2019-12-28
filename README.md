@@ -18,7 +18,7 @@ In recent years, it has become increasingly difficult to compare an algorithm so
 |    AI challenge hosting    | :heavy_multiplication_x: |    :white_check_mark:    |    :white_check_mark:    |    :white_check_mark:    | :heavy_multiplication_x: |    :white_check_mark:    | :white_check_mark: |
 |       Custom metrics       | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: |    :white_check_mark:    |    :white_check_mark:    |    :white_check_mark:    | :white_check_mark: |
 |   Multiple phases/splits   | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: |    :white_check_mark:    | :heavy_multiplication_x: |    :white_check_mark:    | :white_check_mark: |
-|        Open source         |    :white_check_mark:    | :heavy_multiplication_x: | :heavy_multiplication_x: |    :heavy_multiplication_x:    |    :white_check_mark:    |    :white_check_mark:    | :white_check_mark: |
+|        Open source         |    :white_check_mark:    | :heavy_multiplication_x: | :heavy_multiplication_x: |    :white_check_mark:    |    :white_check_mark:    |    :white_check_mark:    | :white_check_mark: |
 |     Remote evaluation      | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: |    :white_check_mark:    |    :white_check_mark:    | :white_check_mark: |
 |      Human evaluation      | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: |    :white_check_mark:    | :heavy_multiplication_x: | :white_check_mark: |
 | Evaluation in Environments | :heavy_multiplication_x: | :heavy_multiplication_x: | :heavy_multiplication_x: |    :white_check_mark:    | :heavy_multiplication_x: | :heavy_multiplication_x: | :white_check_mark: |
@@ -34,10 +34,6 @@ How is EvalAI different from others? The central differences are:
 - **Easy Hosting**: Hosting a challenge is streamlined. One can create the challenge on EvalAI using the intuitive UI (work-in-progress) or using zip configuration file.
 
 - **Centralized Leaderboard**: Challenge Organizers whether host their challenge on EvalAI or forked version of EvalAI, they can send the results to main EvalAI server. This helps to build a centralized platform to keep track of different challenges. 
-
-## Goal
-
-Our ultimate goal is to build a centralized platform to host, participate and collaborate in AI challenges organized around the globe and we hope to help in benchmarking progress in AI.
 
 ## Features
 
