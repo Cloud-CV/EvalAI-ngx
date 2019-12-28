@@ -1,41 +1,32 @@
 <div class="team-card-container" [class.selected]='isSelected' [class.noexpand] = 'isHost' [class.expand] = '!isHost'>
-<div class="team-card-container-child">
-  <div class="team-content" (click)='selectToggle()'>
-    <i class="fa fa-circle selectstate" *ngIf='!isSelected && (isHost || isOnChallengePage)'></i>
-    <i class="fa fa-check selectstate" aria-hidden="true" *ngIf='isSelected && (isHost || isOnChallengePage)'></i>
-    <i class="fa fa-users" aria-hidden="true"></i>
-    <div class="team-details">
-      <span class="title toptitle">
-	    Team:
-      </span>
-      <span *ngIf="teamView['team_url']">
-      	<a class="orange-text" target="_blank" href="{{teamView['team_url']}}">{{teamView['team_name']}}</a>
-      </span>
-      <span *ngIf="!teamView['team_url']">
-	    {{teamView['team_name']}}
-      </span>
-      <br>
-      <span class="title">
-	    Created by:
-      </span>
-      <span>
-	    {{teamView['created_by']}}
+  <div class="team-card-container-child">
+    <div class="team-content" (click)='selectToggle()'>
+      <i class="fa fa-circle-o circle-icon" aria-hidden="true" *ngIf="!isSelected && (isHost || isOnChallengePage)"></i>
+      <i class="fa fa-check selectstate" aria-hidden="true" *ngIf='isSelected && (isHost || isOnChallengePage)'></i>
+      <i class="fa fa-users" aria-hidden="true" *ngIf="!(isHost || isOnChallengePage)"></i>
+      <div class="team-details">
+        <span *ngIf="teamView['team_url'] != ''" class="pointer">
+          <strong class="text-med-black fw-bold">Team: </strong>
+          <a class="orange-text" href="{{teamView['team_url']}}" target="_blank">{{teamView['team_name']}}</a>
+        </span>
+        <span *ngIf="teamView['team_url'] == ''" class="pointer">
+          <strong class="text-med-black fw-bold">Team: </strong>{{teamView['team_name']}}
+        </span>
+        <br><strong class="text-med-black fw-bold">Created By: </strong>{{teamView['created_by']}}
+      </div>
+      <span *ngIf="!isOnChallengePage" class='team-icons'>
+        <a (click)="addMembersToTeam($event)"><i class="fa fa-user-plus list-icon text-highlight w-300 left" aria-hidden="true"></i></a>
+        <a (click)="editTeam($event)"><i class="fa fa fa-pencil list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i></a>
+        <a (click)="deleteTeam($event)"><i class="fa fa-trash list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i></a>
       </span>
     </div>
-    <div class='team-icons'>
-      <a (click)="addMembersToTeam($event)"><i class="fa fa-user-plus list-icon text-highlight w-300 left" aria-hidden="true"></i></a>
-      <a [class.host]="isHost" (click)="editTeam($event)"><i class="fa fa fa-pencil list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i></a>
-      <a (click)="deleteTeam($event)"><i class="fa fa-trash list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i></a>
-    </div>
-   </div>
     <div class='team-members'>
-    <div class="title">
-      <h6><b>Team Members:</b></h6>
+      <div class="title">
+        <h6><b>Team Members:</b></h6>
+      </div>
+      <div>
+        {{teamView['members']}}
+      </div>
     </div>
-    <div>
-	    {{teamView['members']}}
-    </div>
-      
-    </div>
-</div>
+  </div>
 </div>

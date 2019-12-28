@@ -499,6 +499,7 @@ li:last-child {
 }
 
 .exist-team-card ul li {
+  display: flex;
   margin: 20px 0px;
   min-height: 40px;
 }
@@ -861,11 +862,6 @@ label {
 
 *, *:before, *:after {
   box-sizing: inherit;
-}
-
-.radio-button-text {
-  width: calc(100% - 35px);
-  float: right;
 }
 
 
