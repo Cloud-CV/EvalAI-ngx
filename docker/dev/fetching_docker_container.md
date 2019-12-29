@@ -36,7 +36,7 @@ This way, we can run `git clone` once and serve multiple times with it.
 
 #### Summary
 * While all three approaches are workable, I think the first one (recommended by Yash)
-is the most handy as it can upon a few new possibilities.
+is the most handy as it allows a lot of flexibility and opens up new possibilities.
 * According to the mentioned reply on StackOverflow, *GitHub takes around 30
 seconds to convert larger repositories.* Therefore, the feasibility of the second
 approach should be checked in practice. 
