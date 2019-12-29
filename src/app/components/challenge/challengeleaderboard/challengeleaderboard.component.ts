@@ -87,11 +87,17 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * Currently selected phase split
    */
   selectedPhaseSplit: any = null;
+  selectedPhaseSplitLeaderboardToggle = false;
 
   /**
    * Sort leaderboard based on this column
    */
   sortColumn = 'rank';
+
+  /**
+   * Text option for leadeboard sort
+   */
+  sortLeaderboardTextOption = 'Sort by best';
 
   /**
    * Reverse sort flag
@@ -126,6 +132,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     host: 2,
     public: 3,
   };
+
 
   /**
    * Constructor.
@@ -404,6 +411,30 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
+      },
+      err => {
+        SELF.globalService.handleApiError(err);
+      },
+      () => {}
+    );
+  }
+
+  toggleShowLeaderboardByLatest() {
+    const API_PATH = this.endpointsService.challengeLatestSubmissionURL(this.selectedPhaseSplit['id']);
+    const SELF = this;
+    const BODY = JSON.stringify({
+      'show_leaderboard_by_latest_submission': this.selectedPhaseSplit['id'].selectedPhaseSplitLeaderboardToggle
+    });
+    SELF.leaderboard = [];
+    SELF.showLeaderboardUpdate = false;
+    SELF.apiService.patchUrl(
+      API_PATH,
+      BODY
+    ).subscribe(
+      data => {
+        SELF.updateLeaderboardResults(data['results'], SELF);
+        SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
+        SELF.sortLeaderboardTextOption = SELF.selectedPhaseSplitLeaderboardToggle ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
