@@ -5,11 +5,13 @@ I found those solutions quite good, so I am including them along with the name
 of the person who originally came up with the solution.
 
 #### Maintain a separate codebase for the files used
-As Yash Dusing suggested, this is a very useful addition. As the Django container
+This can be a very useful addition. As the Django container
 is common to both EvalAI and EvalAI-ngx projects, it will be helpful to separate
 it from the EvalAI codebase. I would like to add here that this can also be
 useful in the EvalAI-CLI project where it can be used to setup the API server
 to perform integration tests with the server. (See [this PR](https://github.com/Cloud-CV/evalai-cli/pull/210))
+
+Suggested by: @yashdusing
 
 #### Use SVN to download required folders
 `svn` can be used to download folders from GitHub. A list of the required files
@@ -23,7 +25,7 @@ with `trunk`. This will be the URL to be used in the `svn` command.
 svn checkout https://github.com/owner/repo_name/trunk/folder_name
 ```
 
-Courtesy: niks from StackOverflow. See: https://stackoverflow.com/questions/7106012/download-a-single-folder-or-directory-from-a-github-repo
+Reference: https://stackoverflow.com/questions/7106012/download-a-single-folder-or-directory-from-a-github-repo
 
 #### Host a zip file containing the required data
 A zip file can be maintained with the required files. This should be updated by
