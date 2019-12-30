@@ -97,7 +97,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   /**
    * Text option for leadeboard sort
    */
-  sortLeaderboardTextOption = 'Sort by best';
+  sortLeaderboardTextOption = 'Sort by latest';
 
   /**
    * Reverse sort flag
@@ -263,7 +263,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * @param self  context value of this
    */
   updateLeaderboardResults(leaderboardApi, self) {
-    const leaderboard = leaderboardApi.slice();
+    const leaderboard = (Array.isArray(leaderboardApi) ? leaderboardApi.slice() : [leaderboardApi]);
     for (let i = 0; i < leaderboard.length; i++) {
       self.initial_ranking[leaderboard[i].submission__participant_team__team_name] = i + 1;
       const DATE_NOW = new Date();
@@ -411,6 +411,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
+        SELF.sortLeaderboardTextOption = SELF.selectedPhaseSplitLeaderboardToggle ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -419,12 +420,14 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     );
   }
 
-  toggleShowLeaderboardByLatest() {
+  toggleShowLeaderboard() {
     const API_PATH = this.endpointsService.challengeLatestSubmissionURL(this.selectedPhaseSplit['id']);
     const SELF = this;
+    SELF.selectedPhaseSplitLeaderboardToggle = !SELF.selectedPhaseSplitLeaderboardToggle;
     const BODY = JSON.stringify({
-      'show_leaderboard_by_latest_submission': this.selectedPhaseSplit['id'].selectedPhaseSplitLeaderboardToggle
+      'show_leaderboard_by_latest_submission': !SELF.selectedPhaseSplitLeaderboardToggle
     });
+
     SELF.leaderboard = [];
     SELF.showLeaderboardUpdate = false;
     SELF.apiService.patchUrl(
@@ -432,8 +435,8 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       BODY
     ).subscribe(
       data => {
-        SELF.updateLeaderboardResults(data['results'], SELF);
-        SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
+        SELF.updateLeaderboardResults(data, SELF);
+        SELF.refreshLeaderboard();
         SELF.sortLeaderboardTextOption = SELF.selectedPhaseSplitLeaderboardToggle ? 'Sort by best' : 'Sort by latest';
       },
       err => {
