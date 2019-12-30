@@ -35,6 +35,10 @@ How is EvalAI different from others? The central differences are:
 
 - **Centralized Leaderboard**: Challenge Organizers whether host their challenge on EvalAI or forked version of EvalAI, they can send the results to main EvalAI server. This helps to build a centralized platform to keep track of different challenges. 
 
+## Goal
+
+Our ultimate goal is to build a centralized platform to host, participate and collaborate in AI challenges organized around the globe and we hope to help in benchmarking progress in AI.
+
 ## Features
 
 - **Results compiled natively which decreases network dependence**
