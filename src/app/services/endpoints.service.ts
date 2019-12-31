@@ -209,10 +209,10 @@ export class EndpointsService {
   }
 
   /**
-   * Challenge Leaderboard fetch
+   * Returns or Updates challenge phase split
    * @param phaseSplitId  phase split id
    */
-  challengeLatestSubmissionURL(phaseSplitId) {
+  particularChallengePhaseSplitUrl(phaseSplitId) {
     return `${this.challenges}${this.challenge}create/challenge_phase_split/${phaseSplitId}/`;
   }
 

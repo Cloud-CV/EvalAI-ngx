@@ -29,6 +29,11 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
 
   /**
+   * Is challenge host
+   */
+  isChallengeHost = false;
+
+  /**
    * Has view been initialized
    */
   viewInit = false;
@@ -174,6 +179,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       phaseSplits => {
         this.phaseSplits = phaseSplits;
         this.filterPhases();
+    });
+    this.challengeService.isChallengeHost.subscribe(status => {
+      this.isChallengeHost = status;
     });
   }
 
@@ -420,12 +428,12 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     );
   }
 
-  toggleShowLeaderboard() {
-    const API_PATH = this.endpointsService.challengeLatestSubmissionURL(this.selectedPhaseSplit['id']);
+  showLeaderboardByLatestOrBest() {
+    const API_PATH = this.endpointsService.particularChallengePhaseSplitUrl(this.selectedPhaseSplit['id']);
     const SELF = this;
     SELF.selectedPhaseSplitLeaderboardToggle = !SELF.selectedPhaseSplitLeaderboardToggle;
     const BODY = JSON.stringify({
-      'show_leaderboard_by_latest_submission': !SELF.selectedPhaseSplitLeaderboardToggle
+      'show_leaderboard_by_latest_submission': SELF.selectedPhaseSplitLeaderboardToggle
     });
 
     SELF.leaderboard = [];
