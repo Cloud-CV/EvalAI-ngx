@@ -92,7 +92,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * Currently selected phase split
    */
   selectedPhaseSplit: any = null;
-  selectedPhaseSplitLeaderboardToggle = false;
+  selectedPhaseSplitLeaderboardToggle: boolean = null;
 
   /**
    * Sort leaderboard based on this column
