@@ -92,7 +92,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * Currently selected phase split
    */
   selectedPhaseSplit: any = null;
-  selectedPhaseSplitLeaderboardToggle: boolean = null;
+  showLeaderboardByLatest: boolean = null;
 
   /**
    * Sort leaderboard based on this column
@@ -419,7 +419,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
-        SELF.sortLeaderboardTextOption = SELF.selectedPhaseSplitLeaderboardToggle ? 'Sort by best' : 'Sort by latest';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -433,7 +433,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     const SELF = this;
     let BODY;
 
-    SELF.selectedPhaseSplitLeaderboardToggle = !SELF.selectedPhaseSplitLeaderboardToggle;
+    SELF.showLeaderboardByLatest = !SELF.showLeaderboardByLatest;
 
     if (this.phaseSplits[this.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission')) {
       BODY = JSON.stringify({
@@ -441,7 +441,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       });
     } else {
       BODY = JSON.stringify({
-        'show_leaderboard_by_latest_submission': SELF.selectedPhaseSplitLeaderboardToggle
+        'show_leaderboard_by_latest_submission': SELF.showLeaderboardByLatest
       });
     }
 
@@ -454,7 +454,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data, SELF);
         SELF.refreshLeaderboard();
-        SELF.sortLeaderboardTextOption = SELF.selectedPhaseSplitLeaderboardToggle ? 'Sort by best' : 'Sort by latest';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);

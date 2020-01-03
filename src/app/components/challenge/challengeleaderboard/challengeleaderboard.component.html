@@ -42,10 +42,10 @@
                   <mat-chip>B</mat-chip> - Baseline submission
                 </mat-chip-list>
                 <mat-chip-list class="pull-right" *ngIf="isChallengeHost">
-                  <div (click)="showLeaderboardByLatestOrBest()" class="btn-switch sort-leaderboard-switch" [ngClass]="{'btn-switch--on':selectedPhaseSplitLeaderboardToggle}"
-                  [(ngModel)]="selectedPhaseSplitLeaderboardToggle" ngDefaultControl>
-                      <div class="btn-switch-circle" [ngClass]="{'btn-switch--on':selectedPhaseSplitLeaderboardToggle}"
-                      [(ngModel)]="selectedPhaseSplitLeaderboardToggle" ngDefaultControl></div>
+                  <div (click)="showLeaderboardByLatestOrBest()" class="btn-switch sort-leaderboard-switch" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
+                  [(ngModel)]="showLeaderboardByLatest" ngDefaultControl>
+                      <div class="btn-switch-circle" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
+                      [(ngModel)]="showLeaderboardByLatest" ngDefaultControl></div>
                   </div>
                   <span class="w-400"> {{sortLeaderboardTextOption}}</span>
                 </mat-chip-list>
