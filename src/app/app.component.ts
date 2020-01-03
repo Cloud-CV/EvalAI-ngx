@@ -18,6 +18,7 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
   isLoading = false;
+  showScrollButton = false;
   confirmParams = { isConfirming: false};
   modalParams = { isModalVisible: false};
   editPhaseModalParams = { isEditPhaseModalVisible: false};
@@ -59,10 +60,12 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.document.documentElement.scrollTop > 50) {
       if (this.scrolledState === false) {
         this.globalService.scrolledStateChange(true);
+        document.getElementById('up-arrow').style.display = 'block';
       }
     } else {
       if (this.scrolledState === true) {
         this.globalService.scrolledStateChange(false);
+        document.getElementById('up-arrow').style.display = 'none';
       }
     }
     }
@@ -142,5 +145,10 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.globalServiceSubscriptionScrollTop) {
       this.globalServiceSubscriptionScrollTop.unsubscribe();
     }
+  }
+
+  topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 }
