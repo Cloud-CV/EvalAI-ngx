@@ -1429,7 +1429,6 @@ code {
     font-size: $fs-16;
     color: $gray-darker;
     padding: 30px;
-    overflow-y: scroll;
     .title {
       color: $med-black;
       padding: 10px;
@@ -1446,6 +1445,7 @@ code {
       padding: 10px;
       text-align: right;
     }
+    overflow-y: auto
   }
 }
 

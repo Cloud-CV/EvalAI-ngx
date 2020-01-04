@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -79,7 +80,9 @@ import {
   ChallengeviewallsubmissionsComponent
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
 import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
 import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 import {PasswordMismatchValidatorDirective} from './Directives/password.validator';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
@@ -157,12 +160,13 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     TextareaAutosizeModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    MatCheckboxModule,
-    MatIconModule,
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatDividerModule,
+    MatCheckboxModule
   ],
   providers: [
     AuthService,
