@@ -4,7 +4,6 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import {ApiService} from '../../../services/api.service';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 /**
  * Component Class
@@ -61,7 +60,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   routePath = '/dashboard';
 
 
-  @ViewChild('navContainer') navContainer: ElementRef;
+  @ViewChild('navContainer', {read: null, static: false}) navContainer: ElementRef;
 
   /**
    * Constructor.
