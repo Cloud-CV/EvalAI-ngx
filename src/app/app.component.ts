@@ -18,7 +18,6 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
   isLoading = false;
-  showScrollButton = false;
   confirmParams = { isConfirming: false};
   modalParams = { isModalVisible: false};
   editPhaseModalParams = { isEditPhaseModalVisible: false};
