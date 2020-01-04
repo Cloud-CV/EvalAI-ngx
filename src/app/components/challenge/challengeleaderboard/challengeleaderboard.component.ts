@@ -92,7 +92,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * Currently selected phase split
    */
   selectedPhaseSplit: any = null;
-  showLeaderboardByLatest = true;
+  showLeaderboardByLatest = false;
 
   /**
    * Sort leaderboard based on this column
@@ -102,7 +102,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   /**
    * Text option for leadeboard sort
    */
-  sortLeaderboardTextOption = this.showLeaderboardByLatest ? 'Sort by latest' : 'Sort by best';
+  sortLeaderboardTextOption = 'Sort by latest';
 
   /**
    * Reverse sort flag
@@ -177,7 +177,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     });
     this.challengeService.currentPhaseSplit.subscribe(
       phaseSplits => {
-        console.log(phaseSplits);
         this.phaseSplits = phaseSplits;
         this.filterPhases();
     });
@@ -420,7 +419,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by latest' : 'Sort by best';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -430,7 +429,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   }
 
   showLeaderboardByLatestOrBest() {
-    console.log(this.phaseSplits);
     const API_PATH = this.endpointsService.particularChallengePhaseSplitUrl(this.selectedPhaseSplit['id']);
     const SELF = this;
     let BODY;
@@ -456,7 +454,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data, SELF);
         SELF.refreshLeaderboard();
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by latest' : 'Sort by best';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
