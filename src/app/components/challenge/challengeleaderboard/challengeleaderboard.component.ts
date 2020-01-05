@@ -261,13 +261,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       if (SELF.selectedPhaseSplit) {
         SELF.fetchLeaderboard(SELF.selectedPhaseSplit['id']);
         if (SELF.phaseSplits[SELF.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission')) {
-          const toggleByLatest = SELF.phaseSplits[SELF.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission');
-
-          if (toggleByLatest === true) {
-            SELF.showLeaderboardByLatest = true;
-          } else {
-             SELF.showLeaderboardByLatest = false;
-          }
+          SELF.showLeaderboardByLatest = SELF.selectedPhaseSplit.show_leaderboard_by_latest_submission;
         }
       }
     };
@@ -428,7 +422,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by latest' : 'Sort by best';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -463,7 +457,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data, SELF);
         SELF.refreshLeaderboard();
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by latest' : 'Sort by best';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
