@@ -22,10 +22,10 @@ Our central development branch is development. Coding is done on feature branche
 
 To submit code, follow these steps:
 
-1. Create a new branch off of master. Select a descriptive branch name. If you have not added the upstream then run this command:
+1. Create a new branch off of master(fork). Select a descriptive branch name. If you have not added the upstream then run this command:
 
 ```
-git remote add upstream https://github.com/Cloud-CV/EvalAI-ngx
+git remote add upstream https://github.com/YOUR-USERNAME/EvalAI-ngx
 ```
 and to verify :
 
