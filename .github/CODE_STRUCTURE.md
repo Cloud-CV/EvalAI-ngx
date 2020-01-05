@@ -127,7 +127,7 @@ Privacy Policy Page (with smart-scrolling) | `/privacy-policy`
 These pages contain variable / self-updating views.
 
 Description | Path 
-        --- | ---
+--- | ---
 Authentication Page (with support for: signUp, login, verify-email and email-verified) | `/auth/login` `/auth/signup` `/auth/verify-email/:token`
 Profile Page (with support for: update-password, update-profile, fetching authentication-token) | `/profile`
 Challenges List Page (list of public and hosted challenges with filters for upcoming, past and ongoing challenges) | `/challenges/all` `/challenges/me`
