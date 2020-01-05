@@ -44,6 +44,12 @@ git checkout -b your-branch-name
 
 2. Commit and push code to your branch:
 
+        ```
+       git add .
+       git commit -m "YOUR-MESSAGE" -a
+       git push origin your-branch-name
+       ```
+       
     - Commits should be self-contained and contain a descriptive commit message.
 
     - Please make sure your code is well-formatted and adheres to PEP8 conventions (for Python) and the airbnb style guide (for JavaScript). For others (Lua, prototxt etc.) please ensure that the code is well-formatted and the style consistent.
