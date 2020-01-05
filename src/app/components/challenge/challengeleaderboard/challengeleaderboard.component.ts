@@ -419,7 +419,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by latest' : 'Sort by best';
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -454,7 +454,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data, SELF);
         SELF.refreshLeaderboard();
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by latest' : 'Sort by best';
       },
       err => {
         SELF.globalService.handleApiError(err);
