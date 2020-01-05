@@ -260,6 +260,15 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       SELF.selectedPhaseSplit = phaseSplit;
       if (SELF.selectedPhaseSplit) {
         SELF.fetchLeaderboard(SELF.selectedPhaseSplit['id']);
+        if (SELF.phaseSplits[SELF.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission')) {
+          const toggleByLatest = SELF.phaseSplits[SELF.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission');
+
+          if (toggleByLatest === true) {
+            SELF.showLeaderboardByLatest = true;
+          } else {
+             SELF.showLeaderboardByLatest = false;
+          }
+        }
       }
     };
 
