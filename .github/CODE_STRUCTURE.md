@@ -113,7 +113,7 @@ Usage example snippets for all of the following reusable components can be found
 These pages don't have variable / self-updating views.
 
 Description | Path 
-        --- | ---
+--- | ---
 Home Page (Landing Page) | `/`
 About us Page | `/about`
 Contact Us Page (with Map View) | `/contact`
