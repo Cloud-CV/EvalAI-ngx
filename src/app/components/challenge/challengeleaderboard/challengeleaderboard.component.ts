@@ -102,7 +102,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   /**
    * Text option for leadeboard sort
    */
-  sortLeaderboardTextOption = 'Sort by latest';
+  sortLeaderboardTextOption: string;
 
   /**
    * Reverse sort flag
@@ -260,9 +260,8 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       SELF.selectedPhaseSplit = phaseSplit;
       if (SELF.selectedPhaseSplit) {
         SELF.fetchLeaderboard(SELF.selectedPhaseSplit['id']);
-        if (SELF.phaseSplits[SELF.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission')) {
-          SELF.showLeaderboardByLatest = SELF.selectedPhaseSplit.show_leaderboard_by_latest_submission;
-        }
+        SELF.showLeaderboardByLatest = SELF.selectedPhaseSplit.show_leaderboard_by_latest_submission;
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       }
     };
 
@@ -422,7 +421,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       data => {
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(SELF.selectedPhaseSplit['id']);
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
       },
       err => {
         SELF.globalService.handleApiError(err);
@@ -436,8 +434,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     const SELF = this;
     let BODY;
 
-    SELF.showLeaderboardByLatest = !SELF.showLeaderboardByLatest;
-
     if (this.phaseSplits[this.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission')) {
       BODY = JSON.stringify({
         'show_leaderboard_by_latest_submission': this.phaseSplits[this.selectedPhaseSplit['id']].show_leaderboard_by_latest_submission
@@ -448,16 +444,14 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       });
     }
 
-    SELF.leaderboard = [];
-    SELF.showLeaderboardUpdate = false;
     SELF.apiService.patchUrl(
       API_PATH,
       BODY
     ).subscribe(
       data => {
-        SELF.updateLeaderboardResults(data, SELF);
-        SELF.refreshLeaderboard();
         SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
+        SELF.showLeaderboardByLatest = !SELF.showLeaderboardByLatest;
+        SELF.refreshLeaderboard();
       },
       err => {
         SELF.globalService.handleApiError(err);
