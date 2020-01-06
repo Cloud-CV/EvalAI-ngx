@@ -276,7 +276,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * @param self  context value of this
    */
   updateLeaderboardResults(leaderboardApi, self) {
-    const leaderboard = (Array.isArray(leaderboardApi) ? leaderboardApi.slice() : [leaderboardApi]);
+    const leaderboard = leaderboardApi.slice();
     for (let i = 0; i < leaderboard.length; i++) {
       self.initial_ranking[leaderboard[i].submission__participant_team__team_name] = i + 1;
       const DATE_NOW = new Date();
