@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
    */
   localRouter: any;
 
-  @ViewChild('authContainer', {read: null}) authContainer: ElementRef;
+  @ViewChild('authContainer') authContainer: ElementRef;
 
   /**
    * Constructor.

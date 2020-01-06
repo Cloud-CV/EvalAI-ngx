@@ -60,7 +60,7 @@ export class HeaderStaticComponent implements OnInit, OnDestroy {
   routePath = '/dashboard';
 
 
-  @ViewChild('navContainer', {read: null}) navContainer: ElementRef;
+  @ViewChild('navContainer') navContainer: ElementRef;
 
   /**
    * Constructor.
