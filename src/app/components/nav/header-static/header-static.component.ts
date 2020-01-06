@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import {ApiService} from '../../../services/api.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 /**
  * Component Class
