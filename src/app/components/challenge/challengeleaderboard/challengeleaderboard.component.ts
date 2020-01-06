@@ -92,6 +92,10 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    * Currently selected phase split
    */
   selectedPhaseSplit: any = null;
+
+  /**
+   * Current state of whether leaderboard is sorted by latest
+   */
   showLeaderboardByLatest = false;
 
   /**
@@ -137,7 +141,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     host: 2,
     public: 3,
   };
-
 
   /**
    * Constructor.
@@ -432,25 +435,17 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   showLeaderboardByLatestOrBest() {
     const API_PATH = this.endpointsService.particularChallengePhaseSplitUrl(this.selectedPhaseSplit['id']);
     const SELF = this;
-    let BODY;
-
-    if (this.phaseSplits[this.selectedPhaseSplit['id']].hasOwnProperty('show_leaderboard_by_latest_submission')) {
-      BODY = JSON.stringify({
-        'show_leaderboard_by_latest_submission': this.phaseSplits[this.selectedPhaseSplit['id']].show_leaderboard_by_latest_submission
-      });
-    } else {
-      BODY = JSON.stringify({
-        'show_leaderboard_by_latest_submission': SELF.showLeaderboardByLatest
-      });
-    }
+    const BODY = JSON.stringify({
+      'show_leaderboard_by_latest_submission': !SELF.showLeaderboardByLatest
+    });
 
     SELF.apiService.patchUrl(
       API_PATH,
       BODY
     ).subscribe(
       data => {
-        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
         SELF.showLeaderboardByLatest = !SELF.showLeaderboardByLatest;
+        SELF.sortLeaderboardTextOption = SELF.showLeaderboardByLatest ? 'Sort by best' : 'Sort by latest';
         SELF.refreshLeaderboard();
       },
       err => {
