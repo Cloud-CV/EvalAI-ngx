@@ -175,7 +175,7 @@ export class EditphasemodalComponent implements OnInit {
   /**
    * Modal Confirmed.
    */
-  cconfirmed(self) {
+  confirmed(self) {
     if (self.description === '') {
       self.denyCallback();
       self.isEditorFieldMessage = true;
