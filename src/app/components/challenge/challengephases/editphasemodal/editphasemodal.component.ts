@@ -175,11 +175,23 @@ export class EditphasemodalComponent implements OnInit {
   /**
    * Modal Confirmed.
    */
-  confirmed(self) {
+  cconfirmed(self) {
     if (self.description === '') {
       self.denyCallback();
       self.isEditorFieldMessage = true;
       self.editorValidationMessage = 'This field cannot be empty!';
+      return;
+    }
+    if (self.maxSubmissionsPerDay > self.maxSubmissionsPerMonth) {
+      self.denyCallback();
+      self.isEditorFieldMessage = true;
+      self.editorValidationMessage = 'Max number of submissions per day cannot be greater than max number of submissions per month';
+      return;
+    }
+    if (self.maxSubmissionsPerMonth > self.maxSubmissions) {
+      self.denyCallback();
+      self.isEditorFieldMessage = true;
+      self.editorValidationMessage = 'Max number of submissions per month cannot be greater than max total submissions';
       return;
     }
     const PARAMS = self.globalService.formFields(self.formComponents);
