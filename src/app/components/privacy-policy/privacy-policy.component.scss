@@ -51,17 +51,7 @@
       color: $blue-lighter !important;
       font-weight: $fw-regular;
     }
-    .scroll-to-top {
-      position: fixed;
-      top: 80%;
-      right: 4%;
-      height: 50px;
-      cursor: pointer;
-      z-index: 4 !important;
-      &:hover {
-        height: 55px;
-      }
-    }
+    
     .privacy-title {
       margin-top: 10px;
       font-size: $fs-34;
