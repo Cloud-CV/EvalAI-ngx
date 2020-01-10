@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -80,12 +81,13 @@ import {
 } from './components/challenge/challengeviewallsubmissions/challengeviewallsubmissions.component';
 import { SideBarComponent } from './components/utility/side-bar/side-bar.component';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
 import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
 import {PasswordMismatchValidatorDirective} from './Directives/password.validator';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
-import { MatCheckboxModule, MatTableModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -162,8 +164,9 @@ import { MatCheckboxModule, MatTableModule } from '@angular/material';
     MatChipsModule,
     MatMenuModule,
     MatIconModule,
-    MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatDividerModule,
+    MatCheckboxModule
   ],
   providers: [
     AuthService,

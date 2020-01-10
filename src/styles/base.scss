@@ -5,6 +5,7 @@
 @import './grid.scss';
 @import './font.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import './theming.scss';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -1428,7 +1429,6 @@ code {
     font-size: $fs-16;
     color: $gray-darker;
     padding: 30px;
-    overflow-y: scroll;
     .title {
       color: $med-black;
       padding: 10px;
@@ -1445,6 +1445,7 @@ code {
       padding: 10px;
       text-align: right;
     }
+    overflow-y: auto
   }
 }
 

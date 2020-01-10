@@ -50,6 +50,12 @@
 
 .collapsible-table {
   overflow: auto;
+
+  .table-header {
+    color: rgba(0,0,0,0.87) !important;
+    font-weight: bold;
+    text-align: center !important;
+  }
 }
 
 .cell-outside {
@@ -61,15 +67,8 @@
   overflow: hidden;
 }
 
-tr.element-row:not(.expanded-row):hover {
-  td {
-    color: #efefef;
-  }
-  background: #252833;
-}
-
-tr.element-row:not(.expanded-row):active {
-  background: #efefef;
+.collapsed-td {
+  padding: 0px 58px !important;
 }
 
 .expanded-row {
@@ -102,20 +101,8 @@ tr.element-row:not(.expanded-row):active {
   margin-left: 40px;
 }
 
-.element {
-  margin-bottom: 10px;
-}
-
-.element-description {
-  margin-left: 10px;
-}
-
 .element-icon {
   margin-right: 10px;
-}
-
-.element-description-attribution {
-  opacity: 0.5;
 }
 
 @include screen-small {
@@ -138,8 +125,5 @@ tr.element-row:not(.expanded-row):active {
   .element {
     display: flex;
     flex-direction: column;
-  }
-  .element-description {
-    margin-left: 0;
   }
 }

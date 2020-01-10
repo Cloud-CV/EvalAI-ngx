@@ -75,6 +75,14 @@ export class EndpointsService {
   featuredChallengesURL() {
     return `${this.challenges}featured/`;
   }
+
+  /**
+   * Subscribe to Newsletters
+   */
+  subscribeURL() {
+    return `web/subscribe/`;
+  }
+
   /**
    * All Participant teams
    */
@@ -198,6 +206,14 @@ export class EndpointsService {
    */
   challengeLeaderboardURL(phaseSplitId) {
     return `${this.jobs}challenge_phase_split/${phaseSplitId}/leaderboard/?page_size=1000`;
+  }
+
+  /**
+   * Returns or Updates challenge phase split
+   * @param phaseSplitId  phase split id
+   */
+  particularChallengePhaseSplitUrl(phaseSplitId) {
+    return `${this.challenges}${this.challenge}create/challenge_phase_split/${phaseSplitId}/`;
   }
 
   /**
