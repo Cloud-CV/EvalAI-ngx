@@ -148,7 +148,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    document.body.scrollIntoView({behavior: 'smooth'});
+    // document.body.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
   }
 }
