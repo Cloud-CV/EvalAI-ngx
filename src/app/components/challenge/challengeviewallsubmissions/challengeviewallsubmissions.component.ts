@@ -142,8 +142,8 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
    */
   apiCall: any;
 
-  columnsToDisplay = ['participant_team', 'created_by', 'status', 'submitted_file', 'submission_result_file'];
-  columnsHeadings = ['Team Name', 'Created By', 'Status', 'Submitted File', 'Result File'];
+  columnsToDisplay = ['participant_team', 'created_by', 'status', 'execution_time', 'submitted_file', 'submission_result_file'];
+  columnsHeadings = ['Team Name', 'Created By', 'Status', 'Execution Time', 'Submitted File', 'Result File'];
 
   expandedElement: null;
 

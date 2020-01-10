@@ -93,35 +93,55 @@
               <div class="elements-detail">
                 <div class="element">
                   <p><strong class="text-light-black fw-semibold fs-12">Team Members</strong>
-                    <br> <strong *ngFor="let team of element.participant_team_members"
-                    class="fw-semibold fs-14 phase-value">{{team.username + ' ,'}}
+                    <br> <strong *ngFor="let team of element.participant_team_members; let i=index"
+                    class="fw-semibold fs-14">
+                      <span *ngIf="element.participant_team_members.length !== i+1">
+                            {{team.username + ' ,'}}</span>
+                      <span *ngIf="element.participant_team_members.length === i+1">
+                            {{team.username}}</span>
                     </strong></p>
                   <span class=""></span>
                 </div>
                 <div class="element">
                   <p><strong class="text-light-black fw-semibold fs-12">Team Members Email Id</strong>
-                    <br> <strong *ngFor="let team of element.participant_team_members"
-                    class="fw-semibold fs-14 phase-value">{{team.email + ' ,'}}
+                    <br> <strong *ngFor="let team of element.participant_team_members; let i=index"
+                    class="fw-semibold fs-14">
+                      <span *ngIf="element.participant_team_members.length !== i+1">
+                            {{team.email + ' ,'}}</span>
+                      <span *ngIf="element.participant_team_members.length === i+1">
+                            {{team.email}}</span>
                     </strong></p>
                 </div>
                 <div class="row rm-margin">
                   <div class="col-sm-3 col-md-3 col-lg-3 no-pad-lr element">
                     <p><strong class="text-light-black fw-semibold fs-12">Stdout File</strong>
-                      <br> <a target="_blank" class="blue-text " [href]="element.stdout_file">
+                      <br> <a target="_blank" class="blue-text " [href]="element.stdout_file"
+                              *ngIf="element.stdout_file">
                         <i class="fa fa-external-link"></i>
-                      </a></p>
+                      </a>
+                      <strong *ngIf="!element.stdout_file" class="fw-semibold fs-14">
+                        None
+                      </strong></p>
                   </div>
                   <div class="col-sm-4 col-md-4 col-lg-4">
                     <p><strong class="text-light-black fw-semibold fs-12">Stderr File</strong>
-                      <br> <a target="_blank" class="blue-text " [href]="element.stderr_file">
+                      <br> <a target="_blank" class="blue-text " [href]="element.stderr_file"
+                              *ngIf="element.stderr_file">
                         <i class="fa fa-external-link"></i>
-                      </a></p>
+                      </a>
+                      <strong *ngIf="!element.stderr_file" class="fw-semibold fs-14">
+                        None
+                      </strong></p>
                   </div>
                   <div class="col-sm-4 col-md-4 col-lg-4">
                     <p><strong class="text-light-black fw-semibold fs-12">Metadata File</strong>
-                      <br> <a target="_blank" class="blue-text " [href]="element.submission_metadata_file">
+                      <br> <a target="_blank" class="blue-text " [href]="element.submission_metadata_file"
+                              *ngIf="element.submission_metadata_file">
                         <i class="fa fa-external-link"></i>
-                      </a></p>
+                      </a>
+                      <strong *ngIf="!element.submission_metadata_file" class="fw-semibold fs-14">
+                        None
+                      </strong></p>
                   </div>
                 </div>
               </div>
@@ -130,37 +150,20 @@
                 <div class="row rm-margin">
                   <div class="col-sm-6 sol-md-6 col-lg-6 no-pad-lr">
                     <p><strong class="text-light-black fw-semibold fs-12">Status</strong>
-                      <br> <strong class="fw-semibold fs-14 phase-value" [ngClass]="element.status">
+                      <br> <strong class="fw-semibold fs-14" [ngClass]="element.status">
                         {{element.status}}
                       </strong></p>
                   </div>
                   <div class="col-sm-6 sol-md-6 col-lg-6 no-pad-lr">
-                    <a [matMenuTriggerFor]="settingsmenu" >
-                      <p><strong class="text-light-black fw-semibold fs-12">
-                        <i class="fa fa-gear"></i></strong>
-                        <br> <strong class="fw-semibold fs-14 phase-value">
-                          Options
-                        </strong></p>
-                    </a>
-                    <mat-menu #settingsmenu="matMenu" yPosition="below">
-                      <button (click)="confirmSubmissionFlagChange(element, element.is_flagged)" mat-menu-item>
-                        <mat-icon>{{element.submissionFlagIcon}}</mat-icon>
-                        <span>{{element.submissionFlagText}}</span>
-                      </button>
-                      <button *ngIf="element.status == 'finished'" (click)="confirmSubmissionVisibility(element, element.is_public)" mat-menu-item>
-                        <mat-icon>{{element.submissionVisibilityIcon}}</mat-icon>
-                        <span>{{element.submissionVisibilityText}}</span>
-                      </button>
-                      <button (click)="reRunSubmission(element.id)" mat-menu-item>
-                        <mat-icon>refresh</mat-icon>
-                        <span>Re-run submission</span>
-                      </button>
-                    </mat-menu>
+                    <p><strong class="text-light-black fw-semibold fs-12">Submission Number</strong>
+                      <br> <strong class="fw-semibold fs-14">
+                        {{element.submission_number}}
+                      </strong></p>
                   </div>
                 </div>
                 <div class="element">
                   <p><strong class="text-light-black fw-semibold fs-12">Submitted At</strong>
-                    <br> <strong class="fw-semibold fs-14 phase-value">
+                    <br> <strong class="fw-semibold fs-14">
                       {{element.created_at | date:'medium'}}
                     </strong></p>
                 </div>
@@ -168,6 +171,27 @@
                   <mat-checkbox class="element-icon" [checked]="element.is_public" [disabled]="element.status !== 'finished' || !selectedPhase['leaderboard_public']" (change)="changeSubmissionVisibility(element.id, element.is_public)">
                     Show On Leaderboard
                   </mat-checkbox>
+                </div>
+                <div class="element">
+                  <a [matMenuTriggerFor]="settingsmenu" >
+                    <p><strong class="text-light-black fw-semibold fs-12">
+                      <i class="fa fa-gear element-icon"></i>Options
+                      </strong></p>
+                  </a>
+                  <mat-menu #settingsmenu="matMenu" yPosition="below">
+                    <button (click)="confirmSubmissionFlagChange(element, element.is_flagged)" mat-menu-item>
+                      <mat-icon>{{element.submissionFlagIcon}}</mat-icon>
+                      <span>{{element.submissionFlagText}}</span>
+                    </button>
+                    <button *ngIf="element.status == 'finished'" (click)="confirmSubmissionVisibility(element, element.is_public)" mat-menu-item>
+                      <mat-icon>{{element.submissionVisibilityIcon}}</mat-icon>
+                      <span>{{element.submissionVisibilityText}}</span>
+                    </button>
+                    <button (click)="reRunSubmission(element.id)" mat-menu-item>
+                      <mat-icon>refresh</mat-icon>
+                      <span>Re-run submission</span>
+                    </button>
+                  </mat-menu>
                 </div>
               </div>
             </div>
