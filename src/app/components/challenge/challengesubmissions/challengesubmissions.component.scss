@@ -72,6 +72,17 @@ tr.detail-row {
   padding: 8px;
 }
 
+tr.element-row:not(.expanded-row):hover {	
+  td {	
+    color: #efefef;	
+  }	
+  background: #252833;	
+}	
+
+ tr.element-row:not(.expanded-row):active {	
+  background: #efefef;	
+}
+
 .expanded-row {
   margin-top: 24px;
   margin-bottom: 14px;
