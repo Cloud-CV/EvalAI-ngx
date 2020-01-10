@@ -18,7 +18,6 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent implements OnInit, OnDestroy {
   private scrolledState = false;
   isLoading = false;
-  showScrollButton = false;
   confirmParams = { isConfirming: false};
   modalParams = { isModalVisible: false};
   editPhaseModalParams = { isEditPhaseModalVisible: false};
@@ -147,9 +146,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  topFunction() {
+  scrollUp() {
     document.body.scrollIntoView({behavior: 'smooth'});
-    // document.body.scrollTop = 0;
-    // document.documentElement.scrollTop = 0;
   }
 }
