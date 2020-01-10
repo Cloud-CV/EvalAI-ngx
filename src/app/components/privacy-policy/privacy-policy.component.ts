@@ -140,10 +140,4 @@ export class PrivacyPolicyComponent implements OnInit {
     this.highlightSectionTitle(ELEMENT_ID);
   }
 
-  /**
-   * Scrolls to the top of the page
-   */
-  scrollToTop() {
-    this.document.getElementById('privacy-policy-title').scrollIntoView({behavior: 'smooth'});
-  }
 }
