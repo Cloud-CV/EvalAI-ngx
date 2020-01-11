@@ -69,7 +69,8 @@
           <td class="cell-outside fw-regular align-center" mat-cell *matCellDef="let element" >
             <span *ngIf="column === 'status' && element[column] !== null" class="{{element[column]}}">
               {{element[column]}}</span>
-            <span *ngIf="column !== 'status' && element[column] !== null">{{element[column]}}</span>
+            <span *ngIf="column !== 'status' && element[column] !== null && column!=='submitted_file' && column!=='submission_result_file'">
+              {{element[column]}}</span>
             <a target="_blank" class="blue-text" [href]="element[column]"
               *ngIf="element[column] !== null && (column==='submitted_file' ||
               column==='submission_result_file')">
