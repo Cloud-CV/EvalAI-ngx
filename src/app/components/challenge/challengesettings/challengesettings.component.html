@@ -27,6 +27,17 @@
           </mat-chip-list>
         </mat-form-field>
         <div class="error-message" *ngIf="isValidationError">{{message}}</div>
+        <div>
+  Set decimal precision for leaderboard:
+  <mat-slider
+  thumbLabel
+  [displayWith]="formatLabel"
+  tickInterval="1"
+  min="0"
+  max="10"
+  ngModel="2"></mat-slider>
+  <button mat-fab>Save</button>
+  </div>
       </div>
     </div>
   </div>
