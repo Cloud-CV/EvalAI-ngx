@@ -1444,7 +1444,9 @@ code {
       padding: 10px;
       text-align: right;
     }
-    overflow-y: auto
+    .modal-content {
+      overflow-y: auto
+    }
   }
 }
 
