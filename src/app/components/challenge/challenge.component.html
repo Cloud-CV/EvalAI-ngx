@@ -120,7 +120,7 @@
                                     [routerLink]="['./leaderboard']"
                                     class="text-light-black fw-semibold fs-15">
                                     <i class="fa fa-th-list"></i> Leaderboard</a></li>
-                            <li *ngIf=""><a
+                            <li *ngIf="challenge.forumURL"><a
                                     [class.selected]="localRouter.url.endsWith('discussions')"
                                     href="{{challenge.forumURL}}"
                                     target="_blank"
