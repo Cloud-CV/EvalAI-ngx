@@ -10,7 +10,7 @@
     </div>
     <div class="ev-md-container bottom-hr-line">
       <div (click)="refreshLeaderboard()" class="pointer update-page" *ngIf="showLeaderboardUpdate">
-        <span class="text-white">Page is Outdated, Click to update&nbsp;
+        <span class="text-white">Page is outdated, Click to update&nbsp;
         <i class="fa fa-refresh text-highlight"></i></span>
       </div>
       <div class="row row-lr-margin phase-title">
@@ -40,6 +40,14 @@
                 class="result-wrn content">
                 <mat-chip-list>
                   <mat-chip>B</mat-chip> - Baseline submission
+                </mat-chip-list>
+                <mat-chip-list class="pull-right" *ngIf="isChallengeHost">
+                  <div (click)="showLeaderboardByLatestOrBest()" class="btn-switch sort-leaderboard-switch" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
+                  [(ngModel)]="showLeaderboardByLatest" ngDefaultControl>
+                      <div class="btn-switch-circle" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
+                      [(ngModel)]="showLeaderboardByLatest" ngDefaultControl></div>
+                  </div>
+                  <span class="w-400"> {{sortLeaderboardTextOption}}</span>
                 </mat-chip-list>
               </div>
 
