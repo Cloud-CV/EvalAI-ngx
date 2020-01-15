@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ChallengeComponent } from './challenge.component';
 import { ChallengesettingsComponent } from './challengesettings/challengesettings.component';
 import { ChallengeoverviewComponent} from './challengeoverview/challengeoverview.component';
@@ -45,6 +46,7 @@ import { SharedModule } from '../../shared.module';
     MatIconModule,
     MatSelectModule,
     MatTableModule,
+    MatCheckboxModule,
     MatDividerModule,
   ],
   exports: [
