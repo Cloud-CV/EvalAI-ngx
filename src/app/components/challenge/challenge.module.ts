@@ -44,6 +44,7 @@ import { SharedModule } from '../../shared.module';
     SharedModule,
     MatChipsModule,
     MatIconModule,
+    ChallengelistModule,
     MatSelectModule,
     MatTableModule,
     MatCheckboxModule,
