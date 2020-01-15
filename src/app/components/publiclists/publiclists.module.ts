@@ -20,20 +20,24 @@ import { TeamlistComponent } from './teamlist/teamlist.component';
     PubliclistsRoutingModule,
     ChallengelistModule,
     SharedModule
+  ],
+  exports: [
+    PubliclistsComponent,
+    ChallengelistModule
   ]
 })
 export class PubliclistsModule { }
 
 @NgModule({
-  declarations: [
-    TeamlistComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
-    ChallengelistModule,
     TeamlistsRoutingModule,
     PubliclistsModule,
     SharedModule
+  ],
+  exports: [
+    PubliclistsModule,
   ]
 })
 export class TeamlistsModule { }
