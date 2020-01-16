@@ -11,7 +11,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -167,8 +166,7 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatIconModule,
     MatTableModule,
     MatDividerModule,
-    MatCheckboxModule,
-    MatSlideToggleModule
+    MatCheckboxModule
   ],
   providers: [
     AuthService,
