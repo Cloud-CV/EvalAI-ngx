@@ -2,24 +2,19 @@
 @import './mixins.scss';
 
 .team-card-container {
-  font-size: $fs-16;
+  font-size: $fs-15;
   color: $gray-darker;
   font-weight: $fw-light;
-  overflow: auto;
   position: relative;
-  text-align: center;
-  padding-bottom: 20px;
   .team-content {
     cursor: pointer;
     @include box-shadow(0px, 0px, 5px, 0px, $overlay-light);
-    width: 90%;
+    width: 100%;
     display: inline-block;
     position: relative;
     background: white;
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 10px 5px;
+    margin: 20px 0;
     z-index: 5;
     overflow: auto;
     text-align: left;
@@ -30,7 +25,7 @@
         color:$gray-dark;
         margin-top:15px;
       }
-      font-size: $fs-24;
+      font-size: inherit;
       vertical-align:top;
       margin-top:10px;
     }
@@ -44,8 +39,6 @@
     .team-details {
       display: inline-block;
       margin: 0px 10px 0px 10px;
-      max-width: 185px;
-      overflow:hidden;
     }
     .team-icons {
       display: inline-block;
@@ -70,7 +63,6 @@
     text-align: left;
     margin: 0 auto;
     margin-top: -25px;
-    margin-bottom: 10px;
     width: 90%;
     position: relative;
     overflow: hidden;
@@ -123,4 +115,66 @@
 .selected {
   height: unset !important;
   border-bottom-style: none !important;
+}
+.title.toptitle {
+  margin-bottom: 0px !important;
+}
+.orange-text {
+  color: #ff9800 !important;
+}
+.radio-button {
+  cursor: pointer;
+  padding-right: 25px;
+}
+input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+input {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 11px 23px;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0;
+    outline: 0;
+    background-color: transparent;
+}
+
+.radio-button__input {
+    opacity: 0;
+    position: absolute;
+}
+
+.radio-button__control {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    vertical-align: middle;
+    background-color: inherit;
+    color: #017b5f;
+    border: 2px solid #666;
+    border-radius: 24px;
+}
+
+.radio-button__input:checked+.radio-button__control:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: #01a982;
+    border-radius: 12px;
+}
+
+.radio-button__input:checked+.radio-button__control {
+    border-color: #01a982;
+}
+
+.radio-button__control {
+  transform: scale(0.75);
 }
