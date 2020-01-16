@@ -25,7 +25,7 @@
       </div>
       <div class='team-icons'>
         <a (click)="addMembersToTeam($event)"><i class="fa fa-user-plus list-icon text-highlight w-300 left" aria-hidden="true"></i></a>
-        <a [class.host]="isHost" (click)="editTeam($event)"><i class="fa fa fa-pencil list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i></a>
+        <a (click)="editTeam($event)"><i class="fa fa fa-pencil list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i></a>
         <a (click)="deleteTeam($event)"><i class="fa fa-trash list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i></a>
       </div>
     </div>
