@@ -1,6 +1,6 @@
-<app-side-bar *ngIf="authService.isAuth"></app-side-bar>
+<app-side-bar></app-side-bar>
 <app-header-static></app-header-static>
-<div class="web-container" [style.center]="!authService.isAuth">
+<div class="web-container" [style.center]="authService.isAuth">
     <div class="challenge-flex">
         <div class="challenge-content">
             <div class="mid-container">
@@ -147,7 +147,7 @@
                 </div>
             </div>
         </div>
-        <app-footer [isDash]="true" *ngIf="authService.isAuth"></app-footer>
+        <app-footer [isDash]="true" *ngIf="!authService.isAuth"></app-footer>
     </div>
 </div>
-<app-footer *ngIf="!authService.isAuth"></app-footer>
+<app-footer *ngIf="authService.isAuth"></app-footer>
