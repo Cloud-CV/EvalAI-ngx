@@ -31,12 +31,6 @@
   margin-bottom:50px;
 }
 
-@include screen-small {
-  .challenge-container {
-    width: 95%;
-  }
-}
-
 .card-content p {
   padding-bottom: 10px;
 }
