@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: calc(100% - 223px);
+  float: right;
 }
 
 .dashboard-content {
@@ -12,8 +14,7 @@
 }
 
 .web-container {
-  width: calc(100vw - 223px);
-  float: right;
+  background-color: #fafafa;
   padding-top: 70px;
   overflow-x: hidden;
   &.center {
@@ -27,7 +28,7 @@
 /*media queries*/
 
 @media only screen and (max-width: $med-screen) {
-  .web-container {
+  .dashboard-flex {
     width: 100%;
   }
 }
