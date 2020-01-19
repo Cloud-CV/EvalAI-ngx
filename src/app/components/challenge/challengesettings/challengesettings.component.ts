@@ -121,7 +121,7 @@ export class ChallengesettingsComponent implements OnInit {
   }
 
   reflectChange() {
-    if (this.bannedEmailIds === this.formerBannedEmailIds) {
+    if (this.bannedEmailIds.toString() === this.formerBannedEmailIds.toString()) {
       this.globalService.showToast('error', 'No change to reflect!');
     } else if (this.isValidationError) {
       this.globalService.showToast('error', 'Please enter a valid email!');
