@@ -15,6 +15,8 @@
   background-color: #fafafa;
   padding-top: 70px;
   overflow-x: hidden;
+  width: calc(100vw - 223px);
+  float: right;
   &.center {
     float: none;
     margin: 0 auto;
