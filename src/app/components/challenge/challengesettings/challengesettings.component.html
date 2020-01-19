@@ -27,7 +27,10 @@
           </mat-chip-list>
         </mat-form-field>
         <div class="error-message" *ngIf="isValidationError">{{message}}</div>
-        <div class="btn btn-waves-effect waves-dark grad-btn grad-btn-dark fs-14" (click)="updateBannedEmailList()">
+        <div class="btn btn-waves-effect waves-dark grad-btn grad-btn-dark fs-14" *ngIf="!isValidationError" (click)="reflectChange()">
+          <span>Update</span>
+        </div>
+        <div class="btn btn-waves-effect waves-dark grad-btn grad-btn-dark fs-14"  disabled *ngIf="isValidationError" (click)="reflectChange()">
           <span>Update</span>
         </div>
       </div>

@@ -24,6 +24,11 @@ export class ChallengesettingsComponent implements OnInit {
   bannedEmailIds: string[];
 
   /**
+   * Former participants banned emails ids
+   */
+  formerBannedEmailIds: string[];
+
+  /**
    * Email validation for the banned email ids
    */
   isValidationError = false;
@@ -63,7 +68,8 @@ export class ChallengesettingsComponent implements OnInit {
   }
 
   updateView() {
-    this.bannedEmailIds = this.challenge.banned_email_ids;
+    this.bannedEmailIds = this.challenge.banned_email_ids || [];
+    this.formerBannedEmailIds = this.bannedEmailIds.concat(); // Creating deep copy
   }
 
   /**
@@ -114,11 +120,22 @@ export class ChallengesettingsComponent implements OnInit {
     return String(email).search (regex) !== -1;
   }
 
+  reflectChange() {
+    if (this.bannedEmailIds === this.formerBannedEmailIds) {
+      this.globalService.showToast('error', 'No change to reflect!');
+    } else if (this.isValidationError) {
+      this.globalService.showToast('error', 'Please enter a valid email!');
+    } else {
+      this.updateBannedEmailList();
+    }
+  }
+
   updateBannedEmailList() {
     const SELF = this;
     const BODY = JSON.stringify({
       banned_email_ids: SELF.bannedEmailIds
     });
+    this.formerBannedEmailIds = this.bannedEmailIds.concat(); // Creating deep copy
     SELF.apiService.patchUrl(
       SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
       BODY
