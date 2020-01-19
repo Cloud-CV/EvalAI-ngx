@@ -96,7 +96,7 @@ export class ChallengesettingsComponent implements OnInit {
   /**
    * Reflect banned email addition
    */
-  reflectAddition(): void {
+  reflectChange(): void {
     this.updateBannedEmailList();
   }
 
@@ -111,7 +111,6 @@ export class ChallengesettingsComponent implements OnInit {
     if (index >= 0) {
       this.bannedEmailIds.splice(index, 1);
     }
-    SELF.updateBannedEmailList();
   }
 
   validateEmail(email) {
