@@ -1,4 +1,4 @@
-<app-side-bar></app-side-bar>
+<app-side-bar *ngIf="authService.isAuth"></app-side-bar>
 <app-header-static></app-header-static>
 <div class="web-container" [style.center]="authService.isAuth">
     <div class="challenge-flex">
