@@ -6,12 +6,6 @@
   min-height: 100vh;
   width: calc(100% - 223px);
   float: right;
-  &.center {
-    float: none;
-    margin: 0 auto;
-    text-align: left;
-    overflow: hidden;
-  }
 }
 
 .challenge-create-content {
