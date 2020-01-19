@@ -94,13 +94,6 @@ export class ChallengesettingsComponent implements OnInit {
   }
 
   /**
-   * Reflect banned email addition
-   */
-  reflectChange(): void {
-    this.updateBannedEmailList();
-  }
-
-  /**
    * Remove banned email chip
    * @param email Banned email id
    */
