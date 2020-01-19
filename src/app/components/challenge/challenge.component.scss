@@ -7,6 +7,12 @@
   min-height: 100vh;
   width: calc(100% - 223px);
   float: right;
+  &.center {
+    float: none;
+    margin: 0 auto;
+    text-align: left;
+    overflow: hidden;
+  }
 }
 
 .challenge-content {
@@ -18,12 +24,6 @@
   background-color: #fafafa;
   padding-top: 70px;
   overflow-x: hidden;
-  &.center {
-    float: none;
-    margin: 0 auto;
-    text-align: left;
-    overflow: hidden;
-  }
 }
 
 .challenge-container {
