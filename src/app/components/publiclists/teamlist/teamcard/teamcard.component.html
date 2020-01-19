@@ -1,8 +1,8 @@
 <div class="team-card-container" [class.selected]='isSelected' [class.noexpand] = 'isHost' [class.expand] = '!isHost'>
 <div class="team-card-container-child">
     <div class="team-content" (click)='selectToggle()'>
-      <input type="radio"  class="radio-button__input" *ngIf='!isSelected && (isHost || isOnChallengePage)' id="{{teamView['team_name']}}">
-      <input type="radio"  class="radio-button__input" aria-hidden="true" *ngIf='isSelected && (isHost || isOnChallengePage)' id="{{teamView['team_name']}}">
+      <input type="radio" class="with-gap selectPhase"*ngIf='!isSelected && (isHost || isOnChallengePage)' id="{{teamView['team_name']}}">
+      <input type="radio" class="with-gap selectPhase" aria-hidden="true" *ngIf='isSelected && (isHost || isOnChallengePage)' id="{{teamView['team_name']}}">
       <label for="{{teamView['team_name']}}"></label>
       <i class="fa fa-users" aria-hidden="true"></i>
       <div class="team-details">

@@ -5,7 +5,7 @@
         <div class="ev-md-container ev-panel-title"><strong>{{teamSelectTitle}}</strong></div>
         <div class="ev-md-container ev-card-body exist-team-card">
           <div *ngIf="allTeams.length === 0" class="page-msg">No team exists for now. Start by creating a new team!</div>
-          <ul class="collapsible" data-collapsible="accordion"> 
+          <ul class="collapsible" data-collapsible="accordion">
             <app-teamcard *ngFor="let team of filteredTeams"
                           [team]="team" [selected]="team['isSelected']" [isOnChallengePage]="isOnChallengePage"
                           (deleteTeamCard)="deleteTeamWrapper()($event)" (editTeamCard)="editTeamWrapper()($event)" (addMembersTeamCard)="addMembersToTeamWrapper()($event)"
