@@ -147,7 +147,7 @@
                 </div>
             </div>
         </div>
-        <app-footer [isDash]="true" *ngIf="!authService.isAuth"></app-footer>
+        <app-footer [isDash]="true" *ngIf="authService.isAuth"></app-footer>
     </div>
 </div>
-<app-footer *ngIf="authService.isAuth"></app-footer>
+<app-footer *ngIf="!authService.isAuth"></app-footer>
