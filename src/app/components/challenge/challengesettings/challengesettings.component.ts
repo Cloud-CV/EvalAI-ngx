@@ -135,7 +135,6 @@ export class ChallengesettingsComponent implements OnInit {
     const BODY = JSON.stringify({
       banned_email_ids: SELF.bannedEmailIds
     });
-    this.formerBannedEmailIds = this.bannedEmailIds.concat(); // Creating deep copy
     SELF.apiService.patchUrl(
       SELF.endpointsService.editChallengeDetailsURL(SELF.challenge.creator.id, SELF.challenge.id),
       BODY
@@ -144,6 +143,7 @@ export class ChallengesettingsComponent implements OnInit {
           SELF.challenge.banned_email_ids = data.banned_email_ids;
           SELF.isBannedEmailInputVisible = false;
           SELF.globalService.showToast('success', 'Banned participant emails are successfully updated!', 5);
+          this.formerBannedEmailIds = this.bannedEmailIds.concat(); // Creating deep copy
         },
         err => {
           SELF.globalService.handleApiError(err, true);
@@ -152,5 +152,4 @@ export class ChallengesettingsComponent implements OnInit {
         () => {}
       );
   }
-
 }
