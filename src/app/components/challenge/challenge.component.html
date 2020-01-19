@@ -1,7 +1,7 @@
 <app-side-bar *ngIf="authService.isAuth"></app-side-bar>
 <app-header-static></app-header-static>
-<div class="web-container">
-    <div class="challenge-flex" [class.center]="!authService.isAuth">
+<div class="web-container" [style.center]="authService.isAuth">
+    <div class="challenge-flex">
         <div class="challenge-content">
             <div class="mid-container">
                 <div class="challenge-container">
@@ -68,6 +68,11 @@
                                                     </a>
                                                 </span>
                                             </span>
+                                            <br>
+                                            <mat-checkbox color="primary" class="fw-semibold" *ngIf="isChallengeHost"
+                                                [checked]="!challenge['is_registration_open']"
+                                                (click)="stopParticipation($event)">Close Participation
+                                            </mat-checkbox>
                                         </p>
                                     </div>
                                 </div>
