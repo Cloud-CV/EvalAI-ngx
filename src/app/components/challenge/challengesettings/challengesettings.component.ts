@@ -87,13 +87,17 @@ export class ChallengesettingsComponent implements OnInit {
       }
     }
 
-    if (value !== '' && !SELF.isValidationError) {
-      SELF.updateBannedEmailList();
-    }
     // Reset the input value
     if (input && !SELF.isValidationError) {
       input.value = '';
     }
+  }
+
+  /**
+   * Reflect banned email addition
+   */
+  reflectAddition(): void {
+    this.updateBannedEmailList();
   }
 
   /**
