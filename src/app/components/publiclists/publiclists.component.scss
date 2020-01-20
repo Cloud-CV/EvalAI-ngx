@@ -12,7 +12,7 @@
 }
 
 .web-container {
-  width: 100vw;
+  width: calc(100vw - 223px);
   float: right;
   padding-top: 70px;
   overflow-x: hidden;
