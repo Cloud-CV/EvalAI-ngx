@@ -17,14 +17,14 @@
   padding-top: 70px;
   overflow-x: hidden;
   background-color: #fafafa;
-  width: 100vw;
-  padding-left: 223px;
-  padding-right: 223px;
   &.center {
     float: none;
     margin: 0 auto;
     text-align: left;
     overflow: hidden;
+    width: 100%;
+    padding-left: 223px;
+    padding-right: 223px;
   }
 }
 
