@@ -1,13 +1,13 @@
 @import "styles/variables";
 .ev-sidebar {
   display: block;
-  height: 100vh;
+  height: calc(100vh - 64px);
   width: 220px;
-  padding-top: 98px;
   border-right: 1px solid $grad-light-black;
   background-color: #fafafa;
   color: #fff;
   z-index: 10;
+  top: 64px;
   text-align: center;
 }
 
@@ -17,7 +17,8 @@
 
 .links-section-outer {
   overflow: auto;
-  height: 100%;
+  height: calc(100% - 34px);
+  margin-top: 34px;
 }
 
 .links-section {
