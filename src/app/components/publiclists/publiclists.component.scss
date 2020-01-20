@@ -12,11 +12,14 @@
 }
 
 .web-container {
-  width: calc(100vw - 223px);
+  width: 100vw;
   float: right;
   padding-top: 70px;
   overflow-x: hidden;
   background-color: #fafafa;
+  width: 100vw;
+  padding-left: 223px;
+  padding-right: 223px;
   &.center {
     float: none;
     margin: 0 auto;
