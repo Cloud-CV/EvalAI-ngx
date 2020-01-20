@@ -12,10 +12,10 @@
 }
 
 .web-container {
-  padding-top: 70px;
-  overflow-x: hidden;
   width: calc(100vw - 223px);
   float: right;
+  padding-top: 70px;
+  overflow-x: hidden;
   &.center {
     float: none;
     margin: 0 auto;
