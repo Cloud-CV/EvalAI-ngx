@@ -3,8 +3,7 @@
 
 .team-card-container {
   font-size: $fs-15;
-  color: $gray-darker;
-  font-weight: $fw-light;
+  color: $dark-black;
   position: relative;
   .team-content {
     cursor: pointer;
@@ -181,4 +180,7 @@ input {
 
 .radio-button__control {
   transform: scale(0.75);
+}
+.fa-users {
+  color: black;
 }

@@ -104,7 +104,8 @@ export class TeamcardComponent implements OnInit, OnChanges {
     }
 
   selectTeamToggle() {
-    if (this.isSelected && (this.isHost || this.isOnChallengePage)) {
+    if (this.isHost || this.isOnChallengePage) {
+      this.isSelected = !this.isSelected;
       this.selectTeam();
     }
   }
