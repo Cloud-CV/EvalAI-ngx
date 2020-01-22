@@ -1,9 +1,9 @@
 <div class="team-card-container" [class.selected]='isSelected' [class.noexpand] = 'isHost' [class.expand] = '!isHost'>
 <div class="team-card-container-child">
     <div class="team-content" (click)='selectToggle()'>
-      <input type="radio" class="with-gap selectPhase" name="TeamSelection" (click)='selectTeamToggle()' id="{{teamView['team_name']}}">
-      <label for="{{teamView['team_name']}}"></label>
-      <i class="fa fa-users" aria-hidden="true"></i>
+      <input type="radio" class="with-gap selectPhase" name="TeamSelection" (click)='selectTeamToggle()' *ngIf="isHost" id="{{teamView['team_name']}}">
+      <label id="TeamToggleButton" for="{{teamView['team_name']}}"></label>
+      <i class="fa fa-users" aria-hidden="true" *ngIf='!isHost'></i>
       <div class="team-details">
         <span class="title toptitle">
         Team:
@@ -11,7 +11,7 @@
         <span *ngIf="teamView['team_url']">
           <a class="orange-text" target="_blank" href="{{teamView['team_url']}}">{{teamView['team_name']}}</a>
         </span>
-        <span class="orange-text" *ngIf="!teamView['team_url']">
+        <span *ngIf="!teamView['team_url']">
         {{teamView['team_name']}}
         </span>
         <br>

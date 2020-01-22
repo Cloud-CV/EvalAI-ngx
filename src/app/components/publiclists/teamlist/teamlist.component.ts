@@ -392,27 +392,16 @@ export class TeamlistComponent implements OnInit, OnDestroy {
    */
   editTeamWrapper() {
     const SELF = this;
+    let TeamUrl;
     const editTeam = (team) => {
       if (this.isHost) {
-        SELF.apiCall = (params) => {
-          const BODY = JSON.stringify(params);
-          SELF.apiService.patchUrl(SELF.endpointsService.HostTeamURL(team), BODY).subscribe(
-          data => {
-            // Success Message in data.message
-            SELF.globalService.showToast('success', 'Team Updated', 5);
-            SELF.fetchMyTeams(SELF.fetchTeamsPath);
-            SELF.selectedTeam = null;
-          },
-          err => {
-            SELF.globalService.handleApiError(err);
-          },
-          () => {}
-          );
-        };
-    } else {
+        TeamUrl = SELF.endpointsService.HostTeamURL(team);
+     } else {
+        TeamUrl = SELF.endpointsService.participantTeamURL(team);
+     }
       SELF.apiCall = (params) => {
         const BODY = JSON.stringify(params);
-        SELF.apiService.patchUrl(SELF.endpointsService.participantTeamURL(team), BODY).subscribe(
+        SELF.apiService.patchUrl(TeamUrl, BODY).subscribe(
         data => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Team Updated', 5);
@@ -425,7 +414,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
         () => {}
         );
       };
-    }
       const PARAMS = {
         title: 'Change Team Name',
         content: 'Enter new team name',
