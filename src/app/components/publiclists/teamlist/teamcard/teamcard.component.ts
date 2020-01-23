@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange
 import { GlobalService } from '../../../../services/global.service';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 /**
  * Component Class
@@ -62,6 +63,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
    * Team view object
    */
   teamView = {};
+
+    /**
+   * Team Member Array
+   */
+  memberArray = [];
 
   /**
    * Is currently selected
@@ -175,6 +181,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
       memberString = memberString.slice(2, memberString.length);
     }
     this.teamView['members'] = memberString;
+    this.memberArray = memberString.split(',');
   }
 
 }

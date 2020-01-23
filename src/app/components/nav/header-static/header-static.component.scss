@@ -9,14 +9,16 @@
   z-index: 999;
   width: 100%;
   nav {
+    height: 80px;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 0 0 #000;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 0 100px;
+    padding: 8px 120px;
     transition: all 0.1s ease-in-out;
     a.main-header-link {
+      font-size: 18px;
       color: $med-black;
       font-weight: $rob-reg;
       transition: all 0.2s ease-in-out;
@@ -57,6 +59,13 @@ a.evalai-logo {
 
 .background {
   background-color: $dark-gray;
+}
+
+.logoutbutton{
+  font-size: 18px;
+  width: 130px;
+  height: 45px;
+  padding:5px;
 }
 
 @media only screen and (max-width: $med-screen) {

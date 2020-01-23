@@ -20,7 +20,7 @@
           </a>
         </li>
         <li *ngIf="authService.isAuth">
-          <div class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" (click)="logOut()">Logout</div>
+          <div class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14 logoutbutton" (click)="logOut()">Logout</div>
         </li>
       </ul>
       <ul class="side-nav expand-menu" (click)="menuExpander()" *ngIf="!isMenuExpanded">

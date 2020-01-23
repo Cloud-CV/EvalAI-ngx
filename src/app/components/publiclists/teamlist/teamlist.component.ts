@@ -587,4 +587,5 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     };
     this.globalService.showTermsAndConditionsModal(PARAMS);
   }
+
 }

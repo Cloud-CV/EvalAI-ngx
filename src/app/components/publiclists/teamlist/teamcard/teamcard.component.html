@@ -32,8 +32,8 @@
       <div class="title">
         <h6><b>Team Members:</b></h6>
       </div>
-      <div>
-        {{teamView['members']}}
+      <div *ngFor="let member of memberArray" >
+        <span class="m1">{{member}}</span>
       </div>
     </div>
   </div>

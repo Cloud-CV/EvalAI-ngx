@@ -2,8 +2,9 @@
 @import './mixins.scss';
 
 .team-card-container {
-  font-size: $fs-15;
+  font-size: $fs-18;
   color: $dark-black;
+  margin: 5px;
   position: relative;
   .team-content {
     cursor: pointer;
@@ -101,6 +102,7 @@
         text-align: center;
         display: block;
         float: unset;
+        font-size: 100px;
       }
     }
     .team-members {
@@ -125,4 +127,9 @@
 }
 #TeamToggleButton {
   margin-bottom: 13.4px;
+}
+
+.fa-user-plus, .fa-pencil, .fa-trash{
+  margin: 0px;
+  padding:10px;
 }

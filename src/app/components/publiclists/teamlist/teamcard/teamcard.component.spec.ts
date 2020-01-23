@@ -15,7 +15,7 @@ describe('TeamcardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TeamcardComponent ],
-      providers: [ GlobalService, ApiService ],
+      providers: [ GlobalService, ApiService],
       imports: [ RouterTestingModule, HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
