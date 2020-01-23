@@ -9,7 +9,7 @@
             <app-teamcard *ngFor="let team of filteredTeams"
                           [team]="team" [selected]="team['isSelected']" [isOnChallengePage]="isOnChallengePage"
                           (deleteTeamCard)="deleteTeamWrapper()($event)" (editTeamCard)="editTeamWrapper()($event)" (addMembersTeamCard)="addMembersToTeamWrapper()($event)"
-            (selectTeamCard)="selectTeamWrapper()($event)">
+            (selectTeamCard)="selectTeamWrapper()($event)" (DeselectTeamWrapper)="DeselectTeamWrapper()($event)">
             </app-teamcard>
           </ul>
           <section class="pagination" *ngIf="allTeams.length !== 0">
