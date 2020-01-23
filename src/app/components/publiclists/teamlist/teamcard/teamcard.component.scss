@@ -12,7 +12,7 @@
     display: inline-block;
     position: relative;
     background: white;
-    padding: 10px 5px;
+    padding: 8px 5px;
     margin: 20px 0;
     z-index: 5;
     overflow: auto;
@@ -26,7 +26,7 @@
       }
       font-size: inherit;
       vertical-align:top;
-      margin-top:10px;
+      margin-top:15px;
     }
     .title {
       &.toptitle {
@@ -37,7 +37,6 @@
     }
     .team-details {
       display: inline-block;
-      margin: 0px 10px 0px 10px;
     }
     .team-icons {
       display: inline-block;
@@ -179,6 +178,7 @@ input {
 }
 .fa-users {
   color: black;
+  padding-right: 10px;
 }
 #TeamToggleButton {
   margin-bottom: 13.4px;
