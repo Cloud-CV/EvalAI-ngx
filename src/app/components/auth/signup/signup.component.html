@@ -33,7 +33,7 @@
       <label for="email" [class.active]="isemailFocused">Email</label>
       <div class="wrn-msg text-highlight"
            *ngIf="email.invalid && (email.dirty || email.touched || signupForm.submitted)">
-        <p *ngIf="email.errors.minlength">Please enter valid email address.</p>
+        <p *ngIf="email.errors.minlength">Please enter a valid email address.</p>
         <p *ngIf="email.errors.required">Email address is required.</p>
       </div>
     </div>
@@ -51,7 +51,7 @@
                 <i *ngIf="authService.canShowPassword" class="fa fa-eye-slash pointer"></i>
             </span>
       <label for="password" [class.active]="ispasswordFocused">
-        <strong>Password-minlength:8 required</strong>
+        <strong>Password (Minimum 8 Characters) *</strong>
         <span [style.color]="color">{{' ' + message}}</span>
       </label>
       <div class="wrn-msg text-highlight"
