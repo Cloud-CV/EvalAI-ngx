@@ -45,9 +45,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * Component on initialized.
    */
   ngOnInit() {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate([this.routePath]);
-    }
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       if (!authState.isLoggedIn) {
         this.router.navigate([this.routePath]);
