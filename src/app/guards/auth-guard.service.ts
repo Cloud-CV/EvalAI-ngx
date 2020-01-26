@@ -5,16 +5,16 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router,) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean | UrlTree {
-    var routePath = '/auth/login';
-    var isAuthenticated = this.authService.isLoggedIn()
+    const routePath = '/auth/login';
+    const isAuthenticated = this.authService.isLoggedIn();
 
-    if(isAuthenticated) {
-      return true
+    if (isAuthenticated) {
+      return true;
     }
-    
+
     const tree: UrlTree = this.router.parseUrl(routePath);
     return tree;
   }
