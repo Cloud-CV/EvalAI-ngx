@@ -35,6 +35,8 @@ import {HostAnalyticsComponent} from './components/analytics/host-analytics/host
 import {ResetPasswordComponent} from './components/auth/reset-password/reset-password.component';
 import {ResetPasswordConfirmComponent} from './components/auth/reset-password-confirm/reset-password-confirm.component';
 
+import { AuthGuard } from './guards/auth-guard.service';
+
 const routes: Routes = [
   {
     path: '',
@@ -104,10 +106,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'analytics',
     component: AnalyticsComponent,
+    canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'host-analytics', pathMatch: 'full'},
       {path: 'host-analytics', component: HostAnalyticsComponent}
