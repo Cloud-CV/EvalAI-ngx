@@ -23,23 +23,23 @@ A question we’re often asked is: Doesn’t Kaggle already do this? The central
 
 - **Portability**: Since the platform is open-source, users have the freedom to host challenges on their own private servers rather than having to explicitly depend on Cloud Services such as AWS, Azure, etc.
 
-- **Easy Hosting**: Hosting a challenge is streamlined. One can create the challenge on EvalAI using the intuitive UI (work-in-progress) or using zip configuration file.
+- **Easy Hosting**: Hosting a challenge is streamlined. One can create the challenge on EvalAI using the intuitive UI (work-in-progress) or using a zip configuration file.
 
-- **Centralized Leaderboard**: Challenge Organizers whether host their challenge on EvalAI or forked version of EvalAI, they can send the results to main EvalAI server. This helps to build a centralized platform to keep track of different challenges. 
+- **Centralized Leaderboard**: Whether a challenge is hosted on EvalAI or a forked version of EvalAI, Challenge organizers can send the results to main EvalAI server. This helps to build a centralized platform to keep track of different challenges. 
 
 ## Goal
 
-Our ultimate goal is to build a centralized platform to host, participate and collaborate in AI challenges organized around the globe and we hope to help in benchmarking progress in AI.
+Our ultimate goal is to build a centralized platform to host, participate and collaborate in AI challenges organized around the globe and we hope to help in benchmarking the progress of AI.
 
 ## Performance comparison
 
-Some background: Last year, the [Visual Question Answering Challenge (VQA) 2016](http://www.visualqa.org/vqa_v1_challenge.html) was hosted on some other platform, and on average evaluation would take **~10 minutes**. EvalAI hosted this year's [VQA Challenge 2017](https://evalai.cloudcv.org/featured-challenges/1/overview). This year, the dataset for the [VQA Challenge 2017](http://www.visualqa.org/challenge.html) is twice as large. Despite this, we’ve found that our parallelized backend only takes **~130 seconds** to evaluate on the whole test set VQA 2.0 dataset.
+Some background: Last year, the [Visual Question Answering Challenge (VQA) 2016](http://www.visualqa.org/vqa_v1_challenge.html) was hosted on different platform, and on average evaluation would take **~10 minutes**. EvalAI hosted this year's [VQA Challenge 2017](https://evalai.cloudcv.org/featured-challenges/1/overview). This year, the dataset for the [VQA Challenge 2017](http://www.visualqa.org/challenge.html) is twice as big compared to the previous version. Despite this, we’ve found that our parallelized backend only takes **~130 seconds** to evaluate the whole test set - VQA 2.0 dataset.
 
 ## Development setup
 
 Use [Docker Compose](https://docs.docker.com/compose/install/) to run all the components of EvalAI-ngx together. The steps are:
 
-1. Get the source code on to your machine via git.
+1. Clone the source code to your machine via git.
 
     ```shell
     git clone https://github.com/Cloud-CV/EvalAI-ngx.git evalai-ngx && cd evalai-ngx
