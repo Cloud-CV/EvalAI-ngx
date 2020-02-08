@@ -111,7 +111,7 @@
                         </mat-chip-list>
                       </span>
                     </td>
-                    <td *ngFor="let score of key.result">{{score | number : '1.2-2'}}</td>
+                    <td *ngFor="let score of key.result">{{score | number : selectedPhaseSplit.leaderboard_decimal_precision}}</td>
                     <td><div>{{ key.submission__submitted_at_formatted }}</div></td>
                   </tr>
                 </tbody>
