@@ -5,10 +5,12 @@
       <ul class="hide-on-med-and-down">
         <li><a class="waves-effect waves-dark main-header-link evalai-logo" routerLink="/" routerLinkActive="active"><img src="assets/images/evalai-logo-single.png"></a></li>
         <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" routerLink="/challenges">All Challenges</a></li>
+        <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" href="https://evalai.readthedocs.io/en/latest/" target="_blank">Docs</a></li>
         <li *ngIf="!authService.isAuth"><a class="waves-effect waves-dark main-header-link" href="https://evalai-forum.cloudcv.org/" target="_blank">Forum</a></li>
         <!-- show after authenticate user -->
         <li *ngIf="authService.isAuth && !isDash"><a class="waves-effect waves-dark main-header-link" (click) ="isDash = true" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
         <li *ngIf="authService.isAuth && isDash"><a class="waves-effect waves-dark main-header-link" routerLink="/challenges" routerLinkActive="active">All Challenges</a></li>
+        <li *ngIf="authService.isAuth"><a class="waves-effect waves-dark main-header-link" href="https://evalai.readthedocs.io/en/latest/" target="_blank">Docs</a></li>
         <li *ngIf="authService.isAuth"><a class="waves-effect waves-dark main-header-link" href="https://evalai-forum.cloudcv.org/" target="_blank">Forum</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
