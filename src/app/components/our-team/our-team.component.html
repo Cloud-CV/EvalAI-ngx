@@ -36,10 +36,11 @@
                     </div>
                     <div class="team-profile">
                         <img src="{{data.headshot || 'dist/images/logo.png'}}">
-                    </div>
-                    <div class="team-player">
-                        <div><strong class="text-dark-black">{{data.name}}</strong></div>
-                        <div class="text-med-black">{{data.description}}</div>
+                        <div class="team-player">
+                            <span class="text-name-tooltip">{{data.name}}</span>
+                            <strong class="text-dark-black">{{data.name}}</strong>
+                            <div class="text-med-black">{{data.description}}</div>
+                        </div>
                     </div>
                 </div>
             </div>

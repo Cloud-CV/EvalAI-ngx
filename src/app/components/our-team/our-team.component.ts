@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { GlobalService } from '../../services/global.service';
 import { EndpointsService } from '../../services/endpoints.service';
@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './our-team.component.html',
   styleUrls: ['./our-team.component.scss']
 })
-export class OurTeamComponent implements OnInit {
+export class OurTeamComponent implements OnInit, AfterViewChecked {
 
    /**
    * Constructor.
@@ -71,6 +71,22 @@ export class OurTeamComponent implements OnInit {
    */
   ngOnInit() {
     this.fetchOurTeamMembers();
+  }
+
+  ngAfterViewChecked() {
+     const DIVS = document.querySelectorAll('.team-player');
+
+     for (let i = 0; i < DIVS.length; i++) {
+        const TOOLTIP = DIVS[i].getElementsByClassName('text-name-tooltip')[0];
+        const NAME = DIVS[i].getElementsByClassName('text-dark-black')[0];
+
+        // Check if name is collapsed
+        if (NAME.scrollHeight > NAME.clientHeight) {
+           TOOLTIP.className = 'text-name-tooltip enabled';
+        } else {
+           TOOLTIP.className = 'text-name-tooltip disabled';
+        }
+     }
   }
 
   /**
