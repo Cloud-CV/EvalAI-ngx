@@ -29,6 +29,7 @@ describe('TeamcardComponent', () => {
     component.selected = false;
     component.isOnChallengePage = false;
     component.deleteTeamCard = new EventEmitter<any>();
+    component.deleteMemberCard = new EventEmitter<any>();
     component.selectTeamCard = new EventEmitter<any>();
     fixture.detectChanges();
   });

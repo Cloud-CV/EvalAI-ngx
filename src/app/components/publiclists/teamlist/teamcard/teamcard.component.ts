@@ -34,6 +34,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
   @Output() deleteTeamCard = new EventEmitter<any>();
 
   /**
+   * Delete member event
+   */
+  @Output() deleteMemberCard = new EventEmitter<any>();
+
+  /**
    * Select team event
    */
   @Output() selectTeamCard = new EventEmitter<any>();
@@ -57,6 +62,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
    * Team view object
    */
   teamView = {};
+
+  /**
+   * Team Member Array
+   */
+  memberArray = [];
 
   /**
    * Is currently selected
@@ -132,6 +142,14 @@ export class TeamcardComponent implements OnInit, OnChanges {
     this.deleteTeamCard.emit(this.team['id']);
   }
 
+    /**
+   * Fires delete member event.
+   */
+  deleteTeamMember(e) {
+    e.stopPropagation();
+    this.deleteMemberCard.emit(this.team['id']);
+  }
+
   /**
    * Fires slect team event.
    */
@@ -167,6 +185,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
       memberString = memberString.slice(2, memberString.length);
     }
     this.teamView['members'] = memberString;
+    this.memberArray = memberString.split(',');
   }
 
 }

@@ -98,6 +98,13 @@ export class EndpointsService {
   }
 
   /**
+   * Delete Member Participant
+   */
+  participantMemberURL(teamId) {
+    return `${this.participants}remove_member_from_participant_team/${teamId}`;
+  }
+
+  /**
    * Our Team members
    */
   ourTeamURL() {
