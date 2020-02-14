@@ -69,6 +69,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
   memberArray = [];
 
   /**
+   * Team Member ID Array
+   */
+  memberIdArray = [];
+
+  /**
    * Is currently selected
    */
   isSelected = false;
@@ -145,9 +150,10 @@ export class TeamcardComponent implements OnInit, OnChanges {
     /**
    * Fires delete member event.
    */
-  deleteTeamMember(e) {
+  deleteTeamMember(e, participantId) {
     e.stopPropagation();
-    this.deleteMemberCard.emit(this.team['id']);
+    const teamid = this.team['id'];
+    this.deleteMemberCard.emit({teamid: teamid, participantId: participantId});
   }
 
   /**
@@ -174,9 +180,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
     }
     const temp = this.team['members'];
     let memberString = '';
+    let memberIdString = '';
     for (let i = 0; i < temp.length; i++) {
       if (temp[i]['member_name']) {
         memberString = memberString + ', ' + temp[i]['member_name'];
+        memberIdString = memberIdString + ', ' + temp[i]['member_id'] ;
       } else {
         memberString = memberString + ', ' + temp[i]['user'];
       }
@@ -184,8 +192,13 @@ export class TeamcardComponent implements OnInit, OnChanges {
     if (memberString !== '') {
       memberString = memberString.slice(2, memberString.length);
     }
+    if (memberIdString !== '') {
+      memberIdString = memberIdString.slice(2, memberIdString.length);
+    }
     this.teamView['members'] = memberString;
+    this.teamView['member_ids'] = memberIdString;
     this.memberArray = memberString.split(',');
+    this.memberIdArray = memberIdString.split(', ');
   }
 
 }

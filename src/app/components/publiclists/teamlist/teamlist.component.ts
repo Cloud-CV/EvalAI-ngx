@@ -232,7 +232,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       this.fetchTeamsPath = 'hosts/challenge_host_team';
       this.createTeamsPath = 'hosts/create_challenge_host_team';
       this.deleteTeamsPath = 'hosts/remove_self_from_challenge_host';
-      this.deleteMembersPath = 'hosts/remove_member_from_challenge_list';
+      this.deleteMembersPath = 'hosts/remove_host_from_challenge_list';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = 'Create a New Team';
       this.teamSelectTitle = 'Select a Challenge Host Team';
@@ -245,7 +245,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       this.fetchTeamsPath = 'participants/participant_team';
       this.createTeamsPath = this.fetchTeamsPath;
       this.deleteTeamsPath = 'participants/remove_self_from_participant_team';
-      this.deleteMembersPath = 'participants/remove_member_from_participant_team';
+      this.deleteMembersPath = 'participants/participant_team/';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = 'Create a New Participant Team';
       this.teamSelectTitle = 'My Existing Participant Teams';
@@ -580,8 +580,8 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const SELF = this;
     const deleteTeamMember = (team) => {
       SELF.apiCall = (params) => {
-        const BODY = JSON.stringify(params);
-        SELF.apiService.patchUrl(SELF.endpointsService.participantMemberURL(team), BODY).subscribe(
+        SELF.apiService.deleteUrl(SELF.deleteMembersPath + team.teamid + '/participant/' + team.participantId
+                      ).subscribe(
         data => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Member was removed from the team!', 5);
