@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange
 import { GlobalService } from '../../../../services/global.service';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 /**
  * Component Class
@@ -12,6 +13,21 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./teamcard.component.scss']
 })
 export class TeamcardComponent implements OnInit, OnChanges {
+
+ /**
+   * Useer Name
+   */
+  user = {username: ''};
+
+  /**
+   * Authentication Service subscription
+   */
+  authServiceSubscription: any;
+
+    /**
+   * Current Authentication state
+   */
+  authState: any;
 
   /**
    * Team object
@@ -92,6 +108,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   constructor(private globalService: GlobalService,
               private apiService: ApiService,
+              public authService: AuthService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -100,6 +117,12 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   ngOnInit() {
     this.updateView();
+    this.authServiceSubscription = this.authService.change.subscribe((authState) => {
+      this.authState = authState;
+      if (this.authState.isLoggedIn) {
+        this.user = this.authState;
+      }
+    });
   }
 
   /**
@@ -152,6 +175,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   deleteTeamMember(e, participantId) {
     e.stopPropagation();
+    console.log(this.team);
     const teamid = this.team['id'];
     this.deleteMemberCard.emit({teamid: teamid, participantId: participantId});
   }
