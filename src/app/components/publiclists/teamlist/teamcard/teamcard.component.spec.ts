@@ -7,7 +7,8 @@ import { ApiService } from '../../../../services/api.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../../../services/auth.service';
+import { EndpointsService } from '../../../../services/endpoints.service';
 
 describe('TeamcardComponent', () => {
   let component: TeamcardComponent;
@@ -16,7 +17,7 @@ describe('TeamcardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TeamcardComponent ],
-      providers: [ GlobalService, ApiService, AuthService ],
+      providers: [ GlobalService, ApiService, AuthService, EndpointsService ],
       imports: [ RouterTestingModule, HttpClientModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
