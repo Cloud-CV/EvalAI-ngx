@@ -77,6 +77,11 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   teamCreateTitle = '';
 
   /**
+   * Delete member title
+   */
+  MemberDeleteTitle = '';
+
+  /**
    * Create team button
    */
   teamCreateButton = '';
@@ -114,7 +119,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
    */
   deleteTeamsPath: any;
 
-    /**
+  /**
    * Delete member URL
    */
   deleteMembersPath: any;
@@ -232,11 +237,12 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       this.fetchTeamsPath = 'hosts/challenge_host_team';
       this.createTeamsPath = 'hosts/create_challenge_host_team';
       this.deleteTeamsPath = 'hosts/remove_self_from_challenge_host';
-      this.deleteMembersPath = 'hosts/remove_host_from_challenge_list';
+      this.deleteMembersPath = 'hosts/challenge_host_team/';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = 'Create a New Team';
       this.teamSelectTitle = 'Select a Challenge Host Team';
       this.teamCreateButton = 'Create Host Team';
+      this.MemberDeleteTitle = '/challenge_host/';
     } else {
       if (this.router.url !== this.participantTeamRoutePath) {
         this.isOnChallengePage = true;
@@ -250,6 +256,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       this.teamCreateTitle = 'Create a New Participant Team';
       this.teamSelectTitle = 'My Existing Participant Teams';
       this.teamCreateButton = 'Create Participant Team';
+      this.MemberDeleteTitle = '/participant/';
     }
   }
 
@@ -580,7 +587,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const SELF = this;
     const deleteTeamMember = (team) => {
       SELF.apiCall = (params) => {
-        SELF.apiService.deleteUrl(SELF.deleteMembersPath + team.teamid + '/participant/' + team.participantId
+        SELF.apiService.deleteUrl(SELF.deleteMembersPath + team.teamid + this.MemberDeleteTitle + team.participantId
                       ).subscribe(
         data => {
           // Success Message in data.message

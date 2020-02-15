@@ -175,7 +175,6 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   deleteTeamMember(e, participantId) {
     e.stopPropagation();
-    console.log(this.team);
     const teamid = this.team['id'];
     this.deleteMemberCard.emit({teamid: teamid, participantId: participantId});
   }
@@ -211,6 +210,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
         memberIdString = memberIdString + ', ' + temp[i]['id'] ;
       } else {
         memberString = memberString + ', ' + temp[i]['user'];
+        memberIdString = memberIdString + ', ' + temp[i]['id'] ;
       }
     }
     if (memberString !== '') {
