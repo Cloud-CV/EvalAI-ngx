@@ -208,7 +208,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
     for (let i = 0; i < temp.length; i++) {
       if (temp[i]['member_name']) {
         memberString = memberString + ', ' + temp[i]['member_name'];
-        memberIdString = memberIdString + ', ' + temp[i]['member_id'] ;
+        memberIdString = memberIdString + ', ' + temp[i]['id'] ;
       } else {
         memberString = memberString + ', ' + temp[i]['user'];
       }
