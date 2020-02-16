@@ -32,7 +32,7 @@
       <div class="title">
         <h6><b>Team Members:</b></h6>
       </div>
-      <div *ngFor="let member of memberArray" >
+      <div *ngFor="let member of memberArray; let i= index;" >
         <span class="m1">{{member}}</span>
       </div>
     </div>
