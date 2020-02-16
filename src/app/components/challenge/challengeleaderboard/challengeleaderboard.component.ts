@@ -79,6 +79,11 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   leaderboard = [];
 
   /**
+   * Leaderboard precision value
+   */
+  leaderbord_decimal_precision_value = 2;
+
+  /**
    * Show leaderboard updates
    */
   showLeaderboardUpdate = false;
