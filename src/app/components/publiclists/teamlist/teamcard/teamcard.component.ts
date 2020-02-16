@@ -14,8 +14,8 @@ import { AuthService } from '../../../../services/auth.service';
 })
 export class TeamcardComponent implements OnInit, OnChanges {
 
- /**
-   * Useer Name
+  /**
+   * User Name
    */
   user = {username: ''};
 
@@ -24,7 +24,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   authServiceSubscription: any;
 
-    /**
+  /**
    * Current Authentication state
    */
   authState: any;
