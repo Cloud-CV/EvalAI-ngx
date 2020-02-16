@@ -454,4 +454,15 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       () => {}
     );
   }
+
+  /**
+   * getPrecisionValue
+   */
+  public getPrecisionValue(num) {
+    if (num === '') {
+      return '1.2-2';
+    } else {
+      return '1.' + num + '-' + num;
+    }
+  }
 }
