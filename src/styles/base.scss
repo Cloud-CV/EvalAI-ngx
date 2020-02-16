@@ -5,9 +5,11 @@
 @import './grid.scss';
 @import './font.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import './theming.scss';
 
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: #fafafa;
   * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1428,22 +1430,33 @@ code {
     font-size: $fs-16;
     color: $gray-darker;
     padding: 30px;
-    overflow-y: scroll;
-    .title {
-      color: $med-black;
-      padding: 10px;
-      font-size: $fs-18;
-      font-weight: $fw-bolder;
-    }
-    .content {
-      padding: 10px;
-    }
-    .form {
-      padding: 10px;
-    }
-    .buttons {
-      padding: 10px;
-      text-align: right;
+    .modal-wrapper {
+      height:100%;
+      .title {
+        color: $med-black;
+        padding: 10px;
+        font-size: $fs-18;
+        font-weight: $fw-bolder;
+      }
+      .content {
+        padding: 10px;
+      }
+      .form {
+        padding: 10px;
+      }
+      .buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 10px;
+        text-align: right;
+      }
+      .modal-content {
+        overflow-y: auto;
+        max-height: 485px;
+      }
     }
   }
 }
