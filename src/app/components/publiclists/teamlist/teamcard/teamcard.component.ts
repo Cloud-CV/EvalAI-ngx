@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange
 import { GlobalService } from '../../../../services/global.service';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../../services/auth.service';
 
 /**
  * Component Class
