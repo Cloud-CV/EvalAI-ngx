@@ -38,37 +38,17 @@
               class="fw-regular result-wrn">No phase selected.</div>
               <div *ngIf="leaderboard.length > 0 && selectedPhaseSplit"
                 class="result-wrn content">
-                <table>
-                  <tbody>
-                    <tr>
-                        <td id="submissionHeader">
-                            <mat-chip>B</mat-chip> - Baseline submission
-                        </td>
-                      <td>
-                        <div id = "precision_value">
-                            Precision value:
-                            <input type="text" [(ngModel)]="leaderbord_decimal_precision_value"/>
-                        </div>
-                      </td>
-  
-                      <td id = "leaderboard_button">
-                        <div (click)="showLeaderboardByLatestOrBest()" class="btn-switch sort-leaderboard-switch" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
-                            [(ngModel)]="showLeaderboardByLatest" ngDefaultControl>
-                <!-- <mat-chip-list>
+                <mat-chip-list>
                   <mat-chip>B</mat-chip> - Baseline submission
                 </mat-chip-list>
                 <mat-chip-list class="pull-right" *ngIf="isChallengeHost">
                   <div (click)="showLeaderboardByLatestOrBest()" class="btn-switch sort-leaderboard-switch" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
-                  [(ngModel)]="showLeaderboardByLatest" ngDefaultControl> -->
+                  [(ngModel)]="showLeaderboardByLatest" ngDefaultControl>
                       <div class="btn-switch-circle" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
                       [(ngModel)]="showLeaderboardByLatest" ngDefaultControl></div>
                   </div>
                   <span class="w-400"> {{sortLeaderboardTextOption}}</span>
-                <!-- </mat-chip-list> -->
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                </mat-chip-list>
               </div>
 
               <table *ngIf="leaderboard.length > 0 && selectedPhaseSplit" class="centered highlight">

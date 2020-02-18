@@ -79,11 +79,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   leaderboard = [];
 
   /**
-   * Leaderboard precision value
-   */
-  leaderbord_decimal_precision_value = 2;
-
-  /**
    * Show leaderboard updates
    */
   showLeaderboardUpdate = false;
@@ -460,14 +455,4 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     );
   }
 
-  /**
-   * getPrecisionValue
-   */
-  public getPrecisionValue(num) {
-    if (num === '') {
-      return '1.2-2';
-    } else {
-      return '1.' + num + '-' + num;
-    }
-  }
 }

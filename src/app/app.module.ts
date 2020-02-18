@@ -10,7 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule, MatSliderModule } from '@angular/material';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -166,7 +166,8 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatIconModule,
     MatTableModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule
   ],
   providers: [
     AuthService,

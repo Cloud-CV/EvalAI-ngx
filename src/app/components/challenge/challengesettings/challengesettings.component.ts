@@ -51,6 +51,12 @@ export class ChallengesettingsComponent implements OnInit {
   removable = true;
   addOnBlur = true;
 
+
+  /**
+   * Leaderboard precision value
+   */
+  leaderbord_decimal_precision_value = 2;
+
   /**
    * Input to edit the banned participants emails
    */
@@ -151,5 +157,23 @@ export class ChallengesettingsComponent implements OnInit {
         },
         () => {}
       );
+  }
+
+    /**
+   * getPrecisionValue
+   */
+  public getPrecisionValue(num) {
+    if (num === '') {
+      return '1.2-2';
+    } else {
+      return '1.' + num + '-' + num;
+    }
+  }
+
+    /**
+   * Precision slider value
+   */
+  formatLabel(value: number) {
+    return value;
   }
 }
