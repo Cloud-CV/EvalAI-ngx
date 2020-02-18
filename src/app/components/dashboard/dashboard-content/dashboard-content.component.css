@@ -5,22 +5,17 @@
   -webkit-text-fill-color: transparent;
   font-size: 26px;
 }
-
 .Dashboard-btn {
   margin: 2%;
 }
-
 .Dashboard-btn a {
   width: 300px;
 }
-
 .btn {
   font-size: 1.2rem;
-  padding-top:.5%;
+  padding-top: 0.5%;
   height: 45px;
 }
-
 .text-dark-black {
   font-size: 3rem;
 }
-
