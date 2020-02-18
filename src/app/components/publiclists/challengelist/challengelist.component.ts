@@ -69,6 +69,24 @@ export class ChallengelistComponent implements OnInit {
    */
   filteredChallenges = [];
 
+
+  /**
+   * List of filtered ongoing challenges
+   */
+  filteredOngoingChallenges = [];
+
+
+  /**
+   * List of filtered upcoming challenges
+   */
+  filteredUpcomingChallenges = [];
+
+
+  /**
+   * List of filtered past challenges
+   */
+  filteredPastChallenges = [];
+
   /**
    * List of filtered-further challenges
    */
@@ -210,6 +228,9 @@ export class ChallengelistComponent implements OnInit {
       this.ongoingChallenges = filter === 'isOngoingChecked' ? [] : this.ongoingChallenges;
       this.pastChallenges = filter === 'isPastChecked' ? [] : this.pastChallenges;
       this.filteredChallenges = this.upcomingChallenges.concat(this.ongoingChallenges, this.pastChallenges);
+      this.filteredOngoingChallenges = this.ongoingChallenges;
+      this.filteredUpcomingChallenges = this.upcomingChallenges;
+      this.filteredPastChallenges = this.pastChallenges;
       this.updateChallengesView(true);
     }
   }
@@ -240,6 +261,9 @@ export class ChallengelistComponent implements OnInit {
   filterChallengesByTeams() {
     if (this.router.url === this.myChallengesRoutePathCommon && this.authService.isLoggedIn()) {
       this.filteredChallenges = this.filteredChallenges.filter((v, i, a) => this.allTeams.indexOf(v['creator']['id']) > -1);
+      this.filteredOngoingChallenges = this.filteredOngoingChallenges.filter((v, i, a) => this.allTeams.indexOf(v['creator']['id']) > -1);
+      this.filteredUpcomingChallenges = this.filteredUpcomingChallenges.filter((v, i, a) => this.allTeams.indexOf(v['creator']['id']) > -1);
+      this.filteredPastChallenges = this.filteredPastChallenges.filter((v, i, a) => this.allTeams.indexOf(v['creator']['id']) > -1);
     }
   }
 
@@ -302,6 +326,9 @@ export class ChallengelistComponent implements OnInit {
           SELF.pastChallenges = data['results'];
         }
         SELF.filteredChallenges = SELF.upcomingChallenges.concat(SELF.ongoingChallenges, SELF.pastChallenges);
+        SELF.filteredOngoingChallenges = SELF.ongoingChallenges;
+        SELF.filteredUpcomingChallenges = SELF.upcomingChallenges;
+        SELF.filteredPastChallenges = SELF.pastChallenges;
         this.updateChallengesView(true);
       },
       err => {
