@@ -122,4 +122,4 @@ Once rebasing is done, the reviewer will approve and merge the PR.
     - Fix submission worker crash issue
     
     - Change design template
-***Congratulations, you have successfully contributed to Project EvalAI-ngx!***
+***Congratulations, you have successfully contributed to Project EvalAI!***
