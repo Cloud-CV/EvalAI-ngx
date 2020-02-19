@@ -301,6 +301,15 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   }
 
   /**
+   * Edit challenge details
+   * @param hostTeam challenge host team id
+   * @param challenge challenge id
+   */
+  inviteParticipanttoChallenegURL(challenge) {
+    return `${this.challenges}${challenge}/send-invitation`;
+  }
+
+  /**
    * Delete challenge
    * @param challenge challenge id
    */
