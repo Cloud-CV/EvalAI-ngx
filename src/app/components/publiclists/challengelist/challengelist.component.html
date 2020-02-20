@@ -1,6 +1,6 @@
-<section class="ev-sm-container ev-view challenge-container">
+<section class="ev-sm-container ev-view challenge-container noScroll">
   <mat-tab-group>
-    <mat-tab label="Ongoing Challenges [ {{ ongoingChallenges.length }} ]">
+    <mat-tab label="Ongoing Challenges ({{ongoingChallenges.length}})">
   <!-- ongoing challenges -->
       <div *ngIf="routerPublic.url === allChallengesRoutePathCommon">
         <div *ngIf="ongoingChallenges.length === 0" class="none">None</div>
@@ -29,7 +29,7 @@
     </div>
   </mat-tab>
 
-    <mat-tab label="Upcoming Challenges [ {{ upcomingChallenges.length }} ]">
+    <mat-tab label="Upcoming Challenges ({{ upcomingChallenges.length }})">
     <!-- upcoming challenges -->
       <div ng-show="tab === 3" id="upcomingChallenges">
         <div *ngIf="routerPublic.url === allChallengesRoutePathCommon">
@@ -60,7 +60,7 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Upcoming Challenges [ {{ upcomingChallenges.length }} ]">
+    <mat-tab label="Upcoming Challenges ({{ upcomingChallenges.length }})">
     <!-- past challenges -->
       <div ng-show="tab === 2">
         <div *ngIf="routerPublic.url === allChallengesRoutePathCommon">
@@ -89,5 +89,5 @@
         </div>
       </div>
     </mat-tab>
-  </mat-tab-group>
+  </mat-tab-group >
 </section>
