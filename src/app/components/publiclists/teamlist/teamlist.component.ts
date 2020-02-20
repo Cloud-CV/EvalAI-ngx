@@ -122,7 +122,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   /**
    * Currently selected team to unselect
    */
-  OtherselectedTeam: any = null;
+  otherSelectedTeam: any = null;
 
   /**
    * challenge object
@@ -312,7 +312,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   DeselectTeamWrapper() {
     const SELF = this;
     const selectTeam = (team) => {
-      SELF.OtherselectedTeam = team;
+      SELF.otherSelectedTeam = team;
       SELF.unselectOtherTeams(SELF);
     };
     return selectTeam;
@@ -325,8 +325,8 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const temp = self.allTeams.slice();
     for (let i = 0; i < temp.length; i++) {
       temp[i]['isSelected'] = false;
-      if (self.OtherselectedTeam['id'] === temp[i]['id']) {
-        temp[i]['isSelected'] = true;
+      if (self.otherSelectedTeam['id'] === temp[i]['id']) {
+        temp[i]['isSelectOtherselectedTeamed'] = true;
       }
     }
     self.allTeams = temp;
@@ -410,11 +410,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const SELF = this;
     let TeamUrl;
     const editTeam = (team) => {
-      if (this.isHost) {
-        TeamUrl = SELF.endpointsService.HostTeamURL(team);
-     } else {
-        TeamUrl = SELF.endpointsService.participantTeamURL(team);
-     }
+    TeamUrl = (this.isHost) ? SELF.endpointsService.hostTeamURL(team) : SELF.endpointsService.participantTeamURL(team);
       SELF.apiCall = (params) => {
         const BODY = JSON.stringify(params);
         SELF.apiService.patchUrl(TeamUrl, BODY).subscribe(

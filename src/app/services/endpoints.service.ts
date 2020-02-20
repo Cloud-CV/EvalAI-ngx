@@ -99,7 +99,7 @@ export class EndpointsService {
 /**
    * Edit Host Team Name
    */
-  HostTeamURL(teamId) {
+  hostTeamURL(teamId) {
     return `${this.hosts}challenge_host_team/${teamId}`;
   }
 
