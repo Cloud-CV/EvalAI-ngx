@@ -38,4 +38,8 @@ describe('ResetPasswordConfirmComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should confirm reset password', () => {
+    component.resetPasswordConfirm(true);
+    component.resetPasswordConfirm(false);
+  });
 });

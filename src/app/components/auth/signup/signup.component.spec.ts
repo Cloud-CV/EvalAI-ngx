@@ -39,4 +39,15 @@ describe('SignupComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call ngAfterViewInit', () => {
+    component.ngAfterViewInit();
+  });
+  it('should call userSignup', () => {
+    component.userSignUp(true);
+    component.userSignUp(false);
+  });
+  it('should check password strength', () => {
+    component.checkStrength('Passwordgoeshere!');
+  });
 });

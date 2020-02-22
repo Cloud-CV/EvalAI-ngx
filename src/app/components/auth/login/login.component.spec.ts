@@ -42,4 +42,16 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should call ngOnInit', () => {
+    component.ngOnInit();
+  });
+  it('should call ngAfterViewInit', () => {
+    component.ngAfterViewInit();
+  });
+  it('should call userLogin', () => {
+    component.userLogin(true);
+    component.userLogin(false);
+  });
+
+
 });

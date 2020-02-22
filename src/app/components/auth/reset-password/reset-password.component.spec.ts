@@ -31,4 +31,8 @@ describe('ResetPasswordComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should reset password', () => {
+    component.resetPassword(true);
+    component.resetPassword(false);
+  });
 });
