@@ -55,4 +55,25 @@ describe('HostAnalyticsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should call ngOninit', () => {
+    component.ngOnInit();
+  });
+  it('should show errCallBack', () => {
+    component.errCallBack(403);
+    component.errCallBack(401);
+  });
+  it('should show HostTeam', () => {
+    component.getHostTeam();
+  });
+  it('should show challenge Host', () => {
+    component.getChallengeHost();
+  });
+  it('should show challenge Analysis', () => {
+    component.showChallengeAnalysis();
+  });
+  it('should show download challenge participant team', () => {
+    component.downloadChallengeParticipantTeams();
+  });
+
+
 });
