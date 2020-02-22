@@ -73,5 +73,30 @@ describe('ChallengelistComponent', () => {
 
     expect(component).toBeTruthy();
   });
-
+  it('should fetch teams', () => {
+    fixture.componentInstance.fetchMyTeams();
+  });
+  it('should toggle filter', () => {
+    fixture.componentInstance.toggleFilter('ongoing');
+    fixture.componentInstance.toggleFilter('past');
+    fixture.componentInstance.toggleFilter('upcoming');
+  });
+  it('should show more results', () => {
+    fixture.componentInstance.seeMoreClicked();
+  });
+  it('should update challenge view', () => {
+    fixture.componentInstance.updateChallengesView(true);
+  });
+  it('should filter challenges by teams', () => {
+    fixture.componentInstance.filterChallengesByTeams();
+  });
+  it('should fetch teams', () => {
+    fixture.componentInstance.fetchTeams('/teams');
+  });
+  it('should fetch challenges', () => {
+    fixture.componentInstance.fetchChallenges();
+  });
+  it('should fetch challenges from API', () => {
+    fixture.componentInstance.fetchChallengesFromApi('/challenges/challenge/2');
+  });
 });

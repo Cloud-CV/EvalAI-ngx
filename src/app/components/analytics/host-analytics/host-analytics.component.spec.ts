@@ -59,8 +59,14 @@ describe('HostAnalyticsComponent', () => {
     component.ngOnInit();
   });
   it('should show errCallBack', () => {
-    component.errCallBack(403);
-    component.errCallBack(401);
+    const err1 = {
+       status: '403'
+    };
+    const err2 = {
+      status: '401'
+   };
+    component.errCallBack(err1);
+    component.errCallBack(err2);
   });
   it('should show HostTeam', () => {
     component.getHostTeam();
