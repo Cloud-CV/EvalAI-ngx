@@ -4,11 +4,13 @@ import { ApiService } from './api.service';
 import { GlobalService } from './global.service';
 
 describe('ApiService', () => {
+  let apiService: ApiService;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientModule ],
       providers: [ ApiService, GlobalService ]
     });
+    apiService = TestBed.get(ApiService);
   });
 
   it('should be created', inject([ ApiService ], (service: ApiService) => {
@@ -56,4 +58,7 @@ describe('ApiService', () => {
      expect(SPY3).toHaveBeenCalled();
    }));
 
+   it(' should prepare headers', () => {
+    expect(apiService.prepareHttpOptions()).toEqual({'Content-Type': 'application/json'});
+   });
 });
