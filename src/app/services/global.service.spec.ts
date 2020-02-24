@@ -1,8 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { GlobalService } from './global.service';
-import { FormControl, FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-
 describe('GlobalService', () => {
   let globalService: GlobalService;
   beforeEach(() => {
@@ -15,41 +13,45 @@ describe('GlobalService', () => {
   it('should be created', inject([GlobalService], (service: GlobalService) => {
     expect(service).toBeTruthy();
   }));
+  it('should update scroll Data', () => {
+    expect(globalService.scrolledStateChange(true)).toBeUndefined();
+  });
   it('should Store Data', () => {
-    globalService.storeData(6, 1);
+    expect(globalService.storeData(6, 1)).toBe();
   });
   it('should Get Data', () => {
-    globalService.getData(6);
+    expect(globalService.getData(6)).toBe(1);
   });
   it('should Delete Data', () => {
-    globalService.deleteData(6);
+    expect(globalService.deleteData(6)).toBe();
   });
   it('should Reset Store', () => {
-    globalService.resetStorage();
+    expect(globalService.resetStorage()).toBe();
   });
   it('should Get Auth Token', () => {
-    globalService.getAuthToken();
+    expect(globalService.getAuthToken()).toBeFalsy();
   });
   it('should Show Toast', () => {
-    globalService.showToast('error', 'Error message!');
+    expect(globalService.showToast('error', 'Error message!')).toBe();
   });
   it('should Toggle Loading', () => {
-    globalService.toggleLoading(true);
+    expect(globalService.toggleLoading(true)).toBe();
+    expect(globalService.toggleLoading(false)).toBeFalsy();
   });
   it('should Show Confirm', () => {
-    globalService.showConfirm('params');
+    expect(globalService.showConfirm('params')).toBe();
   });
   it('should Hide Confirm', () => {
-    globalService.hideConfirm();
+    expect(globalService.hideConfirm()).toBe();
   });
   it('should Show Modal', () => {
-    globalService.showModal('params');
+    expect(globalService.showModal('params')).toBe();
   });
   it('should Show Phase Modal', () => {
-    globalService.showEditPhaseModal('params');
+    expect(globalService.showEditPhaseModal('params')).toBe();
   });
   it('should Show Conditional Modal', () => {
-    globalService.showTermsAndConditionsModal('params');
+    expect(globalService.showTermsAndConditionsModal('params'));
   });
   it('should hide Modal', () => {
     globalService.hideModal();
@@ -66,33 +68,70 @@ describe('GlobalService', () => {
   it('should Scroll To Top', () => {
     globalService.scrollToTop();
   });
+  it('should validate form', () => {
+    expect(globalService.formFields([{name: 'xyz', label: 'label', value: 'value'}]))
+      .toEqual({ label: 'value' });
+  });
+  it('should validate form', () => {
+    expect(globalService.formValueForLabel([{name: 'xyz', label: 'label', value: 'value'}], 'label'))
+      .toEqual('value');
+  });
+  it('should validate form', () => {
+    expect(globalService.formItemForLabel([{name: 'xyz', label: 'label', value: 'val'}], 'label'))
+      .toEqual({name: 'xyz', label: 'label', value: 'val'});
+  });
   it('should Show Token Validity', () => {
-    globalService.checkTokenValidity(Error);
+    expect(globalService.checkTokenValidity([{error: '404', name: 'error'}])).toBeFalsy();
   });
   it('should Handle API Error', () => {
-    globalService.handleApiError(Error);
+    expect(globalService.handleApiError([{error: 404, name: 'error'}])).toBeFalsy();
   });
   it('should Format Date', () => {
     const dateobj = new Date();
-    globalService.formatDate12Hour(dateobj);
+    const AM_PM = dateobj.getHours() >= 12 ? 'PM' : 'AM';
+    const hours =  dateobj.getHours() % 12 ?  dateobj.getHours() % 12 : 12;
+    const minutes = dateobj.getMinutes() < 10 ? '0' + dateobj.getMinutes() : dateobj.getMinutes();
+    const STR_TIME = dateobj.toDateString() + ' ' + hours + ':' + minutes + ' ' + AM_PM;
+    expect(globalService.formatDate12Hour(dateobj)).toEqual(STR_TIME);
   });
   it('should Show Date Difference', () => {
     const d1 = new Date(2000);
     const d2 = new Date();
-    globalService.getDateDifference(d1, d2);
+    const diff = (d2.getTime() - d1.getTime()) / (24 * 3600 * 1000);
+    expect(globalService.getDateDifference(d1, d2)).toBe(diff);
+    const dt1 = new Date();
+    const dt2 = new Date(2000);
+    const diff2 = (dt1.getTime() - dt2.getTime()) / (24 * 3600 * 1000);
+    expect(globalService.getDateDifference(d1, d2)).toBe(diff2);
+  });
+
+  it('should Show Date Difference String', () => {
+    const d1 = new Date(2000);
+    const d2 = new Date();
+    const DIFF_DAYS = globalService.getDateDifference(d1, d2);
+    const DIFF_WEEKS = DIFF_DAYS / 7;
+    expect(globalService.getDateDifferenceString(d1, d2)).toBe(Math.floor(DIFF_WEEKS / 52) + ' year(s)');
+    const DIFF_DAYS2 = globalService.getDateDifference(new Date(), new Date());
+    const DIFF_SECONDS = ((DIFF_DAYS2 * 24) * 60) * 60;
+    expect(globalService.getDateDifferenceString(new Date(), new Date())).toBe(Math.floor(DIFF_SECONDS) + ' seconds');
   });
   it('should Show Email Validation', () => {
     const emailId = 'xyz@gmail.com';
-    globalService.validateEmail(emailId);
+    expect(globalService.validateEmail(emailId)).toBe(true);
   });
   it('should Show Text Vlidation', () => {
-     globalService.validateEmail('Some text Here');
+     expect(globalService.validateText('SometextHere')).toBe(true);
+     expect(globalService.validateText('t')).toBe(false);
+
    });
    it('should Show Integer Validation', () => {
-     globalService.validateInteger(19);
+     expect(globalService.validateInteger(19)).toBe(true);
+
+     expect(globalService.validateInteger(-19)).toBe(false);
    });
    it('should Show password Validation', () => {
-    globalService.validatePassword('Password String');
+    expect(globalService.validatePassword('Password String')).toBe(true);
+    expect(globalService.validatePassword('Passwrd')).toBe(false);
   });
   it('should Show Loader', () => {
     globalService.startLoader('Loader Message');
