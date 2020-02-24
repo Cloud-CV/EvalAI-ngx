@@ -64,7 +64,6 @@ describe('ChallengeService', () => {
   });
   it('should create a new challenge', () => {
     const hostTeam = {name: 'challenge_name'};
-    const RES = challengeService.challengeCreate(hostTeam, {formdata: 'data'});
-    RES.subscribe(null, null, null);
+    challengeService.challengeCreate(hostTeam, {formdata: 'data'});
   });
 });
