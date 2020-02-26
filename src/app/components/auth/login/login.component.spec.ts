@@ -1,5 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { InputComponent } from '../../utility/input/input.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -42,16 +41,32 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should call ngOnInit', () => {
-    component.ngOnInit();
-  });
   it('should call ngAfterViewInit', () => {
-    component.ngAfterViewInit();
+    expect(component.ngAfterViewInit()).toBe();
   });
-  it('should call userLogin', () => {
+  it('should redirect check', inject([GlobalService], (service: GlobalService) => {
+    spyOn(service, 'getData').and.callThrough();
+    spyOn(service, 'deleteData').and.callThrough();
+    component.redirectCheck(component);
+    expect(service.getData).toHaveBeenCalled();
+    expect(service.deleteData).not.toHaveBeenCalled();
+  }));
+  it('should call userLogin with Valid Form', inject([GlobalService, ApiService, EndpointsService],
+    (service: GlobalService, service2: ApiService, service3: EndpointsService) => {
+    spyOn(service, 'startLoader').and.callThrough();
+    spyOn(service3, 'loginURL').and.callThrough();
+    spyOn(service2, 'postUrl').and.callThrough();
+    spyOn(service, 'storeData').and.callThrough();
     component.userLogin(true);
+    expect(service.startLoader).toHaveBeenCalled();
+    expect(service2.postUrl).toHaveBeenCalled();
+    expect(service3.loginURL).toHaveBeenCalled();
+    expect(service.storeData).not.toHaveBeenCalled();
+  }));
+  it(' should call userLogin with invalid Form' , inject([GlobalService], (service: GlobalService) => {
+    spyOn(service, 'stopLoader').and.callThrough();
     component.userLogin(false);
-  });
-
+    expect(service.stopLoader).toHaveBeenCalled();
+  }));
 
 });

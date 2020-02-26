@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { SignupComponent } from './signup.component';
 import { InputComponent } from '../../../components/utility/input/input.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA} from '@angular/core';
 import { GlobalService } from '../../../services/global.service';
 import { AuthService } from '../../../services/auth.service';
 import { WindowService } from '../../../services/window.service';
@@ -10,6 +10,7 @@ import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -41,13 +42,25 @@ describe('SignupComponent', () => {
   });
 
   it('should call ngAfterViewInit', () => {
-    component.ngAfterViewInit();
+    expect(component.ngAfterViewInit()).toBe();
   });
-  it('should call userSignup', () => {
+  it('form invalid when empty', () => {
+    expect(fixture.debugElement.query(By.css('form')).nativeElement.valid ).toBeFalsy();
+  });
+  it('should call userSignup',  inject([GlobalService, EndpointsService, ApiService, AuthService],
+    (service: GlobalService, service2: EndpointsService, service3: ApiService) => {
+    spyOn(service, 'startLoader').and.callThrough();
+    spyOn(service2, 'signupURL').and.callThrough();
+    spyOn(service3, 'postUrl').and.callThrough();
     component.userSignUp(true);
-    component.userSignUp(false);
-  });
-  it('should check password strength', () => {
+    fixture.detectChanges();
+    expect(service.startLoader).toHaveBeenCalled();
+    expect(service2.signupURL).toHaveBeenCalled();
+    expect(service.startLoader).toHaveBeenCalled();
+  }));
+  it('should check password strength', inject([AuthService], (service: AuthService) => {
+    spyOn(service, 'passwordStrength').and.callThrough();
     component.checkStrength('Passwordgoeshere!');
-  });
+    expect(service.passwordStrength).toHaveBeenCalled();
+  }));
 });
