@@ -51,22 +51,25 @@ describe('LoginComponent', () => {
     expect(service.getData).toHaveBeenCalled();
     expect(service.deleteData).not.toHaveBeenCalled();
   }));
-  it('should call userLogin with Valid Form', inject([GlobalService, ApiService, EndpointsService],
-    (service: GlobalService, service2: ApiService, service3: EndpointsService) => {
+  it('should call userLogin with Valid Form', inject([GlobalService, ApiService, EndpointsService, AuthService],
+    (service: GlobalService, service2: ApiService, service3: EndpointsService, service4: AuthService) => {
     spyOn(service, 'startLoader').and.callThrough();
     spyOn(service3, 'loginURL').and.callThrough();
     spyOn(service2, 'postUrl').and.callThrough();
     spyOn(service, 'storeData').and.callThrough();
+    spyOn(service4, 'loggedIn').and.callThrough();
+    spyOn(service, 'stopLoader').and.callThrough();
     component.userLogin(true);
     expect(service.startLoader).toHaveBeenCalled();
     expect(service2.postUrl).toHaveBeenCalled();
     expect(service3.loginURL).toHaveBeenCalled();
     expect(service.storeData).not.toHaveBeenCalled();
+    expect(service4.loggedIn).not.toHaveBeenCalled();
+    expect(service.stopLoader).not.toHaveBeenCalled();
   }));
   it(' should call userLogin with invalid Form' , inject([GlobalService], (service: GlobalService) => {
     spyOn(service, 'stopLoader').and.callThrough();
     component.userLogin(false);
     expect(service.stopLoader).toHaveBeenCalled();
   }));
-
 });

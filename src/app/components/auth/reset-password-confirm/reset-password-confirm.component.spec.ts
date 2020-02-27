@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { ResetPasswordConfirmComponent } from './reset-password-confirm.component';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -38,8 +38,25 @@ describe('ResetPasswordConfirmComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should confirm reset password', () => {
-    component.resetPasswordConfirm(true);
-    component.resetPasswordConfirm(false);
+  it('should check variables', () => {
+    expect(component.uid).toEqual('');
+    expect(component.token).toEqual('');
+    expect(component.isNewPassword1Focused).toEqual(false);
+    expect(component.isNewPassword2Focused).toEqual(false);
+    expect(component.loginRoute).toEqual('/auth/login');
+    expect(component.signupRoute).toEqual('/auth/signup');
   });
+  it('should confirm reset password', inject([GlobalService, EndpointsService, AuthService],
+    (service: GlobalService, service2: EndpointsService, service3: AuthService) => {
+    spyOn(service, 'startLoader').and.callThrough();
+    spyOn(service3, 'getUser').and.callThrough();
+    spyOn(service2, 'resetPasswordConfirmURL').and.callThrough();
+    spyOn(service, 'stopLoader').and.callThrough();
+    component.resetPasswordConfirm(true);
+    expect(service.startLoader).toHaveBeenCalled();
+    expect(service3.getUser).not.toHaveBeenCalled();
+    expect(service2.resetPasswordConfirmURL).toHaveBeenCalled();
+    expect(service.stopLoader).not.toHaveBeenCalled();
+    component.resetPasswordConfirm(false);
+  }));
 });

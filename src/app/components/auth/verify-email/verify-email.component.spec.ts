@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { VerifyEmailComponent } from './verify-email.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -32,4 +32,21 @@ describe('VerifyEmailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should check variables of component', () => {
+    expect(component.token).toEqual('');
+    expect(component.email_verify_msg).toEqual('');
+    expect(component.loginRoute).toEqual('/auth/login');
+  });
+  it('should initialize the component', inject([GlobalService, AuthService],
+    (service: GlobalService, service3: AuthService)  => {
+      spyOn(service, 'startLoader').and.callThrough();
+      spyOn(service3, 'verifyEmail').and.callThrough();
+      spyOn(component, 'email_verify_msg').and.callThrough();
+      spyOn(service, 'stopLoader').and.callThrough();
+      component.ngOnInit();
+      expect(service.startLoader).toHaveBeenCalled();
+      expect(service3.verifyEmail).not.toHaveBeenCalled();
+      expect(component.email_verify_msg).not.toHaveBeenCalled();
+      expect(service.stopLoader).not.toHaveBeenCalled();
+  }));
 });
