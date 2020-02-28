@@ -47,8 +47,8 @@
              [(ngModel)]="authService.regUser['password']" minlength="8"
              (change)="checkStrength(authService.regUser['password'])" required>
       <span class="form-icon form-icon-dark" (click)="authService.togglePasswordVisibility()">
-                <i *ngIf="!authService.canShowPassword" class="fa fa-eye pointer"></i>
-                <i *ngIf="authService.canShowPassword" class="fa fa-eye-slash pointer"></i>
+                <i *ngIf="authService.canShowPassword" class="fa fa-eye pointer"></i>
+                <i *ngIf="!authService.canShowPassword" class="fa fa-eye-slash pointer"></i>
             </span>
       <label for="password" [class.active]="ispasswordFocused">
         <strong>Password (Minimum 8 Characters) *</strong>
@@ -70,8 +70,8 @@
              (change)="iscnfrmpasswordFocused = authService.regUser['confirm_password'] !== ''"
              [(ngModel)]="authService.regUser['confirm_password']" minlength="8" required>
       <span class="form-icon form-icon-dark" (click)="authService.toggleConfirmPasswordVisibility()">
-                <i *ngIf="!authService.canShowConfirmPassword" class="fa fa-eye pointer"></i>
-                <i *ngIf="authService.canShowConfirmPassword" class="fa fa-eye-slash pointer"></i>
+                <i *ngIf="authService.canShowConfirmPassword" class="fa fa-eye pointer"></i>
+                <i *ngIf="!authService.canShowConfirmPassword" class="fa fa-eye-slash pointer"></i>
             </span>
       <label for="confirm_password" [class.active]="iscnfrmpasswordFocused">Confirm Password *</label>
       <div class="wrn-msg text-highlight"

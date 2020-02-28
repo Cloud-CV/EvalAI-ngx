@@ -32,8 +32,8 @@
              [(ngModel)]="authService.getUser['password']" #password='ngModel'
              autocomplete="new-password" minlength="8" required>
       <span class="form-icon form-icon-dark" (click)="authService.togglePasswordVisibility()">
-                <i *ngIf="!authService.canShowPassword" class="fa fa-eye pointer"></i>
-                <i *ngIf="authService.canShowPassword" class="fa fa-eye-slash pointer"></i>
+                <i *ngIf="authService.canShowPassword" class="fa fa-eye pointer"></i>
+                <i *ngIf="!authService.canShowPassword" class="fa fa-eye-slash pointer"></i>
             </span>
       <label for="password" [class.active]="ispasswordFocused">Password (min 8 characters) *</label>
       <div class="wrn-msg text-highlight"
