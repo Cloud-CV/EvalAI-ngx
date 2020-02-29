@@ -68,7 +68,7 @@ git checkout -b your-branch-name
     
     - If your checks have passed, your PR will be assigned a reviewer who will review your code and provide comments. Please address each review comment by pushing new commits to the same branch (the PR will automatically update, so you don’t need to submit a new one). Once you are done, comment below each review comment marking it as “Done”. Feel free to use the thread to have a discussion about comments that you don’t understand completely or don’t agree with.
 
-    - Once all comments are addressed, the reviewer will give an LGTM (‘looks good to me’)
+    - Once all comments are addressed, the maintainer will approve the PR.
 
 4. Once you get reviewed by a mentor and done with all the required changes, squash all the commits:
 
@@ -79,7 +79,7 @@ git rebase -i HEAD~N (N is the number of commits to be squashed)
 
 Then a screen will appear with all N commits having "pick" written in front of every commit.Change pick to s for the last N-1 commits and let it be pick for the first one.
 
-press esc button and type ":wq" to save the change and close the screen. Now a new screen will appear asking you to change commit message. Change it accordingly and save it. 
+Press esc button and type ":wq" to save the change and close the screen. Now a new screen will appear asking you to change commit message. Change it accordingly and save it. 
 
 ```
 git push origin <branch_name> --force
