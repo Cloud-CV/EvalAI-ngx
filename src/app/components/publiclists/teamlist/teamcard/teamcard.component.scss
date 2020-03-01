@@ -3,7 +3,6 @@
 
 .team-card-container {
   font-size: $fs-18;
-  color: $dark-black;
   margin: 5px;
   position: relative;
   .team-content {
@@ -33,11 +32,16 @@
       &.toptitle {
         margin-bottom: 10px;
       }
+      color: $dark-black;
       display:inline-block;
       font-weight: $fw-bolder;
     }
     .team-details {
       display: inline-block;
+    }
+    .team-detail {
+      color: rgb(22, 21, 21);
+      font-weight: 400;
     }
     .team-icons {
       display: inline-block;
@@ -53,7 +57,7 @@
         &.no-highlight {
           color: $gray-dark;
         }
-        font-size: $fs-16;
+        font-size: $fs-20;
         margin: 0px 10px 0px 10px;
       }
     }
@@ -69,10 +73,15 @@
     max-height: 0;
     transition: all 0.5s ease;
     .title {
+      color: black;
       margin-bottom: 10px;
       font-weight: $fw-bolder;
     }
     background:$gray-lighter;
+  }
+  .team-members .team-detail {
+    color: rgb(22, 21, 21);
+    font-weight: 400;
   }
   &.selected {
     &.expand, &.noexpand {

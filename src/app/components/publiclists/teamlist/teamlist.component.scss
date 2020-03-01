@@ -161,7 +161,7 @@ span.link-team-user {
 }
 
 .form-icon{
-  font-size: 18px;
+  font-size: $fs-20;
 }
 
 section{
@@ -180,6 +180,9 @@ button{
 .fa-chevron-left, .fa-chevron-right, .pagination{
   font-size: 18px;
   margin: 0px;
+}
+.list-card{
+  margin-left: 5px;
 }
 @media only screen and (max-width: 992px) and (min-width: 601px) {
   .team-heading {

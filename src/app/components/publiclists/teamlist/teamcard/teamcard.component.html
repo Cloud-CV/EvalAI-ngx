@@ -11,14 +11,14 @@
         <span *ngIf="teamView['team_url']">
           <a class="orange-text" target="_blank" href="{{teamView['team_url']}}">{{teamView['team_name']}}</a>
         </span>
-        <span *ngIf="!teamView['team_url']">
+        <span *ngIf="!teamView['team_url']" class="team-detail">
         {{teamView['team_name']}}
         </span>
         <br>
         <span class="title">
         Created by:
         </span>
-        <span>
+        <span class="team-detail">
         {{teamView['created_by']}}
         </span>
       </div>
@@ -30,10 +30,10 @@
     </div>
     <div class='team-members'>
       <div class="title">
-        <h6><b>Team Members:</b></h6>
+        Team Members:
       </div>
       <div *ngFor="let member of memberArray;" >
-        <span class="m1">{{ member }}</span>
+        <span class="team-detail">{{ member }}</span>
       </div>
     </div>
   </div>
