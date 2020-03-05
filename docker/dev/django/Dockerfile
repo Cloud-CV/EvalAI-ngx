@@ -8,7 +8,7 @@ RUN apt-get update \
 
 RUN mkdir /code
 
-RUN git clone --single-branch --branch delete_participant_and_host_feature https://github.com/Kajol-Kumari/EvalAI /code/
+RUN git clone https://github.com/Cloud-CV/EvalAI.git /code/
 
 WORKDIR /code
 

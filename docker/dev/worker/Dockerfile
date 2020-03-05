@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y python python-pip python-dev libpq-dev 
 
 RUN mkdir /code
 
-RUN git clone --single-branch --branch delete_participant_and_host_feature https://github.com/Kajol-Kumari/EvalAI /code/
+RUN git clone https://github.com/Cloud-CV/EvalAI.git /code/
 
 WORKDIR /code
 
