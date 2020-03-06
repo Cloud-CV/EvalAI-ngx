@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { ContactComponent } from './contact.component';
 import { HeaderStaticComponent } from '../../components/nav/header-static/header-static.component';
 import { ToastComponent } from '../../components/utility/toast/toast.component';
@@ -13,7 +13,6 @@ import {ActivatedRoute, Router, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import Global = NodeJS.Global;
 import { FormsModule } from '@angular/forms';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
 
@@ -73,4 +72,37 @@ describe('ContactComponent', () => {
       });
     });
   });
+
+  it('should check variables', () => {
+    expect(component.ALL_FORMS).toEqual({});
+    expect(component.contactForm).toEqual('formgroup');
+    expect(component.componentlist).toBeUndefined();
+  });
+
+  it('should check ngAfterViewInit', () => {
+    component.ngAfterViewInit();
+    expect(component.ALL_FORMS[component.contactForm]).toBe(component.components);
+  });
+
+  it('should check formValidate',  inject([GlobalService], (service: GlobalService)  => {
+    const formname = ['name', 'email', 'message'];
+    spyOn(service, 'formValidate');
+    component.formValidate(formname);
+    expect(service.formValidate).toHaveBeenCalled();
+  }));
+
+  it('should check formSubmit',  inject([GlobalService, ApiService], (service: GlobalService, service2: ApiService)  => {
+    component.ALL_FORMS = {
+      item: [{
+        label: 'name',
+        value: 'xyz'
+      }]
+    };
+    component.contactForm = 'item';
+    spyOn(service, 'formValueForLabel').and.callThrough();
+    spyOn(service2, 'postUrl').and.callThrough();
+    component.formSubmit(component);
+    expect(service.formValueForLabel).toHaveBeenCalled();
+    expect(service2.postUrl).toHaveBeenCalled();
+  }));
 });
