@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { HostAnalyticsComponent } from './host-analytics.component';
 import {ApiService} from '../../../services/api.service';
@@ -53,31 +53,64 @@ describe('HostAnalyticsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should call ngOninit', () => {
-    component.ngOnInit();
-  });
-  it('should show errCallBack', () => {
+  it('should check all variable', () => {
+    expect(component.hostTeam).toEqual([]);
+    expect(component.challengeListCount).toBe(0);
+    expect(component.challengeList).toEqual([]);
+    expect(component.isTeamSelected).toBe(false);
+    expect(component.challengeId).toBeNull();
+    expect(component.currentChallengeDetails).toEqual({});
+    expect(component.currentPhase).toEqual([]);
+    expect(component.totalSubmission).toEqual({});
+    expect(component.totalParticipatedTeams).toEqual({});
+    expect(component.lastSubmissionTime).toEqual({});
+    expect(component.totalChallengeTeams).toEqual([]);
+    expect(component.routePath).toEqual('/auth/login');
+ });
+  it('should show errCallBack', inject([GlobalService], (service: GlobalService) => {
     const err1 = {
        status: '403'
     };
     const err2 = {
       status: '401'
    };
+    spyOn(service, 'stopLoader').and.callThrough();
+    spyOn(service, 'handleApiError').and.callThrough();
+    spyOn(service, 'showToast').and.callThrough();
     component.errCallBack(err1);
     component.errCallBack(err2);
-  });
-  it('should show HostTeam', () => {
+    expect(service.showToast).toHaveBeenCalled();
+    expect(service.stopLoader).toHaveBeenCalled();
+    expect(service.handleApiError).toHaveBeenCalled();
+  }));
+  it('should show HostTeam', inject([ApiService, GlobalService], (service: ApiService, service2: GlobalService) => {
+    spyOn(service, 'getUrl').and.callThrough();
     component.getHostTeam();
-  });
-  it('should show challenge Host', () => {
+    expect(service.getUrl).toHaveBeenCalled();
+  }));
+  it('should show challenge Host',  inject([ApiService, GlobalService], (service: ApiService, service2: GlobalService) => {
+    spyOn(service, 'getUrl').and.callThrough();
     component.getChallengeHost();
-  });
-  it('should show challenge Analysis', () => {
+    expect(service.getUrl).toHaveBeenCalled();
+  }));
+  it('should show challenge Analysis',  inject([ApiService, GlobalService, EndpointsService],
+    (service: ApiService, service2: GlobalService, service3: EndpointsService) => {
     component.showChallengeAnalysis();
-  });
-  it('should show download challenge participant team', () => {
+    expect(component.isTeamSelected).toEqual(false);
+    component.challengeId = 1;
+    spyOn(service2, 'startLoader').and.callThrough();
+    spyOn(service3, 'teamCountAnalyticsURL').and.callThrough();
+    spyOn(service, 'getUrl').and.callThrough();
+    component.showChallengeAnalysis();
+    expect(service2.startLoader).toHaveBeenCalled();
+    expect(service.getUrl).toHaveBeenCalled();
+    expect(service3.teamCountAnalyticsURL).toHaveBeenCalled();
+  }));
+  it('should show download challenge participant team', inject([EndpointsService], (service: EndpointsService) => {
+    spyOn(service, 'downloadParticipantsAnalyticsURL').and.callThrough();
     component.downloadChallengeParticipantTeams();
-  });
+    expect(service.downloadParticipantsAnalyticsURL).toHaveBeenCalled();
+  }));
 
 
 });
