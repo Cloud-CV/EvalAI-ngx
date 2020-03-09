@@ -96,6 +96,8 @@ describe('PrivacyPolicyComponent', () => {
       expect(component.onWindowScroll).toHaveBeenCalled();
       expect(component.isScrolledIntoView).toHaveBeenCalled();
       expect(component.scroll).toHaveBeenCalled();
+      expect(component.highlightNav).toHaveBeenCalled();
+      expect(component.highlightSectionTitle).toHaveBeenCalled();
     });
   });
 
