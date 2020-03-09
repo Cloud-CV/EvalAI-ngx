@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { GlobalService } from './services/global.service';
 import { AuthService } from './services/auth.service';
 import { EndpointsService } from './services/endpoints.service';
@@ -84,25 +84,15 @@ describe('AppComponent', () => {
     const app = compFixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it('should check variable values', () => {
-    const compFixture = TestBed.createComponent(AppComponent);
-    expect(compFixture.componentInstance.globalServiceSubscription).toBeUndefined();
-    expect(compFixture.componentInstance.globalLogoutTrigger).toBeUndefined();
-    expect(compFixture.componentInstance.globalLoadingSubscription).toBeUndefined();
-    expect(compFixture.componentInstance.globalConfirmSubscription).toBeUndefined();
-    expect(compFixture.componentInstance.globalModalSubscription).toBeUndefined();
-    expect(compFixture.componentInstance.globalEditPhaseModalSubscription).toBeUndefined();
-    expect(compFixture.componentInstance.globalTermsAndConditionsModalSubscription).toBeUndefined();
-    expect(compFixture.componentInstance.globalServiceSubscriptionScrollTop).toBeUndefined();
-  });
   it('should scroll event listener', async(() => {
     const compFixture = TestBed.createComponent(AppComponent);
-    window.dispatchEvent(new Event('scroll'));
+    window.scroll(0, 100);
     compFixture.componentInstance.onWindowScroll() ;
   }));
   it('should initialize the component', async(() => {
     const compFixture = TestBed.createComponent(AppComponent);
-    compFixture.componentInstance.router.events.pipe();
+    const event = new NavigationEnd(42, '/', '/');
+    TestBed.get(Router).events.next(event);
     compFixture.componentInstance.ngOnInit() ;
   }));
   it('should destroy the component', async(() => {
