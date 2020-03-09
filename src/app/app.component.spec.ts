@@ -86,13 +86,10 @@ describe('AppComponent', () => {
   }));
   it('should scroll event listener', async(() => {
     const compFixture = TestBed.createComponent(AppComponent);
-    window.scroll(0, 100);
     compFixture.componentInstance.onWindowScroll() ;
   }));
   it('should initialize the component', async(() => {
     const compFixture = TestBed.createComponent(AppComponent);
-    const event = new NavigationEnd(42, '/', '/');
-    TestBed.get(Router).events.next(event);
     compFixture.componentInstance.ngOnInit() ;
   }));
   it('should destroy the component', async(() => {
