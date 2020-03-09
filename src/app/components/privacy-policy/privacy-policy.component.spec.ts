@@ -100,13 +100,7 @@ describe('PrivacyPolicyComponent', () => {
   });
 
   it('should scroll to the top of page', () => {
-    const container = de.query(By.css('.scroll-selected'));
-    container.triggerEventHandler('scrollTop', 50);
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(component.scrollToTop).toHaveBeenCalled();
-      expect(component.scroll).toHaveBeenCalled();
-    });
+    component.scrollToTop();
   });
 
 });
