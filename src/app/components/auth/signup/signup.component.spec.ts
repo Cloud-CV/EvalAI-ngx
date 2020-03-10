@@ -10,7 +10,6 @@ import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
 describe('SignupComponent', () => {
@@ -35,10 +34,10 @@ describe('SignupComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SignupComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -89,10 +88,9 @@ describe('SignupComponent', () => {
 
       expect(service.postUrl).toHaveBeenCalled();
   }));
-  it('should check password strength', inject([AuthService], (service: AuthService) => {
-    spyOn(service, 'passwordStrength').and.callThrough();
-    component.checkStrength('Passwordgoeshere!');
-    expect(service.passwordStrength).toHaveBeenCalled();
+  it('should check password strength', () => {
+    fixture.detectChanges();
+    component.checkStrength('Password@123goeshere!');
     expect(component.message).toBeDefined();
-  }));
+  });
 });
