@@ -8,10 +8,12 @@ import { AuthService } from '../../../services/auth.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 describe('VerifyEmailComponent', () => {
   let component: VerifyEmailComponent;
   let fixture: ComponentFixture<VerifyEmailComponent>;
+  let authService: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,29 +26,18 @@ describe('VerifyEmailComponent', () => {
   }));
 
   beforeEach(() => {
+    authService = TestBed.get(AuthService);
     fixture = TestBed.createComponent(VerifyEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    spyOn(authService, 'verifyEmail').and.returnValue(new Observable((observation) => {
+      observation.next({});
+      observation.complete();
+      return{unsubscribe() {}};
+    }));
     expect(component).toBeTruthy();
   });
-  it('should check variables of component', () => {
-    expect(component.token).toEqual('');
-    expect(component.email_verify_msg).toEqual('');
-    expect(component.loginRoute).toEqual('/auth/login');
-  });
-  it('should initialize the component', inject([GlobalService, AuthService],
-    (service: GlobalService, service3: AuthService)  => {
-      spyOn(service, 'startLoader').and.callThrough();
-      spyOn(service3, 'verifyEmail').and.callThrough();
-      spyOn(component, 'email_verify_msg').and.callThrough();
-      spyOn(service, 'stopLoader').and.callThrough();
-      component.ngOnInit();
-      expect(service.startLoader).toHaveBeenCalled();
-      expect(service3.verifyEmail).not.toHaveBeenCalled();
-      expect(component.email_verify_msg).not.toHaveBeenCalled();
-      expect(service.stopLoader).not.toHaveBeenCalled();
-  }));
 });
