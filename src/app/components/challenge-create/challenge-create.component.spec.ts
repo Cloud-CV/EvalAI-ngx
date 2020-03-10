@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {Router, Routes} from '@angular/router';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {FormsModule} from '@angular/forms';
+import { Observable } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -55,71 +56,37 @@ describe('ChallengecreateComponent', () => {
     fixture.ngZone.run(() => {
       router.navigate(['/challenge-create/']).then(() => {
         fixture.detectChanges();
+        const event = {'target': {'files': []}};
+        component.handleUpload(event);
+        event['target']['files'] = [{'name': 'File name testing'}];
+        component.handleUpload(event);
         expect(component).toBeTruthy();
       });
     });
   });
-  it('should test variables', () => {
-    expect(component.isFormError).toBe(false);
-    expect(component.isSyntaxErrorInYamlFile).toBe(false);
-    expect(component.ChallengeCreateForm).toEqual({ input_file: null, file_path: null});
-    expect(component.syntaxErrorInYamlFile).toEqual({});
-    expect(component.authServicePublic).toBe(null);
-    expect(component.isLoggedIn).toBe(false);
-    expect(component.routerPublic).toBe(null);
-    expect(component.hostTeam).toBe(null);
-    expect(component.hostedChallengesRoute).toBe('/challenges/me');
-    expect(component.hostTeamsRoute).toBe('/teams/hosts');
-  });
-  it('should call ngOninit', inject([ AuthService, ChallengeService, GlobalService ],
-    (service: AuthService, service2: ChallengeService, service3: GlobalService)  => {
-    spyOn(service3, 'showToast').and.callThrough();
-    spyOn(service2, 'currentHostTeam').and.callThrough();
-    component.ngOnInit();
-    expect(component.authServicePublic).toBe(service);
-    expect(component.routerPublic).toBe(router);
-    expect(service2.currentHostTeam).not.toHaveBeenCalled();
-    expect(service3.showToast).not.toHaveBeenCalled();
+  it('should test challengeCreate function', inject([AuthService, ChallengeService],
+    (service: AuthService, service2: ChallengeService) => {
+      const result = {
+        'results': [],
+        'error': {'error': 'Testing Error'}
+      };
+      spyOn(service, 'isLoggedIn').and.returnValue(true);
+      spyOn(service2, 'challengeCreate').and.returnValue(new Observable((observation) =>  {
+        observation.next(result);
+        observation.error(result);
+        observation.complete();
+        return{unsubscribe() {}};
+      }));
+      fixture.detectChanges();
+      component.challengeCreate();
+      component.ChallengeCreateForm['input_file'] = 'Testing File';
+      component.ChallengeCreateForm['file_path'] = 'Testing Path';
+      component.hostTeam = {'id': '1'};
+      component.challengeCreate();
+      expect(service2.challengeCreate).toHaveBeenCalled();
   }));
-  it('should test challengeCreate function', inject([GlobalService, ChallengeService],
-    (service: GlobalService, service2: ChallengeService) => {
-    component.ChallengeCreateForm = {
-      input_file : 'dummy_file',
-      file_path : 'dummy_path'
-    };
-    component.hostTeam = 'dummy_team';
-    spyOn(service, 'startLoader').and.callThrough();
-    spyOn(service2, 'challengeCreate').and.callThrough();
-    spyOn(service, 'stopLoader').and.callThrough();
+  it('should test challengeCreate function else part', () => {
     component.challengeCreate();
-    expect(service.startLoader).toHaveBeenCalled();
-    expect(service2.challengeCreate).toHaveBeenCalled();
-    expect(service.stopLoader).not.toHaveBeenCalled();
-  }));
-  it('should test challengeCreate function else part', inject([GlobalService], (service: GlobalService) => {
-    spyOn(service, 'showToast').and.callThrough();
-    component.challengeCreate();
-    expect(component.isFormError).toBe(true);
-    expect(service.showToast).toHaveBeenCalled();
-  }));
-  it('should test handleUpload Function', () => {
-    const event = {
-      target : {
-        files: ['file1', 'file2', 'file3']
-      }
-    };
-    component.handleUpload(event);
-    expect(component.isFormError).toBe(false);
-    expect(component.ChallengeCreateForm['input_file']).toBe(event.target.files[0]);
-    expect(component.ChallengeCreateForm['file_path']).toBe(event.target.files[0]['name']);
-  });
-  it('should test handleUpload function with error', () => {
-    const event = {
-      target : {
-        files: []
-      }
-    };
-    component.handleUpload(event);
     expect(component.isFormError).toBe(true);
   });
 });
