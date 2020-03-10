@@ -73,30 +73,55 @@ describe('ChallengelistComponent', () => {
 
     expect(component).toBeTruthy();
   });
+  it('should check route to all', () => {
+    router.navigate(['/challenges/all']).then(() => {
+      fixture.detectChanges();
+      expect(router.url).toBe('/challenges/all');
+    });
+  });
+  it('should check route to me', () => {
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    router.navigate(['/challenges/me']).then(() => {
+      fixture.detectChanges();
+      expect(router.url).toBe('/challenges/me');
+    });
+  });
   it('should fetch teams', () => {
-    fixture.componentInstance.fetchMyTeams();
+    spyOn(component, 'fetchTeams').and.returnValue('hosts/challenge_host_team');
+    component.fetchMyTeams();
+    expect(component.fetchTeams).toHaveBeenCalled();
   });
   it('should toggle filter', () => {
-    fixture.componentInstance.toggleFilter('ongoing');
-    fixture.componentInstance.toggleFilter('past');
-    fixture.componentInstance.toggleFilter('upcoming');
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    fixture.detectChanges();
+
+    component.toggleFilter('ongoing');
+    expect(component.isOngoingChecked).toBe(true);
+
+    component.toggleFilter('past');
+    expect(component.isPastChecked).toBe(false);
+
+    component.toggleFilter('upcoming');
+    expect(component.isUpcomingChecked).toBe(true);
+
+    expect(authService.isLoggedIn).toHaveBeenCalled();
   });
   it('should show more results', () => {
-    fixture.componentInstance.seeMoreClicked();
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    fixture.detectChanges();
+    component.seeMoreClicked();
+    expect(component.seeMore).toBeGreaterThanOrEqual(2);
   });
   it('should update challenge view', () => {
-    fixture.componentInstance.updateChallengesView(true);
-  });
-  it('should filter challenges by teams', () => {
-    fixture.componentInstance.filterChallengesByTeams();
-  });
-  it('should fetch teams', () => {
-    fixture.componentInstance.fetchTeams('/teams');
+    spyOn(component, 'filterChallengesByTeams').and.callThrough();
+    component.updateChallengesView(true);
+    expect(component.seeMore).toBe(1);
+    expect(component.filterChallengesByTeams).toHaveBeenCalled();
   });
   it('should fetch challenges', () => {
-    fixture.componentInstance.fetchChallenges();
+    spyOn(component, 'fetchChallengesFromApi').and.callThrough();
+    component.fetchChallenges();
+    expect(component.fetchChallengesFromApi).toHaveBeenCalled();
   });
-  it('should fetch challenges from API', () => {
-    fixture.componentInstance.fetchChallengesFromApi('/challenges/challenge/2');
-  });
+
 });

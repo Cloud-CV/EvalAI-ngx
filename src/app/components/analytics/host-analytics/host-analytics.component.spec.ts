@@ -103,8 +103,6 @@ describe('HostAnalyticsComponent', () => {
       'status': 403,
       'error': 'err'
     };
-    // expect(component.isTeamSelected).toEqual(false);
-    // component.challengeId = 1;
     spyOn(service, 'getUrl').and.returnValue(new Observable((observer) => {
       observer.next(result);
       observer.error(result);
