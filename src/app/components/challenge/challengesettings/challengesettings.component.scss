@@ -38,3 +38,21 @@
 .error-message {
     color: $highlight;
 }
+.rangeslider{
+  width: 50%;
+  margin: 20px;
+  }
+  mat-slider{
+    width: 60%;
+  }
+  .rangeslider .fa-circle{
+    margin-left: 140px;
+  }
+  .value{
+    margin-left: 140px;
+    color:white;
+  }
+  .val{
+    font-size:18px;
+    display:block;
+  }

@@ -58,9 +58,9 @@
                       <a (click)="sortNonMetricsColumn('rank')">
                         <span class="fw-regular fs-18">Rank </span>
                         <span class="fa-stack fa-1x">
-                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
+                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
                             sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort && 
+                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort &&
                             sortColumn == 'rank' ? 'text-med-black' : 'text-light-black fw-semibold'"></i>
                         </span>
                       </a>
@@ -69,9 +69,9 @@
                       <a (click)="sortNonMetricsColumn('string')">
                         <span class="fw-regular fs-18">Participant Team</span>
                         <span class="fa-stack fa-1x">
-                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
+                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
                             sortColumn == 'string'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="reverseSort && 
+                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="reverseSort &&
                             sortColumn == 'string'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
                         </span>
                       </a>
@@ -81,9 +81,9 @@
                         <a (click)="sortMetricsColumn(i)">
                           <span class="fw-regular fs-18">{{key}}</span>
                           <span class="fa-stack fa-1x">
-                            <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
+                            <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
                               sortColumn == 'number'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
-                            <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort && 
+                            <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort &&
                               sortColumn == 'number'? 'text-med-black' : 'text-light-black fw-semibold'"></i>
                           </span>
                         </a>
@@ -92,9 +92,9 @@
                       <a (click)="sortNonMetricsColumn('date')">
                         <span class="fs-18 fw-regular">Last submission at</span>
                         <span class="fa-stack fa-1x">
-                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort && 
+                          <i class="fa fa-sort-asc fa-stack-1x" [ngClass]="reverseSort &&
                             sortColumn == 'date'? 'text-med-black' : 'text-light-black w-500'"></i>
-                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort && 
+                          <i class="fa fa-sort-desc fa-stack-1x" [ngClass]="!reverseSort &&
                             sortColumn == 'date'? 'text-med-black' : 'text-light-black w-500'"></i>
                         </span>
                       </a>
@@ -111,7 +111,7 @@
                         </mat-chip-list>
                       </span>
                     </td>
-                    <td *ngFor="let score of key.result">{{score | number : '1.2-2'}}</td>
+                    <td *ngFor="let score of key.result">{{score | number : leaderboardPrecisionValue }}</td>
                     <td><div>{{ key.submission__submitted_at_formatted }}</div></td>
                   </tr>
                 </tbody>

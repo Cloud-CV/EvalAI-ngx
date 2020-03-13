@@ -133,6 +133,12 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    */
   pollingInterval: any;
 
+
+  /**
+   * LeadeBoard Precision Value
+   */
+  leaderboardPrecisionValue: any;
+
   /**
    * Challenge phase visibility
    */
@@ -188,6 +194,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getPrecisionValue() {
+    this.leaderboardPrecisionValue = this.challengeService.getLeaderboardPrecision();
+  }
   /**
    * Filter phases based on visibility and leaderboard public flag.
    */

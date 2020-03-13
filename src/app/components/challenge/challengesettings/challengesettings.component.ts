@@ -5,6 +5,7 @@ import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { MatSliderChange } from '@angular/material';
 
 @Component({
   selector: 'app-challengesettings',
@@ -32,6 +33,16 @@ export class ChallengesettingsComponent implements OnInit {
    * Email validation for the banned email ids
    */
   isValidationError = false;
+
+  /**
+   * Leaderboard Precision Value
+   */
+  LeaderboardPrecisionValue;
+
+  /**
+   * Slider checked Value
+   */
+  sliderChecked;
 
   /**
    * Email error message
@@ -152,4 +163,16 @@ export class ChallengesettingsComponent implements OnInit {
         () => {}
       );
   }
+
+  // For getting the value of Leaderboard slider
+  getSliderValue(event: MatSliderChange) {
+    if (event.value == null) {
+      this.LeaderboardPrecisionValue = 2;
+    } else {
+      console.log(this.sliderChecked);
+      this.LeaderboardPrecisionValue = this.sliderChecked;
+      this.challengeService.setLeaderboardPrecision(event.value);
+    }
+  }
+
 }

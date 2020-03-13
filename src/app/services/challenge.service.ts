@@ -14,6 +14,7 @@ export class ChallengeService {
     'icon': 'fa fa-eye-slash red-text'
   };
   private isLoggedIn = false;
+  LeaderboardPrecisionValue;
   private challengeSource = new BehaviorSubject(this.defaultChallenge);
   currentChallenge = this.challengeSource.asObservable();
   private starSource = new BehaviorSubject(this.defaultStars);
@@ -41,6 +42,21 @@ export class ChallengeService {
    */
   constructor(private apiService: ApiService, private globalService: GlobalService,
               private authService: AuthService, private endpointsService: EndpointsService) { }
+
+  /**
+   * Store LeaderBoard Precision
+   * @param precisionValue  Leaderboard Precison Value
+   */
+  setLeaderboardPrecision(precisionValue) {
+    this.LeaderboardPrecisionValue = precisionValue;
+  }
+
+  /**
+   * Get LeaderBoard Precision
+   */
+  getLeaderboardPrecision() {
+    return this.LeaderboardPrecisionValue;
+  }
 
   /**
    * Update current Challenge.
