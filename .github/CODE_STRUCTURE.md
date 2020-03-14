@@ -2,7 +2,7 @@
 
 ## Directory structure
 
-The URL structure of the project can be found [below](#url structure).
+The URL structure of the project can be found [below](#url-structure).
 The directory structure of `src/` looks like this:
 
 ```
