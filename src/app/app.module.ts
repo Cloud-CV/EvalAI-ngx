@@ -88,6 +88,7 @@ import {PasswordMismatchValidatorDirective} from './Directives/password.validato
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
+import { AuthcheckDirective } from './Directives/authcheck.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,7 +147,8 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     EditphasemodalComponent,
     ResetPasswordConfirmComponent,
     ChallengeviewallsubmissionsComponent,
-    TermsAndConditionsModalComponent
+    TermsAndConditionsModalComponent,
+    AuthcheckDirective
   ],
   imports: [
     BrowserModule,
