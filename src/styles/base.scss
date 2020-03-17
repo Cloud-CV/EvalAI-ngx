@@ -2047,6 +2047,12 @@ input[type="radio"].selectTeam + label {
   border: 2px solid #252833;
 }
 
+/* input box margins */
+.input-field input[type=text],
+.input-field input[type=password] {
+  margin-bottom: 0 !important;
+}
+
 /* label focus color */
 
 .input-field input[type=email]:focus+label,
@@ -2190,7 +2196,7 @@ tr {
 }
 
 .color-black {
-  color: black;
+  color: black !important;
 }
 
 .analytics-challenge-single-line {

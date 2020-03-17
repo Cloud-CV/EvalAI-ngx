@@ -88,6 +88,12 @@ export class InputComponent implements OnInit {
   @Input() editPhaseDetails: boolean;
 
   /**
+   * Class that style the input
+   */
+  @Input() inputStyle = '';
+
+
+  /**
    * Is email flag
    */
   isEmail = false;
@@ -128,6 +134,16 @@ export class InputComponent implements OnInit {
   fileSelected = null;
 
   /**
+   * Show password toggle
+   */
+  showPassword = false;
+
+  /**
+   * Is the input field focused
+   */
+  isFocus = false;
+
+  /**
    * Input field message for required fields
    */
   requiredMessage = 'Required field';
@@ -137,7 +153,7 @@ export class InputComponent implements OnInit {
    * @param document  Window document Injection.
    * @param globalService  GlobalService Injection.
    */
-  constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) {  }
+  constructor(@Inject(DOCUMENT) private document: Document, private globalService: GlobalService) { }
 
   /**
    * Component on intialized
@@ -199,24 +215,25 @@ export class InputComponent implements OnInit {
     if (e === '' && this.isRequired) {
       this.isValid = false;
       this.isRequired ? this.message = this.requiredMessage : this.message = '';
+      return; // This is to no continue validating because the string is empty
     }
     if (this.isValidateCustom) {
-       this.isValid = this.validate(e).is_valid;
-       this.isValid ? this.message = '' : this.message = this.validate(e).message;
+      this.isValid = this.validate(e).is_valid;
+      this.isValid ? this.message = '' : this.message = this.validate(e).message;
     } else if (this.isEmail) {
-       this.isValid = this.globalService.validateEmail(e);
-       this.isValid ? this.message = '' : this.message = 'Enter a valid email';
+      this.isValid = this.globalService.validateEmail(e);
+      this.isValid ? this.message = '' : this.message = 'Enter a valid email';
     } else if (this.type === 'text' || this.type === 'textarea') {
-       this.isValid = this.globalService.validateText(e);
-       this.isValid ? this.message = '' : this.message = 'Enter a valid text';
+      this.isValid = this.globalService.validateText(e);
+      this.isValid ? this.message = '' : this.message = 'Enter a valid text';
     } else if (this.type === 'number') {
       this.isValid = this.globalService.validateInteger(e);
       this.isValid ? this.message = '' : this.message = 'Enter a valid number';
     } else if (this.type === 'datetime') {
       this.isValid = true;
     } else if (this.type === 'password') {
-       this.isValid = this.globalService.validatePassword(e);
-       this.isValid ? this.message = '' : this.message = 'Password minimum 8 characters';
+      this.isValid = this.globalService.validatePassword(e);
+      this.isValid ? this.message = '' : this.message = 'Password minimum 8 characters';
     }
     if (this.name === 'bannedEmailIds' || this.name === 'filterByTeamName') {
       this.message = '';
@@ -244,11 +261,15 @@ export class InputComponent implements OnInit {
     this.document.getElementById(id).click();
   }
 
-  showErrorCondition () {
+  showErrorCondition() {
     return (this.isRequired && this.isEmpty) || (!this.isValid && !this.isEmpty);
   }
 
-  toggleErrorMessage () {
+  toggleErrorMessage() {
     return !((this.showErrorCondition() || this.message !== '') && this.isDirty);
+  }
+
+  toggleShowPassword() {
+    return this.showPassword = !this.showPassword;
   }
 }

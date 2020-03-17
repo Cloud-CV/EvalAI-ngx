@@ -7,7 +7,7 @@ import { ApiService } from '../../../services/api.service';
 import { AuthService } from '../../../services/auth.service';
 import { GlobalService } from '../../../services/global.service';
 import { EndpointsService } from '../../../services/endpoints.service';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 /**
  * Component Class
@@ -18,6 +18,13 @@ import { Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
+
+  /**
+   * Contains the fields for the login
+   */
+  loginForm = 'loginform';
+  @ViewChildren('loginform')
+  components: QueryList<InputComponent>;
 
   isnameFocused = false;
   ispasswordFocused = false;
@@ -49,13 +56,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
    * @param endpointsService
    */
   constructor(@Inject(DOCUMENT) private document: Document,
-              private windowService: WindowService,
-              private globalService: GlobalService,
-              private apiService: ApiService,
-              public authService: AuthService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private endpointsService: EndpointsService) {
+    private windowService: WindowService,
+    private globalService: GlobalService,
+    private apiService: ApiService,
+    public authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private endpointsService: EndpointsService) {
   }
 
   /**
@@ -85,49 +92,57 @@ export class LoginComponent implements OnInit, AfterViewInit {
     self.router.navigate([redirectTo]);
   }
 
+  // Validate Login Form
+  formValidate() {
+    this.globalService.formValidate(this.components, this.userLogin, this);
+  }
 
   // Function to login
-  userLogin(loginFormValid) {
-    if (!loginFormValid) {
-      this.globalService.stopLoader();
-      return;
-    }
+  userLogin(self) {
+    // if (!loginFormValid) {
+    //   this.globalService.stopLoader();
+    //   return;
+    // }
 
-    this.globalService.startLoader('Taking you to EvalAI!');
+    self.globalService.startLoader('Taking you to EvalAI!');
 
+    // const LOGIN_BODY = {
+    //   'username': this.authService.getUser['name'],
+    //   'password': this.authService.getUser['password'],
+    // };
     const LOGIN_BODY = {
-      'username': this.authService.getUser['name'],
-      'password': this.authService.getUser['password'],
+      username: self.globalService.formValueForLabel(self.components, 'name'),
+      password: self.globalService.formValueForLabel(self.components, 'password')
     };
 
-    this.apiService.postUrl(this.endpointsService.loginURL(), LOGIN_BODY).subscribe(
+    self.apiService.postUrl(self.endpointsService.loginURL(), LOGIN_BODY).subscribe(
       data => {
-        this.globalService.storeData(this.globalService.authStorageKey, data['token']);
-        this.authService.loggedIn(true);
-        this.globalService.stopLoader();
-        this.redirectCheck(this);
+        self.globalService.storeData(self.globalService.authStorageKey, data['token']);
+        self.authService.loggedIn(true);
+        self.globalService.stopLoader();
+        self.redirectCheck(self);
       },
 
       err => {
-        this.globalService.stopLoader();
+        self.globalService.stopLoader();
 
         if (err.status === 400) {
-          this.authService.isFormError = true;
+          self.authService.isFormError = true;
           try {
             const non_field_errors = typeof (err.error.non_field_errors) !== 'undefined';
             if (non_field_errors) {
-              this.authService.FormError = err.error.non_field_errors[0];
+              self.authService.FormError = err.error.non_field_errors[0];
             }
           } catch (error) {
             setTimeout(() => {
-              this.globalService.showToast('Error', 'Unable to Login.Please Try Again!', 5);
+              self.globalService.showToast('Error', 'Unable to Login.Please Try Again!', 5);
             }, 1000);
           }
         } else {
-          this.globalService.handleApiError(err);
+          self.globalService.handleApiError(err);
         }
       },
-      () => {}
+      () => { }
     );
   }
 
