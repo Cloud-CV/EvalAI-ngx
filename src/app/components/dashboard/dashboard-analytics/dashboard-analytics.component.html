@@ -1,0 +1,178 @@
+<!--a class="btn ev-btn-dark waves-effect waves-dark grad-btn grad-btn-dark fs-14" routerLink="/analytics">Go to Analytics Dashboard</a-->
+
+<div class="dashboard-analytics">
+
+<mat-card class="analysis-card">
+
+  <div class="content">
+    <div class="challenge-team-list">
+      <div class="challenge-team-tabs fs-12">
+
+        <div [class.selected-tabs]="challengeTabSelected">
+          <span class="fw-semibold" (click)="challengeTabSelected = !challengeTabSelected">Challenges</span>
+          <span *ngIf="challengeTabSelected" class="fw-semibold tab-count">{{participatedChallengeList.length}}</span>
+        </div>
+
+        <div [class.selected-tabs]="!challengeTabSelected">
+          <span class="fw-semibold" (click)="challengeTabSelected = !challengeTabSelected">Teams</span>
+          <span *ngIf="!challengeTabSelected" class="fw-semibold tab-count">{{participantTeam.length}}</span>
+        </div>
+
+      </div>
+
+      <div class="fs-14 fw-semibold challenge-list" *ngIf="challengeTabSelected">
+        <mat-card [class.selected-challenge-team]="selectedChallengeId == challenge['id']" [class.mat-elevation-z4]="selectedChallengeId == challenge['id']" *ngFor="let challenge of filteredChallenge" (click)="selectedChallengeId = challenge['id']">
+          <span> {{challenge['title']}} </span>
+          <div>
+            <span class="fs-12 fw-regular">Hosted By:</span>
+            <span>{{' ' + challenge['creator']['created_by']}}</span>
+          </div>
+        </mat-card>
+      </div>
+
+      <div class="fs-14 fw-semibold team-list" *ngIf="!challengeTabSelected">
+        <mat-card [class.selected-challenge-team]="selectedTeamId == team['id']" [class.mat-elevation-z4]="selectedTeamId == team['id']" *ngFor="let team of filteredTeams" (click)="selectedTeamId = team['id']">
+          <span> {{team['team_name']}} </span>
+          <div>
+            <span class="fs-12 fw-regular">Created By:</span>
+            <span>{{' ' + team['created_by']}}</span>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="challenge-team-analysis">
+
+      <div class="analysis-challenge-info">
+        <span class="fs-14 fw-regular"> Analysis VQA Challenge</span>
+        <div>
+          <span class="fs-12 fw-semibold mr-5 text-gray">
+              Select Phase
+          </span>
+          <button mat-stroked-button [matMenuTriggerFor]="menu" class="fs-12 fw-regular text-highlight select-button">
+            Train Phase
+            <i class="fa fa-chevron-down fs-10 fw-semibold"></i>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Train Phase</button>
+            <button mat-menu-item>Test Phase</button>
+          </mat-menu>
+        </div>
+      </div>
+
+      <div class="analysis-content">
+        <mat-card class="rank-submission-analysis">
+          <div class="rank-submission-toggle">
+            <div class="rank" [class.selected-analysis]="isRankAnalysis" (click)="isRankAnalysis = true">
+              <div>
+                <span class="fs-12 fw-semibold text-dark-black">Current Rank</span>
+                <span class="fs-16 fw-semibold orange-text ml-5">2nd</span>
+              </div>
+              <div>
+                <span class="fs-10 fw-regular text-light-black">Total Participant</span>
+                <span class="fs-14 fw-regular text-med-black ml-5">105</span>
+              </div>
+              <div>
+                <span>
+                  <i class="fa fa-arrow-up fs-10 fw-regular green-text">2 Ranks</i>
+                </span>
+                <span class="fs-10 fw-regular text-light-black ml-5">last 1 day</span>
+              </div>
+            </div>
+
+            <div class="submission" [class.selected-analysis]="!isRankAnalysis" (click)="isRankAnalysis = false">
+              <div>
+                <span class="fs-12 fw-semibold text-light-black">Total Submissions</span>
+                <span class="fs-16 fw-semibold text-med-black ml-5">2,849</span>
+              </div>
+              <div>
+                <span class="fs-10 fw-regular text-light-black">Unique Submissions</span>
+                <span class="fs-14 fw-regular text-med-black ml-5">2000</span>
+              </div>
+              <div>
+                <span>
+                  <i class="fa fa-arrow-down fs-10 fw-regular red-text">2 Submissions</i>
+                </span>
+                <span class="fs-10 fw-regular text-light-black ml-5">last 5 days</span>
+              </div>
+            </div>
+          </div>
+          <div class="rank-submission-visualization">
+            <div class="visualization-info">
+              <span class="fs-14 fw-semibold text-med-gray" *ngIf="isRankAnalysis"> Rank Analysis</span>
+              <span class="fs-14 fw-semibold" *ngIf="!isRankAnalysis"> Submission Analysis</span>
+              <div>
+                <button mat-stroked-button [matMenuTriggerFor]="menu" class="fs-12 fw-regular text-highlight select-button">
+                  Weekly
+                  <i class="fa fa-chevron-down fs-10 fw-semibold"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>Daily</button>
+                  <button mat-menu-item>Weekly</button>
+                  <button mat-menu-item>Monthly</button>
+                </mat-menu>
+              </div>
+            </div>
+            <app-rank-visuals *ngIf="isRankAnalysis"></app-rank-visuals>
+            <app-submission-visuals *ngIf="!isRankAnalysis"></app-submission-visuals>
+          </div>
+        </mat-card>
+        <mat-card class="submission-visualization">
+          <span class="fs-12 fw-semibold">Submissions</span>
+          <div class="submission-canvas">
+            <div class="cell-row" *ngFor="let num of ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']">
+              <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7]"  matTooltip="Info about the action" class="cell"></div>
+              <div class="fs-8 fw-semibold text-med-gray cell-row-label">{{num}}</div>
+            </div>
+          </div>
+          <div class="select-submission-duration">
+            <button mat-button [matMenuTriggerFor]="menu" class="rm-pad fs-10 fw-semibold">
+              Weekly
+              <i class="fa fa-chevron-down fs-8 fw-semibold"></i>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Daily</button>
+              <button mat-menu-item>Weekly</button>
+            </mat-menu>
+          </div>
+        </mat-card>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="paginator-toggle col s12 m6">
+    <div class="">
+      <a *ngIf="challengeTabSelected" [class.disabled]="challengePage <= 1" class="btn-floating btn-pagination waves-effect waves-light" (click)="seeLessClicked()" >
+        <i class="fa fa-chevron-left"></i>
+      </a>
+      <a *ngIf="!challengeTabSelected" [class.disabled]="teamPage <= 1" class="btn-floating btn-pagination waves-effect waves-light" (click)="seeLessClicked()" >
+        <i class="fa fa-chevron-left"></i>
+      </a>
+
+      <span *ngIf="challengeTabSelected" class="pagination-title"> <strong class="text-med-black"> Page {{challengePage | number}} of {{participatedChallengeList.length/challengeWindowSize | number:'1.0-0'}} </strong></span>
+      <span *ngIf="!challengeTabSelected" class="pagination-title"> <strong class="text-med-black"> Page {{teamPage | number}} of {{participantTeam.length/teamWindowSize | number:'1.0-0'}} </strong></span>
+
+      <a *ngIf="challengeTabSelected" [class.disabled]="challengePage*challengeWindowSize >= participatedChallengeList.length" class="btn-floating btn-pagination waves-effect waves-light" (click)="seeMoreClicked()">
+        <i class="fa fa-chevron-right"></i>
+      </a>
+      <a *ngIf="!challengeTabSelected" [class.disabled]="teamPage*teamWindowSize >= participantTeam.length" class="btn-floating btn-pagination waves-effect waves-light" (click)="seeMoreClicked()">
+        <i class="fa fa-chevron-right"></i>
+      </a>
+    </div>
+
+    <div class="participant-host-toggler">
+      <div [class.selected-toggle]="toggleParticipant" (click)="toggleParticipant = true">
+        <span class="fs-12">Participant</span>
+      </div>
+
+      <div [class.selected-toggle]="!toggleParticipant" (click)="toggleParticipant = false">
+        <span class="fs-12">Host</span>
+      </div>
+    </div>
+  </div>
+
+</mat-card>
+
+</div>

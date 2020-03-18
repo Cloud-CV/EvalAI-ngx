@@ -1,0 +1,262 @@
+@import "variables";
+
+.dashboard-analytics {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 20px 0 20px;
+  //margin-top: 25px;
+  height: calc(85vh - 20px);
+}
+
+.analysis-card {
+  background-color: $gray-lighter !important;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  height:90%;
+}
+
+.challenge-team-list {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  border-right: 0.5px solid $gray-medium;
+  // padding-right: 20px;
+
+  .selected-challenge-team {
+    border-left: 2px solid $highlight;
+  }
+}
+
+.challenge-team-tabs {
+  display: flex;
+  flex-direction: row;
+  color: $gray-medium;
+  border-bottom: 0.5px solid $gray-medium;
+
+  div {
+    padding-bottom: 5px;
+  }
+
+  div:nth-child(2) {
+    margin-left: 15px;
+  }
+
+  .tab-count {
+    color: $dark-black;
+    background-color: $gray-medium;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    padding: 4px;
+    border-radius: 5px;
+  }
+
+  .selected-tabs {
+    color: $highlight;
+    border-bottom: 1px solid $highlight;
+  }
+}
+
+.challenge-list {
+  display: flex;
+  flex-direction: column;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  overflow: auto;
+  mat-card {
+    margin-top: 10px;
+    color: $med-black;
+    div {
+      span:nth-child(1) {
+        color: $gray-medium;
+      }
+    }
+  }
+}
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  overflow: auto;
+  mat-card {
+    margin-top: 10px;
+    color: $med-black;
+    padding: 15px;
+    div {
+      span:nth-child(1) {
+        color: $gray-medium;
+      }
+    }
+  }
+}
+
+.challenge-team-analysis {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.select-button {
+  line-height: 18px;
+  background-color: $gray-lighter;
+  padding: 0 10px 0 10px;
+  i {
+    margin-left: 10px;
+    color: $gray-medium;
+  }
+}
+
+.analysis-challenge-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 0 15px 15px;
+  width: 75%;
+}
+
+.analysis-content {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 15px 15px;
+}
+
+.rank-submission-analysis {
+  width: 75%;
+  height: 100%;
+  padding: unset;
+  display: flex;
+  flex-direction: column;
+
+  .rank-submission-toggle {
+    max-height: 30%;
+    display: flex;
+    flex-direction: row;
+
+    .rank {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      padding: 10px;
+      border-right: 0.5px solid $gray-medium;
+    }
+
+    .submission {
+      width: 50%;
+      padding: 10px;
+    }
+
+    .selected-analysis {
+      border-top: 1px solid $highlight;
+      background-color: $gray-lighter !important;
+    }
+  }
+
+  .rank-submission-visualization {
+    max-height: 70%;
+    padding: 10px;
+    border-top: 0.5px solid $gray-dark;
+    overflow: auto;
+
+    .visualization-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.submission-visualization {
+  width: 25%;
+  height: 100%;
+  margin-left: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+
+  .submission-canvas {
+    max-height: 90%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    .cell-row {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 5px;
+      border: none;
+      .cell {
+        height: 8px;
+        width: 15px;
+        margin-right: 4px;
+        background-color: $gray-medium;
+      }
+      .cell-row-label {
+        height: 8px;
+        line-height: 8px;
+        border: none;
+      }
+    }
+  }
+
+  .select-submission-duration {
+    border-top: 0.5px solid $gray-medium;
+    button {
+      background-color: white;
+      line-height: 15px;
+      text-align: left;
+    }
+  }
+}
+
+.paginator-toggle {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+  border-top: 0.5px solid $gray-medium;
+}
+
+.participant-host-toggler {
+  align-self: center;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: $gray-medium;
+
+  div {
+    width: 150px;
+    padding: 5px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: $border-color-light;
+    background-color: $gray-lighter;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  div:nth-child(1) {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  div:nth-child(2) {
+    border-left-style: none !important;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}
+
+.selected-toggle {
+  background-color: $highlight !important;
+  color: $gray-lighter;
+  border-style: none;
+  z-index: 8;
+}

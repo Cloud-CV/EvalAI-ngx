@@ -11,6 +11,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCardModule } from '@angular/material';
+import { ChartsModule } from 'ng2-charts';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -88,6 +92,9 @@ import {PasswordMismatchValidatorDirective} from './Directives/password.validato
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
+import { DashboardAnalyticsComponent } from './components/dashboard/dashboard-analytics/dashboard-analytics.component';
+import { RankVisualsComponent } from './components/dashboard/dashboard-analytics/rank-visuals/rank-visuals.component';
+import { SubmissionVisualsComponent } from './components/dashboard/dashboard-analytics/submission-visuals/submission-visuals.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,7 +153,10 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     EditphasemodalComponent,
     ResetPasswordConfirmComponent,
     ChallengeviewallsubmissionsComponent,
-    TermsAndConditionsModalComponent
+    TermsAndConditionsModalComponent,
+    DashboardAnalyticsComponent,
+    RankVisualsComponent,
+    SubmissionVisualsComponent
   ],
   imports: [
     BrowserModule,
@@ -164,6 +174,10 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatChipsModule,
     MatMenuModule,
     MatIconModule,
+    MatCardModule,
+    ChartsModule,
+    MatButtonModule,
+    MatTooltipModule,
     MatTableModule,
     MatDividerModule,
     MatCheckboxModule
