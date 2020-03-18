@@ -99,17 +99,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   // Function to login
   userLogin(self) {
-    // if (!loginFormValid) {
-    //   this.globalService.stopLoader();
-    //   return;
-    // }
 
     self.globalService.startLoader('Taking you to EvalAI!');
-
-    // const LOGIN_BODY = {
-    //   'username': this.authService.getUser['name'],
-    //   'password': this.authService.getUser['password'],
-    // };
     const LOGIN_BODY = {
       username: self.globalService.formValueForLabel(self.components, 'name'),
       password: self.globalService.formValueForLabel(self.components, 'password')

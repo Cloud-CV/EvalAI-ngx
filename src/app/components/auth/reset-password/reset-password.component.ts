@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../../services/auth.service';
-import {ApiService} from '../../../services/api.service';
-import {EndpointsService} from '../../../services/endpoints.service';
-import {GlobalService} from '../../../services/global.service';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
+import { ApiService } from '../../../services/api.service';
+import { EndpointsService } from '../../../services/endpoints.service';
+import { GlobalService } from '../../../services/global.service';
+import { InputComponent } from '../../utility/input/input.component';
 
 @Component({
   selector: 'app-reset-password',
@@ -29,6 +30,12 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordRoute = '/auth/reset-password';
 
   /**
+   * Form for the reset of the password
+   */
+  @ViewChildren('resetForm')
+  resetForm: QueryList<InputComponent>;
+
+  /**
    *
    * @param authService
    * @param globalService
@@ -36,44 +43,43 @@ export class ResetPasswordComponent implements OnInit {
    * @param endpointService
    */
   constructor(public authService: AuthService, private globalService: GlobalService, private apiService: ApiService,
-              private endpointService: EndpointsService) {
+    private endpointService: EndpointsService) {
   }
 
   ngOnInit() {
     this.authService.resetForm();
   }
 
+  formValidate() {
+    this.globalService.formValidate(this.resetForm, this.resetPassword, this);
+  }
   // function to reset password
-  resetPassword(resetPassFormValid) {
-    if (resetPassFormValid) {
-      this.globalService.startLoader('Sending Mail');
+  resetPassword(self) {
+    self.globalService.startLoader('Sending Mail');
 
-      const RESET_BODY = JSON.stringify({
-        email: this.authService.getUser['email']
-      });
+    const RESET_BODY = JSON.stringify({
+      email: self.globalService.formValueForLabel(self.resetForm, 'email')
+    });
 
-      const API_PATH = this.endpointService.resetPasswordURL();
+    const API_PATH = self.endpointService.resetPasswordURL();
 
-      this.apiService.postUrl(API_PATH, RESET_BODY).subscribe(
-        response => {
-          this.authService.isMail = false;
-          this.authService.getUser['error'] = false;
-          this.authService.isFormError = false;
-          this.authService.deliveredMsg = response.detail;
-          this.authService.getUser['email'] = '';
-          this.globalService.stopLoader();
-        },
+    self.apiService.postUrl(API_PATH, RESET_BODY).subscribe(
+      response => {
+        self.authService.isMail = false;
+        self.authService.getUser['error'] = false;
+        self.authService.isFormError = false;
+        self.authService.deliveredMsg = response.detail;
+        self.authService.getUser['email'] = '';
+        self.globalService.stopLoader();
+      },
 
-        err => {
-          this.authService.isFormError = true;
-          this.authService.FormError = 'Something went wrong. Please try again';
-          this.globalService.stopLoader();
-        },
+      err => {
+        self.authService.isFormError = true;
+        self.authService.FormError = 'Something went wrong. Please try again';
+        self.globalService.stopLoader();
+      },
 
-        () => {}
-      );
-    } else {
-      this.globalService.stopLoader();
-    }
+      () => { }
+    );
   }
 }
