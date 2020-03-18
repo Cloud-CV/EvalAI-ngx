@@ -13,8 +13,8 @@ import { ApiService } from '../services/api.service';
 import { EndpointsService } from '../services/endpoints.service';
 
 describe('AuthcheckDirective', () => {
-  let templateRef: jasmine.SpyObj<TemplateRef<any>>;
-  let viewcontainerRef: jasmine.SpyObj<ViewContainerRef>;
+  const templateRef: jasmine.SpyObj<TemplateRef<any>>;
+  const viewcontainerRef: jasmine.SpyObj<ViewContainerRef>;
   let authServive: AuthService;
 
   beforeEach(async(() => {
@@ -34,6 +34,7 @@ describe('AuthcheckDirective', () => {
       ]
     }).compileComponents();
     authServive = TestBed.get(AuthService);
+
   }));
   it('should create', () => {
     const authDirective = new AuthcheckDirective(authServive, templateRef, viewcontainerRef);
