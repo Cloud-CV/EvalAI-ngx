@@ -9,6 +9,7 @@ import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiService } from '../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 describe('GetInvolvedComponent', () => {
   let component: GetInvolvedComponent;
@@ -21,7 +22,7 @@ describe('GetInvolvedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GetInvolvedComponent, HeaderStaticComponent, FooterComponent ],
+      declarations: [ GetInvolvedComponent, HeaderStaticComponent, FooterComponent, AuthcheckDirective ],
       providers: [
         GlobalService,
         AuthService,

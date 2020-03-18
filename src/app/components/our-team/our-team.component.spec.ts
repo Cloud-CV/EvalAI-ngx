@@ -10,6 +10,7 @@ import { EndpointsService } from '../../services/endpoints.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 describe('OurTeamComponent', () => {
   let component: OurTeamComponent;
@@ -22,7 +23,7 @@ describe('OurTeamComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OurTeamComponent, FooterComponent, HeaderStaticComponent ],
+      declarations: [ OurTeamComponent, FooterComponent, HeaderStaticComponent, AuthcheckDirective ],
       imports: [ HttpClientModule, RouterTestingModule ],
       providers: [ GlobalService, AuthService, EndpointsService, ApiService],
       schemas: [ NO_ERRORS_SCHEMA ]

@@ -12,6 +12,7 @@ import {Routes} from '@angular/router';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {ApiService} from '../../services/api.service';
 import {HeaderStaticComponent} from '../nav/header-static/header-static.component';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ describe('AnalyticsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AnalyticsComponent, SideBarComponent, FooterComponent, HeaderStaticComponent,
-         NotFoundComponent ],
+         NotFoundComponent, AuthcheckDirective ],
       providers: [AuthService, GlobalService, EndpointsService, ApiService],
       imports: [HttpClientModule, RouterTestingModule.withRoutes(routes)]
     })

@@ -14,6 +14,7 @@ import {Router, Routes} from '@angular/router';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {LoginComponent} from '../auth/login/login.component';
 import {FormsModule} from '@angular/forms';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, FooterComponent, HeaderStaticComponent, NotFoundComponent, LoginComponent ],
+      declarations: [ DashboardComponent, FooterComponent, HeaderStaticComponent, NotFoundComponent, LoginComponent, AuthcheckDirective ],
       imports: [ HttpClientModule, RouterTestingModule.withRoutes(routes), FormsModule ],
       providers: [ GlobalService, AuthService, EndpointsService, ApiService],
       schemas: [ NO_ERRORS_SCHEMA ]

@@ -7,6 +7,7 @@ import { HeaderStaticComponent } from './header-static.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthcheckDirective } from '../../../Directives/authcheck.directive';
 
 describe('HeaderStaticComponent', () => {
   let component: HeaderStaticComponent;
@@ -17,7 +18,7 @@ describe('HeaderStaticComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderStaticComponent ],
+      declarations: [ HeaderStaticComponent, AuthcheckDirective ],
       providers: [ GlobalService,
         AuthService,
         ApiService,

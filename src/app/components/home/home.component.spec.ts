@@ -17,6 +17,7 @@ import { FeaturedChallengesComponent } from './featured-challenges/featured-chal
 import { TwitterFeedComponent } from './twitter-feed/twitter-feed.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { WindowService } from '../../services/window.service';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -36,7 +37,8 @@ describe('HomeComponent', () => {
         RulesComponent,
         TestimonialsComponent,
         FeaturedChallengesComponent,
-        TwitterFeedComponent
+        TwitterFeedComponent,
+        AuthcheckDirective
       ],
       providers: [
         GlobalService,

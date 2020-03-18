@@ -15,6 +15,7 @@ import {PubliclistsComponent} from '../publiclists.component';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NotFoundComponent} from '../../not-found/not-found.component';
+import { AuthcheckDirective } from '../../../Directives/authcheck.directive';
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ describe('TeamlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamlistComponent, NotFoundComponent],
+      declarations: [ TeamlistComponent, NotFoundComponent, AuthcheckDirective],
       providers: [ GlobalService, ApiService, AuthService, ChallengeService, EndpointsService ],
       imports: [ RouterTestingModule.withRoutes(routes), HttpClientModule, FormsModule ],
       schemas: [ NO_ERRORS_SCHEMA ]
