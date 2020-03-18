@@ -92,6 +92,11 @@ export class InputComponent implements OnInit {
    */
   @Input() inputStyle = '';
 
+  /**
+   * Another input component needed to
+   * crossfield validation
+   */
+  @Input() fieldToCompare: string;
 
   /**
    * Is email flag
@@ -218,7 +223,7 @@ export class InputComponent implements OnInit {
       return; // This is to no continue validating because the string is empty
     }
     if (this.isValidateCustom) {
-      this.isValid = this.validate(e).is_valid;
+      this.isValid = this.validate(e, this.fieldToCompare).is_valid;
       this.isValid ? this.message = '' : this.message = this.validate(e).message;
     } else if (this.isEmail) {
       this.isValid = this.globalService.validateEmail(e);
