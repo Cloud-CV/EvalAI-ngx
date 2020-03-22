@@ -562,20 +562,6 @@ export class GlobalService {
   }
 
   /**
-     * Custom validator to check equality of the password fields
-     * @param password1 The confirm password field
-     * @param password2 The password field
-     * @return returns an object that contain a message and a boolean
-     */
-  validateTwoPassword(password1: string, password2: string) {
-    const is_valid = password1 === password2;
-    return {
-      is_valid,
-      message: !is_valid ? 'Passwords do not match' : ''
-    };
-  }
-
-  /**
    * Start loader message
    * @param msg  string
    */

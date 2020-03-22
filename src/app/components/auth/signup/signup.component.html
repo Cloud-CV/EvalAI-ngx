@@ -29,7 +29,7 @@
   <!-- confirm password -->
   <div class="input-field align-left">
     <app-input [inputStyle]="'dark-autofill'" [type]="'password'" [label]="'confirm_password'"
-      [placeholder]="'Confirm Password *'" [isRequired]="true" [validate]="globalService.validateTwoPassword"
+      [placeholder]="'Confirm Password *'" [isRequired]="true" [validate]="validateTwoPassword"
       [fieldToCompare]="password.value" #signupForm></app-input>
   </div>
   <!-- submit button -->
