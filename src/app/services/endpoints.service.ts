@@ -301,8 +301,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   }
 
   /**
-   * Edit challenge details
-   * @param hostTeam challenge host team id
+   * Invite participant to the challenge
    * @param challenge challenge id
    */
   inviteParticipanttoChallenegURL(challenge) {
