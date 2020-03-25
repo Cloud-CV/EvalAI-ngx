@@ -306,7 +306,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
    * @param challenge challenge id
    */
   inviteParticipanttoChallenegURL(challenge) {
-    return `${this.challenges}${challenge}/send-invitation`;
+    return `${this.challenges}${challenge}/send-invitation/`;
   }
 
   /**

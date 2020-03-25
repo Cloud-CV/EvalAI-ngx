@@ -234,7 +234,6 @@ export class ChallengesettingsComponent implements OnInit {
       BODY
     ).subscribe(
       data => {
-        console.log(data);
         SELF.challenge.emails = data.emails;
         SELF.isInvitedEmailInputVisible = false;
         SELF.globalService.showToast('success', 'Invited participant emails are successfully updated!', 5);
