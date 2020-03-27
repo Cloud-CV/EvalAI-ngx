@@ -61,14 +61,6 @@ export class ChallengesettingsComponent implements OnInit {
   removable = true;
   addOnBlur = true;
 
-    /**
-   * invite email ids chips property
-   */
-  isvisible = true;
-  isselectable = true;
-  isremovable = true;
-  isaddOnBlur = true;
-
   /**
    * Input to edit the banned participants emails
    */
@@ -87,16 +79,20 @@ export class ChallengesettingsComponent implements OnInit {
       challenge => {
         this.challenge = challenge;
         this.updateView();
+        this.updateInviteList();
       });
+      console.log(this.formerBannedEmailIds, this.formerInvitedEmailIds);
   }
 
   updateView() {
     this.bannedEmailIds = this.challenge.banned_email_ids || [];
     this.formerBannedEmailIds = this.bannedEmailIds.concat(); // Creating deep copy
+  }
+
+  updateInviteList() {
     this.invitedEmailIds = this.challenge.emails || [];
     this.formerInvitedEmailIds = this.invitedEmailIds.concat(); // Creating deep copy
   }
-
   /**
    * Add banned email chip
    * @param event current event
@@ -226,15 +222,16 @@ export class ChallengesettingsComponent implements OnInit {
 
   updateInvitedEmailList() {
     const SELF = this;
-    const BODY = {
-      'emails': SELF.invitedEmailIds
-    };
+    const BODY = JSON.stringify({
+      emails : SELF.invitedEmailIds
+    });
     SELF.apiService.postUrl(
       SELF.endpointsService.inviteParticipanttoChallenegURL(SELF.challenge.id),
       BODY
     ).subscribe(
       data => {
-        SELF.challenge.emails = data.emails;
+        console.log(data);
+        SELF.challenge.emails = data.valid_emails;
         SELF.isInvitedEmailInputVisible = false;
         SELF.globalService.showToast('success', 'Invited participant emails are successfully updated!', 5);
         this.formerInvitedEmailIds = this.invitedEmailIds.concat(); // Creating deep copy

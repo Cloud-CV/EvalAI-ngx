@@ -39,14 +39,14 @@
       <div class="col-lg-7 col-md-7 col-sm-9 col-xs-9">
         <mat-form-field class="example-chip-list">
           <mat-chip-list #invitechipList>
-            <mat-chip *ngFor="let email of invitedEmailIds" [selectable]="isselectable"
-              [removable]="isremovable" (removed)="removefromInvite(email)">
+            <mat-chip *ngFor="let email of invitedEmailIds" [selectable]="selectable"
+              [removable]="removable" (removed)="removefromInvite(email)">
               {{email}}
-              <mat-icon matChipRemove *ngIf="isremovable">cancel</mat-icon>
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input [matChipInputFor]="invitechipList"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="isaddOnBlur"
+              [matChipInputAddOnBlur]="addOnBlur"
               (matChipInputTokenEnd)="invite($event)">
           </mat-chip-list>
         </mat-form-field>
