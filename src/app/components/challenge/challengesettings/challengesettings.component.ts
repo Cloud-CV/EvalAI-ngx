@@ -81,7 +81,6 @@ export class ChallengesettingsComponent implements OnInit {
         this.updateView();
         this.updateInviteList();
       });
-      console.log(this.formerBannedEmailIds, this.formerInvitedEmailIds);
   }
 
   updateView() {
@@ -230,7 +229,6 @@ export class ChallengesettingsComponent implements OnInit {
       BODY
     ).subscribe(
       data => {
-        console.log(data);
         SELF.challenge.emails = data.valid_emails;
         SELF.isInvitedEmailInputVisible = false;
         SELF.globalService.showToast('success', 'Invited participant emails are successfully updated!', 5);
