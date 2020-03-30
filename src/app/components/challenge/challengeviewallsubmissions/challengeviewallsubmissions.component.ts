@@ -181,7 +181,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
     });
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
-      if (!status) {
+      if (status) {
         this.globalService.storeData(this.globalService.redirectStorageKey, {path: this.routerPublic.url});
         let redirectToPath = '';
         if (this.router.url.split('/').length === 4) {
