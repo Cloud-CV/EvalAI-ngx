@@ -62,6 +62,11 @@ export class ChallengeComponent implements OnInit {
   stars: any;
 
   /**
+   * Challenge Tags
+   */
+  tags: any;
+
+  /**
    * Is logged in the Challenge
    */
   isLoggedIn: any = false;
@@ -125,6 +130,7 @@ export class ChallengeComponent implements OnInit {
       });
     });
     this.challengeService.currentStars.subscribe(stars => this.stars = stars);
+    this.challengeService.currentTags.subscribe(tags => this.tags = tags);
     this.challengeService.currentParticipationStatus.subscribe(status => {
       this.isParticipated = status;
     });
