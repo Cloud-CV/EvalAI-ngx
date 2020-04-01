@@ -78,7 +78,7 @@ export class ChallengeService {
   }
 
   /**
-   * 
+   *
    * @param tags Update tags for current challenge.
    */
   changeCurrentTags(tags: any) {
@@ -217,9 +217,9 @@ export class ChallengeService {
         SELF.globalService.handleApiError(err);
       },
       () => {
-        console.log('Challenge', id, 'tags fetched')
+        console.log('Challenge', id, 'tags fetched');
       }
-    )
+    );
   }
 
   /**

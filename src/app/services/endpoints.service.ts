@@ -152,7 +152,7 @@ export class EndpointsService {
 
   /**
    * Fetch challenge tags for a given challenge id
-   * @param id 
+   * @param id
    */
   challengeTagsURL(id) {
     return `${this.challenges}${this.challenge}${id}/tags`;
