@@ -10,10 +10,10 @@
     <br>
     <div class="row settings-section">
       <div class="col-lg-3 col-md-4 col-sm-3 col-xs-3">
-        <span class="fw-regular"> Leaderbord decimal precision</span>
+        <span class="fw-regular"> Leaderboard precision value:</span>
       </div>
       <div class="rangeslider fa-stack fa-2x">
-        <mat-slider type="range" min="0" max="10"  step="1" thumbLabel [displayWith]="formatLabel" value="LeaderboardPrecisionValue" [(ngModel)]="sliderChecked"
+        <mat-slider thumbLabel min="2" max="10"  step="1" thumbLabel value="LeaderboardPrecisionValue" [(ngModel)]="sliderChecked"
                       (change)="getSliderValue($event)">
         </mat-slider>
           <i class="fa fa-circle fa-stack-2x" *ngIf="LeaderboardPrecisionValue"></i>

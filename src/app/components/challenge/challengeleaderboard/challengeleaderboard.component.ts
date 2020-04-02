@@ -192,11 +192,10 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     this.challengeService.isChallengeHost.subscribe(status => {
       this.isChallengeHost = status;
     });
-  }
-
-  getPrecisionValue() {
+    // store the selected precision value
     this.leaderboardPrecisionValue = this.challengeService.getLeaderboardPrecision();
   }
+
   /**
    * Filter phases based on visibility and leaderboard public flag.
    */

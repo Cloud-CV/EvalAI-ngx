@@ -300,6 +300,14 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
     return `${this.challenges}challenge_host_team/${hostTeam}/${this.challenge}${challenge}`;
   }
 
+  createLeaderboard() {
+    return `${this.challenges}${this.challenge}create/leaderboard/step_2`;
+  }
+
+  get_updateLeaderboard(leaderboard_pk) {
+    return `${this.challenges}${this.challenge}create/leaderboard/${leaderboard_pk}`;
+  }
+
   /**
    * Delete challenge
    * @param challenge challenge id

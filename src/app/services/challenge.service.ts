@@ -49,6 +49,7 @@ export class ChallengeService {
    */
   setLeaderboardPrecision(precisionValue) {
     this.LeaderboardPrecisionValue = precisionValue;
+    // console.log(this.LeaderboardPrecisionValue);
   }
 
   /**
