@@ -35,16 +35,6 @@ export class ChallengesettingsComponent implements OnInit {
   isValidationError = false;
 
   /**
-   * Leaderboard Precision Value
-   */
-  LeaderboardPrecisionValue;
-
-  /**
-   * Slider checked Value
-   */
-  sliderChecked;
-
-  /**
    * Email error message
    */
   message: string;
@@ -76,27 +66,6 @@ export class ChallengesettingsComponent implements OnInit {
         this.challenge = challenge;
         this.updateView();
     });
-    const BODY = JSON.stringify({
-      data: 2
-    });
-    console.log(BODY);
-    this.apiService.postUrl(
-      this.endpointsService.createLeaderboard(),
-      BODY
-    ).subscribe(
-        data => {
-          console.log(data);
-          // SELF.challenge.banned_email_ids = data.banned_email_ids;
-          // // SELF.isBannedEmailInputVisible = false;
-          // // SELF.globalService.showToast('success', 'Banned participant emails are successfully updated!', 5);
-          // this.formerBannedEmailIds = this.bannedEmailIds.concat(); // Creating deep copy
-        },
-        err => {
-          this.globalService.handleApiError(err, true);
-          this.globalService.showToast('error', err);
-        },
-        () => {}
-      );
   }
 
   updateView() {
@@ -183,30 +152,6 @@ export class ChallengesettingsComponent implements OnInit {
         },
         () => {}
       );
-  }
-
-  // For getting the value of Leaderboard slider
-  getSliderValue(event: MatSliderChange) {
-    // const SELF = this;
-    // const BODY = JSON.stringify({
-    //   data: event.value
-    // });
-    // SELF.apiService.patchUrl(
-    //   SELF.endpointsService.get_updateLeaderboard(event.value), BODY
-    // ).subscribe(
-    //   data => {
-    //     console.log(data);
-    //     SELF.LeaderboardPrecisionValue = data.value;
-    //     SELF.challengeService.setLeaderboardPrecision(data.value);
-    //   },
-    //   err => {
-    //     SELF.globalService.handleApiError(err, true);
-    //     SELF.globalService.showToast('error', err);
-    //   },
-    //   () => {}
-    // );
-      this.LeaderboardPrecisionValue = this.sliderChecked;
-      this.challengeService.setLeaderboardPrecision(event.value);
   }
 
 }

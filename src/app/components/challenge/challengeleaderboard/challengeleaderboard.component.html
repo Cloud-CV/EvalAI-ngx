@@ -30,6 +30,26 @@
       </div>
     </div>
 
+    <div class="row settings-section">
+      <div class="ev-md-container ev-panel-title" *ngIf="leaderboard.length >0 && selectedPhaseSplit != null">
+        <div class="row row-lr-margin">
+          <div class="col-sm-12 col-xs-12 col-lr-pad">
+            <span class="fw-regular"> Leaderboard precision value:</span>
+          </div>
+      </div>
+      <div class="rangeslider fa-stack fa-2x">
+        <mat-slider thumbLabel min="0" max="20"  step="1" thumbLabel placeholder="LeaderboardPrecisionValue" [(ngModel)]="sliderChecked"
+                      (change)="updateChallengephaseSplit($event)">
+        </mat-slider>
+          <i class="fa fa-circle fa-stack-2x" *ngIf="LeaderboardPrecisionValue"></i>
+          <span class="fa fa-stack-1x value">
+            <span class="val">
+              {{ LeaderboardPrecisionValue }}
+            </span>
+          </span>
+      </div>
+    </div>
+
     <div class="ev-card-body exist-team-card">
       <div class="row row-lr-margin">
         <div class="horizontal-scroll">

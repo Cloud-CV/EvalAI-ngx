@@ -6,7 +6,7 @@ import { ChallengeService } from '../../../services/challenge.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectphaseComponent } from '../../utility/selectphase/selectphase.component';
-
+import { MatSliderChange } from '@angular/material';
 /**
  * Component Class
  */
@@ -22,6 +22,21 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    */
   @ViewChildren('phasesplitselect')
   components: QueryList<SelectphaseComponent>;
+
+  /**
+   * Leaderboard Precision Value
+   */
+  LeaderboardPrecisionValue;
+
+  /**
+   * Slider checked Value
+   */
+  sliderChecked;
+
+    /**
+   * Challenge phase split pk Value
+   */
+  challenge_phase_Split_pk;
 
   /**
    * Is user logged in
@@ -192,8 +207,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     this.challengeService.isChallengeHost.subscribe(status => {
       this.isChallengeHost = status;
     });
-    // store the selected precision value
-    this.leaderboardPrecisionValue = this.challengeService.getLeaderboardPrecision();
   }
 
   /**
@@ -387,6 +400,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     SELF.showLeaderboardUpdate = false;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
+        this.challenge_phase_Split_pk = data.results[0].challenge_phase_split;
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(phaseSplitId);
       },
@@ -461,5 +475,29 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       },
       () => {}
     );
+  }
+
+   // For Updating the value of Leaderboard precision
+   updateChallengephaseSplit(event: MatSliderChange) {
+    const SELF = this;
+    SELF.LeaderboardPrecisionValue = event.value;
+    const BODY = JSON.stringify({
+      'leaderboard_decimal_precision': SELF.LeaderboardPrecisionValue
+    });
+    SELF.apiService.patchUrl(
+      SELF.endpointsService.get_updateLeaderboard(SELF.challenge_phase_Split_pk),
+      BODY
+    ).subscribe(
+        data => {
+          console.log(data);
+          SELF.globalService.showToast('success', 'The description is successfully updated!', 5);
+        },
+        err => {
+          SELF.globalService.handleApiError(err, true);
+          SELF.globalService.showToast('error', err);
+        },
+        () => console.log('EDIT-CHALLENGE-PHASE-SPLIT-FINISHED')
+      );
+
   }
 }
