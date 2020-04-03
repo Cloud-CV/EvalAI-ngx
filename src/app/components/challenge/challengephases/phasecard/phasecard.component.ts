@@ -81,10 +81,18 @@ export class PhasecardComponent implements OnInit {
     SELF.apiCall = (params) => {
       const FORM_DATA: FormData = new FormData();
       for (const key in params) {
-        if (params[key]) {
-          FORM_DATA.append(key, params[key]);
+        if (params['max_submissions_per_day'] <= params['max_submissions_per_month'] &&
+            params['max_submissions_per_month'] <= params['max_submissions']) {
+          if (params[key]) {
+              FORM_DATA.append(key, params[key]);
+            }
+          } else {
+            SELF.globalService.showToast('error', 'Invalid maximum submissions value!!');
+            throw new Error(
+              'In valid submission value!!'
+            );
+          }
         }
-      }
       SELF.apiService.patchFileUrl(
         SELF.endpointsService.updateChallengePhaseDetailsURL(SELF.challenge.id, SELF.phase['id']),
         FORM_DATA
