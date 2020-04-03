@@ -5,7 +5,6 @@ import { ApiService } from '../../../services/api.service';
 import { GlobalService } from '../../../services/global.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
-import { MatSliderChange } from '@angular/material';
 
 @Component({
   selector: 'app-challengesettings',
@@ -153,5 +152,4 @@ export class ChallengesettingsComponent implements OnInit {
         () => {}
       );
   }
-
 }
