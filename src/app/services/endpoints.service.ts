@@ -312,10 +312,6 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
     return `${this.challenges}${this.challenge}create/leaderboard/step_2`;
   }
 
-  get_updateLeaderboard(challenge_phase_split_pk) {
-    return `${this.challenges}${this.challenge}create/challenge_phase_split/${challenge_phase_split_pk}`;
-  }
-
   /**
    * Delete challenge
    * @param challenge challenge id

@@ -479,17 +479,19 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
 
    // For Updating the value of Leaderboard precision
    updateChallengephaseSplit(event: MatSliderChange) {
+    const API_PATH = this.endpointsService.particularChallengePhaseSplitUrl(this.selectedPhaseSplit['id']);
     const SELF = this;
     SELF.LeaderboardPrecisionValue = event.value;
     const BODY = JSON.stringify({
       'leaderboard_decimal_precision': SELF.LeaderboardPrecisionValue
     });
     SELF.apiService.patchUrl(
-      SELF.endpointsService.get_updateLeaderboard(SELF.challenge_phase_Split_pk),
+      API_PATH,
       BODY
     ).subscribe(
         data => {
           console.log(data);
+          SELF.refreshLeaderboard();
           SELF.globalService.showToast('success', 'The description is successfully updated!', 5);
         },
         err => {
