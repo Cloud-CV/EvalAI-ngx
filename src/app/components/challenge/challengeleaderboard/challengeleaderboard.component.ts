@@ -490,7 +490,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       BODY
     ).subscribe(
         data => {
-          console.log(data);
           SELF.refreshLeaderboard();
           SELF.globalService.showToast('success', 'The description is successfully updated!', 5);
         },
