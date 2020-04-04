@@ -192,14 +192,6 @@ export class EndpointsService {
     return `${this.challenges}${id}/challenge_phase_split`;
   }
 
-    /**
-   * Challenge phase split for a given challenge id
-   * @param id  dataset_split id
-   */
-  challengeDatasetSplitURL(id) {
-    return `${this.challenges}${this.challenge}create/dataset_split/${id}`;
-  }
-
   /**
    * Challenge Creation
    * @param hostTeam  host team id
@@ -306,10 +298,6 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
    */
   editChallengeDetailsURL(hostTeam, challenge) {
     return `${this.challenges}challenge_host_team/${hostTeam}/${this.challenge}${challenge}`;
-  }
-
-  createLeaderboard() {
-    return `${this.challenges}${this.challenge}create/leaderboard/step_2`;
   }
 
   /**
