@@ -30,6 +30,9 @@ export class AppComponent implements OnInit, OnDestroy {
   globalEditPhaseModalSubscription: any;
   globalTermsAndConditionsModalSubscription: any;
   globalServiceSubscriptionScrollTop: any;
+  cookieMessage = 'Our site uses cookies to ensure you get the best experience on our website';
+  cookieDismiss = 'Cancel';
+  cookieLinkText = 'Learn More';
 
   /**
    * Constructor.
@@ -94,6 +97,25 @@ export class AppComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.modalParams = params;
       }, 0);
+      const cc = window as any;
+      cc.cookieconsent.initialise({
+        palette: {
+          popup: {
+            background: '#164969'
+          },
+          button: {
+            background: '#ffe000',
+            text: '#164969'
+          }
+        },
+        theme: 'classic',
+        content: {
+          message: this.cookieMessage,
+          dismiss: this.cookieDismiss,
+          link: this.cookieLinkText,
+          href: 'https://www.cookiesandyou.com'
+        }
+      });
     });
 
     this.globalEditPhaseModalSubscription = this.globalService.editPhaseModalParams.subscribe(params => {
