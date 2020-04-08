@@ -38,7 +38,7 @@
           </div>
       </div>
       <div class="rangeslider fa-stack fa-2x">
-        <mat-slider thumbLabel min="0" max="20"  step="1" thumbLabel placeholder="LeaderboardPrecisionValue" [(ngModel)]="sliderChecked"
+        <mat-slider thumbLabel min="0" max="20"  step="1" thumbLabel placeholder="LeaderboardPrecisionValue" [(ngModel)]="LeaderboardPrecisionValue"
                       (change)="updateChallengephaseSplit($event)">
         </mat-slider>
           <i class="fa fa-circle fa-stack-2x" *ngIf="LeaderboardPrecisionValue"></i>

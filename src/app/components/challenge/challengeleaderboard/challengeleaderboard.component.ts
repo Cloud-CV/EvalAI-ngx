@@ -26,12 +26,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   /**
    * Leaderboard Precision Value
    */
-  LeaderboardPrecisionValue;
-
-  /**
-   * Slider checked Value
-   */
-  sliderChecked;
+  LeaderboardPrecisionValue = 2;
 
     /**
    * Challenge phase split pk Value
