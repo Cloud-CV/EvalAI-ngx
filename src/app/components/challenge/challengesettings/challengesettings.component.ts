@@ -201,11 +201,12 @@ export class ChallengesettingsComponent implements OnInit {
 
   removefromInvite(email): void {
     const SELF = this;
-    const index = this.invitedEmailIds.indexOf(email);
+    const index = SELF.invitedEmailIds.indexOf(email);
 
     if (index >= 0) {
-      this.invitedEmailIds.splice(index, 1);
+      SELF.invitedEmailIds.splice(index, 1);
     }
+    SELF.updateInvitedEmailList();
   }
 
   reflectInviteParticipantChange() {
