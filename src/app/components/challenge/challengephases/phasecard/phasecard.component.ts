@@ -81,8 +81,7 @@ export class PhasecardComponent implements OnInit {
     SELF.apiCall = (params) => {
       const FORM_DATA: FormData = new FormData();
       for (const key in params) {
-        if (params['max_submissions_per_day'] <= params['max_submissions_per_month'] &&
-            params['max_submissions_per_month'] <= params['max_submissions']) {
+       if (this.challengeService.isValidSubmission(params)) {
           if (params[key]) {
               FORM_DATA.append(key, params[key]);
             }
