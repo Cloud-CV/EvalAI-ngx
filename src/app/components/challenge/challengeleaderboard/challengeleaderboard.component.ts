@@ -143,12 +143,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    */
   pollingInterval: any;
 
-
-  /**
-   * LeadeBoard Precision Value
-   */
-  leaderboardPrecisionValue: any;
-
   /**
    * Challenge phase visibility
    */
