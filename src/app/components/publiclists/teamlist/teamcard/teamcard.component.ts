@@ -196,27 +196,19 @@ export class TeamcardComponent implements OnInit, OnChanges {
       this.isSelected = false;
     }
     const temp = this.team['members'];
-    let memberString = '';
-    let memberIdString = '';
+    this.memberArray = [];
+    this.memberIdArray = [];
     for (let i = 0; i < temp.length; i++) {
       if (temp[i]['member_name']) {
-        memberString = memberString + ', ' + temp[i]['member_name'];
-        memberIdString = memberIdString + ', ' + temp[i]['id'] ;
+        this.memberArray.push(temp[i]['member_name']);
+        this.memberIdArray.push(temp[i]['id']);
       } else {
-        memberString = memberString + ', ' + temp[i]['user'];
-        memberIdString = memberIdString + ', ' + temp[i]['id'] ;
+        this.memberArray.push(temp[i]['user']);
+        this.memberIdArray.push(temp[i]['id']);
       }
     }
-    if (memberString !== '') {
-      memberString = memberString.slice(2, memberString.length);
-    }
-    if (memberIdString !== '') {
-      memberIdString = memberIdString.slice(2, memberIdString.length);
-    }
-    this.teamView['members'] = memberString;
-    this.teamView['member_ids'] = memberIdString;
-    this.memberArray = memberString.split(',');
-    this.memberIdArray = memberIdString.split(', ');
+    this.teamView['members'] = this.memberArray;
+    this.teamView['member_ids'] = this.memberIdArray;
   }
 
 }
