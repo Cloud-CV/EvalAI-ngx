@@ -170,7 +170,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   deleteTeamMember(e, participantId) {
     e.stopPropagation();
-    this.deleteMemberCard.emit({teamid: this.team['id'], participantId: participantId});
+    this.deleteMemberCard.emit({teamId: this.team['id'], participantId: participantId});
   }
 
   /**

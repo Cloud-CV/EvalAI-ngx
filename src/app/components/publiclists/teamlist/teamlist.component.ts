@@ -77,11 +77,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   teamCreateTitle = '';
 
   /**
-   * Delete member title
-   */
-  MemberDeleteTitle = '';
-
-  /**
    * Create team button
    */
   teamCreateButton = '';
@@ -237,12 +232,11 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       this.fetchTeamsPath = 'hosts/challenge_host_team';
       this.createTeamsPath = 'hosts/create_challenge_host_team';
       this.deleteTeamsPath = 'hosts/remove_self_from_challenge_host';
-      this.deleteMembersPath = 'hosts/challenge_host_team/';
+      this.deleteMembersPath = 'hosts/challenge_host_team/<team_id>/challenge_host/';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = 'Create a New Team';
       this.teamSelectTitle = 'Select a Challenge Host Team';
       this.teamCreateButton = 'Create Host Team';
-      this.MemberDeleteTitle = '/challenge_host/';
     } else {
       if (this.router.url !== this.participantTeamRoutePath) {
         this.isOnChallengePage = true;
@@ -251,12 +245,11 @@ export class TeamlistComponent implements OnInit, OnDestroy {
       this.fetchTeamsPath = 'participants/participant_team';
       this.createTeamsPath = this.fetchTeamsPath;
       this.deleteTeamsPath = 'participants/remove_self_from_participant_team';
-      this.deleteMembersPath = 'participants/participant_team/';
+      this.deleteMembersPath = 'participants/participant_team/<team_id>/participant/';
       this.fetchMyTeams(this.fetchTeamsPath);
       this.teamCreateTitle = 'Create a New Participant Team';
       this.teamSelectTitle = 'My Existing Participant Teams';
       this.teamCreateButton = 'Create Participant Team';
-      this.MemberDeleteTitle = '/participant/';
     }
   }
 
@@ -586,9 +579,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   deleteTeamMemberWrapper() {
     const SELF = this;
     const deleteTeamMember = (team) => {
+      const deleteUrl = SELF.deleteMembersPath.replace('<team_id>', team.teamId);
       SELF.apiCall = (params) => {
-        SELF.apiService.deleteUrl(SELF.deleteMembersPath + team.teamid + this.MemberDeleteTitle + team.participantId
-                      ).subscribe(
+        SELF.apiService.deleteUrl(deleteUrl + team.participantId ).subscribe(
         data => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Member was removed from the team!', 5);
