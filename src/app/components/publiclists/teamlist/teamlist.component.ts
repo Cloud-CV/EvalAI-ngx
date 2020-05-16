@@ -581,7 +581,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const deleteTeamMember = (team) => {
       const deleteUrl = SELF.deleteMembersPath.replace('<team_id>', team.teamId);
       SELF.apiCall = (params) => {
-        SELF.apiService.deleteUrl(deleteUrl + team.participantId ).subscribe(
+        SELF.apiService.deleteUrl(deleteUrl + team.participantId).subscribe(
         data => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Member was removed from the team!', 5);
