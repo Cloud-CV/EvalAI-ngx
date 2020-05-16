@@ -34,7 +34,7 @@
       </div>
       <div class="col s12 m6" *ngFor="let member of memberArray; let i=index;" class="member-class">
         <span class="m1">{{member}}</span>
-        <span class="trash-icon"><a (click)="deleteTeamMember($event, memberIdArray[i])" *ngIf="user.username == teamView['created_by']">
+        <span class="trash-icon"><a (click)="deleteTeamMember($event, memberIdArray[i])" *ngIf="authState.username == teamView['created_by']">
           <i class="fa fa-trash list-icon text-highlight w-300 left grey-text" aria-hidden="true"></i>
         </a>
         </span>

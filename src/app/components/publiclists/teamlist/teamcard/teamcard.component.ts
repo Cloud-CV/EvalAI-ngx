@@ -15,11 +15,6 @@ import { AuthService } from '../../../../services/auth.service';
 export class TeamcardComponent implements OnInit, OnChanges {
 
   /**
-   * User Name
-   */
-  user = {username: ''};
-
-  /**
    * Authentication Service subscription
    */
   authServiceSubscription: any;
@@ -120,7 +115,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
       if (this.authState.isLoggedIn) {
-        this.user = this.authState;
+        this.authState = authState;
       }
     });
   }
@@ -175,8 +170,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   deleteTeamMember(e, participantId) {
     e.stopPropagation();
-    const teamid = this.team['id'];
-    this.deleteMemberCard.emit({teamid: teamid, participantId: participantId});
+    this.deleteMemberCard.emit({teamid: this.team['id'], participantId: participantId});
   }
 
   /**
