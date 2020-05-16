@@ -18,7 +18,7 @@ before_install:
 
 before_script:
   - npm install -g --silent @angular/cli
-  - chromedriver-update 73.0.3683.68
+  - webdriver-manager update --versions.chrome 73.0.3683.68
 
 cache:
   npm: false
