@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material';
+import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
 
 // Import serivces
 import { AuthService } from './services/auth.service';
@@ -88,6 +89,23 @@ import {PasswordMismatchValidatorDirective} from './Directives/password.validato
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -166,7 +184,8 @@ import { ResetPasswordConfirmComponent } from './components/auth/reset-password-
     MatIconModule,
     MatTableModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
     AuthService,
