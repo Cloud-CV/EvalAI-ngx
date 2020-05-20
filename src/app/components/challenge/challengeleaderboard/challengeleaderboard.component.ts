@@ -24,14 +24,14 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   components: QueryList<SelectphaseComponent>;
 
   /**
-   * Leaderboard Precision Value
+   * Leaderboard precision value
    */
-  LeaderboardPrecisionValue = 2;
+  leaderboardPrecisionValue = 2;
 
-    /**
-   * Challenge phase split pk Value
+  /**
+   * Challenge phase split ID
    */
-  challenge_phase_Split_pk;
+  challengePhaseSplitId;
 
   /**
    * Is user logged in
@@ -389,7 +389,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     SELF.showLeaderboardUpdate = false;
     this.apiService.getUrl(API_PATH).subscribe(
       data => {
-        this.challenge_phase_Split_pk = data.results[0].challenge_phase_split;
+        this.challengePhaseSplitId = data.results[0].challenge_phase_split;
         SELF.updateLeaderboardResults(data['results'], SELF);
         SELF.startLeaderboard(phaseSplitId);
       },
@@ -470,9 +470,9 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    updateChallengephaseSplit(event: MatSliderChange) {
     const API_PATH = this.endpointsService.particularChallengePhaseSplitUrl(this.selectedPhaseSplit['id']);
     const SELF = this;
-    SELF.LeaderboardPrecisionValue = event.value;
+    SELF.leaderboardPrecisionValue = event.value;
     const BODY = JSON.stringify({
-      'leaderboard_decimal_precision': SELF.LeaderboardPrecisionValue
+      'leaderboard_decimal_precision': SELF.leaderboardPrecisionValue
     });
     SELF.apiService.patchUrl(
       API_PATH,
