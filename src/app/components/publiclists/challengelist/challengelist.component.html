@@ -1,6 +1,6 @@
 <section class="ev-sm-container ev-view challenge-container noScroll">
   <!-- ongoing challenges -->
-  <div *ngIf="routerPublic.url === allChallengesRoutePathCommon">
+  <div *ngIf="routerPublic.url === allChallengesRoutePathCommon"  [@.disabled]="true">
     <mat-tab-group>
       <mat-tab label="Ongoing Challenges ({{ongoingChallenges.length}})">
         <div *ngIf="ongoingChallenges.length === 0" class="none">None</div>
@@ -39,7 +39,7 @@
     </mat-tab-group >
   </div>
    <!-- my challenges  -->
-  <div *ngIf="routerPublic.url === myChallengesRoutePathCommon">
+  <div *ngIf="routerPublic.url === myChallengesRoutePathCommon" [@.disabled]="true">
     <mat-tab-group>
       <mat-tab label="My Ongoing Challenges ({{ filteredOngoingChallenges.length }})">
         <div class="challenge-page-title" id = "ongoing-challenges" ><strong class="text-med-black fs-18">My Hosted Challenges</strong></div>
