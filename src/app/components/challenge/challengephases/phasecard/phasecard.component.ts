@@ -81,14 +81,14 @@ export class PhasecardComponent implements OnInit {
     SELF.apiCall = (params) => {
       const FORM_DATA: FormData = new FormData();
       for (const key in params) {
-       if (this.challengeService.isValidSubmission(params)) {
+       if (this.challengeService.isMaxSubmissionsCountValid(params)) {
           if (params[key]) {
               FORM_DATA.append(key, params[key]);
             }
           } else {
-            SELF.globalService.showToast('error', 'Invalid maximum submissions value!!');
+            SELF.globalService.showToast('error', 'Invalid maximum submissions value!');
             throw new Error(
-              'In valid submission value!!'
+              'In valid submission value!'
             );
           }
         }

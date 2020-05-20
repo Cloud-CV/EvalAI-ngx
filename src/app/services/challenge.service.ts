@@ -58,11 +58,11 @@ export class ChallengeService {
     this.challengeHostSource.next(isChallengeHost);
   }
 
-   /**
-   * get if the value to be submitted is valid
-   * @param paramValue  new value to be submittedue.
+  /**
+   * get if the max submission count value to be submitted is valid
+   * @param paramValue  new value to be submitted.
    */
-  isValidSubmission(paramValue: any) {
+  isMaxSubmissionsCountValid(paramValue: any) {
     return (paramValue['max_submissions_per_day'] <= paramValue['max_submissions_per_month'] &&
     paramValue['max_submissions_per_month'] <= paramValue['max_submissions']);
   }
