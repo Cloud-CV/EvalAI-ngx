@@ -39,7 +39,7 @@
       </div>
       <div class="rangeslider fa-stack fa-2x">
         <mat-slider thumbLabel min="0" max="20"  step="1" thumbLabel placeholder="leaderboardPrecisionValue" [(ngModel)]="leaderboardPrecisionValue"
-                      (change)="updateChallengephaseSplit($event)">
+                      (change)="updateLeaderboardDecimalPrecision($event)">
         </mat-slider>
           <i class="fa fa-circle fa-stack-2x" *ngIf="leaderboardPrecisionValue"></i>
           <span class="fa fa-stack-1x value">
@@ -131,7 +131,7 @@
                         </mat-chip-list>
                       </span>
                     </td>
-                    <td *ngFor="let score of key.result">{{score | number : leaderboardPrecisionValue }}</td>
+                    <td *ngFor="let score of key.result">{{score | number : '1.' + leaderboardPrecisionValue + '-' + leaderboardPrecisionValue }}</td>
                     <td><div>{{ key.submission__submitted_at_formatted }}</div></td>
                   </tr>
                 </tbody>

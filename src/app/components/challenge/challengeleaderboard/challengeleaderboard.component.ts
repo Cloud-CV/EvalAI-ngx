@@ -466,8 +466,8 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     );
   }
 
-   // For Updating the value of Leaderboard precision
-   updateChallengephaseSplit(event: MatSliderChange) {
+   // Update leaderboard decimal precision value
+   updateLeaderboardDecimalPrecision(event: MatSliderChange) {
     const API_PATH = this.endpointsService.particularChallengePhaseSplitUrl(this.selectedPhaseSplit['id']);
     const SELF = this;
     SELF.leaderboardPrecisionValue = event.value;
@@ -480,13 +480,13 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     ).subscribe(
         data => {
           SELF.refreshLeaderboard();
-          SELF.globalService.showToast('success', 'The description is successfully updated!', 5);
+          SELF.globalService.showToast('success', 'The leaderboard decimal precision value is successfully updated!', 5);
         },
         err => {
           SELF.globalService.handleApiError(err, true);
           SELF.globalService.showToast('error', err);
         },
-        () => console.log('EDIT-CHALLENGE-PHASE-SPLIT-FINISHED')
+        () => console.log('EDIT-LEADERBOARD-PRECISION-VALUE-FINISHED')
       );
 
   }
