@@ -130,15 +130,20 @@ mat-slider {
 }
 
 .rangeslider .fa-circle{
-  margin-left: 140px;
+  margin-left: 120px;
 }
 
 .value{
-  margin-left: 140px;
+  margin-left: 206px;
   color:white;
 }
 
 .val{
-  font-size:18px;
+  font-size: $fs-16;
   display:block;
+}
+
+.circle-icon {
+  font-size: 40px;
+  padding-top: 10px;
 }
