@@ -13,8 +13,8 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     files: [
-      './node_modules/cookieconsent/build/cookieconsent.min.js',
-      './node_modules/cookieconsent/build/cookieconsent.min.css'
+      './node_modules/cookieconsent/build/cookieconsent.min.js', // loading cookie service
+      './node_modules/cookieconsent/build/cookieconsent.min.css' // cookie styles
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser

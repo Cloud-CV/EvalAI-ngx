@@ -90,6 +90,7 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { EmailValidatorDirective } from './Directives/email.validator';
 import { ResetPasswordConfirmComponent } from './components/auth/reset-password-confirm/reset-password-confirm.component';
 
+// configuration of cookie consent
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)

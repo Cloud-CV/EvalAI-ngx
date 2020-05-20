@@ -21,7 +21,7 @@ import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsen
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'localhost'
+    domain: 'localhost' // or 'your.domain.com'
   }
 };
 

@@ -6,6 +6,8 @@ import { AuthService } from './services/auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+
+// service for initializing cookie
 import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 
