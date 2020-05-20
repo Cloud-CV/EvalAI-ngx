@@ -454,4 +454,5 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       () => {}
     );
   }
+
 }
