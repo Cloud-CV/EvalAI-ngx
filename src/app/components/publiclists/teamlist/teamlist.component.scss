@@ -47,7 +47,9 @@
 }
 
 .pagination {
-  margin-top: 20px;
+  margin: 15px 0px;
+  padding: 0px 8px;
+  font-size: 18px;
 }
 
 .pagination-title {
@@ -165,25 +167,30 @@ span.link-team-user {
 }
 
 section{
-  padding: 3% 3% 2% 6%;
+  padding: 20px 30px 20px 60px;
   height: 10%;
   position: relative;
 }
+
 .input-field{
   padding: 2% 0%;
 }
+
 button{
   font-size: 18px;
   height: 45px;
   width: 265px;
 }
-.fa-chevron-left, .fa-chevron-right, .pagination{
+
+.fa-chevron-left, .fa-chevron-right {
   font-size: 18px;
   margin: 0px;
 }
+
 .list-card{
   margin-left: 5px;
 }
+
 @media only screen and (max-width: 992px) and (min-width: 601px) {
   .team-heading {
     margin-top: 30px;
