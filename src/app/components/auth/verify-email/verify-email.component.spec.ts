@@ -36,7 +36,7 @@ describe('VerifyEmailComponent', () => {
     spyOn(authService, 'verifyEmail').and.returnValue(new Observable((observation) => {
       observation.next({});
       observation.complete();
-      return{unsubscribe() {}};
+      return {unsubscribe() {}};
     }));
     expect(component).toBeTruthy();
   });

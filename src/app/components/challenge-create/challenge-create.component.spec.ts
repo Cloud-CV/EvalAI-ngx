@@ -75,7 +75,7 @@ describe('ChallengecreateComponent', () => {
         observation.next(result);
         observation.error(result);
         observation.complete();
-        return{unsubscribe() {}};
+        return {unsubscribe() {}};
       }));
       fixture.detectChanges();
       component.challengeCreate();

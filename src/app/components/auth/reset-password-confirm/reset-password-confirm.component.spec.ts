@@ -44,7 +44,7 @@ describe('ResetPasswordConfirmComponent', () => {
     spyOn(service, 'postUrl').and.returnValue(new Observable((observation) => {
       observation.next({'data': {'detail': 'detail_goes_here'}});
       observation.complete();
-      return{unsubscribe() {}};
+      return {unsubscribe() {}};
     }));
     fixture.detectChanges();
     component.resetPasswordConfirm(false);

@@ -91,7 +91,7 @@ describe('TeamlistComponent', () => {
       observation.next(data);
       observation.error(data);
       observation.complete();
-      return{unsubscribe() {}};
+      return {unsubscribe() {}};
     }));
     fixture.detectChanges();
   });

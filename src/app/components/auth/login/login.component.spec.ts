@@ -67,7 +67,7 @@ describe('LoginComponent', () => {
     spyOn(service2, 'postUrl').and.returnValue(new Observable((observation) => {
       observation.next({'token': [{}]});
       observation.complete();
-      return{unsubscribe() {}};
+      return {unsubscribe() {}};
     }));
     fixture.detectChanges();
     component.userLogin(false);
@@ -78,7 +78,7 @@ describe('LoginComponent', () => {
     let err = {};
     spyOn(service, 'postUrl').and.returnValue(new Observable((observation) => {
       observation.error(err);
-      return{unsubscribe() {}};
+      return {unsubscribe() {}};
     }));
     fixture.detectChanges();
     component.userLogin(true);

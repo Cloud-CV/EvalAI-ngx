@@ -36,7 +36,7 @@ describe('ResetPasswordComponent', () => {
       spyOn(service, 'postUrl').and.returnValue(new Observable((observation) => {
         observation.next({'detail': 'testing_detail_goes_here'});
         observation.complete();
-        return{unsubscribe() {}};
+        return {unsubscribe() {}};
       }));
       fixture.detectChanges();
       component.resetPassword(false);
@@ -47,7 +47,7 @@ describe('ResetPasswordComponent', () => {
     const error = {};
     spyOn(service, 'postUrl').and.returnValue(new Observable((observation) => {
       observation.error(error);
-      return{unsubscribe() {}};
+      return {unsubscribe() {}};
     }));
     fixture.detectChanges();
     component.resetPassword(true);

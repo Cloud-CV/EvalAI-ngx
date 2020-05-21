@@ -14,16 +14,22 @@ describe('GlobalService', () => {
     expect(service).toBeTruthy();
   }));
   it('should update scroll Data', () => {
-    expect(globalService.scrolledStateChange(true)).toBeUndefined();
+    const isScroll = true;
+    expect(globalService.scrolledStateChange(isScroll)).toBeUndefined();
   });
   it('should Store Data', () => {
-    expect(globalService.storeData(6, 1)).toBe();
+    const key = 6;
+    const value = 1;
+    expect(globalService.storeData(key, value)).toBe();
   });
   it('should Get Data', () => {
-    expect(globalService.getData(6)).toBe(1);
+    const key = 6;
+    const value = 1;
+    expect(globalService.getData(key)).toBe(value);
   });
   it('should Delete Data', () => {
-    expect(globalService.deleteData(6)).toBe();
+    const key = 6;
+    expect(globalService.deleteData(key)).toBe();
   });
   it('should Reset Store', () => {
     expect(globalService.resetStorage()).toBe();
@@ -125,9 +131,11 @@ describe('GlobalService', () => {
 
    });
    it('should Show Integer Validation', () => {
-     expect(globalService.validateInteger(19)).toBe(true);
+     const intValue = 19;
+     const negativeInteger = -19;
+     expect(globalService.validateInteger(intValue)).toBe(true);
 
-     expect(globalService.validateInteger(-19)).toBe(false);
+     expect(globalService.validateInteger(negativeInteger)).toBe(false);
    });
    it('should Show password Validation', () => {
     expect(globalService.validatePassword('Password String')).toBe(true);

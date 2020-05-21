@@ -54,11 +54,4 @@ describe('AnalyticsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call ngOninit', () => {
-     component.ngOnInit();
-  });
-
-  it('should call ngOnDestroy', () => {
-    component.ngOnDestroy();
- });
 });

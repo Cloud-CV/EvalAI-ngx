@@ -120,7 +120,7 @@ describe('HostAnalyticsComponent', () => {
     expect(service.getUrl).toHaveBeenCalled();
     expect(service3.teamCountAnalyticsURL).toHaveBeenCalled();
   }));
-  it('should show download challenge participant team', inject([EndpointsService, ApiService],
+  it('should download challenge participant team', inject([EndpointsService, ApiService],
     (service: EndpointsService, service2: ApiService) => {
    const result = {
      'results' : [{'id': '1'}],
