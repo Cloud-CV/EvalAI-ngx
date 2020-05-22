@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 import { ModalComponent } from './components/utility/modal/modal.component';
 import { ToastComponent } from './components/utility/toast/toast.component';
+import { EditphasemodalComponent } from './components/challenge/challengephases/editphasemodal/editphasemodal.component';
 import { TermsAndConditionsModalComponent } from './components/challenge/challengeparticipate/terms-and-conditions-modal/terms-and-conditions-modal.component';
 
 // import module
@@ -26,9 +27,10 @@ import { CommonSharedModule } from './shared/common-shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-   ModalComponent,
-   ToastComponent,
-   TermsAndConditionsModalComponent
+    ModalComponent,
+    ToastComponent,
+    EditphasemodalComponent,
+    TermsAndConditionsModalComponent
   ],
   imports: [
     BrowserModule,
