@@ -2,8 +2,7 @@
 @import './mixins.scss';
 
 .team-card-container {
-  font-size: $fs-18;
-  margin: 5px;
+  font-size: $fs-14;
   position: relative;
   .team-content {
     cursor: pointer;
@@ -12,8 +11,8 @@
     display: inline-block;
     position: relative;
     background: white;
-    padding: 8px 5px;
-    margin: 20px 0;
+    padding: 6px 5px;
+    margin-bottom: 36px;
     z-index: 5;
     overflow: auto;
     text-align: left;
@@ -24,7 +23,7 @@
         color:$gray-dark;
         margin-top:15px;
       }
-      font-size: inherit;
+      font-size: $fs-16;
       vertical-align:top;
       margin-top:15px;
     }
@@ -38,6 +37,9 @@
     }
     .team-details {
       display: inline-block;
+      margin: 2px 10px 0px 10px;
+      max-width: 300px;
+      overflow:hidden;
     }
     .team-detail {
       color: rgb(22, 21, 21);
@@ -57,7 +59,7 @@
         &.no-highlight {
           color: $gray-dark;
         }
-        font-size: $fs-20;
+        font-size: $fs-16;
         margin: 0px 10px 0px 10px;
       }
     }
@@ -131,8 +133,7 @@
 }
 
 .fa-users {
-  color: black;
-  padding: 0px 8px;
+  padding: 0px 3px 0px 8px;
 }
 
 #TeamToggleButton {
@@ -141,5 +142,5 @@
 
 .fa-user-plus, .fa-pencil, .fa-trash{
   margin: 0px;
-  padding: 2px 8px;
+  padding-left: 10px;
 }

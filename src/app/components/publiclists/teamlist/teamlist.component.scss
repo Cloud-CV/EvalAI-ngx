@@ -10,7 +10,7 @@
       }
     }
     li {
-      margin: 20px 0px;
+      margin: 10px 0px;
       min-height: 40px;
       .collapsible-header {
         border-bottom: 0;
@@ -47,9 +47,7 @@
 }
 
 .pagination {
-  margin: 15px 0px;
-  padding: 0px 8px;
-  font-size: 18px;
+  margin: 0px;
 }
 
 .pagination-title {
@@ -157,38 +155,21 @@ span.link-team-user {
   margin-bottom: 30px;
   color: #9d9d9d;
 }
-.ev-panel-title{
-  font-size: 18px;
-  margin: 25px 15px 0px 15px;
+
+.ev-panel-title {
+  margin: 10px 0px;
 }
 
-.form-icon{
-  font-size: $fs-20;
+section {
+  margin: 0px 15px;
 }
 
-section{
-  padding: 20px 30px 20px 60px;
-  height: 10%;
-  position: relative;
-}
-
-.input-field{
-  padding: 2% 0%;
-}
-
-button{
-  font-size: 18px;
-  height: 45px;
-  width: 265px;
+.input-field label {
+  font-size: 12px;
 }
 
 .fa-chevron-left, .fa-chevron-right {
-  font-size: 18px;
-  margin: 0px;
-}
-
-.list-card{
-  margin-left: 5px;
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 992px) and (min-width: 601px) {
