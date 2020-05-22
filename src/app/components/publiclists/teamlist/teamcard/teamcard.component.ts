@@ -114,9 +114,6 @@ export class TeamcardComponent implements OnInit, OnChanges {
     this.updateView();
     this.authServiceSubscription = this.authService.change.subscribe((authState) => {
       this.authState = authState;
-      if (this.authState.isLoggedIn) {
-        this.authState = authState;
-      }
     });
   }
 
