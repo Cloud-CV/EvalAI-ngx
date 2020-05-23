@@ -134,7 +134,7 @@ mat-slider {
 }
 
 .value{
-  margin-left: 206px;
+  margin-left: 189px;
   color:white;
 }
 
@@ -146,4 +146,12 @@ mat-slider {
 .circle-icon {
   font-size: 40px;
   padding-top: 10px;
+}
+
+/*media queries*/
+
+@media only screen and (max-width: $screen-sm-md) {
+  .circle-icon {
+      display: none;
+  }
 }
