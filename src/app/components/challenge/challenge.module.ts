@@ -7,11 +7,8 @@ import {
   MatSelectModule,
   MatIconModule,
   MatDividerModule,
-  MatCheckboxModule } from '@angular/material';
-  import { MatSliderModule } from '@angular/material/slider';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+  MatCheckboxModule,
+  MatSliderModule} from '@angular/material';
 
 // import components
 import { ChallengeevaluationComponent } from './challengeevaluation/challengeevaluation.component';
@@ -23,78 +20,54 @@ import { ChallengesettingsComponent } from './challengesettings/challengesetting
 import { ChallengesubmissionsComponent } from './challengesubmissions/challengesubmissions.component';
 import { ChallengesubmitComponent } from './challengesubmit/challengesubmit.component';
 import { ChallengeviewallsubmissionsComponent } from './challengeviewallsubmissions/challengeviewallsubmissions.component';
-import { TermsAndConditionsModalComponent } from './challengeparticipate/terms-and-conditions-modal/terms-and-conditions-modal.component';
-import { EditphasemodalComponent } from './challengephases/editphasemodal/editphasemodal.component';
 import { PhasecardComponent } from './challengephases/phasecard/phasecard.component';
 import { ChallengeComponent } from './challenge.component';
 
-// import Modules
-import { NavModule } from '../nav/nav.module';
+// import module
 import { ChallengeRoutingModule } from './challenge-routing.module';
-import { PubliclistModule } from '../publiclists/publiclist.module';
-
-// import services
-import { ApiService } from '../../services/api.service';
-import { ChallengeService } from '../../services/challenge.service';
-import { AuthService } from '../../services/auth.service';
-import { GlobalService } from '../../services/global.service';
+import { SharedModule } from '../../shared/shared.module';
+import { ChallengelistModule } from '../publiclists/challengelist/challengelist.module';
 
 @NgModule({
   declarations: [
-    ChallengeevaluationComponent,
-    ChallengeleaderboardComponent,
-    ChallengeoverviewComponent,
-    ChallengeparticipateComponent,
-    ChallengephasesComponent,
-    EditphasemodalComponent,
-    PhasecardComponent,
+    ChallengeComponent,
     ChallengesettingsComponent,
-    ChallengesubmissionsComponent,
+    ChallengeoverviewComponent,
+    ChallengeevaluationComponent,
+    ChallengephasesComponent,
+    ChallengeparticipateComponent,
+    ChallengeleaderboardComponent,
     ChallengesubmitComponent,
+    ChallengesubmissionsComponent,
     ChallengeviewallsubmissionsComponent,
-    TermsAndConditionsModalComponent,
-    ChallengeComponent
+    PhasecardComponent
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    FormsModule,
-    MatChipsModule,
-    MatTableModule,
-    MatMenuModule,
-    MatSelectModule,
-    MatIconModule,
-    MatDividerModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     ChallengeRoutingModule,
-    PubliclistModule,
-    NavModule
+    SharedModule,
+    MatChipsModule,
+    MatIconModule,
+    ChallengelistModule,
+    MatSelectModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatMenuModule,
+    MatSliderModule
   ],
   exports: [
-    ChallengeevaluationComponent,
-    ChallengeleaderboardComponent,
-    ChallengeoverviewComponent,
-    ChallengeparticipateComponent,
-    ChallengephasesComponent,
-    EditphasemodalComponent,
-    PhasecardComponent,
-    ChallengesettingsComponent,
-    ChallengesubmissionsComponent,
-    ChallengesubmitComponent,
-    ChallengeviewallsubmissionsComponent,
-    TermsAndConditionsModalComponent,
     ChallengeComponent,
-    PubliclistModule,
-    NavModule
-  ],
-  providers: [
-    ChallengeService,
-    ApiService,
-    AuthService,
-    GlobalService
+    ChallengesettingsComponent,
+    ChallengeoverviewComponent,
+    ChallengeevaluationComponent,
+    ChallengephasesComponent,
+    ChallengeparticipateComponent,
+    ChallengeleaderboardComponent,
+    ChallengesubmitComponent,
+    ChallengesubmissionsComponent,
+    ChallengeviewallsubmissionsComponent,
+    PhasecardComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
