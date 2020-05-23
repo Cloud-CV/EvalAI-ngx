@@ -6,7 +6,7 @@ import { AnalyticsComponent } from './analytics.component';
 import { HostAnalyticsComponent } from './host-analytics/host-analytics.component';
 
 // import module
-import { CommonSharedModule } from '../../shared/common-shared.module';
+import { CommonSharedModule } from '../../shared/shared.module';
 import { AnalyticsRoutingModule } from './analytics-routing.module';
 
 @NgModule({

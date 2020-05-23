@@ -6,7 +6,7 @@ import { ContactComponent } from './contact.component';
 
 // import module
 import { ContactRoutingModule } from './contact-routing.module';
-import { CommonSharedModule } from '../../shared/common-shared.module';
+import { CommonSharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [

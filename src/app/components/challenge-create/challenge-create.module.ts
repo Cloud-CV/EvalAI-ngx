@@ -6,7 +6,7 @@ import { ChallengeCreateComponent } from './challenge-create.component';
 
 // import module
 import { ChallengeCreateRoutingModule } from './challenge-create-routing.module';
-import { CommonSharedModule } from '../../shared/common-shared.module';
+import { CommonSharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [

@@ -22,7 +22,7 @@ import { EditphasemodalComponent } from './components/challenge/challengephases/
 import { TermsAndConditionsModalComponent } from './components/challenge/challengeparticipate/terms-and-conditions-modal/terms-and-conditions-modal.component';
 
 // import module
-import { CommonSharedModule } from './shared/common-shared.module';
+import { CommonSharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
