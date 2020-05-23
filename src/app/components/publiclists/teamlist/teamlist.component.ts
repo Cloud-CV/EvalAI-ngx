@@ -120,7 +120,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   selectedTeam: any = null;
 
   /**
-   * Currently selected team to unselect
+   * Currently clicked team
    */
   otherSelectedTeam: any = null;
 
@@ -309,7 +309,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   /**
    * Unselect a team.
    */
-  DeselectTeamWrapper() {
+  deselectTeamWrapper() {
     const SELF = this;
     const selectTeam = (team) => {
       SELF.otherSelectedTeam = team;
@@ -325,9 +325,6 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const temp = self.allTeams.slice();
     for (let i = 0; i < temp.length; i++) {
       temp[i]['isSelected'] = false;
-      if (self.otherSelectedTeam['id'] === temp[i]['id']) {
-        temp[i]['isSelectOtherselectedTeamed'] = true;
-      }
     }
     self.allTeams = temp;
     self.updateTeamsView(false);
