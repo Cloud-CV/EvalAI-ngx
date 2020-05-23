@@ -22,7 +22,7 @@ import { EditphasemodalComponent } from './components/challenge/challengephases/
 import { TermsAndConditionsModalComponent } from './components/challenge/challengeparticipate/terms-and-conditions-modal/terms-and-conditions-modal.component';
 
 // import module
-import { CommonSharedModule } from './shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { CommonSharedModule } from './shared/shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CommonSharedModule,
+    SharedModule,
     HttpClientModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),

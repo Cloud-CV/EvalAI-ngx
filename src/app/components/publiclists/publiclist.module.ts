@@ -9,7 +9,7 @@ import { PubliclistRoutingModule, TeamlistsRoutingModule } from './publiclist-ro
 
 // import Module
 import { ChallengelistModule } from './challengelist/challengelist.module';
-import { CommonSharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { CommonSharedModule } from '../../shared/shared.module';
     CommonModule,
     PubliclistRoutingModule,
     ChallengelistModule,
-    CommonSharedModule
+    SharedModule
   ],
   exports: [
    ChallengelistModule,
@@ -35,7 +35,7 @@ export class PubliclistModule {}
     CommonModule,
     TeamlistsRoutingModule,
     PubliclistModule,
-    CommonSharedModule
+    SharedModule
   ],
   exports: [
     PubliclistModule,

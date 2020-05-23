@@ -41,4 +41,4 @@ import { UtilityModule } from '../components/utility/utility.module';
     NotFoundComponent
   ]
 })
-export class CommonSharedModule { }
+export class SharedModule { }

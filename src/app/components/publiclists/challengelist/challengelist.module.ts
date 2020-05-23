@@ -10,7 +10,7 @@ import { TeamcardComponent } from '../teamlist/teamcard/teamcard.component';
 import { CardlistComponent } from '../../utility/cardlist/cardlist.component';
 
 // import module
-import { CommonSharedModule } from '../../../shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { CommonSharedModule } from '../../../shared/shared.module';
   imports: [
     CommonModule,
     RouterModule,
-    CommonSharedModule
+    SharedModule
   ],
   exports: [
     ChallengelistComponent,

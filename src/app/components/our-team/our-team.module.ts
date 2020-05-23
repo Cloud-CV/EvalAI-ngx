@@ -6,7 +6,7 @@ import { OurTeamComponent } from './our-team.component';
 
 // import module
 import { OurTeamRoutingModule } from './our-team-routing.module';
-import { CommonSharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { CommonSharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     OurTeamRoutingModule,
-    CommonSharedModule
+    SharedModule
   ],
   exports: [
     OurTeamComponent

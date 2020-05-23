@@ -12,7 +12,7 @@ import { TwitterFeedComponent } from './twitter-feed/twitter-feed.component';
 import { HomeComponent } from './home.component';
 
 // import module
-import { CommonSharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { HomeRoutingModule } from './home-routing.module';
     CommonModule,
     HomeRoutingModule,
     NgxTwitterTimelineModule,
-    CommonSharedModule
+    SharedModule
   ],
   exports: [
     HomeComponent,

@@ -13,7 +13,7 @@ import { AuthComponent } from './auth.component';
 import { AuthService } from '../../services/auth.service';
 
 // import module
-import { CommonSharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 
 
@@ -29,7 +29,7 @@ import { AuthRoutingModule } from './auth-routing.module';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    CommonSharedModule
+    SharedModule
   ],
   exports: [
     AuthComponent,

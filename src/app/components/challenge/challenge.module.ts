@@ -24,7 +24,7 @@ import { ChallengeComponent } from './challenge.component';
 
 // import module
 import { ChallengeRoutingModule } from './challenge-routing.module';
-import { CommonSharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { ChallengelistModule } from '../publiclists/challengelist/challengelist.module';
 
 @NgModule({
@@ -44,7 +44,7 @@ import { ChallengelistModule } from '../publiclists/challengelist/challengelist.
   imports: [
     CommonModule,
     ChallengeRoutingModule,
-    CommonSharedModule,
+    SharedModule,
     MatChipsModule,
     MatIconModule,
     ChallengelistModule,

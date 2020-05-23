@@ -6,7 +6,7 @@ import { PrivacyPolicyComponent } from './privacy-policy.component';
 
 // import module
 import { PrivacyPolicyRoutingModule } from './privacy-policy-routing.module';
-import { CommonSharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { CommonSharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     PrivacyPolicyRoutingModule,
-    CommonSharedModule
+    SharedModule
   ],
   exports: [
     PrivacyPolicyComponent

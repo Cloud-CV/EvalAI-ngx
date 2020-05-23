@@ -7,7 +7,7 @@ import { DashboardContentComponent } from './dashboard-content/dashboard-content
 
 // import modules
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { CommonSharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
 declarations: [
@@ -17,7 +17,7 @@ declarations: [
 imports: [
   CommonModule,
   DashboardRoutingModule,
-  CommonSharedModule
+  SharedModule
 ],
 exports: [
   DashboardContentComponent,
