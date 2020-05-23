@@ -122,7 +122,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   /**
    * Currently clicked team
    */
-  otherSelectedTeam: any = null;
+  currentlyClickedTeam: any = null;
 
   /**
    * challenge object
@@ -312,7 +312,7 @@ export class TeamlistComponent implements OnInit, OnDestroy {
   deselectTeamWrapper() {
     const SELF = this;
     const selectTeam = (team) => {
-      SELF.otherSelectedTeam = team;
+      SELF.currentlyClickedTeam = team;
       SELF.unselectOtherTeams(SELF);
     };
     return selectTeam;
