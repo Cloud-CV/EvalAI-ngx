@@ -129,6 +129,16 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   phaseSelectionListType = 'phase';
 
   /**
+   * An interval for fetching the submission data in every 5 seconds
+   */
+  pollingInterval: any;
+
+  /**
+   * Show submisison updates
+   */
+  showUpdate = false;
+
+  /**
    * @param showPagination Is pagination
    * @param paginationMessage Pagination message
    * @param isPrev Previous page state
@@ -228,9 +238,16 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   phaseSelected() {
     const SELF = this;
     return (phase) => {
-      SELF.selectedPhase = phase;
       SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;
+      if (SELF.router.url.endsWith('my-submissions')) {
+        SELF.router.navigate([phase['id']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 5) {
+        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 6) {
+        SELF.router.navigate(['../../' + phase['id']], {relativeTo: this.route});
+      }
+      SELF.selectedPhase = phase;
       if (SELF.challenge['id'] && phase['id']) {
         SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
         SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
@@ -253,12 +270,14 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         challenge, phase, SELF.filterSubmissionsQuery
       );
     }
+    SELF.submissions = [];
     SELF.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissions = data['results'];
         SELF.paginationDetails.next = data.next;
         SELF.paginationDetails.previous = data.previous;
         SELF.paginationDetails.totalPage = Math.ceil(data.count / 100);
+        console.log('fetched submisisons: ', SELF.submissions);
 
         if (data.count === 0) {
           SELF.paginationDetails.showPagination = false;
