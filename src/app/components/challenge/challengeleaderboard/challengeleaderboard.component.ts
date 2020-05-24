@@ -479,7 +479,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
       BODY
     ).subscribe(
         data => {
-          SELF.refreshLeaderboard();
           SELF.globalService.showToast('success', 'The leaderboard decimal precision value is successfully updated!', 5);
         },
         err => {
