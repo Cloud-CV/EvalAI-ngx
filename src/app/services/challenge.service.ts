@@ -59,15 +59,6 @@ export class ChallengeService {
   }
 
   /**
-   * get if the max submission count value to be submitted is valid
-   * @param paramValue  new value to be submitted.
-   */
-  isMaxSubmissionsCountValid(paramValue: any) {
-    return (paramValue['max_submissions_per_day'] <= paramValue['max_submissions_per_month'] &&
-    paramValue['max_submissions_per_month'] <= paramValue['max_submissions']);
-  }
-
-  /**
    * Update challenge publish state and icon for current challenge.
    * @param publishChallenge  new challenge publish status and icon.
    */
