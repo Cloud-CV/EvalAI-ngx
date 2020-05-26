@@ -216,6 +216,13 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   phaseSelected() {
     const SELF = this;
     return (phase) => {
+      if (SELF.router.url.endsWith('view-all-submissions')) {
+        SELF.router.navigate([phase['id']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 5) {
+        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 6) {
+        SELF.router.navigate(['../../' + phase['id']], {relativeTo: this.route});
+      }
       SELF.selectedPhase = phase;
       SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;

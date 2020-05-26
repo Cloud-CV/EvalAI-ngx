@@ -238,8 +238,6 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   phaseSelected() {
     const SELF = this;
     return (phase) => {
-      SELF.isPhaseSelected = true;
-      SELF.submissionCount = 0;
       if (SELF.router.url.endsWith('my-submissions')) {
         SELF.router.navigate([phase['id']], {relativeTo: this.route});
       } else if (SELF.router.url.split('/').length === 5) {
@@ -247,6 +245,8 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
       } else if (SELF.router.url.split('/').length === 6) {
         SELF.router.navigate(['../../' + phase['id']], {relativeTo: this.route});
       }
+      SELF.isPhaseSelected = true;
+      SELF.submissionCount = 0;
       SELF.selectedPhase = phase;
       if (SELF.challenge['id'] && phase['id']) {
         SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
@@ -277,7 +277,6 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         SELF.paginationDetails.next = data.next;
         SELF.paginationDetails.previous = data.previous;
         SELF.paginationDetails.totalPage = Math.ceil(data.count / 100);
-        console.log('fetched submisisons: ', SELF.submissions);
 
         if (data.count === 0) {
           SELF.paginationDetails.showPagination = false;
