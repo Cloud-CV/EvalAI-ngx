@@ -236,7 +236,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   /**
    * Fetch submissions from API.
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   fetchSubmissions(challenge, phase) {
     const SELF = this;
@@ -305,7 +305,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   filterSubmissions(participantTeamName) {
     const SELF = this;
     SELF.filterSubmissionsQuery = participantTeamName;
-    SELF.fetchSubmissions(SELF.challenge['id'], SELF.selectedPhase['id']);
+    SELF.fetchSubmissions(SELF.challenge['id'], SELF.selectedPhase['slug']);
   }
 
   /**
@@ -488,7 +488,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   /**
    * Fetch number of submissions for a challenge phase.
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   fetchSubmissionCounts(challenge, phase) {
     const API_PATH = this.endpointsService.challengeSubmissionCountURL(challenge, phase);

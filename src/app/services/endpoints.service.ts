@@ -219,7 +219,7 @@ export class EndpointsService {
   /**
    * Challenge Submission
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   challengeSubmissionURL(challenge, phase) {
     return `${this.jobs}${this.challenge}${challenge}/challenge_phase/v2/${phase}/submission/`;
@@ -228,7 +228,7 @@ export class EndpointsService {
   /**
    * Filter challenge submissions in my submissions by participant team name
    * @param challenge challenge id
-   * @param phase phase id
+   * @param phase phase slug
    * @param participantTeamName participant team name
    */
   challengeSubmissionWithFilterQueryURL(challenge, phase, participantTeamName) {
@@ -239,7 +239,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   /**
    * Get all Challenge Submission
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   allChallengeSubmissionURL(challenge, phase) {
     return `${this.challenges}${challenge}/challenge_phase/v2/${phase}/submissions`;
@@ -258,7 +258,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   /**
    * Challenge Submission Download
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   challengeSubmissionDownloadURL(challenge, phase, fileSelected) {
     return `${this.challenges}${challenge}/phase/${phase}/download_all_submissions/${fileSelected}/`;
@@ -267,7 +267,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   /**
    * Challenge Submission Counts
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   challengeSubmissionCountURL(challenge, phase) {
     return `${this.analytics}${this.challenge}${challenge}/challenge_phase/v2/${phase}/count`;
