@@ -222,7 +222,7 @@ export class EndpointsService {
    * @param phase  phase id
    */
   challengeSubmissionURL(challenge, phase) {
-    return `${this.jobs}${this.challenge}${challenge}/challenge_phase/v1/${phase}/submission/`;
+    return `${this.jobs}${this.challenge}${challenge}/challenge_phase/v2/${phase}/submission/`;
   }
 
   /**
@@ -242,7 +242,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
    * @param phase  phase id
    */
   allChallengeSubmissionURL(challenge, phase) {
-    return `${this.challenges}${challenge}/challenge_phase/v1/${phase}/submissions`;
+    return `${this.challenges}${challenge}/challenge_phase/v2/${phase}/submissions`;
   }
 
   /**
@@ -252,7 +252,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
    * @param participantTeamName participant team name
    */
   allChallengeSubmissionWithFilterQueryUrl(challenge, phase, participantTeamName) {
-    return `${this.challenges}${challenge}/challenge_phase/v1/${phase}/submissions?participant_team__team_name=${participantTeamName}`;
+    return `${this.challenges}${challenge}/challenge_phase/v2/${phase}/submissions?participant_team__team_name=${participantTeamName}`;
   }
 
   /**
@@ -270,7 +270,7 @@ ${phase}/submission?participant_team__team_name=${participantTeamName}`;
    * @param phase  phase id
    */
   challengeSubmissionCountURL(challenge, phase) {
-    return `${this.analytics}${this.challenge}${challenge}/challenge_phase/v1/${phase}/count`;
+    return `${this.analytics}${this.challenge}${challenge}/challenge_phase/v2/${phase}/count`;
   }
 
   /**

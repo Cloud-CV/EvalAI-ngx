@@ -129,16 +129,6 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   phaseSelectionListType = 'phase';
 
   /**
-   * An interval for fetching the submission data in every 5 seconds
-   */
-  pollingInterval: any;
-
-  /**
-   * Show submisison updates
-   */
-  showUpdate = false;
-
-  /**
    * @param showPagination Is pagination
    * @param paginationMessage Pagination message
    * @param isPrev Previous page state
@@ -239,18 +229,18 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
     const SELF = this;
     return (phase) => {
       if (SELF.router.url.endsWith('my-submissions')) {
-        SELF.router.navigate([phase['id']], {relativeTo: this.route});
+        SELF.router.navigate([phase['slug']], {relativeTo: this.route});
       } else if (SELF.router.url.split('/').length === 5) {
-        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
+        SELF.router.navigate(['../' + phase['slug']], {relativeTo: this.route});
       } else if (SELF.router.url.split('/').length === 6) {
-        SELF.router.navigate(['../../' + phase['id']], {relativeTo: this.route});
+        SELF.router.navigate(['../../' + phase['slug']], {relativeTo: this.route});
       }
       SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;
       SELF.selectedPhase = phase;
-      if (SELF.challenge['id'] && phase['id']) {
-        SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
-        SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
+      if (SELF.challenge['id'] && phase['slug']) {
+        SELF.fetchSubmissions(SELF.challenge['id'], phase['slug']);
+        SELF.fetchSubmissionCounts(this.challenge['id'], phase['slug']);
       }
     };
   }

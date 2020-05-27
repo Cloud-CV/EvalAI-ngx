@@ -217,18 +217,18 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
     const SELF = this;
     return (phase) => {
       if (SELF.router.url.endsWith('view-all-submissions')) {
-        SELF.router.navigate([phase['id']], {relativeTo: this.route});
+        SELF.router.navigate([phase['slug']], {relativeTo: this.route});
       } else if (SELF.router.url.split('/').length === 5) {
-        SELF.router.navigate(['../' + phase['id']], {relativeTo: this.route});
+        SELF.router.navigate(['../' + phase['slug']], {relativeTo: this.route});
       } else if (SELF.router.url.split('/').length === 6) {
-        SELF.router.navigate(['../../' + phase['id']], {relativeTo: this.route});
+        SELF.router.navigate(['../../' + phase['slug']], {relativeTo: this.route});
       }
       SELF.selectedPhase = phase;
       SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;
-      if (SELF.challenge['id'] && phase['id']) {
-        SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
-        SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
+      if (SELF.challenge['id'] && phase['slug']) {
+        SELF.fetchSubmissions(SELF.challenge['id'], phase['slug']);
+        SELF.fetchSubmissionCounts(this.challenge['id'], phase['slug']);
       }
     };
   }
