@@ -232,7 +232,7 @@ export class EndpointsService {
    * @param participantTeamName participant team name
    */
   challengeSubmissionWithFilterQueryURL(challenge, phase, participantTeamName) {
-    return `${this.jobs}${this.challenge}${challenge}/challenge_phase/v1/
+    return `${this.jobs}${this.challenge}${challenge}/challenge_phase/v2/
 ${phase}/submission?participant_team__team_name=${participantTeamName}`;
   }
 

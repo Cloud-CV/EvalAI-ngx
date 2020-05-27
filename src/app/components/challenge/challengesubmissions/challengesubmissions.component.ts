@@ -260,7 +260,6 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         challenge, phase, SELF.filterSubmissionsQuery
       );
     }
-    SELF.submissions = [];
     SELF.apiService.getUrl(API_PATH).subscribe(
       data => {
         SELF.submissions = data['results'];
