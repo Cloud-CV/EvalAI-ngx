@@ -29,6 +29,11 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
   leaderboardPrecisionValue = 2;
 
   /**
+   * Set leaderboard precision value
+   */
+  setLeaderboardPrecisionValue = '1.2-2';
+
+  /**
    * Challenge phase split ID
    */
   challengePhaseSplitId;
@@ -471,6 +476,7 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
     const API_PATH = this.endpointsService.particularChallengePhaseSplitUrl(this.selectedPhaseSplit['id']);
     const SELF = this;
     SELF.leaderboardPrecisionValue = event.value;
+    SELF.setLeaderboardPrecisionValue = '1.' + SELF.leaderboardPrecisionValue + '-' + SELF.leaderboardPrecisionValue;
     const BODY = JSON.stringify({
       'leaderboard_decimal_precision': SELF.leaderboardPrecisionValue
     });

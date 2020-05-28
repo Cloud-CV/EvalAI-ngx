@@ -131,7 +131,7 @@
                         </mat-chip-list>
                       </span>
                     </td>
-                    <td *ngFor="let score of key.result">{{score | number : '1.' + leaderboardPrecisionValue + '-' + leaderboardPrecisionValue }}</td>
+                    <td *ngFor="let score of key.result">{{score | number : setLeaderboardPrecisionValue }}</td>
                     <td><div>{{ key.submission__submitted_at_formatted }}</div></td>
                   </tr>
                 </tbody>
