@@ -69,18 +69,15 @@ export class ChallengelistComponent implements OnInit {
    */
   filteredChallenges = [];
 
-
   /**
    * List of filtered ongoing challenges
    */
   filteredOngoingChallenges = [];
 
-
   /**
    * List of filtered upcoming challenges
    */
   filteredUpcomingChallenges = [];
-
 
   /**
    * List of filtered past challenges
