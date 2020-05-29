@@ -12,15 +12,15 @@ export class AuthcheckDirective implements OnInit {
     private viewContainer: ViewContainerRef
   ) { }
 
-  condition: boolean;
+  isAuthCondition: boolean;
 
-  @Input() set appAuthcheck(condition: boolean) {
-    this.condition = condition;
+  @Input() set appAuthcheck(isAuthCondition: boolean) {
+    this.isAuthCondition = isAuthCondition;
   }
 
   ngOnInit() {
     const authVal = this.authService.isAuth;
-    if (authVal && this.condition || !authVal && !this.condition) {
+    if (authVal && this.isAuthCondition || !authVal && !this.isAuthCondition) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();
