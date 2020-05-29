@@ -11,6 +11,7 @@ import { ApiService } from './services/api.service';
 import { GlobalService } from './services/global.service';
 import { ChallengeService } from './services/challenge.service';
 import { EndpointsService } from './services/endpoints.service';
+import { environment } from '../environments/environment';
 
 
 // Import Components
@@ -28,7 +29,7 @@ import { SharedModule } from './shared/shared.module';
 // configuration of cookie consent
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+    domain: environment.domain // or 'your.domain.com'
   },
   palette: {
     popup: {

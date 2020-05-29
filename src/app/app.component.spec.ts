@@ -18,10 +18,11 @@ import { ConfirmComponent } from './components/utility/confirm/confirm.component
 import { ModalComponent } from './components/utility/modal/modal.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { environment } from '../environments/environment';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'localhost' // or 'your.domain.com'
+    domain: environment.domain // or 'your.domain.com'
   }
 };
 
