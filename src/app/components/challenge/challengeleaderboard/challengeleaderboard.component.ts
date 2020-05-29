@@ -123,7 +123,6 @@ export class ChallengeleaderboardComponent implements OnInit, AfterViewInit {
    */
   sortLeaderboardTextOption: string;
 
-
   /**
    * Text option for complete leadeboard
    */
