@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange
 import { GlobalService } from '../../../../services/global.service';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 /**
  * Component Class
@@ -12,6 +13,16 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./teamcard.component.scss']
 })
 export class TeamcardComponent implements OnInit, OnChanges {
+
+  /**
+   * Authentication Service subscription
+   */
+  authServiceSubscription: any;
+
+  /**
+   * Current Authentication state
+   */
+  authState: any;
 
   /**
    * Team object
@@ -32,6 +43,11 @@ export class TeamcardComponent implements OnInit, OnChanges {
    * Delete team event
    */
   @Output() deleteTeamCard = new EventEmitter<any>();
+
+  /**
+   * Delete member event
+   */
+  @Output() deleteMemberCard = new EventEmitter<any>();
 
   /**
    * Select team event
@@ -63,10 +79,15 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   teamView = {};
 
-    /**
+  /**
    * Team Member Array
    */
   memberArray = [];
+
+  /**
+   * Team Member ID Array
+   */
+  memberIdArray = [];
 
   /**
    * Is currently selected
@@ -87,6 +108,7 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   constructor(private globalService: GlobalService,
               private apiService: ApiService,
+              public authService: AuthService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -95,6 +117,9 @@ export class TeamcardComponent implements OnInit, OnChanges {
    */
   ngOnInit() {
     this.updateView();
+    this.authServiceSubscription = this.authService.change.subscribe((authState) => {
+      this.authState = authState;
+    });
   }
 
   /**
@@ -148,6 +173,14 @@ export class TeamcardComponent implements OnInit, OnChanges {
     this.deleteTeamCard.emit(this.team['id']);
   }
 
+    /**
+   * Fires delete member event.
+   */
+  deleteTeamMember(e, participantId) {
+    e.stopPropagation();
+    this.deleteMemberCard.emit({teamId: this.team['id'], participantId: participantId});
+  }
+
   /**
    * Fires slect team event.
    */
@@ -171,19 +204,19 @@ export class TeamcardComponent implements OnInit, OnChanges {
       this.isSelected = false;
     }
     const temp = this.team['members'];
-    let memberString = '';
+    this.memberArray = [];
+    this.memberIdArray = [];
     for (let i = 0; i < temp.length; i++) {
       if (temp[i]['member_name']) {
-        memberString = memberString + ', ' + temp[i]['member_name'];
+        this.memberArray.push(temp[i]['member_name']);
+        this.memberIdArray.push(temp[i]['id']);
       } else {
-        memberString = memberString + ', ' + temp[i]['user'];
+        this.memberArray.push(temp[i]['user']);
+        this.memberIdArray.push(temp[i]['id']);
       }
     }
-    if (memberString !== '') {
-      memberString = memberString.slice(2, memberString.length);
-    }
-    this.teamView['members'] = memberString;
-    this.memberArray = memberString.split(',');
+    this.teamView['members'] = this.memberArray;
+    this.teamView['member_ids'] = this.memberIdArray;
   }
 
 }
