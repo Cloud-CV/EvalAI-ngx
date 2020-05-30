@@ -145,6 +145,25 @@ mat-slider {
   display:block;
 }
 
+.complete-leaderboard {
+  margin-right: 2%;
+}
+
+.leaderboard-description {
+  color:  $yellow !important;
+  border-radius: 2px !important;
+  min-height: 25px !important;
+}
+
+.leaderboard-description-span {
+  margin-left: 2%;
+}
+
+.complete-leaderboard-text {
+  font-size: $fs-16;
+  color: $gray-darker;
+}
+
 /*media queries*/
 
 @media only screen and (max-width: $screen-md) {

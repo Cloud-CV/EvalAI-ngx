@@ -61,6 +61,9 @@
                 <mat-chip-list>
                   <mat-chip>B</mat-chip> - Baseline submission
                 </mat-chip-list>
+                <mat-chip-list class="leaderboard-description-span">
+                  <b><span class="leaderboard-description">*</span></b> - Private submission
+                </mat-chip-list>
                 <mat-chip-list class="pull-right" *ngIf="isChallengeHost">
                   <div (click)="showLeaderboardByLatestOrBest()" class="btn-switch sort-leaderboard-switch" [ngClass]="{'btn-switch--on':showLeaderboardByLatest}"
                   [(ngModel)]="showLeaderboardByLatest" ngDefaultControl>
@@ -69,6 +72,11 @@
                   </div>
                   <span class="w-400"> {{sortLeaderboardTextOption}}</span>
                 </mat-chip-list>
+                <mat-checkbox class="pull-right complete-leaderboard" *ngIf="isChallengeHost && showLeaderboardToggle"
+                  (change)="toggleLeaderboard(getAllEntries)"
+                  [(ngModel)]="getAllEntries">
+                  <label class="w-400 complete-leaderboard-text"> {{getAllEntriesTextOption}}</label>
+                </mat-checkbox>
               </div>
 
               <table *ngIf="leaderboard.length > 0 && selectedPhaseSplit" class="centered highlight">
@@ -125,6 +133,7 @@
                   <tr *ngFor="let key of leaderboard" class="content">
                     <td>{{initial_ranking[key.submission__participant_team__team_name]}}</td>
                     <td class="fw-regular">{{key.submission__participant_team__team_name}}
+                      <b><span *ngIf="key.submission__is_public === false" class="orange-text">*</span></b>
                       <span *ngIf="key.submission__is_baseline">
                         <mat-chip-list>
                           <mat-chip>B</mat-chip>
