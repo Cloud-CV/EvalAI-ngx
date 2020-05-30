@@ -325,6 +325,9 @@ export class TeamlistComponent implements OnInit, OnDestroy {
     const temp = self.allTeams.slice();
     for (let i = 0; i < temp.length; i++) {
       temp[i]['isSelected'] = false;
+      if (self.currentlyClickedTeam['id'] === temp[i]['id']) {
+        temp[i]['isSelected'] = true;
+      }
     }
     self.allTeams = temp;
     self.updateTeamsView(false);
