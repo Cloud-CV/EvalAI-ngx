@@ -19,9 +19,6 @@ before_install:
 before_script:
   - npm install -g --silent @angular/cli
 
-cache:
-  npm: false
-
 script:
   - ng lint
   - ng test --watch=false --progress=false --code-coverage > test-log
