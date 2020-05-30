@@ -91,10 +91,16 @@ export class EndpointsService {
   }
 
   /**
-   * Edit Team Name
+   * Edit Participant Team Name
    */
   participantTeamURL(teamId) {
     return `${this.participants}participant_team/${teamId}`;
+  }
+/**
+   * Edit Host Team Name
+   */
+  hostTeamURL(teamId) {
+    return `${this.hosts}challenge_host_team/${teamId}`;
   }
 
   /**
@@ -206,6 +212,14 @@ export class EndpointsService {
    */
   challengeLeaderboardURL(phaseSplitId) {
     return `${this.jobs}challenge_phase_split/${phaseSplitId}/leaderboard/?page_size=1000`;
+  }
+
+  /**
+   * Challenge Complete Leaderboard fetch for challenge host
+   * @param phaseSplitId  phase split id
+   */
+  challengeCompleteLeaderboardURL(phaseSplitId) {
+    return `${this.jobs}phase_split/${phaseSplitId}/public_leaderboard_all_entries/?page_size=1000`;
   }
 
   /**
