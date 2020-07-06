@@ -1,4 +1,7 @@
 # EvalAI-ngx
+
+## Note: Development in this repository has been stopped and the code is moved to the main repository [EvalAI](https://github.com/Cloud-CV/EvalAI) to support mono-repo structure.
+
 Revamped codebase of EvalAI Frontend
 
 <p align="center"><img width="65%" src="src/assets/images/evalai_logo.png" /></p>
