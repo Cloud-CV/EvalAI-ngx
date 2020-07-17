@@ -30,6 +30,26 @@
       </div>
     </div>
 
+    <div class="row settings-section">
+      <div class="ev-md-container ev-panel-title" *ngIf="leaderboard.length>0 && selectedPhaseSplit!=null">
+        <div class="row row-lr-margin">
+          <div class="col-sm-12 col-xs-12 col-lr-pad">
+            <span class="fw-regular"> Leaderboard precision value:</span>
+          </div>
+      </div>
+      <div class="rangeslider fa-stack fa-2x">
+        <mat-slider thumbLabel min="0" max="20"  step="1" thumbLabel placeholder="leaderboardPrecisionValue" [(ngModel)]="leaderboardPrecisionValue"
+                      (change)="updateLeaderboardDecimalPrecision($event)">
+        </mat-slider>
+          <i class="fa fa-circle circle-icon" *ngIf="leaderboardPrecisionValue"></i>
+          <span class="fa-stack-2x value">
+            <span class="val">
+              {{ leaderboardPrecisionValue }}
+            </span>
+          </span>
+      </div>
+    </div>
+
     <div class="ev-card-body exist-team-card">
       <div class="row row-lr-margin">
         <div class="horizontal-scroll">
@@ -120,7 +140,7 @@
                         </mat-chip-list>
                       </span>
                     </td>
-                    <td *ngFor="let score of key.result">{{score | number : '1.2-2'}}</td>
+                    <td *ngFor="let score of key.result">{{score | number : setLeaderboardPrecisionValue }}</td>
                     <td><div>{{ key.submission__submitted_at_formatted }}</div></td>
                   </tr>
                 </tbody>

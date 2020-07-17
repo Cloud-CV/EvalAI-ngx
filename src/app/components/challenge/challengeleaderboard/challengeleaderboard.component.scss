@@ -120,6 +120,31 @@
 	display: inline-block;
 }
 
+.rangeslider {
+  width: 50%;
+  display: inline-block;
+}
+
+mat-slider {
+  width: 55%;
+  margin: 0px;
+  padding-right: 0px;
+}
+
+.rangeslider .fa-circle {
+  margin-left: 80px;
+}
+
+.value {
+  margin-left: 120px;
+  color:white;
+}
+
+.val {
+  font-size: $fs-14;
+  display:block;
+}
+
 .complete-leaderboard {
   margin-right: 2%;
 }
@@ -137,4 +162,22 @@
 .complete-leaderboard-text {
   font-size: $fs-16;
   color: $gray-darker;
+}
+
+/*media queries*/
+
+@media only screen and (max-width: $screen-md) {
+  .value {
+    margin-left: 110px;
+  }
+}
+
+@media only screen and (max-width: $screen-sm) {
+  .rangeslider .fa-circle {
+    margin-left: 1%;
+  }
+
+  .value {
+    margin-left: 65px;
+  }
 }
