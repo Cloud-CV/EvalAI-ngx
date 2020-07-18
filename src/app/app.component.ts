@@ -7,7 +7,8 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 
-
+// service for initializing cookie
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 
 @Component({
@@ -46,7 +47,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public activatedRoute: ActivatedRoute,
   public titleService: Title,
   private globalService: GlobalService,
-  private authService: AuthService
+  private authService: AuthService,
+  private ccService: NgcCookieConsentService
   ) {
   }
 

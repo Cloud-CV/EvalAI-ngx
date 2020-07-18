@@ -3,6 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
 // Import services
 import { WindowService } from './services/window.service';
@@ -10,6 +11,7 @@ import { ApiService } from './services/api.service';
 import { GlobalService } from './services/global.service';
 import { ChallengeService } from './services/challenge.service';
 import { EndpointsService } from './services/endpoints.service';
+import { environment } from '../environments/environment';
 
 
 // Import Components
@@ -23,6 +25,23 @@ import { TermsAndConditionsModalComponent } from './components/challenge/challen
 
 // import module
 import { SharedModule } from './shared/shared.module';
+
+// configuration of cookie consent
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: environment.domain // or 'your.domain.com'
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
 
 @NgModule({
   declarations: [
@@ -40,6 +59,7 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [
     WindowService,

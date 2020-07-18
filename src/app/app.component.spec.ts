@@ -17,6 +17,14 @@ import { LoadingComponent } from './components/utility/loading/loading.component
 import { ConfirmComponent } from './components/utility/confirm/confirm.component';
 import { ModalComponent } from './components/utility/modal/modal.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { environment } from '../environments/environment';
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: environment.domain // or 'your.domain.com'
+  }
+};
 
 describe('AppComponent', () => {
 
@@ -38,7 +46,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         RouterTestingModule,
-        HttpClientModule
+        HttpClientModule,
+        NgcCookieConsentModule.forRoot(cookieConfig)
       ],
       providers: [
         GlobalService,
