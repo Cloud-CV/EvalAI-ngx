@@ -11,6 +11,7 @@ import { FooterComponent } from '../../components/nav/footer/footer.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 
 describe('PrivacyPolicyComponent', () => {
@@ -26,7 +27,7 @@ describe('PrivacyPolicyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrivacyPolicyComponent, HeaderStaticComponent, FooterComponent ],
+      declarations: [ PrivacyPolicyComponent, HeaderStaticComponent, FooterComponent, AuthcheckDirective ],
       providers: [
         GlobalService,
         AuthService,

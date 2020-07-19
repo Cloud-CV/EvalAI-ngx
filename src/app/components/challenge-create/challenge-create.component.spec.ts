@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {Router, Routes} from '@angular/router';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {FormsModule} from '@angular/forms';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 const routes: Routes = [
   {
@@ -38,7 +39,7 @@ describe('ChallengecreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChallengeCreateComponent, HeaderStaticComponent, FooterComponent, NotFoundComponent ],
+      declarations: [ ChallengeCreateComponent, HeaderStaticComponent, FooterComponent, NotFoundComponent, AuthcheckDirective ],
       schemas: [ NO_ERRORS_SCHEMA ],
       imports: [ RouterTestingModule.withRoutes(routes), HttpClientModule, FormsModule],
       providers: [ GlobalService, AuthService, ApiService, ChallengeService, EndpointsService ]

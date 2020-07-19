@@ -16,6 +16,7 @@ import {Router, Routes} from '@angular/router';
 import {PubliclistsComponent} from '../publiclists.component';
 
 import {By} from '@angular/platform-browser';
+import { AuthcheckDirective } from '../../../Directives/authcheck.directive';
 
 const routes: Routes = [
   {
@@ -43,7 +44,7 @@ describe('ChallengelistComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientModule, RouterTestingModule.withRoutes(routes) ],
-      declarations: [ ChallengelistComponent,
+      declarations: [ ChallengelistComponent, AuthcheckDirective,
         CardlistComponent,
         ChallengecardComponent,
         ForceloginComponent,

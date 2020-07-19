@@ -17,6 +17,7 @@ import { LoadingComponent } from './components/utility/loading/loading.component
 import { ConfirmComponent } from './components/utility/confirm/confirm.component';
 import { ModalComponent } from './components/utility/modal/modal.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { AuthcheckDirective } from './Directives/authcheck.directive';
 
 describe('AppComponent', () => {
 
@@ -34,7 +35,8 @@ describe('AppComponent', () => {
         ToastComponent,
         LoadingComponent,
         ConfirmComponent,
-        HomemainComponent
+        HomemainComponent,
+        AuthcheckDirective
       ],
       imports: [
         RouterTestingModule,

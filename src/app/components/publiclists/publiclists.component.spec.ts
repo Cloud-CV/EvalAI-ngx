@@ -13,6 +13,7 @@ import {NotFoundComponent} from '../not-found/not-found.component';
 import {ApiService} from '../../services/api.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 const routes: Routes = [
 
@@ -55,7 +56,7 @@ describe('PubliclistsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule.withRoutes(routes), HttpClientModule, FormsModule ],
-      declarations: [ PubliclistsComponent, ChallengelistComponent, TeamlistComponent, NotFoundComponent ],
+      declarations: [ PubliclistsComponent, ChallengelistComponent, TeamlistComponent, NotFoundComponent, AuthcheckDirective ],
       providers: [ GlobalService, EndpointsService, AuthService, ApiService ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })

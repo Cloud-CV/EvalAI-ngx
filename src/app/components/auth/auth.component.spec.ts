@@ -8,13 +8,14 @@ import { EndpointsService } from '../../services/endpoints.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthComponent, HeaderStaticComponent ],
+      declarations: [ AuthComponent, HeaderStaticComponent, AuthcheckDirective ],
       providers: [
         GlobalService,
         AuthService,

@@ -16,6 +16,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import Global = NodeJS.Global;
 import { FormsModule } from '@angular/forms';
 import { OwlDateTimeModule } from 'ng-pick-datetime';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 const routes: Routes = [
   {
@@ -44,7 +45,7 @@ describe('ContactComponent', () => {
     const MOCK_SERVICE = new MockWindowService(null);
     TestBed.configureTestingModule({
       imports: [ HttpClientModule, RouterTestingModule.withRoutes(routes), FormsModule, OwlDateTimeModule ],
-      declarations: [ ContactComponent, HeaderStaticComponent, InputComponent, ToastComponent, FooterComponent ],
+      declarations: [ ContactComponent, HeaderStaticComponent, InputComponent, ToastComponent, FooterComponent, AuthcheckDirective ],
       providers: [
         GlobalService,
         AuthService,

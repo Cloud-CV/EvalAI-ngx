@@ -26,6 +26,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { MatTableModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { AuthcheckDirective } from '../../Directives/authcheck.directive';
 
 describe('ChallengeComponent', () => {
   let component: ChallengeComponent;
@@ -53,7 +54,8 @@ describe('ChallengeComponent', () => {
         ForceloginComponent,
         FooterComponent,
         TeamlistComponent,
-        SelectphaseComponent
+        SelectphaseComponent,
+        AuthcheckDirective
       ],
       providers: [
         ApiService,

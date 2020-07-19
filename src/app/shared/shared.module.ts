@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 // import directive
 import { PasswordMismatchValidatorDirective } from '../Directives/password.validator';
 import { EmailValidatorDirective } from '../Directives/email.validator';
+import { AuthcheckDirective } from '../Directives/authcheck.directive';
 
 // import component
 import { HeaderStaticComponent } from '../components/nav/header-static/header-static.component';
@@ -21,7 +22,8 @@ import { UtilityModule } from '../components/utility/utility.module';
     EmailValidatorDirective,
     HeaderStaticComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AuthcheckDirective
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { UtilityModule } from '../components/utility/utility.module';
     HeaderStaticComponent,
     FooterComponent,
     UtilityModule,
-    NotFoundComponent
+    NotFoundComponent,
+    AuthcheckDirective
   ]
 })
 export class SharedModule { }
