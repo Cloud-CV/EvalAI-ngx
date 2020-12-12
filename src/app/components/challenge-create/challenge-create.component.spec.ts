@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {Router, Routes} from '@angular/router';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {FormsModule} from '@angular/forms';
+import { Observable } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -35,6 +36,8 @@ describe('ChallengecreateComponent', () => {
   let component: ChallengeCreateComponent;
   let fixture: ComponentFixture<ChallengeCreateComponent>;
   let router: Router;
+  let challengeService: ChallengeService;
+  let authService: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -50,14 +53,41 @@ describe('ChallengecreateComponent', () => {
     router = TestBed.get(Router);
     fixture = TestBed.createComponent(ChallengeCreateComponent);
     component = fixture.componentInstance;
+    challengeService = TestBed.get(ChallengeService);
+    authService = TestBed.get(AuthService);
   });
 
   it('should create', () => {
     fixture.ngZone.run(() => {
       router.navigate(['/challenge-create/']).then(() => {
         fixture.detectChanges();
+        const event = {'target': {'files': []}};
+        component.handleUpload(event);
+        event['target']['files'] = [{'name': 'File name testing'}];
+        component.handleUpload(event);
         expect(component).toBeTruthy();
       });
     });
+  });
+
+  it('should call create challenge', () => {
+    const res = {
+      'results': [],
+      'error': {'error': 'Error Testing'}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(challengeService, 'challengeCreate').and.returnValue(new Observable((observer) => {
+      observer.next(res);
+      observer.error(res);
+      observer.complete();
+      return {unsubscribe() {}};
+    }));
+    fixture.detectChanges();
+    component.challengeCreate();
+    component.hostTeam = {'id': '1'};
+    component.ChallengeCreateForm['input_file'] = 'File Testing';
+    component.ChallengeCreateForm['file_path'] = 'Path Testing';
+    component.challengeCreate();
+    expect(challengeService.challengeCreate).toHaveBeenCalled();
   });
 });
