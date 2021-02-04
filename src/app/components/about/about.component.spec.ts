@@ -39,4 +39,7 @@ describe('AboutComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should call ngOninit', () => {
+    component.ngOnInit();
+  });
 });

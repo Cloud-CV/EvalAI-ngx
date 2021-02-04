@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { GlobalService } from './services/global.service';
 import { AuthService } from './services/auth.service';
 import { EndpointsService } from './services/endpoints.service';
@@ -60,7 +60,7 @@ describe('AppComponent', () => {
 
   }));
 
-  // Mocking promis
+  // Mocking promise
   it('fakeAsync works', fakeAsync(() => {
     const promise = new Promise((resolve) => {
       setTimeout(resolve, 10);
@@ -83,5 +83,21 @@ describe('AppComponent', () => {
     const compFixture = TestBed.createComponent(AppComponent);
     const app = compFixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
+  }));
+  it('should scroll event listener', async(() => {
+    const compFixture = TestBed.createComponent(AppComponent);
+    compFixture.componentInstance.onWindowScroll() ;
+  }));
+  it('should initialize the component', async(() => {
+    const compFixture = TestBed.createComponent(AppComponent);
+    compFixture.componentInstance.ngOnInit() ;
+  }));
+  it('should destroy the component', async(() => {
+    const compFixture = TestBed.createComponent(AppComponent);
+    compFixture.componentInstance.ngOnDestroy() ;
+  }));
+  it('should scroll up', async(() => {
+    const compFixture = TestBed.createComponent(AppComponent);
+    compFixture.componentInstance.scrollUp() ;
   }));
 });

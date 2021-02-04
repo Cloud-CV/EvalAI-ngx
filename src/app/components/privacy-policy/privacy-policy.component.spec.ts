@@ -88,4 +88,21 @@ describe('PrivacyPolicyComponent', () => {
     });
   });
 
+  it('should check page scroll event', () => {
+    const container = de.query(By.css('.scroll-selected'));
+    container.triggerEventHandler('scroll', null);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.onWindowScroll).toHaveBeenCalled();
+      expect(component.isScrolledIntoView).toHaveBeenCalled();
+      expect(component.scroll).toHaveBeenCalled();
+      expect(component.highlightNav).toHaveBeenCalled();
+      expect(component.highlightSectionTitle).toHaveBeenCalled();
+    });
+  });
+
+  it('should scroll to the top of page', () => {
+    component.scrollToTop();
+  });
+
 });

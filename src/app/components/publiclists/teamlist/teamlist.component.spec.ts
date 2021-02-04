@@ -10,11 +10,9 @@ import { ChallengeService } from '../../../services/challenge.service';
 import { EndpointsService } from '../../../services/endpoints.service';
 import { HttpClientModule } from '@angular/common/http';
 import {Router, Routes} from '@angular/router';
-
-import {PubliclistsComponent} from '../publiclists.component';
-import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NotFoundComponent} from '../../not-found/not-found.component';
+import { Observable } from 'rxjs';
 
 
 const routes: Routes = [
@@ -41,6 +39,9 @@ describe('TeamlistComponent', () => {
   let component: TeamlistComponent;
   let fixture: ComponentFixture<TeamlistComponent>;
   let router: Router;
+  let authService: AuthService;
+  let apiService: ApiService;
+  let globalService: GlobalService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -55,6 +56,9 @@ describe('TeamlistComponent', () => {
 
   beforeEach(() => {
     router = TestBed.get(Router);
+    authService = TestBed.get(AuthService);
+    apiService = TestBed.get(ApiService);
+    globalService = TestBed.get(GlobalService);
     fixture = TestBed.createComponent(TeamlistComponent);
     component = fixture.componentInstance;
   });
@@ -64,10 +68,168 @@ describe('TeamlistComponent', () => {
 
     router.navigate(['/teams/hosts']);
     tick();
-
     fixture.detectChanges();
-
     expect(component).toBeTruthy();
-
   }));
+
+  it('should check pagination methods', () => {
+    fixture.detectChanges();
+    component.seeMoreClicked();
+    expect(component.seeMore).toBe(2);
+    component.seeLessClicked();
+    expect(component.seeMore).toBe(1);
+  });
+
+  it('should check fetchMyTeams', () => {
+    const data = {
+      'results': [{id: '1', 'creator': {'id': 1}}],
+      'status': 403,
+      'error': {'error': 'Testing Error'}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'getUrl').and.returnValue(new Observable((observation) => {
+      observation.next(data);
+      observation.error(data);
+      observation.complete();
+      return {unsubscribe() {}};
+    }));
+    fixture.detectChanges();
+  });
+
+  it('should select team', () => {
+    component.allTeams = [{'id': '1'}];
+    const team = {'id': '1'};
+    component.selectTeamWrapper()(team);
+    expect(component.selectedTeam.id).toBe('1');
+  });
+
+  it('should call deleteTeam wrappers', () => {
+    const res = {
+      'delete': 'Delete Team',
+      'status': 403,
+      'error': {'error': {'error': 'Error Testing'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'deleteUrl').and.returnValue(new Observable((observation) => {
+      observation.next(res);
+      observation.error(res);
+      observation.complete();
+      return {unsubscribe() {}};
+    }));
+    spyOn(globalService, 'showConfirm').and.callFake((params) => {
+      params.confirmCallback();
+    });
+    fixture.detectChanges();
+    component.deleteTeamWrapper()('1');
+
+    expect(apiService.deleteUrl).toHaveBeenCalled();
+    expect(globalService.showConfirm).toHaveBeenCalled();
+  });
+
+  it('should call editTeam wrappers', () => {
+    const res = {
+      'edit': 'Edit Team',
+      'status': 403,
+      'error': {'error': {'error': 'Error Testing'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'patchUrl').and.returnValue(new Observable((observation) => {
+      observation.next(res);
+      observation.error(res);
+      observation.complete();
+      return {unsubscribe() {}};
+    }));
+    spyOn(globalService, 'showModal').and.callFake((params) => {
+      params.confirmCallback();
+    });
+    fixture.detectChanges();
+    component.editTeamWrapper()('1');
+
+    expect(apiService.patchUrl).toHaveBeenCalled();
+    expect(globalService.showModal).toHaveBeenCalled();
+  });
+
+  it('should chcek deleteTeam wrappers', () => {
+    const result = {
+      'delete': 'Delete_Team',
+      'status': 403,
+      'error': {'error': {'error': 'Testing Error'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'deleteUrl').and.returnValue(new Observable((observation) => {
+      observation.next(result);
+      observation.error(result);
+      observation.complete();
+      return {unsubscribe() {}};
+    }));
+    spyOn(globalService, 'showConfirm').and.callFake((params) => {
+      params.confirmCallback();
+    });
+    fixture.detectChanges();
+    component.deleteTeamWrapper()('1');
+
+    expect(apiService.deleteUrl).toHaveBeenCalled();
+    expect(globalService.showConfirm).toHaveBeenCalled();
+  });
+
+  it('should check addMembersToTeam wrappers', () => {
+    const result = {
+      'edit': 'Add Team Members in Team',
+      'status': 403,
+      'error': {'error': {'error': 'Testing Error'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'postUrl').and.returnValue(new Observable((observation) => {
+      observation.next(result);
+      observation.error(result);
+      observation.complete();
+      return {unsubscribe() {}};
+    }));
+    spyOn(globalService, 'showModal').and.callFake((params) => {
+      params.confirmCallback();
+    });
+    fixture.detectChanges();
+    component.isHost = true;
+    component.addMembersToTeamWrapper()('1');
+
+    expect(apiService.postUrl).toHaveBeenCalled();
+    expect(globalService.showModal).toHaveBeenCalled();
+  });
+
+  it('should call participateInChallenge wrappers', () => {
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(globalService, 'showTermsAndConditionsModal').and.callFake((params) => {
+      params.confirmCallback();
+    });
+    fixture.detectChanges();
+    component.challenge = {'id': '1'};
+    component.selectedTeam = {'id': '1'};
+    component.participateInChallenge();
+
+    expect(globalService.showTermsAndConditionsModal).toHaveBeenCalled();
+  });
+
+  it('should check createTeamSubmit', () => {
+    const result = {
+      'results': [],
+      'status': 403,
+      'error': {'error': {'error': 'Error Testing'}}
+    };
+    spyOn(authService, 'isLoggedIn').and.returnValue(true);
+    spyOn(apiService, 'postUrl').and.returnValue(new Observable((observation) => {
+      observation.next(result);
+      observation.error(result);
+      observation.complete();
+      return {
+        unsubscribe() {
+        }
+      };
+    }));
+    fixture.detectChanges();
+    component.create_team['team_url'] = 'Testing URL';
+    component.createTeamSubmit(true);
+    component.selectedTeam = {'id': '1'};
+    component.createChallenge();
+    expect(apiService.postUrl).toHaveBeenCalled();
+  });
 });

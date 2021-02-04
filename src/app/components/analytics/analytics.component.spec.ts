@@ -53,4 +53,5 @@ describe('AnalyticsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

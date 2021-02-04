@@ -36,4 +36,7 @@ describe('AuthComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should navigate to a certail url', ()  => {
+    expect(component.navigateTo('/')).toBeUndefined();
+  });
 });

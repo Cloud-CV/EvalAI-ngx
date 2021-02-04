@@ -1,5 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { ChallengeCreateComponent } from './challenge-create.component';
 import { HeaderStaticComponent } from '../../components/nav/header-static/header-static.component';
 import { FooterComponent } from '../../components/nav/footer/footer.component';
@@ -14,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {Router, Routes} from '@angular/router';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {FormsModule} from '@angular/forms';
+import { Observable } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -56,8 +56,37 @@ describe('ChallengecreateComponent', () => {
     fixture.ngZone.run(() => {
       router.navigate(['/challenge-create/']).then(() => {
         fixture.detectChanges();
+        const event = {'target': {'files': []}};
+        component.handleUpload(event);
+        event['target']['files'] = [{'name': 'File name testing'}];
+        component.handleUpload(event);
         expect(component).toBeTruthy();
       });
     });
+  });
+  it('should test challengeCreate function', inject([AuthService, ChallengeService],
+    (service: AuthService, service2: ChallengeService) => {
+      const result = {
+        'results': [],
+        'error': {'error': 'Testing Error'}
+      };
+      spyOn(service, 'isLoggedIn').and.returnValue(true);
+      spyOn(service2, 'challengeCreate').and.returnValue(new Observable((observation) =>  {
+        observation.next(result);
+        observation.error(result);
+        observation.complete();
+        return {unsubscribe() {}};
+      }));
+      fixture.detectChanges();
+      component.challengeCreate();
+      component.ChallengeCreateForm['input_file'] = 'Testing File';
+      component.ChallengeCreateForm['file_path'] = 'Testing Path';
+      component.hostTeam = {'id': '1'};
+      component.challengeCreate();
+      expect(service2.challengeCreate).toHaveBeenCalled();
+  }));
+  it('should test challengeCreate function else part', () => {
+    component.challengeCreate();
+    expect(component.isFormError).toBe(true);
   });
 });
