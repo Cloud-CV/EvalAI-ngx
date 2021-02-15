@@ -216,12 +216,19 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   phaseSelected() {
     const SELF = this;
     return (phase) => {
+      if (SELF.router.url.endsWith('view-all-submissions')) {
+        SELF.router.navigate([phase['slug']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 5) {
+        SELF.router.navigate(['../' + phase['slug']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 6) {
+        SELF.router.navigate(['../../' + phase['slug']], {relativeTo: this.route});
+      }
       SELF.selectedPhase = phase;
       SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;
-      if (SELF.challenge['id'] && phase['id']) {
-        SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
-        SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
+      if (SELF.challenge['id'] && phase['slug']) {
+        SELF.fetchSubmissions(SELF.challenge['id'], phase['slug']);
+        SELF.fetchSubmissionCounts(this.challenge['id'], phase['slug']);
       }
     };
   }
@@ -229,7 +236,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   /**
    * Fetch submissions from API.
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   fetchSubmissions(challenge, phase) {
     const SELF = this;
@@ -298,7 +305,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   filterSubmissions(participantTeamName) {
     const SELF = this;
     SELF.filterSubmissionsQuery = participantTeamName;
-    SELF.fetchSubmissions(SELF.challenge['id'], SELF.selectedPhase['id']);
+    SELF.fetchSubmissions(SELF.challenge['id'], SELF.selectedPhase['slug']);
   }
 
   /**
@@ -481,7 +488,7 @@ export class ChallengeviewallsubmissionsComponent implements OnInit, AfterViewIn
   /**
    * Fetch number of submissions for a challenge phase.
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   fetchSubmissionCounts(challenge, phase) {
     const API_PATH = this.endpointsService.challengeSubmissionCountURL(challenge, phase);

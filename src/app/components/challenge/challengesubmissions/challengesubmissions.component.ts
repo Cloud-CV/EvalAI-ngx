@@ -228,12 +228,19 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   phaseSelected() {
     const SELF = this;
     return (phase) => {
-      SELF.selectedPhase = phase;
+      if (SELF.router.url.endsWith('my-submissions')) {
+        SELF.router.navigate([phase['slug']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 5) {
+        SELF.router.navigate(['../' + phase['slug']], {relativeTo: this.route});
+      } else if (SELF.router.url.split('/').length === 6) {
+        SELF.router.navigate(['../../' + phase['slug']], {relativeTo: this.route});
+      }
       SELF.isPhaseSelected = true;
       SELF.submissionCount = 0;
-      if (SELF.challenge['id'] && phase['id']) {
-        SELF.fetchSubmissions(SELF.challenge['id'], phase['id']);
-        SELF.fetchSubmissionCounts(this.challenge['id'], phase['id']);
+      SELF.selectedPhase = phase;
+      if (SELF.challenge['id'] && phase['slug']) {
+        SELF.fetchSubmissions(SELF.challenge['id'], phase['slug']);
+        SELF.fetchSubmissionCounts(this.challenge['id'], phase['slug']);
       }
     };
   }
@@ -241,7 +248,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   /**
    * Fetch submissions from API.
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   fetchSubmissions(challenge, phase) {
     const SELF = this;
@@ -298,7 +305,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   filterSubmissions(participantTeamName) {
     const SELF = this;
     SELF.filterSubmissionsQuery = participantTeamName;
-    SELF.fetchSubmissions(SELF.challenge['id'], SELF.selectedPhase['id']);
+    SELF.fetchSubmissions(SELF.challenge['id'], SELF.selectedPhase['slug']);
   }
 
   /**
@@ -450,7 +457,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
   /**
    * Fetch number of submissions for a challenge phase.
    * @param challenge  challenge id
-   * @param phase  phase id
+   * @param phase  phase slug
    */
   fetchSubmissionCounts(challenge, phase) {
     const API_PATH = this.endpointsService.challengeSubmissionCountURL(challenge, phase);
@@ -485,7 +492,7 @@ export class ChallengesubmissionsComponent implements OnInit, AfterViewInit {
         () => {
           // Success Message in data.message
           SELF.globalService.showToast('success', 'Data updated successfully', 5);
-          SELF.fetchSubmissions(SELF.challenge.id, SELF.selectedPhase.id);
+          SELF.fetchSubmissions(SELF.challenge.id, SELF.selectedPhase.slug);
         },
         err => {
           SELF.globalService.handleApiError(err, true);

@@ -28,6 +28,8 @@ const routes: Routes = [
       {path: 'my-submissions/:phase', component: ChallengesubmissionsComponent},
       {path: 'mysubmissions/:phase/:submission', component: ChallengesubmissionsComponent},
       {path: 'view-all-submissions', component: ChallengeviewallsubmissionsComponent},
+      {path: 'view-all-submissions/:phase', component: ChallengeviewallsubmissionsComponent},
+      {path: 'view-all-submissions/:phase/:submission', component: ChallengeviewallsubmissionsComponent},
       {path: 'leaderboard', component: ChallengeleaderboardComponent},
       {path: 'leaderboard/:split', component: ChallengeleaderboardComponent},
       {path: 'leaderboard/:split/:entry', component: ChallengeleaderboardComponent},
